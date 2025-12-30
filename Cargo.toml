@@ -1,6 +1,6 @@
 [package]
 name = "jaune"
-description = "Prototype of a fast and lightweight syntax highlighter"
+description = "Prototype of a fast and lightweight syntax highlighter."
 version = "0.1.0"
 edition = "2024"
 
