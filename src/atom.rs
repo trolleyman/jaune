@@ -75,9 +75,8 @@ impl Default for AtomRepository {
 }
 
 /// The global interned string repository for [`Atom`]s.
-pub static ATOM_REPO: LazyLock<RwLock<AtomRepository>> = LazyLock::new(|| {
-    RwLock::new(AtomRepository::new())
-});
+pub static ATOM_REPO: LazyLock<RwLock<AtomRepository>> =
+    LazyLock::new(|| RwLock::new(AtomRepository::new()));
 
 /// Error type for [`Atom`] parsing.
 #[derive(Debug, thiserror::Error)]

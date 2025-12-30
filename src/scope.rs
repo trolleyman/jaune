@@ -182,9 +182,9 @@ impl std::str::FromStr for Scope {
     }
 }
 
-/// The actual output for a token.
+/// A stack of [`Scope`]s.
 ///
-/// A TextMate token is defined by a stack of [`Scope`]s.
+/// This is used to represent the current scope stack during tokenization.
 #[derive(Clone, PartialEq, Debug)]
 pub struct ScopeStack {
     pub scopes: Vec<Scope>,
