@@ -79,18 +79,20 @@ pub static ATOM_REPO: LazyLock<RwLock<AtomRepository>> = LazyLock::new(|| {
     RwLock::new(AtomRepository::new())
 });
 
-/// Error type for atom parsing.
+/// Error type for [`Atom`] parsing.
 #[derive(Debug, thiserror::Error)]
 pub enum AtomParseError {
-    /// Maximum number of unique atoms has been reached.
+    /// Maximum number of unique [`Atom`]s has been reached.
     ///
     /// Currently this is `u16::MAX - 2`.
+    ///
+    /// See [`AtomRepository`] for more information.
     #[error("maximum number of unique atoms reached")]
     MaxAtomsReached,
-    /// Atom contains a `.` character, which is not allowed.
+    /// [`Atom`] contains a `.` character, which is not allowed.
     #[error("atom cannot contain '.' character")]
     InvalidDotCharacter,
-    /// Atom is an empty string.
+    /// [`Atom`] is an empty string.
     #[error("atom cannot be an empty string")]
     EmptyString,
 }
@@ -109,9 +111,9 @@ impl Atom {
     /// unexpected behavior if not followed. Whitespace is stripped from the start and end of the string.
     ///
     /// # Errors
-    /// - `AtomParseError::MaxAtomsReached` if the maximum number of unique atoms has been reached.
-    /// - `AtomParseError::InvalidDotCharacter` if the string contains a `.` character.
-    /// - `AtomParseError::EmptyString` if the string is empty.
+    /// - [`AtomParseError::MaxAtomsReached`] if the maximum number of unique atoms has been reached.
+    /// - [`AtomParseError::InvalidDotCharacter`] if the string contains a `.` character.
+    /// - [`AtomParseError::EmptyString`] if the string is empty.
     ///
     /// # Examples
     /// ```

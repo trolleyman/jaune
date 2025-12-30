@@ -2,22 +2,24 @@ use std::num::NonZeroU16;
 
 use crate::{Atom, atom::AtomParseError};
 
-/// Error type for scope creation.
+/// Error type for [`Scope`] creation.
 #[derive(Debug, thiserror::Error)]
 pub enum ScopeParseError {
-    /// More than 8 atoms were provided.
+    /// More than 8 [`Atom`]s were provided.
     #[error("scope can only hold up to 8 atoms")]
     TooManyAtoms,
-    /// Maximum number of unique atoms has been reached.
+    /// Maximum number of unique [`Atom`]s has been reached.
     ///
     /// Currently this is `u16::MAX - 2`.
+    ///
+    /// See [`AtomRepository`](super::AtomRepository) for more information.
     #[error("maximum number of unique atoms reached")]
     MaxAtomsReached,
 }
 
-/// A bit-packed representation of a single scope (e.g., `meta.function.rust`).
+/// A bit-packed representation of a single [`Scope`] (e.g., `meta.function.rust`).
 ///
-/// Stores up to 8 atoms. Uses 16 bytes.
+/// Stores up to 8 [`Atom`]s. Uses 16 bytes (2 bytes per [`Atom`]).
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Scope {
     /// The atoms in the scope. `None` indicates the end of the scope.
@@ -25,7 +27,7 @@ pub struct Scope {
 }
 
 impl Scope {
-    /// Creates a new `Scope` from a string.
+    /// Creates a new [`Scope`] from a string.
     ///
     /// Conventionally scopes are dot-separated lowercase atoms (e.g., `meta.function.rust`).
     /// Lowercase is not enforced, but may lead to unexpected behavior if not followed.
@@ -42,8 +44,8 @@ impl Scope {
     /// ```
     ///
     /// # Errors
-    /// - `ScopeParseError::TooManyAtoms` if more than 8 atoms are provided.
-    /// - `ScopeParseError::MaxAtomsReached` if any atom fails to be created due to reaching the maximum number of unique atoms.
+    /// - [`ScopeParseError::TooManyAtoms`] if more than 8 [`Atom`]s are provided.
+    /// - [`ScopeParseError::MaxAtomsReached`] if any [`Atom`] fails to be created due to reaching the maximum number of unique [`Atom`]s.
     pub fn new(s: &str) -> Result<Self, ScopeParseError> {
         let atoms: Result<Vec<Atom>, AtomParseError> = s
             .trim_matches(|c: char| c.is_whitespace() || c == '.')
@@ -65,7 +67,7 @@ impl Scope {
         }
     }
 
-    /// Creates a new `Scope` from a slice of `Atom`s.
+    /// Creates a new [`Scope`] from a slice of [`Atom`]s.
     ///
     /// # Examples
     /// ```
@@ -125,7 +127,7 @@ impl Scope {
         true
     }
 
-    /// Returns the number of atoms in the scope.
+    /// Returns the number of [`Atom`]s in the scope.
     pub fn len(self) -> u8 {
         // SAFETY: `as_slice` relies on this method to determine the length of the slice. Ensure consistency.
         self.atoms
@@ -181,7 +183,8 @@ impl std::str::FromStr for Scope {
 }
 
 /// The actual output for a token.
-/// A TextMate token is defined by a stack of scopes.
+///
+/// A TextMate token is defined by a stack of [`Scope`]s.
 #[derive(Clone, PartialEq, Debug)]
 pub struct ScopeStack {
     pub scopes: Vec<Scope>,
