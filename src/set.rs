@@ -29,7 +29,9 @@ impl SyntaxSet {
 
     /// Finds a syntax by its file extension (e.g., "rs").
     pub fn find_by_extension(&self, ext: &str) -> Option<&SyntaxDefinition> {
-        self.extensions.get(ext).and_then(|scope| self.definitions.get(scope))
+        self.extensions
+            .get(ext)
+            .and_then(|scope| self.definitions.get(scope))
     }
 
     /// Finds a syntax by its root scope (e.g., `source.rust`).
@@ -60,7 +62,7 @@ pub fn parse_reference(s: &str) -> Result<(Option<Scope>, Option<&str>), ScopePa
         None => {
             // External reference root: "source.rust"
             if s == "$self" || s == "$base" {
-                 return Ok((None, None));
+                return Ok((None, None));
             }
             let scope = Scope::new(s)?;
             Ok((Some(scope), None))

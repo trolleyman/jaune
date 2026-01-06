@@ -1,7 +1,7 @@
 use crate::Scope;
 use std::{
     collections::HashMap,
-    io::{BufReader, Cursor, Read},
+    io::{BufReader, Read},
     path::Path,
 };
 
@@ -9,8 +9,8 @@ use std::{
 pub enum LoadError {
     #[error("IO error")]
     Io(#[from] std::io::Error),
-    #[error("plist parse error")]
-    PlistParse(#[from] plist::Error),
+    // #[error("plist parse error")]
+    // PlistParse(#[from] plist::Error),
     #[error("JSON parse error")]
     JsonParse(#[from] serde_json::Error),
 }
@@ -28,7 +28,7 @@ pub struct SyntaxDefinition {
 }
 
 /// The fundamental building block of a grammar.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, serde::Deserialize)]
 pub enum Pattern {
     /// A simple regex match (e.g., a keyword).
     Match {
@@ -86,12 +86,12 @@ impl SyntaxDefinition {
     }
 
     /// Load from a TextMate JSON value
-    pub fn from_json(value: serde_json::Value) -> Result<Self, LoadError> {
+    pub fn from_json(_value: serde_json::Value) -> Result<Self, LoadError> {
         todo!()
     }
 
     /// Load from a .tmLanguage (plist) file
-    pub fn from_plist_file<P: AsRef<Path>>(path: P) -> Result<Self, LoadError> {
+    pub fn from_plist_file<P: AsRef<Path>>(_path: P) -> Result<Self, LoadError> {
         todo!()
     }
 }
@@ -142,6 +142,22 @@ mod tests {
     "###;
 
     #[test]
-    pub fn load_simple_from_json() {
+    pub fn test_load_simple_from_json() {
+        let syntax = super::SyntaxDefinition::from_json_str(SIMPLE_SYNTAX_JSON)
+            .expect("Failed to load syntax");
+        assert_eq!(syntax.name, "abc");
+        assert_eq!(syntax.scope.to_string(), "source.abc");
+        assert_eq!(syntax.patterns.len(), 1);
+        assert!(syntax.repository.contains_key("expression"));
+        assert!(syntax.repository.contains_key("letter"));
+        assert!(syntax.repository.contains_key("paren-expression"));
+    }
+
+    #[test]
+    #[ignore]
+    pub fn test_tokenize_simple_sample() {
+        let syntax = super::SyntaxDefinition::from_json_str(SIMPLE_SYNTAX_JSON)
+            .expect("Failed to load syntax");
+        todo!("{:?}\n{}", syntax, SIMPLE_SYNTAX_SAMPLE);
     }
 }

@@ -1,4 +1,4 @@
-use std::num::NonZeroU16;
+use std::{num::NonZeroU16, str::FromStr};
 
 use crate::{Atom, atom::AtomParseError};
 
@@ -174,7 +174,7 @@ impl std::fmt::Display for Scope {
     }
 }
 
-impl std::str::FromStr for Scope {
+impl FromStr for Scope {
     type Err = ScopeParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -182,10 +182,34 @@ impl std::str::FromStr for Scope {
     }
 }
 
-/// A stack of [`Scope`]s.
+impl serde::Serialize for Scope {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        serializer.serialize_str(&self.to_string())
+    }
+}
+
+impl<'de> serde::Deserialize<'de> for Scope {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        Scope::new(&s).map_err(|e| serde::de::Error::custom(format!("Invalid scope: {:?}", e)))
+    }
+}
+
+/// A stack of [`Scope`]s, along with a set of clear stacks.
 ///
 /// This is used to represent the current scope stack during tokenization.
 #[derive(Clone, PartialEq, Debug)]
 pub struct ScopeStack {
     pub scopes: Vec<Scope>,
+}
+
+impl ScopeStack
+{
+
 }
