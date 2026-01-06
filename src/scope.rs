@@ -1,9 +1,14 @@
-use std::{num::NonZeroU16, str::FromStr};
+use std::{
+    fmt::{Debug, Display},
+    num::NonZeroU16,
+    ops::{Deref, DerefMut},
+    str::FromStr,
+};
 
 use crate::{Atom, atom::AtomParseError};
 
 /// Error type for [`Scope`] creation.
-#[derive(Debug, thiserror::Error)]
+#[derive(Debug, thiserror::Error, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum ScopeParseError {
     /// More than 8 [`Atom`]s were provided.
     #[error("scope can only hold up to 8 atoms")]
@@ -201,15 +206,202 @@ impl<'de> serde::Deserialize<'de> for Scope {
     }
 }
 
-/// A stack of [`Scope`]s, along with a set of clear stacks.
+/// A stack of [`Scope`]s for representing a hierarchy in a token of text. The last scope is the most specific.
 ///
-/// This is used to represent the current scope stack during tokenization.
-#[derive(Clone, PartialEq, Debug)]
-pub struct ScopeStack {
-    pub scopes: Vec<Scope>,
+/// Parsed and displayed as a space-separated list of scopes, e.g. `source.rust meta.function.call.rust entity.name.function.rust` for a function name in Rust.
+/// Or, for a more complex example: `text.html.markdown markup.fenced_code.block.markdown meta.embedded.block.html source.css meta.property-list.css meta.property-value.css constant.other.color.rgb-value.hex.css`
+/// for a hex color in a CSS block inside a fenced HTML code block in Markdown.
+///
+/// This derefs to a `Vec<Scope>`, so all slice and vector methods are available.
+///
+/// # Examples
+///
+/// ```rust
+/// # use jaune::{Scope, SimpleScopeStack};
+/// let scope_stack = SimpleScopeStack::from_str("source.rust meta.function.call.rust entity.name.function.rust").unwrap();
+/// assert_eq!(scope_stack.to_string(), "source.rust meta.function.call.rust entity.name.function.rust");
+/// assert_eq!(scope_stack.len(), 3);
+/// assert_eq!(scope_stack[0], Scope::new("source.rust").unwrap());
+/// assert_eq!(scope_stack[1], Scope::new("meta.function.call.rust").unwrap());
+/// assert_eq!(scope_stack[2], Scope::new("entity.name.function.rust").unwrap());
+/// ```
+#[derive(Clone, Default, PartialEq, Eq, Hash)]
+pub struct SimpleScopeStack(Vec<Scope>);
+
+impl SimpleScopeStack {
+    /// Creates a new empty simple scope stack.
+    pub fn new() -> Self {
+        Self::default()
+    }
 }
 
-impl ScopeStack
-{
+impl From<Vec<Scope>> for SimpleScopeStack {
+    fn from(v: Vec<Scope>) -> Self {
+        Self(v)
+    }
+}
 
+impl Into<Vec<Scope>> for SimpleScopeStack {
+    fn into(self) -> Vec<Scope> {
+        self.0
+    }
+}
+
+impl Deref for SimpleScopeStack {
+    type Target = Vec<Scope>;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+impl DerefMut for SimpleScopeStack {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+
+impl Display for SimpleScopeStack {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for (i, scope) in self.0.iter().enumerate() {
+            write!(f, "{}", scope)?;
+            if i != self.0.len() - 1 {
+                write!(f, " ")?;
+            }
+        }
+        Ok(())
+    }
+}
+
+impl Debug for SimpleScopeStack {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "SimpleScopeStack(")?;
+        for (i, scope) in self.0.iter().enumerate() {
+            write!(f, "{:?}", scope)?;
+            if i != self.0.len() - 1 {
+                write!(f, ", ")?;
+            }
+        }
+        write!(f, ")")
+    }
+}
+
+impl FromStr for SimpleScopeStack {
+    type Err = ScopeParseError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let scopes: Result<Vec<Scope>, ScopeParseError> = s
+            .split_whitespace()
+            .map(|scope_str| Scope::new(scope_str))
+            .collect();
+        Ok(SimpleScopeStack(scopes?))
+    }
+}
+
+/// A stack of [`Scope`]s, along with a stack of cleared scope stacks.
+///
+/// This is used to represent the current scope stack during tokenization. This is slightly more complex
+/// than [`SimpleScopeStack`] because of the need to handle clearing and restoring scope stacks. See [`SimpleScopeStack`]
+/// for more information.
+///
+/// # Examples
+/// ```
+/// # use jaune::{Scope, SimpleScopeStack, ScopeStack};
+/// let mut stack = ScopeStack::new();
+/// stack.push(Scope::new("source.rust").unwrap());
+/// stack.push(Scope::new("meta.function").unwrap());
+/// assert_eq!(stack.scope_stack.len(), 2);
+///
+/// stack.clear_push();
+/// assert_eq!(stack.scope_stack.len(), 0);
+/// assert_eq!(stack.clear_stacks.len(), 1);
+///
+/// stack.push(Scope::new("meta.string").unwrap());
+/// assert_eq!(stack.scope_stack.len(), 1);
+///
+/// stack.clear_pop();
+/// assert_eq!(stack.scope_stack.len(), 2);
+/// assert_eq!(stack.clear_stacks.len(), 0);
+/// ```
+#[derive(Clone, Default, PartialEq, Eq, Hash)]
+pub struct ScopeStack {
+    /// The current stack of [`Scope`]s used for highlighting.
+    ///
+    /// e.g. `source.rust meta.function.call.rust entity.name.function.rust` for a function name in Rust.
+    ///
+    /// A more complex example: `text.html.markdown markup.fenced_code.block.markdown meta.embedded.block.html source.css meta.property-list.css meta.property-value.css constant.other.color.rgb-value.hex.css`
+    /// for a hex color in a CSS block inside a fenced HTML code block in Markdown.
+    pub scope_stack: SimpleScopeStack,
+    /// The stack of [`SimpleScopeStack`]s that have been cleared that can be restored later.
+    ///
+    /// This can happen when a grammar rule specifies to clear the scope stack.
+    pub clear_stacks: Vec<SimpleScopeStack>,
+}
+
+impl ScopeStack {
+    /// Creates a new empty [`ScopeStack`].
+    pub fn new() -> Self {
+        Default::default()
+    }
+
+    /// Pushes a new scope onto the stack.
+    pub fn push(&mut self, scope: Scope) {
+        self.scope_stack.push(scope);
+    }
+
+    /// Pops the top scope from the stack.
+    ///
+    /// Returns `None` if the stack is empty.
+    pub fn pop(&mut self) -> Option<Scope> {
+        self.scope_stack.pop()
+    }
+
+    /// Clear the scope stack entirely.
+    pub fn clear(&mut self) {
+        self.scope_stack.clear();
+        self.clear_stacks.clear();
+    }
+
+    /// Clears the current scope stack, pushing it onto the `clear_stacks`.
+    pub fn clear_push(&mut self) {
+        let current_scopes = std::mem::take(&mut self.scope_stack);
+        self.clear_stacks.push(current_scopes);
+    }
+
+    /// Restores the most recently cleared scope stack.
+    ///
+    /// Returns `false` and clears the current scope if there is no cleared
+    /// scope stack to restore.
+    pub fn clear_pop(&mut self) -> bool {
+        if let Some(restored_scopes) = self.clear_stacks.pop() {
+            self.scope_stack = restored_scopes;
+            true
+        } else {
+            self.scope_stack.clear();
+            false
+        }
+    }
+}
+
+impl From<SimpleScopeStack> for ScopeStack {
+    fn from(scope_stack: SimpleScopeStack) -> Self {
+        Self {
+            scope_stack,
+            clear_stacks: Vec::new(),
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_scope_stack_display() {
+        let scopes = SimpleScopeStack::from(vec![
+            Scope::new("meta.function.rust").unwrap(),
+            Scope::new("meta.block").unwrap(),
+        ]);
+        assert_eq!(scopes.to_string(), "meta.function.rust meta.block");
+    }
 }
