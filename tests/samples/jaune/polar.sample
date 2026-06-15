@@ -1,144 +1,364 @@
 # grammar: source.polar
 
 actor User { }
+#<0----------- meta.resource-block
+#<0-- keyword.control
+#     ^--- entity.name.type
 actor Group { }
+#<0------------ meta.resource-block
+#<0-- keyword.control
+#     ^---- entity.name.type
 
 resource Organization { 
+#<0--------------------- meta.resource-block
+#<0----- keyword.control
+#        ^----------- entity.name.type
     permissions = [
+#<0---------------- meta.resource-block
+#               ^ keyword.control
+#                 ^ meta.bracket.list
         "read",
+#<0------------ meta.resource-block
+#<0------------ meta.bracket.list
+#       ^----- string.quoted.double
+#             ^ punctuation.separator.sequence.list
         "read_details",
+#<0-------------------- meta.resource-block
+#<0-------------------- meta.bracket.list
+#       ^------------- string.quoted.double
+#                     ^ punctuation.separator.sequence.list
         "view_members",
+#<0-------------------- meta.resource-block
+#<0-------------------- meta.bracket.list
+#       ^------------- string.quoted.double
+#                     ^ punctuation.separator.sequence.list
         "manage_members",
+#<0---------------------- meta.resource-block
+#<0---------------------- meta.bracket.list
+#       ^--------------- string.quoted.double
+#                       ^ punctuation.separator.sequence.list
         "set_default_role",
+#<0------------------------ meta.resource-block
+#<0------------------------ meta.bracket.list
+#       ^----------------- string.quoted.double
+#                         ^ punctuation.separator.sequence.list
         "create_repositories",
+#<0--------------------------- meta.resource-block
+#<0--------------------------- meta.bracket.list
+#       ^-------------------- string.quoted.double
+#                            ^ punctuation.separator.sequence.list
         "delete"
+#<0------------- meta.resource-block
+#<0------------- meta.bracket.list
+#       ^------- string.quoted.double
     ];
+#<0--- meta.resource-block
+#<0-- meta.bracket.list
+#    ^ punctuation.separator.sequence.declarations
     roles = ["admin", "member"];
+#<0----------------------------- meta.resource-block
+#         ^ keyword.control
+#           ^------------------ meta.bracket.list
+#            ^------ string.quoted.double
+#                   ^ punctuation.separator.sequence.list
+#                     ^------- string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
 
     "read_details" if "member";
-#                  ^- keyword.control.if
+#<0---------------------------- meta.resource-block
+#   ^------------- string.quoted.double
+#                  ^- constant.character
 #                     ^------- string.quoted.double
+#                             ^ punctuation.separator.sequence.declarations
     "view_members" if "member";
-#                  ^- keyword.control.if
+#<0---------------------------- meta.resource-block
+#   ^------------- string.quoted.double
+#                  ^- constant.character
 #                     ^------- string.quoted.double
+#                             ^ punctuation.separator.sequence.declarations
     "create_repositories" if "member";
-#                         ^- keyword.control.if
+#<0----------------------------------- meta.resource-block
+#   ^-------------------- string.quoted.double
+#                         ^- constant.character
 #                            ^------- string.quoted.double
+#                                    ^ punctuation.separator.sequence.declarations
 
     "member" if "admin";
-#            ^- keyword.control.if
+#<0--------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^------ string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
     "manage_members" if "admin";
-#                    ^- keyword.control.if
+#<0----------------------------- meta.resource-block
+#   ^--------------- string.quoted.double
+#                    ^- constant.character
 #                       ^------ string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
     "set_default_role" if "admin";
-#                      ^- keyword.control.if
+#<0------------------------------- meta.resource-block
+#   ^----------------- string.quoted.double
+#                      ^- constant.character
 #                         ^------ string.quoted.double
+#                                ^ punctuation.separator.sequence.declarations
     "delete" if "admin";
-#            ^- keyword.control.if
+#<0--------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^------ string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
 }
+#<0 meta.resource-block
 
 resource Repository { 
+#<0------------------- meta.resource-block
+#<0----- keyword.control
+#        ^--------- entity.name.type
     permissions = [
+#<0---------------- meta.resource-block
+#               ^ keyword.control
+#                 ^ meta.bracket.list
         "read", "create", "update", "delete",
+#<0------------------------------------------ meta.resource-block
+#<0------------------------------------------ meta.bracket.list
+#       ^----- string.quoted.double
+#             ^ punctuation.separator.sequence.list
+#               ^------- string.quoted.double
+#                       ^ punctuation.separator.sequence.list
+#                         ^------- string.quoted.double
+#                                 ^ punctuation.separator.sequence.list
+#                                   ^------- string.quoted.double
+#                                           ^ punctuation.separator.sequence.list
         "invite", "write",
+#<0----------------------- meta.resource-block
+#<0----------------------- meta.bracket.list
+#       ^------- string.quoted.double
+#               ^ punctuation.separator.sequence.list
+#                 ^------ string.quoted.double
+#                        ^ punctuation.separator.sequence.list
         "manage_jobs", "manage_issues", "create_issues",
+#<0----------------------------------------------------- meta.resource-block
+#<0----------------------------------------------------- meta.bracket.list
+#       ^------------ string.quoted.double
+#                    ^ punctuation.separator.sequence.list
+#                      ^-------------- string.quoted.double
+#                                     ^ punctuation.separator.sequence.list
+#                                       ^-------------- string.quoted.double
+#                                                      ^ punctuation.separator.sequence.list
         "view_members", "manage_members"
+#<0------------------------------------- meta.resource-block
+#<0------------------------------------- meta.bracket.list
+#       ^------------- string.quoted.double
+#                     ^ punctuation.separator.sequence.list
+#                       ^--------------- string.quoted.double
     ];
+#<0--- meta.resource-block
+#<0-- meta.bracket.list
+#    ^ punctuation.separator.sequence.declarations
     roles = ["reader", "admin", "maintainer", "editor"];
+#<0----------------------------------------------------- meta.resource-block
+#         ^ keyword.control
+#           ^------------------------------------------ meta.bracket.list
+#            ^------- string.quoted.double
+#                    ^ punctuation.separator.sequence.list
+#                      ^------ string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                               ^----------- string.quoted.double
+#                                           ^ punctuation.separator.sequence.list
+#                                             ^------- string.quoted.double
+#                                                      ^ punctuation.separator.sequence.declarations
     relations = { organization: Organization };
+#<0-------------------------------------------- meta.resource-block
+#             ^ keyword.control
+#               ^----------------------------- meta.relation-declaration
+#                               ^----------- entity.name.type.resource
+#                                             ^ punctuation.separator.sequence.declarations
 
     "reader" if "member" on "organization";
-#            ^- keyword.control.if
+#<0---------------------------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^------- string.quoted.double
 #                        ^- constant.character
 #                           ^------------- string.quoted.double
+#                                         ^ punctuation.separator.sequence.declarations
     "admin" if "admin" on "organization";
-#           ^- keyword.control.if
+#<0-------------------------------------- meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
 #              ^------ string.quoted.double
 #                      ^- constant.character
 #                         ^------------- string.quoted.double
+#                                       ^ punctuation.separator.sequence.declarations
     "reader" if "editor";
-#            ^- keyword.control.if
+#<0---------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^------- string.quoted.double
+#                       ^ punctuation.separator.sequence.declarations
     "editor" if "maintainer";
-#            ^- keyword.control.if
+#<0-------------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^----------- string.quoted.double
+#                           ^ punctuation.separator.sequence.declarations
     "maintainer" if "admin";
-#                ^- keyword.control.if
+#<0------------------------- meta.resource-block
+#   ^----------- string.quoted.double
+#                ^- constant.character
 #                   ^------ string.quoted.double
+#                          ^ punctuation.separator.sequence.declarations
 
     # reader permissions
+#<0--------------------- meta.resource-block
 #   ^------------------- comment.line.number-sign
     "read" if "reader";
-#          ^- keyword.control.if
+#<0-------------------- meta.resource-block
+#   ^----- string.quoted.double
+#          ^- constant.character
 #             ^------- string.quoted.double
+#                     ^ punctuation.separator.sequence.declarations
     "create_issues" if "reader";
-#                   ^- keyword.control.if
+#<0----------------------------- meta.resource-block
+#   ^-------------- string.quoted.double
+#                   ^- constant.character
 #                      ^------- string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
 
     # editor permissions
+#<0--------------------- meta.resource-block
 #   ^------------------- comment.line.number-sign
     "write" if "editor";
-#           ^- keyword.control.if
+#<0--------------------- meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
 #              ^------- string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
     "manage_jobs" if "editor";
-#                 ^- keyword.control.if
+#<0--------------------------- meta.resource-block
+#   ^------------ string.quoted.double
+#                 ^- constant.character
 #                    ^------- string.quoted.double
+#                            ^ punctuation.separator.sequence.declarations
     "manage_issues" if "editor";
-#                   ^- keyword.control.if
+#<0----------------------------- meta.resource-block
+#   ^-------------- string.quoted.double
+#                   ^- constant.character
 #                      ^------- string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
     "view_members" if "maintainer";
-#                  ^- keyword.control.if
+#<0-------------------------------- meta.resource-block
+#   ^------------- string.quoted.double
+#                  ^- constant.character
 #                     ^----------- string.quoted.double
+#                                 ^ punctuation.separator.sequence.declarations
 
     # admin permissions
+#<0-------------------- meta.resource-block
 #   ^------------------ comment.line.number-sign
     "manage_members" if "admin";
-#                    ^- keyword.control.if
+#<0----------------------------- meta.resource-block
+#   ^--------------- string.quoted.double
+#                    ^- constant.character
 #                       ^------ string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
     "update" if "admin";
-#            ^- keyword.control.if
+#<0--------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^------ string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
     "delete" if "admin";
-#            ^- keyword.control.if
+#<0--------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^------ string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
     "invite" if "admin" ;
-#            ^- keyword.control.if
+#<0---------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^------ string.quoted.double
+#                       ^ punctuation.separator.sequence.declarations
 }
+#<0 meta.resource-block
 
 resource Issue { 
+#<0-------------- meta.resource-block
+#<0----- keyword.control
+#        ^---- entity.name.type
     permissions = ["read", "comment", "close"];
+#<0-------------------------------------------- meta.resource-block
+#               ^ keyword.control
+#                 ^--------------------------- meta.bracket.list
+#                  ^----- string.quoted.double
+#                        ^ punctuation.separator.sequence.list
+#                          ^-------- string.quoted.double
+#                                   ^ punctuation.separator.sequence.list
+#                                     ^------ string.quoted.double
+#                                             ^ punctuation.separator.sequence.declarations
     roles = ["reader", "admin", "creator"];
+#<0---------------------------------------- meta.resource-block
+#         ^ keyword.control
+#           ^----------------------------- meta.bracket.list
+#            ^------- string.quoted.double
+#                    ^ punctuation.separator.sequence.list
+#                      ^------ string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                               ^-------- string.quoted.double
+#                                         ^ punctuation.separator.sequence.declarations
     relations = { repository: Repository };
+#<0---------------------------------------- meta.resource-block
+#             ^ keyword.control
+#               ^------------------------- meta.relation-declaration
+#                             ^--------- entity.name.type.resource
+#                                         ^ punctuation.separator.sequence.declarations
 
     "reader" if "reader" on "repository";
-#            ^- keyword.control.if
+#<0-------------------------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
 #               ^------- string.quoted.double
 #                        ^- constant.character
 #                           ^----------- string.quoted.double
+#                                       ^ punctuation.separator.sequence.declarations
     "admin" if "admin" on "repository";
-#           ^- keyword.control.if
+#<0------------------------------------ meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
 #              ^------ string.quoted.double
 #                      ^- constant.character
 #                         ^----------- string.quoted.double
+#                                     ^ punctuation.separator.sequence.declarations
 
     "read" if "reader";
-#          ^- keyword.control.if
+#<0-------------------- meta.resource-block
+#   ^----- string.quoted.double
+#          ^- constant.character
 #             ^------- string.quoted.double
+#                     ^ punctuation.separator.sequence.declarations
     "comment" if "admin";
-#             ^- keyword.control.if
+#<0---------------------- meta.resource-block
+#   ^-------- string.quoted.double
+#             ^- constant.character
 #                ^------ string.quoted.double
+#                       ^ punctuation.separator.sequence.declarations
     "close" if "creator";
-#           ^- keyword.control.if
+#<0---------------------- meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
 #              ^-------- string.quoted.double
+#                       ^ punctuation.separator.sequence.declarations
     "close" if "admin";
-#           ^- keyword.control.if
+#<0-------------------- meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
 #              ^------ string.quoted.double
+#                     ^ punctuation.separator.sequence.declarations
     
+#<0- meta.resource-block
 }
+#<0 meta.resource-block
 
 has_permission(_: Actor, "read", repo: Repository) if
 #<0----------- support.function.rule

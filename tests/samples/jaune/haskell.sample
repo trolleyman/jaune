@@ -22,15 +22,22 @@
 --           ^-------------------- keyword.other.preprocessor.extension.haskell
 
 import Yesod
---     ^---- constant.other.haskell
+--<0-------- meta.import.haskell
+--<0-- keyword.other.import.haskell
+--     ^---- entity.name.namespace.haskell
 
 data WebApp = WebApp
---   ^----- constant.other.haskell
+--<0---------------- meta.declaration.data.algebraic.haskell
+--<0 keyword.other.data.haskell
+--   ^----- storage.type.haskell
+--          ^ keyword.operator.eq.haskell
 --            ^----- constant.other.haskell
 
 instance Yesod WebApp
---       ^---- constant.other.haskell
---             ^----- constant.other.haskell
+--<0----------------- meta.declaration.instance.haskell
+--<0---- keyword.other.instance.haskell
+--       ^---- storage.type.haskell
+--             ^----- storage.type.haskell
 
 mkYesod "WebApp" [parseRoutes|
 --      ^------- string.quoted.double.haskell
@@ -47,6 +54,7 @@ mkYesod "WebApp" [parseRoutes|
 --<0 keyword.operator.quasi-quotation.end.haskell
 
 getHomeR = defaultLayout [whamlet|
+--       ^ keyword.operator.eq.haskell
 --                       ^-------- meta.quasi-quotation.haskell
 --                       ^ keyword.operator.quasi-quotation.begin.haskell
 --                        ^------ entity.name.quasi-quoter.haskell
@@ -58,6 +66,7 @@ getHomeR = defaultLayout [whamlet|
 --<0 keyword.operator.quasi-quotation.end.haskell
 
 main = warpEnv WebApp
+--   ^ keyword.operator.eq.haskell
 --             ^----- constant.other.haskell
 
 {-# From https://www.schoolofhaskell.com/user/eriks/Simple%20examples }

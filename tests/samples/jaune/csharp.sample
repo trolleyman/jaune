@@ -55,22 +55,26 @@ namespace KCTest.API
         public static void Main(string[] args)
 //      ^----- storage.modifier.public.cs
 //             ^----- storage.modifier.static.cs
+//                    ^--- keyword.type.void.cs
 //                         ^--- entity.name.function.cs
 //                             ^ punctuation.parenthesis.open.cs
+//                              ^----- keyword.type.string.cs
 //                                    ^ punctuation.squarebracket.open.cs
 //                                     ^ punctuation.squarebracket.close.cs
+//                                       ^--- entity.name.variable.parameter.cs
 //                                           ^ punctuation.parenthesis.close.cs
         {
 //      ^ punctuation.curlybrace.open.cs
             var host = CreateHostBuilder(args).Build();
-//          ^-- variable.other.readwrite.cs
-//              ^--- variable.other.readwrite.cs
+//          ^-- storage.type.var.cs
+//              ^--- entity.name.variable.local.cs
 //                   ^ keyword.operator.assignment.cs
-//                     ^---------------- variable.other.readwrite.cs
+//                     ^---------------- entity.name.function.cs
 //                                      ^ punctuation.parenthesis.open.cs
 //                                       ^--- variable.other.readwrite.cs
 //                                           ^ punctuation.parenthesis.close.cs
-//                                             ^---- variable.other.readwrite.cs
+//                                            ^ punctuation.accessor.cs
+//                                             ^---- entity.name.function.cs
 //                                                  ^ punctuation.parenthesis.open.cs
 //                                                   ^ punctuation.parenthesis.close.cs
 //                                                    ^ punctuation.terminator.statement.cs
@@ -78,28 +82,30 @@ namespace KCTest.API
             using (var scope = host.Services.CreateScope())
 //          ^---- keyword.control.context.using.cs
 //                ^ punctuation.parenthesis.open.cs
-//                 ^-- variable.other.readwrite.cs
-//                     ^---- variable.other.readwrite.cs
+//                 ^-- storage.type.var.cs
+//                     ^---- entity.name.variable.local.cs
 //                           ^ keyword.operator.assignment.cs
 //                             ^--- variable.other.object.cs
 //                                 ^ punctuation.accessor.cs
 //                                  ^------- variable.other.object.property.cs
-//                                           ^---------- variable.other.readwrite.cs
+//                                          ^ punctuation.accessor.cs
+//                                           ^---------- entity.name.function.cs
 //                                                      ^ punctuation.parenthesis.open.cs
 //                                                       ^- punctuation.parenthesis.close.cs
             {
 //          ^ punctuation.curlybrace.open.cs
                 var db = scope.ServiceProvider.GetRequiredService<KCTestContext>();
-//              ^-- variable.other.readwrite.cs
-//                  ^- variable.other.readwrite.cs
+//              ^-- storage.type.var.cs
+//                  ^- entity.name.variable.local.cs
 //                     ^ keyword.operator.assignment.cs
 //                       ^---- variable.other.object.cs
 //                            ^ punctuation.accessor.cs
 //                             ^-------------- variable.other.object.property.cs
-//                                             ^----------------- variable.other.readwrite.cs
-//                                                               ^ keyword.operator.relational.cs
-//                                                                ^------------ variable.other.readwrite.cs
-//                                                                             ^ keyword.operator.relational.cs
+//                                            ^ punctuation.accessor.cs
+//                                             ^----------------- entity.name.function.cs
+//                                                               ^ punctuation.definition.typeparameters.begin.cs
+//                                                                ^------------ entity.name.type.cs
+//                                                                             ^ punctuation.definition.typeparameters.end.cs
 //                                                                              ^ punctuation.parenthesis.open.cs
 //                                                                               ^ punctuation.parenthesis.close.cs
 //                                                                                ^ punctuation.terminator.statement.cs
@@ -107,7 +113,8 @@ namespace KCTest.API
 //              ^- variable.other.object.cs
 //                ^ punctuation.accessor.cs
 //                 ^------- variable.other.object.property.cs
-//                          ^------ variable.other.readwrite.cs
+//                         ^ punctuation.accessor.cs
+//                          ^------ entity.name.function.cs
 //                                 ^ punctuation.parenthesis.open.cs
 //                                  ^ punctuation.parenthesis.close.cs
 //                                   ^ punctuation.terminator.statement.cs
@@ -116,7 +123,8 @@ namespace KCTest.API
 
             host.Run();
 //          ^--- variable.other.object.cs
-//               ^-- variable.other.readwrite.cs
+//              ^ punctuation.accessor.cs
+//               ^-- entity.name.function.cs
 //                  ^ punctuation.parenthesis.open.cs
 //                   ^ punctuation.parenthesis.close.cs
 //                    ^ punctuation.terminator.statement.cs
@@ -126,33 +134,40 @@ namespace KCTest.API
         public static IHostBuilder CreateHostBuilder(string[] args) =>
 //      ^----- storage.modifier.public.cs
 //             ^----- storage.modifier.static.cs
+//                    ^----------- entity.name.type.cs
 //                                 ^---------------- entity.name.function.cs
 //                                                  ^ punctuation.parenthesis.open.cs
+//                                                   ^----- keyword.type.string.cs
 //                                                         ^ punctuation.squarebracket.open.cs
 //                                                          ^ punctuation.squarebracket.close.cs
+//                                                            ^--- entity.name.variable.parameter.cs
 //                                                                ^ punctuation.parenthesis.close.cs
 //                                                                  ^- keyword.operator.arrow.cs
             Host.CreateDefaultBuilder(args)
 //          ^--- variable.other.object.cs
-//               ^------------------- variable.other.readwrite.cs
+//              ^ punctuation.accessor.cs
+//               ^------------------- entity.name.function.cs
 //                                   ^ punctuation.parenthesis.open.cs
 //                                    ^--- variable.other.readwrite.cs
 //                                        ^ punctuation.parenthesis.close.cs
                 .ConfigureWebHostDefaults(webBuilder =>
-//               ^----------------------- variable.other.readwrite.cs
+//              ^ punctuation.accessor.cs
+//               ^----------------------- entity.name.function.cs
 //                                       ^ punctuation.parenthesis.open.cs
-//                                        ^--------- variable.other.readwrite.cs
-//                                                    ^ keyword.operator.relational.cs
+//                                        ^--------- entity.name.variable.parameter.cs
+//                                                   ^- keyword.operator.arrow.cs
                 {
 //              ^ punctuation.curlybrace.open.cs
                     webBuilder.UseStartup<Startup>();
 //                  ^--------- variable.other.object.cs
-//                             ^--------- variable.other.readwrite.cs
-//                                       ^ keyword.operator.relational.cs
-//                                        ^------ variable.other.readwrite.cs
-//                                               ^ keyword.operator.relational.cs
+//                            ^ punctuation.accessor.cs
+//                             ^--------- entity.name.function.cs
+//                                       ^ punctuation.definition.typeparameters.begin.cs
+//                                        ^------ entity.name.type.cs
+//                                               ^ punctuation.definition.typeparameters.end.cs
 //                                                ^ punctuation.parenthesis.open.cs
 //                                                 ^ punctuation.parenthesis.close.cs
+//                                                  ^ punctuation.terminator.statement.cs
                 });
 //              ^ punctuation.curlybrace.close.cs
 //               ^ punctuation.parenthesis.close.cs

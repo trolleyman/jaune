@@ -21,32 +21,46 @@
 #                        ^--- constant.language log.constant
 #                              ^--- markup.inserted log.info
 27.01.2018 19:38:28,982 [8988] Verbose [Application]: Hello World
-#<0------- comment log.date
+#<0 constant.language log.constant
+#  ^- constant.language log.constant
+#     ^--- constant.language log.constant
 #          ^----------- comment log.date
 #                        ^--- constant.language log.constant
 27.01.2018 19:38:28,982 [8988] VERBOSE [Application]: Hello World
-#<0------- comment log.date
+#<0 constant.language log.constant
+#  ^- constant.language log.constant
+#     ^--- constant.language log.constant
 #          ^----------- comment log.date
 #                        ^--- constant.language log.constant
 27.01.2018 19:38:28,982 [8988] [verbose] [Application]: Hello World
-#<0------- comment log.date
+#<0 constant.language log.constant
+#  ^- constant.language log.constant
+#     ^--- constant.language log.constant
 #          ^----------- comment log.date
 #                        ^--- constant.language log.constant
 #                              ^-------- comment log.verbose
 27.01.2018 19:38:28,982 [8988] verbose: [Application]: Hello World
-#<0------- comment log.date
+#<0 constant.language log.constant
+#  ^- constant.language log.constant
+#     ^--- constant.language log.constant
 #          ^----------- comment log.date
 #                        ^--- constant.language log.constant
 27.01.2018 19:38:28,982 [8988] E/Application: It crashed!
-#<0------- comment log.date
+#<0 constant.language log.constant
+#  ^- constant.language log.constant
+#     ^--- constant.language log.constant
 #          ^----------- comment log.date
 #                        ^--- constant.language log.constant
 27.01.2018 19:38:28,982 [8988] E/MyService: It crashed!
-#<0------- comment log.date
+#<0 constant.language log.constant
+#  ^- constant.language log.constant
+#     ^--- constant.language log.constant
 #          ^----------- comment log.date
 #                        ^--- constant.language log.constant
 27.01.2018 19:38:28,982 [8988] E/Subservice: It crashed!
-#<0------- comment log.date
+#<0 constant.language log.constant
+#  ^- constant.language log.constant
+#     ^--- constant.language log.constant
 #          ^----------- comment log.date
 #                        ^--- constant.language log.constant
 

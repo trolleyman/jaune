@@ -1,15 +1,13 @@
 # grammar: source.vue-vine
 
 import { ref, computed } from 'vue'
-#<0-------------------------------- meta.import.vue-vine
-#<0--- keyword.control.import.vue-vine
 #      ^---------------- meta.block.vue-vine
 #      ^ punctuation.definition.block.vue-vine
-#        ^-- variable.other.readwrite.alias.vue-vine
+#        ^-- variable.other.readwrite.vue-vine
 #           ^ punctuation.separator.comma.vue-vine
-#             ^------- variable.other.readwrite.alias.vue-vine
+#             ^------- variable.other.readwrite.vue-vine
 #                      ^ punctuation.definition.block.vue-vine
-#                        ^--- keyword.control.from.vue-vine
+#                        ^--- variable.other.readwrite.vue-vine
 #                             ^---- string.quoted.single.vue-vine
 #                             ^ punctuation.definition.string.begin.vue-vine
 #                                 ^ punctuation.definition.string.end.vue-vine
@@ -58,10 +56,8 @@ function ChildComp(props: {
   const count = ref(0)
 #<0------------------- meta.function.vue-vine
 #<0------------------- meta.block.vue-vine
-# ^------------------- meta.var.expr.vue-vine
-# ^---- storage.type.vue-vine
-#       ^----- meta.var-single-variable.expr.vue-vine
-#       ^---- meta.definition.variable.ts variable.other.constant.vue-vine
+#  ^--- variable.other.readwrite.vue-vine
+#       ^---- variable.other.readwrite.vue-vine
 #             ^ keyword.operator.assignment.vue-vine
 #               ^-- meta.function-call.vue-vine
 #               ^-- entity.name.function.vue-vine
@@ -71,10 +67,8 @@ function ChildComp(props: {
   const double = computed(() => count * 2)
 #<0--------------------------------------- meta.function.vue-vine
 #<0--------------------------------------- meta.block.vue-vine
-# ^--------------------------------------- meta.var.expr.vue-vine
-# ^---- storage.type.vue-vine
-#       ^------ meta.var-single-variable.expr.vue-vine
-#       ^----- meta.definition.variable.ts variable.other.constant.vue-vine
+#  ^--- variable.other.readwrite.vue-vine
+#       ^----- variable.other.readwrite.vue-vine
 #              ^ keyword.operator.assignment.vue-vine
 #                ^------- meta.function-call.vue-vine
 #                ^------- entity.name.function.vue-vine
@@ -175,10 +169,8 @@ export function App() {
   const msg = ref('')
 #<0------------------ meta.function.vue-vine
 #<0------------------ meta.block.vue-vine
-# ^------------------ meta.var.expr.vue-vine
-# ^---- storage.type.vue-vine
-#       ^--- meta.var-single-variable.expr.vue-vine
-#       ^-- meta.definition.variable.ts variable.other.constant.vue-vine
+#  ^--- variable.other.readwrite.vue-vine
+#       ^-- variable.other.readwrite.vue-vine
 #           ^ keyword.operator.assignment.vue-vine
 #             ^-- meta.function-call.vue-vine
 #             ^-- entity.name.function.vue-vine

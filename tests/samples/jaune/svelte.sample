@@ -59,10 +59,8 @@
 //<0------------------------- meta.block.js
 //^-- keyword.control.loop.js
 //    ^ meta.brace.round.js
-//     ^---------- meta.var.expr.js
-//     ^---- storage.type.js
-//           ^---- meta.var-single-variable.expr.js
-//           ^--- meta.definition.variable.js variable.other.constant.js
+//      ^--- variable.other.readwrite.js
+//           ^--- variable.other.readwrite.js
 //                ^- keyword.operator.expression.of.js
 //                   ^---- variable.other.readwrite.js
 //                        ^ meta.brace.round.js

@@ -1,39 +1,33 @@
 // grammar: source.ts.ng
 
 import { Component, inject } from '@angular/core';
-//<0--------------------------------------------- meta.import.ts
-//<0-- keyword.control.import.ts
 //     ^-------------------- meta.block.ts
 //     ^ punctuation.definition.block.ts
-//       ^-------- variable.other.readwrite.alias.ts
+//       ^-------- variable.other.readwrite.ts
 //                ^ punctuation.separator.comma.ts
-//                  ^----- variable.other.readwrite.alias.ts
+//                  ^----- variable.other.readwrite.ts
 //                         ^ punctuation.definition.block.ts
-//                           ^--- keyword.control.from.ts
+//                           ^--- variable.other.readwrite.ts
 //                                ^-------------- string.quoted.single.ts
 //                                ^ punctuation.definition.string.begin.ts
 //                                              ^ punctuation.definition.string.end.ts
 //                                               ^ punctuation.terminator.statement.ts
 import { RouterLink } from '@angular/router';
-//<0---------------------------------------- meta.import.ts
-//<0-- keyword.control.import.ts
 //     ^------------- meta.block.ts
 //     ^ punctuation.definition.block.ts
-//       ^--------- variable.other.readwrite.alias.ts
+//       ^--------- variable.other.readwrite.ts
 //                  ^ punctuation.definition.block.ts
-//                    ^--- keyword.control.from.ts
+//                    ^--- variable.other.readwrite.ts
 //                         ^---------------- string.quoted.single.ts
 //                         ^ punctuation.definition.string.begin.ts
 //                                         ^ punctuation.definition.string.end.ts
 //                                          ^ punctuation.terminator.statement.ts
 import { CartService } from './cart.service';
-//<0---------------------------------------- meta.import.ts
-//<0-- keyword.control.import.ts
 //     ^-------------- meta.block.ts
 //     ^ punctuation.definition.block.ts
-//       ^---------- variable.other.readwrite.alias.ts
+//       ^---------- variable.other.readwrite.ts
 //                   ^ punctuation.definition.block.ts
-//                     ^--- keyword.control.from.ts
+//                     ^--- variable.other.readwrite.ts
 //                          ^--------------- string.quoted.single.ts
 //                          ^ punctuation.definition.string.begin.ts
 //                                         ^ punctuation.definition.string.end.ts

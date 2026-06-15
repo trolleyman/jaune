@@ -6,28 +6,22 @@
 <!--<0 comment.line.double-slash.ts -->
 <!--<0 punctuation.definition.comment.ts -->
 import Banner from '../components/Banner.astro';
-<!--<0----------------------------------------- meta.import.ts -->
-<!--<0 keyword.control.import.ts -->
-<!--   ^----- variable.other.readwrite.alias.ts -->
-<!--          ^--- keyword.control.from.ts -->
+<!--   ^----- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
 <!--               ^--------------------------- string.quoted.single.ts -->
 <!--               ^ punctuation.definition.string.begin.ts -->
 <!--                                          ^ punctuation.definition.string.end.ts -->
 <!--                                           ^ punctuation.terminator.statement.ts -->
 import ReactPokemonComponent from '../components/ReactPokemonComponent.jsx';
-<!--<0--------------------------------------------------------------------- meta.import.ts -->
-<!--<0 keyword.control.import.ts -->
-<!--   ^-------------------- variable.other.readwrite.alias.ts -->
-<!--                         ^--- keyword.control.from.ts -->
+<!--   ^-------------------- variable.other.readwrite.ts -->
+<!--                         ^--- variable.other.readwrite.ts -->
 <!--                              ^---------------------------------------- string.quoted.single.ts -->
 <!--                              ^ punctuation.definition.string.begin.ts -->
 <!--                                                                      ^ punctuation.definition.string.end.ts -->
 <!--                                                                       ^ punctuation.terminator.statement.ts -->
 const myFavoritePokemon = [/* ... */];
-<!--<0------------------------------- meta.var.expr.ts -->
-<!--<0 storage.type.ts -->
-<!--  ^----------------- meta.var-single-variable.expr.ts -->
-<!--  ^---------------- meta.definition.variable.ts variable.other.constant.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--  ^---------------- variable.other.readwrite.ts -->
 <!--                    ^ keyword.operator.assignment.ts -->
 <!--                     ^----------- meta.array.literal.ts -->
 <!--                      ^ meta.brace.square.ts -->
@@ -37,12 +31,11 @@ const myFavoritePokemon = [/* ... */];
 <!--                                ^ meta.brace.square.ts -->
 <!--                                 ^ punctuation.terminator.statement.ts -->
 const { title } = Astro.props;
-<!--<0----------------------- meta.var.expr.ts -->
-<!--<0 storage.type.ts -->
-<!--  ^--------- meta.object-binding-pattern-variable.ts -->
-<!--  ^ punctuation.definition.binding-pattern.object.ts -->
-<!--    ^---- meta.definition.variable.ts variable.other.constant.ts -->
-<!--          ^ punctuation.definition.binding-pattern.object.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--  ^-------- meta.block.ts -->
+<!--  ^ punctuation.definition.block.ts -->
+<!--    ^---- variable.other.readwrite.ts -->
+<!--          ^ punctuation.definition.block.ts -->
 <!--            ^ keyword.operator.assignment.ts -->
 <!--              ^---- variable.other.object.ts -->
 <!--                   ^ punctuation.accessor.ts -->

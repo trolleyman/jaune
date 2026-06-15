@@ -64,19 +64,7 @@ export JUST_LOG := (log + "ing" + `grep loop /etc/networks | cut -f2`)
 #                               ^ keyword.operator.concat.just
 #                                 ^ string.interpolated.just
 #                                  ^-------------------------------- source.shell
-#                                  ^----------------------- meta.statement.shell
-#                                  ^----------------------- meta.statement.command.shell
-#                                  ^--- meta.statement.command.name.shell
-#                                  ^--- entity.name.function.call.shell entity.name.command.shell
-#                                      ^------------------ meta.argument.shell
-#                                       ^--- string.unquoted.argument.shell
-#                                            ^------------ string.unquoted.argument.shell
 #                                                          ^ keyword.operator.pipe.shell
-#                                                           ^------- meta.statement.shell
-#                                                            ^------ meta.statement.command.shell
-#                                                            ^-- meta.statement.command.name.shell
-#                                                            ^-- entity.name.function.call.shell entity.name.command.shell
-#                                                                ^ string.unquoted.argument.shell constant.other.option.dash.shell
 #                                                                   ^ string.interpolated.just
 
 tmpdir  := `mktemp`
@@ -84,10 +72,6 @@ tmpdir  := `mktemp`
 #       ^- keyword.operator.assignment.just
 #          ^ string.interpolated.just
 #           ^----- source.shell
-#           ^----- meta.statement.shell
-#           ^----- meta.statement.command.shell
-#           ^----- meta.statement.command.name.shell
-#           ^----- entity.name.function.call.shell entity.name.command.shell
 #                 ^ string.interpolated.just
 version := "0.2.7"
 #<0---- variable.other.just
@@ -226,12 +210,7 @@ for:
   for file in `ls .`; do \
 #             ^ string.interpolated.just
 #              ^--- source.shell
-#              ^--- meta.statement.shell
-#              ^--- meta.statement.command.shell
-#              ^- meta.statement.command.name.shell
-#              ^- entity.name.function.call.shell entity.name.command.shell
-#                ^- meta.argument.shell
-#                 ^ string.unquoted.argument.shell
+#                 ^ support.function.builtin.shell
 #                  ^ string.interpolated.just
     echo $file; \
   done
@@ -252,21 +231,8 @@ stuff := ```
 #     ^- keyword.operator.assignment.just
 #        ^-- string.interpolated.just
     echo foo
-#<0--------- meta.statement.shell
-#   ^------- meta.statement.command.shell
-#   ^--- meta.statement.command.name.shell
-#   ^--- entity.name.function.call.shell entity.name.command.shell support.function.builtin.shell
-#       ^--- meta.argument.shell
-#        ^-- string.unquoted.argument.shell
     echo bar
-#<0--------- meta.statement.shell
-#   ^------- meta.statement.command.shell
-#   ^--- meta.statement.command.name.shell
-#   ^--- entity.name.function.call.shell entity.name.command.shell support.function.builtin.shell
-#       ^--- meta.argument.shell
-#        ^-- string.unquoted.argument.shell
   ```
-#<0 meta.statement.shell
 # ^-- string.interpolated.just
 
 
@@ -414,12 +380,6 @@ python := `which python`
 #      ^- keyword.operator.assignment.just
 #         ^ string.interpolated.just
 #          ^----------- source.shell
-#          ^----------- meta.statement.shell
-#          ^----------- meta.statement.command.shell
-#          ^---- meta.statement.command.name.shell
-#          ^---- entity.name.function.call.shell entity.name.command.shell support.function.builtin.shell
-#               ^------ meta.argument.shell
-#                ^----- string.unquoted.argument.shell
 #                      ^ string.interpolated.just
 
 exists := if path_exists(just_executable()) =~ '^/User' { uuid() } else { 'yeah' }
@@ -448,12 +408,6 @@ foo   := if env_var("_") == "/usr/bin/env" { `touch /tmp/a_file` } else { "dummy
 #                           ^ string.quoted.double.just
 #                                            ^ string.interpolated.just
 #                                             ^---------------- source.shell
-#                                             ^---------------- meta.statement.shell
-#                                             ^---------------- meta.statement.command.shell
-#                                             ^---- meta.statement.command.name.shell
-#                                             ^---- entity.name.function.call.shell entity.name.command.shell
-#                                                  ^----------- meta.argument.shell
-#                                                   ^---------- string.unquoted.argument.shell
 #                                                              ^ string.interpolated.just
 #                                                                  ^--- keyword.control.conditional.just
 #                                                                         ^------------ string.quoted.double.just

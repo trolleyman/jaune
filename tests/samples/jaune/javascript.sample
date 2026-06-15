@@ -8,17 +8,17 @@
 //<0 comment.line.double-slash.js
 //<0 punctuation.definition.comment.js
 import defaultAnimal, { person, add } from './module.js';
-//<0---------------------------------------------------- meta.import.js
-//<0-- keyword.control.import.js
-//     ^------------ variable.other.readwrite.alias.js
+//     ^------------ variable.other.readwrite.js
 //                  ^ punctuation.separator.comma.js
-//                    ^-------------- meta.block.js
+//                   ^--------------- meta.objectliteral.js
 //                    ^ punctuation.definition.block.js
-//                      ^----- variable.other.readwrite.alias.js
+//                      ^----- meta.object.member.js
+//                      ^----- variable.other.readwrite.js
 //                            ^ punctuation.separator.comma.js
-//                              ^-- variable.other.readwrite.alias.js
+//                              ^--- meta.object.member.js
+//                              ^-- variable.other.readwrite.js
 //                                  ^ punctuation.definition.block.js
-//                                    ^--- keyword.control.from.js
+//                                    ^--- variable.other.readwrite.js
 //                                         ^------------ string.quoted.single.js
 //                                         ^ punctuation.definition.string.begin.js
 //                                                     ^ punctuation.definition.string.end.js
@@ -28,12 +28,10 @@ import defaultAnimal, { person, add } from './module.js';
 //<0 comment.line.double-slash.js
 //<0 punctuation.definition.comment.js
 import * as Module from './module.js';
-//<0--------------------------------- meta.import.js
-//<0-- keyword.control.import.js
-//     ^ constant.language.import-export-all.js
+//     ^ keyword.operator.arithmetic.js
 //       ^- keyword.control.as.js
-//          ^----- variable.other.readwrite.alias.js
-//                 ^--- keyword.control.from.js
+//          ^----- entity.name.type.js
+//                 ^--- entity.name.type.js
 //                      ^------------ string.quoted.single.js
 //                      ^ punctuation.definition.string.begin.js
 //                                  ^ punctuation.definition.string.end.js
@@ -48,13 +46,11 @@ import * as Module from './module.js';
 //<0 comment.line.double-slash.js
 //<0 punctuation.definition.comment.js
 export const person = { name: "Alice", age: 30 };
-//<0-------------------------------------------- meta.var.expr.js
-//<0-- keyword.control.export.js
-//     ^---- storage.type.js
-//           ^------ meta.var-single-variable.expr.js
-//           ^----- meta.definition.variable.js variable.other.constant.js
+//<1-- variable.other.readwrite.js
+//      ^--- variable.other.readwrite.js
+//           ^----- variable.other.readwrite.js
 //                  ^ keyword.operator.assignment.js
-//                    ^------------------------- meta.objectliteral.js
+//                   ^-------------------------- meta.objectliteral.js
 //                    ^ punctuation.definition.block.js
 //                      ^------------ meta.object.member.js
 //                      ^--- meta.object-literal.key.js
@@ -102,12 +98,10 @@ export function add(x, y = 0) {
 //<0 comment.line.double-slash.js
 //<0 punctuation.definition.comment.js
 const defaultAnimal = { name: "Default Animal" };
-//<0-------------------------------------------- meta.var.expr.js
-//<0- storage.type.js
-//    ^------------- meta.var-single-variable.expr.js
-//    ^------------ meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^------------ variable.other.readwrite.js
 //                  ^ keyword.operator.assignment.js
-//                    ^------------------------- meta.objectliteral.js
+//                   ^-------------------------- meta.objectliteral.js
 //                    ^ punctuation.definition.block.js
 //                      ^---------------------- meta.object.member.js
 //                      ^--- meta.object-literal.key.js
@@ -281,10 +275,8 @@ function createAnimal(animal) {
 //<0 punctuation.definition.block.js
 
 const dog = createAnimal({ name: "Buddy", breed: "Golden Retriever" });
-//<0------------------------------------------------------------------ meta.var.expr.js
-//<0- storage.type.js
-//    ^--- meta.var-single-variable.expr.js
-//    ^-- meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^-- variable.other.readwrite.js
 //        ^ keyword.operator.assignment.js
 //          ^----------- meta.function-call.js
 //          ^----------- entity.name.function.js
@@ -323,10 +315,8 @@ console.log(dog);  // { name: 'Buddy', breed: 'Golden Retriever' }
 //<0 comment.line.double-slash.js
 //<0 punctuation.definition.comment.js
 const generator = Module.idGenerator();
-//<0---------------------------------- meta.var.expr.js
-//<0- storage.type.js
-//    ^--------- meta.var-single-variable.expr.js
-//    ^-------- meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^-------- variable.other.readwrite.js
 //              ^ keyword.operator.assignment.js
 //                ^----------------- meta.function-call.js
 //                ^----- variable.other.object.js
@@ -482,10 +472,8 @@ function wrapInArray(value = "") {
 //<0 punctuation.definition.block.js
 
 const stringArray = wrapInArray();  // Default is empty string
-//<0----------------------------- meta.var.expr.js
-//<0- storage.type.js
-//    ^----------- meta.var-single-variable.expr.js
-//    ^---------- meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^---------- variable.other.readwrite.js
 //                ^ keyword.operator.assignment.js
 //                  ^---------- meta.function-call.js
 //                  ^---------- entity.name.function.js
@@ -494,10 +482,8 @@ const stringArray = wrapInArray();  // Default is empty string
 //                                  ^- comment.line.double-slash.js
 //                                  ^- punctuation.definition.comment.js
 const numberArray = wrapInArray(42);  // Passes 42 explicitly
-//<0------------------------------- meta.var.expr.js
-//<0- storage.type.js
-//    ^----------- meta.var-single-variable.expr.js
-//    ^---------- meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^---------- variable.other.readwrite.js
 //                ^ keyword.operator.assignment.js
 //                  ^---------- meta.function-call.js
 //                  ^---------- entity.name.function.js
@@ -529,10 +515,8 @@ console.log(stringArray, numberArray);  // [""] , [42]
 //<0 comment.line.double-slash.js
 //<0 punctuation.definition.comment.js
 const fruits = ["apple", "banana", "cherry"];
-//<0---------------------------------------- meta.var.expr.js
-//<0- storage.type.js
-//    ^------ meta.var-single-variable.expr.js
-//    ^----- meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^----- variable.other.readwrite.js
 //           ^ keyword.operator.assignment.js
 //            ^----------------------------- meta.array.literal.js
 //             ^ meta.brace.square.js
@@ -552,10 +536,8 @@ const fruits = ["apple", "banana", "cherry"];
 for (const fruit of fruits) {
 //<0 keyword.control.loop.js
 //  ^ meta.brace.round.js
-//   ^----------- meta.var.expr.js
-//   ^---- storage.type.js
-//         ^----- meta.var-single-variable.expr.js
-//         ^---- meta.definition.variable.js variable.other.constant.js
+//    ^--- variable.other.readwrite.js
+//         ^---- variable.other.readwrite.js
 //               ^- keyword.operator.expression.of.js
 //                  ^----- variable.other.readwrite.js
 //                        ^ meta.brace.round.js
@@ -581,12 +563,10 @@ for (const fruit of fruits) {
 //<0 comment.line.double-slash.js
 //<0 punctuation.definition.comment.js
 const car = { make: "Tesla", model: "Model S", year: 2021 };
-//<0------------------------------------------------------- meta.var.expr.js
-//<0- storage.type.js
-//    ^--- meta.var-single-variable.expr.js
-//    ^-- meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^-- variable.other.readwrite.js
 //        ^ keyword.operator.assignment.js
-//          ^---------------------------------------------- meta.objectliteral.js
+//         ^----------------------------------------------- meta.objectliteral.js
 //          ^ punctuation.definition.block.js
 //            ^------------ meta.object.member.js
 //            ^--- meta.object-literal.key.js
@@ -611,10 +591,8 @@ const car = { make: "Tesla", model: "Model S", year: 2021 };
 for (const key in car) {
 //<0 keyword.control.loop.js
 //  ^ meta.brace.round.js
-//   ^--------- meta.var.expr.js
-//   ^---- storage.type.js
-//         ^--- meta.var-single-variable.expr.js
-//         ^-- meta.definition.variable.js variable.other.constant.js
+//    ^--- variable.other.readwrite.js
+//         ^-- variable.other.readwrite.js
 //             ^- keyword.operator.expression.in.js
 //                ^-- variable.other.readwrite.js
 //                   ^ meta.brace.round.js
@@ -694,10 +672,8 @@ for (const key in car) {
   const privateVar = "I'm private inside the IIFE!";
 //<0------------------------------------------------ meta.function.expression.js
 //<0------------------------------------------------ meta.block.js
-//^------------------------------------------------ meta.var.expr.js
-//^---- storage.type.js
-//      ^---------- meta.var-single-variable.expr.js
-//      ^--------- meta.definition.variable.js variable.other.constant.js
+// ^--- variable.other.readwrite.js
+//      ^--------- variable.other.readwrite.js
 //                 ^ keyword.operator.assignment.js
 //                   ^----------------------------- string.quoted.double.js
 //                   ^ punctuation.definition.string.begin.js
@@ -774,10 +750,8 @@ function* infiniteGenerator() {
 //<0 punctuation.definition.block.js
 
 const gen = infiniteGenerator();
-//<0--------------------------- meta.var.expr.js
-//<0- storage.type.js
-//    ^--- meta.var-single-variable.expr.js
-//    ^-- meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^-- variable.other.readwrite.js
 //        ^ keyword.operator.assignment.js
 //          ^---------------- meta.function-call.js
 //          ^---------------- entity.name.function.js
@@ -843,10 +817,8 @@ async function fetchData(url) {
 //<0---------------------------------- meta.function.js
 //<0---------------------------------- meta.block.js
 //<0---------------------------------- meta.block.js
-//  ^-------------------------------- meta.var.expr.js
-//  ^---- storage.type.js
-//        ^-------- meta.var-single-variable.expr.js
-//        ^------- meta.definition.variable.js variable.other.constant.js
+//   ^--- variable.other.readwrite.js
+//        ^------- variable.other.readwrite.js
 //                 ^ keyword.operator.assignment.js
 //                   ^---- keyword.control.flow.js
 //                         ^---- meta.function-call.js
@@ -894,10 +866,8 @@ async function fetchData(url) {
 //<0----------------------------------- meta.function.js
 //<0----------------------------------- meta.block.js
 //<0----------------------------------- meta.block.js
-//  ^--------------------------------- meta.var.expr.js
-//  ^---- storage.type.js
-//        ^---- meta.var-single-variable.expr.js
-//        ^--- meta.definition.variable.js variable.other.constant.js
+//   ^--- variable.other.readwrite.js
+//        ^--- variable.other.readwrite.js
 //             ^ keyword.operator.assignment.js
 //               ^---- keyword.control.flow.js
 //                     ^------------ meta.function-call.js
@@ -1079,10 +1049,8 @@ function createTask(task) {
 //<0 punctuation.definition.block.js
 
 const myTask = createTask({
-//<0----------------------- meta.var.expr.js
-//<0- storage.type.js
-//    ^------ meta.var-single-variable.expr.js
-//    ^----- meta.definition.variable.js variable.other.constant.js
+//<1- variable.other.readwrite.js
+//    ^----- variable.other.readwrite.js
 //           ^ keyword.operator.assignment.js
 //             ^--------- meta.function-call.js
 //             ^--------- entity.name.function.js
@@ -1090,7 +1058,6 @@ const myTask = createTask({
 //                        ^ meta.objectliteral.js
 //                        ^ punctuation.definition.block.js
   title: "Learn JavaScript",
-//<0------------------------ meta.var.expr.js
 //<0------------------------ meta.objectliteral.js
 //^------------------------ meta.object.member.js
 //^---- meta.object-literal.key.js
@@ -1100,7 +1067,6 @@ const myTask = createTask({
 //                        ^ punctuation.definition.string.end.js
 //                         ^ punctuation.separator.comma.js
   completed: false,
-//<0--------------- meta.var.expr.js
 //<0--------------- meta.objectliteral.js
 //^--------------- meta.object.member.js
 //^-------- meta.object-literal.key.js
@@ -1108,7 +1074,6 @@ const myTask = createTask({
 //           ^---- constant.language.boolean.false.js
 //                ^ punctuation.separator.comma.js
 });
-//<0 meta.var.expr.js
 //<0 meta.objectliteral.js
 //<0 punctuation.definition.block.js
 //<1 meta.brace.round.js

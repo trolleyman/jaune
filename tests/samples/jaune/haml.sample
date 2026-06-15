@@ -10,6 +10,21 @@
 #<0------- comment.line.slash.haml
 #<0 punctuation.section.comment.haml
 			%link{ :rel => "stylesheet", :href => "/css/ie.css" }
+#       ^----------------------------------------------- meta.section.attributes.haml
+#        ^ meta.syntax.ruby.start-block
+#         ^--- constant.language.symbol.hashkey.ruby
+#         ^ punctuation.definition.constant.ruby
+#              ^- punctuation.separator.key-value
+#                 ^----------- string.quoted.double.interpolated.ruby
+#                 ^ punctuation.definition.string.begin.ruby
+#                            ^ punctuation.definition.string.end.ruby
+#                             ^ punctuation.separator.object.ruby
+#                               ^---- constant.language.symbol.hashkey.ruby
+#                               ^ punctuation.definition.constant.ruby
+#                                     ^- punctuation.separator.key-value
+#                                        ^------------ string.quoted.double.interpolated.ruby
+#                                        ^ punctuation.definition.string.begin.ruby
+#                                                    ^ punctuation.definition.string.end.ruby
 	%body
 		#container
 # ^--------- meta.selector.css

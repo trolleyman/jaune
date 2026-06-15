@@ -2,20 +2,24 @@
 
 #z::Run "https://www.autohotkey.com"  ; Win+Z
 ;<0 hotkey.ahk2
-;<0 keyword.keys.ahk2
 ; ^- punctuation.definition.colon
 ;   ^-- variable.other.ahk2
 ;   ^-- support.function.ahk2
 ;       ^--------------------------- string.quoted.ahk2
 ;       ^ punctuation.definition.string.begin.ahk2
 ;                                  ^ punctuation.definition.string.end.ahk2
-;                                     ^------ comment.line.ahk2
+;                                       ^-- variable.other.ahk2
+;                                          ^ keyword.operator.ahk2
+;                                           ^ variable.other.ahk2
 
 ^!n::  ; Ctrl+Alt+N
 ;<0 hotkey.ahk2
-;<0 keyword.keys.ahk2
 ;  ^- punctuation.definition.colon
-;      ^----------- comment.line.ahk2
+;        ^--- variable.other.ahk2
+;            ^ keyword.operator.ahk2
+;             ^-- variable.other.ahk2
+;                ^ keyword.operator.ahk2
+;                 ^ variable.other.ahk2
 {
 ;<0 punctuation.section.block.begin.ahk2
     if WinExist("Untitled - Notepad")
@@ -43,4 +47,19 @@
 ;<0 punctuation.section.block.end.ahk2
 
 ; https://www.autohotkey.com/docs/v2/Program.htm
-;<0--------------------------------------------- comment.line.ahk2
+; ^---- variable.other.ahk2
+;      ^ keyword.operator.ternary.ahk2
+;       ^- keyword.operator.ahk2
+;         ^-- variable.other.ahk2
+;            ^ punctuation.accessor.ahk2
+;             ^--------- variable.other.property.ahk2
+;                       ^ punctuation.accessor.ahk2
+;                        ^-- variable.other.property.ahk2
+;                           ^ keyword.operator.ahk2
+;                            ^--- variable.other.ahk2
+;                                ^ keyword.operator.ahk2
+;                                 ^- variable.other.ahk2
+;                                   ^ keyword.operator.ahk2
+;                                    ^------ variable.other.ahk2
+;                                           ^ punctuation.accessor.ahk2
+;                                            ^-- variable.other.property.ahk2

@@ -150,7 +150,9 @@ jobs:
 #           ^--- string.unquoted.plain.out.yaml
 
       # If index.js was different than expected, upload the expected version as an artifact
-#       ^---------------------------------------------------------------------------------- string.unquoted.plain.out.yaml
+#<0--- punctuation.whitespace.comment.leading.yaml
+#     ^------------------------------------------------------------------------------------ comment.line.number-sign.yaml
+#     ^ punctuation.definition.comment.yaml
       - uses: actions/upload-artifact@v3
 #     ^ punctuation.definition.block.sequence.item.yaml
 #       ^--- string.unquoted.plain.out.yaml
@@ -178,4 +180,5 @@ jobs:
 #               ^---- string.unquoted.plain.out.yaml
 
 # From https://github.com/actions/add-to-project/blob/main/.github/workflows/check-dist.yml
-# ^---------------------------------------------------------------------------------------- string.unquoted.plain.out.yaml
+#<0---------------------------------------------------------------------------------------- comment.line.number-sign.yaml
+#<0 punctuation.definition.comment.yaml

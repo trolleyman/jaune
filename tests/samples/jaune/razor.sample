@@ -7,7 +7,7 @@
     string message = "foreignObject example with Scalable Vector Graphics (SVG)";
 #<0------------------------------------------------------------------------------ meta.structure.razor.codeblock
 #   ^----- keyword.type.string.cs
-#          ^------ variable.other.readwrite.cs
+#          ^------ entity.name.variable.local.cs
 #                  ^ keyword.operator.assignment.cs
 #                    ^---------------------------------------------------------- string.quoted.double.cs
 #                    ^ punctuation.definition.string.begin.cs
@@ -81,8 +81,8 @@
 #<0------------ meta.structure.razor.codeblock
 #<0 keyword.control.cshtml.transition
 #^ keyword.control.razor.directive.codeblock.open
-#  ^-- variable.other.readwrite.cs
-#      ^ variable.other.readwrite.cs
+#  ^-- storage.type.var.cs
+#      ^ entity.name.variable.local.cs
 #        ^ keyword.operator.assignment.cs
 #          ^ constant.numeric.decimal.cs
 #           ^ punctuation.terminator.statement.cs

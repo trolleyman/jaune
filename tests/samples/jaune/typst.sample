@@ -4,20 +4,18 @@
 //<0 keyword.other.typst
 //<0 punctuation.definition.keyword.typst
 //   ^--- entity.name.function.typst
-//       ^-------------------------- meta.group.typst
-//        ^---- variable.other.typst
+//        ^---- variable.parameter.typst
 //             ^ punctuation.separator.colon.typst
 //               ^--- constant.numeric.length.typst
 //                   ^ punctuation.separator.comma.typst
-//                     ^----- variable.other.typst
+//                     ^----- variable.parameter.typst
 //                           ^ punctuation.separator.colon.typst
 //                             ^--- constant.language.auto.typst
 #set heading(numbering: "1.")
 //<0 keyword.other.typst
 //<0 punctuation.definition.keyword.typst
 //   ^------ entity.name.function.typst
-//          ^---------------- meta.group.typst
-//           ^-------- variable.other.typst
+//           ^-------- variable.parameter.typst
 //                    ^ punctuation.separator.colon.typst
 //                      ^--- string.quoted.double.typst
 
@@ -47,7 +45,6 @@ $ F_n = round(1 / sqrt(5) phi.alt^n), quad
 //   ^--- variable.other.typst
 //        ^ keyword.operator.assignment.typst
 //          ^---- entity.name.function.typst
-//               ^------------- meta.group.typst
 //                ^ constant.numeric.integer.typst
 //                 ^ punctuation.separator.comma.typst
 //                   ^---- variable.other.typst
@@ -57,7 +54,6 @@ $ F_n = round(1 / sqrt(5) phi.alt^n), quad
 //<0 keyword.other.typst
 //<0 punctuation.definition.keyword.typst
 //   ^-- entity.name.function.typst
-//      ^-- meta.group.typst
 //       ^ variable.other.typst
 //          ^ keyword.operator.assignment.typst
 //            ^ meta.group.typst
@@ -74,13 +70,11 @@ $ F_n = round(1 / sqrt(5) phi.alt^n), quad
 //^--- keyword.control.conditional.typst
 //     ^-------------------------- meta.block.code.typst
 //       ^-- entity.name.function.typst
-//          ^------ meta.group.typst
 //           ^ variable.other.typst
 //             ^ keyword.operator.arithmetic.typst
 //               ^ constant.numeric.integer.typst
 //                  ^ keyword.operator.arithmetic.typst
 //                    ^-- entity.name.function.typst
-//                       ^------ meta.group.typst
 //                        ^ variable.other.typst
 //                          ^ keyword.operator.arithmetic.typst
 //                            ^ constant.numeric.integer.typst
@@ -97,39 +91,30 @@ The first #count numbers of the sequence are:
 //     ^----- variable.other.typst
 //           ^ punctuation.separator.comma.typst
 //             ^---- entity.name.function.typst
-//                  ^ meta.group.typst
   columns: count,
-//<0------------- meta.group.typst
-//^------ variable.other.typst
+//^------ variable.parameter.typst
 //       ^ punctuation.separator.colon.typst
 //         ^---- variable.other.typst
 //              ^ punctuation.separator.comma.typst
   ..nums.map(n => $F_#n$),
-//<0---------------------- meta.group.typst
 //^- keyword.operator.typst
 //  ^--- variable.other.typst
 //       ^-- entity.name.function.typst
-//          ^------------ meta.group.typst
 //           ^ variable.other.typst
 //             ^- keyword.operator.typst
 //                ^----- string.other.math.typst
 //                       ^ punctuation.separator.comma.typst
   ..nums.map(n => str(fib(n))),
-//<0--------------------------- meta.group.typst
 //^- keyword.operator.typst
 //  ^--- variable.other.typst
 //       ^-- entity.name.function.typst
-//          ^----------------- meta.group.typst
 //           ^ variable.other.typst
 //             ^- keyword.operator.typst
 //                ^-- entity.name.function.typst
-//                   ^------- meta.group.typst
 //                    ^-- entity.name.function.typst
-//                       ^-- meta.group.typst
 //                        ^ variable.other.typst
 //                            ^ punctuation.separator.comma.typst
 ))
-//<0 meta.group.typst
 
 // https://github.com/typst/typst/blob/main/README.md
 //<0------------------------------------------------- comment.line.double-slash.typst

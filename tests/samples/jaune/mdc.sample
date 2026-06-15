@@ -98,14 +98,25 @@ Attributes work on:
 <!--<0--------------------------------------------------------- markup.list.unnumbered.markdown -->
 <!--<0 punctuation.definition.list.begin.markdown -->
 <!--<2--------------------------------------------------------- meta.paragraph.markdown -->
+<!--<2------------- meta.image.inline.markdown -->
+<!--<2 punctuation.definition.link.description.begin.markdown -->
+<!--^ punctuation.definition.link.description.end.markdown -->
+<!-- ^ punctuation.definition.metadata.markdown -->
+<!--  ^----------- markup.underline.link.image.markdown -->
+<!--              ^ punctuation.definition.metadata.markdown -->
 - [link](#attributes){style="background-color: pink;"}, `code`{style="color: cyan;"},
 <!--<0------------------------------------------------------------------------------- markup.list.unnumbered.markdown -->
 <!--<0 punctuation.definition.list.begin.markdown -->
 <!--<2------------------------------------------------------------------------------- meta.paragraph.markdown -->
-<!--<2-- meta.link.reference.markdown -->
+<!--<2--------------- meta.link.inline.markdown -->
 <!--<2 punctuation.definition.link.title.begin.markdown -->
 <!--<3- string.other.link.title.markdown -->
+<!--<3- meta.paragraph.markdown -->
+<!--^-- variable.other.readwrite.ts -->
 <!--   ^ punctuation.definition.link.title.end.markdown -->
+<!--    ^ punctuation.definition.metadata.markdown -->
+<!--     ^---------- markup.underline.link.markdown -->
+<!--                ^ punctuation.definition.metadata.markdown -->
 <!--                                                    ^----- markup.inline.raw.string.markdown -->
 <!--                                                    ^ punctuation.definition.raw.markdown -->
 <!--                                                         ^ punctuation.definition.raw.markdown -->
@@ -113,6 +124,8 @@ Attributes work on:
 <!--<0--------------------------------------------------------------------------------------------------------------- markup.list.unnumbered.markdown -->
 <!--<0 punctuation.definition.list.begin.markdown -->
 <!--<2--------------------------------------------------------------------------------------------------------------- meta.paragraph.markdown -->
+<!--<2---- markup.italic.markdown -->
+<!--                                                           ^------- markup.bold.markdown -->
 
 <!-- from: https://content.nuxt.com/usage/markdown -->
 <!--<0------------------------------------------------ comment.block.html -->

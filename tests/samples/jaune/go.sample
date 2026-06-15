@@ -29,12 +29,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 //<0 keyword.function.go
 //   ^------ entity.name.function.go
 //          ^ punctuation.definition.begin.bracket.round.go
-//           ^ entity.name.type.go
+//           ^ variable.parameter.go
 //             ^--- entity.name.type.go
 //                 ^ punctuation.other.period.go
 //                  ^------------- entity.name.type.go
 //                                ^ punctuation.other.comma.go
-//                                  ^ entity.name.type.go
+//                                  ^ variable.parameter.go
 //                                    ^ keyword.operator.address.go
 //                                     ^--- entity.name.type.go
 //                                         ^ punctuation.other.period.go
@@ -44,7 +44,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
 //  ^-- variable.other.go
 //     ^ punctuation.other.period.go
-//      ^------ variable.other.go
+//      ^------ entity.name.function.support.go
 //             ^ punctuation.definition.begin.bracket.round.go
 //              ^ variable.other.go
 //               ^ punctuation.other.comma.go
@@ -75,7 +75,7 @@ func main() {
     http.HandleFunc("/", handler)
 //  ^--- variable.other.go
 //      ^ punctuation.other.period.go
-//       ^--------- variable.other.go
+//       ^--------- entity.name.function.support.go
 //                 ^ punctuation.definition.begin.bracket.round.go
 //                  ^-- string.quoted.double.go
 //                  ^ punctuation.definition.string.begin.go
@@ -86,11 +86,11 @@ func main() {
     log.Fatal(http.ListenAndServe(":8080", nil))
 //  ^-- variable.other.go
 //     ^ punctuation.other.period.go
-//      ^---- variable.other.go
+//      ^---- entity.name.function.support.go
 //           ^ punctuation.definition.begin.bracket.round.go
 //            ^--- variable.other.go
 //                ^ punctuation.other.period.go
-//                 ^------------- variable.other.go
+//                 ^------------- entity.name.function.support.go
 //                               ^ punctuation.definition.begin.bracket.round.go
 //                                ^------ string.quoted.double.go
 //                                ^ punctuation.definition.string.begin.go

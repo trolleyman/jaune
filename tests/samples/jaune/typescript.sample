@@ -4,12 +4,10 @@
 //<0 comment.line.double-slash.ts
 //<0 punctuation.definition.comment.ts
 const person = { name: "Alice", age: 30 };
-//<0------------------------------------- meta.var.expr.ts
-//<0- storage.type.ts
-//    ^------ meta.var-single-variable.expr.ts
-//    ^----- meta.definition.variable.ts variable.other.constant.ts
+//<1- variable.other.readwrite.ts
+//    ^----- variable.other.readwrite.ts
 //           ^ keyword.operator.assignment.ts
-//             ^------------------------- meta.objectliteral.ts
+//            ^-------------------------- meta.objectliteral.ts
 //             ^ punctuation.definition.block.ts
 //               ^------------ meta.object.member.ts
 //               ^--- meta.object-literal.key.ts
@@ -53,12 +51,10 @@ type Animal = { name: string };
 //                           ^ punctuation.definition.block.ts
 //                            ^ punctuation.terminator.statement.ts
 const dog = { name: "Buddy", breed: "Golden Retriever" } satisfies Animal;
-//<0--------------------------------------------------------------------- meta.var.expr.ts
-//<0- storage.type.ts
-//    ^--- meta.var-single-variable.expr.ts
-//    ^-- meta.definition.variable.ts variable.other.constant.ts
+//<1- variable.other.readwrite.ts
+//    ^-- variable.other.readwrite.ts
 //        ^ keyword.operator.assignment.ts
-//          ^------------------------------------------- meta.objectliteral.ts
+//         ^-------------------------------------------- meta.objectliteral.ts
 //          ^ punctuation.definition.block.ts
 //            ^------------ meta.object.member.ts
 //            ^--- meta.object-literal.key.ts
@@ -427,15 +423,12 @@ type Task = {
 //<1 punctuation.terminator.statement.ts
 
 const myTask = {
-//<0------------ meta.var.expr.ts
-//<0- storage.type.ts
-//    ^------ meta.var-single-variable.expr.ts
-//    ^----- meta.definition.variable.ts variable.other.constant.ts
+//<1- variable.other.readwrite.ts
+//    ^----- variable.other.readwrite.ts
 //           ^ keyword.operator.assignment.ts
-//             ^ meta.objectliteral.ts
+//            ^- meta.objectliteral.ts
 //             ^ punctuation.definition.block.ts
   title: "Learn TypeScript",
-//<0------------------------ meta.var.expr.ts
 //<0------------------------ meta.objectliteral.ts
 //^------------------------ meta.object.member.ts
 //^---- meta.object-literal.key.ts
@@ -445,7 +438,6 @@ const myTask = {
 //                        ^ punctuation.definition.string.end.ts
 //                         ^ punctuation.separator.comma.ts
   completed: false,
-//<0--------------- meta.var.expr.ts
 //<0--------------- meta.objectliteral.ts
 //^--------------- meta.object.member.ts
 //^-------- meta.object-literal.key.ts
@@ -453,7 +445,6 @@ const myTask = {
 //           ^---- constant.language.boolean.false.ts
 //                ^ punctuation.separator.comma.ts
   priority: "High",
-//<0--------------- meta.var.expr.ts
 //<0--------------- meta.objectliteral.ts
 //^--------------- meta.object.member.ts
 //^------- meta.object-literal.key.ts
@@ -463,7 +454,6 @@ const myTask = {
 //               ^ punctuation.definition.string.end.ts
 //                ^ punctuation.separator.comma.ts
 } satisfies Task;  // Allows priority but ensures Task structure
-//<0------------ meta.var.expr.ts
 //<0 meta.objectliteral.ts
 //<0 punctuation.definition.block.ts
 //^-------- keyword.control.satisfies.ts
@@ -514,10 +504,8 @@ function wrapInArray<T = string>(value: T): T[] {
 //<0 punctuation.definition.block.ts
 
 const stringArray = wrapInArray();  // Default to string
-//<0----------------------------- meta.var.expr.ts
-//<0- storage.type.ts
-//    ^----------- meta.var-single-variable.expr.ts
-//    ^---------- meta.definition.variable.ts variable.other.constant.ts
+//<1- variable.other.readwrite.ts
+//    ^---------- variable.other.readwrite.ts
 //                ^ keyword.operator.assignment.ts
 //                  ^---------- meta.function-call.ts
 //                  ^---------- entity.name.function.ts
@@ -526,10 +514,8 @@ const stringArray = wrapInArray();  // Default to string
 //                                  ^- comment.line.double-slash.ts
 //                                  ^- punctuation.definition.comment.ts
 const numberArray = wrapInArray(42);  // T inferred as number
-//<0------------------------------- meta.var.expr.ts
-//<0- storage.type.ts
-//    ^----------- meta.var-single-variable.expr.ts
-//    ^---------- meta.definition.variable.ts variable.other.constant.ts
+//<1- variable.other.readwrite.ts
+//    ^---------- variable.other.readwrite.ts
 //                ^ keyword.operator.assignment.ts
 //                  ^---------- meta.function-call.ts
 //                  ^---------- entity.name.function.ts

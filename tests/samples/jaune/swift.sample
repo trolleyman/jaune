@@ -12,6 +12,7 @@ class Residence {
 //  ^-- keyword.other.declaration-specifier.swift
 //             ^ punctuation.section.collection-type.begin.swift
 //                  ^ punctuation.section.collection-type.end.swift
+//                    ^ keyword.operator.custom.infix.swift
     var numberOfRooms: Int {
 //<0------------------------ meta.definition.type.class.swift
 //<0------------------------ meta.definition.type.body.swift
@@ -79,6 +80,7 @@ class Residence {
 //               ^-- meta.subscript-expression.swift
 //               ^ punctuation.definition.arguments.begin.swift
 //                 ^ punctuation.definition.arguments.end.swift
+//                   ^ keyword.operator.custom.infix.swift
         }
 //<0----- meta.definition.type.class.swift
 //<0----- meta.definition.type.body.swift
@@ -94,15 +96,19 @@ class Residence {
     func printNumberOfRooms() {
 //<0--------------------------- meta.definition.type.class.swift
 //<0--------------------------- meta.definition.type.body.swift
+//  ^-------------------------- meta.definition.function.swift
 //  ^--- storage.type.function.swift
-//       ^------------------- meta.function-call.swift
-//       ^----------------- support.function.any-method.swift
-//                         ^ punctuation.definition.arguments.begin.swift
-//                          ^ punctuation.definition.arguments.end.swift
-//                            ^ punctuation.section.scope.begin.swift
+//       ^----------------- entity.name.function.swift
+//                         ^- meta.parameter-clause.swift
+//                         ^ punctuation.definition.parameters.begin.swift
+//                          ^ punctuation.definition.parameters.end.swift
+//                            ^ meta.definition.function.body.swift
+//                            ^ punctuation.section.function.begin.swift
         print("The number of rooms is \(numberOfRooms)")
 //<0---------------------------------------------------- meta.definition.type.class.swift
 //<0---------------------------------------------------- meta.definition.type.body.swift
+//<0---------------------------------------------------- meta.definition.function.swift
+//<0---------------------------------------------------- meta.definition.function.body.swift
 //      ^---- support.function.swift
 //           ^------------------------------------------ meta.function-call.swift
 //           ^ punctuation.definition.arguments.begin.swift
@@ -116,7 +122,9 @@ class Residence {
     }
 //<0- meta.definition.type.class.swift
 //<0- meta.definition.type.body.swift
-//  ^ punctuation.section.scope.end.swift
+//<0- meta.definition.function.swift
+//<0- meta.definition.function.body.swift
+//  ^ punctuation.section.function.end.swift
     var address: Address?
 //<0--------------------- meta.definition.type.class.swift
 //<0--------------------- meta.definition.type.body.swift

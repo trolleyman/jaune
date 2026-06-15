@@ -417,6 +417,7 @@ for i in range(10):
 <!--^---------------------- heading.1.markdown -->
 <!--^ punctuation.definition.heading.markdown -->
 <!--  ^-------------------- entity.name.section.markdown -->
+<!--           ^---- markup.italic.markdown -->
     time.sleep(0.5)
 <!--<0------------- markup.fenced_code.block.markdown -->
 <!--<0------------- meta.paragraph.markdown -->

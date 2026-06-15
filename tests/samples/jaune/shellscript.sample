@@ -121,7 +121,6 @@ case $1 in
 	;;
 #<0 meta.case.shell
 #<0 meta.case.entry.body.shell
-#<0 meta.statement.shell
 #^- punctuation.terminator.statement.case.shell
 -l | --location)
 #<0------------- meta.case.shell
@@ -143,7 +142,6 @@ case $1 in
 	;;
 #<0 meta.case.shell
 #<0 meta.case.entry.body.shell
-#<0 meta.statement.shell
 #^- punctuation.terminator.statement.case.shell
 *)
 #<0 meta.case.shell
@@ -159,7 +157,6 @@ case $1 in
 	;;
 #<0 meta.case.shell
 #<0 meta.case.entry.body.shell
-#<0 meta.statement.shell
 #^- punctuation.terminator.statement.case.shell
 esac
 #<0- meta.case.shell

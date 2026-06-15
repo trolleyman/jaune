@@ -1,7 +1,7 @@
 (* grammar: source.wolfram *)
 
 iStochasticityAssumptions [sm_List] :=
-(*<0--------------------- variable.function.wolfram *)
+(*<0--------------------- meta.function.wolfram entity.name.function.wolfram *)
 (*                        ^-------- meta.brackets.wolfram *)
 (*                        ^ punctuation.section.brackets.begin.wolfram *)
 (*                         ^- symbol.unrecognized.wolfram *)
@@ -86,7 +86,7 @@ iStochasticityAssumptions [sm_List] :=
 (*                                                                                     ^ punctuation.section.brackets.end.wolfram *)
 
 iStochasticityAssumptions[sm_SparseArray] := SquareMatrixQ[sm] &&
-(*<0--------------------- variable.function.wolfram *)
+(*<0--------------------- meta.function.wolfram entity.name.function.wolfram *)
 (*                       ^--------------- meta.brackets.wolfram *)
 (*                       ^ punctuation.section.brackets.begin.wolfram *)
 (*                        ^- symbol.unrecognized.wolfram *)

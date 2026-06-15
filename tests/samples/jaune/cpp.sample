@@ -1,17 +1,20 @@
 // grammar: source.cpp
 
 // Working of implicit type-conversion
-//<0---------------------------------- comment.line.double-slash.cpp
-//<0 punctuation.definition.comment.cpp
+//                         ^ keyword.operator.arithmetic.cpp
 
 #include <iostream>
-//<0---- variable.other.macro.argument.cpp
-//       ^ keyword.operator.comparison.cpp
-//                ^ keyword.operator.comparison.cpp
+//<0--------------- meta.preprocessor.include.cpp
+//<0---- keyword.control.directive.include.cpp
+//<0 punctuation.definition.directive.cpp
+//       ^--------- string.quoted.other.lt-gt.include.cpp
+//       ^ punctuation.definition.string.begin.cpp
+//                ^ punctuation.definition.string.end.cpp
 using namespace std;
-//    ^------------ meta.block.namespace.cpp
-//    ^------------ meta.head.namespace.cpp
-//    ^-------- keyword.other.namespace.definition.cpp storage.type.namespace.definition.cpp
+//<0---------------- meta.using-namespace.cpp
+//<0- keyword.other.using.directive.cpp
+//    ^-------- keyword.other.namespace.directive.cpp storage.type.namespace.directive.cpp
+//              ^-- entity.name.namespace.cpp
 //                 ^ punctuation.terminator.statement.cpp
 
 int main() {
@@ -37,12 +40,10 @@ int main() {
 
    // implicit conversion
 //<0--------------------- meta.block.cpp
-//<0--------------------- comment.line.double-slash.cpp
-// ^- punctuation.definition.comment.cpp
    // assigning a double value to an int variable
 //<0--------------------------------------------- meta.block.cpp
-//<0--------------------------------------------- comment.line.double-slash.cpp
-// ^- punctuation.definition.comment.cpp
+//                ^----- storage.type.primitive.cpp storage.type.built-in.primitive.cpp
+//                                   ^-- storage.type.primitive.cpp storage.type.built-in.primitive.cpp
    num_int = num_double;
 //<0-------------------- meta.block.cpp
 //         ^ keyword.operator.assignment.cpp
@@ -77,5 +78,12 @@ int main() {
 //<0 punctuation.section.block.end.bracket.curly.cpp
 
 // From https://www.programiz.com/cpp-programming/type-conversion
-//<0------------------------------------------------------------- comment.line.double-slash.cpp
-//<0 punctuation.definition.comment.cpp
+//              ^-- variable.other.object.access.cpp
+//                 ^ punctuation.separator.dot-access.cpp
+//                  ^-------- variable.other.object.access.cpp
+//                           ^ punctuation.separator.dot-access.cpp
+//                            ^-- variable.other.property.cpp
+//                               ^ keyword.operator.arithmetic.cpp
+//                                   ^ keyword.operator.arithmetic.cpp
+//                                               ^ keyword.operator.arithmetic.cpp
+//                                                    ^ keyword.operator.arithmetic.cpp

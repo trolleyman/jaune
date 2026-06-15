@@ -1,35 +1,29 @@
 # grammar: source.gjs
 
 import { helper } from '@ember/component/helper';
-#<0--------------------------------------------- meta.import.js
-#<0--- keyword.control.import.js
 #      ^--------- meta.block.js
 #      ^ punctuation.definition.block.js
-#        ^----- variable.other.readwrite.alias.js
+#        ^----- variable.other.readwrite.js
 #               ^ punctuation.definition.block.js
-#                 ^--- keyword.control.from.js
+#                 ^--- variable.other.readwrite.js
 #                      ^------------------------ string.quoted.single.js
 #                      ^ punctuation.definition.string.begin.js
 #                                              ^ punctuation.definition.string.end.js
 #                                               ^ punctuation.terminator.statement.js
 import { modifier } from 'ember-modifier';
-#<0-------------------------------------- meta.import.js
-#<0--- keyword.control.import.js
 #      ^----------- meta.block.js
 #      ^ punctuation.definition.block.js
-#        ^------- variable.other.readwrite.alias.js
+#        ^------- variable.other.readwrite.js
 #                 ^ punctuation.definition.block.js
-#                   ^--- keyword.control.from.js
+#                   ^--- variable.other.readwrite.js
 #                        ^--------------- string.quoted.single.js
 #                        ^ punctuation.definition.string.begin.js
 #                                       ^ punctuation.definition.string.end.js
 #                                        ^ punctuation.terminator.statement.js
 
 const plusOne = helper(([num]) => num + 1);
-#<0--------------------------------------- meta.var.expr.js
-#<0-- storage.type.js
-#     ^------- meta.var-single-variable.expr.js
-#     ^------ meta.definition.variable.js variable.other.constant.js
+#^--- variable.other.readwrite.js
+#     ^------ variable.other.readwrite.js
 #             ^ keyword.operator.assignment.js
 #               ^----- meta.function-call.js
 #               ^----- entity.name.function.js
@@ -50,10 +44,8 @@ const plusOne = helper(([num]) => num + 1);
 #                                         ^ punctuation.terminator.statement.js
 
 const setScrollPosition = modifier((element, [position]) => {
-#<0---------------------------------------------------------- meta.var.expr.js
-#<0-- storage.type.js
-#     ^----------------- meta.var-single-variable.expr.js
-#     ^---------------- meta.definition.variable.js variable.other.constant.js
+#^--- variable.other.readwrite.js
+#     ^---------------- variable.other.readwrite.js
 #                       ^ keyword.operator.assignment.js
 #                         ^------- meta.function-call.js
 #                         ^------- entity.name.function.js
@@ -72,7 +64,6 @@ const setScrollPosition = modifier((element, [position]) => {
 #                                                           ^ meta.block.js
 #                                                           ^ punctuation.definition.block.js
   element.scrollTop = position
-#<0--------------------------- meta.var.expr.js
 #<0--------------------------- meta.arrow.js
 #<0--------------------------- meta.block.js
 # ^------ variable.other.object.js
@@ -81,7 +72,6 @@ const setScrollPosition = modifier((element, [position]) => {
 #                   ^ keyword.operator.assignment.js
 #                     ^------- variable.other.readwrite.js
 });
-#<0 meta.var.expr.js
 #<0 meta.arrow.js
 #<0 meta.block.js
 #<0 punctuation.definition.block.js

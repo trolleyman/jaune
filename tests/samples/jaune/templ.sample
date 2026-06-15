@@ -7,7 +7,7 @@ package main
 templ body() {
 //<0---------- html-template.templ
 //<0- keyword.control.go
-//    ^--- variable.other.go
+//    ^--- entity.name.function.support.go
 //        ^ punctuation.definition.begin.bracket.round.go
 //         ^ params.html-template.templ
 //         ^ punctuation.definition.end.bracket.round.go

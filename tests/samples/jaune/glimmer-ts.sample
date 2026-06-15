@@ -1,44 +1,35 @@
 # grammar: source.gts
 
 import type { TemplateOnlyComponent } from '@glimmer/component';
-#<0------------------------------------------------------------ meta.import.ts
-#<0--- keyword.control.import.ts
-#      ^--- keyword.control.type.ts
 #           ^------------------------ meta.block.ts
 #           ^ punctuation.definition.block.ts
-#             ^-------------------- variable.other.readwrite.alias.ts
+#             ^-------------------- variable.other.readwrite.ts
 #                                   ^ punctuation.definition.block.ts
-#                                     ^--- keyword.control.from.ts
+#                                     ^--- variable.other.readwrite.ts
 #                                          ^------------------- string.quoted.single.ts
 #                                          ^ punctuation.definition.string.begin.ts
 #                                                             ^ punctuation.definition.string.end.ts
 #                                                              ^ punctuation.terminator.statement.ts
 
 const Greet: TemplateOnlyComponent<{ name: string }> = <template>
-#<0-------------------------------------------------------------- meta.var.expr.ts
-#<0-- storage.type.ts
-#     ^---------------------------------------------- meta.var-single-variable.expr.ts
-#     ^---- meta.definition.variable.ts variable.other.constant.ts
-#          ^----------------------------------------- meta.type.annotation.ts
-#          ^ keyword.operator.type.annotation.ts
-#            ^-------------------- entity.name.type.ts
-#                                 ^ meta.type.parameters.ts punctuation.definition.typeparameters.begin.ts
-#                                  ^--------------- meta.object.type.ts
+#^--- variable.other.readwrite.ts
+#     ^---- entity.name.label.ts
+#          ^ punctuation.separator.label.ts
+#            ^-------------------- variable.other.readwrite.ts
+#                                 ^ keyword.operator.relational.ts
+#                                  ^--------------- meta.block.ts
 #                                  ^ punctuation.definition.block.ts
-#                                   ^------------- meta.field.declaration.ts
-#                                    ^--- meta.definition.property.ts variable.object.property.ts
-#                                        ^-------- meta.type.annotation.ts
-#                                        ^ keyword.operator.type.annotation.ts
-#                                          ^----- support.type.primitive.ts
+#                                    ^--- entity.name.label.ts
+#                                        ^ punctuation.separator.label.ts
+#                                          ^----- variable.other.readwrite.ts
 #                                                 ^ punctuation.definition.block.ts
-#                                                  ^ meta.type.parameters.ts punctuation.definition.typeparameters.end.ts
+#                                                  ^ keyword.operator.relational.ts
 #                                                    ^ keyword.operator.assignment.ts
 #                                                     ^---------- meta.js.embeddedTemplateWithoutArgs
 #                                                      ^ punctuation.definition.tag.html
 #                                                       ^------- entity.name.tag.other.html
 #                                                               ^ punctuation.definition.tag.html
   <p>Hello, {{@name}}!</p>
-#<0----------------------- meta.var.expr.ts
 #<0----------------------- meta.js.embeddedTemplateWithoutArgs
 # ^-- meta.tag.any.ember-handlebars
 # ^ punctuation.definition.tag
@@ -50,7 +41,6 @@ const Greet: TemplateOnlyComponent<{ name: string }> = <template>
 #                       ^ entity.name.tag.html.ember-handlebars
 #                        ^ punctuation.definition.tag
 </template>
-#<0-------- meta.var.expr.ts
 #<0-------- meta.js.embeddedTemplateWithoutArgs
 #<0 punctuation.definition.tag.html
 # ^------- entity.name.tag.other.html

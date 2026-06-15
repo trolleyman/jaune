@@ -11,15 +11,19 @@ module tb_top ();
 
     reg clk;
 #<0---- storage.type.vector.systemverilog
+#      ^--- meta.port-net-parameter.declaration.systemverilog
 #       ^-- variable.other.identifier.systemverilog
     reg resetn;
 #<0---- storage.type.vector.systemverilog
+#      ^------ meta.port-net-parameter.declaration.systemverilog
 #       ^----- variable.other.identifier.systemverilog
     reg d;
 #<0---- storage.type.vector.systemverilog
+#      ^- meta.port-net-parameter.declaration.systemverilog
 #       ^ variable.other.identifier.systemverilog
     wire q;
 #<0----- storage.type.net.systemverilog
+#       ^- meta.port-net-parameter.declaration.systemverilog
 #        ^ variable.other.identifier.systemverilog
 
     // Instantiate the design

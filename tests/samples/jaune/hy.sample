@@ -10,18 +10,18 @@
 #^--- keyword.control.hy
 #      ^-- variable.other.hy
 #          ^--- variable.other.hy
-#                  ^-- variable.other.hy
-#                        ^------ variable.other.hy
+#                 ^---- string.quoted.double.hy
+#                       ^-------- string.quoted.double.hy
 (setv  alpha "a"  beta "b")
 #^--- keyword.control.hy
 #      ^---- variable.other.hy
-#             ^ variable.other.hy
+#            ^-- string.quoted.double.hy
 #                 ^--- variable.other.hy
-#                       ^ variable.other.hy
+#                      ^-- string.quoted.double.hy
 
 (sorted "abcBC"
 #^----- storage.builtin.hy
-#        ^---- variable.other.hy
+#       ^------ string.quoted.double.hy
   :key (fn [x] (.lower x)))
 # ^--- variable.other.constant
 #       ^- keyword.control.hy
@@ -35,7 +35,7 @@
 #           ^ variable.other.hy
 #             ^ variable.other.hy
 #                ^ variable.other.hy
-#                   ^ variable.other.hy
+#                  ^-- string.quoted.double.hy
 #                       ^- keyword.control.hy
 #                          ^ variable.other.hy
   [a b c d])
@@ -48,8 +48,8 @@
 #^--- keyword.control.hy
 #      ^ variable.other.hy
 #         ^--- storage.builtin.hy
-#               ^------- variable.other.hy
-#                          ^- variable.other.hy
+#              ^--------- string.quoted.double.hy
+#                         ^--- string.quoted.double.hy
   (setv buffer [])
 #  ^--- keyword.control.hy
 #       ^----- variable.other.hy
@@ -112,8 +112,7 @@
 #         ^ variable.other.hy
   (print "Printed once."))
 #  ^---- storage.builtin.hy
-#         ^------ variable.other.hy
-#                 ^---- variable.other.hy
+#        ^-------------- string.quoted.double.hy
 
 ;; From https://hylang.org/
 #<0------------------------ comment.line.hy

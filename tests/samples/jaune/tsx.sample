@@ -103,10 +103,8 @@ export async function getStaticProps() {
   const res = await fetch('https://.../posts')
 //<0------------------------------------------ meta.function.tsx
 //<0------------------------------------------ meta.block.tsx
-//^------------------------------------------- meta.var.expr.tsx
-//^---- storage.type.tsx
-//      ^--- meta.var-single-variable.expr.tsx
-//      ^-- meta.definition.variable.tsx variable.other.constant.tsx
+// ^--- variable.other.readwrite.tsx
+//      ^-- variable.other.readwrite.tsx
 //          ^ keyword.operator.assignment.tsx
 //            ^---- keyword.control.flow.tsx
 //                  ^---- meta.function-call.tsx
@@ -119,10 +117,8 @@ export async function getStaticProps() {
   const posts = await res.json()
 //<0---------------------------- meta.function.tsx
 //<0---------------------------- meta.block.tsx
-//^----------------------------- meta.var.expr.tsx
-//^---- storage.type.tsx
-//      ^----- meta.var-single-variable.expr.tsx
-//      ^---- meta.definition.variable.tsx variable.other.constant.tsx
+// ^--- variable.other.readwrite.tsx
+//      ^---- variable.other.readwrite.tsx
 //            ^ keyword.operator.assignment.tsx
 //              ^---- keyword.control.flow.tsx
 //                    ^------- meta.function-call.tsx

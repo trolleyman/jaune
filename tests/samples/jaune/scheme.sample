@@ -3,14 +3,12 @@
 (define WINDOW-WIDTH 150)
 ;<0---------------------- meta.expression.scheme
 ;<0 punctuation.section.expression.begin.scheme
-;^----- keyword.control.scheme
-;                    ^-- constant.numeric.scheme
+;^---------------------- meta.declaration.variable.scheme
 ;                       ^ punctuation.section.expression.end.scheme
 (define WINDOW-HEIGHT 180)
 ;<0----------------------- meta.expression.scheme
 ;<0 punctuation.section.expression.begin.scheme
-;^----- keyword.control.scheme
-;                     ^-- constant.numeric.scheme
+;^----------------------- meta.declaration.variable.scheme
 ;                        ^ punctuation.section.expression.end.scheme
 
 ; A world is a number.
@@ -25,12 +23,10 @@
 (define (show-world diameter)
 ;<0-------------------------- meta.expression.scheme
 ;<0 punctuation.section.expression.begin.scheme
-;^----- keyword.control.scheme
-;       ^-------------------- meta.expression.scheme
-;       ^ punctuation.section.expression.begin.scheme
-;                           ^ punctuation.section.expression.end.scheme
+;^--------------------------- meta.declaration.procedure.scheme
   (circle diameter "solid" "blue"))
 ;<0-------------------------------- meta.expression.scheme
+;<0------------------------------- meta.declaration.procedure.scheme
 ; ^------------------------------- meta.expression.scheme
 ; ^ punctuation.section.expression.begin.scheme
 ;                  ^------ string.quoted.double.scheme
@@ -81,12 +77,10 @@
 (define (next-world diameter)
 ;<0-------------------------- meta.expression.scheme
 ;<0 punctuation.section.expression.begin.scheme
-;^----- keyword.control.scheme
-;       ^-------------------- meta.expression.scheme
-;       ^ punctuation.section.expression.begin.scheme
-;                           ^ punctuation.section.expression.end.scheme
+;^--------------------------- meta.declaration.procedure.scheme
   (+ 1 diameter))
 ;<0-------------- meta.expression.scheme
+;<0------------- meta.declaration.procedure.scheme
 ; ^------------- meta.expression.scheme
 ; ^ punctuation.section.expression.begin.scheme
 ;  ^ keyword.operator.arithmetic.scheme
