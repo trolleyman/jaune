@@ -365,6 +365,16 @@ impl<'a> Tokenizer<'a> {
             if self.close_ends_at_line_end(self.line_start, line_end) {
                 return;
             }
+            // Then let a zero-width `begin` fire at the end-of-line position. An embedding
+            // begin such as `(?<=>)` (HTML/Vue `<script>`/`<style>`/`<template>` bodies)
+            // only matches here, where its lookbehind can still see the line's final `>`;
+            // at the start of the next line the slice no longer includes that character,
+            // so the embedded block would never open. TextMate scans this trailing
+            // position too, opening the block before the newline.
+            let line = &text[self.line_start..line_end];
+            if self.try_open_eol_begin(line, self.line_start, line_end) {
+                return;
+            }
             self.pending.push_back(TokenizerOp::Newline);
             self.cursor = line_end + 1;
             self.line_start = self.cursor;
@@ -382,8 +392,6 @@ impl<'a> Tokenizer<'a> {
         }
 
         // Scan the remainder of the current line for the next match.
-        let base = self.base;
-        let set = self.set;
         let pos = self.cursor - line_start;
 
         // `\A` may match only on the first line; `\G` only at the current anchor.
@@ -401,30 +409,7 @@ impl<'a> Tokenizer<'a> {
         // grammars) against whichever grammar owns the current frame. Base patterns have
         // priority 0; injected patterns carry the priority of their selector (`L:` > 0
         // wins ties against base, `R:` < 0 loses).
-        let frame_patterns = self.stack.last().unwrap().patterns;
-        let frame_syntax = self.stack.last().unwrap().syntax;
-        let mut candidates: Vec<(&'a Pattern, &'a SyntaxDefinition, i8)> = Vec::new();
-        {
-            let mut concrete: Vec<(&'a Pattern, &'a SyntaxDefinition)> = Vec::new();
-            let mut visited: HashSet<(Scope, &'a str)> = HashSet::new();
-            flatten_patterns(set, base, frame_syntax, frame_patterns, &mut concrete, &mut visited);
-            candidates.extend(concrete.into_iter().map(|(p, s)| (p, s, 0)));
-        }
-        if let Some(set) = set
-            && set.has_injections()
-        {
-            let scopes = self.active_scopes.clone();
-            // Grammars currently in play: the base plus any embedded grammar on the
-            // stack. A grammar's own `injections` map only applies while it is active.
-            let mut active_grammars: Vec<Scope> = vec![base.scope];
-            active_grammars.extend(self.stack.iter().map(|f| f.syntax.scope));
-            for (priority, patterns, syn) in set.matching_injections(&scopes, &active_grammars) {
-                let mut concrete: Vec<(&'a Pattern, &'a SyntaxDefinition)> = Vec::new();
-                let mut visited: HashSet<(Scope, &'a str)> = HashSet::new();
-                flatten_patterns(Some(set), base, syn, patterns, &mut concrete, &mut visited);
-                candidates.extend(concrete.into_iter().map(|(p, s)| (p, s, priority)));
-            }
-        }
+        let candidates = self.gather_candidates();
 
         let mut best: Option<(MatchData, &'a Pattern, &'a SyntaxDefinition, i8)> = None;
         for (pat, syn, priority) in candidates {
@@ -467,14 +452,14 @@ impl<'a> Tokenizer<'a> {
             let e = end_md.unwrap();
             self.close_top_block(text, &e);
         } else if let Some((md, pat, syn, _priority)) = best {
-            if md.start > self.cursor {
-                self.pending
-                    .push_back(TokenizerOp::Content(&text[self.cursor..md.start]));
-            }
             match pat {
                 Pattern::Match {
                     scope, captures, ..
                 } => {
+                    if md.start > self.cursor {
+                        self.pending
+                            .push_back(TokenizerOp::Content(&text[self.cursor..md.start]));
+                    }
                     // The whole-match `name` encloses the capture scopes, so it goes
                     // first: `emit_spans`' stable sort keeps it outer when it shares a
                     // range with a capture (e.g. a single-token match that is also its
@@ -492,81 +477,10 @@ impl<'a> Tokenizer<'a> {
                     self.emit_spans(text, md.start, md.end, spans);
                     self.cursor = md.end;
                 }
-                Pattern::BeginEnd {
-                    end,
-                    content_scope,
-                    begin_captures,
-                    end_captures,
-                    patterns,
-                    ..
-                } => {
-                    // The end regex may reference captures from the begin match.
-                    let end_str = substitute_backrefs(end, &md, text);
-                    if compile_regex(&end_str).is_ok() {
-                        let resolved = content_scope
-                            .as_ref()
-                            .and_then(|t| resolve_scope(t, &md, text));
-                        if let Some(scope) = resolved {
-                            self.pending.push_back(TokenizerOp::Push(scope));
-                            self.active_scopes.push(scope.to_string());
-                        }
-                        let spans = capture_spans(begin_captures, &md, text, syn);
-                        self.emit_spans(text, md.start, md.end, spans);
-                        self.cursor = md.end;
-                        // `\G` may match at the end of this begin match.
-                        self.anchor = md.end;
-                        self.stack.push(StackFrame {
-                            end_regex: Some(end_str),
-                            end_captures: Some(end_captures),
-                            while_regex: None,
-                            while_captures: None,
-                            patterns: patterns.as_slice(),
-                            syntax: syn,
-                            scope: resolved,
-                            enter_pos: md.start,
-                            enter_rule: pat,
-                        });
-                    } else {
-                        // Uncompilable end: treat the begin marker as plain content
-                        // so we still make progress.
-                        self.pending
-                            .push_back(TokenizerOp::Content(&text[md.start..md.end]));
-                        self.cursor = md.end;
-                    }
-                }
-                Pattern::BeginWhile {
-                    while_regex,
-                    content_scope,
-                    begin_captures,
-                    while_captures,
-                    patterns,
-                    ..
-                } => {
-                    let while_str = substitute_backrefs(while_regex, &md, text);
-                    let resolved = content_scope
-                        .as_ref()
-                        .and_then(|t| resolve_scope(t, &md, text));
-                    if let Some(scope) = resolved {
-                        self.pending.push_back(TokenizerOp::Push(scope));
-                        self.active_scopes.push(scope.to_string());
-                    }
-                    let spans = capture_spans(begin_captures, &md, text, syn);
-                    self.emit_spans(text, md.start, md.end, spans);
-                    self.cursor = md.end;
-                    self.anchor = md.end;
-                    self.stack.push(StackFrame {
-                        end_regex: None,
-                        end_captures: None,
-                        while_regex: Some(while_str),
-                        while_captures: Some(while_captures),
-                        patterns: patterns.as_slice(),
-                        syntax: syn,
-                        scope: resolved,
-                        enter_pos: md.start,
-                        enter_rule: pat,
-                    });
-                }
                 // `flatten_patterns` only yields concrete `Match`/`BeginEnd`/`BeginWhile`.
+                Pattern::BeginEnd { .. } | Pattern::BeginWhile { .. } => {
+                    self.open_begin(text, pat, syn, &md);
+                }
                 _ => unreachable!(),
             }
         } else {
@@ -596,6 +510,222 @@ impl<'a> Tokenizer<'a> {
         } else {
             self.stall_count = 0;
         }
+    }
+
+    /// Collects the concrete candidate rules valid at the cursor: the current frame's
+    /// patterns (resolved against whichever grammar owns the frame, so embedded grammars
+    /// keep resolving their own includes) plus any injection grammars active for the
+    /// current scope stack. Each rule is paired with its owning grammar and the priority
+    /// of the source it came from (base patterns are `0`; injected patterns carry their
+    /// selector's priority, `L:` > 0 / `R:` < 0).
+    fn gather_candidates(&self) -> Vec<(&'a Pattern, &'a SyntaxDefinition, i8)> {
+        let base = self.base;
+        let set = self.set;
+        let frame_patterns = self.stack.last().unwrap().patterns;
+        let frame_syntax = self.stack.last().unwrap().syntax;
+        let mut candidates: Vec<(&'a Pattern, &'a SyntaxDefinition, i8)> = Vec::new();
+        {
+            let mut concrete: Vec<(&'a Pattern, &'a SyntaxDefinition)> = Vec::new();
+            let mut visited: HashSet<(Scope, &'a str)> = HashSet::new();
+            flatten_patterns(set, base, frame_syntax, frame_patterns, &mut concrete, &mut visited);
+            candidates.extend(concrete.into_iter().map(|(p, s)| (p, s, 0)));
+        }
+        if let Some(set) = set
+            && set.has_injections()
+        {
+            let scopes = self.active_scopes.clone();
+            // Grammars currently in play: the base plus any embedded grammar on the
+            // stack. A grammar's own `injections` map only applies while it is active.
+            let mut active_grammars: Vec<Scope> = vec![base.scope];
+            active_grammars.extend(self.stack.iter().map(|f| f.syntax.scope));
+            for (priority, patterns, syn) in set.matching_injections(&scopes, &active_grammars) {
+                let mut concrete: Vec<(&'a Pattern, &'a SyntaxDefinition)> = Vec::new();
+                let mut visited: HashSet<(Scope, &'a str)> = HashSet::new();
+                flatten_patterns(Some(set), base, syn, patterns, &mut concrete, &mut visited);
+                candidates.extend(concrete.into_iter().map(|(p, s)| (p, s, priority)));
+            }
+        }
+        candidates
+    }
+
+    /// Opens the begin/end or begin/while block `pat` (owned by `syn`) whose `begin`
+    /// matched at `md`: emits any text between the cursor and the match, pushes the
+    /// content scope (if the rule has a `name`), emits the begin captures, advances the
+    /// cursor past the begin marker, and pushes the new stack frame.
+    ///
+    /// Shared by the in-line scan and the end-of-line zero-width begin opener.
+    fn open_begin(
+        &mut self,
+        text: &'a str,
+        pat: &'a Pattern,
+        syn: &'a SyntaxDefinition,
+        md: &MatchData,
+    ) {
+        if md.start > self.cursor {
+            self.pending
+                .push_back(TokenizerOp::Content(&text[self.cursor..md.start]));
+        }
+        match pat {
+            Pattern::BeginEnd {
+                end,
+                content_scope,
+                begin_captures,
+                end_captures,
+                patterns,
+                ..
+            } => {
+                // The end regex may reference captures from the begin match.
+                let end_str = substitute_backrefs(end, md, text);
+                if compile_regex(&end_str).is_ok() {
+                    let resolved = content_scope
+                        .as_ref()
+                        .and_then(|t| resolve_scope(t, md, text));
+                    if let Some(scope) = resolved {
+                        self.pending.push_back(TokenizerOp::Push(scope));
+                        self.active_scopes.push(scope.to_string());
+                    }
+                    let spans = capture_spans(begin_captures, md, text, syn);
+                    self.emit_spans(text, md.start, md.end, spans);
+                    self.cursor = md.end;
+                    // `\G` may match at the end of this begin match.
+                    self.anchor = md.end;
+                    self.stack.push(StackFrame {
+                        end_regex: Some(end_str),
+                        end_captures: Some(end_captures),
+                        while_regex: None,
+                        while_captures: None,
+                        patterns: patterns.as_slice(),
+                        syntax: syn,
+                        scope: resolved,
+                        enter_pos: md.start,
+                        enter_rule: pat,
+                    });
+                } else {
+                    // Uncompilable end: treat the begin marker as plain content
+                    // so we still make progress.
+                    self.pending
+                        .push_back(TokenizerOp::Content(&text[md.start..md.end]));
+                    self.cursor = md.end;
+                }
+            }
+            Pattern::BeginWhile {
+                while_regex,
+                content_scope,
+                begin_captures,
+                while_captures,
+                patterns,
+                ..
+            } => {
+                let while_str = substitute_backrefs(while_regex, md, text);
+                let resolved = content_scope
+                    .as_ref()
+                    .and_then(|t| resolve_scope(t, md, text));
+                if let Some(scope) = resolved {
+                    self.pending.push_back(TokenizerOp::Push(scope));
+                    self.active_scopes.push(scope.to_string());
+                }
+                let spans = capture_spans(begin_captures, md, text, syn);
+                self.emit_spans(text, md.start, md.end, spans);
+                self.cursor = md.end;
+                self.anchor = md.end;
+                self.stack.push(StackFrame {
+                    end_regex: None,
+                    end_captures: None,
+                    while_regex: Some(while_str),
+                    while_captures: Some(while_captures),
+                    patterns: patterns.as_slice(),
+                    syntax: syn,
+                    scope: resolved,
+                    enter_pos: md.start,
+                    enter_rule: pat,
+                });
+            }
+            _ => unreachable!("open_begin called with a non-begin pattern"),
+        }
+    }
+
+    /// At the end-of-line position, tries to open a single zero-width `begin` block (one
+    /// matching exactly at the line end with no width, e.g. an embedding `(?<=>)`). Only
+    /// such begins can fire here: anything that consumes text would have matched during
+    /// the in-line scan. Returns `true` if a block was opened.
+    ///
+    /// This is what lets lookbehind-anchored embeddings whose opening tag ends a line
+    /// (`<script>\n…`) start their embedded grammar, since the lookbehind cannot see the
+    /// previous line's final character from the start of the next line.
+    fn try_open_eol_begin(&mut self, line: &'a str, line_start: usize, line_end: usize) -> bool {
+        let allow_a = line_start == 0;
+        let allow_g = self.cursor == self.anchor;
+        let pos = self.cursor - line_start;
+        let text = self.text;
+
+        let candidates = self.gather_candidates();
+        let mut best: Option<(MatchData, &'a Pattern, &'a SyntaxDefinition, i8)> = None;
+        for (pat, syn, priority) in candidates {
+            let begin = match pat {
+                Pattern::BeginEnd { begin, .. } | Pattern::BeginWhile { begin, .. } => begin,
+                _ => continue,
+            };
+            let Some(md) = self.run_regex(begin, line, pos, line_start, allow_a, allow_g) else {
+                continue;
+            };
+            // Only a zero-width begin sitting exactly at the line end is eligible.
+            if md.start != line_end || md.end != line_end {
+                continue;
+            }
+            if self.would_reenter(pat, md.start) {
+                continue;
+            }
+            // Skip a begin/end whose `end` would also match (zero-width) right here:
+            // opening it produces an empty block that `close_ends_at_line_end` closes on
+            // the next step, only to be reopened again — an infinite loop that never
+            // emits the newline. A genuine embedding begin (`(?<=>)` with an end like
+            // `(?=</script…)`) does not self-close here, so it is unaffected.
+            if let Pattern::BeginEnd { end, .. } = pat {
+                let end_str = substitute_backrefs(end, &md, text);
+                if self.end_closes_at(&end_str, line_start, line_end) {
+                    continue;
+                }
+            }
+            // Highest-priority candidate wins; ties keep the first (earliest in the
+            // flattened pattern order), matching the in-line scan's preference.
+            if best.as_ref().is_none_or(|(_, _, _, bp)| priority > *bp) {
+                best = Some((md, pat, syn, priority));
+            }
+        }
+
+        match best {
+            Some((md, pat, syn, _)) => {
+                self.open_begin(text, pat, syn, &md);
+                true
+            }
+            None => false,
+        }
+    }
+
+    /// Whether `end_str` (an already back-reference-substituted end regex) matches
+    /// zero-width at the current cursor, exactly at `line_end` — i.e. it would close a
+    /// block opened here without consuming any content. Mirrors the close condition used
+    /// by [`Self::close_ends_at_line_end`] (testing both the newline-excluding and
+    /// newline-including views of the line).
+    fn end_closes_at(&mut self, end_str: &str, line_start: usize, line_end: usize) -> bool {
+        let allow_a = line_start == 0;
+        let allow_g = self.cursor == self.anchor;
+        let pos = self.cursor - line_start;
+        let text = self.text;
+        let no_nl = &text[line_start..line_end];
+        let with_nl = if line_end < text.len() {
+            &text[line_start..line_end + 1]
+        } else {
+            no_nl
+        };
+        let closes_here = |md: &MatchData| md.start == line_end && md.end <= line_end + 1;
+        self.run_regex(end_str, no_nl, pos, line_start, allow_a, allow_g)
+            .filter(closes_here)
+            .or_else(|| {
+                self.run_regex(end_str, with_nl, pos, line_start, allow_a, allow_g)
+                    .filter(closes_here)
+            })
+            .is_some()
     }
 
     /// Emits the text of `[region_start, region_end)` as content, wrapping the (properly
@@ -1360,6 +1490,88 @@ mod tests {
         assert!(
             ops[comment_idx..word_idx].contains(&TokenizerOp::Pop),
             "comment.line leaked into the next line: {ops:?}"
+        );
+    }
+
+    // A host grammar that embeds a guest via a lookbehind-anchored zero-width begin
+    // (`(?<=>)`), exactly like HTML/Vue `<script>`/`<style>`/`<template>` bodies. The
+    // embedding begin only matches at the end of the opening tag's line, so the guest
+    // block must be opened there for the embed to span the following lines.
+    const EMBED_HOST: &str = r###"
+    {
+        "scopeName": "source.host",
+        "patterns": [
+            {
+                "begin": "<s>",
+                "end": "</s>",
+                "name": "meta.tag.host",
+                "patterns": [
+                    {
+                        "begin": "(?<=>)",
+                        "end": "(?=</s>)",
+                        "name": "meta.embedded.host",
+                        "patterns": [{ "include": "source.guest" }]
+                    }
+                ]
+            }
+        ]
+    }
+    "###;
+
+    const EMBED_GUEST: &str = r###"
+    {
+        "scopeName": "source.guest",
+        "patterns": [{ "match": "\\d+", "name": "constant.numeric.guest" }]
+    }
+    "###;
+
+    /// A lookbehind-anchored embedding begin (`(?<=>)`) whose anchor sits at the end of
+    /// the opening tag's line must still open the embedded block: the lookbehind can see
+    /// the line's final `>` from the end-of-line position, even though it cannot from the
+    /// start of the next line. The embedded block must then close cleanly at its end
+    /// marker rather than leaking past it.
+    #[test]
+    fn test_embedding_begin_fires_across_line_boundary() {
+        use crate::SyntaxSet;
+
+        let mut set = SyntaxSet::new();
+        set.add(SyntaxDefinition::from_json_str(EMBED_HOST).unwrap());
+        set.add(SyntaxDefinition::from_json_str(EMBED_GUEST).unwrap());
+
+        let host = set
+            .find_by_scope(Scope::new("source.host").unwrap())
+            .unwrap();
+        // The opening tag ends line 1; the guest content (`42`) is on line 2; the closing
+        // tag is on line 3.
+        let input = "<s>\n42\n</s>";
+        let ops: Vec<_> = Tokenizer::new_in_set(input, host, &set).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+
+        // The embedded block opened (across the line boundary) and the guest grammar
+        // tokenized the number on the next line.
+        let embedded = Scope::new("meta.embedded.host").unwrap();
+        let guest_num = Scope::new("constant.numeric.guest").unwrap();
+        let embed_idx = ops
+            .iter()
+            .position(|op| *op == TokenizerOp::Push(embedded))
+            .expect("embedded block never opened across the line boundary");
+        assert!(
+            ops.contains(&TokenizerOp::Push(guest_num)),
+            "guest grammar did not tokenize embedded content: {ops:?}"
+        );
+
+        // The embedded block must close (Pop) before the closing `</s>` tag is emitted —
+        // i.e. it does not leak past its closing tag. Locate the `</s>` content and check
+        // a Pop of the embedded scope precedes it.
+        let close_idx = ops
+            .iter()
+            .position(|op| matches!(op, TokenizerOp::Content("</s>")))
+            .expect("closing tag content not found");
+        assert!(
+            ops[embed_idx..close_idx].contains(&TokenizerOp::Pop),
+            "embedded block leaked past its closing tag: {ops:?}"
         );
     }
 }

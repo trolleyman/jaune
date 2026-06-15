@@ -18,7 +18,16 @@ const msg: string = "hello"
 "template" source.vue entity.name.tag.template.html.vue
 ">" source.vue meta.tag-stuff punctuation.definition.tag.end.html.vue
 ⏎
-"  <div class=\"app\">" source.vue
+"  " source.vue text.html.derivative
+"<" source.vue text.html.derivative keyword.operator.relational.ts
+"div" source.vue text.html.derivative variable.other.readwrite.ts
+" " source.vue text.html.derivative
+"class" source.vue text.html.derivative variable.other.readwrite.ts
+"=" source.vue text.html.derivative keyword.operator.assignment.ts
+"\"" source.vue text.html.derivative string.quoted.double.ts punctuation.definition.string.begin.ts
+"app" source.vue text.html.derivative string.quoted.double.ts variable.other.readwrite.ts
+"\"" source.vue text.html.derivative string.quoted.double.ts punctuation.definition.string.end.ts
+">" source.vue text.html.derivative keyword.operator.relational.ts
 "{{" source.vue text.html.derivative expression.embedded.vue punctuation.definition.interpolation.begin.html.vue
 " " source.vue text.html.derivative expression.embedded.vue source.ts.embedded.html.vue
 "msg" source.vue text.html.derivative expression.embedded.vue source.ts.embedded.html.vue variable.other.readwrite.ts
@@ -46,7 +55,18 @@ const msg: string = "hello"
 "\"" source.vue meta.tag-stuff meta.attribute.lang.html string.quoted.double.html punctuation.definition.string.end.html
 ">" source.vue meta.tag-stuff punctuation.definition.tag.end.html.vue
 ⏎
-"const msg: string = \"hello\"" source.vue
+"const" source.vue source.ts meta.var.expr.ts storage.type.ts
+" " source.vue source.ts meta.var.expr.ts
+"msg" source.vue source.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.definition.variable.ts variable.other.constant.ts
+":" source.vue source.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.type.annotation.ts keyword.operator.type.annotation.ts
+" " source.vue source.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.type.annotation.ts
+"string" source.vue source.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.type.annotation.ts support.type.primitive.ts
+" " source.vue source.ts meta.var.expr.ts meta.var-single-variable.expr.ts meta.type.annotation.ts
+"=" source.vue source.ts meta.var.expr.ts keyword.operator.assignment.ts
+" " source.vue source.ts meta.var.expr.ts
+"\"" source.vue source.ts meta.var.expr.ts string.quoted.double.ts punctuation.definition.string.begin.ts
+"hello" source.vue source.ts meta.var.expr.ts string.quoted.double.ts
+"\"" source.vue source.ts meta.var.expr.ts string.quoted.double.ts punctuation.definition.string.end.ts
 ⏎
 "</" source.vue punctuation.definition.tag.begin.html.vue
 "script" source.vue entity.name.tag.script.html.vue
@@ -59,7 +79,18 @@ const msg: string = "hello"
 "scoped" source.vue meta.tag-stuff meta.attribute.unrecognized.scoped.html entity.other.attribute-name.html
 ">" source.vue meta.tag-stuff punctuation.definition.tag.end.html.vue
 ⏎
-".app { color: red; }" source.vue
+"." source.vue source.css meta.selector.css entity.other.attribute-name.class.css punctuation.definition.entity.css
+"app" source.vue source.css meta.selector.css entity.other.attribute-name.class.css
+" " source.vue source.css
+"{" source.vue source.css meta.property-list.css punctuation.section.property-list.begin.bracket.curly.css
+" " source.vue source.css meta.property-list.css
+"color" source.vue source.css meta.property-list.css meta.property-name.css support.type.property-name.css
+":" source.vue source.css meta.property-list.css punctuation.separator.key-value.css
+" " source.vue source.css meta.property-list.css
+"red" source.vue source.css meta.property-list.css support.constant.color.w3c-standard-color-name.css
+";" source.vue source.css meta.property-list.css punctuation.terminator.rule.css
+" " source.vue source.css meta.property-list.css
+"}" source.vue source.css meta.property-list.css punctuation.section.property-list.end.bracket.curly.css
 ⏎
 "</" source.vue punctuation.definition.tag.begin.html.vue
 "style" source.vue entity.name.tag.style.html.vue
