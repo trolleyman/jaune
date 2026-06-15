@@ -910,7 +910,7 @@ impl<'a> Iterator for Tokenizer<'a> {
 }
 
 /// Extracts absolute-offset match data from a [`fancy_regex::Captures`].
-fn match_data(caps: &fancy_regex::Captures, line_start: usize) -> MatchData {
+fn match_data(caps: &fancy_regex::Captures<'_, str>, line_start: usize) -> MatchData {
     let whole = caps.get(0).expect("a match always has group 0");
     let groups = caps
         .iter()

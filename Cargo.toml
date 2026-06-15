@@ -19,7 +19,11 @@ include = [
 
 [dependencies]
 bimap = "0.6.3"
-fancy-regex = "0.17.0"
+# Pinned to the unreleased `regexset_find_input` branch (fancy-regex#255) for its
+# `RegexSet` multi-pattern scanner and `RegexInput` `\G`/anchoring model, which the
+# tokenizer uses in place of a one-pattern-at-a-time loop and a manual `\G` shim. Pin
+# an exact rev for reproducibility until the work lands in a published release.
+fancy-regex = { git = "https://github.com/fancy-regex/fancy-regex", rev = "34363aad51315500f4253482df3257c32ffb067d" }
 plist = "1.7"
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.148"
