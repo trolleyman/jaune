@@ -14,7 +14,7 @@ def greet(name: str) -> str:
 " " source.python
 "os" source.python
 ⏎
-"from" source.python keyword.control.flow.python
+"from" source.python keyword.control.import.python
 " " source.python
 "typing" source.python
 " " source.python
@@ -23,28 +23,28 @@ def greet(name: str) -> str:
 "List" source.python
 ⏎
 ⏎
-"@" source.python keyword.operator.arithmetic.python
-"decorator" source.python
+"@" source.python meta.function.decorator.python entity.name.function.decorator.python punctuation.definition.decorator.python
+"decorator" source.python meta.function.decorator.python entity.name.function.decorator.python
 ⏎
-"def" source.python keyword.control.flow.python
-" " source.python
-"greet" source.python meta.function-call.python meta.function-call.generic.python
-"(" source.python meta.function-call.python punctuation.definition.arguments.begin.python
-"name" source.python meta.function-call.python
-":" source.python meta.function-call.python punctuation.separator.colon.python
-" " source.python meta.function-call.python
-"str" source.python meta.function-call.python support.type.python
-")" source.python meta.function-call.python punctuation.definition.arguments.end.python
-" " source.python
-"->" source.python invalid.illegal.annotation.python
-" " source.python
-"str" source.python support.type.python
-":" source.python punctuation.separator.colon.python
+"def" source.python meta.function.python storage.type.function.python
+" " source.python meta.function.python
+"greet" source.python meta.function.python entity.name.function.python
+"(" source.python meta.function.python meta.function.parameters.python punctuation.definition.parameters.begin.python
+"name" source.python meta.function.python meta.function.parameters.python variable.parameter.function.language.python
+":" source.python meta.function.python meta.function.parameters.python punctuation.separator.annotation.python
+" " source.python meta.function.python meta.function.parameters.python
+"str" source.python meta.function.python meta.function.parameters.python support.type.python
+")" source.python meta.function.python meta.function.parameters.python punctuation.definition.parameters.end.python
+" " source.python meta.function.python
+"->" source.python meta.function.python punctuation.separator.annotation.result.python
+" " source.python meta.function.python
+"str" source.python meta.function.python support.type.python
+":" source.python meta.function.python punctuation.section.function.begin.python
 ⏎
 "    " source.python
-"\"\"\"" source.python string.quoted.multi.python punctuation.definition.string.begin.python
-"docstring" source.python string.quoted.multi.python
-"\"\"\"" source.python string.quoted.multi.python punctuation.definition.string.end.python
+"\"\"\"" source.python string.quoted.docstring.multi.python punctuation.definition.string.begin.python
+"docstring" source.python string.quoted.docstring.multi.python
+"\"\"\"" source.python string.quoted.docstring.multi.python punctuation.definition.string.end.python
 ⏎
 "    " source.python
 "return" source.python keyword.control.flow.python

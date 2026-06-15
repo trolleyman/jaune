@@ -70,7 +70,8 @@ namespace App {
 "        " source.cs
 "}" source.cs punctuation.curlybrace.close.cs
 ⏎
-"    }" source.cs
+"    " source.cs
+"}" source.cs punctuation.curlybrace.close.cs
 ⏎
 "}" source.cs punctuation.curlybrace.close.cs
 ⏎

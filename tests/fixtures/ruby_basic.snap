@@ -21,13 +21,28 @@ end
 "#" source.ruby comment.line.number-sign.ruby punctuation.definition.comment.ruby
 " a comment" source.ruby comment.line.number-sign.ruby
 ⏎
-"class Greeter" source.ruby comment.line.number-sign.ruby
+"class" source.ruby meta.class.ruby keyword.control.class.ruby
+" " source.ruby meta.class.ruby
+"Greeter" source.ruby meta.class.ruby entity.name.type.class.ruby
 ⏎
-"  def greet(name)" source.ruby comment.line.number-sign.ruby
+"  " source.ruby
+"def" source.ruby meta.function.method.with-arguments.ruby keyword.control.def.ruby
+" " source.ruby meta.function.method.with-arguments.ruby
+"greet" source.ruby meta.function.method.with-arguments.ruby entity.name.function.ruby
+"(" source.ruby meta.function.method.with-arguments.ruby punctuation.definition.parameters.ruby
+"name" source.ruby meta.function.method.with-arguments.ruby
+")" source.ruby meta.function.method.with-arguments.ruby punctuation.definition.parameters.ruby
 ⏎
-"    \"hello #{name}\"" source.ruby comment.line.number-sign.ruby
+"    " source.ruby
+"\"" source.ruby string.quoted.double.interpolated.ruby punctuation.definition.string.begin.ruby
+"hello " source.ruby string.quoted.double.interpolated.ruby
+"#{" source.ruby string.quoted.double.interpolated.ruby meta.embedded.line.ruby punctuation.section.embedded.begin.ruby
+"name" source.ruby string.quoted.double.interpolated.ruby meta.embedded.line.ruby
+"}" source.ruby string.quoted.double.interpolated.ruby meta.embedded.line.ruby punctuation.section.embedded.end.ruby
+"\"" source.ruby string.quoted.double.interpolated.ruby punctuation.definition.string.end.ruby
 ⏎
-"  end" source.ruby comment.line.number-sign.ruby
+"  " source.ruby
+"end" source.ruby keyword.control.ruby
 ⏎
-"end" source.ruby comment.line.number-sign.ruby
+"end" source.ruby keyword.control.ruby
 ⏎

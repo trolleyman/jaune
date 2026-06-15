@@ -63,7 +63,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 " " source.rust
 "=" source.rust keyword.operator.assignment.equal.rust
 " " source.rust
-"vec!" source.rust entity.name.function.macro.rust meta.macro.rust
+"vec!" source.rust meta.macro.rust entity.name.function.macro.rust
 "[" source.rust punctuation.brackets.square.rust
 "1" source.rust constant.numeric.decimal.rust
 "," source.rust punctuation.comma.rust
@@ -82,7 +82,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 " " source.rust
 "=" source.rust keyword.operator.assignment.equal.rust
 " " source.rust
-"format!" source.rust entity.name.function.macro.rust meta.macro.rust
+"format!" source.rust meta.macro.rust entity.name.function.macro.rust
 "(" source.rust punctuation.brackets.round.rust
 "\"" source.rust string.quoted.double.rust punctuation.definition.string.rust
 "n = " source.rust string.quoted.double.rust

@@ -11,11 +11,23 @@ ORDER BY name DESC;
 "--" source.sql comment.line.double-dash.sql punctuation.definition.comment.sql
 " a query" source.sql comment.line.double-dash.sql
 ⏎
-"SELECT id, name" source.sql comment.line.double-dash.sql
+"SELECT" source.sql keyword.other.DML.sql
+" id, " source.sql
+"name" source.sql keyword.other.sql
 ⏎
-"FROM users" source.sql comment.line.double-dash.sql
+"FROM" source.sql keyword.other.DML.sql
+" users" source.sql
 ⏎
-"WHERE age > 18" source.sql comment.line.double-dash.sql
+"WHERE" source.sql keyword.other.DML.sql
+" age " source.sql
+">" source.sql keyword.operator.comparison.sql
+" " source.sql
+"18" source.sql constant.numeric.sql
 ⏎
-"ORDER BY name DESC;" source.sql comment.line.double-dash.sql
+"ORDER BY" source.sql keyword.other.DML.sql
+" " source.sql
+"name" source.sql keyword.other.sql
+" " source.sql
+"DESC" source.sql keyword.other.order.sql
+";" source.sql
 ⏎

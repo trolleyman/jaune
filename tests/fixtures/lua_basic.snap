@@ -18,14 +18,29 @@ print(greet("world"))
 "name" source.lua meta.function.lua meta.parameter.lua variable.parameter.function.lua
 ")" source.lua meta.function.lua meta.parameter.lua punctuation.definition.parameters.finish.lua
 ⏎
-"  " source.lua meta.function.lua punctuation.whitespace.comment.leading.lua
-"--" source.lua meta.function.lua comment.line.double-dash.lua punctuation.definition.comment.lua
-" a comment" source.lua meta.function.lua comment.line.double-dash.lua
+"  " source.lua punctuation.whitespace.comment.leading.lua
+"--" source.lua comment.line.double-dash.lua punctuation.definition.comment.lua
+" a comment" source.lua comment.line.double-dash.lua
 ⏎
-"  return \"hello \" .. name" source.lua meta.function.lua comment.line.double-dash.lua
+"  " source.lua
+"return" source.lua keyword.control.lua
+" " source.lua
+"\"" source.lua string.quoted.double.lua punctuation.definition.string.begin.lua
+"hello " source.lua string.quoted.double.lua
+"\" " source.lua string.quoted.double.lua punctuation.definition.string.end.lua
+".." source.lua keyword.operator.lua
+" " source.lua
+"name" source.lua variable.other.lua
 ⏎
-"end" source.lua meta.function.lua comment.line.double-dash.lua
+"end" source.lua keyword.control.lua
 ⏎
 ⏎
-"print(greet(\"world\"))" source.lua meta.function.lua comment.line.double-dash.lua
+"print" source.lua support.function.lua
+"(" source.lua
+"greet" source.lua support.function.any-method.lua
+"(" source.lua
+"\"" source.lua string.quoted.double.lua punctuation.definition.string.begin.lua
+"world" source.lua string.quoted.double.lua
+"\"" source.lua string.quoted.double.lua punctuation.definition.string.end.lua
+"))" source.lua
 ⏎

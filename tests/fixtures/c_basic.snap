@@ -17,17 +17,41 @@ int main(void) {
 "stdio.h>" source.c meta.preprocessor.include.c
 ⏎
 ⏎
-"int main(void) {" source.c meta.preprocessor.include.c
+"int" source.c storage.type.built-in.primitive.c
+" " source.c
+"main" source.c meta.function.c meta.function.definition.parameters.c entity.name.function.c
+"(" source.c meta.function.c meta.function.definition.parameters.c punctuation.section.parameters.begin.bracket.round.c
+"void" source.c meta.function.c meta.function.definition.parameters.c storage.type.built-in.primitive.c
+")" source.c meta.function.c meta.function.definition.parameters.c punctuation.section.parameters.end.bracket.round.c
+" " source.c
+"{" source.c meta.block.c punctuation.section.block.begin.bracket.curly.c
 ⏎
-"    int n = 42;" source.c meta.preprocessor.include.c
+"    " source.c meta.block.c
+"int" source.c meta.block.c storage.type.built-in.primitive.c
+" n " source.c meta.block.c
+"=" source.c meta.block.c keyword.operator.assignment.c
+" " source.c meta.block.c
+"42" source.c meta.block.c constant.numeric.decimal.c
+";" source.c meta.block.c punctuation.terminator.statement.c
 ⏎
-"    printf(" source.c meta.preprocessor.include.c
-"\"" source.c meta.preprocessor.include.c string.quoted.double.include.c punctuation.definition.string.begin.c
-"n=%d\\n" source.c meta.preprocessor.include.c string.quoted.double.include.c
-"\"" source.c meta.preprocessor.include.c string.quoted.double.include.c punctuation.definition.string.end.c
-", n);" source.c meta.preprocessor.include.c
+"    " source.c meta.block.c
+"printf" source.c meta.block.c meta.function-call.c entity.name.function.c
+"(" source.c meta.block.c meta.function-call.c punctuation.section.arguments.begin.bracket.round.c
+"\"" source.c meta.block.c meta.function-call.c string.quoted.double.c punctuation.definition.string.begin.c
+"n=" source.c meta.block.c meta.function-call.c string.quoted.double.c
+"%d" source.c meta.block.c meta.function-call.c string.quoted.double.c constant.other.placeholder.c
+"\\n" source.c meta.block.c meta.function-call.c string.quoted.double.c constant.character.escape.c
+"\"" source.c meta.block.c meta.function-call.c string.quoted.double.c punctuation.definition.string.end.c
+"," source.c meta.block.c meta.function-call.c punctuation.separator.delimiter.c
+" n" source.c meta.block.c meta.function-call.c
+")" source.c meta.block.c meta.function-call.c punctuation.section.arguments.end.bracket.round.c
+";" source.c meta.block.c punctuation.terminator.statement.c
 ⏎
-"    return 0;" source.c meta.preprocessor.include.c
+"    " source.c meta.block.c
+"return" source.c meta.block.c keyword.control.c
+" " source.c meta.block.c
+"0" source.c meta.block.c constant.numeric.decimal.c
+";" source.c meta.block.c punctuation.terminator.statement.c
 ⏎
-"}" source.c meta.preprocessor.include.c
+"}" source.c meta.block.c punctuation.section.block.end.bracket.curly.c
 ⏎

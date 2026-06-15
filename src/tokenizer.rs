@@ -230,7 +230,7 @@ impl<'a> Tokenizer<'a> {
         use std::collections::hash_map::Entry;
         match self.regex_cache.entry(pattern.to_string()) {
             Entry::Occupied(e) => Some(e.into_mut()),
-            Entry::Vacant(v) => match Regex::new(pattern) {
+            Entry::Vacant(v) => match compile_regex(pattern) {
                 Ok(re) => Some(v.insert(re)),
                 Err(_) => None,
             },
@@ -258,6 +258,83 @@ impl<'a> Tokenizer<'a> {
         Some(match_data(&caps, line_start))
     }
 
+    /// Closes the top begin/end block against end-match `e`: emits any text up to the
+    /// match, the end-capture spans, advances the cursor past the match, and pops the
+    /// frame (and its scope, if any).
+    fn close_top_block(&mut self, text: &'a str, e: &MatchData) {
+        if e.start > self.cursor {
+            self.pending
+                .push_back(TokenizerOp::Content(&text[self.cursor..e.start]));
+        }
+        let frame = self.stack.last().unwrap();
+        let spans = match frame.end_captures {
+            Some(c) => capture_spans(c, e, text, frame.syntax),
+            None => Vec::new(),
+        };
+        let has_scope = frame.scope.is_some();
+        self.emit_spans(text, e.start, e.end, spans);
+        self.cursor = e.end;
+        self.stack.pop();
+        if has_scope {
+            self.active_scopes.pop();
+            self.pending.push_back(TokenizerOp::Pop);
+        }
+    }
+
+    /// At the end of a line, closes any open begin/end blocks whose `end` pattern matches
+    /// (zero-width) at the end-of-line position before the newline is consumed. TextMate
+    /// tokenizes the trailing newline as part of the line, so an `end` anchored at
+    /// end-of-line (`$`, `(?=\n)`, …) must close its block here; otherwise blocks with
+    /// `end: $` would leak into the following line. Returns `true` if a block was closed.
+    fn close_ends_at_line_end(&mut self, line_start: usize, line_end: usize) -> bool {
+        let text = self.text;
+        let mut closed = false;
+        // A `\G` anchor may still be live exactly at the cursor; `\A` only on line one.
+        let allow_a = line_start == 0;
+        // Two views of the line: one ending at the newline (so `$`/`(?=$)` ends match at
+        // the line end) and one including the newline (so `(?=\n)`/`(?=[\n#])`-style ends
+        // can see it). Many grammars' single-line blocks rely on the latter form.
+        let no_nl = &text[line_start..line_end];
+        let with_nl = if line_end < text.len() {
+            &text[line_start..line_end + 1]
+        } else {
+            no_nl
+        };
+        while self.stack.len() > 1 {
+            let allow_g = self.cursor == self.anchor;
+            let Some(re) = self.stack.last().unwrap().end_regex.clone() else {
+                break;
+            };
+            let pos = self.cursor - line_start;
+            // Close when the end begins exactly at the line end: either a zero-width
+            // anchored/lookahead end (`$`, `(?=\n)`) or one that consumes just the
+            // trailing newline (`end: \n`). A non-zero-width end that consumes earlier
+            // text would already have been handled by the in-line scan.
+            let closes_here = |md: &MatchData| md.start == line_end && md.end <= line_end + 1;
+            let e = self
+                .run_regex(&re, no_nl, pos, line_start, allow_a, allow_g)
+                .filter(closes_here)
+                .or_else(|| {
+                    self.run_regex(&re, with_nl, pos, line_start, allow_a, allow_g)
+                        .filter(closes_here)
+                });
+            match e {
+                Some(mut e) => {
+                    // Never let the end swallow the newline itself: the trailing `\n` is
+                    // emitted separately as a `Newline` op and tracked for line math, so
+                    // clamp the match to a zero-width close at the line end.
+                    e.end = line_end;
+                    e.groups.truncate(1);
+                    e.groups[0] = Some((line_end, line_end));
+                    self.close_top_block(text, &e);
+                    closed = true;
+                }
+                None => break,
+            }
+        }
+        closed
+    }
+
     /// Produces the next batch of operations for a single parsing event, appending them
     /// to `self.pending`. May produce nothing only when the input is exhausted.
     fn advance(&mut self) {
@@ -281,9 +358,13 @@ impl<'a> Tokenizer<'a> {
             .map(|i| self.line_start + i)
             .unwrap_or(text.len());
 
-        // End of the current line: emit a newline and move to the next line. The `\G`
+        // End of the current line: first let any `end: $`-style blocks close at the
+        // end-of-line position, then emit a newline and move to the next line. The `\G`
         // anchor does not carry across line boundaries.
         if self.cursor == line_end {
+            if self.close_ends_at_line_end(self.line_start, line_end) {
+                return;
+            }
             self.pending.push_back(TokenizerOp::Newline);
             self.cursor = line_end + 1;
             self.line_start = self.cursor;
@@ -380,23 +461,7 @@ impl<'a> Tokenizer<'a> {
 
         if use_end {
             let e = end_md.unwrap();
-            if e.start > self.cursor {
-                self.pending
-                    .push_back(TokenizerOp::Content(&text[self.cursor..e.start]));
-            }
-            let frame = self.stack.last().unwrap();
-            let spans = match frame.end_captures {
-                Some(c) => capture_spans(c, &e, text, frame.syntax),
-                None => Vec::new(),
-            };
-            let has_scope = frame.scope.is_some();
-            self.emit_spans(text, e.start, e.end, spans);
-            self.cursor = e.end;
-            self.stack.pop();
-            if has_scope {
-                self.active_scopes.pop();
-                self.pending.push_back(TokenizerOp::Pop);
-            }
+            self.close_top_block(text, &e);
         } else if let Some((md, pat, syn, _priority)) = best {
             if md.start > self.cursor {
                 self.pending
@@ -406,7 +471,11 @@ impl<'a> Tokenizer<'a> {
                 Pattern::Match {
                     scope, captures, ..
                 } => {
-                    let mut spans = capture_spans(captures, &md, text, syn);
+                    // The whole-match `name` encloses the capture scopes, so it goes
+                    // first: `emit_spans`' stable sort keeps it outer when it shares a
+                    // range with a capture (e.g. a single-token match that is also its
+                    // own group 0).
+                    let mut spans = Vec::new();
                     if let Some(scope) = scope.as_ref().and_then(|t| resolve_scope(t, &md, text)) {
                         spans.push(Span {
                             start: md.start,
@@ -415,6 +484,7 @@ impl<'a> Tokenizer<'a> {
                             sub: None,
                         });
                     }
+                    spans.extend(capture_spans(captures, &md, text, syn));
                     self.emit_spans(text, md.start, md.end, spans);
                     self.cursor = md.end;
                 }
@@ -428,7 +498,7 @@ impl<'a> Tokenizer<'a> {
                 } => {
                     // The end regex may reference captures from the begin match.
                     let end_str = substitute_backrefs(end, &md, text);
-                    if Regex::new(&end_str).is_ok() {
+                    if compile_regex(&end_str).is_ok() {
                         let resolved = content_scope
                             .as_ref()
                             .and_then(|t| resolve_scope(t, &md, text));
@@ -818,7 +888,14 @@ fn capture_spans<'a>(
     syntax: &'a SyntaxDefinition,
 ) -> Vec<Span<'a>> {
     let mut spans = Vec::new();
-    for (&idx, cap) in captures {
+    // Iterate by ascending group index so the output order is deterministic (the source
+    // is a `HashMap`, whose iteration order is not). Lower-indexed groups also enclose
+    // higher-indexed ones in practice, so for spans sharing a range this yields the
+    // outer-before-inner order that `emit_spans`' stable sort then preserves.
+    let mut indices: Vec<usize> = captures.keys().copied().collect();
+    indices.sort_unstable();
+    for idx in indices {
+        let cap = &captures[&idx];
         if let Some(Some((start, end))) = md.groups.get(idx) {
             // Clip to the overall match: capture groups inside a lookahead can extend
             // beyond the (possibly zero-width) match, and that text has not been
@@ -876,6 +953,34 @@ fn interpolate(tpl: &str, md: &MatchData, text: &str) -> String {
         out.push(c);
     }
     out
+}
+
+/// Compiles a regex after translating Oniguruma-only constructs that the `regex`
+/// crate (via `fancy_regex`) does not accept. Centralised so every compile site —
+/// `begin`/`match`/`while` (through [`Self::compiled`]) and the `end` compile check —
+/// benefits from the same rewrites.
+fn compile_regex(pattern: &str) -> Result<Regex, fancy_regex::Error> {
+    match Regex::new(pattern) {
+        Ok(re) => Ok(re),
+        // Only pay the translation/recompile cost when the raw pattern fails: the vast
+        // majority compile as-is, and an Oniguruma-ism is the common failure cause.
+        Err(_) => Regex::new(&translate_oniguruma(pattern)),
+    }
+}
+
+/// Rewrites the handful of Oniguruma POSIX-property escapes that grammars in the wild
+/// use but the `regex` crate spells differently. Notably `\p{word}` / `\P{word}`
+/// (Oniguruma's "word character" property), which kills rules like Python's
+/// `function-declaration` and is also used by gleam, ocaml, mojo, asciidoc and vyper.
+fn translate_oniguruma(pattern: &str) -> std::borrow::Cow<'_, str> {
+    if !pattern.contains("p{word}") {
+        return std::borrow::Cow::Borrowed(pattern);
+    }
+    std::borrow::Cow::Owned(
+        pattern
+            .replace("\\p{word}", "\\w")
+            .replace("\\P{word}", "\\W"),
+    )
 }
 
 /// Rewrites `\A`/`\G` anchors that are not permitted at the current position into a
@@ -1143,6 +1248,73 @@ mod tests {
         assert!(
             ops.contains(&TokenizerOp::Push(todo)),
             "injected scope missing: {ops:?}"
+        );
+    }
+
+    /// A `begin`/`end` block whose `end` is anchored to the end of the line (`$`) must
+    /// close on that line rather than leaking into the next one.
+    const LINE_BLOCK_GRAMMAR: &str = r###"
+    {
+        "scopeName": "source.lineblock",
+        "patterns": [
+            { "begin": "@", "end": "$", "name": "meta.directive" },
+            { "begin": "#", "end": "\\n", "name": "comment.line" },
+            { "match": "\\w+", "name": "keyword.word" }
+        ]
+    }
+    "###;
+
+    #[test]
+    fn test_dollar_end_block_does_not_leak() {
+        let syntax = SyntaxDefinition::from_json_str(LINE_BLOCK_GRAMMAR).expect("load grammar");
+        let input = "@directive\nword\n";
+        let ops: Vec<_> = Tokenizer::new(input, &syntax).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+
+        // `word` on the second line must NOT be inside `meta.directive`: there must be a
+        // Pop closing the directive before `word` is pushed.
+        let directive = Scope::new("meta.directive").unwrap();
+        let word = Scope::new("keyword.word").unwrap();
+        let directive_idx = ops
+            .iter()
+            .position(|op| *op == TokenizerOp::Push(directive))
+            .expect("directive opened");
+        let word_idx = ops
+            .iter()
+            .position(|op| *op == TokenizerOp::Push(word))
+            .expect("word tokenized");
+        assert!(
+            ops[directive_idx..word_idx].contains(&TokenizerOp::Pop),
+            "meta.directive leaked into the next line: {ops:?}"
+        );
+    }
+
+    /// A line comment whose `end` consumes the newline (`end: \n`) must also close on its
+    /// own line, with the newline still emitted as a `Newline` op (not swallowed).
+    #[test]
+    fn test_newline_end_comment_does_not_leak() {
+        let syntax = SyntaxDefinition::from_json_str(LINE_BLOCK_GRAMMAR).expect("load grammar");
+        let input = "# note\nword\n";
+        let ops: Vec<_> = Tokenizer::new(input, &syntax).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+
+        let comment = Scope::new("comment.line").unwrap();
+        let word = Scope::new("keyword.word").unwrap();
+        let comment_idx = ops
+            .iter()
+            .position(|op| *op == TokenizerOp::Push(comment))
+            .expect("comment opened");
+        let word_idx = ops
+            .iter()
+            .position(|op| *op == TokenizerOp::Push(word))
+            .expect("word tokenized");
+        assert!(
+            ops[comment_idx..word_idx].contains(&TokenizerOp::Pop),
+            "comment.line leaked into the next line: {ops:?}"
         );
     }
 }

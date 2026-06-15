@@ -39,7 +39,7 @@ const App = () => (
 "onClick" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
 "=" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.assignment.js.jsx
 "{" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx punctuation.definition.block.js.jsx
-"handle" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx variable.other.readwrite.js.jsx meta.object.member.js.jsx
+"handle" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx meta.object.member.js.jsx variable.other.readwrite.js.jsx
 "}" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx punctuation.definition.block.js.jsx
 ">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
 "Go" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
