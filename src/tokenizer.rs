@@ -2,7 +2,7 @@ use crate::{
     Scope, SyntaxSet,
     syntax::{Capture, Pattern, ScopeTemplate, SyntaxDefinition},
 };
-use fancy_regex::Regex;
+use fancy_regex::{Regex, RegexBuilder, RegexInput};
 use std::collections::{HashMap, HashSet, VecDeque};
 
 /// Operations emitted by the [`Tokenizer`].
@@ -241,8 +241,13 @@ impl<'a> Tokenizer<'a> {
     /// match data. `line_start` is the absolute offset of `line`'s first byte.
     ///
     /// `allow_a`/`allow_g` control whether the `\A` (document start) and `\G` (anchor)
-    /// assertions are permitted to match at this position; when disallowed they are
-    /// rewritten to a never-matching assertion so the pattern behaves correctly.
+    /// assertions are permitted to match at this position.
+    ///
+    /// `\A` is neutered to a never-matching assertion when disallowed (there is no
+    /// runtime override that suppresses `\A` without also suppressing `^`, which must
+    /// keep matching at the start of every line slice). `\G` is handled by
+    /// [`RegexInput::continue_from_previous_match_end`]: the engine matches `\G` at the
+    /// search start by default, and we suppress it when the cursor is not on the anchor.
     fn run_regex(
         &mut self,
         pattern: &str,
@@ -252,9 +257,13 @@ impl<'a> Tokenizer<'a> {
         allow_a: bool,
         allow_g: bool,
     ) -> Option<MatchData> {
-        let pattern = transform_anchors(pattern, allow_a, allow_g);
+        let pattern = neuter_doc_start(pattern, allow_a);
         let re = self.compiled(&pattern)?;
-        let caps = re.captures_from_pos(line, pos).ok()??;
+        let mut input = RegexInput::new(line).from_pos(pos);
+        if !allow_g {
+            input = input.continue_from_previous_match_end(false);
+        }
+        let caps = re.captures_input(input).ok()??;
         Some(match_data(&caps, line_start))
     }
 
@@ -1094,12 +1103,25 @@ fn interpolate(tpl: &str, md: &MatchData, text: &str) -> String {
 /// `begin`/`match`/`while` (through [`Self::compiled`]) and the `end` compile check —
 /// benefits from the same rewrites.
 fn compile_regex(pattern: &str) -> Result<Regex, fancy_regex::Error> {
-    match Regex::new(pattern) {
+    match build_regex(pattern) {
         Ok(re) => Ok(re),
         // Only pay the translation/recompile cost when the raw pattern fails: the vast
         // majority compile as-is, and an Oniguruma-ism is the common failure cause.
-        Err(_) => Regex::new(&translate_oniguruma(pattern)),
+        Err(_) => build_regex(&translate_oniguruma(pattern)),
     }
+}
+
+/// Builds a single regex with the options the tokenizer relies on:
+///
+/// - `allow_input_assertion_overrides` so [`RegexInput::continue_from_previous_match_end`]
+///   can suppress `\G` at runtime (this is what replaces the old `\G` string shim).
+/// - `oniguruma_mode` to better match the Oniguruma engine the reference grammars target
+///   (e.g. `\<`/`\>` as literal angle brackets, and empty repeats silently dropped).
+fn build_regex(pattern: &str) -> Result<Regex, fancy_regex::Error> {
+    RegexBuilder::new(pattern)
+        .allow_input_assertion_overrides(true)
+        .oniguruma_mode(true)
+        .build()
 }
 
 /// Rewrites the handful of Oniguruma POSIX-property escapes that grammars in the wild
@@ -1117,18 +1139,15 @@ fn translate_oniguruma(pattern: &str) -> std::borrow::Cow<'_, str> {
     )
 }
 
-/// Rewrites `\A`/`\G` anchors that are not permitted at the current position into a
-/// never-matching assertion (`\b\B`), so a pattern relying on them fails to match there.
+/// Rewrites a `\A` (start-of-document) anchor that is not permitted at the current
+/// position into a never-matching assertion (`\b\B`), so a pattern relying on it fails
+/// to match there. `\A` is only allowed on the first line.
 ///
-/// - `\A` (start of document) is only allowed on the first line.
-/// - `\G` (anchor) is only allowed at the current anchor position.
-///
-/// `fancy_regex` always treats `\G` as matching at the search position, so without this
-/// rewrite a `\G`-anchored rule would match anywhere — breaking embedded grammars.
-fn transform_anchors(re: &str, allow_a: bool, allow_g: bool) -> std::borrow::Cow<'_, str> {
-    let needs_a = !allow_a && re.contains("\\A");
-    let needs_g = !allow_g && re.contains("\\G");
-    if !needs_a && !needs_g {
+/// Unlike `\G` (handled at runtime via [`RegexInput::continue_from_previous_match_end`]),
+/// `\A` has no runtime override that does not also suppress `^` — and `^` must keep
+/// matching at the start of every per-line slice — so it is neutered by rewriting.
+fn neuter_doc_start(re: &str, allow_a: bool) -> std::borrow::Cow<'_, str> {
+    if allow_a || !re.contains("\\A") {
         return std::borrow::Cow::Borrowed(re);
     }
     let mut out = String::with_capacity(re.len());
@@ -1136,11 +1155,7 @@ fn transform_anchors(re: &str, allow_a: bool, allow_g: bool) -> std::borrow::Cow
     while let Some(c) = chars.next() {
         if c == '\\' {
             match chars.peek() {
-                Some('A') if needs_a => {
-                    chars.next();
-                    out.push_str("\\b\\B");
-                }
-                Some('G') if needs_g => {
+                Some('A') => {
                     chars.next();
                     out.push_str("\\b\\B");
                 }
