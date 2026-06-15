@@ -1,0 +1,48 @@
+grammar: source.php
+
+=== input ===
+<?php
+
+namespace App;
+
+function greet(string $name): string {
+    return "hello $name";
+}
+
+=== tokens ===
+"<" source.php keyword.operator.comparison.php
+"?" source.php keyword.operator.ternary.php
+"php" source.php constant.other.php
+⏎
+⏎
+"namespace" source.php meta.namespace.php keyword.other.namespace.php
+" " source.php meta.namespace.php
+"App" source.php meta.namespace.php entity.name.type.namespace.php
+";" source.php punctuation.terminator.expression.php
+⏎
+⏎
+"function" source.php meta.function.php storage.type.function.php
+" " source.php meta.function.php
+"greet" source.php meta.function.php entity.name.function.php
+"(" source.php meta.function.php punctuation.definition.parameters.begin.bracket.round.php
+"string" source.php meta.function.php meta.function.parameter.typehinted.php keyword.other.type.php
+" " source.php meta.function.php meta.function.parameter.typehinted.php
+"$" source.php meta.function.php meta.function.parameter.typehinted.php variable.other.php punctuation.definition.variable.php
+"name" source.php meta.function.php meta.function.parameter.typehinted.php variable.other.php
+")" source.php meta.function.php punctuation.definition.parameters.end.bracket.round.php
+":" source.php meta.function.php keyword.operator.return-value.php
+" " source.php meta.function.php
+"string" source.php meta.function.php keyword.other.type.php
+" " source.php
+"{" source.php punctuation.definition.begin.bracket.curly.php
+⏎
+"    " source.php
+"return" source.php keyword.control.${1:/downcase}.php
+" " source.php
+"\"" source.php string.quoted.double.php punctuation.definition.string.begin.php
+"hello $name" source.php string.quoted.double.php
+"\"" source.php string.quoted.double.php punctuation.definition.string.end.php
+";" source.php punctuation.terminator.expression.php
+⏎
+"}" source.php punctuation.definition.end.bracket.curly.php
+⏎

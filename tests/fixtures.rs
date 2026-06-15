@@ -200,6 +200,26 @@ namespace App {
     }
 }
 "#),
+    ("php_basic", "php", r#"<?php
+
+namespace App;
+
+function greet(string $name): string {
+    return "hello $name";
+}
+"#),
+    ("vue_basic", "vue", r#"<template>
+  <div class="app">{{ msg }}</div>
+</template>
+
+<script setup lang="ts">
+const msg: string = "hello"
+</script>
+
+<style scoped>
+.app { color: red; }
+</style>
+"#),
 ];
 
 fn fixtures_dir() -> PathBuf {

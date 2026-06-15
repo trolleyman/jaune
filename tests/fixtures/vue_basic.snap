@@ -1,0 +1,67 @@
+grammar: source.vue
+
+=== input ===
+<template>
+  <div class="app">{{ msg }}</div>
+</template>
+
+<script setup lang="ts">
+const msg: string = "hello"
+</script>
+
+<style scoped>
+.app { color: red; }
+</style>
+
+=== tokens ===
+"<" source.vue punctuation.definition.tag.begin.html.vue
+"template" source.vue entity.name.tag.template.html.vue
+">" source.vue meta.tag-stuff punctuation.definition.tag.end.html.vue
+⏎
+"  <div class=\"app\">" source.vue
+"{{" source.vue text.html.derivative expression.embedded.vue punctuation.definition.interpolation.begin.html.vue
+" " source.vue text.html.derivative expression.embedded.vue source.ts.embedded.html.vue
+"msg" source.vue text.html.derivative expression.embedded.vue source.ts.embedded.html.vue variable.other.readwrite.ts
+" " source.vue text.html.derivative expression.embedded.vue source.ts.embedded.html.vue
+"}}" source.vue text.html.derivative expression.embedded.vue punctuation.definition.interpolation.end.html.vue
+"<" source.vue text.html.derivative keyword.operator.relational.ts
+"/" source.vue text.html.derivative keyword.operator.arithmetic.ts
+"div" source.vue text.html.derivative variable.other.readwrite.ts
+">" source.vue text.html.derivative keyword.operator.relational.ts
+⏎
+"</" source.vue punctuation.definition.tag.begin.html.vue
+"template" source.vue entity.name.tag.template.html.vue
+">" source.vue punctuation.definition.tag.end.html.vue
+⏎
+⏎
+"<" source.vue punctuation.definition.tag.begin.html.vue
+"script" source.vue entity.name.tag.script.html.vue
+" " source.vue meta.tag-stuff
+"setup" source.vue meta.tag-stuff meta.attribute.unrecognized.setup.html entity.other.attribute-name.html
+" " source.vue meta.tag-stuff
+"lang" source.vue meta.tag-stuff meta.attribute.lang.html entity.other.attribute-name.html
+"=" source.vue meta.tag-stuff meta.attribute.lang.html punctuation.separator.key-value.html
+"\"" source.vue meta.tag-stuff meta.attribute.lang.html string.quoted.double.html punctuation.definition.string.begin.html
+"ts" source.vue meta.tag-stuff meta.attribute.lang.html string.quoted.double.html
+"\"" source.vue meta.tag-stuff meta.attribute.lang.html string.quoted.double.html punctuation.definition.string.end.html
+">" source.vue meta.tag-stuff punctuation.definition.tag.end.html.vue
+⏎
+"const msg: string = \"hello\"" source.vue
+⏎
+"</" source.vue punctuation.definition.tag.begin.html.vue
+"script" source.vue entity.name.tag.script.html.vue
+">" source.vue punctuation.definition.tag.end.html.vue
+⏎
+⏎
+"<" source.vue punctuation.definition.tag.begin.html.vue
+"style" source.vue entity.name.tag.style.html.vue
+" " source.vue meta.tag-stuff
+"scoped" source.vue meta.tag-stuff meta.attribute.unrecognized.scoped.html entity.other.attribute-name.html
+">" source.vue meta.tag-stuff punctuation.definition.tag.end.html.vue
+⏎
+".app { color: red; }" source.vue
+⏎
+"</" source.vue punctuation.definition.tag.begin.html.vue
+"style" source.vue entity.name.tag.style.html.vue
+">" source.vue punctuation.definition.tag.end.html.vue
+⏎
