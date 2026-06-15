@@ -30,6 +30,20 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         aliases: &[],
         json: include_str!("../assets/grammars/ada.json"),
     });
+    #[cfg(feature = "grammar-ahk")]
+    g.push(BundledGrammar {
+        name: "ahk",
+        scope: "source.ahk",
+        aliases: &["ahk1"],
+        json: include_str!("../assets/grammars/ahk.json"),
+    });
+    #[cfg(feature = "grammar-ahk2")]
+    g.push(BundledGrammar {
+        name: "ahk2",
+        scope: "source.ahk2",
+        aliases: &[],
+        json: include_str!("../assets/grammars/ahk2.json"),
+    });
     #[cfg(feature = "grammar-angular-expression")]
     g.push(BundledGrammar {
         name: "angular-expression",
@@ -191,6 +205,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         aliases: &[],
         json: include_str!("../assets/grammars/bicep.json"),
     });
+    #[cfg(feature = "grammar-bird2")]
+    g.push(BundledGrammar {
+        name: "bird2",
+        scope: "source.bird2",
+        aliases: &["bird"],
+        json: include_str!("../assets/grammars/bird2.json"),
+    });
     #[cfg(feature = "grammar-blade")]
     g.push(BundledGrammar {
         name: "blade",
@@ -212,6 +233,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         aliases: &[],
         json: include_str!("../assets/grammars/c.json"),
     });
+    #[cfg(feature = "grammar-c3")]
+    g.push(BundledGrammar {
+        name: "c3",
+        scope: "source.c3",
+        aliases: &[],
+        json: include_str!("../assets/grammars/c3.json"),
+    });
     #[cfg(feature = "grammar-cadence")]
     g.push(BundledGrammar {
         name: "cadence",
@@ -225,6 +253,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         scope: "source.cairo0",
         aliases: &[],
         json: include_str!("../assets/grammars/cairo.json"),
+    });
+    #[cfg(feature = "grammar-chapel")]
+    g.push(BundledGrammar {
+        name: "chapel",
+        scope: "source.chapel",
+        aliases: &["chpl"],
+        json: include_str!("../assets/grammars/chapel.json"),
     });
     #[cfg(feature = "grammar-clarity")]
     g.push(BundledGrammar {
@@ -467,7 +502,7 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
     #[cfg(feature = "grammar-es-tag-sql")]
     g.push(BundledGrammar {
         name: "es-tag-sql",
-        scope: "inline.es6-sql",
+        scope: "inline.tagged-template-sql",
         aliases: &[],
         json: include_str!("../assets/grammars/es-tag-sql.json"),
     });
@@ -524,14 +559,14 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
     g.push(BundledGrammar {
         name: "gdresource",
         scope: "source.gdresource",
-        aliases: &[],
+        aliases: &["tscn", "tres"],
         json: include_str!("../assets/grammars/gdresource.json"),
     });
     #[cfg(feature = "grammar-gdscript")]
     g.push(BundledGrammar {
         name: "gdscript",
         scope: "source.gdscript",
-        aliases: &[],
+        aliases: &["gd"],
         json: include_str!("../assets/grammars/gdscript.json"),
     });
     #[cfg(feature = "grammar-gdshader")]
@@ -596,6 +631,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         scope: "source.glsl",
         aliases: &[],
         json: include_str!("../assets/grammars/glsl.json"),
+    });
+    #[cfg(feature = "grammar-gn")]
+    g.push(BundledGrammar {
+        name: "gn",
+        scope: "source.gn",
+        aliases: &[],
+        json: include_str!("../assets/grammars/gn.json"),
     });
     #[cfg(feature = "grammar-gnuplot")]
     g.push(BundledGrammar {
@@ -828,6 +870,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         aliases: &["jl"],
         json: include_str!("../assets/grammars/julia.json"),
     });
+    #[cfg(feature = "grammar-just")]
+    g.push(BundledGrammar {
+        name: "just",
+        scope: "source.just",
+        aliases: &[],
+        json: include_str!("../assets/grammars/just.json"),
+    });
     #[cfg(feature = "grammar-kdl")]
     g.push(BundledGrammar {
         name: "kdl",
@@ -989,6 +1038,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         aliases: &[],
         json: include_str!("../assets/grammars/mojo.json"),
     });
+    #[cfg(feature = "grammar-moonbit")]
+    g.push(BundledGrammar {
+        name: "moonbit",
+        scope: "source.moonbit",
+        aliases: &["mbt", "mbti"],
+        json: include_str!("../assets/grammars/moonbit.json"),
+    });
     #[cfg(feature = "grammar-move")]
     g.push(BundledGrammar {
         name: "move",
@@ -1009,6 +1065,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         scope: "source.nextflow",
         aliases: &["nf"],
         json: include_str!("../assets/grammars/nextflow.json"),
+    });
+    #[cfg(feature = "grammar-nextflow-groovy")]
+    g.push(BundledGrammar {
+        name: "nextflow-groovy",
+        scope: "source.nextflow-groovy",
+        aliases: &[],
+        json: include_str!("../assets/grammars/nextflow-groovy.json"),
     });
     #[cfg(feature = "grammar-nginx")]
     g.push(BundledGrammar {
@@ -1059,12 +1122,26 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         aliases: &[],
         json: include_str!("../assets/grammars/ocaml.json"),
     });
+    #[cfg(feature = "grammar-odin")]
+    g.push(BundledGrammar {
+        name: "odin",
+        scope: "source.odin",
+        aliases: &[],
+        json: include_str!("../assets/grammars/odin.json"),
+    });
     #[cfg(feature = "grammar-openscad")]
     g.push(BundledGrammar {
         name: "openscad",
         scope: "source.scad",
         aliases: &["scad"],
         json: include_str!("../assets/grammars/openscad.json"),
+    });
+    #[cfg(feature = "grammar-org")]
+    g.push(BundledGrammar {
+        name: "org",
+        scope: "source.org",
+        aliases: &[],
+        json: include_str!("../assets/grammars/org.json"),
     });
     #[cfg(feature = "grammar-pascal")]
     g.push(BundledGrammar {
@@ -1262,6 +1339,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         aliases: &[],
         json: include_str!("../assets/grammars/riscv.json"),
     });
+    #[cfg(feature = "grammar-ron")]
+    g.push(BundledGrammar {
+        name: "ron",
+        scope: "source.ron",
+        aliases: &[],
+        json: include_str!("../assets/grammars/ron.json"),
+    });
     #[cfg(feature = "grammar-rosmsg")]
     g.push(BundledGrammar {
         name: "rosmsg",
@@ -1415,6 +1499,13 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
         scope: "source.stylus",
         aliases: &["styl"],
         json: include_str!("../assets/grammars/stylus.json"),
+    });
+    #[cfg(feature = "grammar-surrealql")]
+    g.push(BundledGrammar {
+        name: "surrealql",
+        scope: "source.surrealql",
+        aliases: &["surql"],
+        json: include_str!("../assets/grammars/surrealql.json"),
     });
     #[cfg(feature = "grammar-svelte")]
     g.push(BundledGrammar {
@@ -1594,7 +1685,7 @@ pub(crate) fn grammars() -> Vec<BundledGrammar> {
     #[cfg(feature = "grammar-vue")]
     g.push(BundledGrammar {
         name: "vue",
-        scope: "source.vue",
+        scope: "text.html.vue",
         aliases: &[],
         json: include_str!("../assets/grammars/vue.json"),
     });

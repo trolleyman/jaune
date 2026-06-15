@@ -74,7 +74,7 @@
     "all-balanced-env": {
       "patterns": [
         {
-          "begin": "\\s*((\\\\)begin)(\\{)((?:\\+?array|equation|(?:IEEE|sub)?eqnarray|multline|align|aligned|alignat|alignedat|flalign|flaligned|flalignat|split|gather|gathered|\\+?cases|(?:display)?math|\\+?[A-Za-z]*matrix|[BVbpv]?NiceMatrix|[BVbpv]?NiceArray|(?:arg)?m(?:ini|axi))[!*]?)(})(\\s*\\n)?",
+          "begin": "\\s*((\\\\)begin)(\\{)((?:\\+?array|equation|(?:IEEE|sub)?eqnarray|multline|align|aligned|alignat|alignedat|flalign|flaligned|flalignat|split|gather|gathered|(?:[+dr]|dr)?cases|(?:display)?math|\\+?[A-Za-z]*matrix|[BVbpv]?NiceMatrix|[BVbpv]?NiceArray|(?:arg)?m(?:ini|axi))[!*]?)(})(\\s*\\n)?",
           "captures": {
             "1": {
               "name": "support.function.be.latex"
@@ -323,7 +323,7 @@
           },
           "patterns": [
             {
-              "include": "text.tex#braces"
+              "include": "#braces"
             },
             {
               "include": "$self"
@@ -359,7 +359,7 @@
           },
           "patterns": [
             {
-              "include": "text.tex#braces"
+              "include": "#braces"
             },
             {
               "include": "$self"
@@ -437,8 +437,49 @@
         }
       ]
     },
+    "braces": {
+      "begin": "(?<!\\\\)\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.group.begin.latex"
+        }
+      },
+      "end": "(?<!\\\\)}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.group.end.latex"
+        }
+      },
+      "name": "meta.group.braces.latex",
+      "patterns": [
+        {
+          "include": "#text-font-macro"
+        },
+        {
+          "include": "#citation-macro"
+        },
+        {
+          "include": "#references-macro"
+        },
+        {
+          "include": "#label-macro"
+        },
+        {
+          "include": "#macro-with-args-tokenizer"
+        },
+        {
+          "include": "#all-other-macro"
+        },
+        {
+          "include": "text.tex"
+        },
+        {
+          "include": "#braces"
+        }
+      ]
+    },
     "citation-macro": {
-      "begin": "((\\\\)(?:[Aa]uto|foot|full|no|ref|short|[Tt]ext|[Pp]aren|[Ss]mart)?[Cc]ite(?:al)?(?:[pst]|author|year(?:par)?|title)?[ANP]*\\*?)((?:(?:\\([^)]*\\)){0,2}(?:\\[[^]]*]){0,2}\\{[-.:_\\p{Alphabetic}\\p{N}]*})*)(<[^]<>]*>)?((?:\\[[^]]*])*)(\\{)",
+      "begin": "((\\\\)(?:[Aa]uto|foot|full|footfull|no|ref|short|[Tt]ext|[Pp]aren|[Ss]mart|[FPfp]vol|vol)?[Cc]ite(?:al)?(?:[pst]|author|year(?:par)?|title|url|date)?[ANP]*\\*?)((?:(?:\\([^)]*\\)){0,2}(?:\\[[^]]*]){0,2}\\{[-.:_\\p{Alphabetic}\\p{N}]*})*)(<[^]<>]*>)?((?:\\[[^]]*])*)(\\{)",
       "captures": {
         "1": {
           "name": "keyword.control.cite.latex"
@@ -2679,7 +2720,7 @@
               "name": "punctuation.definition.verb.latex"
             }
           },
-          "match": "((\\\\)(?:(?:py|pycon|pylab|pylabcon|sympy|sympycon)[cv]?|pyq|pycq|pyif))((?:\\[[^\\[]*?])?)(?:([^A-Za-{])(.*?)(\\4)|(\\{)(.*?)(}))",
+          "match": "((\\\\)(?:(?:py|pycon|pylab|pylabcon|sympy|sympycon)[cv]?|pyq|pycq|pyif))((?:\\[[^\\[]*?])?)(?:([^](),;A-\\[a-{}\\s])(.*?)(\\4)|(\\{)(.*?)(}))",
           "name": "meta.function.verb.latex"
         },
         {
@@ -3680,7 +3721,7 @@
           "include": "#column-specials"
         },
         {
-          "include": "text.tex#braces"
+          "include": "#braces"
         },
         {
           "include": "text.tex"
@@ -3771,6 +3812,9 @@
           "include": "#documentclass-usepackage-macro"
         },
         {
+          "include": "#unbalanced-env"
+        },
+        {
           "include": "#input-macro"
         },
         {
@@ -3813,7 +3857,7 @@
           "include": "#column-specials"
         },
         {
-          "include": "text.tex#braces"
+          "include": "#braces"
         },
         {
           "include": "text.tex"
@@ -4023,7 +4067,7 @@
       "name": "meta.function.section.$3.latex",
       "patterns": [
         {
-          "include": "text.tex#braces"
+          "include": "#braces"
         },
         {
           "include": "$self"
@@ -4137,7 +4181,7 @@
           "name": "meta.function.emph.latex",
           "patterns": [
             {
-              "include": "text.tex#braces"
+              "include": "#braces"
             },
             {
               "include": "$self"
@@ -4167,7 +4211,7 @@
           "name": "meta.function.textit.latex",
           "patterns": [
             {
-              "include": "text.tex#braces"
+              "include": "#braces"
             },
             {
               "include": "$self"
@@ -4197,7 +4241,7 @@
           "name": "meta.function.textbf.latex",
           "patterns": [
             {
-              "include": "text.tex#braces"
+              "include": "#braces"
             },
             {
               "include": "$self"
@@ -4227,12 +4271,29 @@
           "name": "meta.function.texttt.latex",
           "patterns": [
             {
-              "include": "text.tex#braces"
+              "include": "#braces"
             },
             {
               "include": "$self"
             }
           ]
+        }
+      ]
+    },
+    "unbalanced-env": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#macro-with-args-tokenizer"
+                }
+              ]
+            }
+          },
+          "match": "(\\s*\\\\(?:begin|end)\\{(\\p{Alphabetic}+\\*?)})",
+          "name": "meta.function.environment.general.latex"
         }
       ]
     },

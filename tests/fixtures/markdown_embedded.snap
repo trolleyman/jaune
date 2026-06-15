@@ -82,8 +82,8 @@ def f(): return 1
 " " text.html.markdown markup.list.unnumbered.markdown meta.paragraph.markdown
 "item" text.html.markdown markup.list.unnumbered.markdown meta.paragraph.markdown variable.other.readwrite.ts
 ⏎
-"> " text.html.markdown markup.list.unnumbered.markdown markup.quote.markdown
-"a" text.html.markdown markup.list.unnumbered.markdown markup.quote.markdown meta.paragraph.markdown variable.other.readwrite.ts
-" " text.html.markdown markup.list.unnumbered.markdown markup.quote.markdown meta.paragraph.markdown
-"quote" text.html.markdown markup.list.unnumbered.markdown markup.quote.markdown meta.paragraph.markdown variable.other.readwrite.ts
+"> " text.html.markdown markup.quote.markdown
+"a" text.html.markdown markup.quote.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown markup.quote.markdown meta.paragraph.markdown
+"quote" text.html.markdown markup.quote.markdown meta.paragraph.markdown variable.other.readwrite.ts
 ⏎
