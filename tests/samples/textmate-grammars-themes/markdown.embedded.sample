@@ -1,0 +1,64 @@
+<!-- grammar: text.html.markdown -->
+
+# Title
+<!--<0- markup.heading.markdown -->
+<!--<0- heading.1.markdown -->
+<!--<0 punctuation.definition.heading.markdown -->
+<!--<2- entity.name.section.markdown -->
+
+Some **bold** and `code` text.
+<!--<0------------------------ meta.paragraph.markdown -->
+<!-- ^------- markup.bold.markdown -->
+<!-- ^- punctuation.definition.bold.markdown -->
+<!--       ^- punctuation.definition.bold.markdown -->
+<!--              ^----- markup.inline.raw.string.markdown -->
+<!--              ^ punctuation.definition.raw.markdown -->
+<!--                   ^ punctuation.definition.raw.markdown -->
+
+```js
+//<0- markup.fenced_code.block.markdown
+//<0 punctuation.definition.markdown
+// ^- fenced_code.block.language.markdown
+const x = 42;
+//<0--------- markup.fenced_code.block.markdown
+//<0--------- meta.embedded.block.javascript
+//<0-------- meta.var.expr.js
+//<0- storage.type.js
+//    ^- meta.var-single-variable.expr.js
+//    ^ meta.definition.variable.js
+//    ^ variable.other.constant.js
+//      ^ keyword.operator.assignment.js
+//        ^- constant.numeric.decimal.js
+//          ^ punctuation.terminator.statement.js
+```
+<!--<0 markup.fenced_code.block.markdown -->
+<!--<0 punctuation.definition.markdown -->
+
+```python
+#<0------ markup.fenced_code.block.markdown
+#<0 punctuation.definition.markdown
+#  ^----- fenced_code.block.language.markdown
+def f(): return 1
+#<0-------------- markup.fenced_code.block.markdown
+#<0-------------- meta.embedded.block.python
+#<0----- meta.function.python
+#<0 storage.type.function.python
+#   ^ entity.name.function.python
+#    ^- meta.function.parameters.python
+#    ^ punctuation.definition.parameters.begin.python
+#     ^ punctuation.definition.parameters.end.python
+#      ^ punctuation.section.function.begin.python
+#        ^----- keyword.control.flow.python
+#               ^ constant.numeric.dec.python
+```
+<!--<0 markup.fenced_code.block.markdown -->
+<!--<0 punctuation.definition.markdown -->
+
+- a list item
+<!--<0------- markup.list.unnumbered.markdown -->
+<!--<0 punctuation.definition.list.begin.markdown -->
+<!--<2------- meta.paragraph.markdown -->
+> a quote
+<!--<0--- markup.quote.markdown -->
+<!--<0 punctuation.definition.quote.begin.markdown -->
+<!--<2--- meta.paragraph.markdown -->

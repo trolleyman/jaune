@@ -1,192 +1,248 @@
 <!-- grammar: text.html.basic -->
 
 <!DOCTYPE html>
-<!--<0 keyword.operator.relational.ts -->
-<!--<1 keyword.operator.logical.ts -->
-<!--<2--- constant.character.other -->
-<!--      ^--- variable.other.readwrite.ts -->
-<!--          ^ keyword.operator.relational.ts -->
+<!--<0--------- meta.tag.metadata.doctype.html -->
+<!--<0 punctuation.definition.tag.begin.html -->
+<!--<2--- entity.name.tag.html -->
+<!--      ^--- entity.other.attribute-name.html -->
+<!--          ^ punctuation.definition.tag.end.html -->
 <html lang="en">
-<!--<0 keyword.operator.relational.ts -->
-<!--<1 variable.other.readwrite.ts -->
-<!--  ^--- variable.other.readwrite.ts -->
-<!--      ^ keyword.operator.assignment.ts -->
-<!--       ^---- string.quoted.double.ts -->
-<!--       ^ punctuation.definition.string.begin.ts -->
-<!--        ^- variable.other.readwrite.ts -->
-<!--          ^- string.quoted.double.ts -->
-<!--          ^ punctuation.definition.string.begin.ts -->
-<!--           ^ keyword.operator.relational.ts -->
+<!--<0---------- meta.tag.structure.html.start.html -->
+<!--<0 punctuation.definition.tag.begin.html -->
+<!--<1 entity.name.tag.html -->
+<!--  ^-------- meta.attribute.lang.html -->
+<!--  ^--- entity.other.attribute-name.html -->
+<!--      ^ punctuation.separator.key-value.html -->
+<!--       ^--- string.quoted.double.html -->
+<!--       ^ punctuation.definition.string.begin.html -->
+<!--          ^ punctuation.definition.string.end.html -->
+<!--           ^ punctuation.definition.tag.end.html -->
 <head>
-<!--<0 string.quoted.double.ts -->
-<!--<0 string.quoted.double.ts -->
-<!--<0 keyword.operator.relational.ts -->
-<!--<1 variable.other.readwrite.ts -->
-<!-- ^ keyword.operator.relational.ts -->
+<!--<0 meta.tag.structure.head.start.html -->
+<!--<0 punctuation.definition.tag.begin.html -->
+<!--<1 entity.name.tag.html -->
+<!-- ^ punctuation.definition.tag.end.html -->
   <style>
-/*<0----- string.quoted.double.ts */
-/*<0----- string.quoted.double.ts */
-/*^ keyword.operator.relational.ts */
-/* ^---- variable.other.readwrite.ts */
-/*      ^ keyword.operator.relational.ts */
+/*<0 punctuation.whitespace.embedded.leading.html */
+/*^------ meta.embedded.block.html */
+/*^------ meta.tag.metadata.style.start.html */
+/*^ punctuation.definition.tag.begin.html */
+/* ^---- entity.name.tag.html */
+/*      ^ punctuation.definition.tag.end.html */
     body {
-/*<0------ string.quoted.double.ts */
-/*<0------ string.quoted.double.ts */
-/*  ^--- variable.other.readwrite.ts */
-/*       ^ invalid.illegal.newline.ts */
+/*<0------ meta.embedded.block.html */
+/*<0------ source.css */
+/*  ^--- meta.selector.css */
+/*  ^--- entity.name.tag.css */
+/*       ^ meta.property-list.css */
+/*       ^ punctuation.section.property-list.begin.bracket.curly.css */
       margin: 0;
-/*<0------------ string.quoted.double.ts */
-/*    ^----- variable.other.readwrite.ts */
-/*            ^ constant.numeric.decimal.ts */
-/*             ^ punctuation.terminator.statement.ts */
+/*<0------------ meta.embedded.block.html */
+/*<0------------ source.css */
+/*<0------------ meta.property-list.css */
+/*    ^----- meta.property-name.css */
+/*    ^----- support.type.property-name.css */
+/*          ^ punctuation.separator.key-value.css */
+/*            ^ meta.property-value.css */
+/*            ^ constant.numeric.css */
+/*             ^ punctuation.terminator.rule.css */
       font-family: sans-serif;
-/*<0-------------------------- string.quoted.double.ts */
-/*    ^--- variable.other.readwrite.ts */
-/*        ^ keyword.operator.arithmetic.ts */
-/*         ^----- variable.other.readwrite.ts */
-/*                 ^--- variable.other.readwrite.ts */
-/*                     ^ keyword.operator.arithmetic.ts */
-/*                      ^---- variable.other.readwrite.ts */
-/*                           ^ punctuation.terminator.statement.ts */
+/*<0-------------------------- meta.embedded.block.html */
+/*<0-------------------------- source.css */
+/*<0-------------------------- meta.property-list.css */
+/*    ^---------- meta.property-name.css */
+/*    ^---------- support.type.property-name.css */
+/*               ^ punctuation.separator.key-value.css */
+/*                 ^--------- meta.property-value.css */
+/*                 ^--------- support.constant.font-name.css */
+/*                           ^ punctuation.terminator.rule.css */
     }
-/*<0- string.quoted.double.ts */
-/*  ^ invalid.illegal.newline.ts */
+/*<0- meta.embedded.block.html */
+/*<0- source.css */
+/*<0- meta.property-list.css */
+/*  ^ punctuation.section.property-list.end.bracket.curly.css */
     .btn:hover {
-/*  ^ punctuation.accessor.ts */
-/*   ^-- variable.other.property.ts */
-/*       ^---- variable.other.readwrite.ts */
+/*<0------------ meta.embedded.block.html */
+/*<0------------ source.css */
+/*  ^--------- meta.selector.css */
+/*  ^--- entity.other.attribute-name.class.css */
+/*  ^ punctuation.definition.entity.css */
+/*      ^----- entity.other.attribute-name.pseudo-class.css */
+/*      ^ punctuation.definition.entity.css */
+/*             ^ meta.property-list.css */
+/*             ^ punctuation.section.property-list.begin.bracket.curly.css */
       color: #336699;
-/*    ^---- variable.other.readwrite.ts */
-/*            ^----- constant.numeric.decimal.ts */
-/*                  ^ punctuation.terminator.statement.ts */
+/*<0----------------- meta.embedded.block.html */
+/*<0----------------- source.css */
+/*<0----------------- meta.property-list.css */
+/*    ^---- meta.property-name.css */
+/*    ^---- support.type.property-name.css */
+/*         ^ punctuation.separator.key-value.css */
+/*           ^------ meta.property-value.css */
+/*           ^------ constant.other.color.rgb-value.hex.css */
+/*           ^ punctuation.definition.constant.css */
+/*                  ^ punctuation.terminator.rule.css */
     }
+/*<0- meta.embedded.block.html */
+/*<0- source.css */
+/*<0- meta.property-list.css */
+/*  ^ punctuation.section.property-list.end.bracket.curly.css */
   </style>
-<!--<2 keyword.operator.relational.ts -->
-<!--<3 keyword.operator.arithmetic.ts -->
-<!--^---- variable.other.readwrite.ts -->
-<!--     ^ keyword.operator.relational.ts -->
+<!--<0---- meta.embedded.block.html -->
+<!--<0 source.css -->
+<!--<2---- meta.tag.metadata.style.end.html -->
+<!--<2 punctuation.definition.tag.begin.html -->
+<!--<2 source.css-ignored-vscode -->
+<!--^---- entity.name.tag.html -->
+<!--     ^ punctuation.definition.tag.end.html -->
 </head>
-<!--<0 keyword.operator.relational.ts -->
-<!--<1 keyword.operator.arithmetic.ts -->
-<!--<2 variable.other.readwrite.ts -->
-<!--  ^ keyword.operator.relational.ts -->
+<!--<0- meta.tag.structure.head.end.html -->
+<!--<0 punctuation.definition.tag.begin.html -->
+<!--<2 entity.name.tag.html -->
+<!--  ^ punctuation.definition.tag.end.html -->
 <body>
-<!--<0 keyword.operator.relational.ts -->
-<!--<1 variable.other.readwrite.ts -->
-<!-- ^ keyword.operator.relational.ts -->
+<!--<0 meta.tag.structure.body.start.html -->
+<!--<0 punctuation.definition.tag.begin.html -->
+<!--<1 entity.name.tag.html -->
+<!-- ^ punctuation.definition.tag.end.html -->
   <button class="btn" id="go">Go</button>
-<!--<2 keyword.operator.relational.ts -->
-<!--<3--- variable.other.readwrite.ts -->
-<!--      ^---- variable.other.readwrite.ts -->
-<!--           ^ keyword.operator.assignment.ts -->
-<!--            ^------------------------ string.quoted.double.ts -->
-<!--            ^ punctuation.definition.string.begin.ts -->
-<!--             ^-- variable.other.readwrite.ts -->
-<!--                ^-------------------- string.quoted.double.ts -->
-<!--                ^ punctuation.definition.string.begin.ts -->
-<!--                  ^- variable.other.readwrite.ts -->
-<!--                    ^ keyword.operator.assignment.ts -->
-<!--                     ^--------------- string.quoted.double.ts -->
-<!--                     ^ punctuation.definition.string.begin.ts -->
-<!--                      ^- variable.other.readwrite.ts -->
-<!--                        ^------------ string.quoted.double.ts -->
-<!--                        ^ punctuation.definition.string.begin.ts -->
-<!--                         ^ keyword.operator.relational.ts -->
-<!--                          ^- variable.other.readwrite.ts -->
-<!--                            ^ keyword.operator.relational.ts -->
-<!--                             ^ keyword.operator.arithmetic.ts -->
-<!--                              ^----- variable.other.readwrite.ts -->
-<!--                                    ^ keyword.operator.relational.ts -->
+<!--<2------------------------ meta.tag.structure.button.start.html -->
+<!--<2 punctuation.definition.tag.begin.html -->
+<!--<3--- entity.name.tag.html -->
+<!--      ^---------- meta.attribute.class.html -->
+<!--      ^---- entity.other.attribute-name.html -->
+<!--           ^ punctuation.separator.key-value.html -->
+<!--            ^---- string.quoted.double.html -->
+<!--            ^ punctuation.definition.string.begin.html -->
+<!--                ^ punctuation.definition.string.end.html -->
+<!--                  ^------ meta.attribute.id.html -->
+<!--                  ^- entity.other.attribute-name.html -->
+<!--                    ^ punctuation.separator.key-value.html -->
+<!--                     ^--- string.quoted.double.html -->
+<!--                     ^ punctuation.definition.string.begin.html -->
+<!--                        ^ punctuation.definition.string.end.html -->
+<!--                         ^ punctuation.definition.tag.end.html -->
+<!--                            ^-------- meta.tag.structure.button.end.html -->
+<!--                            ^- punctuation.definition.tag.begin.html -->
+<!--                              ^----- entity.name.tag.html -->
+<!--                                    ^ punctuation.definition.tag.end.html -->
   <script>
-//<0------ string.quoted.double.ts
-//<0------ string.quoted.double.ts
-//<0------ string.quoted.double.ts
-//<0------ string.quoted.double.ts
-//^ keyword.operator.relational.ts
-// ^----- variable.other.readwrite.ts
-//       ^ keyword.operator.relational.ts
+//<0 punctuation.whitespace.embedded.leading.html
+//^------- meta.embedded.block.html
+//^------- meta.tag.metadata.script.start.html
+//^ punctuation.definition.tag.begin.html
+// ^----- entity.name.tag.html
+//       ^ punctuation.definition.tag.end.html
     const greet = (name) => {
-//<0------------------------- string.quoted.double.ts
-//<0------------------------- string.quoted.double.ts
-//<0------------------------- string.quoted.double.ts
-//<0------------------------- string.quoted.double.ts
-//  ^---- variable.other.readwrite.ts
-//        ^---- entity.name.function.ts
-//              ^ keyword.operator.assignment.ts
-//                ^ meta.brace.round.ts
-//                 ^--- variable.other.readwrite.ts
-//                     ^ meta.brace.round.ts
-//                       ^ keyword.operator.assignment.ts
-//                        ^ keyword.operator.relational.ts
-//                          ^ invalid.illegal.newline.ts
+//<0------------------------- meta.embedded.block.html
+//<0------------------------- source.js
+//  ^------------------------ meta.var.expr.js
+//  ^---- storage.type.js
+//        ^----- meta.var-single-variable.expr.js
+//        ^---- meta.definition.variable.js
+//        ^---- variable.other.constant.js
+//        ^---- entity.name.function.js
+//              ^ keyword.operator.assignment.js
+//               ^----------- meta.arrow.js
+//                ^----- meta.parameters.js
+//                ^ punctuation.definition.parameters.begin.js
+//                 ^--- variable.parameter.js
+//                     ^ punctuation.definition.parameters.end.js
+//                       ^- storage.type.function.arrow.js
+//                          ^ meta.block.js
+//                          ^ punctuation.definition.block.js
       return `hello ${name}`;
-//<0------------------------- string.quoted.double.ts
-//<0------------------------- string.quoted.double.ts
-//<0------------------------- string.quoted.double.ts
-//    ^----- variable.other.readwrite.ts
-//           ^--------------- string.template.ts
-//           ^ punctuation.definition.string.template.begin.ts
-//            ^---- variable.other.readwrite.ts
-//                  ^ variable.other.readwrite.ts
-//                    ^--- variable.other.readwrite.ts
-//                         ^- string.template.ts
-//                         ^ punctuation.definition.string.template.begin.ts
-//                          ^ punctuation.terminator.statement.ts
+//<0------------------------- meta.embedded.block.html
+//<0------------------------- source.js
+//<0------------------------- meta.var.expr.js
+//<0------------------------- meta.arrow.js
+//<0------------------------- meta.block.js
+//    ^----- keyword.control.flow.js
+//           ^-------------- string.template.js
+//           ^ punctuation.definition.string.template.begin.js
+//                  ^------ meta.template.expression.js
+//                  ^- punctuation.definition.template-expression.begin.js
+//                    ^--- meta.embedded.line.js
+//                    ^--- variable.other.readwrite.js
+//                        ^ punctuation.definition.template-expression.end.js
+//                         ^ punctuation.definition.string.template.end.js
+//                          ^ punctuation.terminator.statement.js
     };
-//<0-- string.quoted.double.ts
-//<0-- string.quoted.double.ts
-//<0-- string.quoted.double.ts
-//<0-- string.template.ts
-//<0-- string.template.ts
-//   ^ punctuation.terminator.statement.ts
+//<0-- meta.embedded.block.html
+//<0-- source.js
+//<0- meta.var.expr.js
+//<0- meta.arrow.js
+//<0- meta.block.js
+//  ^ punctuation.definition.block.js
+//   ^ punctuation.terminator.statement.js
     document.querySelector("#go").addEventListener("click", () => {
-//<0--------------------------------------------------------------- string.quoted.double.ts
-//<0--------------------------------------------------------------- string.quoted.double.ts
-//<0--------------------------------------------------------------- string.quoted.double.ts
-//<0--------------------------------------------------------------- string.template.ts
-//<0--------------------------------------------------------------- string.template.ts
-//  ^------- variable.other.object.ts
+//<0--------------------------------------------------------------- meta.embedded.block.html
+//<0--------------------------------------------------------------- source.js
+//  ^--------------------- meta.function-call.js
+//  ^------- variable.other.object.js
+//          ^ punctuation.accessor.js
+//           ^------------ entity.name.function.js
+//                        ^ meta.brace.round.js
+//                         ^---- string.quoted.double.js
+//                         ^ punctuation.definition.string.begin.js
+//                             ^ punctuation.definition.string.end.js
+//                              ^ meta.brace.round.js
+//                               ^---------------- meta.function-call.js
+//                               ^ punctuation.accessor.js
+//                                ^--------------- entity.name.function.js
+//                                                ^ meta.brace.round.js
+//                                                 ^------ string.quoted.double.js
+//                                                 ^ punctuation.definition.string.begin.js
+//                                                       ^ punctuation.definition.string.end.js
+//                                                        ^ punctuation.separator.comma.js
+//                                                         ^------- meta.arrow.js
+//                                                          ^- meta.parameters.js
+//                                                          ^ punctuation.definition.parameters.begin.js
+//                                                           ^ punctuation.definition.parameters.end.js
+//                                                             ^- storage.type.function.arrow.js
+//                                                                ^ meta.block.js
+//                                                                ^ punctuation.definition.block.js
       console.log(greet("world"));
-//<0------------------------------ string.quoted.double.ts
-//<0------------------------------ string.quoted.double.ts
-//<0------------------------------ string.quoted.double.ts
-//<0------------------------------ string.template.ts
-//<0------------------------------ string.template.ts
-//    ^------ variable.other.object.ts
+//<0------------------------------ meta.embedded.block.html
+//<0------------------------------ source.js
+//<0------------------------------ meta.arrow.js
+//<0------------------------------ meta.block.js
+//    ^---------- meta.function-call.js
+//    ^------ variable.other.object.js
+//           ^ punctuation.accessor.js
+//            ^-- entity.name.function.js
+//               ^ meta.brace.round.js
+//                ^---- meta.function-call.js
+//                ^---- entity.name.function.js
+//                     ^ meta.brace.round.js
+//                      ^------ string.quoted.double.js
+//                      ^ punctuation.definition.string.begin.js
+//                            ^ punctuation.definition.string.end.js
+//                             ^- meta.brace.round.js
+//                               ^ punctuation.terminator.statement.js
     });
-//<0--- string.quoted.double.ts
-//<0--- string.quoted.double.ts
-//<0--- string.quoted.double.ts
-//<0--- string.template.ts
-//<0--- string.template.ts
-//    ^ punctuation.terminator.statement.ts
+//<0--- meta.embedded.block.html
+//<0--- source.js
+//<0- meta.arrow.js
+//<0- meta.block.js
+//  ^ punctuation.definition.block.js
+//   ^ meta.brace.round.js
+//    ^ punctuation.terminator.statement.js
   </script>
-<!--<0----- string.quoted.double.ts -->
-<!--<0----- string.quoted.double.ts -->
-<!--<0----- string.quoted.double.ts -->
-<!--<0----- string.template.ts -->
-<!--<0----- string.template.ts -->
-<!--<2 keyword.operator.relational.ts -->
-<!--<3 keyword.operator.arithmetic.ts -->
-<!--^----- variable.other.readwrite.ts -->
-<!--      ^ keyword.operator.relational.ts -->
+<!--<0----- meta.embedded.block.html -->
+<!--<0 source.js -->
+<!--<2----- meta.tag.metadata.script.end.html -->
+<!--<2 punctuation.definition.tag.begin.html -->
+<!--<2 source.js-ignored-vscode -->
+<!--^----- entity.name.tag.html -->
+<!--      ^ punctuation.definition.tag.end.html -->
 </body>
-<!--<0- string.quoted.double.ts -->
-<!--<0- string.quoted.double.ts -->
-<!--<0- string.quoted.double.ts -->
-<!--<0- string.template.ts -->
-<!--<0- string.template.ts -->
-<!--<0 keyword.operator.relational.ts -->
-<!--<1 keyword.operator.arithmetic.ts -->
-<!--<2 variable.other.readwrite.ts -->
-<!--  ^ keyword.operator.relational.ts -->
+<!--<0- meta.tag.structure.body.end.html -->
+<!--<0 punctuation.definition.tag.begin.html -->
+<!--<2 entity.name.tag.html -->
+<!--  ^ punctuation.definition.tag.end.html -->
 </html>
-<!--<0- string.quoted.double.ts -->
-<!--<0- string.quoted.double.ts -->
-<!--<0- string.quoted.double.ts -->
-<!--<0- string.template.ts -->
-<!--<0- string.template.ts -->
-<!--<0 keyword.operator.relational.ts -->
-<!--<1 keyword.operator.arithmetic.ts -->
-<!--<2 variable.other.readwrite.ts -->
-<!--  ^ keyword.operator.relational.ts -->
+<!--<0- meta.tag.structure.html.end.html -->
+<!--<0 punctuation.definition.tag.begin.html -->
+<!--<2 entity.name.tag.html -->
+<!--  ^ punctuation.definition.tag.end.html -->

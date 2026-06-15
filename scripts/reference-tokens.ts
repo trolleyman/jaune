@@ -39,11 +39,32 @@ const onigLib = Promise.resolve({
 })
 
 // --- Grammar registry ----------------------------------------------------------------------------
-// Map every grammar's scopeName to its file, and remember which grammars are injection-only so we
-// can offer them to vscode-textmate as candidate injections (it then matches their selectors).
+// Map every grammar's scopeName to its file, and collect the injection grammars so we can offer them
+// to vscode-textmate, scoped the way VS Code itself scopes them (see `getInjections` below).
 const scopeToPath = new Map<string, string>()
 const nameToScope = new Map<string, string>()
-const injectionScopes: string[] = []
+type Injection = { scope: string; injectTo: string[]; positives: string[] }
+const injections: Injection[] = []
+
+/**
+ * Pull the positive (non-negated) scope atoms out of a TextMate `injectionSelector` — e.g.
+ * `"L:source.ts#meta.decorator.ts -comment, L:text.html"` → `["source.ts", "meta.decorator.ts",
+ * "text.html"]`. We only need the positives: they say which scope stacks the injection *targets*,
+ * whereas the negated `-foo` atoms only ever shrink that set.
+ */
+function selectorPositives(selector: string): string[] {
+  const atoms: string[] = []
+  // Drop the `L:`/`R:` "applies to left/right" prefixes and grouping parens, then split the
+  // comma-separated alternatives into whitespace-separated terms.
+  for (const term of selector.replace(/[LR]:/g, " ").replace(/[(),]/g, " ").split(/\s+/)) {
+    if (!term || term.startsWith("-")) continue
+    // `a#b` means both scopes must be present; treat each part as a targeted atom.
+    for (const part of term.split("#")) {
+      if (part && /^[\w.+-]+$/.test(part)) atoms.push(part)
+    }
+  }
+  return atoms
+}
 
 for (const file of readdirSync(grammarsDir)) {
   if (!file.endsWith(".json")) continue
@@ -57,7 +78,49 @@ for (const file of readdirSync(grammarsDir)) {
   if (!json.scopeName) continue
   scopeToPath.set(json.scopeName, path)
   nameToScope.set(file.replace(/\.json$/, ""), json.scopeName)
-  if (json.injectionSelector) injectionScopes.push(json.scopeName)
+  if (json.injectionSelector)
+    injections.push({
+      scope: json.scopeName,
+      injectTo: Array.isArray(json.injectTo) ? json.injectTo : [],
+      positives: selectorPositives(json.injectionSelector),
+    })
+}
+
+/** Whether scope names `a` and `b` are the same scope or one is an ancestor of the other. */
+const dotCompatible = (a: string, b: string) =>
+  a === b || a.startsWith(`${b}.`) || b.startsWith(`${a}.`)
+
+// Injection grammars the recursive vscode-textmate tokenizer cannot evaluate without blowing the JS
+// call stack, no matter how tightly they're scoped. `mdc` is a near-clone of the Markdown grammar
+// that re-includes `text.html.markdown`; injected back into Markdown (which its `L:text.html.markdown`
+// selector and injectTo both target) it recurses Markdown→mdc→Markdown→… and overflows on even a
+// single heading line. jaune's *iterative* tokenizer is immune and emits no mdc scopes for these
+// samples either, so dropping mdc here keeps the reference a faithful oracle rather than skipping the
+// whole sample.
+const recursionUnsafeInjections = new Set(["text.markdown.mdc.standalone"])
+
+/**
+ * Decide whether an injection should be offered to the grammar rooted at `scopeName`.
+ *
+ * VS Code registers an injection into a grammar via the extension's `injectTo` contribution — a list
+ * of *grammar scopes* the injection attaches to — and only then uses `injectionSelector` for the
+ * fine-grained scope-stack match while tokenizing. So we mirror that: scope by `injectTo`.
+ *
+ * The earlier "offer everything, let the selector sort it out" approach was wrong on two counts: it
+ * recursed without converging on `markdown.embedded` (stack overflow), and — once that was fixed —
+ * it still polluted every HTML-family document, because broad selectors like angular's `L:text.html`
+ * match `text.html.markdown`/`text.html.basic` and tokenized ordinary prose as Angular/TS
+ * expressions. `injectTo` is precisely the constraint VS Code uses to stop that.
+ *
+ * A few vendored grammars carry no `injectTo` (`mermaid`, `mdc`, `angular-expression`). For those we
+ * fall back to the `injectionSelector`, but *conservatively*: only when a selector scope is the
+ * target root itself or something more specific (so `mermaid`'s `text.html.markdown` still attaches
+ * to Markdown, while angular-expression's bare `text.html` no longer blankets every HTML derivative).
+ */
+function targetsScope(inj: Injection, scopeName: string): boolean {
+  if (recursionUnsafeInjections.has(inj.scope)) return false
+  if (inj.injectTo.length > 0) return inj.injectTo.some((t) => dotCompatible(t, scopeName))
+  return inj.positives.some((atom) => atom === scopeName || atom.startsWith(`${scopeName}.`))
 }
 
 const registry = new vsctm.Registry({
@@ -67,9 +130,8 @@ const registry = new vsctm.Registry({
     if (!path) return null
     return vsctm.parseRawGrammar(readFileSync(path, "utf8"), path)
   },
-  // Offer all injection grammars for every scope; vscode-textmate keeps only those whose
-  // injectionSelector actually matches the live scope stack, so over-offering is harmless.
-  getInjections: () => injectionScopes,
+  getInjections: (scopeName: string) =>
+    injections.filter((inj) => targetsScope(inj, scopeName)).map((inj) => inj.scope),
 })
 
 // --- Tokenize ------------------------------------------------------------------------------------
@@ -88,14 +150,17 @@ async function tokenizeSample(scopeName: string, source: string): Promise<Token[
   const out: Token[][] = []
   let ruleStack = vsctm.INITIAL
   for (const line of lines) {
-    // Tokenize with the trailing newline so end-of-line anchors behave, then clip to the line.
-    const result = grammar.tokenizeLine(line + "\n", ruleStack)
+    // Tokenize each line WITHOUT a trailing newline — the convention vscode-textmate/Shiki use, where
+    // end-of-string already satisfies `$`. Appending `\n` instead feeds the newline to greedy
+    // patterns: e.g. Markdown's fenced-code `while` clause `(^|\G)(?!\s*([`~]{3,})\s*$)` then fails to
+    // pop at the closing fence, so a ```js block swallows the rest of the document as one JS template.
+    const result = grammar.tokenizeLine(line, ruleStack)
     ruleStack = result.ruleStack
     const tokens: Token[] = []
     for (const t of result.tokens) {
       const start = Math.min(t.startIndex, line.length)
       const end = Math.min(t.endIndex, line.length)
-      if (start >= end) continue // pure-newline (or empty) token
+      if (start >= end) continue // empty token
       const startCol = cp(line.slice(0, start))
       const len = cp(line.slice(start, end))
       // scopes[0] is the grammar root, assumed by the renderer — drop it.
