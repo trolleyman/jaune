@@ -22,41 +22,38 @@ const App = () => (
 "(" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.brace.round.js.jsx
 ⏎
 "  " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
-"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx invalid.illegal.bad-angle-bracket.html
-"div" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
-" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
-"className" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
-"=" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.assignment.js.jsx
-"\"" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx string.quoted.double.js.jsx punctuation.definition.string.begin.js.jsx
-"app" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx string.quoted.double.js.jsx
-"\"" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx string.quoted.double.js.jsx punctuation.definition.string.end.js.jsx
-">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
+"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx punctuation.definition.tag.begin.js.jsx
+"div" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx entity.name.tag.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx
+"className" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx entity.other.attribute-name.js.jsx
+"=" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx keyword.operator.assignment.js.jsx
+"\"" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx string.quoted.double.js.jsx punctuation.definition.string.begin.js.jsx
+"app" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx string.quoted.double.js.jsx
+"\"" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx string.quoted.double.js.jsx punctuation.definition.string.end.js.jsx
+">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx punctuation.definition.tag.end.js.jsx
 ⏎
-"    " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
-"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx invalid.illegal.bad-angle-bracket.html
-"Button" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
-" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
-"onClick" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
-"=" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.assignment.js.jsx
-"{" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx punctuation.definition.block.js.jsx
-"handle" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx meta.object.member.js.jsx variable.other.readwrite.js.jsx
-"}" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx punctuation.definition.block.js.jsx
-">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
-"Go" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
-" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameter.object-binding-pattern.js.jsx
-"{" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameter.object-binding-pattern.js.jsx punctuation.definition.binding-pattern.object.js.jsx
-"count" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameter.object-binding-pattern.js.jsx variable.parameter.js.jsx
-"}" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameter.object-binding-pattern.js.jsx punctuation.definition.binding-pattern.object.js.jsx
-"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx invalid.illegal.bad-angle-bracket.html
-"/" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.arithmetic.js.jsx
-"Button" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
-">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
+"    " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx
+"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx punctuation.definition.tag.begin.js.jsx
+"Button" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx entity.name.tag.js.jsx support.class.component.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx
+"onClick" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx entity.other.attribute-name.js.jsx
+"=" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx keyword.operator.assignment.js.jsx
+"{" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx punctuation.section.embedded.begin.js.jsx
+"handle" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx variable.other.readwrite.js.jsx
+"}" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx meta.tag.attributes.js.jsx punctuation.section.embedded.end.js.jsx
+">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx punctuation.definition.tag.end.js.jsx
+"Go " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx
+"{" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx punctuation.section.embedded.begin.js.jsx
+"count" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx variable.other.readwrite.js.jsx
+"}" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx punctuation.section.embedded.end.js.jsx
+"</" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx punctuation.definition.tag.begin.js.jsx
+"Button" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx entity.name.tag.js.jsx support.class.component.js.jsx
+">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx meta.tag.js.jsx punctuation.definition.tag.end.js.jsx
 ⏎
-"  " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
-"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx invalid.illegal.bad-angle-bracket.html
-"/" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.arithmetic.js.jsx
-"div" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
-">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
+"  " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx
+"</" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx punctuation.definition.tag.begin.js.jsx
+"div" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx entity.name.tag.js.jsx
+">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.tag.js.jsx punctuation.definition.tag.end.js.jsx
 ⏎
 ")" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.brace.round.js.jsx
 ";" source.js.jsx punctuation.terminator.statement.js.jsx

@@ -52,22 +52,21 @@ const C: React.FC<Props> = ({ count }) => {
 "  " source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx
 "return" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx keyword.control.flow.tsx
 " " source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx
-"<" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx invalid.illegal.bad-angle-bracket.html
-"span" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx variable.other.readwrite.tsx
-" " source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx
-"title" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx variable.other.readwrite.tsx
-"=" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx keyword.operator.assignment.tsx
-"\"" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx string.quoted.double.tsx punctuation.definition.string.begin.tsx
-"c" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx string.quoted.double.tsx
-"\"" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx string.quoted.double.tsx punctuation.definition.string.end.tsx
-">" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx keyword.operator.relational.tsx
-"{" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.objectliteral.tsx punctuation.definition.block.tsx
-"count" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.objectliteral.tsx meta.object.member.tsx variable.other.readwrite.tsx
-"}" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.objectliteral.tsx punctuation.definition.block.tsx
-"<" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx invalid.illegal.bad-angle-bracket.html
-"/" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx keyword.operator.arithmetic.tsx
-"span" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx variable.other.readwrite.tsx
-">" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx keyword.operator.relational.tsx
+"<" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx punctuation.definition.tag.begin.tsx
+"span" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx entity.name.tag.tsx
+" " source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx meta.tag.attributes.tsx
+"title" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx meta.tag.attributes.tsx entity.other.attribute-name.tsx
+"=" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx meta.tag.attributes.tsx keyword.operator.assignment.tsx
+"\"" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx meta.tag.attributes.tsx string.quoted.double.tsx punctuation.definition.string.begin.tsx
+"c" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx meta.tag.attributes.tsx string.quoted.double.tsx
+"\"" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx meta.tag.attributes.tsx string.quoted.double.tsx punctuation.definition.string.end.tsx
+">" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx punctuation.definition.tag.end.tsx
+"{" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx punctuation.section.embedded.begin.tsx
+"count" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx variable.other.readwrite.tsx
+"}" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx punctuation.section.embedded.end.tsx
+"</" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx punctuation.definition.tag.begin.tsx
+"span" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx entity.name.tag.tsx
+">" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx meta.tag.tsx punctuation.definition.tag.end.tsx
 ";" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx punctuation.terminator.statement.tsx
 ⏎
 "}" source.tsx meta.var.expr.tsx meta.arrow.tsx meta.block.tsx punctuation.definition.block.tsx

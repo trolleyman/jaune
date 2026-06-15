@@ -77,12 +77,28 @@ impl SyntaxSet {
 
     /// Returns the injected patterns whose selector matches `scopes` (the current scope
     /// stack), each paired with its priority and owning grammar.
+    ///
+    /// `active_grammars` is the set of grammars currently participating in the
+    /// tokenization (the base grammar plus any embedded ones on the stack). A grammar's
+    /// own `injections` map is only consulted when that grammar is active — mirroring
+    /// vscode-textmate, where the `injections` map is part of a grammar's own rules and
+    /// the cross-grammar mechanism is `injectionSelector`. Without this gate, an
+    /// auxiliary grammar with a broad selector (e.g. es-tag-html's `L:source` →
+    /// `invalid.illegal.bad-angle-bracket`) would pollute every `source.*` language.
     pub(crate) fn matching_injections(
         &self,
         scopes: &[String],
+        active_grammars: &[Scope],
     ) -> Vec<(i8, &[Pattern], &SyntaxDefinition)> {
         let mut out = Vec::new();
         for inj in &self.injections {
+            // `injectionSelector` (whole-grammar) injections apply across grammars; an
+            // `injections`-map entry applies only when its owner is in play.
+            if matches!(inj.source, InjectionSource::Internal(_))
+                && !active_grammars.contains(&inj.owner)
+            {
+                continue;
+            }
             if let Some(priority) = inj.selector.matches(scopes)
                 && let Some(owner) = self.definitions.get(&inj.owner)
             {

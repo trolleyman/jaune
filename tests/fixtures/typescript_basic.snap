@@ -57,9 +57,9 @@ enum Color { Red, Green }
 "function" source.ts meta.function.ts storage.type.function.ts
 " " source.ts meta.function.ts
 "get" source.ts meta.function.ts meta.definition.function.ts entity.name.function.ts
-"<" source.ts meta.function.ts invalid.illegal.bad-angle-bracket.html
-"T" source.ts meta.function.ts meta.definition.function.ts entity.name.function.ts
-">" source.ts meta.function.ts
+"<" source.ts meta.function.ts meta.type.parameters.ts punctuation.definition.typeparameters.begin.ts
+"T" source.ts meta.function.ts meta.type.parameters.ts entity.name.type.ts
+">" source.ts meta.function.ts meta.type.parameters.ts punctuation.definition.typeparameters.end.ts
 "(" source.ts meta.function.ts meta.parameters.ts punctuation.definition.parameters.begin.ts
 "x" source.ts meta.function.ts meta.parameters.ts variable.parameter.ts
 ":" source.ts meta.function.ts meta.parameters.ts meta.type.annotation.ts keyword.operator.type.annotation.ts

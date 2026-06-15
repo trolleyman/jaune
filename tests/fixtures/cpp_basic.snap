@@ -12,14 +12,14 @@ T add(T a, T b) {
 === tokens ===
 "#include" source.cpp variable.other.macro.argument.cpp
 " " source.cpp
-"<" source.cpp invalid.illegal.bad-angle-bracket.html
+"<" source.cpp keyword.operator.comparison.cpp
 "vector" source.cpp
 ">" source.cpp keyword.operator.comparison.cpp
 ⏎
 ⏎
 "template" source.cpp meta.template.explicit-instantiation.cpp storage.type.template.cpp
 " " source.cpp meta.template.explicit-instantiation.cpp
-"<" source.cpp invalid.illegal.bad-angle-bracket.html
+"<" source.cpp keyword.operator.comparison.cpp
 "typename T" source.cpp
 ">" source.cpp keyword.operator.comparison.cpp
 ⏎
@@ -40,7 +40,7 @@ T add(T a, T b) {
 "std" source.cpp meta.block.cpp entity.name.label.cpp
 ":" source.cpp meta.block.cpp punctuation.separator.label.cpp
 ":vector" source.cpp meta.block.cpp
-"<" source.cpp meta.block.cpp invalid.illegal.bad-angle-bracket.html
+"<" source.cpp meta.block.cpp keyword.operator.comparison.cpp
 "T" source.cpp meta.block.cpp
 ">" source.cpp meta.block.cpp keyword.operator.comparison.cpp
 "{" source.cpp meta.block.cpp meta.block.cpp punctuation.section.block.begin.bracket.curly.cpp

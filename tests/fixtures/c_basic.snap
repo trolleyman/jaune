@@ -13,8 +13,9 @@ int main(void) {
 "#" source.c meta.preprocessor.include.c keyword.control.directive.include.c punctuation.definition.directive.c
 "include" source.c meta.preprocessor.include.c keyword.control.directive.include.c
 " " source.c meta.preprocessor.include.c
-"<" source.c meta.preprocessor.include.c invalid.illegal.bad-angle-bracket.html
-"stdio.h>" source.c meta.preprocessor.include.c
+"<" source.c meta.preprocessor.include.c string.quoted.other.lt-gt.include.c punctuation.definition.string.begin.c
+"stdio.h" source.c meta.preprocessor.include.c string.quoted.other.lt-gt.include.c
+">" source.c meta.preprocessor.include.c string.quoted.other.lt-gt.include.c punctuation.definition.string.end.c
 ⏎
 ⏎
 "int" source.c storage.type.built-in.primitive.c

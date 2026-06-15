@@ -414,7 +414,11 @@ impl<'a> Tokenizer<'a> {
             && set.has_injections()
         {
             let scopes = self.active_scopes.clone();
-            for (priority, patterns, syn) in set.matching_injections(&scopes) {
+            // Grammars currently in play: the base plus any embedded grammar on the
+            // stack. A grammar's own `injections` map only applies while it is active.
+            let mut active_grammars: Vec<Scope> = vec![base.scope];
+            active_grammars.extend(self.stack.iter().map(|f| f.syntax.scope));
+            for (priority, patterns, syn) in set.matching_injections(&scopes, &active_grammars) {
                 let mut concrete: Vec<(&'a Pattern, &'a SyntaxDefinition)> = Vec::new();
                 let mut visited: HashSet<(Scope, &'a str)> = HashSet::new();
                 flatten_patterns(Some(set), base, syn, patterns, &mut concrete, &mut visited);
@@ -1248,6 +1252,47 @@ mod tests {
         assert!(
             ops.contains(&TokenizerOp::Push(todo)),
             "injected scope missing: {ops:?}"
+        );
+    }
+
+    // An auxiliary grammar that declares a broad cross-grammar injection via its
+    // `injections` map (not `injectionSelector`). This must NOT pollute other grammars
+    // when it is merely registered but not actually in play.
+    const AUX_INJECTOR: &str = r###"
+    {
+        "scopeName": "inline.aux",
+        "injections": {
+            "L:source": {
+                "patterns": [{ "match": "<", "name": "invalid.illegal.aux" }]
+            }
+        },
+        "patterns": []
+    }
+    "###;
+
+    #[test]
+    fn test_injections_map_gated_to_owner() {
+        use crate::SyntaxSet;
+
+        let mut set = SyntaxSet::new();
+        set.add(SyntaxDefinition::from_json_str(PLAIN_HOST).unwrap());
+        set.add(SyntaxDefinition::from_json_str(AUX_INJECTOR).unwrap());
+
+        let host = set
+            .find_by_scope(Scope::new("source.plain").unwrap())
+            .unwrap();
+        let input = "a < b";
+        let ops: Vec<_> = Tokenizer::new_in_set(input, host, &set).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+
+        // `inline.aux` is not active while tokenizing `source.plain`, so its `injections`
+        // map (selector `L:source`, which would otherwise match) must not apply.
+        let aux = Scope::new("invalid.illegal.aux").unwrap();
+        assert!(
+            !ops.contains(&TokenizerOp::Push(aux)),
+            "aux injections-map leaked into source.plain: {ops:?}"
         );
     }
 
