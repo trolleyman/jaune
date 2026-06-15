@@ -1,0 +1,30 @@
+grammar: source.swift
+
+=== input ===
+import Foundation
+
+struct Greeter {
+    let name: String
+    func greet() -> String {
+        return "hello \(name)"
+    }
+}
+
+=== tokens ===
+"import" source.swift meta.import.swift keyword.control.import.swift
+" " source.swift meta.import.swift
+"Foundation" source.swift meta.import.swift entity.name.type.swift
+⏎
+⏎
+"struct Greeter {" source.swift meta.import.swift invalid.illegal.character-not-allowed-here.swift
+⏎
+"    let name: String" source.swift meta.import.swift invalid.illegal.character-not-allowed-here.swift
+⏎
+"    func greet() -> String {" source.swift meta.import.swift invalid.illegal.character-not-allowed-here.swift
+⏎
+"        return \"hello \\(name)\"" source.swift meta.import.swift invalid.illegal.character-not-allowed-here.swift
+⏎
+"    }" source.swift meta.import.swift invalid.illegal.character-not-allowed-here.swift
+⏎
+"}" source.swift meta.import.swift invalid.illegal.character-not-allowed-here.swift
+⏎

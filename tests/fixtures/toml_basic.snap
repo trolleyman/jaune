@@ -1,0 +1,40 @@
+grammar: source.toml
+
+=== input ===
+[package]
+name = "jaune"
+version = "0.1.0"
+
+[deps]
+serde = { version = "1" }
+
+=== tokens ===
+"[" source.toml meta.group.toml punctuation.definition.section.begin.toml
+"package" source.toml meta.group.toml entity.name.section.toml
+"]" source.toml meta.group.toml punctuation.definition.section.begin.toml
+⏎
+"name = " source.toml
+"\"" source.toml string.quoted.double.toml punctuation.definition.string.begin.toml
+"jaune" source.toml string.quoted.double.toml
+"\"" source.toml string.quoted.double.toml punctuation.definition.string.end.toml
+⏎
+"v" source.toml
+"ersion = " source.toml
+"\"" source.toml string.quoted.double.toml punctuation.definition.string.begin.toml
+"0.1.0" source.toml string.quoted.double.toml
+"\"" source.toml string.quoted.double.toml punctuation.definition.string.end.toml
+⏎
+⏎
+"[" source.toml
+"deps]" source.toml invalid.illegal.not-allowed-here.toml
+⏎
+"serde = " source.toml
+"{" source.toml meta.inline-table.toml punctuation.definition.inline-table.begin.toml
+" " source.toml meta.inline-table.toml
+"version = " source.toml meta.inline-table.toml
+"\"" source.toml meta.inline-table.toml string.quoted.double.toml punctuation.definition.string.begin.toml
+"1" source.toml meta.inline-table.toml string.quoted.double.toml
+"\"" source.toml meta.inline-table.toml string.quoted.double.toml punctuation.definition.string.end.toml
+" " source.toml meta.inline-table.toml
+"}" source.toml meta.inline-table.toml punctuation.definition.inline-table.end.toml
+⏎

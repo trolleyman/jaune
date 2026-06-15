@@ -1,0 +1,91 @@
+grammar: source.ts
+
+=== input ===
+interface User { id: number; name: string; }
+const u: User = { id: 1, name: "a" };
+function get<T>(x: T): T { return x; }
+enum Color { Red, Green }
+
+=== tokens ===
+"interface" source.ts meta.interface.ts storage.type.interface.ts
+" " source.ts meta.interface.ts
+"User" source.ts meta.interface.ts entity.name.type.interface.ts
+" " source.ts meta.interface.ts
+"{" source.ts meta.interface.ts punctuation.definition.block.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts
+"id" source.ts meta.interface.ts meta.field.declaration.ts meta.definition.property.ts variable.object.property.ts
+":" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts keyword.operator.type.annotation.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts
+"number" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts support.type.primitive.ts
+";" source.ts meta.interface.ts punctuation.terminator.statement.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts
+"name" source.ts meta.interface.ts meta.field.declaration.ts meta.definition.property.ts variable.object.property.ts
+":" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts keyword.operator.type.annotation.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts
+"string" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts support.type.primitive.ts
+";" source.ts meta.interface.ts punctuation.terminator.statement.ts
+" " source.ts meta.interface.ts
+"}" source.ts meta.interface.ts punctuation.definition.block.ts
+⏎
+"const" source.ts meta.interface.ts entity.name.type.interface.ts
+" " source.ts meta.interface.ts
+"u" source.ts meta.interface.ts entity.name.type.interface.ts
+": " source.ts meta.interface.ts
+"User" source.ts meta.interface.ts entity.name.type.interface.ts
+" = " source.ts meta.interface.ts
+"{" source.ts meta.interface.ts punctuation.definition.block.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts
+"id" source.ts meta.interface.ts meta.field.declaration.ts meta.definition.property.ts variable.object.property.ts
+":" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts keyword.operator.type.annotation.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts
+"1" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts constant.numeric.decimal.ts
+"," source.ts meta.interface.ts punctuation.separator.comma.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts
+"name" source.ts meta.interface.ts meta.field.declaration.ts meta.definition.property.ts variable.object.property.ts
+":" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts keyword.operator.type.annotation.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts
+"\"" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts string.quoted.double.ts punctuation.definition.string.begin.ts
+"a" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts string.quoted.double.ts
+"\"" source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts string.quoted.double.ts punctuation.definition.string.end.ts
+" " source.ts meta.interface.ts meta.field.declaration.ts meta.type.annotation.ts
+"}" source.ts meta.interface.ts punctuation.definition.block.ts
+";" source.ts punctuation.terminator.statement.ts
+⏎
+"function" source.ts meta.function.ts storage.type.function.ts
+" " source.ts meta.function.ts
+"get" source.ts meta.function.ts meta.definition.function.ts entity.name.function.ts
+"<" source.ts meta.function.ts invalid.illegal.bad-angle-bracket.html
+"T" source.ts meta.function.ts meta.definition.function.ts entity.name.function.ts
+">" source.ts meta.function.ts
+"(" source.ts meta.function.ts meta.parameters.ts punctuation.definition.parameters.begin.ts
+"x" source.ts meta.function.ts meta.parameters.ts variable.parameter.ts
+":" source.ts meta.function.ts meta.parameters.ts meta.type.annotation.ts keyword.operator.type.annotation.ts
+" " source.ts meta.function.ts meta.parameters.ts meta.type.annotation.ts
+"T" source.ts meta.function.ts meta.parameters.ts meta.type.annotation.ts entity.name.type.ts
+")" source.ts meta.function.ts meta.parameters.ts punctuation.definition.parameters.end.ts
+":" source.ts meta.function.ts meta.return.type.ts keyword.operator.type.annotation.ts
+" " source.ts meta.function.ts meta.return.type.ts
+"T" source.ts meta.function.ts meta.return.type.ts entity.name.type.ts
+" " source.ts meta.function.ts meta.return.type.ts
+"{" source.ts meta.function.ts meta.block.ts punctuation.definition.block.ts
+" " source.ts meta.function.ts meta.block.ts
+"return" source.ts meta.function.ts meta.block.ts keyword.control.flow.ts
+" " source.ts meta.function.ts meta.block.ts
+"x" source.ts meta.function.ts meta.block.ts variable.other.readwrite.ts
+";" source.ts meta.function.ts meta.block.ts punctuation.terminator.statement.ts
+" " source.ts meta.function.ts meta.block.ts
+"}" source.ts meta.function.ts meta.block.ts punctuation.definition.block.ts
+⏎
+"enum" source.ts meta.enum.declaration.ts storage.type.enum.ts
+" " source.ts meta.enum.declaration.ts
+"Color" source.ts meta.enum.declaration.ts entity.name.type.enum.ts
+" " source.ts meta.enum.declaration.ts
+"{" source.ts meta.enum.declaration.ts punctuation.definition.block.ts
+" " source.ts meta.enum.declaration.ts
+"Red" source.ts meta.enum.declaration.ts variable.other.enummember.ts
+"," source.ts meta.enum.declaration.ts punctuation.separator.comma.ts
+" " source.ts meta.enum.declaration.ts
+"Green" source.ts meta.enum.declaration.ts variable.other.enummember.ts
+" " source.ts meta.enum.declaration.ts
+"}" source.ts meta.enum.declaration.ts punctuation.definition.block.ts
+⏎

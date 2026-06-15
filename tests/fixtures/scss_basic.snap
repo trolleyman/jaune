@@ -1,0 +1,46 @@
+grammar: source.css.scss
+
+=== input ===
+$accent: #336699;
+.card {
+  color: $accent;
+  &:hover { opacity: 0.8; }
+}
+
+=== tokens ===
+"$accent" source.css.scss variable.scss
+":" source.css.scss punctuation.separator.key-value.scss
+" " source.css.scss
+"#" source.css.scss constant.other.color.rgb-value.hex.css punctuation.definition.constant.css
+"336699" source.css.scss constant.other.color.rgb-value.hex.css
+";" source.css.scss punctuation.terminator.rule.scss
+⏎
+"." source.css.scss entity.other.attribute-name.class.css punctuation.definition.entity.css
+"card" source.css.scss entity.other.attribute-name.class.css
+" " source.css.scss
+"{" source.css.scss meta.property-list.scss punctuation.section.property-list.begin.bracket.curly.scss
+⏎
+"  " source.css.scss meta.property-list.scss
+"color" source.css.scss meta.property-list.scss meta.property-name.scss support.type.property-name.css
+":" source.css.scss meta.property-list.scss punctuation.separator.key-value.scss
+" " source.css.scss meta.property-list.scss
+"$accent" source.css.scss meta.property-list.scss variable.scss
+";" source.css.scss meta.property-list.scss punctuation.terminator.rule.scss
+⏎
+"  " source.css.scss meta.property-list.scss
+"&" source.css.scss meta.property-list.scss entity.name.tag.reference.scss
+":" source.css.scss meta.property-list.scss entity.other.attribute-name.pseudo-class.css punctuation.definition.entity.css
+"hover" source.css.scss meta.property-list.scss entity.other.attribute-name.pseudo-class.css
+" " source.css.scss meta.property-list.scss
+"{" source.css.scss meta.property-list.scss meta.property-list.scss punctuation.section.property-list.begin.bracket.curly.scss
+" " source.css.scss meta.property-list.scss meta.property-list.scss
+"opacity" source.css.scss meta.property-list.scss meta.property-list.scss meta.property-name.scss support.type.property-name.css
+":" source.css.scss meta.property-list.scss meta.property-list.scss punctuation.separator.key-value.scss
+" " source.css.scss meta.property-list.scss meta.property-list.scss
+"0.8" source.css.scss meta.property-list.scss meta.property-list.scss constant.numeric.css
+";" source.css.scss meta.property-list.scss meta.property-list.scss punctuation.terminator.rule.scss
+" " source.css.scss meta.property-list.scss meta.property-list.scss
+"}" source.css.scss meta.property-list.scss meta.property-list.scss punctuation.section.property-list.end.bracket.curly.scss
+⏎
+"}" source.css.scss meta.property-list.scss punctuation.section.property-list.end.bracket.curly.scss
+⏎

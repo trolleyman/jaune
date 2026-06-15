@@ -1,0 +1,63 @@
+grammar: source.js.jsx
+
+=== input ===
+const App = () => (
+  <div className="app">
+    <Button onClick={handle}>Go {count}</Button>
+  </div>
+);
+
+=== tokens ===
+"const" source.js.jsx meta.var.expr.js.jsx storage.type.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx
+"App" source.js.jsx meta.var.expr.js.jsx meta.var-single-variable.expr.js.jsx meta.definition.variable.js.jsx variable.other.constant.js.jsx entity.name.function.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.var-single-variable.expr.js.jsx
+"=" source.js.jsx meta.var.expr.js.jsx keyword.operator.assignment.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
+"(" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameters.js.jsx punctuation.definition.parameters.begin.js.jsx
+")" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameters.js.jsx punctuation.definition.parameters.end.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
+"=>" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx storage.type.function.arrow.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
+"(" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.brace.round.js.jsx
+⏎
+"  " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
+"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx invalid.illegal.bad-angle-bracket.html
+"div" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
+"className" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
+"=" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.assignment.js.jsx
+"\"" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx string.quoted.double.js.jsx punctuation.definition.string.begin.js.jsx
+"app" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx string.quoted.double.js.jsx
+"\"" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx string.quoted.double.js.jsx punctuation.definition.string.end.js.jsx
+">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
+⏎
+"    " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
+"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx invalid.illegal.bad-angle-bracket.html
+"Button" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
+"onClick" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
+"=" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.assignment.js.jsx
+"{" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx punctuation.definition.block.js.jsx
+"handle" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx variable.other.readwrite.js.jsx meta.object.member.js.jsx
+"}" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.objectliteral.js.jsx punctuation.definition.block.js.jsx
+">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
+"Go" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
+" " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameter.object-binding-pattern.js.jsx
+"{" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameter.object-binding-pattern.js.jsx punctuation.definition.binding-pattern.object.js.jsx
+"count" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameter.object-binding-pattern.js.jsx variable.parameter.js.jsx
+"}" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.parameter.object-binding-pattern.js.jsx punctuation.definition.binding-pattern.object.js.jsx
+"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx invalid.illegal.bad-angle-bracket.html
+"/" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.arithmetic.js.jsx
+"Button" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
+">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
+⏎
+"  " source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx
+"<" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx invalid.illegal.bad-angle-bracket.html
+"/" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.arithmetic.js.jsx
+"div" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx variable.other.readwrite.js.jsx
+">" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx keyword.operator.relational.js.jsx
+⏎
+")" source.js.jsx meta.var.expr.js.jsx meta.arrow.js.jsx meta.brace.round.js.jsx
+";" source.js.jsx punctuation.terminator.statement.js.jsx
+⏎

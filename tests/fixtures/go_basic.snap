@@ -1,0 +1,71 @@
+grammar: source.go
+
+=== input ===
+package main
+
+import "fmt"
+
+func main() {
+    xs := []int{1, 2, 3}
+    fmt.Printf("len=%d\n", len(xs))
+}
+
+=== tokens ===
+"package" source.go keyword.package.go
+" " source.go
+"main" source.go entity.name.type.package.go
+⏎
+⏎
+"import" source.go keyword.control.import.go
+" " source.go
+"\"" source.go string.quoted.double.go punctuation.definition.string.begin.go
+"fmt" source.go string.quoted.double.go entity.name.import.go
+"\"" source.go string.quoted.double.go punctuation.definition.string.end.go
+⏎
+⏎
+"func" source.go keyword.function.go
+" " source.go
+"main" source.go entity.name.function.go
+"(" source.go punctuation.definition.begin.bracket.round.go
+")" source.go punctuation.definition.end.bracket.round.go
+" " source.go
+"{" source.go punctuation.definition.begin.bracket.curly.go
+⏎
+"    " source.go
+"xs" source.go variable.other.assignment.go
+" " source.go
+":=" source.go keyword.operator.assignment.go
+" " source.go
+"[" source.go punctuation.definition.begin.bracket.square.go
+"]" source.go punctuation.definition.end.bracket.square.go
+"int" source.go storage.type.numeric.go
+"{" source.go punctuation.definition.begin.bracket.curly.go
+"1" source.go constant.numeric.decimal.go
+"," source.go punctuation.other.comma.go
+" " source.go
+"2" source.go constant.numeric.decimal.go
+"," source.go punctuation.other.comma.go
+" " source.go
+"3" source.go constant.numeric.decimal.go
+"}" source.go punctuation.definition.end.bracket.curly.go
+⏎
+"    " source.go
+"fmt" source.go variable.other.go
+"." source.go punctuation.other.period.go
+"Printf" source.go variable.other.go
+"(" source.go punctuation.definition.begin.bracket.round.go
+"\"" source.go string.quoted.double.go punctuation.definition.string.begin.go
+"len=" source.go string.quoted.double.go
+"%d" source.go string.quoted.double.go constant.other.placeholder.go
+"\\n" source.go string.quoted.double.go constant.character.escape.go
+"\"" source.go string.quoted.double.go punctuation.definition.string.end.go
+"," source.go punctuation.other.comma.go
+" " source.go
+"len" source.go entity.name.function.support.builtin.go
+"(" source.go punctuation.definition.begin.bracket.round.go
+"xs" source.go variable.other.go
+")" source.go punctuation.definition.end.bracket.round.go
+")" source.go punctuation.definition.end.bracket.round.go
+⏎
+"}" source.go punctuation.definition.end.bracket.curly.go
+⏎

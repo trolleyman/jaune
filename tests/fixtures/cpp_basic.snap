@@ -1,0 +1,61 @@
+grammar: source.cpp
+
+=== input ===
+#include <vector>
+
+template <typename T>
+T add(T a, T b) {
+    auto v = std::vector<T>{a, b};
+    return a + b;
+}
+
+=== tokens ===
+"#include" source.cpp variable.other.macro.argument.cpp
+" " source.cpp
+"<" source.cpp invalid.illegal.bad-angle-bracket.html
+"vector" source.cpp
+">" source.cpp keyword.operator.comparison.cpp
+⏎
+⏎
+"template" source.cpp meta.template.explicit-instantiation.cpp storage.type.template.cpp
+" " source.cpp meta.template.explicit-instantiation.cpp
+"<" source.cpp invalid.illegal.bad-angle-bracket.html
+"typename T" source.cpp
+">" source.cpp keyword.operator.comparison.cpp
+⏎
+"T add" source.cpp
+"(" source.cpp meta.parens.cpp punctuation.section.parens.begin.bracket.round.cpp
+"T a" source.cpp meta.parens.cpp
+"," source.cpp meta.parens.cpp punctuation.separator.delimiter.comma.cpp
+" T b" source.cpp meta.parens.cpp
+")" source.cpp meta.parens.cpp punctuation.section.parens.end.bracket.round.cpp
+" " source.cpp
+"{" source.cpp meta.block.cpp punctuation.section.block.begin.bracket.curly.cpp
+⏎
+"    " source.cpp meta.block.cpp
+"auto" source.cpp meta.block.cpp storage.type.primitive.cpp storage.type.built-in.primitive.cpp
+" v " source.cpp meta.block.cpp
+"=" source.cpp meta.block.cpp keyword.operator.assignment.cpp
+" " source.cpp meta.block.cpp
+"std" source.cpp meta.block.cpp entity.name.label.cpp
+":" source.cpp meta.block.cpp punctuation.separator.label.cpp
+":vector" source.cpp meta.block.cpp
+"<" source.cpp meta.block.cpp invalid.illegal.bad-angle-bracket.html
+"T" source.cpp meta.block.cpp
+">" source.cpp meta.block.cpp keyword.operator.comparison.cpp
+"{" source.cpp meta.block.cpp meta.block.cpp punctuation.section.block.begin.bracket.curly.cpp
+"a" source.cpp meta.block.cpp meta.block.cpp
+"," source.cpp meta.block.cpp meta.block.cpp punctuation.separator.delimiter.comma.cpp
+" b" source.cpp meta.block.cpp meta.block.cpp
+"}" source.cpp meta.block.cpp meta.block.cpp punctuation.section.block.end.bracket.curly.cpp
+";" source.cpp meta.block.cpp punctuation.terminator.statement.cpp
+⏎
+"    " source.cpp meta.block.cpp
+"return" source.cpp meta.block.cpp keyword.control.return.cpp
+" a " source.cpp meta.block.cpp
+"+" source.cpp meta.block.cpp keyword.operator.arithmetic.cpp
+" b" source.cpp meta.block.cpp
+";" source.cpp meta.block.cpp punctuation.terminator.statement.cpp
+⏎
+"}" source.cpp meta.block.cpp punctuation.section.block.end.bracket.curly.cpp
+⏎

@@ -1,0 +1,33 @@
+grammar: source.c
+
+=== input ===
+#include <stdio.h>
+
+int main(void) {
+    int n = 42;
+    printf("n=%d\n", n);
+    return 0;
+}
+
+=== tokens ===
+"#" source.c meta.preprocessor.include.c keyword.control.directive.include.c punctuation.definition.directive.c
+"include" source.c meta.preprocessor.include.c keyword.control.directive.include.c
+" " source.c meta.preprocessor.include.c
+"<" source.c meta.preprocessor.include.c invalid.illegal.bad-angle-bracket.html
+"stdio.h>" source.c meta.preprocessor.include.c
+⏎
+⏎
+"int main(void) {" source.c meta.preprocessor.include.c
+⏎
+"    int n = 42;" source.c meta.preprocessor.include.c
+⏎
+"    printf(" source.c meta.preprocessor.include.c
+"\"" source.c meta.preprocessor.include.c string.quoted.double.include.c punctuation.definition.string.begin.c
+"n=%d\\n" source.c meta.preprocessor.include.c string.quoted.double.include.c
+"\"" source.c meta.preprocessor.include.c string.quoted.double.include.c punctuation.definition.string.end.c
+", n);" source.c meta.preprocessor.include.c
+⏎
+"    return 0;" source.c meta.preprocessor.include.c
+⏎
+"}" source.c meta.preprocessor.include.c
+⏎

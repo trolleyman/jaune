@@ -9,6 +9,8 @@
     "typescript": "^5"
   },
   "scripts": {
-    "update-submodules": "bun run scripts/update-submodules.ts"
+    "update-submodules": "bun run scripts/update-submodules.ts",
+    "package-grammars": "bun run scripts/package-grammars.ts",
+    "release": "bun run scripts/publish.ts"
   }
 }

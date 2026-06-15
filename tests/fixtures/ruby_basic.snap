@@ -1,0 +1,33 @@
+grammar: source.ruby
+
+=== input ===
+require "set"
+
+# a comment
+class Greeter
+  def greet(name)
+    "hello #{name}"
+  end
+end
+
+=== tokens ===
+"require" source.ruby meta.require.ruby
+" " source.ruby meta.require.ruby
+"\"" source.ruby meta.require.ruby string.quoted.double.interpolated.ruby punctuation.definition.string.begin.ruby
+"set" source.ruby meta.require.ruby string.quoted.double.interpolated.ruby
+"\"" source.ruby meta.require.ruby string.quoted.double.interpolated.ruby punctuation.definition.string.end.ruby
+⏎
+⏎
+"#" source.ruby comment.line.number-sign.ruby punctuation.definition.comment.ruby
+" a comment" source.ruby comment.line.number-sign.ruby
+⏎
+"class Greeter" source.ruby comment.line.number-sign.ruby
+⏎
+"  def greet(name)" source.ruby comment.line.number-sign.ruby
+⏎
+"    \"hello #{name}\"" source.ruby comment.line.number-sign.ruby
+⏎
+"  end" source.ruby comment.line.number-sign.ruby
+⏎
+"end" source.ruby comment.line.number-sign.ruby
+⏎

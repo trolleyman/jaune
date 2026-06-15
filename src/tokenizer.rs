@@ -1,8 +1,9 @@
 use crate::{
-    Scope,
-    syntax::{Pattern, SyntaxDefinition},
+    Scope, SyntaxSet,
+    syntax::{Capture, Pattern, ScopeTemplate, SyntaxDefinition},
 };
 use fancy_regex::Regex;
+use std::collections::{HashMap, HashSet, VecDeque};
 
 /// Operations emitted by the [`Tokenizer`].
 ///
@@ -40,42 +41,650 @@ pub enum TokenizerOp<'a> {
 }
 
 /// Internal state for a nested block (e.g., inside a string or comment).
-struct StackFrame {
-    /// The regex that will close this block.
+struct StackFrame<'a> {
+    /// The regex source that will close this block (already back-reference substituted).
     ///
-    /// This is compiled dynamically because it may depend on captures from the
-    /// opening match (e.g., heredocs like `<<-EOF ... EOF`).
-    end_regex: Regex,
+    /// It is kept as a string and recompiled per scan because matching depends on the
+    /// `\A`/`\G` anchor state at the current position. The root frame has no end regex
+    /// and is never popped.
+    end_regex: Option<String>,
+
+    /// Captures for the `end` regex, mapping a regex group index to the scope (template)
+    /// it should be assigned.
+    end_captures: Option<&'a HashMap<usize, Capture>>,
+
+    /// For a `begin`/`while` block: the regex (back-reference substituted) tested at the
+    /// start of each line to decide whether the block continues.
+    while_regex: Option<String>,
+
+    /// Captures for the `while` regex.
+    while_captures: Option<&'a HashMap<usize, Capture>>,
 
     /// The patterns that are valid inside this block.
-    patterns: Vec<Pattern>,
+    patterns: &'a [Pattern],
+
+    /// The grammar that owns [`patterns`](Self::patterns). Includes referenced from
+    /// these patterns resolve against this grammar's repository. This is what makes
+    /// embedded grammars work: a block opened by a rule from grammar `B` continues to
+    /// resolve `B`'s rules even while nested inside grammar `A`.
+    syntax: &'a SyntaxDefinition,
+
+    /// The scope this block pushed on entry (because the rule had a `name`), if any. It
+    /// is part of the active scope stack while the block is open and must be balanced by
+    /// a [`TokenizerOp::Pop`] when it closes.
+    scope: Option<Scope>,
+
+    /// The cursor position at which this block was entered, and the rule that opened it.
+    /// Used to stop a zero-width `begin` from re-entering itself forever at one position.
+    enter_pos: usize,
+    enter_rule: *const Pattern,
+}
+
+/// A resolved capture span over `[start, end)`.
+///
+/// `scope` (if any) wraps the range in a `Push`/`Pop` pair; `sub` (if any) further
+/// tokenizes the range with a nested pattern list (TextMate captures-with-`patterns`).
+struct Span<'a> {
+    start: usize,
+    end: usize,
+    scope: Option<Scope>,
+    sub: Option<(&'a [Pattern], &'a SyntaxDefinition)>,
+}
+
+/// The result of running a regex: absolute byte offsets of the whole match and each group.
+struct MatchData {
+    start: usize,
+    end: usize,
+    /// One entry per capture group (index 0 is the whole match); `None` if the group
+    /// did not participate in the match.
+    groups: Vec<Option<(usize, usize)>>,
 }
 
 /// A line-based iterator that parses text according to a [`SyntaxDefinition`].
 ///
 /// This struct manages the internal parsing state (the "grammar stack") but delegates
 /// the management of the "scope stack" to the consumer via [`TokenizerOp`]s.
+///
+/// # Cross-grammar includes
+/// When constructed with [`Tokenizer::new_in_set`] (or via [`SyntaxSet::tokenizer`]),
+/// includes that reference other grammars (e.g. `include: source.json` or
+/// `include: source.json#value`) are resolved against the provided [`SyntaxSet`]. This
+/// is how embedded languages (CSS in HTML, code blocks in Markdown, ...) are handled.
+/// When constructed with the standalone [`Tokenizer::new`], such includes are skipped.
+///
+/// Supports `begin`/`end` and `begin`/`while` blocks, `\A`/`\G` anchoring, capture
+/// scopes with `$n` interpolation and nested `patterns`, and (via the [`SyntaxSet`])
+/// injection grammars selected by scope.
 pub struct Tokenizer<'a> {
     text: &'a str,
+    /// Byte offset of the start of the line currently being scanned.
+    line_start: usize,
+    /// Byte offset of the next character to consume.
     cursor: usize,
 
-    /// The stack of grammar rules currently being processed.
+    /// The stack of grammar rules currently being processed. The first frame is the
+    /// root (the base grammar's top-level patterns) and is never popped.
     ///
     /// *Note:* This tracks the internal parsing state (which rules are valid),
     /// not the semantic scope stack used for highlighting.
-    stack: Vec<StackFrame>,
+    stack: Vec<StackFrame<'a>>,
 
-    syntax: &'a SyntaxDefinition,
+    /// The base grammar tokenization started in. `$base` resolves against this.
+    base: &'a SyntaxDefinition,
+
+    /// The registry used to resolve cross-grammar includes, if any.
+    set: Option<&'a SyntaxSet>,
+
+    /// Operations produced but not yet handed to the consumer.
+    pending: VecDeque<TokenizerOp<'a>>,
+
+    /// Cache of compiled regexes, keyed by their source string.
+    regex_cache: HashMap<String, Regex>,
+
+    /// Number of consecutive scans at the current cursor that have not advanced it.
+    /// Used to break pathological zero-width `begin`/`end` oscillations.
+    stall_count: u32,
+
+    /// The position the `\G` anchor matches at: the end of the most recent `begin` match
+    /// on the current line. [`NO_ANCHOR`] (and reset at every newline) when there is no
+    /// active anchor, so `\G` cannot match at an arbitrary position.
+    anchor: usize,
+
+    /// The scopes currently active at the cursor (the base grammar scope plus the `name`
+    /// of every open begin/end block). Maintained as strings in parallel so injection
+    /// selectors can be matched without re-rendering scopes each scan.
+    active_scopes: Vec<String>,
+
+    /// Set once the end of input has been processed (and trailing scopes popped).
+    finished: bool,
 }
 
+/// Sentinel for "no `\G` anchor active" (no real cursor reaches `usize::MAX`).
+const NO_ANCHOR: usize = usize::MAX;
+
+/// Maximum number of zero-width (cursor-not-advancing) scans tolerated at a single
+/// position before a character is force-consumed. Legitimate zero-width pushes (e.g.
+/// lookahead-based embedding) nest only a handful deep, so this is generous headroom
+/// while still bounding infinite loops.
+const MAX_STALL: u32 = 64;
+
 impl<'a> Tokenizer<'a> {
-    /// Creates a new tokenizer for the given text and syntax definition.
+    /// Creates a standalone tokenizer for the given text and syntax definition.
+    ///
+    /// Cross-grammar includes cannot be resolved; use [`Tokenizer::new_in_set`] for that.
     pub fn new(text: &'a str, syntax: &'a SyntaxDefinition) -> Self {
+        Self::build(text, syntax, None)
+    }
+
+    /// Creates a tokenizer that resolves cross-grammar includes against `set`.
+    ///
+    /// `syntax` is the base grammar to start tokenizing in (it should also be a member
+    /// of `set`).
+    pub fn new_in_set(text: &'a str, syntax: &'a SyntaxDefinition, set: &'a SyntaxSet) -> Self {
+        Self::build(text, syntax, Some(set))
+    }
+
+    fn build(text: &'a str, syntax: &'a SyntaxDefinition, set: Option<&'a SyntaxSet>) -> Self {
+        Self::build_with_patterns(text, &syntax.patterns, syntax, set)
+    }
+
+    /// Builds a tokenizer whose root frame uses an arbitrary pattern list (rather than
+    /// `syntax.patterns`). Used to recursively tokenize a capture's `patterns`.
+    fn build_with_patterns(
+        text: &'a str,
+        patterns: &'a [Pattern],
+        syntax: &'a SyntaxDefinition,
+        set: Option<&'a SyntaxSet>,
+    ) -> Self {
+        let root = StackFrame {
+            end_regex: None,
+            end_captures: None,
+            while_regex: None,
+            while_captures: None,
+            patterns,
+            syntax,
+            scope: None,
+            enter_pos: 0,
+            enter_rule: std::ptr::null(),
+        };
         Self {
             text,
+            line_start: 0,
             cursor: 0,
-            stack: Vec::new(),
-            syntax,
+            stack: vec![root],
+            base: syntax,
+            set,
+            pending: VecDeque::new(),
+            regex_cache: HashMap::new(),
+            stall_count: 0,
+            anchor: NO_ANCHOR,
+            // The base grammar scope is always active at the bottom of the stack.
+            active_scopes: vec![syntax.scope.to_string()],
+            finished: false,
+        }
+    }
+
+    /// Compiles `pattern` (caching the result) and returns it, or `None` if it fails
+    /// to compile.
+    fn compiled(&mut self, pattern: &str) -> Option<&Regex> {
+        use std::collections::hash_map::Entry;
+        match self.regex_cache.entry(pattern.to_string()) {
+            Entry::Occupied(e) => Some(e.into_mut()),
+            Entry::Vacant(v) => match Regex::new(pattern) {
+                Ok(re) => Some(v.insert(re)),
+                Err(_) => None,
+            },
+        }
+    }
+
+    /// Runs a (cached) regex against `line` starting at `pos`, returning absolute-offset
+    /// match data. `line_start` is the absolute offset of `line`'s first byte.
+    ///
+    /// `allow_a`/`allow_g` control whether the `\A` (document start) and `\G` (anchor)
+    /// assertions are permitted to match at this position; when disallowed they are
+    /// rewritten to a never-matching assertion so the pattern behaves correctly.
+    fn run_regex(
+        &mut self,
+        pattern: &str,
+        line: &'a str,
+        pos: usize,
+        line_start: usize,
+        allow_a: bool,
+        allow_g: bool,
+    ) -> Option<MatchData> {
+        let pattern = transform_anchors(pattern, allow_a, allow_g);
+        let re = self.compiled(&pattern)?;
+        let caps = re.captures_from_pos(line, pos).ok()??;
+        Some(match_data(&caps, line_start))
+    }
+
+    /// Produces the next batch of operations for a single parsing event, appending them
+    /// to `self.pending`. May produce nothing only when the input is exhausted.
+    fn advance(&mut self) {
+        let text = self.text;
+
+        // End of input: close any open blocks and finish.
+        if self.cursor >= text.len() {
+            while self.stack.len() > 1 {
+                let frame = self.stack.pop().unwrap();
+                if frame.scope.is_some() {
+                    self.active_scopes.pop();
+                    self.pending.push_back(TokenizerOp::Pop);
+                }
+            }
+            self.finished = true;
+            return;
+        }
+
+        let line_end = text[self.line_start..]
+            .find('\n')
+            .map(|i| self.line_start + i)
+            .unwrap_or(text.len());
+
+        // End of the current line: emit a newline and move to the next line. The `\G`
+        // anchor does not carry across line boundaries.
+        if self.cursor == line_end {
+            self.pending.push_back(TokenizerOp::Newline);
+            self.cursor = line_end + 1;
+            self.line_start = self.cursor;
+            self.anchor = NO_ANCHOR;
+            return;
+        }
+
+        let line = &text[self.line_start..line_end];
+        let line_start = self.line_start;
+
+        // At the start of a line, evaluate `begin`/`while` continuation conditions: each
+        // open while-block either consumes its `while` marker or is closed.
+        if self.cursor == line_start && self.process_while_conditions(line, line_start) {
+            return;
+        }
+
+        // Scan the remainder of the current line for the next match.
+        let base = self.base;
+        let set = self.set;
+        let pos = self.cursor - line_start;
+
+        // `\A` may match only on the first line; `\G` only at the current anchor.
+        let allow_a = line_start == 0;
+        let allow_g = self.cursor == self.anchor;
+
+        // Candidate 1: the end of the current block.
+        let end_str = self.stack.last().unwrap().end_regex.clone();
+        let end_md = match &end_str {
+            Some(re) => self.run_regex(re, line, pos, line_start, allow_a, allow_g),
+            None => None,
+        };
+
+        // Candidate 2: the earliest-matching inner pattern, resolved (with embedded
+        // grammars) against whichever grammar owns the current frame. Base patterns have
+        // priority 0; injected patterns carry the priority of their selector (`L:` > 0
+        // wins ties against base, `R:` < 0 loses).
+        let frame_patterns = self.stack.last().unwrap().patterns;
+        let frame_syntax = self.stack.last().unwrap().syntax;
+        let mut candidates: Vec<(&'a Pattern, &'a SyntaxDefinition, i8)> = Vec::new();
+        {
+            let mut concrete: Vec<(&'a Pattern, &'a SyntaxDefinition)> = Vec::new();
+            let mut visited: HashSet<(Scope, &'a str)> = HashSet::new();
+            flatten_patterns(set, base, frame_syntax, frame_patterns, &mut concrete, &mut visited);
+            candidates.extend(concrete.into_iter().map(|(p, s)| (p, s, 0)));
+        }
+        if let Some(set) = set
+            && set.has_injections()
+        {
+            let scopes = self.active_scopes.clone();
+            for (priority, patterns, syn) in set.matching_injections(&scopes) {
+                let mut concrete: Vec<(&'a Pattern, &'a SyntaxDefinition)> = Vec::new();
+                let mut visited: HashSet<(Scope, &'a str)> = HashSet::new();
+                flatten_patterns(Some(set), base, syn, patterns, &mut concrete, &mut visited);
+                candidates.extend(concrete.into_iter().map(|(p, s)| (p, s, priority)));
+            }
+        }
+
+        let mut best: Option<(MatchData, &'a Pattern, &'a SyntaxDefinition, i8)> = None;
+        for (pat, syn, priority) in candidates {
+            let is_begin = matches!(pat, Pattern::BeginEnd { .. } | Pattern::BeginWhile { .. });
+            let md = match pat {
+                Pattern::Match { regex, .. } => {
+                    self.run_regex(regex, line, pos, line_start, allow_a, allow_g)
+                }
+                Pattern::BeginEnd { begin, .. } | Pattern::BeginWhile { begin, .. } => {
+                    self.run_regex(begin, line, pos, line_start, allow_a, allow_g)
+                }
+                _ => None,
+            };
+            if let Some(md) = md {
+                // Don't let a zero-width `begin` re-open the same block at the same
+                // position over and over (e.g. a `(?=\S)` paragraph rule).
+                if is_begin && md.end == md.start && self.would_reenter(pat, md.start) {
+                    continue;
+                }
+                let better = best.as_ref().is_none_or(|(b, _, _, bp)| {
+                    md.start < b.start || (md.start == b.start && priority > *bp)
+                });
+                if better {
+                    best = Some((md, pat, syn, priority));
+                }
+            }
+        }
+
+        // The end pattern wins ties (TextMate's default `applyEndPatternLast = false`).
+        let use_end = match (&end_md, &best) {
+            (Some(e), Some((m, ..))) => e.start <= m.start,
+            (Some(_), None) => true,
+            _ => false,
+        };
+
+        let scan_cursor = self.cursor;
+        let scan_depth = self.stack.len();
+
+        if use_end {
+            let e = end_md.unwrap();
+            if e.start > self.cursor {
+                self.pending
+                    .push_back(TokenizerOp::Content(&text[self.cursor..e.start]));
+            }
+            let frame = self.stack.last().unwrap();
+            let spans = match frame.end_captures {
+                Some(c) => capture_spans(c, &e, text, frame.syntax),
+                None => Vec::new(),
+            };
+            let has_scope = frame.scope.is_some();
+            self.emit_spans(text, e.start, e.end, spans);
+            self.cursor = e.end;
+            self.stack.pop();
+            if has_scope {
+                self.active_scopes.pop();
+                self.pending.push_back(TokenizerOp::Pop);
+            }
+        } else if let Some((md, pat, syn, _priority)) = best {
+            if md.start > self.cursor {
+                self.pending
+                    .push_back(TokenizerOp::Content(&text[self.cursor..md.start]));
+            }
+            match pat {
+                Pattern::Match {
+                    scope, captures, ..
+                } => {
+                    let mut spans = capture_spans(captures, &md, text, syn);
+                    if let Some(scope) = scope.as_ref().and_then(|t| resolve_scope(t, &md, text)) {
+                        spans.push(Span {
+                            start: md.start,
+                            end: md.end,
+                            scope: Some(scope),
+                            sub: None,
+                        });
+                    }
+                    self.emit_spans(text, md.start, md.end, spans);
+                    self.cursor = md.end;
+                }
+                Pattern::BeginEnd {
+                    end,
+                    content_scope,
+                    begin_captures,
+                    end_captures,
+                    patterns,
+                    ..
+                } => {
+                    // The end regex may reference captures from the begin match.
+                    let end_str = substitute_backrefs(end, &md, text);
+                    if Regex::new(&end_str).is_ok() {
+                        let resolved = content_scope
+                            .as_ref()
+                            .and_then(|t| resolve_scope(t, &md, text));
+                        if let Some(scope) = resolved {
+                            self.pending.push_back(TokenizerOp::Push(scope));
+                            self.active_scopes.push(scope.to_string());
+                        }
+                        let spans = capture_spans(begin_captures, &md, text, syn);
+                        self.emit_spans(text, md.start, md.end, spans);
+                        self.cursor = md.end;
+                        // `\G` may match at the end of this begin match.
+                        self.anchor = md.end;
+                        self.stack.push(StackFrame {
+                            end_regex: Some(end_str),
+                            end_captures: Some(end_captures),
+                            while_regex: None,
+                            while_captures: None,
+                            patterns: patterns.as_slice(),
+                            syntax: syn,
+                            scope: resolved,
+                            enter_pos: md.start,
+                            enter_rule: pat,
+                        });
+                    } else {
+                        // Uncompilable end: treat the begin marker as plain content
+                        // so we still make progress.
+                        self.pending
+                            .push_back(TokenizerOp::Content(&text[md.start..md.end]));
+                        self.cursor = md.end;
+                    }
+                }
+                Pattern::BeginWhile {
+                    while_regex,
+                    content_scope,
+                    begin_captures,
+                    while_captures,
+                    patterns,
+                    ..
+                } => {
+                    let while_str = substitute_backrefs(while_regex, &md, text);
+                    let resolved = content_scope
+                        .as_ref()
+                        .and_then(|t| resolve_scope(t, &md, text));
+                    if let Some(scope) = resolved {
+                        self.pending.push_back(TokenizerOp::Push(scope));
+                        self.active_scopes.push(scope.to_string());
+                    }
+                    let spans = capture_spans(begin_captures, &md, text, syn);
+                    self.emit_spans(text, md.start, md.end, spans);
+                    self.cursor = md.end;
+                    self.anchor = md.end;
+                    self.stack.push(StackFrame {
+                        end_regex: None,
+                        end_captures: None,
+                        while_regex: Some(while_str),
+                        while_captures: Some(while_captures),
+                        patterns: patterns.as_slice(),
+                        syntax: syn,
+                        scope: resolved,
+                        enter_pos: md.start,
+                        enter_rule: pat,
+                    });
+                }
+                // `flatten_patterns` only yields concrete `Match`/`BeginEnd`/`BeginWhile`.
+                _ => unreachable!(),
+            }
+        } else {
+            // Nothing matched on the rest of this line: emit it as plain content.
+            if line_end > self.cursor {
+                self.pending
+                    .push_back(TokenizerOp::Content(&text[self.cursor..line_end]));
+            }
+            self.cursor = line_end;
+        }
+
+        // Anti-stall guard. A zero-width match can leave the cursor in place. That is
+        // legitimate when it changed the grammar stack (e.g. a lookahead `begin` opening
+        // an embedded block), so we only force progress when either nothing at all
+        // changed, or a zero-width `begin`/`end` has been oscillating for too long.
+        if self.cursor == scan_cursor {
+            self.stall_count += 1;
+            let depth_unchanged = self.stack.len() == scan_depth;
+            if (depth_unchanged || self.stall_count > MAX_STALL) && self.cursor < line_end {
+                let ch_len = text[self.cursor..].chars().next().unwrap().len_utf8();
+                self.pending.push_back(TokenizerOp::Content(
+                    &text[self.cursor..self.cursor + ch_len],
+                ));
+                self.cursor += ch_len;
+                self.stall_count = 0;
+            }
+        } else {
+            self.stall_count = 0;
+        }
+    }
+
+    /// Emits the text of `[region_start, region_end)` as content, wrapping the (properly
+    /// nested) `spans` in `Push`/`Pop` pairs. A span carrying `sub` patterns has its
+    /// range recursively tokenized instead of emitted flat. Every byte of the region is
+    /// emitted exactly once as [`TokenizerOp::Content`].
+    fn emit_spans(
+        &mut self,
+        text: &'a str,
+        region_start: usize,
+        region_end: usize,
+        mut spans: Vec<Span<'a>>,
+    ) {
+        // Outer spans first: by start ascending, then by end descending.
+        spans.sort_by(|a, b| a.start.cmp(&b.start).then(b.end.cmp(&a.end)));
+
+        let mut pos = region_start;
+        let mut open: Vec<usize> = Vec::new(); // stack of end offsets of open (scoped) spans
+        let mut i = 0;
+
+        loop {
+            let next_start = spans.get(i).map(|s| s.start);
+            let next_end = open.last().copied();
+
+            // Decide the next event: open a span or close one. Closes win ties so that
+            // adjacent sibling spans nest correctly.
+            let (event, is_open) = match (next_start, next_end) {
+                (None, None) => {
+                    if region_end > pos {
+                        self.pending
+                            .push_back(TokenizerOp::Content(&text[pos..region_end]));
+                    }
+                    break;
+                }
+                (Some(s), None) => (s, true),
+                (None, Some(e)) => (e, false),
+                (Some(s), Some(e)) => {
+                    if e <= s {
+                        (e, false)
+                    } else {
+                        (s, true)
+                    }
+                }
+            };
+
+            if event > pos {
+                self.pending
+                    .push_back(TokenizerOp::Content(&text[pos..event]));
+                pos = event;
+            }
+
+            if is_open {
+                let start = spans[i].start;
+                let end = spans[i].end;
+                let scope = spans[i].scope;
+                let sub = spans[i].sub;
+                if let Some((patterns, syntax)) = sub {
+                    // Capture with nested patterns: recursively tokenize its range,
+                    // wrapped in its own scope, and skip any spans nested inside it.
+                    if let Some(scope) = scope {
+                        self.pending.push_back(TokenizerOp::Push(scope));
+                    }
+                    self.tokenize_sub(text, start, end, patterns, syntax);
+                    if scope.is_some() {
+                        self.pending.push_back(TokenizerOp::Pop);
+                    }
+                    pos = end;
+                    i += 1;
+                    while i < spans.len() && spans[i].start < end {
+                        i += 1;
+                    }
+                } else {
+                    self.pending.push_back(TokenizerOp::Push(
+                        scope.expect("a span without sub-patterns always has a scope"),
+                    ));
+                    open.push(end);
+                    i += 1;
+                }
+            } else {
+                open.pop();
+                self.pending.push_back(TokenizerOp::Pop);
+            }
+        }
+    }
+
+    /// Whether opening `pat` at `pos` would re-enter a block already open at the same
+    /// position with the same rule — the signature of a zero-width `begin` infinite loop.
+    fn would_reenter(&self, pat: &Pattern, pos: usize) -> bool {
+        let p = pat as *const Pattern;
+        self.stack
+            .iter()
+            .any(|f| f.enter_pos == pos && std::ptr::eq(f.enter_rule, p))
+    }
+
+    /// At the start of a line, evaluates the `while` condition of every open
+    /// `begin`/`while` block (outermost first). Each matching block consumes its `while`
+    /// marker; the first block whose condition fails is closed along with everything
+    /// nested inside it.
+    ///
+    /// Returns `true` if it changed any state (so the caller yields this as an event);
+    /// `false` means nothing happened and normal scanning should proceed.
+    fn process_while_conditions(&mut self, line: &'a str, line_start: usize) -> bool {
+        if !self.stack.iter().any(|f| f.while_regex.is_some()) {
+            return false;
+        }
+        let text = self.text;
+        let before = (self.pending.len(), self.stack.len(), self.cursor);
+        let allow_a = line_start == 0;
+
+        let mut i = 1;
+        while i < self.stack.len() {
+            let Some(while_re) = self.stack[i].while_regex.clone() else {
+                i += 1;
+                continue;
+            };
+            let pos = self.cursor - line_start;
+            let md = self.run_regex(&while_re, line, pos, line_start, allow_a, false);
+            match md {
+                Some(md) if md.start == self.cursor => {
+                    // Continue the block: consume the `while` marker and its captures.
+                    let syntax = self.stack[i].syntax;
+                    let spans = match self.stack[i].while_captures {
+                        Some(c) => capture_spans(c, &md, text, syntax),
+                        None => Vec::new(),
+                    };
+                    self.emit_spans(text, md.start, md.end, spans);
+                    self.cursor = md.end;
+                    self.anchor = md.end;
+                    i += 1;
+                }
+                _ => {
+                    // Condition failed: close this block and everything above it.
+                    while self.stack.len() > i {
+                        let frame = self.stack.pop().unwrap();
+                        if frame.scope.is_some() {
+                            self.active_scopes.pop();
+                            self.pending.push_back(TokenizerOp::Pop);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        (self.pending.len(), self.stack.len(), self.cursor) != before
+    }
+
+    /// Recursively tokenizes `[start, end)` with a capture's nested `patterns`, appending
+    /// the resulting ops to `pending`.
+    fn tokenize_sub(
+        &mut self,
+        text: &'a str,
+        start: usize,
+        end: usize,
+        patterns: &'a [Pattern],
+        syntax: &'a SyntaxDefinition,
+    ) {
+        if start >= end {
+            return;
+        }
+        let sub = Tokenizer::build_with_patterns(&text[start..end], patterns, syntax, self.set);
+        for op in sub {
+            self.pending.push_back(op);
         }
     }
 }
@@ -84,23 +693,456 @@ impl<'a> Iterator for Tokenizer<'a> {
     type Item = TokenizerOp<'a>;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.cursor >= self.text.len() {
-            return None;
+        loop {
+            if let Some(op) = self.pending.pop_front() {
+                return Some(op);
+            }
+            if self.finished {
+                return None;
+            }
+            self.advance();
         }
+    }
+}
 
-        // Logic (Simplified):
-        // 1. Check if we match the 'end_regex' of the top StackFrame.
-        //    If yes -> Pop StackFrame, yield TokenizerOp::Pop.
+/// Extracts absolute-offset match data from a [`fancy_regex::Captures`].
+fn match_data(caps: &fancy_regex::Captures, line_start: usize) -> MatchData {
+    let whole = caps.get(0).expect("a match always has group 0");
+    let groups = caps
+        .iter()
+        .map(|g| g.map(|m| (m.start() + line_start, m.end() + line_start)))
+        .collect();
+    MatchData {
+        start: whole.start() + line_start,
+        end: whole.end() + line_start,
+        groups,
+    }
+}
 
-        // 2. If not, check 'patterns' of the top StackFrame.
-        //    If 'Match' found -> yield Push, yield Content, yield Pop.
-        //    If 'Begin' found -> push new StackFrame, yield Push, yield Content (for the begin marker).
+/// Flattens a pattern list into the concrete `Match`/`BeginEnd` rules it resolves to,
+/// expanding `include`s (including cross-grammar ones, when `set` is available) and bare
+/// pattern groups.
+///
+/// Each concrete rule is paired with the grammar that owns it, so that rules pulled in
+/// from an embedded grammar continue to resolve their own includes correctly.
+///
+/// `current` is the grammar owning `patterns`; `base` is the outermost grammar (the
+/// target of `$base`). `visited` (keyed by `(grammar scope, include name)`) guards
+/// against include cycles.
+fn flatten_patterns<'p>(
+    set: Option<&'p SyntaxSet>,
+    base: &'p SyntaxDefinition,
+    current: &'p SyntaxDefinition,
+    patterns: &'p [Pattern],
+    out: &mut Vec<(&'p Pattern, &'p SyntaxDefinition)>,
+    visited: &mut HashSet<(Scope, &'p str)>,
+) {
+    for p in patterns {
+        match p {
+            Pattern::Include(name) => {
+                if name == "$self" {
+                    if visited.insert((current.scope, "$self")) {
+                        flatten_patterns(set, base, current, &current.patterns, out, visited);
+                    }
+                } else if name == "$base" {
+                    if visited.insert((base.scope, "$base")) {
+                        flatten_patterns(set, base, base, &base.patterns, out, visited);
+                    }
+                } else if let Some(local) = name.strip_prefix('#') {
+                    if visited.insert((current.scope, local))
+                        && let Some(rule) = current.repository.get(local)
+                    {
+                        flatten_patterns(
+                            set,
+                            base,
+                            current,
+                            std::slice::from_ref(rule),
+                            out,
+                            visited,
+                        );
+                    }
+                } else if let Some(set) = set {
+                    // Cross-grammar: `source.x` or `source.x#rule`.
+                    let (scope_str, rule) = match name.split_once('#') {
+                        Some((s, r)) => (s, Some(r)),
+                        None => (name.as_str(), None),
+                    };
+                    if let Ok(scope) = Scope::new(scope_str)
+                        && let Some(other) = set.find_by_scope(scope)
+                    {
+                        match rule {
+                            Some(rule) => {
+                                if visited.insert((other.scope, rule))
+                                    && let Some(r) = other.repository.get(rule)
+                                {
+                                    flatten_patterns(
+                                        Some(set),
+                                        base,
+                                        other,
+                                        std::slice::from_ref(r),
+                                        out,
+                                        visited,
+                                    );
+                                }
+                            }
+                            None => {
+                                if visited.insert((other.scope, "")) {
+                                    flatten_patterns(
+                                        Some(set),
+                                        base,
+                                        other,
+                                        &other.patterns,
+                                        out,
+                                        visited,
+                                    );
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Pattern::Patterns(ps) => flatten_patterns(set, base, current, ps, out, visited),
+            Pattern::Match { .. } | Pattern::BeginEnd { .. } | Pattern::BeginWhile { .. } => {
+                out.push((p, current))
+            }
+        }
+    }
+}
 
-        // 3. If nothing matches -> Consume 1 char as Content, advance cursor.
+/// Builds the capture spans for a match from a `group index -> Capture` map, resolving
+/// `$n` scope-name interpolation and carrying through any nested capture `patterns`.
+fn capture_spans<'a>(
+    captures: &'a HashMap<usize, Capture>,
+    md: &MatchData,
+    text: &str,
+    syntax: &'a SyntaxDefinition,
+) -> Vec<Span<'a>> {
+    let mut spans = Vec::new();
+    for (&idx, cap) in captures {
+        if let Some(Some((start, end))) = md.groups.get(idx) {
+            // Clip to the overall match: capture groups inside a lookahead can extend
+            // beyond the (possibly zero-width) match, and that text has not been
+            // consumed by this rule — emitting it here would duplicate it.
+            let start = (*start).max(md.start);
+            let end = (*end).min(md.end);
+            if end <= start {
+                continue;
+            }
+            let scope = cap.name.as_ref().and_then(|t| resolve_scope(t, md, text));
+            let sub = if cap.patterns.is_empty() {
+                None
+            } else {
+                Some((cap.patterns.as_slice(), syntax))
+            };
+            if scope.is_some() || sub.is_some() {
+                spans.push(Span {
+                    start,
+                    end,
+                    scope,
+                    sub,
+                });
+            }
+        }
+    }
+    spans
+}
 
-        // Placeholder implementation for API demonstration:
-        let next_char = &self.text[self.cursor..self.cursor + 1];
-        self.cursor += 1;
-        Some(TokenizerOp::Content(next_char))
+/// Resolves a [`ScopeTemplate`] to a concrete [`Scope`], interpolating `$n` capture
+/// references against `md` for dynamic templates. Returns `None` if the resulting scope
+/// is invalid (e.g. too many atoms).
+fn resolve_scope(template: &ScopeTemplate, md: &MatchData, text: &str) -> Option<Scope> {
+    match template {
+        ScopeTemplate::Static(scope) => Some(*scope),
+        ScopeTemplate::Dynamic(tpl) => Scope::new(&interpolate(tpl, md, text)).ok(),
+    }
+}
+
+/// Replaces `$0`..`$9` in a scope-name template with the text of the corresponding
+/// capture group (empty if the group did not participate).
+fn interpolate(tpl: &str, md: &MatchData, text: &str) -> String {
+    let mut out = String::with_capacity(tpl.len());
+    let mut chars = tpl.chars().peekable();
+    while let Some(c) = chars.next() {
+        if c == '$'
+            && let Some(&d) = chars.peek()
+            && let Some(idx) = d.to_digit(10)
+        {
+            chars.next();
+            if let Some(Some((start, end))) = md.groups.get(idx as usize) {
+                out.push_str(&text[*start..*end]);
+            }
+            continue;
+        }
+        out.push(c);
+    }
+    out
+}
+
+/// Rewrites `\A`/`\G` anchors that are not permitted at the current position into a
+/// never-matching assertion (`\b\B`), so a pattern relying on them fails to match there.
+///
+/// - `\A` (start of document) is only allowed on the first line.
+/// - `\G` (anchor) is only allowed at the current anchor position.
+///
+/// `fancy_regex` always treats `\G` as matching at the search position, so without this
+/// rewrite a `\G`-anchored rule would match anywhere — breaking embedded grammars.
+fn transform_anchors(re: &str, allow_a: bool, allow_g: bool) -> std::borrow::Cow<'_, str> {
+    let needs_a = !allow_a && re.contains("\\A");
+    let needs_g = !allow_g && re.contains("\\G");
+    if !needs_a && !needs_g {
+        return std::borrow::Cow::Borrowed(re);
+    }
+    let mut out = String::with_capacity(re.len());
+    let mut chars = re.chars().peekable();
+    while let Some(c) = chars.next() {
+        if c == '\\' {
+            match chars.peek() {
+                Some('A') if needs_a => {
+                    chars.next();
+                    out.push_str("\\b\\B");
+                }
+                Some('G') if needs_g => {
+                    chars.next();
+                    out.push_str("\\b\\B");
+                }
+                Some(&n) => {
+                    chars.next();
+                    out.push('\\');
+                    out.push(n);
+                }
+                None => out.push('\\'),
+            }
+        } else {
+            out.push(c);
+        }
+    }
+    std::borrow::Cow::Owned(out)
+}
+
+/// Substitutes numeric backreferences (`\1`..`\9`) in an `end` pattern with the
+/// regex-escaped text matched by the corresponding group of the begin match. This
+/// supports constructs like heredocs (`<<-(\w+) ... \1`).
+fn substitute_backrefs(end: &str, md: &MatchData, text: &str) -> String {
+    let mut result = String::with_capacity(end.len());
+    let mut chars = end.chars().peekable();
+    while let Some(c) = chars.next() {
+        if c == '\\' {
+            if let Some(&d) = chars.peek()
+                && let Some(idx) = d.to_digit(10)
+            {
+                chars.next();
+                if let Some(Some((start, end))) = md.groups.get(idx as usize) {
+                    result.push_str(&fancy_regex::escape(&text[*start..*end]));
+                }
+                continue;
+            }
+            // Not a backreference: keep the backslash and let the next char be
+            // processed normally so escapes like `\.` / `\\` survive intact.
+            result.push('\\');
+        } else {
+            result.push(c);
+        }
+    }
+    result
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// Concatenates a tokenized op stream back into source text, asserting that every
+    /// byte is accounted for exactly once.
+    fn reconstruct(ops: &[TokenizerOp]) -> String {
+        let mut s = String::new();
+        for op in ops {
+            match op {
+                TokenizerOp::Content(c) => s.push_str(c),
+                TokenizerOp::Newline => s.push('\n'),
+                TokenizerOp::Push(_) | TokenizerOp::Pop => {}
+            }
+        }
+        s
+    }
+
+    fn assert_balanced(ops: &[TokenizerOp]) {
+        let mut depth = 0i32;
+        for op in ops {
+            match op {
+                TokenizerOp::Push(_) => depth += 1,
+                TokenizerOp::Pop => depth -= 1,
+                _ => {}
+            }
+            assert!(depth >= 0, "Pop without matching Push");
+        }
+        assert_eq!(depth, 0, "unbalanced Push/Pop");
+    }
+
+    const GRAMMAR: &str = r###"
+    {
+        "scopeName": "source.test",
+        "patterns": [
+            { "match": "\\d+", "name": "constant.numeric" },
+            {
+                "begin": "\"",
+                "end": "\"",
+                "name": "string.quoted.double",
+                "patterns": [
+                    { "match": "\\\\.", "name": "constant.character.escape" }
+                ]
+            }
+        ]
+    }
+    "###;
+
+    #[test]
+    fn test_tokenize_exact() {
+        let syntax = SyntaxDefinition::from_json_str(GRAMMAR).expect("load grammar");
+        let input = "12 \"a\"";
+        let ops: Vec<_> = Tokenizer::new(input, &syntax).collect();
+
+        let numeric = Scope::new("constant.numeric").unwrap();
+        let string = Scope::new("string.quoted.double").unwrap();
+        let expected = vec![
+            TokenizerOp::Push(numeric),
+            TokenizerOp::Content("12"),
+            TokenizerOp::Pop,
+            TokenizerOp::Content(" "),
+            TokenizerOp::Push(string),
+            TokenizerOp::Content("\""),
+            TokenizerOp::Content("a"),
+            TokenizerOp::Content("\""),
+            TokenizerOp::Pop,
+        ];
+        assert_eq!(ops, expected);
+    }
+
+    #[test]
+    fn test_string_escape_capture() {
+        let syntax = SyntaxDefinition::from_json_str(GRAMMAR).expect("load grammar");
+        let input = "\"a\\nb\"";
+        let ops: Vec<_> = Tokenizer::new(input, &syntax).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+
+        let escape = Scope::new("constant.character.escape").unwrap();
+        assert!(
+            ops.contains(&TokenizerOp::Push(escape)),
+            "escape sequence should be scoped: {ops:?}"
+        );
+    }
+
+    #[test]
+    fn test_multiline_block_spans_newline() {
+        let syntax = SyntaxDefinition::from_json_str(GRAMMAR).expect("load grammar");
+        let input = "\"line1\nline2\"";
+        let ops: Vec<_> = Tokenizer::new(input, &syntax).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+        assert!(ops.contains(&TokenizerOp::Newline));
+    }
+
+    const HOST_GRAMMAR: &str = r###"
+    {
+        "scopeName": "source.host",
+        "patterns": [
+            {
+                "begin": "<<",
+                "end": ">>",
+                "name": "meta.embedded.guest",
+                "patterns": [{ "include": "source.guest" }]
+            }
+        ]
+    }
+    "###;
+
+    const GUEST_GRAMMAR: &str = r###"
+    {
+        "scopeName": "source.guest",
+        "patterns": [
+            { "match": "\\d+", "name": "constant.numeric.guest" }
+        ]
+    }
+    "###;
+
+    #[test]
+    fn test_cross_grammar_include() {
+        use crate::SyntaxSet;
+
+        let mut set = SyntaxSet::new();
+        set.add(SyntaxDefinition::from_json_str(HOST_GRAMMAR).unwrap());
+        set.add(SyntaxDefinition::from_json_str(GUEST_GRAMMAR).unwrap());
+
+        let host = set
+            .find_by_scope(Scope::new("source.host").unwrap())
+            .unwrap();
+        let input = "a << 42 >> b";
+        let ops: Vec<_> = Tokenizer::new_in_set(input, host, &set).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+
+        // The number inside the embedded block must pick up the *guest* grammar's scope.
+        let guest_num = Scope::new("constant.numeric.guest").unwrap();
+        assert!(
+            ops.contains(&TokenizerOp::Push(guest_num)),
+            "embedded grammar scope missing: {ops:?}"
+        );
+    }
+
+    #[test]
+    fn test_standalone_skips_cross_grammar_include() {
+        // Without a SyntaxSet, the `source.guest` include is simply skipped; the digits
+        // are emitted as plain content rather than panicking.
+        let host = SyntaxDefinition::from_json_str(HOST_GRAMMAR).unwrap();
+        let input = "<< 42 >>";
+        let ops: Vec<_> = Tokenizer::new(input, &host).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+        let guest_num = Scope::new("constant.numeric.guest").unwrap();
+        assert!(!ops.contains(&TokenizerOp::Push(guest_num)));
+    }
+
+    const PLAIN_HOST: &str = r###"
+    {
+        "scopeName": "source.plain",
+        "patterns": [{ "match": "\\w+", "name": "text.word.plain" }]
+    }
+    "###;
+
+    // An injection grammar that highlights `TODO` anywhere inside `source.plain`.
+    const TODO_INJECTION: &str = r###"
+    {
+        "scopeName": "comment.todo.injection",
+        "injectionSelector": "L:source.plain",
+        "patterns": [{ "match": "TODO", "name": "keyword.todo" }]
+    }
+    "###;
+
+    #[test]
+    fn test_injection_applies() {
+        use crate::SyntaxSet;
+
+        let mut set = SyntaxSet::new();
+        set.add(SyntaxDefinition::from_json_str(PLAIN_HOST).unwrap());
+        set.add(SyntaxDefinition::from_json_str(TODO_INJECTION).unwrap());
+
+        let host = set
+            .find_by_scope(Scope::new("source.plain").unwrap())
+            .unwrap();
+        let input = "fix TODO later";
+        let ops: Vec<_> = Tokenizer::new_in_set(input, host, &set).collect();
+
+        assert_eq!(reconstruct(&ops), input);
+        assert_balanced(&ops);
+
+        // The `L:` injection wins the tie against the base `\w+` rule for `TODO`.
+        let todo = Scope::new("keyword.todo").unwrap();
+        assert!(
+            ops.contains(&TokenizerOp::Push(todo)),
+            "injected scope missing: {ops:?}"
+        );
     }
 }

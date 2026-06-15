@@ -58,7 +58,6 @@ impl AtomRepository {
                 Some(id) => id,
                 None => return Err(AtomParseError::MaxAtomsReached),
             };
-            println!("Inserting {:?} with ID {:?}", &s, atom.0);
             self.map.insert(s.to_string(), atom);
             return Ok(atom);
         }
@@ -138,17 +137,14 @@ impl Atom {
     /// Tries to return the string corresponding to this [`Atom`].
     ///
     /// Returns `None` if the [`Atom`] is not found in the interner.
+    ///
+    /// To get the string infallibly, use [`ToString::to_string`] (via the [`Display`]
+    /// impl), which yields `"<unknown>"` for atoms missing from the interner.
+    ///
+    /// [`Display`]: std::fmt::Display
     pub fn try_to_string(&self) -> Option<String> {
         let repo = ATOM_REPO.read().expect("interner lock poisoned");
         repo.map.get_by_right(&self).cloned()
-    }
-
-    /// Returns the string corresponding to this [`Atom`].
-    ///
-    /// # Panics
-    /// Panics if the [`Atom`] is not found in the interner.
-    pub fn to_string(&self) -> String {
-        self.try_to_string().expect("Atom not found in interner")
     }
 }
 

@@ -1,0 +1,72 @@
+grammar: source.js
+
+=== input ===
+import { x } from "m";
+// a comment
+const greet = (name) => `hi ${name}`;
+class A extends B { run() { return 42; } }
+
+=== tokens ===
+"import" source.js meta.import.js keyword.control.import.js
+" " source.js meta.import.js
+"{" source.js meta.import.js meta.block.js punctuation.definition.block.js
+" " source.js meta.import.js meta.block.js
+"x" source.js meta.import.js meta.block.js variable.other.readwrite.alias.js
+" " source.js meta.import.js meta.block.js
+"}" source.js meta.import.js meta.block.js punctuation.definition.block.js
+" " source.js meta.import.js
+"from" source.js meta.import.js keyword.control.from.js
+" " source.js meta.import.js
+"\"" source.js meta.import.js string.quoted.double.js punctuation.definition.string.begin.js
+"m" source.js meta.import.js string.quoted.double.js
+"\"" source.js meta.import.js string.quoted.double.js punctuation.definition.string.end.js
+";" source.js punctuation.terminator.statement.js
+⏎
+"//" source.js punctuation.definition.comment.js comment.line.double-slash.js
+" a comment" source.js
+⏎
+"const" source.js meta.var.expr.js storage.type.js
+" " source.js meta.var.expr.js
+"greet" source.js meta.var.expr.js meta.var-single-variable.expr.js meta.definition.variable.js variable.other.constant.js entity.name.function.js
+" " source.js meta.var.expr.js meta.var-single-variable.expr.js
+"=" source.js meta.var.expr.js keyword.operator.assignment.js
+" " source.js meta.var.expr.js meta.arrow.js
+"(" source.js meta.var.expr.js meta.arrow.js meta.parameters.js punctuation.definition.parameters.begin.js
+"name" source.js meta.var.expr.js meta.arrow.js meta.parameters.js variable.parameter.js
+")" source.js meta.var.expr.js meta.arrow.js meta.parameters.js punctuation.definition.parameters.end.js
+" " source.js meta.var.expr.js meta.arrow.js
+"=>" source.js meta.var.expr.js meta.arrow.js storage.type.function.arrow.js
+" " source.js meta.var.expr.js meta.arrow.js
+"`" source.js meta.var.expr.js string.template.js punctuation.definition.string.template.begin.js
+"hi " source.js meta.var.expr.js
+"${" source.js meta.var.expr.js entity.name.tag
+"name" source.js meta.var.expr.js variable.other.readwrite.js
+"}" source.js meta.var.expr.js entity.name.tag
+"`" source.js meta.var.expr.js string.template.js punctuation.definition.string.template.end.js
+";" source.js punctuation.terminator.statement.js
+⏎
+"class" source.js meta.class.js storage.type.class.js
+" " source.js meta.class.js
+"A" source.js meta.class.js entity.name.type.class.js
+" " source.js meta.class.js
+"extends" source.js meta.class.js storage.modifier.js
+" " source.js meta.class.js
+"B" source.js meta.class.js entity.other.inherited-class.js
+" " source.js meta.class.js
+"{" source.js meta.class.js punctuation.definition.block.js
+" " source.js meta.class.js meta.method.declaration.js
+"run" source.js meta.class.js meta.method.declaration.js meta.definition.method.js entity.name.function.js
+"(" source.js meta.class.js meta.method.declaration.js meta.parameters.js punctuation.definition.parameters.begin.js
+")" source.js meta.class.js meta.method.declaration.js meta.parameters.js punctuation.definition.parameters.end.js
+" " source.js meta.class.js meta.method.declaration.js
+"{" source.js meta.class.js meta.method.declaration.js meta.block.js punctuation.definition.block.js
+" " source.js meta.class.js meta.method.declaration.js meta.block.js
+"return" source.js meta.class.js meta.method.declaration.js meta.block.js keyword.control.flow.js
+" " source.js meta.class.js meta.method.declaration.js meta.block.js
+"42" source.js meta.class.js meta.method.declaration.js meta.block.js constant.numeric.decimal.js
+";" source.js meta.class.js meta.method.declaration.js meta.block.js punctuation.terminator.statement.js
+" " source.js meta.class.js meta.method.declaration.js meta.block.js
+"}" source.js meta.class.js meta.method.declaration.js meta.block.js punctuation.definition.block.js
+" " source.js meta.class.js
+"}" source.js meta.class.js punctuation.definition.block.js
+⏎

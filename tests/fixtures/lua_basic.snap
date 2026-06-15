@@ -1,0 +1,31 @@
+grammar: source.lua
+
+=== input ===
+local function greet(name)
+  -- a comment
+  return "hello " .. name
+end
+
+print(greet("world"))
+
+=== tokens ===
+"local" source.lua meta.function.lua keyword.local.lua
+" " source.lua meta.function.lua
+"function" source.lua meta.function.lua keyword.control.lua
+" " source.lua meta.function.lua
+"greet" source.lua meta.function.lua entity.name.function.lua
+"(" source.lua meta.function.lua meta.parameter.lua punctuation.definition.parameters.begin.lua
+"name" source.lua meta.function.lua meta.parameter.lua variable.parameter.function.lua
+")" source.lua meta.function.lua meta.parameter.lua punctuation.definition.parameters.finish.lua
+⏎
+"  " source.lua meta.function.lua punctuation.whitespace.comment.leading.lua
+"--" source.lua meta.function.lua comment.line.double-dash.lua punctuation.definition.comment.lua
+" a comment" source.lua meta.function.lua comment.line.double-dash.lua
+⏎
+"  return \"hello \" .. name" source.lua meta.function.lua comment.line.double-dash.lua
+⏎
+"end" source.lua meta.function.lua comment.line.double-dash.lua
+⏎
+⏎
+"print(greet(\"world\"))" source.lua meta.function.lua comment.line.double-dash.lua
+⏎

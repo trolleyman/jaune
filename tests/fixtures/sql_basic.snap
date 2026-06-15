@@ -1,0 +1,21 @@
+grammar: source.sql
+
+=== input ===
+-- a query
+SELECT id, name
+FROM users
+WHERE age > 18
+ORDER BY name DESC;
+
+=== tokens ===
+"--" source.sql comment.line.double-dash.sql punctuation.definition.comment.sql
+" a query" source.sql comment.line.double-dash.sql
+⏎
+"SELECT id, name" source.sql comment.line.double-dash.sql
+⏎
+"FROM users" source.sql comment.line.double-dash.sql
+⏎
+"WHERE age > 18" source.sql comment.line.double-dash.sql
+⏎
+"ORDER BY name DESC;" source.sql comment.line.double-dash.sql
+⏎

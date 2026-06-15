@@ -7,11 +7,18 @@ use std::{
 
 use crate::{Atom, atom::AtomParseError};
 
+/// The maximum number of [`Atom`]s a single [`Scope`] can hold.
+///
+/// Real-world TextMate grammars use scopes with as many as ~12 atoms (e.g.
+/// `punctuation.section.arguments.begin.bracket.round.function.member.c`), so this is
+/// sized with some headroom above that.
+pub const MAX_ATOMS: usize = 16;
+
 /// Error type for [`Scope`] creation.
 #[derive(Debug, thiserror::Error, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum ScopeParseError {
-    /// More than 8 [`Atom`]s were provided.
-    #[error("scope can only hold up to 8 atoms")]
+    /// More than [`MAX_ATOMS`] [`Atom`]s were provided.
+    #[error("scope can only hold up to {} atoms", MAX_ATOMS)]
     TooManyAtoms,
     /// Maximum number of unique [`Atom`]s has been reached.
     ///
@@ -24,11 +31,11 @@ pub enum ScopeParseError {
 
 /// A bit-packed representation of a single [`Scope`] (e.g., `meta.function.rust`).
 ///
-/// Stores up to 8 [`Atom`]s. Uses 16 bytes (2 bytes per [`Atom`]).
+/// Stores up to [`MAX_ATOMS`] [`Atom`]s, using 2 bytes per [`Atom`].
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Scope {
     /// The atoms in the scope. `None` indicates the end of the scope.
-    atoms: [Option<Atom>; 8],
+    atoms: [Option<Atom>; MAX_ATOMS],
 }
 
 impl Scope {
@@ -49,7 +56,7 @@ impl Scope {
     /// ```
     ///
     /// # Errors
-    /// - [`ScopeParseError::TooManyAtoms`] if more than 8 [`Atom`]s are provided.
+    /// - [`ScopeParseError::TooManyAtoms`] if more than [`MAX_ATOMS`] [`Atom`]s are provided.
     /// - [`ScopeParseError::MaxAtomsReached`] if any [`Atom`] fails to be created due to reaching the maximum number of unique [`Atom`]s.
     pub fn new(s: &str) -> Result<Self, ScopeParseError> {
         let atoms: Result<Vec<Atom>, AtomParseError> = s
@@ -64,12 +71,31 @@ impl Scope {
                 panic!("other AtomParseErrors should be impossible due to filtering")
             }
             Ok(atoms) => {
-                if atoms.len() > 8 {
+                if atoms.len() > MAX_ATOMS {
                     return Err(ScopeParseError::TooManyAtoms);
                 }
                 Scope::from_slice(&atoms)
             }
         }
+    }
+
+    /// Creates a [`Scope`] from a string, never failing on atom count: a scope with more
+    /// than [`MAX_ATOMS`] segments is truncated to the first [`MAX_ATOMS`], and segments
+    /// that exceed the global atom limit are dropped.
+    ///
+    /// Used when loading grammars, where a single over-long scope shouldn't sink the
+    /// whole grammar.
+    pub fn new_lossy(s: &str) -> Self {
+        let atoms: Vec<Atom> = s
+            .trim_matches(|c: char| c.is_whitespace() || c == '.')
+            .split('.')
+            .filter(|s| !s.is_empty())
+            .filter_map(|s| Atom::new(s).ok())
+            .take(MAX_ATOMS)
+            .collect();
+        Scope::from_slice(&atoms).unwrap_or(Scope {
+            atoms: [None; MAX_ATOMS],
+        })
     }
 
     /// Creates a new [`Scope`] from a slice of [`Atom`]s.
@@ -82,12 +108,12 @@ impl Scope {
     /// ```
     ///
     /// # Errors
-    /// Returns `ScopeParseError::TooManyAtoms` if more than 8 atoms are provided.
+    /// Returns `ScopeParseError::TooManyAtoms` if more than [`MAX_ATOMS`] atoms are provided.
     pub fn from_slice(atoms: &[Atom]) -> Result<Self, ScopeParseError> {
-        if atoms.len() > 8 {
+        if atoms.len() > MAX_ATOMS {
             return Err(ScopeParseError::TooManyAtoms);
         }
-        let mut arr = [None; 8];
+        let mut arr = [None; MAX_ATOMS];
         for (i, &atom) in atoms.iter().enumerate() {
             arr[i] = Some(atom);
         }
@@ -116,7 +142,7 @@ impl Scope {
     /// assert!(!Scope::new("a.b.c").unwrap().is_prefix_of(&Scope::new("a.b").unwrap()));
     /// ```
     pub fn is_prefix_of(self, other: &Scope) -> bool {
-        for i in 0..8 {
+        for i in 0..MAX_ATOMS {
             let self_atom = self.atoms[i];
             let other_atom = other.atoms[i];
             match (self_atom, other_atom) {
@@ -218,6 +244,7 @@ impl<'de> serde::Deserialize<'de> for Scope {
 ///
 /// ```rust
 /// # use jaune::{Scope, SimpleScopeStack};
+/// # use std::str::FromStr;
 /// let scope_stack = SimpleScopeStack::from_str("source.rust meta.function.call.rust entity.name.function.rust").unwrap();
 /// assert_eq!(scope_stack.to_string(), "source.rust meta.function.call.rust entity.name.function.rust");
 /// assert_eq!(scope_stack.len(), 3);

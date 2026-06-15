@@ -1,0 +1,59 @@
+grammar: source.python
+
+=== input ===
+import os
+from typing import List
+
+@decorator
+def greet(name: str) -> str:
+    """docstring"""
+    return f"hello {name}"
+
+=== tokens ===
+"import" source.python keyword.control.import.python
+" " source.python
+"os" source.python
+⏎
+"from" source.python keyword.control.flow.python
+" " source.python
+"typing" source.python
+" " source.python
+"import" source.python keyword.control.import.python
+" " source.python
+"List" source.python
+⏎
+⏎
+"@" source.python keyword.operator.arithmetic.python
+"decorator" source.python
+⏎
+"def" source.python keyword.control.flow.python
+" " source.python
+"greet" source.python meta.function-call.python meta.function-call.generic.python
+"(" source.python meta.function-call.python punctuation.definition.arguments.begin.python
+"name" source.python meta.function-call.python
+":" source.python meta.function-call.python punctuation.separator.colon.python
+" " source.python meta.function-call.python
+"str" source.python meta.function-call.python support.type.python
+")" source.python meta.function-call.python punctuation.definition.arguments.end.python
+" " source.python
+"->" source.python invalid.illegal.annotation.python
+" " source.python
+"str" source.python support.type.python
+":" source.python punctuation.separator.colon.python
+⏎
+"    " source.python
+"\"\"\"" source.python string.quoted.multi.python punctuation.definition.string.begin.python
+"docstring" source.python string.quoted.multi.python
+"\"\"\"" source.python string.quoted.multi.python punctuation.definition.string.end.python
+⏎
+"    " source.python
+"return" source.python keyword.control.flow.python
+" " source.python
+"f" source.python meta.fstring.python string.interpolated.python string.quoted.single.python storage.type.string.python
+"\"" source.python meta.fstring.python punctuation.definition.string.begin.python string.interpolated.python string.quoted.single.python
+"hello " source.python meta.fstring.python string.interpolated.python string.quoted.single.python
+"{" source.python meta.fstring.python constant.character.format.placeholder.other.python
+"name" source.python meta.fstring.python
+"}" source.python meta.fstring.python constant.character.format.placeholder.other.python
+"\"" source.python meta.fstring.python punctuation.definition.string.end.python string.interpolated.python string.quoted.single.python
+⏎

@@ -1,0 +1,76 @@
+grammar: source.cs
+
+=== input ===
+using System;
+
+namespace App {
+    public class Program {
+        static void Main() {
+            var n = 42;
+            Console.WriteLine($"n={n}");
+        }
+    }
+}
+
+=== tokens ===
+"using" source.cs keyword.other.directive.using.cs
+" " source.cs
+"System" source.cs entity.name.type.namespace.cs
+";" source.cs punctuation.terminator.statement.cs
+⏎
+⏎
+"namespace" source.cs storage.type.namespace.cs
+" " source.cs
+"App" source.cs entity.name.type.namespace.cs
+" " source.cs
+"{" source.cs punctuation.curlybrace.open.cs
+⏎
+"    " source.cs
+"public" source.cs storage.modifier.public.cs
+" " source.cs
+"class" source.cs storage.type.class.cs
+" " source.cs
+"Program" source.cs entity.name.type.class.cs
+" " source.cs
+"{" source.cs punctuation.curlybrace.open.cs
+⏎
+"        " source.cs
+"static" source.cs storage.modifier.static.cs
+" void " source.cs
+"Main" source.cs entity.name.function.cs
+"(" source.cs punctuation.parenthesis.open.cs
+")" source.cs punctuation.parenthesis.close.cs
+" " source.cs
+"{" source.cs punctuation.curlybrace.open.cs
+⏎
+"            " source.cs
+"var" source.cs variable.other.readwrite.cs
+" " source.cs
+"n" source.cs variable.other.readwrite.cs
+" " source.cs
+"=" source.cs keyword.operator.assignment.cs
+" " source.cs
+"42" source.cs constant.numeric.decimal.cs
+";" source.cs punctuation.terminator.statement.cs
+⏎
+"            " source.cs
+"Console" source.cs variable.other.object.cs
+"." source.cs
+"WriteLine" source.cs variable.other.readwrite.cs
+"(" source.cs punctuation.parenthesis.open.cs
+"$\"" source.cs string.quoted.double.cs punctuation.definition.string.begin.cs
+"n=" source.cs string.quoted.double.cs
+"{" source.cs string.quoted.double.cs meta.embedded.interpolation.cs punctuation.definition.interpolation.begin.cs
+"n" source.cs string.quoted.double.cs meta.embedded.interpolation.cs variable.other.readwrite.cs
+"}" source.cs string.quoted.double.cs meta.embedded.interpolation.cs punctuation.definition.interpolation.end.cs
+"\"" source.cs string.quoted.double.cs punctuation.definition.string.end.cs
+")" source.cs punctuation.parenthesis.close.cs
+";" source.cs punctuation.terminator.statement.cs
+⏎
+"        " source.cs
+"}" source.cs punctuation.curlybrace.close.cs
+⏎
+"    }" source.cs
+⏎
+"}" source.cs punctuation.curlybrace.close.cs
+⏎

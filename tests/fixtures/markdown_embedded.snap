@@ -1,0 +1,89 @@
+grammar: text.html.markdown
+
+=== input ===
+# Title
+
+Some **bold** and `code` text.
+
+```js
+const x = 42;
+```
+
+```python
+def f(): return 1
+```
+
+- a list item
+> a quote
+
+=== tokens ===
+"#" text.html.markdown heading.1.markdown punctuation.definition.heading.markdown
+" " text.html.markdown heading.1.markdown
+"Title" text.html.markdown heading.1.markdown entity.name.section.markdown
+⏎
+⏎
+"S" text.html.markdown meta.paragraph.markdown
+"ome" text.html.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown meta.paragraph.markdown
+"*" text.html.markdown meta.paragraph.markdown keyword.operator.arithmetic.ts
+"*" text.html.markdown meta.paragraph.markdown keyword.operator.arithmetic.ts
+"bold" text.html.markdown meta.paragraph.markdown variable.other.readwrite.ts
+"*" text.html.markdown meta.paragraph.markdown keyword.operator.arithmetic.ts
+"*" text.html.markdown meta.paragraph.markdown keyword.operator.arithmetic.ts
+" " text.html.markdown meta.paragraph.markdown
+"and" text.html.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown meta.paragraph.markdown
+"`" text.html.markdown meta.paragraph.markdown string.template.ts punctuation.definition.string.template.begin.ts
+"code" text.html.markdown meta.paragraph.markdown meta.paragraph.markdown entity.name.function.tagged-template.ts
+"`" text.html.markdown meta.paragraph.markdown meta.paragraph.markdown string.template.ts punctuation.definition.string.template.begin.ts
+" " text.html.markdown meta.paragraph.markdown meta.paragraph.markdown meta.paragraph.markdown
+"text" text.html.markdown meta.paragraph.markdown meta.paragraph.markdown meta.paragraph.markdown meta.paragraph.markdown variable.other.readwrite.ts
+"." text.html.markdown meta.paragraph.markdown meta.paragraph.markdown meta.paragraph.markdown meta.paragraph.markdown punctuation.accessor.ts
+⏎
+⏎
+"```" text.html.markdown markup.fenced_code.block.markdown punctuation.definition.markdown
+"js" text.html.markdown markup.fenced_code.block.markdown fenced_code.block.language.markdown
+⏎
+"c" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown
+"onst" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown
+"x" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown
+"=" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown keyword.operator.assignment.ts
+" " text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown
+"42" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown constant.numeric.decimal.ts
+";" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown punctuation.terminator.statement.ts
+⏎
+"```" text.html.markdown markup.fenced_code.block.markdown punctuation.definition.markdown
+⏎
+⏎
+"```" text.html.markdown markup.fenced_code.block.markdown punctuation.definition.markdown
+"python" text.html.markdown markup.fenced_code.block.markdown fenced_code.block.language.markdown
+⏎
+"d" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown
+"ef" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown
+"f" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown meta.paragraph.markdown variable.other.readwrite.ts
+"(" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown meta.paragraph.markdown meta.brace.round.ts
+")" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown meta.paragraph.markdown meta.brace.round.ts
+": " text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown meta.paragraph.markdown
+"return" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown meta.paragraph.markdown
+"1" text.html.markdown markup.fenced_code.block.markdown meta.paragraph.markdown meta.paragraph.markdown constant.numeric.decimal.ts
+⏎
+"```" text.html.markdown markup.fenced_code.block.markdown punctuation.definition.markdown
+⏎
+⏎
+"-" text.html.markdown markup.list.unnumbered.markdown punctuation.definition.list.begin.markdown
+" " text.html.markdown markup.list.unnumbered.markdown
+"a" text.html.markdown markup.list.unnumbered.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown markup.list.unnumbered.markdown meta.paragraph.markdown
+"list" text.html.markdown markup.list.unnumbered.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown markup.list.unnumbered.markdown meta.paragraph.markdown
+"item" text.html.markdown markup.list.unnumbered.markdown meta.paragraph.markdown variable.other.readwrite.ts
+⏎
+"> " text.html.markdown markup.list.unnumbered.markdown markup.quote.markdown
+"a" text.html.markdown markup.list.unnumbered.markdown markup.quote.markdown meta.paragraph.markdown variable.other.readwrite.ts
+" " text.html.markdown markup.list.unnumbered.markdown markup.quote.markdown meta.paragraph.markdown
+"quote" text.html.markdown markup.list.unnumbered.markdown markup.quote.markdown meta.paragraph.markdown variable.other.readwrite.ts
+⏎
