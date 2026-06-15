@@ -53,7 +53,7 @@ checksum = "877a4ace8713b0bcf2a4e7eec82529c029f1d0619886d18145fea96c3ffe5c0f"
 [[package]]
 name = "fancy-regex"
 version = "0.18.0"
-source = "git+https://github.com/fancy-regex/fancy-regex?rev=34363aad51315500f4253482df3257c32ffb067d#34363aad51315500f4253482df3257c32ffb067d"
+source = "git+https://github.com/fancy-regex/fancy-regex?branch=regexset_find_input#34363aad51315500f4253482df3257c32ffb067d"
 dependencies = [
  "bit-set",
  "regex-automata",
