@@ -1,0 +1,129 @@
+<!-- grammar: text.html.markdown -->
+
+# Title
+<!--<0- markup.heading.markdown -->
+<!--<0- heading.1.markdown -->
+<!--<0 punctuation.definition.heading.markdown -->
+<!--<2- entity.name.section.markdown -->
+<!--<2- variable.other.readwrite.ts -->
+
+Some **bold** and `code` text.
+<!--<0 variable.other.readwrite.ts -->
+<!-- ^- keyword.operator.arithmetic.ts -->
+<!--   ^--- variable.other.readwrite.ts -->
+<!--       ^- keyword.operator.arithmetic.ts -->
+<!--          ^-- variable.other.readwrite.ts -->
+<!--              ^----------- string.template.ts -->
+<!--              ^ punctuation.definition.string.template.begin.ts -->
+
+```js
+//<0- string.template.ts
+//<0- string.template.ts
+//<0 punctuation.definition.string.template.begin.ts
+//<1- string.template.ts
+//<1 punctuation.definition.string.template.begin.ts
+//^-- string.template.ts
+//^ punctuation.definition.string.template.begin.ts
+// ^- variable.other.readwrite.ts
+const x = 42;
+//<0--------- string.template.ts
+//<0--------- string.template.ts
+//<0--------- string.template.ts
+//<0--------- string.template.ts
+//<0- variable.other.readwrite.ts
+//    ^ variable.other.readwrite.ts
+//      ^ keyword.operator.assignment.ts
+//        ^- constant.numeric.decimal.ts
+//          ^ punctuation.terminator.statement.ts
+```
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 punctuation.definition.string.template.begin.ts -->
+<!--<1 string.template.ts -->
+<!--<1 punctuation.definition.string.template.begin.ts -->
+<!--<2 string.template.ts -->
+<!--<2 punctuation.definition.string.template.begin.ts -->
+
+```python
+#<0------ string.template.ts
+#<0------ string.template.ts
+#<0------ string.template.ts
+#<0------ string.template.ts
+#<0------ string.template.ts
+#<0------ string.template.ts
+#<0------ string.template.ts
+#<0------ string.template.ts
+#<0 punctuation.definition.string.template.begin.ts
+#^------- string.template.ts
+#^ punctuation.definition.string.template.begin.ts
+# ^------ string.template.ts
+# ^ punctuation.definition.string.template.begin.ts
+#  ^----- variable.other.readwrite.ts
+def f(): return 1
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0-------------- string.template.ts
+#<0 variable.other.readwrite.ts
+```
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 string.template.ts -->
+<!--<0 punctuation.definition.string.template.begin.ts -->
+<!--<1 string.template.ts -->
+<!--<1 punctuation.definition.string.template.begin.ts -->
+<!--<2 string.template.ts -->
+<!--<2 punctuation.definition.string.template.begin.ts -->
+
+- a list item
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0------- string.template.ts -->
+<!--<0 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--^--- variable.other.readwrite.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+> a quote
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0--- string.template.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--^---- variable.other.readwrite.ts -->

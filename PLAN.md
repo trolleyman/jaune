@@ -30,13 +30,26 @@ UPDATE_SNAPSHOTS=1 cargo test --test samples    # rewrite both sample directorie
 
 # Issues
 
-1. [ ] Fix the missing `tests/samples/textmate-grammars-themes/markdown.embedded.sample` reference
+1. [x] Fix the missing `tests/samples/textmate-grammars-themes/markdown.embedded.sample` reference
    render. `scripts/reference-tokens.ts` currently offers *every* injection grammar to
    `vscode-textmate` for *every* scope (`getInjections: () => injectionScopes`). On the deeply
    nested Markdown-with-fenced-code sample this over-injection sends the JS engine into
    "Maximum call stack size exceeded", so that one sample is skipped on the reference side (jaune
    renders it fine). Narrow `getInjections(scopeName)` to only return injection grammars whose
    `injectionSelector` actually targets `scopeName`, then regenerate and confirm the sample appears.
+
+   Done: `getInjections(scopeName)` now parses each `injectionSelector`'s positive scope atoms and
+   only offers an injection when a *language-scoped* atom (one naming a loaded grammar root, e.g.
+   `source.js`, `text.html`) is dot-compatible with `scopeName`; injections selected purely by
+   generic scopes (`meta.tag`, …) keep the old broad behaviour. Narrowing alone wasn't sufficient,
+   though: the vendored `mdc` grammar is a near-clone of Markdown that re-includes
+   `text.html.markdown`, and its `L:text.html.markdown` selector *correctly* targets Markdown — so
+   injected back in it recurses Markdown→mdc→Markdown→… and overflows `vscode-textmate`'s recursive
+   tokenizer on even a single heading. jaune's iterative tokenizer is immune and emits no mdc scopes
+   for the sample either, so `mdc` is excluded from the reference injection set (see
+   `recursionUnsafeInjections`) to keep the oracle faithful. (The upstream `textmate-grammars-themes`
+   submodule isn't checked out in every environment; when it's absent only the `tests/samples/
+   extra-input/*.sample` corpus is regenerated, which still covers `markdown.embedded`.)
 
 2. [ ] Upgrade `fancy-regex` to pick up its `RegexSet` work, tracking
    [fancy-regex#162](https://github.com/fancy-regex/fancy-regex/issues/162) (whether fancy-regex

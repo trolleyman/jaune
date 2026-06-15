@@ -2,4 +2,5 @@
 node_modules
 /.bun-home
 /.bun-tmp
+/.bun-cache
 /tests/samples/.reference-tokens
