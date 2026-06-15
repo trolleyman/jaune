@@ -1,0 +1,81 @@
+// grammar: source.vala
+
+// ExampleApp.vala
+//<0-------------- comment.line.double-slash.vala
+//<0 punctuation.definition.comment.vala
+
+public class ExampleApp : Gtk.Application {
+//<0-- keyword.vala
+//     ^---- keyword.vala
+//           ^--------- entity.name.type.vala
+//                        ^-- entity.name.type.vala
+//                            ^---------- entity.name.type.vala
+  public ExampleApp () {
+//^----- keyword.vala
+//       ^--------- entity.name.type.vala
+    Object (application_id: "com.example.App");
+//  ^----- entity.name.type.vala
+//          ^------------- variable.other.vala
+//                          ^---------------- string.quoted.double.vala
+  }
+
+  public override void activate () {
+//^----- keyword.vala
+//       ^------- keyword.vala
+//                ^--- keyword.vala
+//                     ^------- entity.name.function.vala
+    var win = new Gtk.ApplicationWindow (this);
+//  ^-- keyword.vala
+//      ^-- variable.other.vala
+//            ^-- keyword.vala
+//                ^-- entity.name.type.vala
+//                    ^---------------- entity.name.type.vala
+//                                       ^--- keyword.vala
+
+    var btn = new Gtk.Button.with_label ("Hello World");
+//  ^-- keyword.vala
+//      ^-- variable.other.vala
+//            ^-- keyword.vala
+//                ^-- entity.name.type.vala
+//                    ^----- entity.name.type.vala
+//                           ^--------- entity.name.function.vala
+//                                       ^------------ string.quoted.double.vala
+    btn.clicked.connect (win.close);
+//  ^-- variable.other.vala
+//      ^------ variable.other.vala
+//              ^------ entity.name.function.vala
+//                       ^-- variable.other.vala
+//                           ^---- variable.other.vala
+
+    win.child = btn;
+//  ^-- variable.other.vala
+//      ^---- variable.other.vala
+//              ^-- variable.other.vala
+    win.present ();
+//  ^-- variable.other.vala
+//      ^------ entity.name.function.vala
+  }
+
+  public static int main (string[] args) {
+//^----- keyword.vala
+//       ^----- keyword.vala
+//              ^-- keyword.vala
+//                  ^--- entity.name.function.vala
+//                        ^----- keyword.vala
+//                                 ^--- variable.other.vala
+    var app = new ExampleApp ();
+//  ^-- keyword.vala
+//      ^-- variable.other.vala
+//            ^-- keyword.vala
+//                ^--------- entity.name.type.vala
+    return app.run (args);
+//  ^----- keyword.vala
+//         ^-- variable.other.vala
+//             ^-- entity.name.function.vala
+//                  ^--- variable.other.vala
+  }
+}
+
+// From https://vala.dev/
+//<0--------------------- comment.line.double-slash.vala
+//<0 punctuation.definition.comment.vala

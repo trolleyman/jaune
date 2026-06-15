@@ -1,0 +1,153 @@
+-- grammar: source.surrealql
+
+-- Query 1: Using record links to select from the seller table
+--<0---------------------------------------------------------- comment.line.double-dash
+SELECT
+--<0-- keyword.control.select.surrealql
+  name,
+  seller.name
+FROM product LIMIT 4;
+--<0 keyword.control.from.surrealql
+--           ^---- keyword.control.limit.surrealql
+--                 ^ constant.numeric.int
+
+
+-- Query 2: Using graph relations to select from the person and product table
+--<0------------------------------------------------------------------------- comment.line.double-dash
+SELECT
+--<0-- keyword.control.select.surrealql
+    time.created_at as order_date,
+--                  ^- keyword.control.as.surrealql
+    product_name,
+    <-person.name as person_name,
+--  ^- keyword.operator.arrow.surrealql
+--                ^- keyword.control.as.surrealql
+    ->product.details
+--  ^- keyword.operator.arrow.surrealql
+FROM order LIMIT 4;
+--<0 keyword.control.from.surrealql
+--   ^---- keyword.control.order.surrealql
+--         ^---- keyword.control.limit.surrealql
+--               ^ constant.numeric.int
+
+
+-- Query 3: Conditional filtering based on an embedded object property.
+--<0------------------------------------------------------------------- comment.line.double-dash
+SELECT
+--<0-- keyword.control.select.surrealql
+  name,
+  email
+FROM person
+--<0 keyword.control.from.surrealql
+WHERE address.country ?= "England" LIMIT 4;
+--<0- keyword.control.where.surrealql
+--                    ^- keyword.operator.any-equal.surrealql
+--                       ^-------- string.quoted.double
+--                                 ^---- keyword.control.limit.surrealql
+--                                       ^ constant.numeric.int
+
+
+-- Query 4: Conditional filtering using relationships.
+--<0-------------------------------------------------- comment.line.double-dash
+SELECT * FROM review
+--<0-- keyword.control.select.surrealql
+--     ^ keyword.operator.multiply.surrealql
+--       ^--- keyword.control.from.surrealql
+WHERE ->product.sub_category ?= "Activewear" LIMIT 4;
+--<0- keyword.control.where.surrealql
+--    ^- keyword.operator.arrow.surrealql
+--                           ^- keyword.operator.any-equal.surrealql
+--                              ^----------- string.quoted.double
+--                                           ^---- keyword.control.limit.surrealql
+--                                                 ^ constant.numeric.int
+
+
+-- Query 5: Count orders based on order status
+--<0------------------------------------------ comment.line.double-dash
+SELECT count() FROM order
+--<0-- keyword.control.select.surrealql
+--     ^---- support.function
+--          ^- meta.function.arguments
+--             ^--- keyword.control.from.surrealql
+--                  ^---- keyword.control.order.surrealql
+WHERE order_status IN [ "processed", "shipped"]
+--<0- keyword.control.where.surrealql
+--                 ^- keyword.control.in.surrealql
+--                      ^---------- string.quoted.double
+--                                 ^ punctuation.separator.array
+--                                   ^-------- string.quoted.double
+GROUP ALL LIMIT 4;
+--<0- keyword.control.group.surrealql
+--    ^-- keyword.control.all.surrealql
+--        ^---- keyword.control.limit.surrealql
+--              ^ constant.numeric.int
+
+
+-- Query 6: Get a deduplicated list of products that were ordered
+--<0------------------------------------------------------------- comment.line.double-dash
+SELECT
+--<0-- keyword.control.select.surrealql
+    array::distinct(product_name) as ordered_products
+--  ^-------------- support.function
+--                 ^------------- meta.function.arguments
+--                                ^- keyword.control.as.surrealql
+FROM order
+--<0 keyword.control.from.surrealql
+--   ^---- keyword.control.order.surrealql
+GROUP ALL LIMIT 4;
+--<0- keyword.control.group.surrealql
+--    ^-- keyword.control.all.surrealql
+--        ^---- keyword.control.limit.surrealql
+--              ^ constant.numeric.int
+
+
+-- Query 7: Get the average price per product category
+--<0-------------------------------------------------- comment.line.double-dash
+SELECT
+--<0-- keyword.control.select.surrealql
+    ->product.category AS product_category,
+--  ^- keyword.operator.arrow.surrealql
+--                     ^- keyword.control.as.surrealql
+    math::mean(price) AS avg_price
+--  ^--------- support.function
+--            ^------ meta.function.arguments
+--                    ^- keyword.control.as.surrealql
+FROM order
+--<0 keyword.control.from.surrealql
+--   ^---- keyword.control.order.surrealql
+GROUP BY product_category
+--<0- keyword.control.group.surrealql
+--    ^- keyword.control.by.surrealql
+ORDER BY avg_price DESC LIMIT 4;
+--<0- keyword.control.order.surrealql
+--    ^- keyword.control.by.surrealql
+--                 ^--- keyword.control.desc.surrealql
+--                      ^---- keyword.control.limit.surrealql
+--                            ^ constant.numeric.int
+
+
+-- Query 8: encapsulating logic in a function
+--<0----------------------------------------- comment.line.double-dash
+RETURN fn::number_of_unfulfilled_orders();
+--<0-- keyword.control.return.surrealql
+--     ^------------------------------- support.function
+--                                     ^- meta.function.arguments
+
+
+-- Query 9: using a custom fuction for currency conversion
+--<0------------------------------------------------------ comment.line.double-dash
+SELECT
+--<0-- keyword.control.select.surrealql
+    product_name,
+    fn::pound_to_usd(price) AS price_usd
+--  ^--------------- support.function
+--                  ^------ meta.function.arguments
+--                          ^- keyword.control.as.surrealql
+FROM order LIMIT 4;
+--<0 keyword.control.from.surrealql
+--   ^---- keyword.control.order.surrealql
+--         ^---- keyword.control.limit.surrealql
+--               ^ constant.numeric.int
+
+-- From https://surrealdb.com/docs/surrealql/demo#sample-queries
+--<0------------------------------------------------------------ comment.line.double-dash

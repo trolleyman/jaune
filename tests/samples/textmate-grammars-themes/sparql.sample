@@ -1,0 +1,36 @@
+-- grammar: source.sparql
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+--<0--- keyword.operator.turtle
+--     ^---- constant.complex.turtle
+--     ^---- storage.type.PNAME_NS.turtle
+--           ^--------------------------- entity.name.type.iriref.turtle
+SELECT ?name (COUNT(?friend) AS ?count)
+--<0-- keyword.control.sparql
+--     ^---- constant.variable.sparql.turtle
+--            ^---- support.function.sparql
+--                  ^------ constant.variable.sparql.turtle
+--                           ^- keyword.control.sparql
+--                              ^----- constant.variable.sparql.turtle
+WHERE { 
+--<0- keyword.control.sparql
+    ?person foaf:name ?name . 
+--  ^------ constant.variable.sparql.turtle
+--          ^-------- constant.complex.turtle
+--          ^---- storage.type.PNAME_NS.turtle
+--               ^--- support.variable.PN_LOCAL.turtle
+--                    ^---- constant.variable.sparql.turtle
+    ?person foaf:knows ?friend . 
+--  ^------ constant.variable.sparql.turtle
+--          ^--------- constant.complex.turtle
+--          ^---- storage.type.PNAME_NS.turtle
+--               ^---- support.variable.PN_LOCAL.turtle
+--                     ^------ constant.variable.sparql.turtle
+} GROUP BY ?person ?name
+--^---- keyword.control.sparql
+--      ^- keyword.control.sparql
+--         ^------ constant.variable.sparql.turtle
+--                 ^---- constant.variable.sparql.turtle
+
+# From https://www.w3.org/TR/sparql11-overview/#sparql11-query
+--<0---------------------------------------------------------- comment.line.number-sign.turtle

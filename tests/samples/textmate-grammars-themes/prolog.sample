@@ -1,0 +1,1128 @@
+% grammar: source.prolog
+
+#!/usr/bin/swipl
+% vim: ft=prolog textwidth=80 tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+%<0------------------------------------------------------------------------- comment.line.percent-sign.prolog
+
+map_size(78, 23).
+%<0-------------- meta.fact.prolog
+%<0----- entity.name.function.fact.prolog
+%       ^ punctuation.definition.parameters.begin
+%        ^- constant.numeric.integer.prolog
+%            ^- constant.numeric.integer.prolog
+%              ^ punctuation.definition.parameters.end
+%               ^ keyword.control.fact.end.prolog
+map_upper_bound(XMax, YMax) :-
+%<0--------------------------- meta.clause.head.prolog
+%<0------------ entity.name.function.clause.prolog
+%              ^ punctuation.definition.parameters.begin
+%               ^--- variable.parameter.uppercase.prolog
+%                     ^--- variable.parameter.uppercase.prolog
+%                         ^ punctuation.definition.parameters.end
+%                           ^- keyword.control.clause.bodybegin.prolog
+    map_size(XSize, YSize),
+%<0------------------------ meta.clause.body.prolog
+%<0---------- meta.clause.body.prolog
+%            ^---- variable.parameter.uppercase.prolog
+%                 ^- meta.clause.body.prolog
+%                   ^---- variable.parameter.uppercase.prolog
+%                        ^- meta.clause.body.prolog
+    XMax is XSize - 1,
+%<0------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--- variable.parameter.uppercase.prolog
+%       ^--- keyword.operator.prolog
+%           ^---- variable.parameter.uppercase.prolog
+%                ^ meta.clause.body.prolog
+%                 ^ keyword.operator.prolog
+%                  ^ meta.clause.body.prolog
+%                   ^ constant.numeric.integer.prolog
+%                    ^ meta.clause.body.prolog
+    YMax is YSize - 1.
+%<0------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--- variable.parameter.uppercase.prolog
+%       ^--- keyword.operator.prolog
+%           ^---- variable.parameter.uppercase.prolog
+%                ^ meta.clause.body.prolog
+%                 ^ keyword.operator.prolog
+%                  ^ meta.clause.body.prolog
+%                   ^ constant.numeric.integer.prolog
+%                    ^ keyword.control.clause.bodyend.prolog
+
+in_map(X, Y) :-
+%<0------------ meta.clause.head.prolog
+%<0--- entity.name.function.clause.prolog
+%     ^ punctuation.definition.parameters.begin
+%      ^ variable.parameter.uppercase.prolog
+%         ^ variable.parameter.uppercase.prolog
+%          ^ punctuation.definition.parameters.end
+%            ^- keyword.control.clause.bodybegin.prolog
+    X >= 0,
+%<0-------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^ variable.parameter.uppercase.prolog
+%    ^ meta.clause.body.prolog
+%     ^- keyword.operator.prolog
+%       ^ meta.clause.body.prolog
+%        ^ constant.numeric.integer.prolog
+%         ^ meta.clause.body.prolog
+    Y >= 0,
+%<0-------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^ variable.parameter.uppercase.prolog
+%    ^ meta.clause.body.prolog
+%     ^- keyword.operator.prolog
+%       ^ meta.clause.body.prolog
+%        ^ constant.numeric.integer.prolog
+%         ^ meta.clause.body.prolog
+    map_size(XSize, YSize),
+%<0------------------------ meta.clause.body.prolog
+%<0---------- meta.clause.body.prolog
+%            ^---- variable.parameter.uppercase.prolog
+%                 ^- meta.clause.body.prolog
+%                   ^---- variable.parameter.uppercase.prolog
+%                        ^- meta.clause.body.prolog
+    X < XSize,
+%<0----------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^ variable.parameter.uppercase.prolog
+%    ^ meta.clause.body.prolog
+%     ^ keyword.operator.prolog
+%      ^ meta.clause.body.prolog
+%       ^---- variable.parameter.uppercase.prolog
+%            ^ meta.clause.body.prolog
+    Y < YSize.
+%<0----------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^ variable.parameter.uppercase.prolog
+%    ^ meta.clause.body.prolog
+%     ^ keyword.operator.prolog
+%      ^ meta.clause.body.prolog
+%       ^---- variable.parameter.uppercase.prolog
+%            ^ keyword.control.clause.bodyend.prolog
+
+tile(wall, X, Y) :- \+ in_map(X, Y).
+%<0---------------- meta.clause.head.prolog
+%<0- entity.name.function.clause.prolog
+%   ^ punctuation.definition.parameters.begin
+%    ^--- constant.other.atom.simple.prolog
+%          ^ variable.parameter.uppercase.prolog
+%             ^ variable.parameter.uppercase.prolog
+%              ^ punctuation.definition.parameters.end
+%                ^- keyword.control.clause.bodybegin.prolog
+%                  ^---------------- meta.clause.body.prolog
+%                   ^- keyword.operator.prolog
+%                     ^------- meta.clause.body.prolog
+%                             ^ variable.parameter.uppercase.prolog
+%                              ^- meta.clause.body.prolog
+%                                ^ variable.parameter.uppercase.prolog
+%                                 ^ meta.clause.body.prolog
+%                                  ^ keyword.control.clause.bodyend.prolog
+tile(floor, X, Y) :- in_map(X, Y).
+%<0----------------- meta.clause.head.prolog
+%<0- entity.name.function.clause.prolog
+%   ^ punctuation.definition.parameters.begin
+%    ^---- constant.other.atom.simple.prolog
+%           ^ variable.parameter.uppercase.prolog
+%              ^ variable.parameter.uppercase.prolog
+%               ^ punctuation.definition.parameters.end
+%                 ^- keyword.control.clause.bodybegin.prolog
+%                   ^------------- meta.clause.body.prolog
+%                    ^------ meta.clause.body.prolog
+%                           ^ variable.parameter.uppercase.prolog
+%                            ^- meta.clause.body.prolog
+%                              ^ variable.parameter.uppercase.prolog
+%                               ^ meta.clause.body.prolog
+%                                ^ keyword.control.clause.bodyend.prolog
+% tile(wall, 0, _).
+%<0---------------- comment.line.percent-sign.prolog
+% tile(wall, _, 0).
+%<0---------------- comment.line.percent-sign.prolog
+% tile(wall, X, _) :- map_upper_bound(X, _).
+%<0----------------------------------------- comment.line.percent-sign.prolog
+% tile(wall, _, Y) :- map_upper_bound(_, Y).
+%<0----------------------------------------- comment.line.percent-sign.prolog
+
+:- dynamic(player/2, messages/1).
+% ^------------------------------ meta.clause.body.prolog
+%  ^------ keyword.other
+%         ^ meta.clause.body.prolog
+%          ^----- constant.other.atom.simple.prolog
+%                ^--- meta.clause.body.prolog
+%                    ^------- constant.other.atom.simple.prolog
+%                            ^-- meta.clause.body.prolog
+%                               ^ keyword.control.clause.bodyend.prolog
+
+player(2,3).
+%<0--------- meta.fact.prolog
+%<0--- entity.name.function.fact.prolog
+%     ^ punctuation.definition.parameters.begin
+%      ^ constant.numeric.integer.prolog
+%        ^ constant.numeric.integer.prolog
+%         ^ punctuation.definition.parameters.end
+%          ^ keyword.control.fact.end.prolog
+messages(["", ""]).
+%<0---------------- meta.fact.prolog
+%<0----- entity.name.function.fact.prolog
+%       ^ punctuation.definition.parameters.begin
+%         ^- string.quoted.double.prolog
+%             ^- string.quoted.double.prolog
+%                ^ punctuation.definition.parameters.end
+%                 ^ keyword.control.fact.end.prolog
+message_lines(2).
+%<0-------------- meta.fact.prolog
+%<0---------- entity.name.function.fact.prolog
+%            ^ punctuation.definition.parameters.begin
+%             ^ constant.numeric.integer.prolog
+%              ^ punctuation.definition.parameters.end
+%               ^ keyword.control.fact.end.prolog
+
+msg(Message) :-
+%<0------------ meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^------ variable.parameter.uppercase.prolog
+%          ^ punctuation.definition.parameters.end
+%            ^- keyword.control.clause.bodybegin.prolog
+    messages(Tail),
+%<0---------------- meta.clause.body.prolog
+%<0---------- meta.clause.body.prolog
+%            ^--- variable.parameter.uppercase.prolog
+%                ^- meta.clause.body.prolog
+    retractall(messages(_)),
+%<0------------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--------- support.function.builtin.prolog
+%             ^--------- meta.clause.body.prolog
+%                       ^ variable.language.anonymous.prolog
+%                        ^-- meta.clause.body.prolog
+    assertz(messages([Message|Tail])).
+%<0----------------------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------ support.function.builtin.prolog
+%          ^---------- meta.clause.body.prolog
+%                     ^------ variable.parameter.uppercase.prolog
+%                            ^ meta.clause.body.prolog
+%                             ^--- variable.parameter.uppercase.prolog
+%                                 ^-- meta.clause.body.prolog
+%                                    ^ keyword.control.clause.bodyend.prolog
+
+%%%%%%%%%%%%%%%%
+%<0------------- comment.line.percent-sign.prolog
+% drawing code %
+%<0------------- comment.line.percent-sign.prolog
+%%%%%%%%%%%%%%%%
+%<0------------- comment.line.percent-sign.prolog
+
+draw_char(_X, Y) :-
+%<0---------------- meta.clause.head.prolog
+%<0------ entity.name.function.clause.prolog
+%        ^ punctuation.definition.parameters.begin
+%         ^ variable.language.anonymous.prolog
+%             ^ variable.parameter.uppercase.prolog
+%              ^ punctuation.definition.parameters.end
+%                ^- keyword.control.clause.bodybegin.prolog
+    tty_size(YSize, _),
+%<0-------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------- support.function.builtin.prolog
+%           ^ meta.clause.body.prolog
+%            ^---- variable.parameter.uppercase.prolog
+%                 ^- meta.clause.body.prolog
+%                   ^ variable.language.anonymous.prolog
+%                    ^- meta.clause.body.prolog
+    % map_size(_, YSize),
+%<0---------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^-------------------- comment.line.percent-sign.prolog
+    Y >= YSize.
+%<0------------ meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^ variable.parameter.uppercase.prolog
+%    ^ meta.clause.body.prolog
+%     ^- keyword.operator.prolog
+%       ^ meta.clause.body.prolog
+%        ^---- variable.parameter.uppercase.prolog
+%             ^ keyword.control.clause.bodyend.prolog
+draw_char(X, Y) :-
+%<0--------------- meta.clause.head.prolog
+%<0------ entity.name.function.clause.prolog
+%        ^ punctuation.definition.parameters.begin
+%         ^ variable.parameter.uppercase.prolog
+%            ^ variable.parameter.uppercase.prolog
+%             ^ punctuation.definition.parameters.end
+%               ^- keyword.control.clause.bodybegin.prolog
+    tty_size(_, XSize),
+%<0-------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------- support.function.builtin.prolog
+%           ^ meta.clause.body.prolog
+%            ^ variable.language.anonymous.prolog
+%             ^- meta.clause.body.prolog
+%               ^---- variable.parameter.uppercase.prolog
+%                    ^- meta.clause.body.prolog
+    % map_size(XSize, _),
+%<0---------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^-------------------- comment.line.percent-sign.prolog
+    X >= XSize,
+%<0------------ meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^ variable.parameter.uppercase.prolog
+%    ^ meta.clause.body.prolog
+%     ^- keyword.operator.prolog
+%       ^ meta.clause.body.prolog
+%        ^---- variable.parameter.uppercase.prolog
+%             ^ meta.clause.body.prolog
+    NY is Y + 1,
+%<0------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^- variable.parameter.uppercase.prolog
+%     ^--- keyword.operator.prolog
+%         ^ variable.parameter.uppercase.prolog
+%          ^ meta.clause.body.prolog
+%           ^ keyword.operator.prolog
+%            ^ meta.clause.body.prolog
+%             ^ constant.numeric.integer.prolog
+%              ^ meta.clause.body.prolog
+    %nl,
+%<0----- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--- comment.line.percent-sign.prolog
+    draw_char(0, NY).
+%<0------------------ meta.clause.body.prolog
+%<0----------- meta.clause.body.prolog
+%             ^ constant.numeric.integer.prolog
+%              ^- meta.clause.body.prolog
+%                ^- variable.parameter.uppercase.prolog
+%                  ^ meta.clause.body.prolog
+%                   ^ keyword.control.clause.bodyend.prolog
+draw_char(X, Y) :-
+%<0--------------- meta.clause.head.prolog
+%<0------ entity.name.function.clause.prolog
+%        ^ punctuation.definition.parameters.begin
+%         ^ variable.parameter.uppercase.prolog
+%            ^ variable.parameter.uppercase.prolog
+%             ^ punctuation.definition.parameters.end
+%               ^- keyword.control.clause.bodybegin.prolog
+    ( X = 0
+%<0-------- meta.clause.body.prolog
+%<0--- meta.clause.body.prolog
+%     ^ variable.parameter.uppercase.prolog
+%      ^ meta.clause.body.prolog
+%       ^ keyword.operator.prolog
+%        ^ meta.clause.body.prolog
+%         ^ constant.numeric.integer.prolog
+    ->tty_goto(X, Y)
+%<0----------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--------------- meta.if.prolog
+%   ^- keyword.control.if.prolog
+%     ^------- support.function.builtin.prolog
+%             ^ meta.if.body.prolog
+%              ^ variable.parameter.uppercase.prolog
+%               ^- meta.if.body.prolog
+%                 ^ variable.parameter.uppercase.prolog
+%                  ^ meta.if.body.prolog
+    ; true
+%<0------- meta.clause.body.prolog
+%<0-- meta.if.prolog
+%<0- meta.if.body.prolog
+%   ^ keyword.control.else.prolog
+%    ^ meta.clause.body.prolog
+%     ^--- constant.other.atom.simple.prolog
+    ),
+%<0--- meta.clause.body.prolog
+%<0--- meta.clause.body.prolog
+
+    message_lines(YMsgs),
+%<0---------------------- meta.clause.body.prolog
+%<0--------------- meta.clause.body.prolog
+%                 ^---- variable.parameter.uppercase.prolog
+%                      ^- meta.clause.body.prolog
+    (  Y < YMsgs
+%<0------------- meta.clause.body.prolog
+%<0---- meta.clause.body.prolog
+%      ^ variable.parameter.uppercase.prolog
+%       ^ meta.clause.body.prolog
+%        ^ keyword.operator.prolog
+%         ^ meta.clause.body.prolog
+%          ^---- variable.parameter.uppercase.prolog
+    -> write(' ')
+%<0-------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------------ meta.if.prolog
+%   ^- keyword.control.if.prolog
+%     ^ meta.if.body.prolog
+%      ^---- support.function.builtin.prolog
+%           ^ meta.if.body.prolog
+%            ^-- constant.other.atom.quoted.prolog
+%               ^ meta.if.body.prolog
+    ; display_offset(XOff, YOff),
+%<0------------------------------ meta.clause.body.prolog
+%<0-- meta.if.prolog
+%<0- meta.if.body.prolog
+%   ^ keyword.control.else.prolog
+%    ^--------------- meta.clause.body.prolog
+%                    ^--- variable.parameter.uppercase.prolog
+%                        ^- meta.clause.body.prolog
+%                          ^--- variable.parameter.uppercase.prolog
+%                              ^- meta.clause.body.prolog
+      XMap is X + XOff,
+%<0-------------------- meta.clause.body.prolog
+%<0--- meta.clause.body.prolog
+%     ^--- variable.parameter.uppercase.prolog
+%         ^--- keyword.operator.prolog
+%             ^ variable.parameter.uppercase.prolog
+%              ^ meta.clause.body.prolog
+%               ^ keyword.operator.prolog
+%                ^ meta.clause.body.prolog
+%                 ^--- variable.parameter.uppercase.prolog
+%                     ^ meta.clause.body.prolog
+      YMap is Y + YOff,
+%<0-------------------- meta.clause.body.prolog
+%<0--- meta.clause.body.prolog
+%     ^--- variable.parameter.uppercase.prolog
+%         ^--- keyword.operator.prolog
+%             ^ variable.parameter.uppercase.prolog
+%              ^ meta.clause.body.prolog
+%               ^ keyword.operator.prolog
+%                ^ meta.clause.body.prolog
+%                 ^--- variable.parameter.uppercase.prolog
+%                     ^ meta.clause.body.prolog
+      get_character(XMap, YMap, C),
+%<0-------------------------------- meta.clause.body.prolog
+%<0----------------- meta.clause.body.prolog
+%                   ^--- variable.parameter.uppercase.prolog
+%                       ^- meta.clause.body.prolog
+%                         ^--- variable.parameter.uppercase.prolog
+%                             ^- meta.clause.body.prolog
+%                               ^ variable.parameter.uppercase.prolog
+%                                ^- meta.clause.body.prolog
+      format('~s', [C])
+%<0-------------------- meta.clause.body.prolog
+%<0--- meta.clause.body.prolog
+%     ^----- support.function.builtin.prolog
+%           ^ meta.clause.body.prolog
+%            ^--- constant.other.atom.quoted.prolog
+%                ^-- meta.clause.body.prolog
+%                   ^ variable.parameter.uppercase.prolog
+%                    ^- meta.clause.body.prolog
+    ),
+%<0--- meta.clause.body.prolog
+%<0--- meta.clause.body.prolog
+    NX is X + 1,
+%<0------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^- variable.parameter.uppercase.prolog
+%     ^--- keyword.operator.prolog
+%         ^ variable.parameter.uppercase.prolog
+%          ^ meta.clause.body.prolog
+%           ^ keyword.operator.prolog
+%            ^ meta.clause.body.prolog
+%             ^ constant.numeric.integer.prolog
+%              ^ meta.clause.body.prolog
+    draw_char(NX, Y).
+%<0------------------ meta.clause.body.prolog
+%<0----------- meta.clause.body.prolog
+%             ^- variable.parameter.uppercase.prolog
+%               ^- meta.clause.body.prolog
+%                 ^ variable.parameter.uppercase.prolog
+%                  ^ meta.clause.body.prolog
+%                   ^ keyword.control.clause.bodyend.prolog
+
+display_offset(X, Y) :-
+%<0-------------------- meta.clause.head.prolog
+%<0----------- entity.name.function.clause.prolog
+%             ^ punctuation.definition.parameters.begin
+%              ^ variable.parameter.uppercase.prolog
+%                 ^ variable.parameter.uppercase.prolog
+%                  ^ punctuation.definition.parameters.end
+%                    ^- keyword.control.clause.bodybegin.prolog
+    player(XPos, YPos),
+%<0-------------------- meta.clause.body.prolog
+%<0-------- meta.clause.body.prolog
+%          ^--- variable.parameter.uppercase.prolog
+%              ^- meta.clause.body.prolog
+%                ^--- variable.parameter.uppercase.prolog
+%                    ^- meta.clause.body.prolog
+    tty_size(YSize, XSize),
+%<0------------------------ meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------- support.function.builtin.prolog
+%           ^ meta.clause.body.prolog
+%            ^---- variable.parameter.uppercase.prolog
+%                 ^- meta.clause.body.prolog
+%                   ^---- variable.parameter.uppercase.prolog
+%                        ^- meta.clause.body.prolog
+    message_lines(YMsgs),
+%<0---------------------- meta.clause.body.prolog
+%<0--------------- meta.clause.body.prolog
+%                 ^---- variable.parameter.uppercase.prolog
+%                      ^- meta.clause.body.prolog
+    X is XPos - floor(XSize / 2),
+%<0------------------------------ meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^ variable.parameter.uppercase.prolog
+%    ^--- keyword.operator.prolog
+%        ^--- variable.parameter.uppercase.prolog
+%            ^ meta.clause.body.prolog
+%             ^ keyword.operator.prolog
+%              ^ meta.clause.body.prolog
+%               ^---- support.function.builtin.prolog
+%                    ^ meta.clause.body.prolog
+%                     ^---- variable.parameter.uppercase.prolog
+%                          ^-- meta.clause.body.prolog
+%                             ^ constant.numeric.integer.prolog
+%                              ^- meta.clause.body.prolog
+    Y is YPos - floor((YSize - YMsgs) / 2).
+%<0---------------------------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^ variable.parameter.uppercase.prolog
+%    ^--- keyword.operator.prolog
+%        ^--- variable.parameter.uppercase.prolog
+%            ^ meta.clause.body.prolog
+%             ^ keyword.operator.prolog
+%              ^ meta.clause.body.prolog
+%               ^---- support.function.builtin.prolog
+%                    ^- meta.clause.body.prolog
+%                      ^---- variable.parameter.uppercase.prolog
+%                           ^ meta.clause.body.prolog
+%                            ^ keyword.operator.prolog
+%                             ^ meta.clause.body.prolog
+%                              ^---- variable.parameter.uppercase.prolog
+%                                   ^--- meta.clause.body.prolog
+%                                       ^ constant.numeric.integer.prolog
+%                                        ^ meta.clause.body.prolog
+%                                         ^ keyword.control.clause.bodyend.prolog
+
+display_msgs(Line) :- message_lines(Line).
+%<0------------------ meta.clause.head.prolog
+%<0--------- entity.name.function.clause.prolog
+%           ^ punctuation.definition.parameters.begin
+%            ^--- variable.parameter.uppercase.prolog
+%                ^ punctuation.definition.parameters.end
+%                  ^- keyword.control.clause.bodybegin.prolog
+%                    ^-------------------- meta.clause.body.prolog
+%                     ^------------- meta.clause.body.prolog
+%                                   ^--- variable.parameter.uppercase.prolog
+%                                       ^ meta.clause.body.prolog
+%                                        ^ keyword.control.clause.bodyend.prolog
+display_msgs(Line) :-
+%<0------------------ meta.clause.head.prolog
+%<0--------- entity.name.function.clause.prolog
+%           ^ punctuation.definition.parameters.begin
+%            ^--- variable.parameter.uppercase.prolog
+%                ^ punctuation.definition.parameters.end
+%                  ^- keyword.control.clause.bodybegin.prolog
+    message_lines(LineCount),
+%<0-------------------------- meta.clause.body.prolog
+%<0--------------- meta.clause.body.prolog
+%                 ^-------- variable.parameter.uppercase.prolog
+%                          ^- meta.clause.body.prolog
+    MsgId is LineCount - Line,
+%<0--------------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^---- variable.parameter.uppercase.prolog
+%        ^--- keyword.operator.prolog
+%            ^-------- variable.parameter.uppercase.prolog
+%                     ^ meta.clause.body.prolog
+%                      ^ keyword.operator.prolog
+%                       ^ meta.clause.body.prolog
+%                        ^--- variable.parameter.uppercase.prolog
+%                            ^ meta.clause.body.prolog
+    messages(Messages),
+%<0-------------------- meta.clause.body.prolog
+%<0---------- meta.clause.body.prolog
+%            ^------- variable.parameter.uppercase.prolog
+%                    ^- meta.clause.body.prolog
+    nth1(MsgId, Messages, Message),
+%<0-------------------------------- meta.clause.body.prolog
+%<0------ meta.clause.body.prolog
+%        ^---- variable.parameter.uppercase.prolog
+%             ^- meta.clause.body.prolog
+%               ^------- variable.parameter.uppercase.prolog
+%                       ^- meta.clause.body.prolog
+%                         ^------ variable.parameter.uppercase.prolog
+%                                ^- meta.clause.body.prolog
+    tty_goto(0, Line),
+%<0------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------- support.function.builtin.prolog
+%           ^ meta.clause.body.prolog
+%            ^ constant.numeric.integer.prolog
+%             ^- meta.clause.body.prolog
+%               ^--- variable.parameter.uppercase.prolog
+%                   ^- meta.clause.body.prolog
+    format('~s', [Message]),
+%<0------------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^----- support.function.builtin.prolog
+%         ^ meta.clause.body.prolog
+%          ^--- constant.other.atom.quoted.prolog
+%              ^-- meta.clause.body.prolog
+%                 ^------ variable.parameter.uppercase.prolog
+%                        ^-- meta.clause.body.prolog
+    NextLine is Line + 1,
+%<0---------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------- variable.parameter.uppercase.prolog
+%           ^--- keyword.operator.prolog
+%               ^--- variable.parameter.uppercase.prolog
+%                   ^ meta.clause.body.prolog
+%                    ^ keyword.operator.prolog
+%                     ^ meta.clause.body.prolog
+%                      ^ constant.numeric.integer.prolog
+%                       ^ meta.clause.body.prolog
+    display_msgs(NextLine).
+%<0------------------------ meta.clause.body.prolog
+%<0-------------- meta.clause.body.prolog
+%                ^------- variable.parameter.uppercase.prolog
+%                        ^ meta.clause.body.prolog
+%                         ^ keyword.control.clause.bodyend.prolog
+
+draw :-
+%<0---- meta.clause.head.prolog
+%<0- entity.name.function.clause.prolog
+%    ^- keyword.control.clause.bodybegin.prolog
+    once(draw_char(0, 0)),
+%<0----------------------- meta.clause.body.prolog
+%<0---------------- meta.clause.body.prolog
+%                  ^ constant.numeric.integer.prolog
+%                   ^- meta.clause.body.prolog
+%                     ^ constant.numeric.integer.prolog
+%                      ^-- meta.clause.body.prolog
+    map_size(_, YSize),
+%<0-------------------- meta.clause.body.prolog
+%<0---------- meta.clause.body.prolog
+%            ^ variable.language.anonymous.prolog
+%             ^- meta.clause.body.prolog
+%               ^---- variable.parameter.uppercase.prolog
+%                    ^- meta.clause.body.prolog
+    display_msgs(0),
+%<0----------------- meta.clause.body.prolog
+%<0-------------- meta.clause.body.prolog
+%                ^ constant.numeric.integer.prolog
+%                 ^- meta.clause.body.prolog
+    tty_goto(0, YSize).
+%<0-------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------- support.function.builtin.prolog
+%           ^ meta.clause.body.prolog
+%            ^ constant.numeric.integer.prolog
+%             ^- meta.clause.body.prolog
+%               ^---- variable.parameter.uppercase.prolog
+%                    ^ meta.clause.body.prolog
+%                     ^ keyword.control.clause.bodyend.prolog
+
+% character displayed for a position on map
+%<0---------------------------------------- comment.line.percent-sign.prolog
+get_character(X, Y, "@") :- player(X, Y).
+%<0------------------------ meta.clause.head.prolog
+%<0---------- entity.name.function.clause.prolog
+%            ^ punctuation.definition.parameters.begin
+%             ^ variable.parameter.uppercase.prolog
+%                ^ variable.parameter.uppercase.prolog
+%                   ^-- string.quoted.double.prolog
+%                      ^ punctuation.definition.parameters.end
+%                        ^- keyword.control.clause.bodybegin.prolog
+%                          ^------------- meta.clause.body.prolog
+%                           ^------ meta.clause.body.prolog
+%                                  ^ variable.parameter.uppercase.prolog
+%                                   ^- meta.clause.body.prolog
+%                                     ^ variable.parameter.uppercase.prolog
+%                                      ^ meta.clause.body.prolog
+%                                       ^ keyword.control.clause.bodyend.prolog
+get_character(X, Y, C) :-
+%<0---------------------- meta.clause.head.prolog
+%<0---------- entity.name.function.clause.prolog
+%            ^ punctuation.definition.parameters.begin
+%             ^ variable.parameter.uppercase.prolog
+%                ^ variable.parameter.uppercase.prolog
+%                   ^ variable.parameter.uppercase.prolog
+%                    ^ punctuation.definition.parameters.end
+%                      ^- keyword.control.clause.bodybegin.prolog
+    tile(Tile, X, Y),
+%<0------------------ meta.clause.body.prolog
+%<0------ meta.clause.body.prolog
+%        ^--- variable.parameter.uppercase.prolog
+%            ^- meta.clause.body.prolog
+%              ^ variable.parameter.uppercase.prolog
+%               ^- meta.clause.body.prolog
+%                 ^ variable.parameter.uppercase.prolog
+%                  ^- meta.clause.body.prolog
+    tile_display(Tile, C).
+%<0----------------------- meta.clause.body.prolog
+%<0-------------- meta.clause.body.prolog
+%                ^--- variable.parameter.uppercase.prolog
+%                    ^- meta.clause.body.prolog
+%                      ^ variable.parameter.uppercase.prolog
+%                       ^ meta.clause.body.prolog
+%                        ^ keyword.control.clause.bodyend.prolog
+
+tile_display(wall, "#").
+%<0--------------------- meta.fact.prolog
+%<0--------- entity.name.function.fact.prolog
+%           ^ punctuation.definition.parameters.begin
+%            ^--- constant.other.atom.simple.prolog
+%                  ^-- string.quoted.double.prolog
+%                     ^ punctuation.definition.parameters.end
+%                      ^ keyword.control.fact.end.prolog
+tile_display(floor, ".").
+%<0---------------------- meta.fact.prolog
+%<0--------- entity.name.function.fact.prolog
+%           ^ punctuation.definition.parameters.begin
+%            ^---- constant.other.atom.simple.prolog
+%                   ^-- string.quoted.double.prolog
+%                      ^ punctuation.definition.parameters.end
+%                       ^ keyword.control.fact.end.prolog
+
+tile_passable(floor).
+%<0------------------ meta.fact.prolog
+%<0---------- entity.name.function.fact.prolog
+%            ^ punctuation.definition.parameters.begin
+%             ^---- constant.other.atom.simple.prolog
+%                  ^ punctuation.definition.parameters.end
+%                   ^ keyword.control.fact.end.prolog
+
+% % get line of a map to display as a string into aggregator, starting from XCur
+%<0----------------------------------------------------------------------------- comment.line.percent-sign.prolog
+% % as rightmost character
+%<0----------------------- comment.line.percent-sign.prolog
+% get_line(Y, XCur, Trail, Agg) :-
+%<0------------------------------- comment.line.percent-sign.prolog
+%     (  XCur < 0
+%<0-------------- meta.clause.body.prolog
+%<0-------------- comment.line.percent-sign.prolog
+%     -> Trail = Agg
+%<0----------------- meta.clause.body.prolog
+%<0----------------- comment.line.percent-sign.prolog
+%     ;  XPrev is XCur - 1,
+%<0------------------------ meta.clause.body.prolog
+%<0------------------------ comment.line.percent-sign.prolog
+%        get_character(XCur, Y, C),
+%<0-------------------------------- meta.clause.body.prolog
+%<0-------------------------------- comment.line.percent-sign.prolog
+%        get_line(Y, XPrev, [C|Trail], Agg)
+%<0---------------------------------------- meta.clause.body.prolog
+%<0---------------------------------------- comment.line.percent-sign.prolog
+%     ).
+%<0----- meta.clause.body.prolog
+%<0----- comment.line.percent-sign.prolog
+
+% get_screen(YCur, Trail, Agg) :-
+%<0------------------------------ meta.clause.body.prolog
+%<0------------------------------ comment.line.percent-sign.prolog
+%     (  YCur < 0
+%<0-------------- meta.clause.body.prolog
+%<0-------------- comment.line.percent-sign.prolog
+%     -> Trail = Agg
+%<0----------------- meta.clause.body.prolog
+%<0----------------- comment.line.percent-sign.prolog
+%     ;  YPrev is YCur - 1,
+%<0------------------------ meta.clause.body.prolog
+%<0------------------------ comment.line.percent-sign.prolog
+%        map_size(XSize, _),
+%<0------------------------- meta.clause.body.prolog
+%<0------------------------- comment.line.percent-sign.prolog
+%        XLast is XSize - 1,
+%<0------------------------- meta.clause.body.prolog
+%<0------------------------- comment.line.percent-sign.prolog
+%        get_line(YCur, XLast, [], Line),
+%<0-------------------------------------- meta.clause.body.prolog
+%<0-------------------------------------- comment.line.percent-sign.prolog
+%        get_screen(YPrev, [Line|Trail], Agg)
+%<0------------------------------------------ meta.clause.body.prolog
+%<0------------------------------------------ comment.line.percent-sign.prolog
+%     ).
+%<0----- meta.clause.body.prolog
+%<0----- comment.line.percent-sign.prolog
+
+% get_screen(Lines) :-
+%<0------------------- meta.clause.body.prolog
+%<0------------------- comment.line.percent-sign.prolog
+%    map_size(_, YSize),
+%<0--------------------- meta.clause.body.prolog
+%<0--------------------- comment.line.percent-sign.prolog
+%    YLast is YSize - 1,
+%<0--------------------- meta.clause.body.prolog
+%<0--------------------- comment.line.percent-sign.prolog
+%    get_screen(YLast, [], Lines).
+%<0------------------------------- meta.clause.body.prolog
+%<0------------------------------- comment.line.percent-sign.prolog
+
+% % draw a list of lines on screen
+%<0------------------------------- meta.clause.body.prolog
+%<0------------------------------- comment.line.percent-sign.prolog
+% draw_lines([]).
+%<0-------------- meta.clause.body.prolog
+%<0-------------- comment.line.percent-sign.prolog
+% draw_lines([Line|Rest]) :-
+%<0------------------------- meta.clause.body.prolog
+%<0------------------------- comment.line.percent-sign.prolog
+%     name(LineAtom, Line),
+%<0------------------------ meta.clause.body.prolog
+%<0------------------------ comment.line.percent-sign.prolog
+%     write(LineAtom),
+%<0------------------- meta.clause.body.prolog
+%<0------------------- comment.line.percent-sign.prolog
+%     nl,
+%<0------ meta.clause.body.prolog
+%<0------ comment.line.percent-sign.prolog
+%     draw_lines(Rest).
+%<0-------------------- meta.clause.body.prolog
+%<0-------------------- comment.line.percent-sign.prolog
+
+% % draw current map
+%<0----------------- meta.clause.body.prolog
+%<0----------------- comment.line.percent-sign.prolog
+% draw :- get_screen(Lines), draw_lines(Lines).
+%<0-------------------------------------------- meta.clause.body.prolog
+%<0-------------------------------------------- comment.line.percent-sign.prolog
+
+%%%%%%%%%%%%%%%%%%%%
+%<0----------------- meta.clause.body.prolog
+%<0----------------- comment.line.percent-sign.prolog
+% interaction code %
+%<0----------------- meta.clause.body.prolog
+%<0----------------- comment.line.percent-sign.prolog
+%%%%%%%%%%%%%%%%%%%%
+%<0----------------- meta.clause.body.prolog
+%<0----------------- comment.line.percent-sign.prolog
+
+move_player(X, Y) :-
+%<0----------------- meta.clause.body.prolog
+%<0--------- meta.clause.body.prolog
+%           ^ variable.parameter.uppercase.prolog
+%            ^- meta.clause.body.prolog
+%              ^ variable.parameter.uppercase.prolog
+%               ^-- meta.clause.body.prolog
+%                  ^ keyword.operator.prolog
+    player(XCur, YCur),
+%<0-------------------- meta.clause.body.prolog
+%<0-------- meta.clause.body.prolog
+%          ^--- variable.parameter.uppercase.prolog
+%              ^- meta.clause.body.prolog
+%                ^--- variable.parameter.uppercase.prolog
+%                    ^- meta.clause.body.prolog
+    XNew is XCur + X,
+%<0------------------ meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--- variable.parameter.uppercase.prolog
+%       ^--- keyword.operator.prolog
+%           ^--- variable.parameter.uppercase.prolog
+%               ^ meta.clause.body.prolog
+%                ^ keyword.operator.prolog
+%                 ^ meta.clause.body.prolog
+%                  ^ variable.parameter.uppercase.prolog
+%                   ^ meta.clause.body.prolog
+    YNew is YCur + Y,
+%<0------------------ meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--- variable.parameter.uppercase.prolog
+%       ^--- keyword.operator.prolog
+%           ^--- variable.parameter.uppercase.prolog
+%               ^ meta.clause.body.prolog
+%                ^ keyword.operator.prolog
+%                 ^ meta.clause.body.prolog
+%                  ^ variable.parameter.uppercase.prolog
+%                   ^ meta.clause.body.prolog
+    (  tile(Tile, XNew, YNew),
+%<0--------------------------- meta.clause.body.prolog
+%<0--------- meta.clause.body.prolog
+%           ^--- variable.parameter.uppercase.prolog
+%               ^- meta.clause.body.prolog
+%                 ^--- variable.parameter.uppercase.prolog
+%                     ^- meta.clause.body.prolog
+%                       ^--- variable.parameter.uppercase.prolog
+%                           ^- meta.clause.body.prolog
+       tile_passable(Tile)
+%<0----------------------- meta.clause.body.prolog
+%<0------------------ meta.clause.body.prolog
+%                    ^--- variable.parameter.uppercase.prolog
+%                        ^ meta.clause.body.prolog
+    -> retractall(player(_, _)),
+%<0----------------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--------------------------- meta.if.prolog
+%   ^- keyword.control.if.prolog
+%     ^ meta.if.body.prolog
+%      ^--------- support.function.builtin.prolog
+%                ^------- meta.if.body.prolog
+%                        ^ variable.language.anonymous.prolog
+%                         ^- meta.if.body.prolog
+%                           ^ variable.language.anonymous.prolog
+%                            ^-- meta.if.body.prolog
+       asserta(player(XNew, YNew))
+%<0------------------------------- meta.clause.body.prolog
+%<0------------------------------- meta.if.prolog
+%<0------------------------------- meta.fact.prolog
+%      ^------ entity.name.function.fact.prolog
+%             ^ punctuation.definition.parameters.begin
+%                     ^--- variable.parameter.uppercase.prolog
+%                           ^--- variable.parameter.uppercase.prolog
+    ;  print('Bump!'), nl
+%<0---------------------- meta.clause.body.prolog
+%<0---------------------- meta.if.prolog
+%<0---------------------- meta.fact.prolog
+%            ^------ constant.other.atom.quoted.prolog
+%                      ^- constant.other.atom.simple.prolog
+    ).
+%<0--- meta.clause.body.prolog
+%<0--- meta.if.prolog
+%<0--- meta.fact.prolog
+%   ^ punctuation.definition.parameters.end
+%    ^ keyword.control.fact.end.prolog
+
+act("\n").
+%<0------- meta.clause.body.prolog
+%<0------- meta.if.prolog
+%<0------- meta.fact.prolog
+%<0 entity.name.function.fact.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^--- string.quoted.double.prolog
+%       ^ punctuation.definition.parameters.end
+%        ^ keyword.control.fact.end.prolog
+act("\r").
+%<0------- meta.clause.body.prolog
+%<0------- meta.if.prolog
+%<0------- meta.fact.prolog
+%<0 entity.name.function.fact.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^--- string.quoted.double.prolog
+%       ^ punctuation.definition.parameters.end
+%        ^ keyword.control.fact.end.prolog
+
+act("h") :- msg("left"),  move_player(-1,  0).
+%<0------------------------------------------- meta.clause.body.prolog
+%<0------------------------------------------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^-- string.quoted.double.prolog
+%      ^ punctuation.definition.parameters.end
+%        ^- keyword.control.clause.bodybegin.prolog
+%          ^---------------------------------- meta.clause.body.prolog
+%           ^--- meta.clause.body.prolog
+%               ^----- string.quoted.double.prolog
+%                     ^--------------- meta.clause.body.prolog
+%                                     ^ keyword.operator.prolog
+%                                      ^ constant.numeric.integer.prolog
+%                                       ^-- meta.clause.body.prolog
+%                                          ^ constant.numeric.integer.prolog
+%                                           ^ meta.clause.body.prolog
+%                                            ^ keyword.control.clause.bodyend.prolog
+act("j") :- msg("down"),  move_player( 0,  1).
+%<0------------------------------------------- meta.clause.body.prolog
+%<0------------------------------------------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^-- string.quoted.double.prolog
+%      ^ punctuation.definition.parameters.end
+%        ^- keyword.control.clause.bodybegin.prolog
+%          ^---------------------------------- meta.clause.body.prolog
+%           ^--- meta.clause.body.prolog
+%               ^----- string.quoted.double.prolog
+%                     ^---------------- meta.clause.body.prolog
+%                                      ^ constant.numeric.integer.prolog
+%                                       ^-- meta.clause.body.prolog
+%                                          ^ constant.numeric.integer.prolog
+%                                           ^ meta.clause.body.prolog
+%                                            ^ keyword.control.clause.bodyend.prolog
+act("k") :- msg("up"),    move_player( 0, -1).
+%<0------------------------------------------- meta.clause.body.prolog
+%<0------------------------------------------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^-- string.quoted.double.prolog
+%      ^ punctuation.definition.parameters.end
+%        ^- keyword.control.clause.bodybegin.prolog
+%          ^---------------------------------- meta.clause.body.prolog
+%           ^--- meta.clause.body.prolog
+%               ^--- string.quoted.double.prolog
+%                   ^------------------ meta.clause.body.prolog
+%                                      ^ constant.numeric.integer.prolog
+%                                       ^- meta.clause.body.prolog
+%                                         ^ keyword.operator.prolog
+%                                          ^ constant.numeric.integer.prolog
+%                                           ^ meta.clause.body.prolog
+%                                            ^ keyword.control.clause.bodyend.prolog
+act("l") :- msg("right"), move_player( 1,  0).
+%<0------------------------------------------- meta.clause.body.prolog
+%<0------------------------------------------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^-- string.quoted.double.prolog
+%      ^ punctuation.definition.parameters.end
+%        ^- keyword.control.clause.bodybegin.prolog
+%          ^---------------------------------- meta.clause.body.prolog
+%           ^--- meta.clause.body.prolog
+%               ^------ string.quoted.double.prolog
+%                      ^--------------- meta.clause.body.prolog
+%                                      ^ constant.numeric.integer.prolog
+%                                       ^-- meta.clause.body.prolog
+%                                          ^ constant.numeric.integer.prolog
+%                                           ^ meta.clause.body.prolog
+%                                            ^ keyword.control.clause.bodyend.prolog
+
+act("y") :- move_player(-1, -1).
+%<0----------------------------- meta.clause.body.prolog
+%<0----------------------------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^-- string.quoted.double.prolog
+%      ^ punctuation.definition.parameters.end
+%        ^- keyword.control.clause.bodybegin.prolog
+%          ^-------------------- meta.clause.body.prolog
+%           ^----------- meta.clause.body.prolog
+%                       ^ keyword.operator.prolog
+%                        ^ constant.numeric.integer.prolog
+%                         ^- meta.clause.body.prolog
+%                           ^ keyword.operator.prolog
+%                            ^ constant.numeric.integer.prolog
+%                             ^ meta.clause.body.prolog
+%                              ^ keyword.control.clause.bodyend.prolog
+act("u") :- move_player( 1, -1).
+%<0----------------------------- meta.clause.body.prolog
+%<0----------------------------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^-- string.quoted.double.prolog
+%      ^ punctuation.definition.parameters.end
+%        ^- keyword.control.clause.bodybegin.prolog
+%          ^-------------------- meta.clause.body.prolog
+%           ^------------ meta.clause.body.prolog
+%                        ^ constant.numeric.integer.prolog
+%                         ^- meta.clause.body.prolog
+%                           ^ keyword.operator.prolog
+%                            ^ constant.numeric.integer.prolog
+%                             ^ meta.clause.body.prolog
+%                              ^ keyword.control.clause.bodyend.prolog
+act("b") :- move_player(-1,  1).
+%<0----------------------------- meta.clause.body.prolog
+%<0----------------------------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^-- string.quoted.double.prolog
+%      ^ punctuation.definition.parameters.end
+%        ^- keyword.control.clause.bodybegin.prolog
+%          ^-------------------- meta.clause.body.prolog
+%           ^----------- meta.clause.body.prolog
+%                       ^ keyword.operator.prolog
+%                        ^ constant.numeric.integer.prolog
+%                         ^-- meta.clause.body.prolog
+%                            ^ constant.numeric.integer.prolog
+%                             ^ meta.clause.body.prolog
+%                              ^ keyword.control.clause.bodyend.prolog
+act("n") :- move_player( 1,  1).
+%<0----------------------------- meta.clause.body.prolog
+%<0----------------------------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0 entity.name.function.clause.prolog
+%  ^ punctuation.definition.parameters.begin
+%   ^-- string.quoted.double.prolog
+%      ^ punctuation.definition.parameters.end
+%        ^- keyword.control.clause.bodybegin.prolog
+%          ^-------------------- meta.clause.body.prolog
+%           ^------------ meta.clause.body.prolog
+%                        ^ constant.numeric.integer.prolog
+%                         ^-- meta.clause.body.prolog
+%                            ^ constant.numeric.integer.prolog
+%                             ^ meta.clause.body.prolog
+%                              ^ keyword.control.clause.bodyend.prolog
+
+mainloop :-
+%<0-------- meta.clause.body.prolog
+%<0-------- meta.if.prolog
+%<0-------- meta.clause.head.prolog
+%<0----- entity.name.function.clause.prolog
+%        ^- keyword.control.clause.bodybegin.prolog
+    draw,
+%<0------ meta.clause.body.prolog
+%<0------ meta.if.prolog
+%<0------ meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^--- constant.other.atom.simple.prolog
+%       ^ meta.clause.body.prolog
+    get_single_char(C),
+%<0-------------------- meta.clause.body.prolog
+%<0-------------------- meta.if.prolog
+%<0-------------------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^-------------- support.function.builtin.prolog
+%                  ^ meta.clause.body.prolog
+%                   ^ variable.parameter.uppercase.prolog
+%                    ^- meta.clause.body.prolog
+    (  act([C])
+%<0------------ meta.clause.body.prolog
+%<0------------ meta.if.prolog
+%<0------------ meta.clause.body.prolog
+%<0--------- meta.clause.body.prolog
+%           ^ variable.parameter.uppercase.prolog
+%            ^- meta.clause.body.prolog
+    -> true
+%<0-------- meta.clause.body.prolog
+%<0-------- meta.if.prolog
+%<0-------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------ meta.if.prolog
+%   ^- keyword.control.if.prolog
+%     ^ meta.if.body.prolog
+%      ^--- constant.other.atom.simple.prolog
+    ;  format(codes(Msg), 'unknown character code: ~d', [C]),
+%<0---------------------------------------------------------- meta.clause.body.prolog
+%<0---------------------------------------------------------- meta.if.prolog
+%<0---------------------------------------------------------- meta.clause.body.prolog
+%<0-- meta.if.prolog
+%<0- meta.if.body.prolog
+%   ^ keyword.control.else.prolog
+%    ^- meta.clause.body.prolog
+%      ^----- support.function.builtin.prolog
+%            ^------ meta.clause.body.prolog
+%                   ^-- variable.parameter.uppercase.prolog
+%                      ^-- meta.clause.body.prolog
+%                         ^--------------------------- constant.other.atom.quoted.prolog
+%                                                     ^-- meta.clause.body.prolog
+%                                                        ^ variable.parameter.uppercase.prolog
+%                                                         ^-- meta.clause.body.prolog
+       msg(Msg)
+%<0------------ meta.clause.body.prolog
+%<0------------ meta.if.prolog
+%<0------------ meta.clause.body.prolog
+%<0-------- meta.clause.body.prolog
+%          ^-- variable.parameter.uppercase.prolog
+%             ^ meta.clause.body.prolog
+    ),
+%<0--- meta.clause.body.prolog
+%<0--- meta.if.prolog
+%<0--- meta.clause.body.prolog
+%<0--- meta.clause.body.prolog
+    mainloop.
+%<0---------- meta.clause.body.prolog
+%<0---------- meta.if.prolog
+%<0---------- meta.clause.body.prolog
+%<0- meta.clause.body.prolog
+%   ^------- constant.other.atom.simple.prolog
+%           ^ keyword.control.clause.bodyend.prolog
+
+main :- mainloop.
+%<0-------------- meta.clause.body.prolog
+%<0-------------- meta.if.prolog
+%<0---- meta.clause.head.prolog
+%<0- entity.name.function.clause.prolog
+%    ^- keyword.control.clause.bodybegin.prolog
+%      ^--------- meta.clause.body.prolog
+%       ^------- constant.other.atom.simple.prolog
+%               ^ keyword.control.clause.bodyend.prolog
+
+% From https://github.com/Anniepoo/prolog-examples/blob/master/roguelike.pl
+%<0------------------------------------------------------------------------ meta.clause.body.prolog
+%<0------------------------------------------------------------------------ meta.if.prolog
+%<0------------------------------------------------------------------------ comment.line.percent-sign.prolog

@@ -1,0 +1,656 @@
+# grammar: source.polar
+
+actor User { }
+#<0----------- meta.resource-block
+#<0-- keyword.control
+#     ^--- entity.name.type
+actor Group { }
+#<0------------ meta.resource-block
+#<0-- keyword.control
+#     ^---- entity.name.type
+
+resource Organization { 
+#<0--------------------- meta.resource-block
+#<0----- keyword.control
+#        ^----------- entity.name.type
+    permissions = [
+#<0---------------- meta.resource-block
+#               ^ keyword.control
+#                 ^ meta.bracket.list
+        "read",
+#<0------------ meta.resource-block
+#<0------------ meta.bracket.list
+#       ^----- string.quoted.double
+#             ^ punctuation.separator.sequence.list
+        "read_details",
+#<0-------------------- meta.resource-block
+#<0-------------------- meta.bracket.list
+#       ^------------- string.quoted.double
+#                     ^ punctuation.separator.sequence.list
+        "view_members",
+#<0-------------------- meta.resource-block
+#<0-------------------- meta.bracket.list
+#       ^------------- string.quoted.double
+#                     ^ punctuation.separator.sequence.list
+        "manage_members",
+#<0---------------------- meta.resource-block
+#<0---------------------- meta.bracket.list
+#       ^--------------- string.quoted.double
+#                       ^ punctuation.separator.sequence.list
+        "set_default_role",
+#<0------------------------ meta.resource-block
+#<0------------------------ meta.bracket.list
+#       ^----------------- string.quoted.double
+#                         ^ punctuation.separator.sequence.list
+        "create_repositories",
+#<0--------------------------- meta.resource-block
+#<0--------------------------- meta.bracket.list
+#       ^-------------------- string.quoted.double
+#                            ^ punctuation.separator.sequence.list
+        "delete"
+#<0------------- meta.resource-block
+#<0------------- meta.bracket.list
+#       ^------- string.quoted.double
+    ];
+#<0--- meta.resource-block
+#<0-- meta.bracket.list
+#    ^ punctuation.separator.sequence.declarations
+    roles = ["admin", "member"];
+#<0----------------------------- meta.resource-block
+#         ^ keyword.control
+#           ^------------------ meta.bracket.list
+#            ^------ string.quoted.double
+#                   ^ punctuation.separator.sequence.list
+#                     ^------- string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
+
+    "read_details" if "member";
+#<0---------------------------- meta.resource-block
+#   ^------------- string.quoted.double
+#                  ^- constant.character
+#                     ^------- string.quoted.double
+#                             ^ punctuation.separator.sequence.declarations
+    "view_members" if "member";
+#<0---------------------------- meta.resource-block
+#   ^------------- string.quoted.double
+#                  ^- constant.character
+#                     ^------- string.quoted.double
+#                             ^ punctuation.separator.sequence.declarations
+    "create_repositories" if "member";
+#<0----------------------------------- meta.resource-block
+#   ^-------------------- string.quoted.double
+#                         ^- constant.character
+#                            ^------- string.quoted.double
+#                                    ^ punctuation.separator.sequence.declarations
+
+    "member" if "admin";
+#<0--------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^------ string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
+    "manage_members" if "admin";
+#<0----------------------------- meta.resource-block
+#   ^--------------- string.quoted.double
+#                    ^- constant.character
+#                       ^------ string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
+    "set_default_role" if "admin";
+#<0------------------------------- meta.resource-block
+#   ^----------------- string.quoted.double
+#                      ^- constant.character
+#                         ^------ string.quoted.double
+#                                ^ punctuation.separator.sequence.declarations
+    "delete" if "admin";
+#<0--------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^------ string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
+}
+#<0 meta.resource-block
+
+resource Repository { 
+#<0------------------- meta.resource-block
+#<0----- keyword.control
+#        ^--------- entity.name.type
+    permissions = [
+#<0---------------- meta.resource-block
+#               ^ keyword.control
+#                 ^ meta.bracket.list
+        "read", "create", "update", "delete",
+#<0------------------------------------------ meta.resource-block
+#<0------------------------------------------ meta.bracket.list
+#       ^----- string.quoted.double
+#             ^ punctuation.separator.sequence.list
+#               ^------- string.quoted.double
+#                       ^ punctuation.separator.sequence.list
+#                         ^------- string.quoted.double
+#                                 ^ punctuation.separator.sequence.list
+#                                   ^------- string.quoted.double
+#                                           ^ punctuation.separator.sequence.list
+        "invite", "write",
+#<0----------------------- meta.resource-block
+#<0----------------------- meta.bracket.list
+#       ^------- string.quoted.double
+#               ^ punctuation.separator.sequence.list
+#                 ^------ string.quoted.double
+#                        ^ punctuation.separator.sequence.list
+        "manage_jobs", "manage_issues", "create_issues",
+#<0----------------------------------------------------- meta.resource-block
+#<0----------------------------------------------------- meta.bracket.list
+#       ^------------ string.quoted.double
+#                    ^ punctuation.separator.sequence.list
+#                      ^-------------- string.quoted.double
+#                                     ^ punctuation.separator.sequence.list
+#                                       ^-------------- string.quoted.double
+#                                                      ^ punctuation.separator.sequence.list
+        "view_members", "manage_members"
+#<0------------------------------------- meta.resource-block
+#<0------------------------------------- meta.bracket.list
+#       ^------------- string.quoted.double
+#                     ^ punctuation.separator.sequence.list
+#                       ^--------------- string.quoted.double
+    ];
+#<0--- meta.resource-block
+#<0-- meta.bracket.list
+#    ^ punctuation.separator.sequence.declarations
+    roles = ["reader", "admin", "maintainer", "editor"];
+#<0----------------------------------------------------- meta.resource-block
+#         ^ keyword.control
+#           ^------------------------------------------ meta.bracket.list
+#            ^------- string.quoted.double
+#                    ^ punctuation.separator.sequence.list
+#                      ^------ string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                               ^----------- string.quoted.double
+#                                           ^ punctuation.separator.sequence.list
+#                                             ^------- string.quoted.double
+#                                                      ^ punctuation.separator.sequence.declarations
+    relations = { organization: Organization };
+#<0-------------------------------------------- meta.resource-block
+#             ^ keyword.control
+#               ^----------------------------- meta.relation-declaration
+#                               ^----------- entity.name.type.resource
+#                                             ^ punctuation.separator.sequence.declarations
+
+    "reader" if "member" on "organization";
+#<0---------------------------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^------- string.quoted.double
+#                        ^- constant.character
+#                           ^------------- string.quoted.double
+#                                         ^ punctuation.separator.sequence.declarations
+    "admin" if "admin" on "organization";
+#<0-------------------------------------- meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
+#              ^------ string.quoted.double
+#                      ^- constant.character
+#                         ^------------- string.quoted.double
+#                                       ^ punctuation.separator.sequence.declarations
+    "reader" if "editor";
+#<0---------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^------- string.quoted.double
+#                       ^ punctuation.separator.sequence.declarations
+    "editor" if "maintainer";
+#<0-------------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^----------- string.quoted.double
+#                           ^ punctuation.separator.sequence.declarations
+    "maintainer" if "admin";
+#<0------------------------- meta.resource-block
+#   ^----------- string.quoted.double
+#                ^- constant.character
+#                   ^------ string.quoted.double
+#                          ^ punctuation.separator.sequence.declarations
+
+    # reader permissions
+#<0--------------------- meta.resource-block
+#   ^------------------- comment.line.number-sign
+    "read" if "reader";
+#<0-------------------- meta.resource-block
+#   ^----- string.quoted.double
+#          ^- constant.character
+#             ^------- string.quoted.double
+#                     ^ punctuation.separator.sequence.declarations
+    "create_issues" if "reader";
+#<0----------------------------- meta.resource-block
+#   ^-------------- string.quoted.double
+#                   ^- constant.character
+#                      ^------- string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
+
+    # editor permissions
+#<0--------------------- meta.resource-block
+#   ^------------------- comment.line.number-sign
+    "write" if "editor";
+#<0--------------------- meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
+#              ^------- string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
+    "manage_jobs" if "editor";
+#<0--------------------------- meta.resource-block
+#   ^------------ string.quoted.double
+#                 ^- constant.character
+#                    ^------- string.quoted.double
+#                            ^ punctuation.separator.sequence.declarations
+    "manage_issues" if "editor";
+#<0----------------------------- meta.resource-block
+#   ^-------------- string.quoted.double
+#                   ^- constant.character
+#                      ^------- string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
+    "view_members" if "maintainer";
+#<0-------------------------------- meta.resource-block
+#   ^------------- string.quoted.double
+#                  ^- constant.character
+#                     ^----------- string.quoted.double
+#                                 ^ punctuation.separator.sequence.declarations
+
+    # admin permissions
+#<0-------------------- meta.resource-block
+#   ^------------------ comment.line.number-sign
+    "manage_members" if "admin";
+#<0----------------------------- meta.resource-block
+#   ^--------------- string.quoted.double
+#                    ^- constant.character
+#                       ^------ string.quoted.double
+#                              ^ punctuation.separator.sequence.declarations
+    "update" if "admin";
+#<0--------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^------ string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
+    "delete" if "admin";
+#<0--------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^------ string.quoted.double
+#                      ^ punctuation.separator.sequence.declarations
+    "invite" if "admin" ;
+#<0---------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^------ string.quoted.double
+#                       ^ punctuation.separator.sequence.declarations
+}
+#<0 meta.resource-block
+
+resource Issue { 
+#<0-------------- meta.resource-block
+#<0----- keyword.control
+#        ^---- entity.name.type
+    permissions = ["read", "comment", "close"];
+#<0-------------------------------------------- meta.resource-block
+#               ^ keyword.control
+#                 ^--------------------------- meta.bracket.list
+#                  ^----- string.quoted.double
+#                        ^ punctuation.separator.sequence.list
+#                          ^-------- string.quoted.double
+#                                   ^ punctuation.separator.sequence.list
+#                                     ^------ string.quoted.double
+#                                             ^ punctuation.separator.sequence.declarations
+    roles = ["reader", "admin", "creator"];
+#<0---------------------------------------- meta.resource-block
+#         ^ keyword.control
+#           ^----------------------------- meta.bracket.list
+#            ^------- string.quoted.double
+#                    ^ punctuation.separator.sequence.list
+#                      ^------ string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                               ^-------- string.quoted.double
+#                                         ^ punctuation.separator.sequence.declarations
+    relations = { repository: Repository };
+#<0---------------------------------------- meta.resource-block
+#             ^ keyword.control
+#               ^------------------------- meta.relation-declaration
+#                             ^--------- entity.name.type.resource
+#                                         ^ punctuation.separator.sequence.declarations
+
+    "reader" if "reader" on "repository";
+#<0-------------------------------------- meta.resource-block
+#   ^------- string.quoted.double
+#            ^- constant.character
+#               ^------- string.quoted.double
+#                        ^- constant.character
+#                           ^----------- string.quoted.double
+#                                       ^ punctuation.separator.sequence.declarations
+    "admin" if "admin" on "repository";
+#<0------------------------------------ meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
+#              ^------ string.quoted.double
+#                      ^- constant.character
+#                         ^----------- string.quoted.double
+#                                     ^ punctuation.separator.sequence.declarations
+
+    "read" if "reader";
+#<0-------------------- meta.resource-block
+#   ^----- string.quoted.double
+#          ^- constant.character
+#             ^------- string.quoted.double
+#                     ^ punctuation.separator.sequence.declarations
+    "comment" if "admin";
+#<0---------------------- meta.resource-block
+#   ^-------- string.quoted.double
+#             ^- constant.character
+#                ^------ string.quoted.double
+#                       ^ punctuation.separator.sequence.declarations
+    "close" if "creator";
+#<0---------------------- meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
+#              ^-------- string.quoted.double
+#                       ^ punctuation.separator.sequence.declarations
+    "close" if "admin";
+#<0-------------------- meta.resource-block
+#   ^------ string.quoted.double
+#           ^- constant.character
+#              ^------ string.quoted.double
+#                     ^ punctuation.separator.sequence.declarations
+    
+#<0- meta.resource-block
+}
+#<0 meta.resource-block
+
+has_permission(_: Actor, "read", repo: Repository) if
+#<0----------- support.function.rule
+#                 ^---- entity.name.type.resource
+#                      ^ punctuation.separator.sequence.list
+#                        ^----- string.quoted.double
+#                              ^ punctuation.separator.sequence.list
+#                                      ^--------- entity.name.type.resource
+#                                                  ^- keyword.control.if
+    is_public(repo);
+#            ^----- meta.parens
+
+
+has_permission(actor: Actor, "delete", repo: Repository) if
+#<0----------- support.function.rule
+#                     ^---- entity.name.type.resource
+#                          ^ punctuation.separator.sequence.list
+#                            ^------- string.quoted.double
+#                                    ^ punctuation.separator.sequence.list
+#                                            ^--------- entity.name.type.resource
+#                                                        ^- keyword.control.if
+    has_role(actor, "member", repo) and
+#           ^---------------------- meta.parens
+#                   ^------- string.quoted.double
+#                                   ^-- constant.character
+    is_protected(repo, false);
+#               ^------------ meta.parens
+#                      ^---- constant.language.boolean
+
+
+# readers can only comment on open issues
+#<0-------------------------------------- comment.line.number-sign
+has_permission(actor: Actor, "comment", issue: Issue) if
+#<0----------- support.function.rule
+#                     ^---- entity.name.type.resource
+#                          ^ punctuation.separator.sequence.list
+#                            ^-------- string.quoted.double
+#                                     ^ punctuation.separator.sequence.list
+#                                              ^---- entity.name.type.resource
+#                                                     ^- keyword.control.if
+    has_permission(actor, "read", issue) and
+#                 ^--------------------- meta.parens
+#                         ^----- string.quoted.double
+#                                        ^-- constant.character
+    is_closed(issue, false);
+#            ^------------- meta.parens
+#                    ^---- constant.language.boolean
+
+
+# Misc rules:
+#<0---------- comment.line.number-sign
+## All organizations are public
+#<0---------------------------- comment.line.number-sign
+has_permission(_: User, "read", _: Organization);
+#<0----------- support.function.rule
+#                 ^--- entity.name.type.resource
+#                     ^ punctuation.separator.sequence.list
+#                       ^----- string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                                  ^----------- entity.name.type.resource
+has_permission(_: User, "create", "Organization");
+#<0----------- support.function.rule
+#                 ^--- entity.name.type.resource
+#                     ^ punctuation.separator.sequence.list
+#                       ^------- string.quoted.double
+#                               ^ punctuation.separator.sequence.list
+#                                 ^------------- string.quoted.double
+## Users can read all users
+#<0------------------------ comment.line.number-sign
+has_permission(_: User, "read", _: User);
+#<0----------- support.function.rule
+#                 ^--- entity.name.type.resource
+#                     ^ punctuation.separator.sequence.list
+#                       ^----- string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                                  ^--- entity.name.type.resource
+## Users can only read their own profiles
+#<0-------------------------------------- comment.line.number-sign
+has_permission(user: User, "read_profile", user: User);
+#<0----------- support.function.rule
+#                    ^--- entity.name.type.resource
+#                        ^ punctuation.separator.sequence.list
+#                          ^------------- string.quoted.double
+#                                        ^ punctuation.separator.sequence.list
+#                                                ^--- entity.name.type.resource
+
+
+# Complex rules
+#<0------------ comment.line.number-sign
+
+
+# Actors inherit roles from groups
+#<0------------------------------- comment.line.number-sign
+has_role(user: User, role: String, resource: Resource) if
+#<0----- support.function.rule
+#              ^--- entity.name.type.resource
+#                  ^ punctuation.separator.sequence.list
+#                          ^----- entity.name.type.resource
+#                                ^ punctuation.separator.sequence.list
+#                                            ^------- entity.name.type.resource
+#                                                      ^- keyword.control.if
+    group matches Group and
+#         ^------ constant.character
+#                       ^-- constant.character
+    has_group(user, group) and
+#            ^------------ meta.parens
+#                          ^-- constant.character
+    has_role(group, role, resource);
+#           ^---------------------- meta.parens
+
+# Nested group
+#<0----------- comment.line.number-sign
+has_group(user: User, group: Group) if
+#<0------ support.function.rule
+#               ^--- entity.name.type.resource
+#                   ^ punctuation.separator.sequence.list
+#                            ^---- entity.name.type.resource
+#                                   ^- keyword.control.if
+    g matches Group and
+#     ^------ constant.character
+#                   ^-- constant.character
+    has_group(user, g) and
+#            ^-------- meta.parens
+#                      ^-- constant.character
+    has_group(g, group);
+#            ^--------- meta.parens
+
+# A custom role is defined by the permissions it grants
+#<0---------------------------------------------------- comment.line.number-sign
+has_permission(actor: Actor, action: String, org: Organization) if
+#<0----------- support.function.rule
+#                     ^---- entity.name.type.resource
+#                          ^ punctuation.separator.sequence.list
+#                                    ^----- entity.name.type.resource
+#                                          ^ punctuation.separator.sequence.list
+#                                                 ^----------- entity.name.type.resource
+#                                                               ^- keyword.control.if
+    role matches Role and
+#        ^------ constant.character
+#                     ^-- constant.character
+    has_role(actor, role, org) and
+#           ^----------------- meta.parens
+#                              ^-- constant.character
+    grants_permission(role, action);
+#                    ^------------- meta.parens
+
+has_role(actor: Actor, role: String, repo: Repository) if
+#<0----- support.function.rule
+#               ^---- entity.name.type.resource
+#                    ^ punctuation.separator.sequence.list
+#                            ^----- entity.name.type.resource
+#                                  ^ punctuation.separator.sequence.list
+#                                          ^--------- entity.name.type.resource
+#                                                      ^- keyword.control.if
+    org matches Organization and
+#       ^------ constant.character
+#                            ^-- constant.character
+    has_relation(repo, "organization", org) and
+#               ^-------------------------- meta.parens
+#                      ^------------- string.quoted.double
+#                                           ^-- constant.character
+    has_default_role(org, role) and
+#                   ^---------- meta.parens
+#                               ^-- constant.character
+    has_role(actor, "member", org);
+#           ^--------------------- meta.parens
+#                   ^------- string.quoted.double
+
+# Policy tests
+#<0----------- comment.line.number-sign
+# Organization members inherit the read permission
+#<0----------------------------------------------- comment.line.number-sign
+# on repositories that belong to the org
+#<0------------------------------------- comment.line.number-sign
+# and issues that belong to those repositories
+#<0------------------------------------------- comment.line.number-sign
+test "organization members can read repos and issues" {
+#<0---------------------------------------------------- meta.test-block
+#<0- keyword.control
+#    ^----------------------------------------------- string.quoted.double
+    # Define test data (facts)
+#<0--------------------------- meta.test-block
+#   ^------------------------- comment.line.number-sign
+    setup {
+#<0-------- meta.test-block
+#   ^------ meta.test-setup
+#   ^---- keyword.control
+        # alice is a member of the "acme" organization
+#<0--------------------------------------------------- meta.test-block
+#<0--------------------------------------------------- meta.test-setup
+#       ^--------------------------------------------- comment.line.number-sign
+        has_role(User{"alice"}, "member", Organization{"acme"});
+#<0------------------------------------------------------------- meta.test-block
+#<0------------------------------------------------------------- meta.test-setup
+#       ^------- support.function.rule
+#                ^------------ constant.other.object-literal
+#                ^--- entity.name.type.resource
+#                     ^------ string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                               ^------- string.quoted.double
+#                                       ^ punctuation.separator.sequence.list
+#                                         ^------------------- constant.other.object-literal
+#                                         ^----------- entity.name.type.resource
+#                                                      ^----- string.quoted.double
+        # The "test-repo" Repository belongs to the "acme" organization
+#<0-------------------------------------------------------------------- meta.test-block
+#<0-------------------------------------------------------------------- meta.test-setup
+#       ^-------------------------------------------------------------- comment.line.number-sign
+        has_relation(Repository{"test-repo"}, "organization", Organization{"acme"});
+#<0--------------------------------------------------------------------------------- meta.test-block
+#<0--------------------------------------------------------------------------------- meta.test-setup
+#       ^----------- support.function.rule
+#                    ^---------------------- constant.other.object-literal
+#                    ^--------- entity.name.type.resource
+#                               ^---------- string.quoted.double
+#                                           ^ punctuation.separator.sequence.list
+#                                             ^------------- string.quoted.double
+#                                                           ^ punctuation.separator.sequence.list
+#                                                             ^------------------- constant.other.object-literal
+#                                                             ^----------- entity.name.type.resource
+#                                                                          ^----- string.quoted.double
+        # The issue "Issue 1" belongs to the "test-repo" repository
+#<0---------------------------------------------------------------- meta.test-block
+#<0---------------------------------------------------------------- meta.test-setup
+#       ^---------------------------------------------------------- comment.line.number-sign
+        has_relation(Issue{"Issue 1"}, "repository", Repository{"test-repo"});
+#<0--------------------------------------------------------------------------- meta.test-block
+#<0--------------------------------------------------------------------------- meta.test-setup
+#       ^----------- support.function.rule
+#                    ^--------------- constant.other.object-literal
+#                    ^---- entity.name.type.resource
+#                          ^-------- string.quoted.double
+#                                    ^ punctuation.separator.sequence.list
+#                                      ^----------- string.quoted.double
+#                                                  ^ punctuation.separator.sequence.list
+#                                                    ^---------------------- constant.other.object-literal
+#                                                    ^--------- entity.name.type.resource
+#                                                               ^---------- string.quoted.double
+    }
+#<0-- meta.test-block
+#<0-- meta.test-setup
+
+    # alice can read the "test-repo" Repository
+#<0-------------------------------------------- meta.test-block
+#   ^------------------------------------------ comment.line.number-sign
+    assert allow(User{"alice"}, "read", Repository{"test-repo"});
+#<0-------------------------------------------------------------- meta.test-block
+#   ^----- keyword.other
+#          ^---- support.function.rule
+#                ^------------ constant.other.object-literal
+#                ^--- entity.name.type.resource
+#                     ^------ string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                               ^----- string.quoted.double
+#                                     ^ punctuation.separator.sequence.list
+#                                       ^---------------------- constant.other.object-literal
+#                                       ^--------- entity.name.type.resource
+#                                                  ^---------- string.quoted.double
+    # alice can read the issue "Issue 1"
+#<0------------------------------------- meta.test-block
+#   ^----------------------------------- comment.line.number-sign
+    assert allow(User{"alice"}, "read", Issue{"Issue 1"});
+#<0------------------------------------------------------- meta.test-block
+#   ^----- keyword.other
+#          ^---- support.function.rule
+#                ^------------ constant.other.object-literal
+#                ^--- entity.name.type.resource
+#                     ^------ string.quoted.double
+#                             ^ punctuation.separator.sequence.list
+#                               ^----- string.quoted.double
+#                                     ^ punctuation.separator.sequence.list
+#                                       ^--------------- constant.other.object-literal
+#                                       ^---- entity.name.type.resource
+#                                             ^-------- string.quoted.double
+    # alice can not write to the "test-repo" Repository
+#<0---------------------------------------------------- meta.test-block
+#   ^-------------------------------------------------- comment.line.number-sign
+    assert_not allow(User{"alice"}, "write", Repository{"test-repo"});
+#<0------------------------------------------------------------------- meta.test-block
+#   ^--------- keyword.other
+#              ^---- support.function.rule
+#                    ^------------ constant.other.object-literal
+#                    ^--- entity.name.type.resource
+#                         ^------ string.quoted.double
+#                                 ^ punctuation.separator.sequence.list
+#                                   ^------ string.quoted.double
+#                                          ^ punctuation.separator.sequence.list
+#                                            ^---------------------- constant.other.object-literal
+#                                            ^--------- entity.name.type.resource
+#                                                       ^---------- string.quoted.double
+}
+#<0 meta.test-block
+
+# From https://github.com/osohq/gitcloud/blob/main/policy/authorization.polar
+#<0-------------------------------------------------------------------------- comment.line.number-sign

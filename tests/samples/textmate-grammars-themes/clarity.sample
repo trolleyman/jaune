@@ -1,0 +1,325 @@
+# grammar: source.clar
+
+(impl-trait .sip010-ft-trait.sip010-ft-trait)
+#<0------------------------------------------ meta.built-in-function
+#<0 punctuation.built-in-function.start.clarity
+#^--------- keyword.declaration.built-in-function.clarity
+#           ^------------------------------- constant.other.principal.clarity
+#                                           ^ punctuation.built-in-function.end.clarity
+
+;; SIP010 trait on mainnet
+#<0----------------------- comment.line.semicolon.clarity
+;; (impl-trait 'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.sip-010-trait)
+#<0----------------------------------------------------------------------------------------------- comment.line.semicolon.clarity
+
+(define-constant contract-owner tx-sender)
+#<0--------------------------------------- meta.define-constant
+#<0 punctuation.define-constant.start.clarity
+#^-------------- keyword.declaration.define-constant.clarity
+#                ^------------- entity.name.constant-name.clarity
+#                ^------------- variable.other.clarity
+#                               ^-------- constant.language.clarity
+#                                        ^ punctuation.define-constant.end.clarity
+(define-constant err-owner-only (err u100))
+#<0---------------------------------------- meta.define-constant
+#<0 punctuation.define-constant.start.clarity
+#^-------------- keyword.declaration.define-constant.clarity
+#                ^------------- entity.name.constant-name.clarity
+#                ^------------- variable.other.clarity
+#                               ^--------- meta.response
+#                               ^ punctuation.response.start.clarity
+#                                ^-- constant.language.ok-err.clarity
+#                                    ^--- constant.numeric.uint.clarity
+#                                        ^ punctuation.response.end.clarity
+#                                         ^ punctuation.define-constant.end.clarity
+(define-constant err-not-token-owner (err u101))
+#<0--------------------------------------------- meta.define-constant
+#<0 punctuation.define-constant.start.clarity
+#^-------------- keyword.declaration.define-constant.clarity
+#                ^------------------ entity.name.constant-name.clarity
+#                ^------------------ variable.other.clarity
+#                                    ^--------- meta.response
+#                                    ^ punctuation.response.start.clarity
+#                                     ^-- constant.language.ok-err.clarity
+#                                         ^--- constant.numeric.uint.clarity
+#                                             ^ punctuation.response.end.clarity
+#                                              ^ punctuation.define-constant.end.clarity
+
+;; No maximum supply!
+#<0------------------ comment.line.semicolon.clarity
+(define-fungible-token clarity-coin)
+#<0 punctuation.define-fungible-token.start.clarity
+#^-------------------- keyword.declaration.define-fungible-token.clarity
+#                      ^----------- entity.name.fungible-token-name.clarity
+#                      ^----------- variable.other.clarity
+
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
+#<0--------------------------------------------------------------------------------------------------------- meta.define-function
+#<0 punctuation.define-function.start.clarity
+#^------------ keyword.declaration.define-function.clarity
+#              ^-------------------------------------------------------------------------------------------- meta.define-function-signature
+#              ^ punctuation.function-signature.start.clarity
+#               ^------- entity.name.function.clarity
+#                        ^------------ meta.function-argument
+#                        ^ punctuation.function-argument.start.clarity
+#                         ^----- variable.parameter.clarity
+#                                ^--- entity.name.type.numeric.clarity
+#                                    ^ punctuation.function-argument.end.clarity
+#                                      ^----------------- meta.function-argument
+#                                      ^ punctuation.function-argument.start.clarity
+#                                       ^----- variable.parameter.clarity
+#                                              ^-------- entity.name.type.principal.clarity
+#                                                       ^ punctuation.function-argument.end.clarity
+#                                                         ^-------------------- meta.function-argument
+#                                                         ^ punctuation.function-argument.start.clarity
+#                                                          ^-------- variable.parameter.clarity
+#                                                                    ^-------- entity.name.type.principal.clarity
+#                                                                             ^ punctuation.function-argument.end.clarity
+#                                                                               ^-------------------------- meta.function-argument
+#                                                                               ^ punctuation.function-argument.start.clarity
+#                                                                                ^--- variable.parameter.clarity
+#                                                                                     ^------------------- meta.optional-def
+#                                                                                     ^ punctuation.optional-def.start.clarity
+#                                                                                      ^------- storage.type.modifier
+#                                                                                               ^ punctuation.buff-def.start.clarity
+#                                                                                                ^--- entity.name.type.buff.clarity
+#                                                                                                     ^- constant.numeric.buf-len.clarity
+#                                                                                                       ^ punctuation.buff-def.end.clarity
+#                                                                                                        ^ punctuation.optional-def.end.clarity
+#                                                                                                         ^ punctuation.function-argument.end.clarity
+#                                                                                                          ^ punctuation.function-signature.end.clarity
+  (begin
+#<0----- meta.define-function
+# ^----- meta.built-in-function
+# ^ punctuation.built-in-function.start.clarity
+#  ^---- keyword.declaration.built-in-function.clarity
+    (asserts! (is-eq tx-sender sender) err-owner-only)
+#<0--------------------------------------------------- meta.define-function
+#<0--------------------------------------------------- meta.built-in-function
+#   ^------------------------------------------------- meta.built-in-function
+#   ^ punctuation.built-in-function.start.clarity
+#    ^------- keyword.declaration.built-in-function.clarity
+#             ^----------------------- meta.built-in-function
+#             ^ punctuation.built-in-function.start.clarity
+#              ^---- keyword.declaration.built-in-function.clarity
+#                    ^-------- constant.language.clarity
+#                                    ^ punctuation.built-in-function.end.clarity
+#                                                    ^ punctuation.built-in-function.end.clarity
+    (try! (ft-transfer? clarity-coin amount sender recipient))
+#<0----------------------------------------------------------- meta.define-function
+#<0----------------------------------------------------------- meta.built-in-function
+#   ^--------------------------------------------------------- meta.built-in-function
+#   ^ punctuation.built-in-function.start.clarity
+#    ^--- keyword.declaration.built-in-function.clarity
+#         ^-------------------------------------------------- meta.built-in-function
+#         ^ punctuation.built-in-function.start.clarity
+#          ^----------- keyword.declaration.built-in-function.clarity
+#                                                           ^ punctuation.built-in-function.end.clarity
+#                                                            ^ punctuation.built-in-function.end.clarity
+    (match memo to-print (print to-print) 0x)
+#<0------------------------------------------ meta.define-function
+#<0------------------------------------------ meta.built-in-function
+#   ^---------------------------------------- meta.built-in-function
+#   ^ punctuation.built-in-function.start.clarity
+#    ^---- keyword.declaration.built-in-function.clarity
+#                        ^--------------- meta.built-in-function
+#                        ^ punctuation.built-in-function.start.clarity
+#                         ^---- keyword.declaration.built-in-function.clarity
+#                                       ^ punctuation.built-in-function.end.clarity
+#                                         ^- constant.numeric.hex.clarity
+#                                           ^ punctuation.built-in-function.end.clarity
+    (ok true)
+#<0---------- meta.define-function
+#<0---------- meta.built-in-function
+#   ^-------- meta.response
+#   ^ punctuation.response.start.clarity
+#    ^- constant.language.ok-err.clarity
+#       ^--- constant.language.bool.clarity
+#           ^ punctuation.response.end.clarity
+  )
+#<0 meta.define-function
+#<0 meta.built-in-function
+# ^ punctuation.built-in-function.end.clarity
+)
+#<0 meta.define-function
+#<0 punctuation.define-function.end.clarity
+
+(define-read-only (get-name)
+#<0------------------------- meta.define-function
+#<0 punctuation.define-function.start.clarity
+#^--------------- keyword.declaration.define-function.clarity
+#                 ^--------- meta.define-function-signature
+#                 ^ punctuation.function-signature.start.clarity
+#                  ^------- entity.name.function.clarity
+#                          ^ punctuation.function-signature.end.clarity
+  (ok "Clarity Coin")
+#<0------------------ meta.define-function
+# ^------------------ meta.response
+# ^ punctuation.response.start.clarity
+#  ^- constant.language.ok-err.clarity
+#     ^------------- string.quoted.double.clarity
+#     ^ punctuation.definition.string.begin.clarity
+#                   ^ punctuation.response.end.clarity
+)
+#<0 meta.define-function
+#<0 punctuation.define-function.end.clarity
+
+(define-read-only (get-symbol)
+#<0--------------------------- meta.define-function
+#<0 punctuation.define-function.start.clarity
+#^--------------- keyword.declaration.define-function.clarity
+#                 ^----------- meta.define-function-signature
+#                 ^ punctuation.function-signature.start.clarity
+#                  ^--------- entity.name.function.clarity
+#                            ^ punctuation.function-signature.end.clarity
+  (ok "CC")
+#<0-------- meta.define-function
+# ^-------- meta.response
+# ^ punctuation.response.start.clarity
+#  ^- constant.language.ok-err.clarity
+#     ^--- string.quoted.double.clarity
+#     ^ punctuation.definition.string.begin.clarity
+#         ^ punctuation.response.end.clarity
+)
+#<0 meta.define-function
+#<0 punctuation.define-function.end.clarity
+
+(define-read-only (get-decimals)
+#<0----------------------------- meta.define-function
+#<0 punctuation.define-function.start.clarity
+#^--------------- keyword.declaration.define-function.clarity
+#                 ^------------- meta.define-function-signature
+#                 ^ punctuation.function-signature.start.clarity
+#                  ^----------- entity.name.function.clarity
+#                              ^ punctuation.function-signature.end.clarity
+  (ok u0)
+#<0------ meta.define-function
+# ^------ meta.response
+# ^ punctuation.response.start.clarity
+#  ^- constant.language.ok-err.clarity
+#     ^- constant.numeric.uint.clarity
+#       ^ punctuation.response.end.clarity
+)
+#<0 meta.define-function
+#<0 punctuation.define-function.end.clarity
+
+(define-read-only (get-balance (who principal))
+#<0-------------------------------------------- meta.define-function
+#<0 punctuation.define-function.start.clarity
+#^--------------- keyword.declaration.define-function.clarity
+#                 ^---------------------------- meta.define-function-signature
+#                 ^ punctuation.function-signature.start.clarity
+#                  ^---------- entity.name.function.clarity
+#                              ^-------------- meta.function-argument
+#                              ^ punctuation.function-argument.start.clarity
+#                               ^-- variable.parameter.clarity
+#                                   ^-------- entity.name.type.principal.clarity
+#                                            ^ punctuation.function-argument.end.clarity
+#                                             ^ punctuation.function-signature.end.clarity
+  (ok (ft-get-balance clarity-coin who))
+#<0------------------------------------- meta.define-function
+# ^------------------------------------- meta.response
+# ^ punctuation.response.start.clarity
+#  ^- constant.language.ok-err.clarity
+#     ^-------------------------------- meta.built-in-function
+#     ^ punctuation.built-in-function.start.clarity
+#      ^------------- keyword.declaration.built-in-function.clarity
+#                                     ^ punctuation.built-in-function.end.clarity
+#                                      ^ punctuation.response.end.clarity
+)
+#<0 meta.define-function
+#<0 punctuation.define-function.end.clarity
+
+(define-read-only (get-total-supply)
+#<0--------------------------------- meta.define-function
+#<0 punctuation.define-function.start.clarity
+#^--------------- keyword.declaration.define-function.clarity
+#                 ^----------------- meta.define-function-signature
+#                 ^ punctuation.function-signature.start.clarity
+#                  ^--------------- entity.name.function.clarity
+#                                  ^ punctuation.function-signature.end.clarity
+  (ok (ft-get-supply clarity-coin))
+#<0-------------------------------- meta.define-function
+# ^-------------------------------- meta.response
+# ^ punctuation.response.start.clarity
+#  ^- constant.language.ok-err.clarity
+#     ^--------------------------- meta.built-in-function
+#     ^ punctuation.built-in-function.start.clarity
+#      ^------------ keyword.declaration.built-in-function.clarity
+#                                ^ punctuation.built-in-function.end.clarity
+#                                 ^ punctuation.response.end.clarity
+)
+#<0 meta.define-function
+#<0 punctuation.define-function.end.clarity
+
+(define-read-only (get-token-uri)
+#<0------------------------------ meta.define-function
+#<0 punctuation.define-function.start.clarity
+#^--------------- keyword.declaration.define-function.clarity
+#                 ^-------------- meta.define-function-signature
+#                 ^ punctuation.function-signature.start.clarity
+#                  ^------------ entity.name.function.clarity
+#                               ^ punctuation.function-signature.end.clarity
+  (ok none)
+#<0-------- meta.define-function
+# ^-------- meta.response
+# ^ punctuation.response.start.clarity
+#  ^- constant.language.ok-err.clarity
+#     ^--- constant.language.none.clarity
+#         ^ punctuation.response.end.clarity
+)
+#<0 meta.define-function
+#<0 punctuation.define-function.end.clarity
+
+(define-public (mint (amount uint) (recipient principal))
+#<0------------------------------------------------------ meta.define-function
+#<0 punctuation.define-function.start.clarity
+#^------------ keyword.declaration.define-function.clarity
+#              ^----------------------------------------- meta.define-function-signature
+#              ^ punctuation.function-signature.start.clarity
+#               ^--- entity.name.function.clarity
+#                    ^------------ meta.function-argument
+#                    ^ punctuation.function-argument.start.clarity
+#                     ^----- variable.parameter.clarity
+#                            ^--- entity.name.type.numeric.clarity
+#                                ^ punctuation.function-argument.end.clarity
+#                                  ^-------------------- meta.function-argument
+#                                  ^ punctuation.function-argument.start.clarity
+#                                   ^-------- variable.parameter.clarity
+#                                             ^-------- entity.name.type.principal.clarity
+#                                                      ^ punctuation.function-argument.end.clarity
+#                                                       ^ punctuation.function-signature.end.clarity
+  (begin
+#<0----- meta.define-function
+# ^----- meta.built-in-function
+# ^ punctuation.built-in-function.start.clarity
+#  ^---- keyword.declaration.built-in-function.clarity
+    (asserts! (is-eq tx-sender contract-owner) err-owner-only)
+#<0----------------------------------------------------------- meta.define-function
+#<0----------------------------------------------------------- meta.built-in-function
+#   ^--------------------------------------------------------- meta.built-in-function
+#   ^ punctuation.built-in-function.start.clarity
+#    ^------- keyword.declaration.built-in-function.clarity
+#             ^------------------------------- meta.built-in-function
+#             ^ punctuation.built-in-function.start.clarity
+#              ^---- keyword.declaration.built-in-function.clarity
+#                    ^-------- constant.language.clarity
+#                                            ^ punctuation.built-in-function.end.clarity
+#                                                            ^ punctuation.built-in-function.end.clarity
+    (ft-mint? clarity-coin amount recipient)
+#<0----------------------------------------- meta.define-function
+#<0----------------------------------------- meta.built-in-function
+#   ^--------------------------------------- meta.built-in-function
+#   ^ punctuation.built-in-function.start.clarity
+#    ^------- keyword.declaration.built-in-function.clarity
+#                                          ^ punctuation.built-in-function.end.clarity
+  )
+#<0 meta.define-function
+#<0 meta.built-in-function
+# ^ punctuation.built-in-function.end.clarity
+)
+#<0 meta.define-function
+#<0 punctuation.define-function.end.clarity
+
+;; From https://github.com/clarity-lang/book/blob/main/projects/sip010-ft/contracts/clarity-coin.clar
+#<0-------------------------------------------------------------------------------------------------- comment.line.semicolon.clarity

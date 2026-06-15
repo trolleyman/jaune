@@ -1,0 +1,413 @@
+// grammar: source.java
+
+import java.awt.Rectangle;
+//<0---------------------- meta.import.java
+//<0-- keyword.other.import.java
+//     ^----------------- storage.modifier.import.java
+//         ^ punctuation.separator.java
+//             ^ punctuation.separator.java
+//                       ^ punctuation.terminator.java
+
+public class ObjectVarsAsParameters
+//<0------------------------------- meta.class.java
+//<0-- storage.modifier.java
+//     ^--------------------------- meta.class.identifier.java
+//     ^---- storage.modifier.java
+//           ^--------------------- entity.name.type.class.java
+{	public static void main(String[] args)
+//<0------------------------------------ meta.class.java
+//<0 punctuation.section.class.begin.bracket.curly.java
+//<1------------------------------------ meta.class.body.java
+//^------------------------------------- meta.method.java
+//^----- storage.modifier.java
+//       ^----- storage.modifier.java
+//              ^--- meta.method.return-type.java
+//              ^--- storage.type.primitive.java
+//                   ^------------------ meta.method.identifier.java
+//                   ^--- entity.name.function.java
+//                       ^ punctuation.definition.parameters.begin.bracket.round.java
+//                        ^----- storage.type.object.array.java
+//                              ^- punctuation.bracket.square.java
+//                                 ^--- variable.parameter.java
+//                                     ^ punctuation.definition.parameters.end.bracket.round.java
+	{	go();
+//<0---- meta.class.java
+//<0---- meta.class.body.java
+//<0---- meta.method.java
+//<1 punctuation.section.method.begin.bracket.curly.java
+//^----- meta.method.body.java
+// ^--- meta.function-call.java
+// ^- entity.name.function.java
+//   ^ punctuation.definition.parameters.begin.bracket.round.java
+//    ^ punctuation.definition.parameters.end.bracket.round.java
+//     ^ punctuation.terminator.java
+	}
+//<0 meta.class.java
+//<0 meta.class.body.java
+//<0 meta.method.java
+//<0 meta.method.body.java
+//<1 punctuation.section.method.end.bracket.curly.java
+
+	public static void go()
+//<0-------------------- meta.class.java
+//<0-------------------- meta.class.body.java
+//<1-------------------- meta.method.java
+//<1--- storage.modifier.java
+//      ^----- storage.modifier.java
+//             ^--- meta.method.return-type.java
+//             ^--- storage.type.primitive.java
+//                  ^--- meta.method.identifier.java
+//                  ^- entity.name.function.java
+//                    ^ punctuation.definition.parameters.begin.bracket.round.java
+//                     ^ punctuation.definition.parameters.end.bracket.round.java
+	{	Rectangle r1 = new Rectangle(0,0,5,5);
+//<0------------------------------------- meta.class.java
+//<0------------------------------------- meta.class.body.java
+//<0------------------------------------- meta.method.java
+//<1 punctuation.section.method.begin.bracket.curly.java
+//^-------------------------------------- meta.method.body.java
+// ^------------ meta.definition.variable.java
+// ^-------- storage.type.java
+//           ^- variable.other.definition.java
+//              ^ keyword.operator.assignment.java
+//                ^-- keyword.control.new.java
+//                    ^----------------- meta.function-call.java
+//                    ^-------- entity.name.function.java
+//                             ^ punctuation.definition.parameters.begin.bracket.round.java
+//                              ^ constant.numeric.decimal.java
+//                               ^ punctuation.separator.delimiter.java
+//                                ^ constant.numeric.decimal.java
+//                                 ^ punctuation.separator.delimiter.java
+//                                  ^ constant.numeric.decimal.java
+//                                   ^ punctuation.separator.delimiter.java
+//                                    ^ constant.numeric.decimal.java
+//                                     ^ punctuation.definition.parameters.end.bracket.round.java
+//                                      ^ punctuation.terminator.java
+		System.out.println("In method go. r1 " + r1 + "\n");
+//<0-------------------------------------------------- meta.class.java
+//<0-------------------------------------------------- meta.class.body.java
+//<0-------------------------------------------------- meta.method.java
+//<0-------------------------------------------------- meta.method.body.java
+//^----- variable.other.object.java
+//      ^ punctuation.separator.period.java
+//       ^-- variable.other.object.property.java
+//          ^---------------------------------------- meta.method-call.java
+//          ^ punctuation.separator.period.java
+//           ^------ entity.name.function.java
+//                  ^ punctuation.definition.parameters.begin.bracket.round.java
+//                   ^------------------ string.quoted.double.java
+//                   ^ punctuation.definition.string.begin.java
+//                                     ^ punctuation.definition.string.end.java
+//                                       ^ keyword.operator.arithmetic.java
+//                                            ^ keyword.operator.arithmetic.java
+//                                              ^--- string.quoted.double.java
+//                                              ^ punctuation.definition.string.begin.java
+//                                               ^- constant.character.escape.java
+//                                                 ^ punctuation.definition.string.end.java
+//                                                  ^ punctuation.definition.parameters.end.bracket.round.java
+//                                                   ^ punctuation.terminator.java
+		// could have been
+//<0---------------- meta.class.java
+//<0---------------- meta.class.body.java
+//<0---------------- meta.method.java
+//<0---------------- meta.method.body.java
+//<0 punctuation.whitespace.comment.leading.java
+//^----------------- comment.line.double-slash.java
+//^- punctuation.definition.comment.java
+		//System.out.prinltn("r1" + r1.toString());
+//<0----------------------------------------- meta.class.java
+//<0----------------------------------------- meta.class.body.java
+//<0----------------------------------------- meta.method.java
+//<0----------------------------------------- meta.method.body.java
+//<0 punctuation.whitespace.comment.leading.java
+//^------------------------------------------ comment.line.double-slash.java
+//^- punctuation.definition.comment.java
+		r1.setSize(10, 15);
+//<0----------------- meta.class.java
+//<0----------------- meta.class.body.java
+//<0----------------- meta.method.java
+//<0----------------- meta.method.body.java
+//^- variable.other.object.java
+//  ^--------------- meta.method-call.java
+//  ^ punctuation.separator.period.java
+//   ^------ entity.name.function.java
+//          ^ punctuation.definition.parameters.begin.bracket.round.java
+//           ^- constant.numeric.decimal.java
+//             ^ punctuation.separator.delimiter.java
+//               ^- constant.numeric.decimal.java
+//                 ^ punctuation.definition.parameters.end.bracket.round.java
+//                  ^ punctuation.terminator.java
+		System.out.println("In method go. r1 " + r1 + "\n");
+//<0-------------------------------------------------- meta.class.java
+//<0-------------------------------------------------- meta.class.body.java
+//<0-------------------------------------------------- meta.method.java
+//<0-------------------------------------------------- meta.method.body.java
+//^----- variable.other.object.java
+//      ^ punctuation.separator.period.java
+//       ^-- variable.other.object.property.java
+//          ^---------------------------------------- meta.method-call.java
+//          ^ punctuation.separator.period.java
+//           ^------ entity.name.function.java
+//                  ^ punctuation.definition.parameters.begin.bracket.round.java
+//                   ^------------------ string.quoted.double.java
+//                   ^ punctuation.definition.string.begin.java
+//                                     ^ punctuation.definition.string.end.java
+//                                       ^ keyword.operator.arithmetic.java
+//                                            ^ keyword.operator.arithmetic.java
+//                                              ^--- string.quoted.double.java
+//                                              ^ punctuation.definition.string.begin.java
+//                                               ^- constant.character.escape.java
+//                                                 ^ punctuation.definition.string.end.java
+//                                                  ^ punctuation.definition.parameters.end.bracket.round.java
+//                                                   ^ punctuation.terminator.java
+		alterPointee(r1);
+//<0--------------- meta.class.java
+//<0--------------- meta.class.body.java
+//<0--------------- meta.method.java
+//<0--------------- meta.method.body.java
+//^--------------- meta.function-call.java
+//^----------- entity.name.function.java
+//            ^ punctuation.definition.parameters.begin.bracket.round.java
+//               ^ punctuation.definition.parameters.end.bracket.round.java
+//                ^ punctuation.terminator.java
+		System.out.println("In method go. r1 " + r1 + "\n");
+//<0-------------------------------------------------- meta.class.java
+//<0-------------------------------------------------- meta.class.body.java
+//<0-------------------------------------------------- meta.method.java
+//<0-------------------------------------------------- meta.method.body.java
+//^----- variable.other.object.java
+//      ^ punctuation.separator.period.java
+//       ^-- variable.other.object.property.java
+//          ^---------------------------------------- meta.method-call.java
+//          ^ punctuation.separator.period.java
+//           ^------ entity.name.function.java
+//                  ^ punctuation.definition.parameters.begin.bracket.round.java
+//                   ^------------------ string.quoted.double.java
+//                   ^ punctuation.definition.string.begin.java
+//                                     ^ punctuation.definition.string.end.java
+//                                       ^ keyword.operator.arithmetic.java
+//                                            ^ keyword.operator.arithmetic.java
+//                                              ^--- string.quoted.double.java
+//                                              ^ punctuation.definition.string.begin.java
+//                                               ^- constant.character.escape.java
+//                                                 ^ punctuation.definition.string.end.java
+//                                                  ^ punctuation.definition.parameters.end.bracket.round.java
+//                                                   ^ punctuation.terminator.java
+
+		alterPointer(r1);
+//<0--------------- meta.class.java
+//<0--------------- meta.class.body.java
+//<0--------------- meta.method.java
+//<0--------------- meta.method.body.java
+//^--------------- meta.function-call.java
+//^----------- entity.name.function.java
+//            ^ punctuation.definition.parameters.begin.bracket.round.java
+//               ^ punctuation.definition.parameters.end.bracket.round.java
+//                ^ punctuation.terminator.java
+		System.out.println("In method go. r1 " + r1 + "\n");
+//<0-------------------------------------------------- meta.class.java
+//<0-------------------------------------------------- meta.class.body.java
+//<0-------------------------------------------------- meta.method.java
+//<0-------------------------------------------------- meta.method.body.java
+//^----- variable.other.object.java
+//      ^ punctuation.separator.period.java
+//       ^-- variable.other.object.property.java
+//          ^---------------------------------------- meta.method-call.java
+//          ^ punctuation.separator.period.java
+//           ^------ entity.name.function.java
+//                  ^ punctuation.definition.parameters.begin.bracket.round.java
+//                   ^------------------ string.quoted.double.java
+//                   ^ punctuation.definition.string.begin.java
+//                                     ^ punctuation.definition.string.end.java
+//                                       ^ keyword.operator.arithmetic.java
+//                                            ^ keyword.operator.arithmetic.java
+//                                              ^--- string.quoted.double.java
+//                                              ^ punctuation.definition.string.begin.java
+//                                               ^- constant.character.escape.java
+//                                                 ^ punctuation.definition.string.end.java
+//                                                  ^ punctuation.definition.parameters.end.bracket.round.java
+//                                                   ^ punctuation.terminator.java
+	}
+//<0 meta.class.java
+//<0 meta.class.body.java
+//<0 meta.method.java
+//<0 meta.method.body.java
+//<1 punctuation.section.method.end.bracket.curly.java
+
+	public static void alterPointee(Rectangle r)
+//<0----------------------------------------- meta.class.java
+//<0----------------------------------------- meta.class.body.java
+//<1----------------------------------------- meta.method.java
+//<1--- storage.modifier.java
+//      ^----- storage.modifier.java
+//             ^--- meta.method.return-type.java
+//             ^--- storage.type.primitive.java
+//                  ^------------------------ meta.method.identifier.java
+//                  ^----------- entity.name.function.java
+//                              ^ punctuation.definition.parameters.begin.bracket.round.java
+//                               ^-------- storage.type.java
+//                                         ^ variable.parameter.java
+//                                          ^ punctuation.definition.parameters.end.bracket.round.java
+	{	System.out.println("In method alterPointee. r " + r + "\n");
+//<0----------------------------------------------------------- meta.class.java
+//<0----------------------------------------------------------- meta.class.body.java
+//<0----------------------------------------------------------- meta.method.java
+//<1 punctuation.section.method.begin.bracket.curly.java
+//^------------------------------------------------------------ meta.method.body.java
+// ^----- variable.other.object.java
+//       ^ punctuation.separator.period.java
+//        ^-- variable.other.object.property.java
+//           ^------------------------------------------------ meta.method-call.java
+//           ^ punctuation.separator.period.java
+//            ^------ entity.name.function.java
+//                   ^ punctuation.definition.parameters.begin.bracket.round.java
+//                    ^--------------------------- string.quoted.double.java
+//                    ^ punctuation.definition.string.begin.java
+//                                               ^ punctuation.definition.string.end.java
+//                                                 ^ keyword.operator.arithmetic.java
+//                                                     ^ keyword.operator.arithmetic.java
+//                                                       ^--- string.quoted.double.java
+//                                                       ^ punctuation.definition.string.begin.java
+//                                                        ^- constant.character.escape.java
+//                                                          ^ punctuation.definition.string.end.java
+//                                                           ^ punctuation.definition.parameters.end.bracket.round.java
+//                                                            ^ punctuation.terminator.java
+		r.setSize(20, 30);
+//<0---------------- meta.class.java
+//<0---------------- meta.class.body.java
+//<0---------------- meta.method.java
+//<0---------------- meta.method.body.java
+//^ variable.other.object.java
+// ^--------------- meta.method-call.java
+// ^ punctuation.separator.period.java
+//  ^------ entity.name.function.java
+//         ^ punctuation.definition.parameters.begin.bracket.round.java
+//          ^- constant.numeric.decimal.java
+//            ^ punctuation.separator.delimiter.java
+//              ^- constant.numeric.decimal.java
+//                ^ punctuation.definition.parameters.end.bracket.round.java
+//                 ^ punctuation.terminator.java
+		System.out.println("In method alterPointee. r " + r + "\n");
+//<0---------------------------------------------------------- meta.class.java
+//<0---------------------------------------------------------- meta.class.body.java
+//<0---------------------------------------------------------- meta.method.java
+//<0---------------------------------------------------------- meta.method.body.java
+//^----- variable.other.object.java
+//      ^ punctuation.separator.period.java
+//       ^-- variable.other.object.property.java
+//          ^------------------------------------------------ meta.method-call.java
+//          ^ punctuation.separator.period.java
+//           ^------ entity.name.function.java
+//                  ^ punctuation.definition.parameters.begin.bracket.round.java
+//                   ^--------------------------- string.quoted.double.java
+//                   ^ punctuation.definition.string.begin.java
+//                                              ^ punctuation.definition.string.end.java
+//                                                ^ keyword.operator.arithmetic.java
+//                                                    ^ keyword.operator.arithmetic.java
+//                                                      ^--- string.quoted.double.java
+//                                                      ^ punctuation.definition.string.begin.java
+//                                                       ^- constant.character.escape.java
+//                                                         ^ punctuation.definition.string.end.java
+//                                                          ^ punctuation.definition.parameters.end.bracket.round.java
+//                                                           ^ punctuation.terminator.java
+	}
+//<0 meta.class.java
+//<0 meta.class.body.java
+//<0 meta.method.java
+//<0 meta.method.body.java
+//<1 punctuation.section.method.end.bracket.curly.java
+
+	public static void alterPointer(Rectangle r)
+//<0----------------------------------------- meta.class.java
+//<0----------------------------------------- meta.class.body.java
+//<1----------------------------------------- meta.method.java
+//<1--- storage.modifier.java
+//      ^----- storage.modifier.java
+//             ^--- meta.method.return-type.java
+//             ^--- storage.type.primitive.java
+//                  ^------------------------ meta.method.identifier.java
+//                  ^----------- entity.name.function.java
+//                              ^ punctuation.definition.parameters.begin.bracket.round.java
+//                               ^-------- storage.type.java
+//                                         ^ variable.parameter.java
+//                                          ^ punctuation.definition.parameters.end.bracket.round.java
+	{	System.out.println("In method alterPointer. r " + r + "\n");
+//<0----------------------------------------------------------- meta.class.java
+//<0----------------------------------------------------------- meta.class.body.java
+//<0----------------------------------------------------------- meta.method.java
+//<1 punctuation.section.method.begin.bracket.curly.java
+//^------------------------------------------------------------ meta.method.body.java
+// ^----- variable.other.object.java
+//       ^ punctuation.separator.period.java
+//        ^-- variable.other.object.property.java
+//           ^------------------------------------------------ meta.method-call.java
+//           ^ punctuation.separator.period.java
+//            ^------ entity.name.function.java
+//                   ^ punctuation.definition.parameters.begin.bracket.round.java
+//                    ^--------------------------- string.quoted.double.java
+//                    ^ punctuation.definition.string.begin.java
+//                                               ^ punctuation.definition.string.end.java
+//                                                 ^ keyword.operator.arithmetic.java
+//                                                     ^ keyword.operator.arithmetic.java
+//                                                       ^--- string.quoted.double.java
+//                                                       ^ punctuation.definition.string.begin.java
+//                                                        ^- constant.character.escape.java
+//                                                          ^ punctuation.definition.string.end.java
+//                                                           ^ punctuation.definition.parameters.end.bracket.round.java
+//                                                            ^ punctuation.terminator.java
+		r = new Rectangle(5, 10, 30, 35);
+//<0------------------------------- meta.class.java
+//<0------------------------------- meta.class.body.java
+//<0------------------------------- meta.method.java
+//<0------------------------------- meta.method.body.java
+//  ^ keyword.operator.assignment.java
+//    ^-- keyword.control.new.java
+//        ^----------------------- meta.function-call.java
+//        ^-------- entity.name.function.java
+//                 ^ punctuation.definition.parameters.begin.bracket.round.java
+//                  ^ constant.numeric.decimal.java
+//                   ^ punctuation.separator.delimiter.java
+//                     ^- constant.numeric.decimal.java
+//                       ^ punctuation.separator.delimiter.java
+//                         ^- constant.numeric.decimal.java
+//                           ^ punctuation.separator.delimiter.java
+//                             ^- constant.numeric.decimal.java
+//                               ^ punctuation.definition.parameters.end.bracket.round.java
+//                                ^ punctuation.terminator.java
+		System.out.println("In method alterPointer. r " + r + "\n");
+//<0---------------------------------------------------------- meta.class.java
+//<0---------------------------------------------------------- meta.class.body.java
+//<0---------------------------------------------------------- meta.method.java
+//<0---------------------------------------------------------- meta.method.body.java
+//^----- variable.other.object.java
+//      ^ punctuation.separator.period.java
+//       ^-- variable.other.object.property.java
+//          ^------------------------------------------------ meta.method-call.java
+//          ^ punctuation.separator.period.java
+//           ^------ entity.name.function.java
+//                  ^ punctuation.definition.parameters.begin.bracket.round.java
+//                   ^--------------------------- string.quoted.double.java
+//                   ^ punctuation.definition.string.begin.java
+//                                              ^ punctuation.definition.string.end.java
+//                                                ^ keyword.operator.arithmetic.java
+//                                                    ^ keyword.operator.arithmetic.java
+//                                                      ^--- string.quoted.double.java
+//                                                      ^ punctuation.definition.string.begin.java
+//                                                       ^- constant.character.escape.java
+//                                                         ^ punctuation.definition.string.end.java
+//                                                          ^ punctuation.definition.parameters.end.bracket.round.java
+//                                                           ^ punctuation.terminator.java
+	}
+//<0 meta.class.java
+//<0 meta.class.body.java
+//<0 meta.method.java
+//<0 meta.method.body.java
+//<1 punctuation.section.method.end.bracket.curly.java
+
+}
+//<0 meta.class.java
+//<0 punctuation.section.class.end.bracket.curly.java
+
+// From https://www.cs.utexas.edu/~scottm/cs307/javacode/codeSamples/ObjectVarsAsParameters.java
+//<0-------------------------------------------------------------------------------------------- comment.line.double-slash.java
+//<0 punctuation.definition.comment.java

@@ -1,0 +1,122 @@
+// grammar: source.genie
+
+[indent=4]
+//<1--- variable.other.vala
+//      ^ constant.numeric.vala
+
+namespace Entitas
+//<0----- keyword.vala
+//        ^------ entity.name.type.vala
+
+    delegate OnEntityChanged(e : IEntity, index : int, component : IComponent)
+//  ^------- keyword.vala
+//           ^-------------- entity.name.type.vala
+//                           ^ variable.other.vala
+//                               ^------ entity.name.type.vala
+//                                        ^---- variable.other.vala
+//                                                ^-- keyword.vala
+//                                                     ^-------- variable.other.vala
+//                                                                 ^--------- entity.name.type.vala
+
+    class EntityChanged : Object
+//  ^---- keyword.vala
+//        ^------------ entity.name.type.vala
+//                        ^----- entity.name.type.vala
+
+        class Listener : Object
+//      ^---- keyword.vala
+//            ^------- entity.name.type.vala
+//                       ^----- entity.name.type.vala
+            prop event : unowned OnEntityChanged
+//          ^--- keyword.vala
+//               ^---- keyword.vala
+//                       ^------ keyword.vala
+//                               ^-------------- entity.name.type.vala
+            construct(event : OnEntityChanged)
+//          ^-------- keyword.vala
+//                    ^---- keyword.vala
+//                            ^-------------- entity.name.type.vala
+                _event = event
+//              ^----- variable.other.vala
+//                       ^---- keyword.vala
+
+        _listeners : list of Listener = new list of Listener
+//      ^--------- variable.other.vala
+//                   ^--- keyword.vala
+//                        ^- keyword.vala
+//                           ^------- entity.name.type.vala
+//                                      ^-- keyword.vala
+//                                          ^--- keyword.vala
+//                                               ^- keyword.vala
+//                                                  ^------- entity.name.type.vala
+
+        def add(event : OnEntityChanged)
+//      ^-- keyword.vala
+//          ^-- entity.name.function.vala
+//              ^---- keyword.vala
+//                      ^-------------- entity.name.type.vala
+            _listeners.add(new Listener(event))
+//          ^--------- variable.other.vala
+//                     ^-- entity.name.function.vala
+//                         ^-- keyword.vala
+//                             ^------- entity.name.type.vala
+//                                      ^---- keyword.vala
+
+        def remove(event : OnEntityChanged)
+//      ^-- keyword.vala
+//          ^----- entity.name.function.vala
+//                 ^---- keyword.vala
+//                         ^-------------- entity.name.type.vala
+            for var listener in _listeners
+//          ^-- keyword.vala
+//              ^-- keyword.vala
+//                  ^------- variable.other.vala
+//                           ^- keyword.vala
+//                              ^--------- variable.other.vala
+                if listener.event == event
+//              ^- keyword.vala
+//                 ^------- variable.other.vala
+//                          ^---- variable.other.vala
+//                                   ^---- keyword.vala
+                    _listeners.remove(listener)
+//                  ^--------- variable.other.vala
+//                             ^----- entity.name.function.vala
+//                                    ^------- variable.other.vala
+                    return
+//                  ^----- keyword.vala
+
+        def clear()
+//      ^-- keyword.vala
+//          ^---- entity.name.function.vala
+            _listeners = new list of Listener
+//          ^--------- variable.other.vala
+//                       ^-- keyword.vala
+//                           ^--- keyword.vala
+//                                ^- keyword.vala
+//                                   ^------- entity.name.type.vala
+
+        def dispatch(e : IEntity, index : int, component : IComponent)
+//      ^-- keyword.vala
+//          ^------- entity.name.function.vala
+//                   ^ variable.other.vala
+//                       ^------ entity.name.type.vala
+//                                ^---- variable.other.vala
+//                                        ^-- keyword.vala
+//                                             ^-------- variable.other.vala
+//                                                         ^--------- entity.name.type.vala
+            for var listener in _listeners
+//          ^-- keyword.vala
+//              ^-- keyword.vala
+//                  ^------- variable.other.vala
+//                           ^- keyword.vala
+//                              ^--------- variable.other.vala
+                listener.event(e, index, component)
+//              ^------- variable.other.vala
+//                       ^---- entity.name.function.vala
+//                             ^ variable.other.vala
+//                                ^---- variable.other.vala
+//                                       ^-------- variable.other.vala
+
+// From https://github.com/darkoverlordofdata/libentitas/blob/master/src/Events/EntityChanged.gs
+//<0-------------------------------------------------------------------------------------------- comment.line.double-slash.vala
+//<0 punctuation.definition.comment.vala

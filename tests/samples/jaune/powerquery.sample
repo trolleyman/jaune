@@ -1,0 +1,134 @@
+# grammar: source.powerquery
+
+// Transforms a table into markdown syntax
+#<0--------------------------------------- comment.line.double-slash.powerquery
+(Table as table) =>
+#<0 punctuation.section.parens.begin.powerquery
+#^---- entity.name.powerquery
+#      ^- keyword.other.powerquery
+#         ^---- storage.type.powerquery
+#              ^ punctuation.section.parens.end.powerquery
+#                ^- keyword.operator.function.powerquery
+    let
+#   ^-- keyword.other.powerquery
+    Source = Table,
+#   ^----- entity.name.powerquery
+#          ^ keyword.operator.assignment-or-comparison.powerquery
+#            ^---- entity.name.powerquery
+#                 ^ punctuation.separator.powerquery
+    TableValues = Table.AddColumn(
+#   ^---------- entity.name.powerquery
+#               ^ keyword.operator.assignment-or-comparison.powerquery
+#                 ^---- entity.name.powerquery
+#                                ^ punctuation.section.parens.begin.powerquery
+        Source, "Custom", each Text.Combine(Record.FieldValues(_), " | ")
+#       ^----- entity.name.powerquery
+#             ^ punctuation.separator.powerquery
+#               ^------- string.quoted.double.powerquery
+#               ^ punctuation.definition.string.begin.powerquery
+#                      ^ punctuation.definition.string.end.powerquery
+#                       ^ punctuation.separator.powerquery
+#                         ^--- keyword.other.powerquery
+#                              ^--- entity.name.powerquery
+#                                          ^ punctuation.section.parens.begin.powerquery
+#                                           ^----- entity.name.powerquery
+#                                                             ^ punctuation.section.parens.begin.powerquery
+#                                                              ^ keyword.operator.implicitvariable.powerquery
+#                                                               ^ punctuation.section.parens.end.powerquery
+#                                                                ^ punctuation.separator.powerquery
+#                                                                  ^---- string.quoted.double.powerquery
+#                                                                  ^ punctuation.definition.string.begin.powerquery
+#                                                                      ^ punctuation.definition.string.end.powerquery
+#                                                                       ^ punctuation.section.parens.end.powerquery
+    ),
+#   ^ punctuation.section.parens.end.powerquery
+#    ^ punctuation.separator.powerquery
+    HyphenLine = Text.Combine(
+#   ^--------- entity.name.powerquery
+#              ^ keyword.operator.assignment-or-comparison.powerquery
+#                ^--- entity.name.powerquery
+#                            ^ punctuation.section.parens.begin.powerquery
+      List.Transform(
+#     ^--- entity.name.powerquery
+#                   ^ punctuation.section.parens.begin.powerquery
+        Table.ColumnNames(Source), each Text.Repeat("-", Text.Length(_))
+#       ^---- entity.name.powerquery
+#                        ^ punctuation.section.parens.begin.powerquery
+#                         ^----- entity.name.powerquery
+#                               ^ punctuation.section.parens.end.powerquery
+#                                ^ punctuation.separator.powerquery
+#                                  ^--- keyword.other.powerquery
+#                                       ^--- entity.name.powerquery
+#                                                  ^ punctuation.section.parens.begin.powerquery
+#                                                   ^-- string.quoted.double.powerquery
+#                                                   ^ punctuation.definition.string.begin.powerquery
+#                                                     ^ punctuation.definition.string.end.powerquery
+#                                                      ^ punctuation.separator.powerquery
+#                                                        ^--- entity.name.powerquery
+#                                                                   ^ punctuation.section.parens.begin.powerquery
+#                                                                    ^ keyword.operator.implicitvariable.powerquery
+#                                                                     ^- punctuation.section.parens.end.powerquery
+      ),
+#     ^ punctuation.section.parens.end.powerquery
+#      ^ punctuation.separator.powerquery
+      " | "
+#     ^---- string.quoted.double.powerquery
+#     ^ punctuation.definition.string.begin.powerquery
+#         ^ punctuation.definition.string.end.powerquery
+    ),
+#   ^ punctuation.section.parens.end.powerquery
+#    ^ punctuation.separator.powerquery
+    CombineList = List.Combine(
+#   ^---------- entity.name.powerquery
+#               ^ keyword.operator.assignment-or-comparison.powerquery
+#                 ^--- entity.name.powerquery
+#                             ^ punctuation.section.parens.begin.powerquery
+      {{Text.Combine(Table.ColumnNames(Source), " | ")},
+#     ^- punctuation.section.braces.begin.powerquery
+#       ^--- entity.name.powerquery
+#                   ^ punctuation.section.parens.begin.powerquery
+#                    ^---- entity.name.powerquery
+#                                     ^ punctuation.section.parens.begin.powerquery
+#                                      ^----- entity.name.powerquery
+#                                            ^ punctuation.section.parens.end.powerquery
+#                                             ^ punctuation.separator.powerquery
+#                                               ^---- string.quoted.double.powerquery
+#                                               ^ punctuation.definition.string.begin.powerquery
+#                                                   ^ punctuation.definition.string.end.powerquery
+#                                                    ^ punctuation.section.parens.end.powerquery
+#                                                     ^ punctuation.section.braces.end.powerquery
+#                                                      ^ punctuation.separator.powerquery
+      {HyphenLine}, TableValues[Custom]}
+#     ^ punctuation.section.braces.begin.powerquery
+#      ^--------- entity.name.powerquery
+#                ^ punctuation.section.braces.end.powerquery
+#                 ^ punctuation.separator.powerquery
+#                   ^---------- entity.name.powerquery
+#                              ^ punctuation.section.brackets.begin.powerquery
+#                               ^----- entity.name.powerquery
+#                                     ^ punctuation.section.brackets.end.powerquery
+#                                      ^ punctuation.section.braces.end.powerquery
+    ),
+#   ^ punctuation.section.parens.end.powerquery
+#    ^ punctuation.separator.powerquery
+    TransferToMarkdown = Text.Combine(CombineList, "#(lf)")
+#   ^----------------- entity.name.powerquery
+#                      ^ keyword.operator.assignment-or-comparison.powerquery
+#                        ^--- entity.name.powerquery
+#                                    ^ punctuation.section.parens.begin.powerquery
+#                                     ^---------- entity.name.powerquery
+#                                                ^ punctuation.separator.powerquery
+#                                                  ^------ string.quoted.double.powerquery
+#                                                  ^ punctuation.definition.string.begin.powerquery
+#                                                   ^---- constant.character.escapesequence.powerquery
+#                                                   ^- punctuation.definition.escapesequence.begin.powerquery
+#                                                       ^ punctuation.definition.escapesequence.end.powerquery
+#                                                        ^ punctuation.definition.string.end.powerquery
+#                                                         ^ punctuation.section.parens.end.powerquery
+  in
+# ^- keyword.other.powerquery
+    TransferToMarkdown
+#   ^----------------- entity.name.powerquery
+
+// From https://github.com/mogulargmbh/powerquerysnippets/blob/main/snippets/Table_ToMarkdown.pq
+#<0--------------------------------------------------------------------------------------------- comment.line.double-slash.powerquery

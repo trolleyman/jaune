@@ -1,0 +1,542 @@
+# grammar: source.talon
+
+# Compound of action(select, clear, copy, cut, paste, etc.)
+#<0-------------------------------------------------------- comment.line.number-sign.talon
+# and modifier(word, line, etc.) commands for editing text.
+#<0-------------------------------------------------------- comment.line.number-sign.talon
+# eg: "select line", "clear all"
+#<0----------------------------- comment.line.number-sign.talon
+<user.edit_action> <user.edit_modifier>: user.edit_command(edit_action, edit_modifier)
+#<0------------------------------------ entity.name.tag.talon
+#<0--------------- variable.parameter.talon
+#                  ^------------------- variable.parameter.talon
+#                                        ^-------------------------------------------- variable.parameter.talon
+#                                        ^---------------- entity.name.function.talon
+#                                            ^ punctuation.separator.talon
+#                                                         ^ punctuation.definition.parameters.begin.talon
+#                                                          ^---------- variable.parameter.talon
+#                                                                     ^ punctuation.separator.talon
+#                                                                       ^------------ variable.parameter.talon
+#                                                                                    ^ punctuation.definition.parameters.end.talon
+
+# Zoom
+#<0--- comment.line.number-sign.talon
+zoom in: edit.zoom_in()
+#<0---- entity.name.tag.talon
+#        ^------------- variable.parameter.talon
+#        ^----------- entity.name.function.talon
+#            ^ punctuation.separator.talon
+#                    ^ punctuation.definition.parameters.begin.talon
+#                     ^ punctuation.definition.parameters.end.talon
+zoom out: edit.zoom_out()
+#<0----- entity.name.tag.talon
+#         ^-------------- variable.parameter.talon
+#         ^------------ entity.name.function.talon
+#             ^ punctuation.separator.talon
+#                      ^ punctuation.definition.parameters.begin.talon
+#                       ^ punctuation.definition.parameters.end.talon
+zoom reset: edit.zoom_reset()
+#<0------- entity.name.tag.talon
+#           ^---------------- variable.parameter.talon
+#           ^-------------- entity.name.function.talon
+#               ^ punctuation.separator.talon
+#                          ^ punctuation.definition.parameters.begin.talon
+#                           ^ punctuation.definition.parameters.end.talon
+
+# Searching
+#<0-------- comment.line.number-sign.talon
+find it: edit.find()
+#<0---- entity.name.tag.talon
+#        ^---------- variable.parameter.talon
+#        ^-------- entity.name.function.talon
+#            ^ punctuation.separator.talon
+#                 ^ punctuation.definition.parameters.begin.talon
+#                  ^ punctuation.definition.parameters.end.talon
+next one: edit.find_next()
+#<0----- entity.name.tag.talon
+#         ^--------------- variable.parameter.talon
+#         ^------------- entity.name.function.talon
+#             ^ punctuation.separator.talon
+#                       ^ punctuation.definition.parameters.begin.talon
+#                        ^ punctuation.definition.parameters.end.talon
+
+# Navigation
+#<0--------- comment.line.number-sign.talon
+
+# The reason for these spoken forms is that "page up" and "page down"
+#<0------------------------------------------------------------------ comment.line.number-sign.talon
+#are globally defined as keys.
+#<0--------------------------- comment.line.number-sign.talon
+scroll up: edit.page_up()
+#<0------ entity.name.tag.talon
+#          ^------------- variable.parameter.talon
+#          ^----------- entity.name.function.talon
+#              ^ punctuation.separator.talon
+#                      ^ punctuation.definition.parameters.begin.talon
+#                       ^ punctuation.definition.parameters.end.talon
+scroll down: edit.page_down()
+#<0-------- entity.name.tag.talon
+#            ^--------------- variable.parameter.talon
+#            ^------------- entity.name.function.talon
+#                ^ punctuation.separator.talon
+#                          ^ punctuation.definition.parameters.begin.talon
+#                           ^ punctuation.definition.parameters.end.talon
+
+# go left, go left left down, go 5 left 2 down
+#<0------------------------------------------- comment.line.number-sign.talon
+# go word left, go 2 words right
+#<0----------------------------- comment.line.number-sign.talon
+go <user.navigation_step>+: user.perform_navigation_steps(navigation_step_list)
+#<0----------------------- entity.name.tag.talon
+#  ^--------------------- variable.parameter.talon
+#                           ^-------------------------------------------------- variable.parameter.talon
+#                           ^---------------------------- entity.name.function.talon
+#                               ^ punctuation.separator.talon
+#                                                        ^ punctuation.definition.parameters.begin.talon
+#                                                         ^------------------- variable.parameter.talon
+#                                                                        ^---- constant.numeric.talon
+#                                                                        ^ keyword.operator.talon
+#                                                                             ^ punctuation.definition.parameters.end.talon
+
+go line start | head: edit.line_start()
+#<0----------------- entity.name.tag.talon
+#             ^ punctuation.separator.talon
+#                     ^---------------- variable.parameter.talon
+#                     ^-------------- entity.name.function.talon
+#                         ^ punctuation.separator.talon
+#                                    ^ punctuation.definition.parameters.begin.talon
+#                                     ^ punctuation.definition.parameters.end.talon
+go line end | tail: edit.line_end()
+#<0--------------- entity.name.tag.talon
+#           ^ punctuation.separator.talon
+#                   ^-------------- variable.parameter.talon
+#                   ^------------ entity.name.function.talon
+#                       ^ punctuation.separator.talon
+#                                ^ punctuation.definition.parameters.begin.talon
+#                                 ^ punctuation.definition.parameters.end.talon
+
+go way left:
+#<0-------- entity.name.tag.talon
+    edit.line_start()
+#   ^---------------- variable.parameter.talon
+#   ^-------------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#                  ^ punctuation.definition.parameters.begin.talon
+#                   ^ punctuation.definition.parameters.end.talon
+    edit.line_start()
+#   ^---------------- variable.parameter.talon
+#   ^-------------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#                  ^ punctuation.definition.parameters.begin.talon
+#                   ^ punctuation.definition.parameters.end.talon
+go way right: edit.line_end()
+#<0--------- entity.name.tag.talon
+#             ^-------------- variable.parameter.talon
+#             ^------------ entity.name.function.talon
+#                 ^ punctuation.separator.talon
+#                          ^ punctuation.definition.parameters.begin.talon
+#                           ^ punctuation.definition.parameters.end.talon
+go way up: edit.file_start()
+#<0------ entity.name.tag.talon
+#          ^---------------- variable.parameter.talon
+#          ^-------------- entity.name.function.talon
+#              ^ punctuation.separator.talon
+#                         ^ punctuation.definition.parameters.begin.talon
+#                          ^ punctuation.definition.parameters.end.talon
+go way down: edit.file_end()
+#<0-------- entity.name.tag.talon
+#            ^-------------- variable.parameter.talon
+#            ^------------ entity.name.function.talon
+#                ^ punctuation.separator.talon
+#                         ^ punctuation.definition.parameters.begin.talon
+#                          ^ punctuation.definition.parameters.end.talon
+
+go top: edit.file_start()
+#<0--- entity.name.tag.talon
+#       ^---------------- variable.parameter.talon
+#       ^-------------- entity.name.function.talon
+#           ^ punctuation.separator.talon
+#                      ^ punctuation.definition.parameters.begin.talon
+#                       ^ punctuation.definition.parameters.end.talon
+go bottom: edit.file_end()
+#<0------ entity.name.tag.talon
+#          ^-------------- variable.parameter.talon
+#          ^------------ entity.name.function.talon
+#              ^ punctuation.separator.talon
+#                       ^ punctuation.definition.parameters.begin.talon
+#                        ^ punctuation.definition.parameters.end.talon
+
+go page up: edit.page_up()
+#<0------- entity.name.tag.talon
+#           ^------------- variable.parameter.talon
+#           ^----------- entity.name.function.talon
+#               ^ punctuation.separator.talon
+#                       ^ punctuation.definition.parameters.begin.talon
+#                        ^ punctuation.definition.parameters.end.talon
+go page down: edit.page_down()
+#<0--------- entity.name.tag.talon
+#             ^--------------- variable.parameter.talon
+#             ^------------- entity.name.function.talon
+#                 ^ punctuation.separator.talon
+#                           ^ punctuation.definition.parameters.begin.talon
+#                            ^ punctuation.definition.parameters.end.talon
+
+# Selecting
+#<0-------- comment.line.number-sign.talon
+
+select left: edit.extend_left()
+#<0-------- entity.name.tag.talon
+#            ^----------------- variable.parameter.talon
+#            ^--------------- entity.name.function.talon
+#                ^ punctuation.separator.talon
+#                            ^ punctuation.definition.parameters.begin.talon
+#                             ^ punctuation.definition.parameters.end.talon
+select right: edit.extend_right()
+#<0--------- entity.name.tag.talon
+#             ^------------------ variable.parameter.talon
+#             ^---------------- entity.name.function.talon
+#                 ^ punctuation.separator.talon
+#                              ^ punctuation.definition.parameters.begin.talon
+#                               ^ punctuation.definition.parameters.end.talon
+select up: edit.extend_line_up()
+#<0------ entity.name.tag.talon
+#          ^-------------------- variable.parameter.talon
+#          ^------------------ entity.name.function.talon
+#              ^ punctuation.separator.talon
+#                             ^ punctuation.definition.parameters.begin.talon
+#                              ^ punctuation.definition.parameters.end.talon
+select down: edit.extend_line_down()
+#<0-------- entity.name.tag.talon
+#            ^---------------------- variable.parameter.talon
+#            ^-------------------- entity.name.function.talon
+#                ^ punctuation.separator.talon
+#                                 ^ punctuation.definition.parameters.begin.talon
+#                                  ^ punctuation.definition.parameters.end.talon
+
+select word left: edit.extend_word_left()
+#<0------------- entity.name.tag.talon
+#                 ^---------------------- variable.parameter.talon
+#                 ^-------------------- entity.name.function.talon
+#                     ^ punctuation.separator.talon
+#                                      ^ punctuation.definition.parameters.begin.talon
+#                                       ^ punctuation.definition.parameters.end.talon
+select word right: edit.extend_word_right()
+#<0-------------- entity.name.tag.talon
+#                  ^----------------------- variable.parameter.talon
+#                  ^--------------------- entity.name.function.talon
+#                      ^ punctuation.separator.talon
+#                                        ^ punctuation.definition.parameters.begin.talon
+#                                         ^ punctuation.definition.parameters.end.talon
+
+# Indentation
+#<0---------- comment.line.number-sign.talon
+indent [more]: edit.indent_more()
+#<0---------- entity.name.tag.talon
+#              ^----------------- variable.parameter.talon
+#              ^--------------- entity.name.function.talon
+#                  ^ punctuation.separator.talon
+#                              ^ punctuation.definition.parameters.begin.talon
+#                               ^ punctuation.definition.parameters.end.talon
+(indent less | out dent): edit.indent_less()
+#<0--------------------- entity.name.tag.talon
+#<0 punctuation.definition.parameters.begin.talon
+#            ^ punctuation.separator.talon
+#                      ^ punctuation.definition.parameters.end.talon
+#                         ^----------------- variable.parameter.talon
+#                         ^--------------- entity.name.function.talon
+#                             ^ punctuation.separator.talon
+#                                         ^ punctuation.definition.parameters.begin.talon
+#                                          ^ punctuation.definition.parameters.end.talon
+
+# Delete
+#<0----- comment.line.number-sign.talon
+clear left: edit.delete()
+#<0------- entity.name.tag.talon
+#           ^------------ variable.parameter.talon
+#           ^---------- entity.name.function.talon
+#               ^ punctuation.separator.talon
+#                      ^ punctuation.definition.parameters.begin.talon
+#                       ^ punctuation.definition.parameters.end.talon
+clear right: user.delete_right()
+#<0-------- entity.name.tag.talon
+#            ^------------------ variable.parameter.talon
+#            ^---------------- entity.name.function.talon
+#                ^ punctuation.separator.talon
+#                             ^ punctuation.definition.parameters.begin.talon
+#                              ^ punctuation.definition.parameters.end.talon
+
+clear up:
+#<0----- entity.name.tag.talon
+    edit.extend_line_up()
+#   ^-------------------- variable.parameter.talon
+#   ^------------------ entity.name.function.talon
+#       ^ punctuation.separator.talon
+#                      ^ punctuation.definition.parameters.begin.talon
+#                       ^ punctuation.definition.parameters.end.talon
+    edit.delete()
+#   ^------------ variable.parameter.talon
+#   ^---------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#              ^ punctuation.definition.parameters.begin.talon
+#               ^ punctuation.definition.parameters.end.talon
+
+clear down:
+#<0------- entity.name.tag.talon
+    edit.extend_line_down()
+#   ^---------------------- variable.parameter.talon
+#   ^-------------------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#                        ^ punctuation.definition.parameters.begin.talon
+#                         ^ punctuation.definition.parameters.end.talon
+    edit.delete()
+#   ^------------ variable.parameter.talon
+#   ^---------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#              ^ punctuation.definition.parameters.begin.talon
+#               ^ punctuation.definition.parameters.end.talon
+
+clear word left:
+#<0------------ entity.name.tag.talon
+    edit.extend_word_left()
+#   ^---------------------- variable.parameter.talon
+#   ^-------------------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#                        ^ punctuation.definition.parameters.begin.talon
+#                         ^ punctuation.definition.parameters.end.talon
+    edit.delete()
+#   ^------------ variable.parameter.talon
+#   ^---------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#              ^ punctuation.definition.parameters.begin.talon
+#               ^ punctuation.definition.parameters.end.talon
+
+clear word right:
+#<0------------- entity.name.tag.talon
+    edit.extend_word_right()
+#   ^----------------------- variable.parameter.talon
+#   ^--------------------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#                         ^ punctuation.definition.parameters.begin.talon
+#                          ^ punctuation.definition.parameters.end.talon
+    edit.delete()
+#   ^------------ variable.parameter.talon
+#   ^---------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#              ^ punctuation.definition.parameters.begin.talon
+#               ^ punctuation.definition.parameters.end.talon
+
+# Copy
+#<0--- comment.line.number-sign.talon
+copy that: edit.copy()
+#<0------ entity.name.tag.talon
+#          ^---------- variable.parameter.talon
+#          ^-------- entity.name.function.talon
+#              ^ punctuation.separator.talon
+#                   ^ punctuation.definition.parameters.begin.talon
+#                    ^ punctuation.definition.parameters.end.talon
+copy word left: user.copy_word_left()
+#<0----------- entity.name.tag.talon
+#               ^-------------------- variable.parameter.talon
+#               ^------------------ entity.name.function.talon
+#                   ^ punctuation.separator.talon
+#                                  ^ punctuation.definition.parameters.begin.talon
+#                                   ^ punctuation.definition.parameters.end.talon
+copy word right: user.copy_word_right()
+#<0------------ entity.name.tag.talon
+#                ^--------------------- variable.parameter.talon
+#                ^------------------- entity.name.function.talon
+#                    ^ punctuation.separator.talon
+#                                    ^ punctuation.definition.parameters.begin.talon
+#                                     ^ punctuation.definition.parameters.end.talon
+
+
+# Cut
+#<0-- comment.line.number-sign.talon
+cut that: edit.cut()
+#<0----- entity.name.tag.talon
+#         ^--------- variable.parameter.talon
+#         ^------- entity.name.function.talon
+#             ^ punctuation.separator.talon
+#                 ^ punctuation.definition.parameters.begin.talon
+#                  ^ punctuation.definition.parameters.end.talon
+cut word left: user.cut_word_left()
+#<0---------- entity.name.tag.talon
+#              ^------------------- variable.parameter.talon
+#              ^----------------- entity.name.function.talon
+#                  ^ punctuation.separator.talon
+#                                ^ punctuation.definition.parameters.begin.talon
+#                                 ^ punctuation.definition.parameters.end.talon
+cut word right: user.cut_word_right()
+#<0----------- entity.name.tag.talon
+#               ^-------------------- variable.parameter.talon
+#               ^------------------ entity.name.function.talon
+#                   ^ punctuation.separator.talon
+#                                  ^ punctuation.definition.parameters.begin.talon
+#                                   ^ punctuation.definition.parameters.end.talon
+
+# Paste
+#<0---- comment.line.number-sign.talon
+(pace | paste) that: edit.paste()
+#<0---------------- entity.name.tag.talon
+#<0 punctuation.definition.parameters.begin.talon
+#     ^ punctuation.separator.talon
+#            ^ punctuation.definition.parameters.end.talon
+#                    ^----------- variable.parameter.talon
+#                    ^--------- entity.name.function.talon
+#                        ^ punctuation.separator.talon
+#                              ^ punctuation.definition.parameters.begin.talon
+#                               ^ punctuation.definition.parameters.end.talon
+(pace | paste) enter:
+#<0----------------- entity.name.tag.talon
+#<0 punctuation.definition.parameters.begin.talon
+#     ^ punctuation.separator.talon
+#            ^ punctuation.definition.parameters.end.talon
+    edit.paste()
+#   ^----------- variable.parameter.talon
+#   ^--------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#             ^ punctuation.definition.parameters.begin.talon
+#              ^ punctuation.definition.parameters.end.talon
+    key(enter)
+#   ^--------- entity.name.function.talon
+#      ^ punctuation.definition.parameters.begin.talon
+#       ^---- variable.parameter.talon
+#            ^ punctuation.definition.parameters.key.talon
+paste match: edit.paste_match_style()
+#<0-------- entity.name.tag.talon
+#            ^----------------------- variable.parameter.talon
+#            ^--------------------- entity.name.function.talon
+#                ^ punctuation.separator.talon
+#                                  ^ punctuation.definition.parameters.begin.talon
+#                                   ^ punctuation.definition.parameters.end.talon
+
+# Duplication
+#<0---------- comment.line.number-sign.talon
+clone that: edit.selection_clone()
+#<0------- entity.name.tag.talon
+#           ^--------------------- variable.parameter.talon
+#           ^------------------- entity.name.function.talon
+#               ^ punctuation.separator.talon
+#                               ^ punctuation.definition.parameters.begin.talon
+#                                ^ punctuation.definition.parameters.end.talon
+clone line: edit.line_clone()
+#<0------- entity.name.tag.talon
+#           ^---------------- variable.parameter.talon
+#           ^-------------- entity.name.function.talon
+#               ^ punctuation.separator.talon
+#                          ^ punctuation.definition.parameters.begin.talon
+#                           ^ punctuation.definition.parameters.end.talon
+
+# Insert new line
+#<0-------------- comment.line.number-sign.talon
+new line above: edit.line_insert_up()
+#<0----------- entity.name.tag.talon
+#               ^-------------------- variable.parameter.talon
+#               ^------------------ entity.name.function.talon
+#                   ^ punctuation.separator.talon
+#                                  ^ punctuation.definition.parameters.begin.talon
+#                                   ^ punctuation.definition.parameters.end.talon
+new line below | slap: edit.line_insert_down()
+#<0------------------ entity.name.tag.talon
+#              ^ punctuation.separator.talon
+#                      ^---------------------- variable.parameter.talon
+#                      ^-------------------- entity.name.function.talon
+#                          ^ punctuation.separator.talon
+#                                           ^ punctuation.definition.parameters.begin.talon
+#                                            ^ punctuation.definition.parameters.end.talon
+
+# Insert padding with optional symbols
+#<0----------------------------------- comment.line.number-sign.talon
+(pad | padding): user.insert_between(" ", " ")
+#<0------------ entity.name.tag.talon
+#<0 punctuation.definition.parameters.begin.talon
+#    ^ punctuation.separator.talon
+#             ^ punctuation.definition.parameters.end.talon
+#                ^---------------------------- variable.parameter.talon
+#                ^------------------ entity.name.function.talon
+#                    ^ punctuation.separator.talon
+#                                   ^ punctuation.definition.parameters.begin.talon
+#                                    ^-- string.quoted.double.talon
+#                                    ^ punctuation.definition.string.begin.talon
+#                                      ^ punctuation.definition.string.end.talon
+#                                       ^ punctuation.separator.talon
+#                                         ^-- string.quoted.double.talon
+#                                         ^ punctuation.definition.string.begin.talon
+#                                           ^ punctuation.definition.string.end.talon
+#                                            ^ punctuation.definition.parameters.end.talon
+(pad | padding) <user.symbol_key>+:
+#<0------------------------------- entity.name.tag.talon
+#<0 punctuation.definition.parameters.begin.talon
+#    ^ punctuation.separator.talon
+#             ^ punctuation.definition.parameters.end.talon
+#               ^---------------- variable.parameter.talon
+    insert(" ")
+#   ^---------- variable.parameter.talon
+#   ^----- entity.name.function.talon
+#         ^ punctuation.definition.parameters.begin.talon
+#          ^-- string.quoted.double.talon
+#          ^ punctuation.definition.string.begin.talon
+#            ^ punctuation.definition.string.end.talon
+#             ^ punctuation.definition.parameters.end.talon
+    user.insert_many(symbol_key_list)
+#   ^-------------------------------- variable.parameter.talon
+#   ^--------------- entity.name.function.talon
+#       ^ punctuation.separator.talon
+#                   ^ punctuation.definition.parameters.begin.talon
+#                    ^-------------- variable.parameter.talon
+#                              ^---- constant.numeric.talon
+#                              ^ keyword.operator.talon
+#                                   ^ punctuation.definition.parameters.end.talon
+    insert(" ")
+#   ^---------- variable.parameter.talon
+#   ^----- entity.name.function.talon
+#         ^ punctuation.definition.parameters.begin.talon
+#          ^-- string.quoted.double.talon
+#          ^ punctuation.definition.string.begin.talon
+#            ^ punctuation.definition.string.end.talon
+#             ^ punctuation.definition.parameters.end.talon
+
+# Undo/redo
+#<0-------- comment.line.number-sign.talon
+undo that: edit.undo()
+#<0------ entity.name.tag.talon
+#          ^---------- variable.parameter.talon
+#          ^-------- entity.name.function.talon
+#              ^ punctuation.separator.talon
+#                   ^ punctuation.definition.parameters.begin.talon
+#                    ^ punctuation.definition.parameters.end.talon
+redo that: edit.redo()
+#<0------ entity.name.tag.talon
+#          ^---------- variable.parameter.talon
+#          ^-------- entity.name.function.talon
+#              ^ punctuation.separator.talon
+#                   ^ punctuation.definition.parameters.begin.talon
+#                    ^ punctuation.definition.parameters.end.talon
+
+# Save
+#<0--- comment.line.number-sign.talon
+file save: edit.save()
+#<0------ entity.name.tag.talon
+#          ^---------- variable.parameter.talon
+#          ^-------- entity.name.function.talon
+#              ^ punctuation.separator.talon
+#                   ^ punctuation.definition.parameters.begin.talon
+#                    ^ punctuation.definition.parameters.end.talon
+file save all: edit.save_all()
+#<0---------- entity.name.tag.talon
+#              ^-------------- variable.parameter.talon
+#              ^------------ entity.name.function.talon
+#                  ^ punctuation.separator.talon
+#                           ^ punctuation.definition.parameters.begin.talon
+#                            ^ punctuation.definition.parameters.end.talon
+
+[go] line mid: user.line_middle()
+#<0---------- entity.name.tag.talon
+#              ^----------------- variable.parameter.talon
+#              ^--------------- entity.name.function.talon
+#                  ^ punctuation.separator.talon
+#                              ^ punctuation.definition.parameters.begin.talon
+#                               ^ punctuation.definition.parameters.end.talon
+
+# From https://github.com/talonhub/community/blob/main/core/edit/edit.talon
+#<0------------------------------------------------------------------------ comment.line.number-sign.talon

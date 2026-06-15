@@ -1,0 +1,78 @@
+# grammar: text.haml
+
+!!! 5
+#<0-- meta.prolog.haml
+#<0 punctuation.definition.prolog.haml
+%html
+	%head
+		%title Example HAML
+		/[if IE]
+#<0------- comment.line.slash.haml
+#<0 punctuation.section.comment.haml
+			%link{ :rel => "stylesheet", :href => "/css/ie.css" }
+	%body
+		#container
+# ^--------- meta.selector.css
+# ^--------- entity.other.attribute-name.id
+			%header
+				%h1 Our Awesome HTML5 Template
+			#main
+#  ^---- meta.selector.css
+#  ^---- entity.other.attribute-name.id
+				Did we mention this was awesome?
+
+				/ Only this line will be wrapped in a comment
+#<0---------------------------------------------- comment.block.haml
+#   ^ punctuation.section.comment.haml
+				%blockquote
+					%p Roads? Where we're going we don't need roads
+
+				/
+#<0-- comment.block.haml
+#   ^ punctuation.section.comment.haml
+					Now the whole block will be commented out
+#<0------------------------------------------- comment.block.haml
+					%blockquote
+#<0------------- comment.block.haml
+						%p Roads? Where we're going we don't need roads
+#<0-------------------------------------------------- comment.block.haml
+
+				%p The line below won't appear in the HTML
+				-# The rest of this line is a comment
+#<0-------------------------------------- comment.block.haml
+#   ^- punctuation.section.comment.haml
+				%p The line above won't appear in the HTML, nor will the lines underneath
+				-#
+#<0--- comment.block.haml
+#   ^- punctuation.section.comment.haml
+					None of this text will appear in our
+#<0-------------------------------------- comment.block.haml
+					rendered output
+#<0----------------- comment.block.haml
+
+				%p= Time.now
+#     ^--------- meta.line.ruby.haml
+#       ^--- support.class.ruby
+#           ^ punctuation.separator.method.ruby
+
+			%footer
+				%address
+					.hcard
+#    ^----- meta.selector.css
+#    ^----- entity.other.attribute-name.class
+						.fn Ian Oxley
+#     ^-- meta.selector.css
+#     ^-- entity.other.attribute-name.class
+						.adr
+#     ^--- meta.selector.css
+#     ^--- entity.other.attribute-name.class
+							.locality Newcastle-upon-Tyne
+#      ^-------- meta.selector.css
+#      ^-------- entity.other.attribute-name.class
+							.country-name England
+#      ^------------ meta.selector.css
+#      ^------------ entity.other.attribute-name.class
+
+/ From https://gist.github.com/ianoxley/1147666
+#<0-------------------------------------------- comment.block.haml
+#<0 punctuation.section.comment.haml

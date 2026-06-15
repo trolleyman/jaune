@@ -1,0 +1,101 @@
+// grammar: source.d
+
+void main()
+//<0 storage.type.basic-type.d
+//   ^--- entity.name.function.d
+{
+    import std.datetime.stopwatch : benchmark;
+//  ^----- keyword.package.import.d
+//         ^--------------------- variable.parameter.import.d
+//                                  ^-------- variable.parameter.import.d
+//                                           ^ meta.import.end.d
+    import std.math, std.parallelism, std.stdio;
+//  ^----- keyword.package.import.d
+//         ^------- variable.parameter.import.d
+//                 ^ keyword.operator.comma.d
+//                   ^-------------- variable.parameter.import.d
+//                                  ^ keyword.operator.comma.d
+//                                    ^-------- variable.parameter.import.d
+//                                             ^ meta.import.end.d
+
+    auto logs = new double[100_000];
+//  ^--- storage.type.basic-type.d
+//       ^--- variable.d
+//            ^ keyword.operator.assign.d
+//              ^--- keyword.other.new.d
+//                  ^----- storage.type.basic-type.d
+//                         ^------ constant.numeric.integer.decimal.d
+//                                 ^ meta.statement.end.d
+    auto bm = benchmark!({
+//  ^--- storage.type.basic-type.d
+//       ^- variable.d
+//          ^ keyword.operator.assign.d
+//            ^-------- variable.d
+//                       ^ source.d
+        foreach (i, ref elem; logs)
+//               ^ variable.d
+//                ^ keyword.operator.comma.d
+//                  ^-- storage.class.d
+//                      ^--- variable.d
+//                          ^ keyword.operator.semi-colon.d
+//                            ^--- variable.d
+            elem = log(1.0 + i);
+//          ^--- variable.d
+//               ^ keyword.operator.assign.d
+//                 ^-- entity.name.function.d
+//                     ^-- constant.numeric.float.decimal.d
+//                         ^ keyword.operator.numeric.d
+//                           ^ variable.d
+//                             ^ meta.statement.end.d
+    }, {
+//   ^ keyword.operator.comma.d
+        foreach (i, ref elem; logs.parallel)
+//      ^------- entity.name.function.d
+//               ^ variable.d
+//                ^ keyword.operator.comma.d
+//                  ^-- keyword.token.ref.d
+//                      ^--- variable.d
+//                            ^------------ variable.d
+            elem = log(1.0 + i);
+//          ^--- variable.d
+//               ^ keyword.operator.assign.d
+//                 ^-- entity.name.function.d
+//                     ^-- constant.numeric.float.decimal.d
+//                         ^ keyword.operator.numeric.d
+//                           ^ variable.d
+    })(100); // number of executions of each tested function
+//     ^-- constant.numeric.integer.decimal.d
+//         ^ meta.statement.end.d
+//           ^---------------------------------------------- comment.line.d
+    writefln("Linear init: %s msecs", bm[0].total!"msecs");
+//  ^------- entity.name.function.d
+//           ^---------------------- string.double-quoted-string.d
+//            ^---------- string.character.d
+//                        ^ string.character.d
+//                          ^------ string.character.d
+//                                  ^ keyword.operator.comma.d
+//                                    ^- variable.d
+//                                       ^ constant.numeric.integer.decimal.d
+//                                          ^---- variable.d
+//                                               ^ keyword.operator.logical.d
+//                                                ^------ string.double-quoted-string.d
+//                                                 ^---- string.character.d
+//                                                        ^ meta.statement.end.d
+    writefln("Parallel init: %s msecs", bm[1].total!"msecs");
+//  ^------- entity.name.function.d
+//           ^------------------------ string.double-quoted-string.d
+//            ^------------ string.character.d
+//                          ^ string.character.d
+//                            ^------ string.character.d
+//                                    ^ keyword.operator.comma.d
+//                                      ^- variable.d
+//                                         ^ constant.numeric.integer.decimal.d
+//                                            ^---- variable.d
+//                                                 ^ keyword.operator.logical.d
+//                                                  ^------ string.double-quoted-string.d
+//                                                   ^---- string.character.d
+//                                                          ^ meta.statement.end.d
+}
+
+// From https://dlang.org/
+//<0---------------------- comment.line.d

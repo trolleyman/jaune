@@ -1,0 +1,393 @@
+// grammar: source.wit
+
+package local:demo;
+//<0--------------- meta.package-decl.wit
+//<0--- storage.modifier.package-decl.wit
+//      ^---------- meta.id.package-decl.wit
+//      ^---------- meta.package-identifier.wit
+//      ^---- entity.name.namespace.package-identifier.wit
+//      ^---- entity.name.type.id.wit
+//           ^ keyword.operator.namespace.package-identifier.wit
+//            ^---- entity.name.type.package-identifier.wit
+//            ^--- entity.name.type.id.wit
+
+// An example interface.
+//<0-------------------- comment.line.double-slash.wit
+interface shared {
+//<0-------------- meta.interface-item.wit
+//<0----- keyword.declaration.interface.interface-item.wit storage.type.wit
+//        ^----- entity.name.type.id.interface-item.wit
+//               ^ punctuation.brackets.curly.begin.wit
+    // Examples of various types:
+//<0----------------------------- meta.interface-item.wit
+//<0----------------------------- comment.line.double-slash.wit
+
+    record metadata {
+//<0----------------- meta.interface-item.wit
+//<0 meta.whitespace.wit
+//  ^---------------- meta.record-item.wit
+//  ^----- keyword.declaration.record.record-item.wit
+//         ^------- entity.name.type.id.record-item.wit
+//                  ^ punctuation.brackets.curly.begin.wit
+        a: u32,
+//<0----------- meta.interface-item.wit
+//<0----------- meta.record-item.wit
+//<0---- meta.whitespace.wit
+//      ^------ meta.record-fields.wit
+//      ^ variable.declaration.id.record-fields.wit
+//       ^ keyword.operator.key-value.wit
+//        ^ meta.whitespace.wit
+//         ^-- entity.name.type.numeric.wit
+//            ^ punctuation.comma.wit
+        b: string,
+//<0-------------- meta.interface-item.wit
+//<0-------------- meta.record-item.wit
+//<0---- meta.whitespace.wit
+//      ^--------- meta.record-fields.wit
+//      ^ variable.declaration.id.record-fields.wit
+//       ^ keyword.operator.key-value.wit
+//        ^ meta.whitespace.wit
+//         ^----- entity.name.type.string.wit
+//               ^ punctuation.comma.wit
+    }
+//<0- meta.interface-item.wit
+//<0- meta.record-item.wit
+//<0 meta.whitespace.wit
+//  ^ punctuation.brackets.curly.end.wit
+
+    enum errno {
+//<0------------ meta.interface-item.wit
+//<0 meta.whitespace.wit
+//  ^----------- meta.enum-items.wit
+//  ^--- keyword.other.enum.enum-items.wit
+//       ^---- entity.name.type.id.enum-items.wit
+//             ^ punctuation.brackets.curly.begin.wit
+        too-big,
+//<0------------ meta.interface-item.wit
+//<0------------ meta.enum-items.wit
+//<0---- meta.whitespace.wit
+//      ^------ variable.other.enummember.id.enum-cases.wit
+//             ^ punctuation.comma.wit
+        too-small,
+//<0-------------- meta.interface-item.wit
+//<0-------------- meta.enum-items.wit
+//<0---- meta.whitespace.wit
+//      ^-------- variable.other.enummember.id.enum-cases.wit
+//               ^ punctuation.comma.wit
+    }
+//<0- meta.interface-item.wit
+//<0- meta.enum-items.wit
+//<0 meta.whitespace.wit
+//  ^ punctuation.brackets.curly.end.wit
+
+    // Use `%` to name something after a keyword.
+//<0--------------------------------------------- meta.interface-item.wit
+//<0--------------------------------------------- comment.line.double-slash.wit
+    variant %variant {
+//<0------------------ meta.interface-item.wit
+//<0 meta.whitespace.wit
+//  ^----------------- meta.variant.wit
+//  ^------ keyword.other.variant.wit
+//           ^------ entity.name.type.id.variant.wit
+//                   ^ punctuation.brackets.curly.begin.wit
+        baby,
+//<0--------- meta.interface-item.wit
+//<0--------- meta.variant.wit
+//<0---- meta.whitespace.wit
+//      ^--- variable.other.enummember.id.enum-cases.wit
+//          ^ punctuation.comma.wit
+        child(u32), // optional type payload
+//<0---------------------------------------- meta.interface-item.wit
+//<0---------------------------------------- meta.variant.wit
+//<0---- meta.whitespace.wit
+//      ^---------- meta.variant-cases.wit
+//      ^---- variable.other.enummember.id.variant-cases.wit
+//           ^ punctuation.brackets.round.begin.wit
+//            ^-- entity.name.type.numeric.wit
+//               ^ punctuation.brackets.round.end.wit
+//                ^ punctuation.comma.wit
+//                 ^------------------------ comment.line.double-slash.wit
+        adult,
+//<0---------- meta.interface-item.wit
+//<0---------- meta.variant.wit
+//<0---- meta.whitespace.wit
+//      ^---- variable.other.enummember.id.enum-cases.wit
+//           ^ punctuation.comma.wit
+    }
+//<0- meta.interface-item.wit
+//<0- meta.variant.wit
+//<0 meta.whitespace.wit
+//  ^ punctuation.brackets.curly.end.wit
+
+    flags permissions {
+//<0------------------- meta.interface-item.wit
+//<0 meta.whitespace.wit
+//  ^------------------ meta.flags-items.wit
+//  ^---- keyword.other.flags.flags-items.wit
+//        ^---------- entity.name.type.id.flags-items.wit
+//                    ^ punctuation.brackets.curly.begin.wit
+        read,
+//<0--------- meta.interface-item.wit
+//<0--------- meta.flags-items.wit
+//<0---- meta.whitespace.wit
+//      ^--- variable.other.enummember.id.flags-fields.wit
+//          ^ punctuation.comma.wit
+        write,
+//<0---------- meta.interface-item.wit
+//<0---------- meta.flags-items.wit
+//<0---- meta.whitespace.wit
+//      ^---- variable.other.enummember.id.flags-fields.wit
+//           ^ punctuation.comma.wit
+    }
+//<0- meta.interface-item.wit
+//<0- meta.flags-items.wit
+//<0 meta.whitespace.wit
+//  ^ punctuation.brackets.curly.end.wit
+
+    resource blob {
+//<0--------------- meta.interface-item.wit
+//<0 meta.whitespace.wit
+//  ^-------------- meta.resource-item.wit
+//  ^------- keyword.other.resource.wit
+//           ^--- entity.name.type.id.resource.wit
+//               ^ meta.whitespace.wit
+//                ^ meta.resource-methods.wit
+//                ^ punctuation.brackets.curly.begin.wit
+        constructor(init: list<u8>);
+//<0-------------------------------- meta.interface-item.wit
+//<0-------------------------------- meta.resource-item.wit
+//<0-------------------------------- meta.resource-methods.wit
+//<0---- meta.whitespace.wit
+//      ^--------------------------- meta.constructor-type.wit
+//      ^---------- keyword.other.constructor.constructor-type.wit
+//                 ^--------------- meta.param-list.wit
+//                 ^ punctuation.brackets.round.begin.wit
+//                  ^------------- meta.named-type-list.wit
+//                  ^--- variable.parameter.id.named-type.wit
+//                      ^ keyword.operator.key-value.wit
+//                       ^ meta.whitespace.wit
+//                        ^------- meta.list.ty.wit
+//                        ^--- entity.name.type.list.wit
+//                            ^ punctuation.brackets.angle.begin.wit
+//                             ^- entity.name.type.numeric.wit
+//                               ^ punctuation.brackets.angle.end.wit
+//                                ^ punctuation.brackets.round.end.wit
+        write: func(bytes: list<u8>);
+//<0--------------------------------- meta.interface-item.wit
+//<0--------------------------------- meta.resource-item.wit
+//<0--------------------------------- meta.resource-methods.wit
+//<0--------------------------------- meta.constructor-type.wit
+//<0---- meta.whitespace.wit
+//            ^ meta.whitespace.wit
+//                 ^---------------- meta.param-list.wit
+//                 ^ punctuation.brackets.round.begin.wit
+//                  ^-------------- meta.named-type-list.wit
+//                  ^---- variable.parameter.id.named-type.wit
+//                       ^ keyword.operator.key-value.wit
+//                        ^ meta.whitespace.wit
+//                         ^------- meta.list.ty.wit
+//                         ^--- entity.name.type.list.wit
+//                             ^ punctuation.brackets.angle.begin.wit
+//                              ^- entity.name.type.numeric.wit
+//                                ^ punctuation.brackets.angle.end.wit
+//                                 ^ punctuation.brackets.round.end.wit
+        read: func(n: u32) -> list<u8>;
+//<0----------------------------------- meta.interface-item.wit
+//<0----------------------------------- meta.resource-item.wit
+//<0----------------------------------- meta.resource-methods.wit
+//<0----------------------------------- meta.constructor-type.wit
+//<0---- meta.whitespace.wit
+//           ^ meta.whitespace.wit
+//                ^------- meta.param-list.wit
+//                ^ punctuation.brackets.round.begin.wit
+//                 ^----- meta.named-type-list.wit
+//                 ^ variable.parameter.id.named-type.wit
+//                  ^ keyword.operator.key-value.wit
+//                   ^ meta.whitespace.wit
+//                    ^-- entity.name.type.numeric.wit
+//                       ^ punctuation.brackets.round.end.wit
+//                        ^ meta.whitespace.wit
+//                           ^ meta.whitespace.wit
+        merge: static func(lhs: borrow<blob>, rhs: borrow<blob>) -> blob;
+//<0--------------------------------------------------------------------- meta.interface-item.wit
+//<0--------------------------------------------------------------------- meta.resource-item.wit
+//<0--------------------------------------------------------------------- meta.resource-methods.wit
+//<0--------------------------------------------------------------------- meta.constructor-type.wit
+//<0---- meta.whitespace.wit
+//            ^ meta.whitespace.wit
+//                   ^ meta.whitespace.wit
+//                        ^------------------------------------- meta.param-list.wit
+//                        ^ punctuation.brackets.round.begin.wit
+//                         ^----------------- meta.named-type-list.wit
+//                         ^-- variable.parameter.id.named-type.wit
+//                            ^ keyword.operator.key-value.wit
+//                             ^ meta.whitespace.wit
+//                              ^----------- meta.handle.ty.wit
+//                              ^----- entity.name.type.borrow.handle.wit
+//                                    ^ punctuation.brackets.angle.begin.wit
+//                                     ^--- entity.name.type.id.handle.wit
+//                                         ^ punctuation.brackets.angle.end.wit
+//                                          ^ punctuation.comma.wit
+//                                           ^ meta.whitespace.wit
+//                                            ^---------------- meta.named-type-list.wit
+//                                            ^-- variable.parameter.id.named-type.wit
+//                                               ^ keyword.operator.key-value.wit
+//                                                ^ meta.whitespace.wit
+//                                                 ^----------- meta.handle.ty.wit
+//                                                 ^----- entity.name.type.borrow.handle.wit
+//                                                       ^ punctuation.brackets.angle.begin.wit
+//                                                        ^--- entity.name.type.id.handle.wit
+//                                                            ^ punctuation.brackets.angle.end.wit
+//                                                             ^ punctuation.brackets.round.end.wit
+//                                                              ^ meta.whitespace.wit
+//                                                                 ^ meta.whitespace.wit
+    }
+//<0- meta.interface-item.wit
+//<0- meta.resource-item.wit
+//<0- meta.resource-methods.wit
+//<0 meta.constructor-type.wit
+//<0 meta.whitespace.wit
+//  ^ punctuation.brackets.curly.end.wit
+}
+//<0 meta.interface-item.wit
+//<0 punctuation.brackets.curly.end.wit
+
+interface dependent-interface {
+//<0--------------------------- meta.interface-item.wit
+//<0----- keyword.declaration.interface.interface-item.wit storage.type.wit
+//        ^------------------ entity.name.type.id.interface-item.wit
+//                            ^ punctuation.brackets.curly.begin.wit
+    use shared.{metadata};
+//<0---------------------- meta.interface-item.wit
+//<0 meta.whitespace.wit
+//  ^-------------------- meta.use-item.wit
+//  ^-- keyword.other.use.use-item.wit
+//      ^----- entity.name.namespace.id.use-path.wit
+//            ^ keyword.operator.namespace-separator.use-item.wit
+//             ^ punctuation.brackets.curly.begin.wit
+//              ^------- entity.name.type.declaration.use-names-item.use-item.wit
+//                      ^ punctuation.brackets.curly.end.wit
+
+    type aliased-metadata = metadata;
+//<0--------------------------------- meta.interface-item.wit
+//<0 meta.whitespace.wit
+//  ^-------------------------------- meta.type-item.wit
+//  ^--- keyword.declaration.type.type-item.wit storage.type.wit
+//       ^--------------- entity.name.type.id.type-item.wit
+//                        ^ punctuation.equal.wit
+//                         ^ meta.whitespace.wit
+//                          ^------- entity.name.type.id.wit
+
+    foo: func() -> aliased-metadata;
+//<0-------------------------------- meta.interface-item.wit
+//<0-------------------------------- meta.type-item.wit
+//<0 meta.whitespace.wit
+//  ^-- entity.name.type.id.wit
+//      ^ meta.whitespace.wit
+//       ^--- entity.name.type.id.wit
+//             ^ meta.whitespace.wit
+//                ^ meta.whitespace.wit
+//                 ^--------------- entity.name.type.id.wit
+}
+//<0 meta.interface-item.wit
+//<0 meta.type-item.wit
+
+// An example world.
+//<0---------------- meta.interface-item.wit
+//<0---------------- meta.type-item.wit
+//^ meta.whitespace.wit
+//   ^ meta.whitespace.wit
+//    ^------ entity.name.type.id.wit
+//           ^ meta.whitespace.wit
+//            ^---- entity.name.type.id.wit
+world my-world {
+//<0------------ meta.interface-item.wit
+//<0------------ meta.type-item.wit
+//<0- entity.name.type.id.wit
+//   ^ meta.whitespace.wit
+//    ^------- entity.name.type.id.wit
+//            ^ meta.whitespace.wit
+    import host: interface {
+//<0------------------------ meta.interface-item.wit
+//<0------------------------ meta.type-item.wit
+//<0 meta.whitespace.wit
+//  ^----- entity.name.type.id.wit
+//        ^ meta.whitespace.wit
+//         ^--- entity.name.type.id.wit
+//              ^ meta.whitespace.wit
+//               ^-------- entity.name.type.id.wit
+//                        ^ meta.whitespace.wit
+        log: func(param: string);
+//<0----------------------------- meta.interface-item.wit
+//<0----------------------------- meta.type-item.wit
+//<0---- meta.whitespace.wit
+//      ^-- entity.name.type.id.wit
+//          ^ meta.whitespace.wit
+//           ^--- entity.name.type.id.wit
+//                ^---- entity.name.type.id.wit
+//                      ^ meta.whitespace.wit
+//                       ^----- entity.name.type.string.wit
+    }
+//<0- meta.interface-item.wit
+//<0- meta.type-item.wit
+//<0 meta.whitespace.wit
+
+    import wasi:clocks/monotonic-clock;
+//<0----------------------------------- meta.interface-item.wit
+//<0----------------------------------- meta.type-item.wit
+//<0 meta.whitespace.wit
+//  ^----- entity.name.type.id.wit
+//        ^ meta.whitespace.wit
+//         ^--- entity.name.type.id.wit
+//              ^----- entity.name.type.id.wit
+//                     ^-------------- entity.name.type.id.wit
+
+    export wasi:cli/run;
+//<0-------------------- meta.interface-item.wit
+//<0-------------------- meta.type-item.wit
+//<0 meta.whitespace.wit
+//  ^----- entity.name.type.id.wit
+//        ^ meta.whitespace.wit
+//         ^--- entity.name.type.id.wit
+//              ^-- entity.name.type.id.wit
+//                  ^-- entity.name.type.id.wit
+
+    export run: func(x: u32) -> list<string>;
+//<0----------------------------------------- meta.interface-item.wit
+//<0----------------------------------------- meta.type-item.wit
+//<0 meta.whitespace.wit
+//  ^----- entity.name.type.id.wit
+//        ^ meta.whitespace.wit
+//         ^-- entity.name.type.id.wit
+//             ^ meta.whitespace.wit
+//              ^--- entity.name.type.id.wit
+//                   ^ entity.name.type.id.wit
+//                     ^ meta.whitespace.wit
+//                      ^-- entity.name.type.numeric.wit
+//                          ^ meta.whitespace.wit
+//                             ^ meta.whitespace.wit
+//                              ^----------- meta.list.ty.wit
+//                              ^--- entity.name.type.list.wit
+//                                  ^ punctuation.brackets.angle.begin.wit
+//                                   ^----- entity.name.type.string.wit
+//                                         ^ punctuation.brackets.angle.end.wit
+}
+//<0 meta.interface-item.wit
+//<0 meta.type-item.wit
+
+// Mostly inspired by https://component-model.bytecodealliance.org/design/wit.html
+//<0------------------------------------------------------------------------------ meta.interface-item.wit
+//<0------------------------------------------------------------------------------ meta.type-item.wit
+//^ meta.whitespace.wit
+//       ^ meta.whitespace.wit
+//        ^------- entity.name.type.id.wit
+//                ^ meta.whitespace.wit
+//                 ^- entity.name.type.id.wit
+//                   ^ meta.whitespace.wit
+//                    ^---- entity.name.type.id.wit
+//                            ^-------------- entity.name.type.id.wit
+//                                            ^--------------- entity.name.type.id.wit
+//                                                             ^-- entity.name.type.id.wit
+//                                                                 ^----- entity.name.type.id.wit
+//                                                                        ^-- entity.name.type.id.wit
+//                                                                            ^--- entity.name.type.id.wit

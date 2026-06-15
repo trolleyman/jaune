@@ -1,0 +1,61 @@
+# grammar: source.jinja
+
+{# templates/results.html #}
+#<0------------------------- comment.block.jinja
+#<0 entity.other.jinja.delimiter.comment
+#                         ^- entity.other.jinja.delimiter.comment
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Results</title>
+</head>
+
+<body>
+  <h1>{{ test_name }} Results</h1>
+#     ^-------------- variable.meta.scope.jinja
+#     ^- variable.entity.other.jinja.delimiter
+#        ^-------- variable.other.jinja
+#                  ^- variable.entity.other.jinja.delimiter
+  <ul>
+  {% for student in students %}
+# ^---------------------------- meta.scope.jinja.tag
+# ^- entity.other.jinja.delimiter.tag
+#    ^-- keyword.control.jinja
+#        ^------ variable.other.jinja
+#                ^- keyword.control.jinja
+#                   ^------- variable.other.jinja
+#                            ^- entity.other.jinja.delimiter.tag
+    <li>
+      <em>{{ student.name }}:</em> {{ student.score }}/{{ max_score }}
+#         ^----------------- variable.meta.scope.jinja
+#         ^- variable.entity.other.jinja.delimiter
+#            ^------ variable.other.jinja
+#                   ^ punctuation.other.jinja
+#                    ^--- variable.other.jinja.attribute
+#                         ^- variable.entity.other.jinja.delimiter
+#                                  ^------------------ variable.meta.scope.jinja
+#                                  ^- variable.entity.other.jinja.delimiter
+#                                     ^------ variable.other.jinja
+#                                            ^ punctuation.other.jinja
+#                                             ^---- variable.other.jinja.attribute
+#                                                   ^- variable.entity.other.jinja.delimiter
+#                                                      ^-------------- variable.meta.scope.jinja
+#                                                      ^- variable.entity.other.jinja.delimiter
+#                                                         ^-------- variable.other.jinja
+#                                                                   ^- variable.entity.other.jinja.delimiter
+    </li>
+  {% endfor %}
+# ^----------- meta.scope.jinja.tag
+# ^- entity.other.jinja.delimiter.tag
+#    ^----- keyword.control.jinja
+#           ^- entity.other.jinja.delimiter.tag
+  </ul>
+</body>
+</html>
+
+{# From https://realpython.com/primer-on-jinja-templating/#use-if-statements #}
+#<0---------------------------------------------------------------------------- comment.block.jinja
+#<0 entity.other.jinja.delimiter.comment
+#                                                                            ^- entity.other.jinja.delimiter.comment

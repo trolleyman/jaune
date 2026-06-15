@@ -1,0 +1,114 @@
+# grammar: source.cadence
+
+pub contract HelloWorld {
+#<0 invalid.deprecated.keyword.cadence
+#   ^-------------------- meta.definition.type.composite.cadence
+#   ^------- storage.type.contract.cadence
+#            ^--------- entity.name.type.contract.cadence
+#                       ^ meta.definition.type.body.cadence
+#                       ^ punctuation.section.type.begin.cadence
+
+    // Declare a public field of type String.
+#<0------------------------------------------ meta.definition.type.composite.cadence
+#<0------------------------------------------ meta.definition.type.body.cadence
+#<0- punctuation.whitespace.comment.leading.cadence
+#   ^---------------------------------------- comment.line.double-slash.cadence
+#   ^- punctuation.definition.comment.cadence
+    //
+#<0--- meta.definition.type.composite.cadence
+#<0--- meta.definition.type.body.cadence
+#<0- punctuation.whitespace.comment.leading.cadence
+#   ^- comment.line.double-slash.cadence
+#   ^- punctuation.definition.comment.cadence
+    // All fields must be initialized in the init() function.
+#<0---------------------------------------------------------- meta.definition.type.composite.cadence
+#<0---------------------------------------------------------- meta.definition.type.body.cadence
+#<0- punctuation.whitespace.comment.leading.cadence
+#   ^-------------------------------------------------------- comment.line.double-slash.cadence
+#   ^- punctuation.definition.comment.cadence
+    pub let greeting: String
+#<0------------------------- meta.definition.type.composite.cadence
+#<0------------------------- meta.definition.type.body.cadence
+#   ^-- invalid.deprecated.keyword.cadence
+#       ^-- storage.type.let.cadence
+#           ^------- variable.other.declaration.cadence
+#                   ^- keyword.operator.type.annotation.cadence
+#                     ^----- entity.name.type.cadence
+
+    // The init() function is required if the contract contains any fields.
+#<0------------------------------------------------------------------------ meta.definition.type.composite.cadence
+#<0------------------------------------------------------------------------ meta.definition.type.body.cadence
+#<0- punctuation.whitespace.comment.leading.cadence
+#   ^---------------------------------------------------------------------- comment.line.double-slash.cadence
+#   ^- punctuation.definition.comment.cadence
+    init() {
+#<0--------- meta.definition.type.composite.cadence
+#<0--------- meta.definition.type.body.cadence
+#   ^------- meta.definition.function.initializer.cadence
+#   ^--- storage.type.function.cadence
+#       ^- meta.parameter-clause.cadence
+#       ^ punctuation.definition.parameters.begin.cadence
+#        ^ punctuation.definition.parameters.end.cadence
+#          ^ meta.definition.function.body.cadence
+#          ^ punctuation.section.function.begin.cadence
+        self.greeting = "Hello, World!"
+#<0------------------------------------ meta.definition.type.composite.cadence
+#<0------------------------------------ meta.definition.type.body.cadence
+#<0------------------------------------ meta.definition.function.initializer.cadence
+#<0------------------------------------ meta.definition.function.body.cadence
+#       ^--- variable.language.cadence
+#            ^------- variable.other.member.cadence
+#                     ^ keyword.operator.assignment.cadence
+#                        ^---- variable.other.readwrite.cadence
+#                               ^---- variable.other.readwrite.cadence
+#                                    ^ keyword.operator.logical.not.cadence
+    }
+#<0-- meta.definition.type.composite.cadence
+#<0-- meta.definition.type.body.cadence
+#<0-- meta.definition.function.initializer.cadence
+#<0-- meta.definition.function.body.cadence
+#   ^ punctuation.section.function.end.cadence
+
+    // Public function that returns our friendly greeting!
+#<0------------------------------------------------------- meta.definition.type.composite.cadence
+#<0------------------------------------------------------- meta.definition.type.body.cadence
+#<0- punctuation.whitespace.comment.leading.cadence
+#   ^----------------------------------------------------- comment.line.double-slash.cadence
+#   ^- punctuation.definition.comment.cadence
+    pub fun hello(): String {
+#<0-------------------------- meta.definition.type.composite.cadence
+#<0-------------------------- meta.definition.type.body.cadence
+#   ^-- invalid.deprecated.keyword.cadence
+#       ^-------------------- meta.definition.function.cadence
+#       ^-- storage.type.function.cadence
+#           ^---- entity.name.function.cadence
+#                ^- meta.parameter-clause.cadence
+#                ^ punctuation.definition.parameters.begin.cadence
+#                 ^ punctuation.definition.parameters.end.cadence
+#                  ^------- meta.function-result.cadence
+#                  ^ keyword.operator.function-result.cadence
+#                    ^----- entity.name.type.cadence
+#                           ^ meta.definition.function.body.cadence
+#                           ^ punctuation.section.function.begin.cadence
+        return self.greeting
+#<0------------------------- meta.definition.type.composite.cadence
+#<0------------------------- meta.definition.type.body.cadence
+#<0------------------------- meta.definition.function.cadence
+#<0------------------------- meta.definition.function.body.cadence
+#       ^----- keyword.control.transfer.cadence
+#              ^--- variable.language.cadence
+#                   ^------- variable.other.member.cadence
+    }
+#<0-- meta.definition.type.composite.cadence
+#<0-- meta.definition.type.body.cadence
+#<0-- meta.definition.function.cadence
+#<0-- meta.definition.function.body.cadence
+#   ^ punctuation.section.function.end.cadence
+}
+#<0 meta.definition.type.composite.cadence
+#<0 meta.definition.type.body.cadence
+#<0 punctuation.section.type.end.cadence
+
+// From https://docs.onflow.org/cadence/tutorial/02-hello-world/
+#<0------------------------------------------------------------- comment.line.double-slash.cadence
+#<0 punctuation.definition.comment.cadence

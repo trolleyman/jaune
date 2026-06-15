@@ -1,0 +1,209 @@
+# grammar: source.r
+
+Year.Release <- game$Year.Release
+#<0--------- variable.object
+#            ^- keyword.operator
+#               ^--- variable.object
+#                   ^ keyword.operator
+#                    ^----------- variable.object
+counts <- data.frame(table(Year.Release))
+#<0--- variable.object
+#      ^- keyword.operator
+#         ^--------- meta.function-call
+#         ^--------- entity.name.function
+#                   ^-------------------- meta.bracket
+#                    ^---- meta.function-call
+#                    ^---- entity.name.function
+#                         ^------------- meta.bracket
+#                          ^----------- variable.object
+p <- game %>%
+#<0 variable.object
+# ^- keyword.operator
+#    ^--- variable.object
+#         ^-- keyword.operator
+  select(Year.Release, Global.Sales) %>%
+# ^----- meta.function-call
+# ^----- entity.name.function
+#       ^--------------------------- meta.bracket
+#        ^----------- variable.object
+#                    ^ keyword.operator
+#                      ^----------- variable.object
+#                                    ^-- keyword.operator
+  group_by(Year.Release) %>%
+# ^------- meta.function-call
+# ^------- entity.name.function
+#         ^------------- meta.bracket
+#          ^----------- variable.object
+#                        ^-- keyword.operator
+  summarise(Total.Sales = sum(Global.Sales))
+# ^-------- meta.function-call
+# ^-------- entity.name.function
+#          ^-------------------------------- meta.bracket
+#           ^---------- variable.parameter
+#                       ^ keyword.operator
+#                         ^-- meta.function-call
+#                         ^-- entity.name.function
+#                            ^------------- meta.bracket
+#                             ^----------- variable.object
+q <- cbind.data.frame(p, counts[2])  # Add counts to data frame
+#<0 variable.object
+# ^- keyword.operator
+#    ^--------------- meta.function-call
+#    ^--------------- entity.name.function
+#                    ^------------- meta.bracket
+#                     ^ variable.object
+#                      ^ keyword.operator
+#                        ^----- variable.object
+#                              ^-- meta.bracket
+#                               ^ constant.numeric
+#                                    ^------------------------- comment.line
+names(q)[3] <- "count"
+#<0-- meta.function-call
+#<0-- entity.name.function
+#    ^----- meta.bracket
+#     ^ variable.object
+#        ^ constant.numeric
+#           ^- keyword.operator
+#              ^------ string.quoted.double
+q$count <- as.numeric(q$count)
+#<0 variable.object
+#^ keyword.operator
+# ^---- variable.object
+#       ^- keyword.operator
+#          ^--------- meta.function-call
+#          ^--------- entity.name.function
+#                    ^-------- meta.bracket
+#                     ^ variable.object
+#                      ^ keyword.operator
+#                       ^---- variable.object
+
+ggplot(q, aes(x = Year.Release, y = Total.Sales, label = q$count)) +
+#<0--- meta.function-call
+#<0--- entity.name.function
+#     ^----------------------------------------------------------- meta.bracket
+#      ^ variable.object
+#       ^ keyword.operator
+#         ^-- meta.function-call
+#         ^-- entity.name.function
+#            ^--------------------------------------------------- meta.bracket
+#             ^ variable.parameter
+#               ^ keyword.operator
+#                 ^----------- variable.object
+#                             ^ keyword.operator
+#                               ^ variable.parameter
+#                                 ^ keyword.operator
+#                                   ^---------- variable.object
+#                                              ^ keyword.operator
+#                                                ^---- variable.parameter
+#                                                      ^ keyword.operator
+#                                                        ^ variable.object
+#                                                         ^ keyword.operator
+#                                                          ^---- variable.object
+#                                                                  ^ keyword.operator
+  geom_col(fill = "green") +
+# ^------- meta.function-call
+# ^------- entity.name.function
+#         ^--------------- meta.bracket
+#          ^--- variable.parameter
+#               ^ keyword.operator
+#                 ^------ string.quoted.double
+#                          ^ keyword.operator
+  geom_point(y = q$count * 500000, size = 3, shape = 21, fill = "Yellow" ) +
+# ^--------- meta.function-call
+# ^--------- entity.name.function
+#           ^------------------------------------------------------------- meta.bracket
+#            ^ variable.parameter
+#              ^ keyword.operator
+#                ^ variable.object
+#                 ^ keyword.operator
+#                  ^---- variable.object
+#                        ^ keyword.operator
+#                          ^----- constant.numeric
+#                                ^ keyword.operator
+#                                  ^--- variable.parameter
+#                                       ^ keyword.operator
+#                                         ^ constant.numeric
+#                                          ^ keyword.operator
+#                                            ^---- variable.parameter
+#                                                  ^ keyword.operator
+#                                                    ^- constant.numeric
+#                                                      ^ keyword.operator
+#                                                        ^--- variable.parameter
+#                                                             ^ keyword.operator
+#                                                               ^------- string.quoted.double
+#                                                                          ^ keyword.operator
+  geom_text(y = (q$count + 50) * 500000) +  # Position of the text: count of games each year
+# ^-------- meta.function-call
+# ^-------- entity.name.function
+#          ^---------------------------- meta.bracket
+#           ^ variable.parameter
+#             ^ keyword.operator
+#               ^------------- meta.bracket
+#                ^ variable.object
+#                 ^ keyword.operator
+#                  ^---- variable.object
+#                        ^ keyword.operator
+#                          ^- constant.numeric
+#                              ^ keyword.operator
+#                                ^----- constant.numeric
+#                                        ^ keyword.operator
+#                                           ^----------------------------------------------- comment.line
+  theme(axis.text.x = element_text(angle = 90),
+# ^---- meta.function-call
+# ^---- entity.name.function
+#      ^--------------------------------------- meta.bracket
+#       ^---------- variable.parameter
+#                   ^ keyword.operator
+#                     ^----------- meta.function-call
+#                     ^----------- entity.name.function
+#                                 ^----------- meta.bracket
+#                                  ^---- variable.parameter
+#                                        ^ keyword.operator
+#                                          ^- constant.numeric
+#                                             ^ keyword.operator
+        panel.background = element_rect(fill = "purple"),
+#<0------------------------------------------------------ meta.bracket
+#       ^--------------- variable.parameter
+#                        ^ keyword.operator
+#                          ^----------- meta.function-call
+#                          ^----------- entity.name.function
+#                                      ^---------------- meta.bracket
+#                                       ^--- variable.parameter
+#                                            ^ keyword.operator
+#                                              ^------- string.quoted.double
+#                                                       ^ keyword.operator
+        panel.grid.major = element_blank(),
+#<0---------------------------------------- meta.bracket
+#       ^--------------- variable.parameter
+#                        ^ keyword.operator
+#                          ^------------ meta.function-call
+#                          ^------------ entity.name.function
+#                                       ^- meta.bracket
+#                                         ^ keyword.operator
+        panel.grid.minor = element_blank()) +
+#<0---------------------------------------- meta.bracket
+#       ^--------------- variable.parameter
+#                        ^ keyword.operator
+#                          ^------------ meta.function-call
+#                          ^------------ entity.name.function
+#                                       ^- meta.bracket
+#                                           ^ keyword.operator
+  scale_x_discrete("Year.Release", labels = as.character(Year.Release), breaks = Year.Release)
+# ^--------------- meta.function-call
+# ^--------------- entity.name.function
+#                 ^--------------------------------------------------------------------------- meta.bracket
+#                  ^------------- string.quoted.double
+#                                ^ keyword.operator
+#                                  ^----- variable.parameter
+#                                         ^ keyword.operator
+#                                           ^----------- meta.function-call
+#                                           ^----------- entity.name.function
+#                                                       ^------------- meta.bracket
+#                                                        ^----------- variable.object
+#                                                                     ^ keyword.operator
+#                                                                       ^----- variable.parameter
+#                                                                              ^ keyword.operator
+#                                                                                ^----------- variable.object
+
+# From https://gexijin.github.io/learnR/the-game-sales-dataset.html#analysis-of-sales
+#<0---------------------------------------------------------------------------------- comment.line

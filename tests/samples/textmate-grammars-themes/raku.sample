@@ -1,0 +1,136 @@
+# grammar: source.perl.6
+
+use v6;
+#<0 keyword.other.include.perl
+
+# start by printing out the header.
+#<0-------------------------------- comment.line.number-sign.perl
+#<0 punctuation.definition.comment.perl
+say "Tournament Results:\n";
+#<0 support.function.perl
+#   ^---------------------- string.quoted.double.perl
+#   ^ punctuation.definition.string.begin.perl
+#                       ^- constant.character.escape.perl
+#                         ^ punctuation.definition.string.end.perl
+
+my $file  = open 'scores.txt'; # get filehandle and...
+#<0 storage.type.variable.perl
+#  ^---- variable.other.identifier.perl.6
+#           ^--- support.function.perl
+#                ^----------- string.quoted.single.perl
+#                ^ punctuation.definition.string.begin.perl
+#                           ^ punctuation.definition.string.end.perl
+#                              ^---------------------- comment.line.number-sign.perl
+#                              ^ punctuation.definition.comment.perl
+my @names = $file.get.words;   # ... get players.
+#<0 storage.type.variable.perl
+#  ^----- variable.other.identifier.perl.6
+#           ^---- variable.other.identifier.perl.6
+#                              ^----------------- comment.line.number-sign.perl
+#                              ^ punctuation.definition.comment.perl
+
+my %matches;
+#<0 storage.type.variable.perl
+#  ^------- variable.other.identifier.perl.6
+my %sets;
+#<0 storage.type.variable.perl
+#  ^---- variable.other.identifier.perl.6
+
+for $file.lines -> $line {
+#<0 keyword.control.repeat.perl
+#   ^---- variable.other.identifier.perl.6
+#         ^---- support.function.perl
+#                  ^---- variable.other.identifier.perl.6
+    next unless $line; # ignore any empty lines
+#   ^--- keyword.control.flowcontrol.perl
+#        ^----- keyword.control.conditional.perl
+#               ^---- variable.other.identifier.perl.6
+#                      ^----------------------- comment.line.number-sign.perl
+#                      ^ punctuation.definition.comment.perl
+
+    my ($pairing, $result) = $line.split(' | ');
+#   ^- storage.type.variable.perl
+#       ^------- variable.other.identifier.perl.6
+#                 ^------ variable.other.identifier.perl.6
+#                            ^---- variable.other.identifier.perl.6
+#                                  ^---- support.function.perl
+#                                            ^-- string.quoted.single.perl
+#                                            ^ punctuation.definition.string.begin.perl
+    my ($p1, $p2)          = $pairing.words;
+#<0----------------------------------------- string.quoted.single.perl
+    my ($r1, $r2)          = $result.split(':');
+#<0----------------------------------------- string.quoted.single.perl
+#                                          ^ punctuation.definition.string.end.perl
+
+    %sets{$p1} += $r1;
+#   ^---- variable.other.identifier.perl.6
+#         ^-- variable.other.identifier.perl.6
+#                 ^-- variable.other.identifier.perl.6
+    %sets{$p2} += $r2;
+#   ^---- variable.other.identifier.perl.6
+#         ^-- variable.other.identifier.perl.6
+#                 ^-- variable.other.identifier.perl.6
+
+    if $r1 > $r2 {
+#   ^- keyword.control.conditional.perl
+#      ^-- variable.other.identifier.perl.6
+#            ^-- variable.other.identifier.perl.6
+        %matches{$p1}++;
+#       ^------- variable.other.identifier.perl.6
+#                ^-- variable.other.identifier.perl.6
+    } else {
+#     ^--- keyword.control.conditional.perl
+        %matches{$p2}++;
+#       ^------- variable.other.identifier.perl.6
+#                ^-- variable.other.identifier.perl.6
+    }
+}
+
+my @sorted = @names.sort({ %sets{$_} }).sort({ %matches{$_} }).reverse;
+#<0 storage.type.variable.perl
+#  ^------ variable.other.identifier.perl.6
+#            ^----- variable.other.identifier.perl.6
+#                   ^--- support.function.perl
+#                          ^---- variable.other.identifier.perl.6
+#                                ^- variable.other.identifier.perl.6
+#                                       ^--- support.function.perl
+#                                              ^------- variable.other.identifier.perl.6
+#                                                       ^- variable.other.identifier.perl.6
+#                                                              ^------ support.function.perl
+
+for @sorted -> $n {
+#<0 keyword.control.repeat.perl
+#   ^------ variable.other.identifier.perl.6
+#              ^- variable.other.identifier.perl.6
+    my $match-noun = %matches{$n} == 1 ?? 'match' !! 'matches';
+#   ^- storage.type.variable.perl
+#      ^---------- variable.other.identifier.perl.6
+#                    ^------- variable.other.identifier.perl.6
+#                             ^- variable.other.identifier.perl.6
+#                                         ^------ string.quoted.single.perl
+#                                         ^ punctuation.definition.string.begin.perl
+#                                               ^ punctuation.definition.string.end.perl
+#                                                    ^-------- string.quoted.single.perl
+#                                                    ^ punctuation.definition.string.begin.perl
+#                                                            ^ punctuation.definition.string.end.perl
+    my $set-noun   = %sets{$n} == 1 ?? 'set' !! 'sets';
+#   ^- storage.type.variable.perl
+#      ^-------- variable.other.identifier.perl.6
+#                    ^---- variable.other.identifier.perl.6
+#                          ^- variable.other.identifier.perl.6
+#                                      ^---- string.quoted.single.perl
+#                                      ^ punctuation.definition.string.begin.perl
+#                                          ^ punctuation.definition.string.end.perl
+#                                               ^----- string.quoted.single.perl
+#                                               ^ punctuation.definition.string.begin.perl
+#                                                    ^ punctuation.definition.string.end.perl
+    say "$n has won %matches{$n} $match-noun and %sets{$n} $set-noun";
+#   ^-- support.function.perl
+#       ^------------------------------------------------------------ string.quoted.double.perl
+#       ^ punctuation.definition.string.begin.perl
+#                                                                   ^ punctuation.definition.string.end.perl
+}
+
+# From https://docs.raku.org/language/101-basics
+#<0--------------------------------------------- comment.line.number-sign.perl
+#<0 punctuation.definition.comment.perl

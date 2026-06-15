@@ -1,0 +1,181 @@
+# grammar: source.yaml
+
+name: Check dist/
+#<0- string.unquoted.plain.out.yaml
+#<0 entity.name.tag.yaml
+#   ^ punctuation.separator.key-value.mapping.yaml
+#     ^---------- string.unquoted.plain.out.yaml
+
+on:
+#<0 constant.language.boolean.yaml
+# ^ punctuation.separator.key-value.mapping.yaml
+  push:
+# ^--- string.unquoted.plain.out.yaml
+# ^ entity.name.tag.yaml
+#     ^ punctuation.separator.key-value.mapping.yaml
+    branches:
+#   ^------- string.unquoted.plain.out.yaml
+#   ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+      - main
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^--- string.unquoted.plain.out.yaml
+    paths-ignore:
+#   ^----------- string.unquoted.plain.out.yaml
+#   ^ entity.name.tag.yaml
+#               ^ punctuation.separator.key-value.mapping.yaml
+      - '**.md'
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^------ string.quoted.single.yaml
+#       ^ punctuation.definition.string.begin.yaml
+#             ^ punctuation.definition.string.end.yaml
+  pull_request:
+# ^----------- string.unquoted.plain.out.yaml
+# ^ entity.name.tag.yaml
+#             ^ punctuation.separator.key-value.mapping.yaml
+    paths-ignore:
+#   ^----------- string.unquoted.plain.out.yaml
+#   ^ entity.name.tag.yaml
+#               ^ punctuation.separator.key-value.mapping.yaml
+      - '**.md'
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^------ string.quoted.single.yaml
+#       ^ punctuation.definition.string.begin.yaml
+#             ^ punctuation.definition.string.end.yaml
+
+jobs:
+#<0- string.unquoted.plain.out.yaml
+#<0 entity.name.tag.yaml
+#   ^ punctuation.separator.key-value.mapping.yaml
+  check-dist:
+# ^--------- string.unquoted.plain.out.yaml
+# ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+    runs-on: ubuntu-latest
+#   ^------ string.unquoted.plain.out.yaml
+#   ^ entity.name.tag.yaml
+#          ^ punctuation.separator.key-value.mapping.yaml
+#            ^------------ string.unquoted.plain.out.yaml
+
+    steps:
+#   ^---- string.unquoted.plain.out.yaml
+#   ^ entity.name.tag.yaml
+#        ^ punctuation.separator.key-value.mapping.yaml
+      - uses: actions/checkout@v3
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+#             ^------------------ string.unquoted.plain.out.yaml
+
+      - name: Set Node.js 16.x
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+#             ^--------------- string.unquoted.plain.out.yaml
+        uses: actions/setup-node@v3
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+#             ^-------------------- string.unquoted.plain.out.yaml
+        with:
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+          node-version: 16.x
+#         ^----------- string.unquoted.plain.out.yaml
+#         ^ entity.name.tag.yaml
+#                     ^ punctuation.separator.key-value.mapping.yaml
+#                       ^--- string.unquoted.plain.out.yaml
+          cache: npm
+#         ^---- string.unquoted.plain.out.yaml
+#         ^ entity.name.tag.yaml
+#              ^ punctuation.separator.key-value.mapping.yaml
+#                ^-- string.unquoted.plain.out.yaml
+
+      - name: Install dependencies
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+#             ^------------------- string.unquoted.plain.out.yaml
+        run: npm ci
+#       ^-- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#          ^ punctuation.separator.key-value.mapping.yaml
+#            ^----- string.unquoted.plain.out.yaml
+
+      - name: Rebuild the dist/ directory
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+#             ^-------------------------- string.unquoted.plain.out.yaml
+        run: |
+#       ^-- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#          ^ punctuation.separator.key-value.mapping.yaml
+#            ^ keyword.control.flow.block-scalar.literal.yaml
+          npm run build:compile
+#         ^-------------------- string.unquoted.plain.out.yaml
+          npm run build:package
+#         ^-------------------- string.unquoted.plain.out.yaml
+
+      - name: Compare the expected and actual dist/ directories
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+#             ^------------------------------------------------ string.unquoted.plain.out.yaml
+        run: |
+#       ^-- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#          ^ punctuation.separator.key-value.mapping.yaml
+#            ^ keyword.control.flow.block-scalar.literal.yaml
+          if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
+#         ^--------------------------------------------------------------------- string.unquoted.plain.out.yaml
+            echo "Detected uncommitted changes after build.  See status below:"
+#           ^------------------------------------------------------------------ string.unquoted.plain.out.yaml
+            git diff
+#           ^------- string.unquoted.plain.out.yaml
+            exit 1
+#           ^----- string.unquoted.plain.out.yaml
+          fi
+#         ^- string.unquoted.plain.out.yaml
+        id: diff
+#       ^- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#         ^ punctuation.separator.key-value.mapping.yaml
+#           ^--- string.unquoted.plain.out.yaml
+
+      # If index.js was different than expected, upload the expected version as an artifact
+#       ^---------------------------------------------------------------------------------- string.unquoted.plain.out.yaml
+      - uses: actions/upload-artifact@v3
+#     ^ punctuation.definition.block.sequence.item.yaml
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+#             ^------------------------- string.unquoted.plain.out.yaml
+        if: ${{ failure() && steps.diff.conclusion == 'failure' }}
+#       ^- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#         ^ punctuation.separator.key-value.mapping.yaml
+#           ^----------------------------------------------------- string.unquoted.plain.out.yaml
+        with:
+#       ^--- string.unquoted.plain.out.yaml
+#       ^ entity.name.tag.yaml
+#           ^ punctuation.separator.key-value.mapping.yaml
+          name: dist
+#         ^--- string.unquoted.plain.out.yaml
+#         ^ entity.name.tag.yaml
+#             ^ punctuation.separator.key-value.mapping.yaml
+#               ^--- string.unquoted.plain.out.yaml
+          path: dist/
+#         ^--- string.unquoted.plain.out.yaml
+#         ^ entity.name.tag.yaml
+#             ^ punctuation.separator.key-value.mapping.yaml
+#               ^---- string.unquoted.plain.out.yaml
+
+# From https://github.com/actions/add-to-project/blob/main/.github/workflows/check-dist.yml
+# ^---------------------------------------------------------------------------------------- string.unquoted.plain.out.yaml

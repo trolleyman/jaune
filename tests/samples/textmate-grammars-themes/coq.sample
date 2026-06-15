@@ -1,0 +1,132 @@
+(* grammar: source.coq *)
+
+From Coq Require Import ssreflect.
+(*<0 keyword.control.import.coq *)
+(*       ^------ keyword.control.import.coq *)
+(*               ^----- keyword.control.import.coq *)
+
+(* ensure proofs are well-structured *)
+(*<0----------------------------------- comment.block.coq *)
+Set Default Goal Selector "!".
+(*<0 keyword.source.coq *)
+(*          ^--- keyword.source.coq *)
+(*                        ^-- string.quoted.double.coq *)
+(*                        ^ punctuation.definition.string.begin.coq *)
+(*                          ^ punctuation.definition.string.end.coq *)
+#[global] Open Scope general_if_scope.
+(*        ^--------- keyword.control.import.coq *)
+
+Module list_playground.
+(*<0-- keyword.source.coq *)
+  (* Let's do a typical proof by induction: we'll define [list] as an inductive,
+(*^----------------------------------------------------------------------------- comment.block.coq *)
+     [app] (list append) as a recursive function, and prove that [app] is
+(*<0--------------------------------------------------------------------- comment.block.coq *)
+     associative. *)
+(*<0---------------- comment.block.coq *)
+  Inductive list (A: Type) :=
+(*^-------- keyword.source.coq *)
+(*          ^--- entity.name.type.coq *)
+(*                 ^ keyword.operator.coq *)
+(*                   ^--- support.type.coq *)
+(*                         ^- keyword.operator.coq *)
+  | nil
+(*^ keyword.operator.coq *)
+(*  ^-- constant.language.constructor.gallina *)
+  | cons (x: A) (l: list A).
+(*^ keyword.operator.coq *)
+(*  ^--- constant.language.constructor.gallina *)
+(*         ^ keyword.operator.coq *)
+(*                ^ keyword.operator.coq *)
+(*                  ^--- support.type.coq *)
+
+  (* Fix up implicit arguments. *)
+(*^------------------------------- comment.block.coq *)
+  Arguments nil {A}.
+(*^-------- keyword.source.coq *)
+(*          ^-- constant.language.constructor.gallina *)
+(*              ^ keyword.operator.coq *)
+(*                ^ keyword.operator.coq *)
+  Arguments cons {A} x l.
+(*^-------- keyword.source.coq *)
+(*          ^--- constant.language.constructor.gallina *)
+(*               ^ keyword.operator.coq *)
+(*                 ^ keyword.operator.coq *)
+  Notation "[]" := nil.
+(*^------- keyword.source.coq *)
+(*         ^--- string.quoted.double.coq *)
+(*         ^ punctuation.definition.string.begin.coq *)
+(*            ^ punctuation.definition.string.end.coq *)
+(*              ^- keyword.operator.coq *)
+(*                 ^-- constant.language.constructor.gallina *)
+  Infix "::" := cons.
+(*^---- keyword.source.coq *)
+(*      ^--- string.quoted.double.coq *)
+(*      ^ punctuation.definition.string.begin.coq *)
+(*         ^ punctuation.definition.string.end.coq *)
+(*           ^- keyword.operator.coq *)
+(*              ^--- constant.language.constructor.gallina *)
+
+  Fixpoint app {A} (l1 l2: list A): list A :=
+(*^------- keyword.source.coq *)
+(*         ^-- entity.name.function.coq *)
+(*             ^ keyword.operator.coq *)
+(*               ^ keyword.operator.coq *)
+(*                       ^ keyword.operator.coq *)
+(*                         ^--- support.type.coq *)
+(*                                ^ keyword.operator.coq *)
+(*                                  ^--- support.type.coq *)
+(*                                         ^- keyword.operator.coq *)
+    match l1 with
+(*  ^---- keyword.control.gallina *)
+(*           ^--- keyword.control.ltac *)
+    | [] => l2
+(*  ^ keyword.operator.coq *)
+(*       ^- keyword.operator.coq *)
+    | x :: l1 => x :: app l1 l2
+(*  ^ keyword.operator.coq *)
+(*      ^- keyword.operator.coq *)
+(*            ^- keyword.operator.coq *)
+(*                 ^- keyword.operator.coq *)
+    end.
+(*  ^-- keyword.control.gallina *)
+
+  Infix "++" := app.
+(*^---- keyword.source.coq *)
+(*      ^--- string.quoted.double.coq *)
+(*      ^ punctuation.definition.string.begin.coq *)
+(*         ^ punctuation.definition.string.end.coq *)
+(*           ^- keyword.operator.coq *)
+
+  Theorem app_assoc {A} (l1 l2 l3: list A) :
+(*^------ keyword.source.coq *)
+(*        ^-------- entity.name.function.theorem.coq *)
+(*                  ^ keyword.operator.coq *)
+(*                    ^ keyword.operator.coq *)
+(*                               ^ keyword.operator.coq *)
+(*                                 ^--- support.type.coq *)
+(*                                         ^ keyword.operator.coq *)
+    (l1 ++ l2) ++ l3 = l1 ++ (l2 ++ l3).
+(*      ^- keyword.operator.coq *)
+(*             ^- keyword.operator.coq *)
+(*                   ^ keyword.operator.coq *)
+(*                        ^- keyword.operator.coq *)
+(*                               ^- keyword.operator.coq *)
+  Proof.
+(*^---- keyword.source.coq *)
+    induction l1 as [|x l1]; simpl.
+(*  ^-------- support.function.builtin.ltac *)
+(*               ^- keyword.control.ltac *)
+(*                   ^ keyword.operator.coq *)
+(*                           ^---- support.function.builtin.ltac *)
+    - reflexivity.
+(*  ^ keyword.operator.coq *)
+(*    ^---------- support.function.builtin.ltac *)
+    - by rewrite IHl1.
+(*  ^ keyword.operator.coq *)
+(*    ^- keyword.control.ltac *)
+(*       ^------ support.function.builtin.ltac *)
+  Qed.
+(*^-- keyword.source.coq *)
+End list_playground.
+(*<0 keyword.source.coq *)

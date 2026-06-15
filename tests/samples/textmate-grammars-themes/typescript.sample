@@ -1,0 +1,655 @@
+// grammar: source.ts
+
+// Using 'typeof' to infer types
+//<0---------------------------- comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+const person = { name: "Alice", age: 30 };
+//<0------------------------------------- meta.var.expr.ts
+//<0- storage.type.ts
+//    ^------ meta.var-single-variable.expr.ts
+//    ^----- meta.definition.variable.ts
+//    ^----- variable.other.constant.ts
+//           ^ keyword.operator.assignment.ts
+//             ^------------------------- meta.objectliteral.ts
+//             ^ punctuation.definition.block.ts
+//               ^------------ meta.object.member.ts
+//               ^---- meta.object-literal.key.ts
+//                   ^ punctuation.separator.key-value.ts
+//                     ^------ string.quoted.double.ts
+//                     ^ punctuation.definition.string.begin.ts
+//                           ^ punctuation.definition.string.end.ts
+//                            ^ punctuation.separator.comma.ts
+//                              ^------- meta.object.member.ts
+//                              ^--- meta.object-literal.key.ts
+//                                 ^ punctuation.separator.key-value.ts
+//                                   ^- constant.numeric.decimal.ts
+//                                      ^ punctuation.definition.block.ts
+//                                       ^ punctuation.terminator.statement.ts
+type PersonType = typeof person;  // { name: string; age: number }
+//<0--------------------------- meta.type.declaration.ts
+//<0 storage.type.type.ts
+//   ^--------- entity.name.type.alias.ts
+//              ^ keyword.operator.assignment.ts
+//                ^----- keyword.operator.expression.typeof.ts
+//                       ^----- variable.other.readwrite.ts
+//                             ^ punctuation.terminator.statement.ts
+//                                ^------------------------------- comment.line.double-slash.ts
+//                                ^- punctuation.definition.comment.ts
+
+// 'satisfies' to ensure a type matches but allows more specific types
+//<0------------------------------------------------------------------ comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+type Animal = { name: string };
+//<0-------------------------- meta.type.declaration.ts
+//<0 storage.type.type.ts
+//   ^----- entity.name.type.alias.ts
+//          ^ keyword.operator.assignment.ts
+//            ^--------------- meta.object.type.ts
+//            ^ punctuation.definition.block.ts
+//             ^------------- meta.field.declaration.ts
+//              ^--- meta.definition.property.ts
+//              ^--- variable.object.property.ts
+//                  ^-------- meta.type.annotation.ts
+//                  ^ keyword.operator.type.annotation.ts
+//                    ^----- support.type.primitive.ts
+//                           ^ punctuation.definition.block.ts
+//                            ^ punctuation.terminator.statement.ts
+const dog = { name: "Buddy", breed: "Golden Retriever" } satisfies Animal;
+//<0--------------------------------------------------------------------- meta.var.expr.ts
+//<0- storage.type.ts
+//    ^--- meta.var-single-variable.expr.ts
+//    ^-- meta.definition.variable.ts
+//    ^-- variable.other.constant.ts
+//        ^ keyword.operator.assignment.ts
+//          ^------------------------------------------- meta.objectliteral.ts
+//          ^ punctuation.definition.block.ts
+//            ^------------ meta.object.member.ts
+//            ^---- meta.object-literal.key.ts
+//                ^ punctuation.separator.key-value.ts
+//                  ^------ string.quoted.double.ts
+//                  ^ punctuation.definition.string.begin.ts
+//                        ^ punctuation.definition.string.end.ts
+//                         ^ punctuation.separator.comma.ts
+//                           ^------------------------- meta.object.member.ts
+//                           ^----- meta.object-literal.key.ts
+//                                ^ punctuation.separator.key-value.ts
+//                                  ^----------------- string.quoted.double.ts
+//                                  ^ punctuation.definition.string.begin.ts
+//                                                   ^ punctuation.definition.string.end.ts
+//                                                     ^ punctuation.definition.block.ts
+//                                                       ^-------- keyword.control.satisfies.ts
+//                                                                 ^----- entity.name.type.ts
+//                                                                       ^ punctuation.terminator.statement.ts
+
+// Generics with 'extends' and default values
+//<0----------------------------------------- comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+function identity<T extends number | string = string>(arg: T): T {
+//<0-------------------------------------------------------------- meta.function.ts
+//<0---- storage.type.function.ts
+//       ^------- meta.definition.function.ts
+//       ^------- entity.name.function.ts
+//               ^----------------------------------- meta.type.parameters.ts
+//               ^ punctuation.definition.typeparameters.begin.ts
+//                ^ entity.name.type.ts
+//                  ^------ storage.modifier.ts
+//                          ^----- support.type.primitive.ts
+//                                 ^ keyword.operator.type.ts
+//                                   ^----- support.type.primitive.ts
+//                                          ^ keyword.operator.assignment.ts
+//                                            ^----- support.type.primitive.ts
+//                                                  ^ punctuation.definition.typeparameters.end.ts
+//                                                   ^------- meta.parameters.ts
+//                                                   ^ punctuation.definition.parameters.begin.ts
+//                                                    ^-- variable.parameter.ts
+//                                                       ^-- meta.type.annotation.ts
+//                                                       ^ keyword.operator.type.annotation.ts
+//                                                         ^ entity.name.type.ts
+//                                                          ^ punctuation.definition.parameters.end.ts
+//                                                           ^--- meta.return.type.ts
+//                                                           ^ keyword.operator.type.annotation.ts
+//                                                             ^ entity.name.type.ts
+//                                                               ^ meta.block.ts
+//                                                               ^ punctuation.definition.block.ts
+  return arg;
+//<0--------- meta.function.ts
+//<0--------- meta.block.ts
+//^----- keyword.control.flow.ts
+//       ^-- variable.other.readwrite.ts
+//          ^ punctuation.terminator.statement.ts
+}
+//<0 meta.function.ts
+//<0 meta.block.ts
+//<0 punctuation.definition.block.ts
+
+let str = identity();  // Default type is string
+//<0---------------- meta.var.expr.ts
+//<0 storage.type.ts
+//  ^--- meta.var-single-variable.expr.ts
+//  ^-- meta.definition.variable.ts
+//  ^-- variable.other.readwrite.ts
+//      ^ keyword.operator.assignment.ts
+//        ^------- meta.function-call.ts
+//        ^------- entity.name.function.ts
+//                ^- meta.brace.round.ts
+//                  ^ punctuation.terminator.statement.ts
+//                     ^------------------------ comment.line.double-slash.ts
+//                     ^- punctuation.definition.comment.ts
+let num = identity(42);  // T inferred as number
+//<0------------------ meta.var.expr.ts
+//<0 storage.type.ts
+//  ^--- meta.var-single-variable.expr.ts
+//  ^-- meta.definition.variable.ts
+//  ^-- variable.other.readwrite.ts
+//      ^ keyword.operator.assignment.ts
+//        ^------- meta.function-call.ts
+//        ^------- entity.name.function.ts
+//                ^ meta.brace.round.ts
+//                 ^- constant.numeric.decimal.ts
+//                   ^ meta.brace.round.ts
+//                    ^ punctuation.terminator.statement.ts
+//                       ^---------------------- comment.line.double-slash.ts
+//                       ^- punctuation.definition.comment.ts
+
+// 'extends' with interface and class
+//<0--------------------------------- comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+interface HasLength {
+//<0----------------- meta.interface.ts
+//<0----- storage.type.interface.ts
+//        ^-------- entity.name.type.interface.ts
+//                  ^ punctuation.definition.block.ts
+  length: number;
+//<0------------- meta.interface.ts
+//<0------------ meta.field.declaration.ts
+//^----- meta.definition.property.ts
+//^----- variable.object.property.ts
+//      ^------- meta.type.annotation.ts
+//      ^ keyword.operator.type.annotation.ts
+//        ^----- support.type.primitive.ts
+//              ^ punctuation.terminator.statement.ts
+}
+//<0 meta.interface.ts
+//<0 punctuation.definition.block.ts
+
+function logLength<T extends HasLength = string>(arg: T): void {
+//<0------------------------------------------------------------ meta.function.ts
+//<0---- storage.type.function.ts
+//       ^-------- meta.definition.function.ts
+//       ^-------- entity.name.function.ts
+//                ^----------------------------- meta.type.parameters.ts
+//                ^ punctuation.definition.typeparameters.begin.ts
+//                 ^ entity.name.type.ts
+//                   ^------ storage.modifier.ts
+//                           ^-------- entity.name.type.ts
+//                                     ^ keyword.operator.assignment.ts
+//                                       ^----- support.type.primitive.ts
+//                                             ^ punctuation.definition.typeparameters.end.ts
+//                                              ^------- meta.parameters.ts
+//                                              ^ punctuation.definition.parameters.begin.ts
+//                                               ^-- variable.parameter.ts
+//                                                  ^-- meta.type.annotation.ts
+//                                                  ^ keyword.operator.type.annotation.ts
+//                                                    ^ entity.name.type.ts
+//                                                     ^ punctuation.definition.parameters.end.ts
+//                                                      ^------ meta.return.type.ts
+//                                                      ^ keyword.operator.type.annotation.ts
+//                                                        ^--- support.type.primitive.ts
+//                                                             ^ meta.block.ts
+//                                                             ^ punctuation.definition.block.ts
+  console.log(arg.length);
+//<0---------------------- meta.function.ts
+//<0---------------------- meta.block.ts
+//^---------- meta.function-call.ts
+//^------ variable.other.object.ts
+//       ^ punctuation.accessor.ts
+//        ^-- entity.name.function.ts
+//           ^ meta.brace.round.ts
+//            ^-- variable.other.object.ts
+//               ^ punctuation.accessor.ts
+//                ^----- support.variable.property.ts
+//                      ^ meta.brace.round.ts
+//                       ^ punctuation.terminator.statement.ts
+}
+//<0 meta.function.ts
+//<0 meta.block.ts
+//<0 punctuation.definition.block.ts
+
+logLength("Hello");    // OK: string has length (default is string)
+//<0----- meta.function-call.ts
+//<0----- entity.name.function.ts
+//       ^ meta.brace.round.ts
+//        ^------ string.quoted.double.ts
+//        ^ punctuation.definition.string.begin.ts
+//              ^ punctuation.definition.string.end.ts
+//               ^ meta.brace.round.ts
+//                ^ punctuation.terminator.statement.ts
+//                     ^------------------------------------------- comment.line.double-slash.ts
+//                     ^- punctuation.definition.comment.ts
+logLength([1, 2, 3]);  // OK: array has length
+//<0----- meta.function-call.ts
+//<0----- entity.name.function.ts
+//       ^ meta.brace.round.ts
+//        ^-------- meta.array.literal.ts
+//        ^ meta.brace.square.ts
+//         ^ constant.numeric.decimal.ts
+//          ^ punctuation.separator.comma.ts
+//            ^ constant.numeric.decimal.ts
+//             ^ punctuation.separator.comma.ts
+//               ^ constant.numeric.decimal.ts
+//                ^ meta.brace.square.ts
+//                 ^ meta.brace.round.ts
+//                  ^ punctuation.terminator.statement.ts
+//                     ^---------------------- comment.line.double-slash.ts
+//                     ^- punctuation.definition.comment.ts
+// logLength(123);      // Error: number doesn't have length
+//<0-------------------------------------------------------- comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+
+// 'typeof' with functions
+//<0---------------------- comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+function add(x: number, y: number): number {
+//<0---------------------------------------- meta.function.ts
+//<0---- storage.type.function.ts
+//       ^-- meta.definition.function.ts
+//       ^-- entity.name.function.ts
+//          ^--------------------- meta.parameters.ts
+//          ^ punctuation.definition.parameters.begin.ts
+//           ^ variable.parameter.ts
+//            ^------- meta.type.annotation.ts
+//            ^ keyword.operator.type.annotation.ts
+//              ^----- support.type.primitive.ts
+//                    ^ punctuation.separator.parameter.ts
+//                      ^ variable.parameter.ts
+//                       ^------- meta.type.annotation.ts
+//                       ^ keyword.operator.type.annotation.ts
+//                         ^----- support.type.primitive.ts
+//                               ^ punctuation.definition.parameters.end.ts
+//                                ^-------- meta.return.type.ts
+//                                ^ keyword.operator.type.annotation.ts
+//                                  ^----- support.type.primitive.ts
+//                                         ^ meta.block.ts
+//                                         ^ punctuation.definition.block.ts
+  return x + y;
+//<0----------- meta.function.ts
+//<0----------- meta.block.ts
+//^----- keyword.control.flow.ts
+//       ^ variable.other.readwrite.ts
+//         ^ keyword.operator.arithmetic.ts
+//           ^ variable.other.readwrite.ts
+//            ^ punctuation.terminator.statement.ts
+}
+//<0 meta.function.ts
+//<0 meta.block.ts
+//<0 punctuation.definition.block.ts
+
+type AddFunctionType = typeof add;  // (x: number, y: number) => number
+//<0----------------------------- meta.type.declaration.ts
+//<0 storage.type.type.ts
+//   ^-------------- entity.name.type.alias.ts
+//                   ^ keyword.operator.assignment.ts
+//                     ^----- keyword.operator.expression.typeof.ts
+//                            ^-- variable.other.readwrite.ts
+//                               ^ punctuation.terminator.statement.ts
+//                                  ^---------------------------------- comment.line.double-slash.ts
+//                                  ^- punctuation.definition.comment.ts
+
+// Generic interfaces with 'extends' and default types
+//<0-------------------------------------------------- comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+interface Box<T extends object = { message: string }> {
+//<0--------------------------------------------------- meta.interface.ts
+//<0----- storage.type.interface.ts
+//        ^-- entity.name.type.interface.ts
+//           ^--------------------------------------- meta.type.parameters.ts
+//           ^ punctuation.definition.typeparameters.begin.ts
+//            ^ entity.name.type.ts
+//              ^------ storage.modifier.ts
+//                      ^----- support.type.builtin.ts
+//                             ^ keyword.operator.assignment.ts
+//                               ^------------------ meta.object.type.ts
+//                               ^ punctuation.definition.block.ts
+//                                ^---------------- meta.field.declaration.ts
+//                                 ^------ meta.definition.property.ts
+//                                 ^------ variable.object.property.ts
+//                                        ^-------- meta.type.annotation.ts
+//                                        ^ keyword.operator.type.annotation.ts
+//                                          ^----- support.type.primitive.ts
+//                                                 ^ punctuation.definition.block.ts
+//                                                  ^ punctuation.definition.typeparameters.end.ts
+//                                                    ^ punctuation.definition.block.ts
+  content: T;
+//<0--------- meta.interface.ts
+//<0-------- meta.field.declaration.ts
+//^------ meta.definition.property.ts
+//^------ variable.object.property.ts
+//       ^-- meta.type.annotation.ts
+//       ^ keyword.operator.type.annotation.ts
+//         ^ entity.name.type.ts
+//          ^ punctuation.terminator.statement.ts
+}
+//<0 meta.interface.ts
+//<0 punctuation.definition.block.ts
+
+let defaultBox: Box = { content: { message: "Hello" } };  // Uses default type
+//<0--------------------------------------------------- meta.var.expr.ts
+//<0 storage.type.ts
+//  ^--------------- meta.var-single-variable.expr.ts
+//  ^--------- meta.definition.variable.ts
+//  ^--------- variable.other.readwrite.ts
+//            ^----- meta.type.annotation.ts
+//            ^ keyword.operator.type.annotation.ts
+//              ^-- entity.name.type.ts
+//                  ^ keyword.operator.assignment.ts
+//                    ^-------------------------------- meta.objectliteral.ts
+//                    ^ punctuation.definition.block.ts
+//                      ^----------------------------- meta.object.member.ts
+//                      ^------- meta.object-literal.key.ts
+//                             ^ punctuation.separator.key-value.ts
+//                               ^------------------- meta.objectliteral.ts
+//                               ^ punctuation.definition.block.ts
+//                                 ^---------------- meta.object.member.ts
+//                                 ^------- meta.object-literal.key.ts
+//                                        ^ punctuation.separator.key-value.ts
+//                                          ^------ string.quoted.double.ts
+//                                          ^ punctuation.definition.string.begin.ts
+//                                                ^ punctuation.definition.string.end.ts
+//                                                  ^ punctuation.definition.block.ts
+//                                                    ^ punctuation.definition.block.ts
+//                                                     ^ punctuation.terminator.statement.ts
+//                                                        ^------------------- comment.line.double-slash.ts
+//                                                        ^- punctuation.definition.comment.ts
+let customBox: Box<{ status: number }> = { content: { status: 200 } };
+//<0----------------------------------------------------------------- meta.var.expr.ts
+//<0 storage.type.ts
+//  ^---------------------------------- meta.var-single-variable.expr.ts
+//  ^-------- meta.definition.variable.ts
+//  ^-------- variable.other.readwrite.ts
+//           ^------------------------- meta.type.annotation.ts
+//           ^ keyword.operator.type.annotation.ts
+//             ^-- entity.name.type.ts
+//                ^------------------- meta.type.parameters.ts
+//                ^ punctuation.definition.typeparameters.begin.ts
+//                 ^----------------- meta.object.type.ts
+//                 ^ punctuation.definition.block.ts
+//                  ^--------------- meta.field.declaration.ts
+//                   ^----- meta.definition.property.ts
+//                   ^----- variable.object.property.ts
+//                         ^-------- meta.type.annotation.ts
+//                         ^ keyword.operator.type.annotation.ts
+//                           ^----- support.type.primitive.ts
+//                                  ^ punctuation.definition.block.ts
+//                                   ^ punctuation.definition.typeparameters.end.ts
+//                                     ^ keyword.operator.assignment.ts
+//                                       ^--------------------------- meta.objectliteral.ts
+//                                       ^ punctuation.definition.block.ts
+//                                         ^------------------------ meta.object.member.ts
+//                                         ^------- meta.object-literal.key.ts
+//                                                ^ punctuation.separator.key-value.ts
+//                                                  ^-------------- meta.objectliteral.ts
+//                                                  ^ punctuation.definition.block.ts
+//                                                    ^----------- meta.object.member.ts
+//                                                    ^------ meta.object-literal.key.ts
+//                                                          ^ punctuation.separator.key-value.ts
+//                                                            ^-- constant.numeric.decimal.ts
+//                                                                ^ punctuation.definition.block.ts
+//                                                                  ^ punctuation.definition.block.ts
+//                                                                   ^ punctuation.terminator.statement.ts
+
+// Complex example with 'satisfies' and default generics
+//<0---------------------------------------------------- comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+type Task = {
+//<0--------- meta.type.declaration.ts
+//<0 storage.type.type.ts
+//   ^--- entity.name.type.alias.ts
+//        ^ keyword.operator.assignment.ts
+//          ^ meta.object.type.ts
+//          ^ punctuation.definition.block.ts
+  title: string;
+//<0------------ meta.type.declaration.ts
+//<0------------ meta.object.type.ts
+//<0----------- meta.field.declaration.ts
+//^---- meta.definition.property.ts
+//^---- variable.object.property.ts
+//     ^------- meta.type.annotation.ts
+//     ^ keyword.operator.type.annotation.ts
+//       ^----- support.type.primitive.ts
+//             ^ punctuation.terminator.statement.ts
+  description?: string;
+//<0------------------- meta.type.declaration.ts
+//<0------------------- meta.object.type.ts
+//<0------------------ meta.field.declaration.ts
+//^---------- meta.definition.property.ts
+//^---------- variable.object.property.ts
+//           ^ keyword.operator.optional.ts
+//            ^------- meta.type.annotation.ts
+//            ^ keyword.operator.type.annotation.ts
+//              ^----- support.type.primitive.ts
+//                    ^ punctuation.terminator.statement.ts
+  completed: boolean;
+//<0----------------- meta.type.declaration.ts
+//<0----------------- meta.object.type.ts
+//<0---------------- meta.field.declaration.ts
+//^-------- meta.definition.property.ts
+//^-------- variable.object.property.ts
+//         ^-------- meta.type.annotation.ts
+//         ^ keyword.operator.type.annotation.ts
+//           ^------ support.type.primitive.ts
+//                  ^ punctuation.terminator.statement.ts
+};
+//<0 meta.type.declaration.ts
+//<0 meta.object.type.ts
+//<0 punctuation.definition.block.ts
+//<1 punctuation.terminator.statement.ts
+
+const myTask = {
+//<0------------ meta.var.expr.ts
+//<0- storage.type.ts
+//    ^------ meta.var-single-variable.expr.ts
+//    ^----- meta.definition.variable.ts
+//    ^----- variable.other.constant.ts
+//           ^ keyword.operator.assignment.ts
+//             ^ meta.objectliteral.ts
+//             ^ punctuation.definition.block.ts
+  title: "Learn TypeScript",
+//<0------------------------ meta.var.expr.ts
+//<0------------------------ meta.objectliteral.ts
+//^------------------------ meta.object.member.ts
+//^----- meta.object-literal.key.ts
+//     ^ punctuation.separator.key-value.ts
+//       ^----------------- string.quoted.double.ts
+//       ^ punctuation.definition.string.begin.ts
+//                        ^ punctuation.definition.string.end.ts
+//                         ^ punctuation.separator.comma.ts
+  completed: false,
+//<0--------------- meta.var.expr.ts
+//<0--------------- meta.objectliteral.ts
+//^--------------- meta.object.member.ts
+//^--------- meta.object-literal.key.ts
+//         ^ punctuation.separator.key-value.ts
+//           ^---- constant.language.boolean.false.ts
+//                ^ punctuation.separator.comma.ts
+  priority: "High",
+//<0--------------- meta.var.expr.ts
+//<0--------------- meta.objectliteral.ts
+//^--------------- meta.object.member.ts
+//^-------- meta.object-literal.key.ts
+//        ^ punctuation.separator.key-value.ts
+//          ^----- string.quoted.double.ts
+//          ^ punctuation.definition.string.begin.ts
+//               ^ punctuation.definition.string.end.ts
+//                ^ punctuation.separator.comma.ts
+} satisfies Task;  // Allows priority but ensures Task structure
+//<0------------ meta.var.expr.ts
+//<0 meta.objectliteral.ts
+//<0 punctuation.definition.block.ts
+//^-------- keyword.control.satisfies.ts
+//          ^--- entity.name.type.ts
+//              ^ punctuation.terminator.statement.ts
+//                 ^-------------------------------------------- comment.line.double-slash.ts
+//                 ^- punctuation.definition.comment.ts
+
+// Generic function with default type
+//<0--------------------------------- comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts
+function wrapInArray<T = string>(value: T): T[] {
+//<0--------------------------------------------- meta.function.ts
+//<0---- storage.type.function.ts
+//       ^---------- meta.definition.function.ts
+//       ^---------- entity.name.function.ts
+//                  ^----------- meta.type.parameters.ts
+//                  ^ punctuation.definition.typeparameters.begin.ts
+//                   ^ entity.name.type.ts
+//                     ^ keyword.operator.assignment.ts
+//                       ^----- support.type.primitive.ts
+//                             ^ punctuation.definition.typeparameters.end.ts
+//                              ^--------- meta.parameters.ts
+//                              ^ punctuation.definition.parameters.begin.ts
+//                               ^---- variable.parameter.ts
+//                                    ^-- meta.type.annotation.ts
+//                                    ^ keyword.operator.type.annotation.ts
+//                                      ^ entity.name.type.ts
+//                                       ^ punctuation.definition.parameters.end.ts
+//                                        ^----- meta.return.type.ts
+//                                        ^ keyword.operator.type.annotation.ts
+//                                          ^ entity.name.type.ts
+//                                           ^- meta.type.tuple.ts
+//                                           ^- meta.brace.square.ts
+//                                              ^ meta.block.ts
+//                                              ^ punctuation.definition.block.ts
+  return [value];
+//<0------------- meta.function.ts
+//<0------------- meta.block.ts
+//^----- keyword.control.flow.ts
+//      ^------- meta.array.literal.ts
+//       ^ meta.brace.square.ts
+//        ^---- variable.other.readwrite.ts
+//             ^ meta.brace.square.ts
+//              ^ punctuation.terminator.statement.ts
+}
+//<0 meta.function.ts
+//<0 meta.block.ts
+//<0 punctuation.definition.block.ts
+
+const stringArray = wrapInArray();  // Default to string
+//<0----------------------------- meta.var.expr.ts
+//<0- storage.type.ts
+//    ^----------- meta.var-single-variable.expr.ts
+//    ^---------- meta.definition.variable.ts
+//    ^---------- variable.other.constant.ts
+//                ^ keyword.operator.assignment.ts
+//                  ^---------- meta.function-call.ts
+//                  ^---------- entity.name.function.ts
+//                             ^- meta.brace.round.ts
+//                               ^ punctuation.terminator.statement.ts
+//                                  ^------------------- comment.line.double-slash.ts
+//                                  ^- punctuation.definition.comment.ts
+const numberArray = wrapInArray(42);  // T inferred as number
+//<0------------------------------- meta.var.expr.ts
+//<0- storage.type.ts
+//    ^----------- meta.var-single-variable.expr.ts
+//    ^---------- meta.definition.variable.ts
+//    ^---------- variable.other.constant.ts
+//                ^ keyword.operator.assignment.ts
+//                  ^---------- meta.function-call.ts
+//                  ^---------- entity.name.function.ts
+//                             ^ meta.brace.round.ts
+//                              ^- constant.numeric.decimal.ts
+//                                ^ meta.brace.round.ts
+//                                 ^ punctuation.terminator.statement.ts
+//                                    ^---------------------- comment.line.double-slash.ts
+//                                    ^- punctuation.definition.comment.ts
+
+/**
+//<0 comment.block.documentation.ts
+//<0 punctuation.definition.comment.ts
+ * Combines two generic types into a tuple.
+//<0--------------------------------------- comment.block.documentation.ts
+ * 
+//<0 comment.block.documentation.ts
+ * @template T - The first type.
+//<0---------------------------- comment.block.documentation.ts
+// ^-------- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//           ^ variable.other.jsdoc
+ * @template U - The second type.
+//<0----------------------------- comment.block.documentation.ts
+// ^-------- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//           ^ variable.other.jsdoc
+ * @param {T} first - The first value.
+//<0---------------------------------- comment.block.documentation.ts
+// ^----- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//        ^-- entity.name.type.instance.jsdoc
+//        ^ punctuation.definition.bracket.curly.begin.jsdoc
+//          ^ punctuation.definition.bracket.curly.end.jsdoc
+//            ^---- variable.other.jsdoc
+ * @param {U} second - The second value.
+//<0------------------------------------ comment.block.documentation.ts
+// ^----- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//        ^-- entity.name.type.instance.jsdoc
+//        ^ punctuation.definition.bracket.curly.begin.jsdoc
+//          ^ punctuation.definition.bracket.curly.end.jsdoc
+//            ^----- variable.other.jsdoc
+ * @returns {[T, U]} A tuple containing both values.
+//<0------------------------------------------------ comment.block.documentation.ts
+// ^------- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//          ^------- entity.name.type.instance.jsdoc
+//          ^ punctuation.definition.bracket.curly.begin.jsdoc
+//                 ^ punctuation.definition.bracket.curly.end.jsdoc
+ */
+//<0 comment.block.documentation.ts
+//<1 punctuation.definition.comment.ts
+function combine<T, U>(first: T, second: U): [T, U] {
+//<0------------------------------------------------- meta.function.ts
+//<0---- storage.type.function.ts
+//       ^------ meta.definition.function.ts
+//       ^------ entity.name.function.ts
+//              ^----- meta.type.parameters.ts
+//              ^ punctuation.definition.typeparameters.begin.ts
+//               ^ entity.name.type.ts
+//                ^ punctuation.separator.comma.ts
+//                  ^ entity.name.type.ts
+//                   ^ punctuation.definition.typeparameters.end.ts
+//                    ^-------------------- meta.parameters.ts
+//                    ^ punctuation.definition.parameters.begin.ts
+//                     ^---- variable.parameter.ts
+//                          ^-- meta.type.annotation.ts
+//                          ^ keyword.operator.type.annotation.ts
+//                            ^ entity.name.type.ts
+//                             ^ punctuation.separator.parameter.ts
+//                               ^----- variable.parameter.ts
+//                                     ^-- meta.type.annotation.ts
+//                                     ^ keyword.operator.type.annotation.ts
+//                                       ^ entity.name.type.ts
+//                                        ^ punctuation.definition.parameters.end.ts
+//                                         ^-------- meta.return.type.ts
+//                                         ^ keyword.operator.type.annotation.ts
+//                                           ^----- meta.type.tuple.ts
+//                                           ^ meta.brace.square.ts
+//                                            ^ entity.name.type.ts
+//                                             ^ punctuation.separator.comma.ts
+//                                               ^ entity.name.type.ts
+//                                                ^ meta.brace.square.ts
+//                                                  ^ meta.block.ts
+//                                                  ^ punctuation.definition.block.ts
+  return [first, second];
+//<0--------------------- meta.function.ts
+//<0--------------------- meta.block.ts
+//^----- keyword.control.flow.ts
+//      ^--------------- meta.array.literal.ts
+//       ^ meta.brace.square.ts
+//        ^---- variable.other.readwrite.ts
+//             ^ punctuation.separator.comma.ts
+//               ^----- variable.other.readwrite.ts
+//                     ^ meta.brace.square.ts
+//                      ^ punctuation.terminator.statement.ts
+}
+//<0 meta.function.ts
+//<0 meta.block.ts
+//<0 punctuation.definition.block.ts

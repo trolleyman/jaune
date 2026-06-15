@@ -1,0 +1,73 @@
+-- grammar: source.haskell
+
+{-# LANGUAGE OverloadedStrings #-}
+--<0------------------------------ meta.preprocessor.haskell
+--  ^------- keyword.other.preprocessor.pragma.haskell
+--           ^---------------- keyword.other.preprocessor.extension.haskell
+{-# LANGUAGE TypeFamilies #-}
+--<0------------------------- meta.preprocessor.haskell
+--  ^------- keyword.other.preprocessor.pragma.haskell
+--           ^----------- keyword.other.preprocessor.extension.haskell
+{-# LANGUAGE QuasiQuotes #-}
+--<0------------------------ meta.preprocessor.haskell
+--  ^------- keyword.other.preprocessor.pragma.haskell
+--           ^---------- keyword.other.preprocessor.extension.haskell
+{-# LANGUAGE TemplateHaskell #-}
+--<0---------------------------- meta.preprocessor.haskell
+--  ^------- keyword.other.preprocessor.pragma.haskell
+--           ^-------------- keyword.other.preprocessor.extension.haskell
+{-# LANGUAGE MultiParamTypeClasses #-}
+--<0---------------------------------- meta.preprocessor.haskell
+--  ^------- keyword.other.preprocessor.pragma.haskell
+--           ^-------------------- keyword.other.preprocessor.extension.haskell
+
+import Yesod
+--<0-------- meta.import.haskell
+--<0-- keyword.other.import.haskell
+--     ^---- entity.name.namespace.haskell
+
+data WebApp = WebApp
+--<0---------------- meta.declaration.data.algebraic.haskell
+--<0 keyword.other.data.haskell
+--   ^----- storage.type.haskell
+--          ^ keyword.operator.eq.haskell
+--            ^----- constant.other.haskell
+
+instance Yesod WebApp
+--<0----------------- meta.declaration.instance.haskell
+--<0---- keyword.other.instance.haskell
+--       ^---- storage.type.haskell
+--             ^----- storage.type.haskell
+
+mkYesod "WebApp" [parseRoutes|
+--      ^------- string.quoted.double.haskell
+--      ^ punctuation.definition.string.begin.haskell
+--             ^ punctuation.definition.string.end.haskell
+--               ^------------ meta.quasi-quotation.haskell
+--               ^ keyword.operator.quasi-quotation.begin.haskell
+--                ^---------- entity.name.quasi-quoter.haskell
+--                           ^ keyword.operator.quasi-quotation.begin.haskell
+  / HomeR GET
+--<0--------- meta.quasi-quotation.haskell
+|]
+--<0 meta.quasi-quotation.haskell
+--<0 keyword.operator.quasi-quotation.end.haskell
+
+getHomeR = defaultLayout [whamlet|
+--       ^ keyword.operator.eq.haskell
+--                       ^-------- meta.quasi-quotation.haskell
+--                       ^ keyword.operator.quasi-quotation.begin.haskell
+--                        ^------ entity.name.quasi-quoter.haskell
+--                               ^ keyword.operator.quasi-quotation.begin.haskell
+  <div>Hello, world!
+--<0---------------- meta.quasi-quotation.haskell
+|]
+--<0 meta.quasi-quotation.haskell
+--<0 keyword.operator.quasi-quotation.end.haskell
+
+main = warpEnv WebApp
+--   ^ keyword.operator.eq.haskell
+--             ^----- constant.other.haskell
+
+{-# From https://www.schoolofhaskell.com/user/eriks/Simple%20examples }
+--<0------------------------------------------------------------------- meta.preprocessor.haskell

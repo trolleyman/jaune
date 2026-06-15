@@ -1,0 +1,91 @@
+# grammar: source.ron
+
+GameConfig( // optional struct name
+#<0------- entity.name.type.ron
+#         ^ punctuation.section.parens.begin.ron
+#           ^---------------------- comment.line.double-slash.ron
+    window_size: (800, 600),
+#   ^---------- variable.other.member.ron
+#              ^ punctuation.separator.key-value.ron
+#                ^ punctuation.section.parens.begin.ron
+#                 ^-- constant.numeric.ron
+#                      ^-- constant.numeric.ron
+#                         ^ punctuation.section.parens.end.ron
+    window_title: "PAC-MAN - \"Escape from New York\"",
+#   ^----------- variable.other.member.ron
+#               ^ punctuation.separator.key-value.ron
+#                 ^----------------------------------- string.quoted.double
+#                            ^- constant.character.escape.ron
+#                            ^ constant.character.escape.backslash.ron
+#                                                  ^- constant.character.escape.ron
+#                                                  ^ constant.character.escape.backslash.ron
+    fullscreen: false,
+#   ^--------- variable.other.member.ron
+#             ^ punctuation.separator.key-value.ron
+#               ^---- constant.language.ron
+
+    mouse_sensitivity: 1.4,
+#   ^---------------- variable.other.member.ron
+#                    ^ punctuation.separator.key-value.ron
+#                      ^-- constant.numeric.ron
+    key_bindings: {
+#   ^----------- variable.other.member.ron
+#               ^ punctuation.separator.key-value.ron
+#                 ^ punctuation.section.dictionary.begin.ron
+        "up": Up,
+#       ^--- string.quoted.double
+#           ^ punctuation.separator.dictionary.key-value.ron
+#             ^- entity.name.type.ron
+#               ^ punctuation.separator.dictionary.ron
+        "down": Down,
+#       ^----- string.quoted.double
+#             ^ punctuation.separator.dictionary.key-value.ron
+#               ^--- entity.name.type.ron
+#                   ^ punctuation.separator.dictionary.ron
+        "left": Left,
+#       ^----- string.quoted.double
+#             ^ punctuation.separator.dictionary.key-value.ron
+#               ^--- entity.name.type.ron
+#                   ^ punctuation.separator.dictionary.ron
+        "right": Right,
+#       ^------ string.quoted.double
+#              ^ punctuation.separator.dictionary.key-value.ron
+#                ^---- entity.name.type.ron
+#                     ^ punctuation.separator.dictionary.ron
+
+        // Uncomment to enable WASD controls
+#       ^----------------------------------- comment.line.double-slash.ron
+        /*
+#       ^- comment.block.ron
+        "W": Up,
+#<0------------- comment.block.ron
+        "S": Down,
+#<0--------------- comment.block.ron
+        "A": Left,
+#<0--------------- comment.block.ron
+        "D": Right,
+#<0---------------- comment.block.ron
+        */
+#<0------- comment.block.ron
+    },
+#   ^ punctuation.section.dictionary.end.ron
+
+    difficulty_options: (
+#   ^----------------- variable.other.member.ron
+#                     ^ punctuation.separator.key-value.ron
+#                       ^ punctuation.section.parens.begin.ron
+        start_difficulty: Easy,
+#       ^--------------- variable.other.member.ron
+#                       ^ punctuation.separator.key-value.ron
+#                         ^--- entity.name.type.ron
+        adaptive: false,
+#       ^------- variable.other.member.ron
+#               ^ punctuation.separator.key-value.ron
+#                 ^---- constant.language.ron
+    ),
+#   ^ punctuation.section.parens.end.ron
+)
+#<0 punctuation.section.parens.end.ron
+
+// From https://github.com/a5huynh/vscode-ron/blob/master/docs/example.ron
+#<0----------------------------------------------------------------------- comment.line.double-slash.ron

@@ -1,0 +1,214 @@
+<!-- grammar: source.astro -->
+
+---
+<!--<0 comment -->
+// Your component script here!
+<!--<0------------------------ source.ts -->
+<!--<0------------------------ comment.line.double-slash.ts -->
+<!--<0 punctuation.definition.comment.ts -->
+import Banner from '../components/Banner.astro';
+<!--<0------------------------------------------ source.ts -->
+<!--<0----------------------------------------- meta.import.ts -->
+<!--<0 keyword.control.import.ts -->
+<!--   ^----- variable.other.readwrite.alias.ts -->
+<!--          ^--- keyword.control.from.ts -->
+<!--               ^--------------------------- string.quoted.single.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                                          ^ punctuation.definition.string.end.ts -->
+<!--                                           ^ punctuation.terminator.statement.ts -->
+import ReactPokemonComponent from '../components/ReactPokemonComponent.jsx';
+<!--<0---------------------------------------------------------------------- source.ts -->
+<!--<0--------------------------------------------------------------------- meta.import.ts -->
+<!--<0 keyword.control.import.ts -->
+<!--   ^-------------------- variable.other.readwrite.alias.ts -->
+<!--                         ^--- keyword.control.from.ts -->
+<!--                              ^---------------------------------------- string.quoted.single.ts -->
+<!--                              ^ punctuation.definition.string.begin.ts -->
+<!--                                                                      ^ punctuation.definition.string.end.ts -->
+<!--                                                                       ^ punctuation.terminator.statement.ts -->
+const myFavoritePokemon = [/* ... */];
+<!--<0-------------------------------- source.ts -->
+<!--<0------------------------------- meta.var.expr.ts -->
+<!--<0 storage.type.ts -->
+<!--  ^----------------- meta.var-single-variable.expr.ts -->
+<!--  ^---------------- meta.definition.variable.ts -->
+<!--  ^---------------- variable.other.constant.ts -->
+<!--                    ^ keyword.operator.assignment.ts -->
+<!--                     ^----------- meta.array.literal.ts -->
+<!--                      ^ meta.brace.square.ts -->
+<!--                       ^-------- comment.block.ts -->
+<!--                       ^- punctuation.definition.comment.ts -->
+<!--                              ^- punctuation.definition.comment.ts -->
+<!--                                ^ meta.brace.square.ts -->
+<!--                                 ^ punctuation.terminator.statement.ts -->
+const { title } = Astro.props;
+<!--<0------------------------ source.ts -->
+<!--<0----------------------- meta.var.expr.ts -->
+<!--<0 storage.type.ts -->
+<!--  ^--------- meta.object-binding-pattern-variable.ts -->
+<!--  ^ punctuation.definition.binding-pattern.object.ts -->
+<!--    ^---- meta.definition.variable.ts -->
+<!--    ^---- variable.other.constant.ts -->
+<!--          ^ punctuation.definition.binding-pattern.object.ts -->
+<!--            ^ keyword.operator.assignment.ts -->
+<!--              ^---- variable.other.object.ts -->
+<!--                   ^ punctuation.accessor.ts -->
+<!--                    ^---- variable.other.property.ts -->
+<!--                         ^ punctuation.terminator.statement.ts -->
+---
+<!--<0 comment -->
+<!-- HTML comments supported! -->
+<!--<0--------------------------- comment.block.astro -->
+<!--<0 punctuation.definition.comment.astro -->
+<!--                          ^-- punctuation.definition.comment.astro -->
+{/* JS comment syntax is also valid! */}
+<!--<0 punctuation.section.embedded.begin.astro -->
+<!--<1--------------------------------- meta.embedded.expression.astro -->
+<!--<1--------------------------------- source.tsx -->
+<!--<1--------------------------------- comment.block.tsx -->
+<!--<1 punctuation.definition.comment.tsx -->
+<!--                                 ^- punctuation.definition.comment.tsx -->
+<!--                                   ^ punctuation.section.embedded.end.astro -->
+
+<Banner />
+<!--<0---- meta.scope.tag.Banner.astro -->
+<!--<0---- meta.tag.start.astro -->
+<!--<0 punctuation.definition.tag.begin.astro -->
+<!--<1- support.class.component.astro -->
+<!--    ^- punctuation.definition.tag.end.astro -->
+<h1>Hello, world!</h1>
+<!--<0 meta.scope.tag.h1.astro -->
+<!--<0 meta.tag.start.astro -->
+<!--<0 punctuation.definition.tag.begin.astro -->
+<!--<1 entity.name.tag.astro -->
+<!--<3 punctuation.definition.tag.end.astro -->
+<!--^------------ text.astro -->
+<!--             ^---- meta.scope.tag.h1.astro -->
+<!--             ^---- meta.tag.end.astro -->
+<!--             ^- punctuation.definition.tag.begin.astro -->
+<!--               ^- entity.name.tag.astro -->
+<!--                 ^ punctuation.definition.tag.end.astro -->
+
+<!-- Use props and other variables from the component script: -->
+<!--<0----------------------------------------------------------- comment.block.astro -->
+<!--<0 punctuation.definition.comment.astro -->
+<!--                                                          ^-- punctuation.definition.comment.astro -->
+<p>{title}</p>
+<!--<0 meta.scope.tag.p.astro -->
+<!--<0 meta.tag.start.astro -->
+<!--<0 punctuation.definition.tag.begin.astro -->
+<!--<1 entity.name.tag.astro -->
+<!--<2 punctuation.definition.tag.end.astro -->
+<!--<3 punctuation.section.embedded.begin.astro -->
+<!--^---- meta.embedded.expression.astro -->
+<!--^---- source.tsx -->
+<!--^---- variable.other.readwrite.tsx -->
+<!--     ^ punctuation.section.embedded.end.astro -->
+<!--      ^--- meta.scope.tag.p.astro -->
+<!--      ^--- meta.tag.end.astro -->
+<!--      ^- punctuation.definition.tag.begin.astro -->
+<!--        ^ entity.name.tag.astro -->
+<!--         ^ punctuation.definition.tag.end.astro -->
+
+<!-- Include other UI framework components with a `client:` directive to hydrate: -->
+<!--<0------------------------------------------------------------------------------- comment.block.astro -->
+<!--<0 punctuation.definition.comment.astro -->
+<!--                                                                              ^-- punctuation.definition.comment.astro -->
+<ReactPokemonComponent client:visible />
+<!--<0---------------------------------- meta.scope.tag.ReactPokemonComponent.astro -->
+<!--<0---------------------------------- meta.tag.start.astro -->
+<!--<0 punctuation.definition.tag.begin.astro -->
+<!--<1---------------- support.class.component.astro -->
+<!--                   ^------------- meta.attribute.client:visible.astro -->
+<!--                   ^------------- entity.other.attribute-name.astro -->
+<!--                                  ^- punctuation.definition.tag.end.astro -->
+
+<!-- Mix HTML with JavaScript expressions, similar to JSX: -->
+<!--<0-------------------------------------------------------- comment.block.astro -->
+<!--<0 punctuation.definition.comment.astro -->
+<!--                                                       ^-- punctuation.definition.comment.astro -->
+<ul>
+<!--<0 meta.scope.tag.ul.astro -->
+<!--<0 meta.tag.start.astro -->
+<!--<0 punctuation.definition.tag.begin.astro -->
+<!--<1 entity.name.tag.astro -->
+<!--<3 punctuation.definition.tag.end.astro -->
+  {myFavoritePokemon.map((data) => <li>{data.name}</li>)}
+<!--<0 text.astro -->
+<!--<2 punctuation.section.embedded.begin.astro -->
+<!--<3-------------------------------------------------- meta.embedded.expression.astro -->
+<!--<3-------------------------------------------------- source.tsx -->
+<!--<3------------------ meta.function-call.tsx -->
+<!--<3-------------- variable.other.object.tsx -->
+<!--                ^ punctuation.accessor.tsx -->
+<!--                 ^-- entity.name.function.tsx -->
+<!--                    ^ meta.brace.round.tsx -->
+<!--                     ^----------------------------- meta.arrow.tsx -->
+<!--                     ^----- meta.parameters.tsx -->
+<!--                     ^ punctuation.definition.parameters.begin.tsx -->
+<!--                      ^--- variable.parameter.tsx -->
+<!--                          ^ punctuation.definition.parameters.end.tsx -->
+<!--                            ^- storage.type.function.arrow.tsx -->
+<!--                               ^------------------- meta.tag.without-attributes.tsx -->
+<!--                               ^ punctuation.definition.tag.begin.tsx -->
+<!--                                ^- entity.name.tag.tsx -->
+<!--                                  ^ punctuation.definition.tag.end.tsx -->
+<!--                                   ^---------- meta.jsx.children.tsx -->
+<!--                                   ^ punctuation.section.embedded.begin.tsx -->
+<!--                                    ^-------- meta.embedded.expression.tsx -->
+<!--                                    ^--- variable.other.object.tsx -->
+<!--                                        ^ punctuation.accessor.tsx -->
+<!--                                         ^--- variable.other.property.tsx -->
+<!--                                             ^ punctuation.section.embedded.end.tsx -->
+<!--                                              ^- punctuation.definition.tag.begin.tsx -->
+<!--                                                ^- entity.name.tag.tsx -->
+<!--                                                  ^ punctuation.definition.tag.end.tsx -->
+<!--                                                   ^ meta.brace.round.tsx -->
+<!--                                                    ^ punctuation.section.embedded.end.astro -->
+</ul>
+<!--<0 meta.scope.tag.ul.astro -->
+<!--<0 meta.tag.end.astro -->
+<!--<0 punctuation.definition.tag.begin.astro -->
+<!--<2 entity.name.tag.astro -->
+<!--^ punctuation.definition.tag.end.astro -->
+
+<!-- Use a template directive to build class names from multiple strings or even objects! -->
+<!--<0--------------------------------------------------------------------------------------- comment.block.astro -->
+<!--<0 punctuation.definition.comment.astro -->
+<!--                                                                                      ^-- punctuation.definition.comment.astro -->
+<p class:list={["add", "dynamic", {classNames: true}]} />
+<!--<0--------------------------------------------------- meta.scope.tag.p.astro -->
+<!--<0--------------------------------------------------- meta.tag.start.astro -->
+<!--<0 punctuation.definition.tag.begin.astro -->
+<!--<1 entity.name.tag.astro -->
+<!--<3------------------------------------------------ meta.attribute.class:list.astro -->
+<!--<3------- entity.other.attribute-name.astro -->
+<!--         ^ punctuation.separator.key-value.astro -->
+<!--          ^ punctuation.section.embedded.begin.astro -->
+<!--           ^------------------------------------- meta.embedded.expression.astro -->
+<!--           ^------------------------------------- source.tsx -->
+<!--           ^------------------------------------- meta.array.literal.tsx -->
+<!--           ^ meta.brace.square.tsx -->
+<!--            ^---- string.quoted.double.tsx -->
+<!--            ^ punctuation.definition.string.begin.tsx -->
+<!--                ^ punctuation.definition.string.end.tsx -->
+<!--                 ^ punctuation.separator.comma.tsx -->
+<!--                   ^-------- string.quoted.double.tsx -->
+<!--                   ^ punctuation.definition.string.begin.tsx -->
+<!--                           ^ punctuation.definition.string.end.tsx -->
+<!--                            ^ punctuation.separator.comma.tsx -->
+<!--                              ^----------------- meta.objectliteral.tsx -->
+<!--                              ^ punctuation.definition.block.tsx -->
+<!--                               ^--------------- meta.object.member.tsx -->
+<!--                               ^---------- meta.object-literal.key.tsx -->
+<!--                                         ^ punctuation.separator.key-value.tsx -->
+<!--                                           ^--- constant.language.boolean.true.tsx -->
+<!--                                               ^ punctuation.definition.block.tsx -->
+<!--                                                ^ meta.brace.square.tsx -->
+<!--                                                 ^ punctuation.section.embedded.end.astro -->
+<!--                                                   ^- punctuation.definition.tag.end.astro -->
+
+<!-- From https://docs.astro.build/en/core-concepts/astro-components/ -->
+<!--<0------------------------------------------------------------------- comment.block.astro -->
+<!--<0 punctuation.definition.comment.astro -->
+<!--                                                                  ^-- punctuation.definition.comment.astro -->

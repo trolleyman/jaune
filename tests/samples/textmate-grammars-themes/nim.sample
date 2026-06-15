@@ -1,0 +1,202 @@
+# grammar: source.nim
+
+type
+#<0- keyword.other.nim
+  Animal* = object
+# ^----- support.type.nim
+#       ^ keyword.control.export
+#         ^ keyword.operator.nim
+#           ^----- keyword.other.nim
+    name*, species*: string
+#       ^ keyword.control.export
+#                 ^ keyword.control.export
+#                  ^ keyword.operator.nim
+#                    ^----- storage.type.concrete.nim
+    age: int
+#      ^ keyword.operator.nim
+#        ^-- storage.type.concrete.nim
+
+proc sleep*(a: var Animal) =
+#<0- keyword.other
+#    ^---- entity.name.function.nim
+#         ^ keyword.control.export
+#            ^ keyword.operator.nim
+#              ^-- keyword.other.nim
+#                  ^----- support.type.nim
+#                          ^ keyword.operator.nim
+  a.age += 1
+#  ^ keyword.operator.nim
+#   ^--- support.function.any-method.nim
+#       ^- keyword.operator.nim
+#          ^ constant.numeric.integer.decimal.nim
+
+proc dead*(a: Animal): bool =
+#<0- keyword.other
+#    ^--- entity.name.function.nim
+#        ^ keyword.control.export
+#           ^ keyword.operator.nim
+#             ^----- support.type.nim
+#                    ^ keyword.operator.nim
+#                      ^--- storage.type.concrete.nim
+#                           ^ keyword.operator.nim
+  result = a.age > 20
+#        ^ keyword.operator.nim
+#           ^ keyword.operator.nim
+#                ^ keyword.operator.nim
+#                  ^- constant.numeric.integer.decimal.nim
+
+var carl: Animal
+#<0 keyword.other.nim
+#       ^ keyword.operator.nim
+#         ^----- support.type.nim
+carl = Animal(name : "Carl",
+#    ^ keyword.operator.nim
+#      ^----- support.type.nim
+#                  ^ keyword.operator.nim
+#                    ^----- string.quoted.double.nim
+#                    ^ punctuation.definition.string.begin.nim
+#                         ^ punctuation.definition.string.end.nim
+              species : "L. glama",
+#                     ^ keyword.operator.nim
+#                       ^--------- string.quoted.double.nim
+#                       ^ punctuation.definition.string.begin.nim
+#                                ^ punctuation.definition.string.end.nim
+              age : 12)
+#                 ^ keyword.operator.nim
+#                   ^- constant.numeric.integer.decimal.nim
+
+let joe = Animal(name : "Joe",
+#<0 keyword.other.nim
+#       ^ keyword.operator.nim
+#         ^----- support.type.nim
+#                     ^ keyword.operator.nim
+#                       ^---- string.quoted.double.nim
+#                       ^ punctuation.definition.string.begin.nim
+#                           ^ punctuation.definition.string.end.nim
+                 species : "H. sapiens",
+#                        ^ keyword.operator.nim
+#                          ^----------- string.quoted.double.nim
+#                          ^ punctuation.definition.string.begin.nim
+#                                     ^ punctuation.definition.string.end.nim
+                 age : 23)
+#                    ^ keyword.operator.nim
+#                      ^- constant.numeric.integer.decimal.nim
+
+assert(not carl.dead)
+#<0--- keyword.other.common.function.nim
+#      ^-- keyword.boolean.nim
+#              ^ keyword.operator.nim
+for i in 0..10:
+#<0 keyword.control.nim
+#     ^- keyword.boolean.nim
+#        ^ constant.numeric.integer.decimal.nim
+#         ^- keyword.operator.nim
+#           ^- constant.numeric.integer.decimal.nim
+#             ^ keyword.operator.nim
+  carl.sleep()
+#     ^ keyword.operator.nim
+#      ^---- support.function.any-method.nim
+assert carl.deadtype
+#<0--- keyword.other.common.function.nim
+#          ^ keyword.operator.nim
+  Animal* = object
+# ^----- support.type.nim
+#       ^ keyword.control.export
+#         ^ keyword.operator.nim
+#           ^----- keyword.other.nim
+    name*, species*: string
+#       ^ keyword.control.export
+#                 ^ keyword.control.export
+#                  ^ keyword.operator.nim
+#                    ^----- storage.type.concrete.nim
+    age: int
+#      ^ keyword.operator.nim
+#        ^-- storage.type.concrete.nim
+
+proc sleep*(a: var Animal) =
+#<0- keyword.other
+#    ^---- entity.name.function.nim
+#         ^ keyword.control.export
+#            ^ keyword.operator.nim
+#              ^-- keyword.other.nim
+#                  ^----- support.type.nim
+#                          ^ keyword.operator.nim
+  a.age += 1
+#  ^ keyword.operator.nim
+#   ^--- support.function.any-method.nim
+#       ^- keyword.operator.nim
+#          ^ constant.numeric.integer.decimal.nim
+
+proc dead*(a: Animal): bool =
+#<0- keyword.other
+#    ^--- entity.name.function.nim
+#        ^ keyword.control.export
+#           ^ keyword.operator.nim
+#             ^----- support.type.nim
+#                    ^ keyword.operator.nim
+#                      ^--- storage.type.concrete.nim
+#                           ^ keyword.operator.nim
+  result = a.age > 20
+#        ^ keyword.operator.nim
+#           ^ keyword.operator.nim
+#                ^ keyword.operator.nim
+#                  ^- constant.numeric.integer.decimal.nim
+
+var carl: Animal
+#<0 keyword.other.nim
+#       ^ keyword.operator.nim
+#         ^----- support.type.nim
+carl = Animal(name : "Carl",
+#    ^ keyword.operator.nim
+#      ^----- support.type.nim
+#                  ^ keyword.operator.nim
+#                    ^----- string.quoted.double.nim
+#                    ^ punctuation.definition.string.begin.nim
+#                         ^ punctuation.definition.string.end.nim
+              species : "L. glama",
+#                     ^ keyword.operator.nim
+#                       ^--------- string.quoted.double.nim
+#                       ^ punctuation.definition.string.begin.nim
+#                                ^ punctuation.definition.string.end.nim
+              age : 12)
+#                 ^ keyword.operator.nim
+#                   ^- constant.numeric.integer.decimal.nim
+
+let joe = Animal(name : "Joe",
+#<0 keyword.other.nim
+#       ^ keyword.operator.nim
+#         ^----- support.type.nim
+#                     ^ keyword.operator.nim
+#                       ^---- string.quoted.double.nim
+#                       ^ punctuation.definition.string.begin.nim
+#                           ^ punctuation.definition.string.end.nim
+                 species : "H. sapiens",
+#                        ^ keyword.operator.nim
+#                          ^----------- string.quoted.double.nim
+#                          ^ punctuation.definition.string.begin.nim
+#                                     ^ punctuation.definition.string.end.nim
+                 age : 23)
+#                    ^ keyword.operator.nim
+#                      ^- constant.numeric.integer.decimal.nim
+
+assert(not carl.dead)
+#<0--- keyword.other.common.function.nim
+#      ^-- keyword.boolean.nim
+#              ^ keyword.operator.nim
+for i in 0..10:
+#<0 keyword.control.nim
+#     ^- keyword.boolean.nim
+#        ^ constant.numeric.integer.decimal.nim
+#         ^- keyword.operator.nim
+#           ^- constant.numeric.integer.decimal.nim
+#             ^ keyword.operator.nim
+  carl.sleep()
+#     ^ keyword.operator.nim
+#      ^---- support.function.any-method.nim
+assert carl.dead
+#<0--- keyword.other.common.function.nim
+#          ^ keyword.operator.nim
+
+# From https://nim-by-example.github.io/types/objects/
+#<0--------------------------------------------------- comment.line.number-sign.nim
+#<0 punctuation.definition.comment.nim

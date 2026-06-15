@@ -1,0 +1,203 @@
+# grammar: source.shell
+
+#!/bin/bash
+#<0-------- comment.line.number-sign.shell
+#<0-------- meta.shebang.shell
+#<0 punctuation.definition.comment.shebang.shell
+# weather.sh
+#<0--------- comment.line.number-sign.shell
+#<0 punctuation.definition.comment.shell
+# Copyright 2018 computer-geek64. All rights reserved.
+#<0--------------------------------------------------- comment.line.number-sign.shell
+#<0 punctuation.definition.comment.shell
+
+program=Weather
+#<0------------ meta.expression.assignment.shell
+#<0---- variable.other.assignment.shell
+#      ^ keyword.operator.assignment.shell
+#       ^------ string.unquoted.shell
+version=1.1
+#<0-------- meta.expression.assignment.shell
+#<0---- variable.other.assignment.shell
+#      ^ keyword.operator.assignment.shell
+#       ^-- string.unquoted.shell
+year=2018
+#<0------ meta.expression.assignment.shell
+#<0- variable.other.assignment.shell
+#   ^ keyword.operator.assignment.shell
+#    ^--- string.unquoted.shell
+developer=computer-geek64
+#<0---------------------- meta.expression.assignment.shell
+#<0------ variable.other.assignment.shell
+#        ^ keyword.operator.assignment.shell
+#         ^-------------- string.unquoted.shell
+
+case $1 in
+#<0------- meta.case.shell
+#<0- keyword.control.case.shell
+#    ^ punctuation.definition.variable.shell
+#    ^ variable.parameter.positional.shell
+#     ^ variable.parameter.positional.shell
+#       ^- keyword.control.in.shell
+-h | --help)
+#<0--------- meta.case.shell
+#<0--------- meta.case.entry.pattern.shell
+#<0 string.unquoted.pattern.shell
+#<0 string.regexp.unquoted.shell
+#  ^ keyword.operator.orvariable.language.special.or.shell
+#  ^ keyword.operator.alternation.ruby.shell
+#  ^ punctuation.definition.regex.alternation.shell
+#  ^ punctuation.separator.regex.alternation.shell
+#    ^----- string.unquoted.pattern.shell
+#    ^----- string.regexp.unquoted.shell
+#          ^ keyword.operator.pattern.case.shell
+	echo "$program $version"
+#<0---------------------- meta.case.shell
+#<0---------------------- meta.case.entry.body.shell
+#<0---------------------- meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#^--- support.function.builtin.shell
+#    ^------------------- meta.argument.shell
+#     ^------------------ string.quoted.double.shell
+#     ^ punctuation.definition.string.begin.shell
+#      ^ punctuation.definition.variable.shell
+#      ^ variable.other.normal.shell
+#       ^------ variable.other.normal.shell
+#               ^ punctuation.definition.variable.shell
+#               ^ variable.other.normal.shell
+#                ^------ variable.other.normal.shell
+#                       ^ punctuation.definition.string.end.shell
+	echo "Copyright $year $developer. All rights reserved."
+#<0----------------------------------------------------- meta.case.shell
+#<0----------------------------------------------------- meta.case.entry.body.shell
+#<0----------------------------------------------------- meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#^--- support.function.builtin.shell
+#    ^-------------------------------------------------- meta.argument.shell
+#     ^------------------------------------------------- string.quoted.double.shell
+#     ^ punctuation.definition.string.begin.shell
+#                ^ punctuation.definition.variable.shell
+#                ^ variable.other.normal.shell
+#                 ^--- variable.other.normal.shell
+#                      ^ punctuation.definition.variable.shell
+#                      ^ variable.other.normal.shell
+#                       ^-------- variable.other.normal.shell
+#                                                      ^ punctuation.definition.string.end.shell
+	echo
+#<0-- meta.case.shell
+#<0-- meta.case.entry.body.shell
+#<0-- meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#^--- support.function.builtin.shell
+	echo "Usage: weather [options]"
+#<0----------------------------- meta.case.shell
+#<0----------------------------- meta.case.entry.body.shell
+#<0----------------------------- meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#^--- support.function.builtin.shell
+#    ^-------------------------- meta.argument.shell
+#     ^------------------------- string.quoted.double.shell
+#     ^ punctuation.definition.string.begin.shell
+#                              ^ punctuation.definition.string.end.shell
+	echo "Option          Long Option             Description"
+#<0-------------------------------------------------------- meta.case.shell
+#<0-------------------------------------------------------- meta.case.entry.body.shell
+#<0-------------------------------------------------------- meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#^--- support.function.builtin.shell
+#    ^----------------------------------------------------- meta.argument.shell
+#     ^---------------------------------------------------- string.quoted.double.shell
+#     ^ punctuation.definition.string.begin.shell
+#                                                         ^ punctuation.definition.string.end.shell
+	echo "-h              --help                  Show the help screen"
+#<0----------------------------------------------------------------- meta.case.shell
+#<0----------------------------------------------------------------- meta.case.entry.body.shell
+#<0----------------------------------------------------------------- meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#^--- support.function.builtin.shell
+#    ^-------------------------------------------------------------- meta.argument.shell
+#     ^------------------------------------------------------------- string.quoted.double.shell
+#     ^ punctuation.definition.string.begin.shell
+#                                                                  ^ punctuation.definition.string.end.shell
+	echo "-l [location]   --location [location]   Specifies the location"
+#<0------------------------------------------------------------------- meta.case.shell
+#<0------------------------------------------------------------------- meta.case.entry.body.shell
+#<0------------------------------------------------------------------- meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#^--- support.function.builtin.shell
+#    ^---------------------------------------------------------------- meta.argument.shell
+#     ^--------------------------------------------------------------- string.quoted.double.shell
+#     ^ punctuation.definition.string.begin.shell
+#                                                                    ^ punctuation.definition.string.end.shell
+	;;
+#<0 meta.case.shell
+#<0 meta.case.entry.body.shell
+#<0 meta.statement.shell
+#^- punctuation.terminator.statement.case.shell
+-l | --location)
+#<0------------- meta.case.shell
+#<0------------- meta.case.entry.pattern.shell
+#<0 string.unquoted.pattern.shell
+#<0 string.regexp.unquoted.shell
+#  ^ keyword.operator.orvariable.language.special.or.shell
+#  ^ keyword.operator.alternation.ruby.shell
+#  ^ punctuation.definition.regex.alternation.shell
+#  ^ punctuation.separator.regex.alternation.shell
+#    ^--------- string.unquoted.pattern.shell
+#    ^--------- string.regexp.unquoted.shell
+#              ^ keyword.operator.pattern.case.shell
+	curl https://wttr.in/$2
+#<0--------------------- meta.case.shell
+#<0--------------------- meta.case.entry.body.shell
+#<0--------------------- meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#    ^------------------ meta.argument.shell
+#     ^--------------- string.unquoted.argument.shell
+#                     ^ punctuation.definition.variable.shell
+#                     ^ variable.parameter.positional.shell
+#                      ^ variable.parameter.positional.shell
+	;;
+#<0 meta.case.shell
+#<0 meta.case.entry.body.shell
+#<0 meta.statement.shell
+#^- punctuation.terminator.statement.case.shell
+*)
+#<0 meta.case.shell
+#<0 keyword.operator.pattern.case.default.shell
+	curl https://wttr.in
+#<0------------------ meta.case.shell
+#<0------------------ meta.case.entry.body.shell
+#<0------------------ meta.statement.command.shell
+#^--- meta.statement.command.name.shell
+#^--- entity.name.function.call.shell
+#^--- entity.name.command.shell
+#    ^--------------- meta.argument.shell
+#     ^-------------- string.unquoted.argument.shell
+	;;
+#<0 meta.case.shell
+#<0 meta.case.entry.body.shell
+#<0 meta.statement.shell
+#^- punctuation.terminator.statement.case.shell
+esac
+#<0- meta.case.shell
+#<0- keyword.control.esac.shell
+
+# From https://github.com/ruanyf/simple-bash-scripts/blob/master/scripts/weather.sh
+#<0-------------------------------------------------------------------------------- comment.line.number-sign.shell
+#<0 punctuation.definition.comment.shell

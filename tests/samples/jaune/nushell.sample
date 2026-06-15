@@ -1,0 +1,617 @@
+# grammar: source.nushell
+
+#!/usr/bin/env nu
+#<0-------------- comment.nushell
+
+def query-week-span [] {
+#<0 storage.type.function.nushell
+#   ^-------------- entity.name.function.nushell
+#                   ^- meta.function.parameters.nushell
+#                   ^ meta.brace.square.begin.nushell
+#                    ^ meta.brace.square.end.nushell
+#                      ^ meta.function.body.nushell
+#                      ^ punctuation.definition.function.begin.nushell
+  let site_table = [
+#<0----------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^--------- variable.other.nushell
+#                  ^ meta.table.nushell
+#                  ^ meta.brace.square.begin.nushell
+    [site repo];
+#<0------------- meta.function.body.nushell
+#<0------------- meta.table.nushell
+#   ^---------- meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^--- string.bare.nushell
+#         ^--- string.bare.nushell
+#             ^ meta.brace.square.end.nushell
+    [Nushell nushell]
+#<0------------------ meta.function.body.nushell
+#<0------------------ meta.table.nushell
+#   ^---------------- meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^------ string.bare.nushell
+#            ^------ string.bare.nushell
+#                   ^ meta.brace.square.end.nushell
+    [Extension vscode-nushell-lang]
+#<0-------------------------------- meta.function.body.nushell
+#<0-------------------------------- meta.table.nushell
+#   ^------------------------------ meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^-------- string.bare.nushell
+#              ^------------------ string.bare.nushell
+#                                 ^ meta.brace.square.end.nushell
+    [Documentation nushell.github.io]
+#<0---------------------------------- meta.function.body.nushell
+#<0---------------------------------- meta.table.nushell
+#   ^-------------------------------- meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^------------ string.bare.nushell
+#                  ^---------------- string.bare.nushell
+#                                   ^ meta.brace.square.end.nushell
+    [Wasm demo]
+#<0------------ meta.function.body.nushell
+#<0------------ meta.table.nushell
+#   ^---------- meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^--- string.bare.nushell
+#         ^--- string.bare.nushell
+#             ^ meta.brace.square.end.nushell
+    [Nu_Scripts nu_scripts]
+#<0------------------------ meta.function.body.nushell
+#<0------------------------ meta.table.nushell
+#   ^---------------------- meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^--------- string.bare.nushell
+#               ^--------- string.bare.nushell
+#                         ^ meta.brace.square.end.nushell
+    [RFCs rfcs]
+#<0------------ meta.function.body.nushell
+#<0------------ meta.table.nushell
+#   ^---------- meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^--- string.bare.nushell
+#         ^--- string.bare.nushell
+#             ^ meta.brace.square.end.nushell
+    [reedline reedline]
+#<0-------------------- meta.function.body.nushell
+#<0-------------------- meta.table.nushell
+#   ^------------------ meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^------- string.bare.nushell
+#             ^------- string.bare.nushell
+#                     ^ meta.brace.square.end.nushell
+    [Nana nana]
+#<0------------ meta.function.body.nushell
+#<0------------ meta.table.nushell
+#   ^---------- meta.table.nushell
+#   ^ meta.brace.square.begin.nushell
+#    ^--- string.bare.nushell
+#         ^--- string.bare.nushell
+#             ^ meta.brace.square.end.nushell
+    # ] [Jupyter jupyter]
+#<0---------------------- meta.function.body.nushell
+#<0---------------------- meta.table.nushell
+#   ^-------------------- comment.nushell
+  ]
+#<0 meta.function.body.nushell
+#<0 meta.table.nushell
+# ^ meta.brace.square.end.nushell
+
+  let query_prefix = "https://api.github.com/search/issues?q=repo:nushell/"
+#<0------------------------------------------------------------------------ meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^----------- variable.other.nushell
+#                    ^----------------------------------------------------- string.quoted.double.nushell
+#                    ^ punctuation.definition.string.begin.nushell
+#                                                                         ^ punctuation.definition.string.end.nushell
+  let query_date = (seq date --days 7 -r | get 6)
+#<0---------------------------------------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^--------- variable.other.nushell
+#                  ^----------------------------- meta.expression.parenthesis.nushell
+#                  ^ meta.brace.round.begin.nushell
+#                   ^-------------------- meta.command.nushell
+#                   ^------- keyword.other.builtin.nushell
+#                            ^----- variable.parameter.nushell
+#                            ^- keyword.control.nushell
+#                                   ^ constant.numeric.nushell
+#                                     ^- variable.parameter.nushell
+#                                     ^ keyword.control.nushell
+#                                        ^ keyword.control.nushell
+#                                          ^---- meta.command.nushell
+#                                          ^-- keyword.other.builtin.nushell
+#                                              ^ constant.numeric.nushell
+#                                               ^ meta.brace.round.end.nushell
+  let per_page = "100"
+#<0------------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^------- variable.other.nushell
+#                ^---- string.quoted.double.nushell
+#                ^ punctuation.definition.string.begin.nushell
+#                    ^ punctuation.definition.string.end.nushell
+  let page_num = "1" # need to implement iterating pages
+#<0----------------------------------------------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^------- variable.other.nushell
+#                ^-- string.quoted.double.nushell
+#                ^ punctuation.definition.string.begin.nushell
+#                  ^ punctuation.definition.string.end.nushell
+#                    ^---------------------------------- comment.nushell
+  let colon = "%3A"
+#<0---------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^---- variable.other.nushell
+#             ^---- string.quoted.double.nushell
+#             ^ punctuation.definition.string.begin.nushell
+#                 ^ punctuation.definition.string.end.nushell
+  let gt = "%3E"
+#<0------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^- variable.other.nushell
+#          ^---- string.quoted.double.nushell
+#          ^ punctuation.definition.string.begin.nushell
+#              ^ punctuation.definition.string.end.nushell
+  let eq = "%3D"
+#<0------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^- variable.other.nushell
+#          ^---- string.quoted.double.nushell
+#          ^ punctuation.definition.string.begin.nushell
+#              ^ punctuation.definition.string.end.nushell
+  let amp = "%26"
+#<0-------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^-- variable.other.nushell
+#           ^---- string.quoted.double.nushell
+#           ^ punctuation.definition.string.begin.nushell
+#               ^ punctuation.definition.string.end.nushell
+  let query_suffix = $"+is($colon)pr+is($colon)merged+merged($colon)($gt)($eq)($query_date)&per_page=100&page=1"
+#<0------------------------------------------------------------------------------------------------------------- meta.function.body.nushell
+# ^-- keyword.other.nushell
+#     ^----------- variable.other.nushell
+#                    ^------------------------------------------------------------------------------------------ string.interpolated.double.nushell
+#                    ^- punctuation.definition.string.begin.nushell
+#                         ^------- meta.expression.parenthesis.nushell
+#                         ^ meta.brace.round.begin.nushell
+#                          ^----- variable.other.nushell
+#                                ^ meta.brace.round.end.nushell
+#                                      ^------- meta.expression.parenthesis.nushell
+#                                      ^ meta.brace.round.begin.nushell
+#                                       ^----- variable.other.nushell
+#                                             ^ meta.brace.round.end.nushell
+#                                                           ^------------------------------ meta.expression.parenthesis.nushell
+#                                                           ^ meta.brace.round.begin.nushell
+#                                                            ^----- variable.other.nushell
+#                                                                  ^ meta.brace.round.end.nushell
+#                                                                   ^ meta.brace.round.begin.nushell
+#                                                                    ^-- variable.other.nushell
+#                                                                       ^ meta.brace.round.end.nushell
+#                                                                        ^ meta.brace.round.begin.nushell
+#                                                                         ^-- variable.other.nushell
+#                                                                            ^ meta.brace.round.end.nushell
+#                                                                             ^ meta.brace.round.begin.nushell
+#                                                                              ^---------- variable.other.nushell
+#                                                                                         ^ meta.brace.round.end.nushell
+#                                                                                                              ^ punctuation.definition.string.end.nushell
+
+  for repo in $site_table {
+#<0------------------------ meta.function.body.nushell
+# ^------------------------ meta.for-loop.nushell
+# ^-- keyword.other.nushell
+#     ^--- variable.other.nushell
+#          ^- keyword.other.nushell
+#             ^---------- variable.other.nushell
+#                         ^ punctuation.section.block.begin.bracket.curly.nushell
+    let query_string = $"($query_prefix)($repo.repo)($query_suffix)"
+#<0----------------------------------------------------------------- meta.function.body.nushell
+#<0----------------------------------------------------------------- meta.for-loop.nushell
+#   ^-- keyword.other.nushell
+#       ^----------- variable.other.nushell
+#                      ^-------------------------------------------- string.interpolated.double.nushell
+#                      ^- punctuation.definition.string.begin.nushell
+#                        ^----------------------------------------- meta.expression.parenthesis.nushell
+#                        ^ meta.brace.round.begin.nushell
+#                         ^------------ variable.other.nushell
+#                                      ^ meta.brace.round.end.nushell
+#                                       ^ meta.brace.round.begin.nushell
+#                                        ^--------- variable.other.nushell
+#                                                  ^ meta.brace.round.end.nushell
+#                                                   ^ meta.brace.round.begin.nushell
+#                                                    ^------------ variable.other.nushell
+#                                                                 ^ meta.brace.round.end.nushell
+#                                                                  ^ punctuation.definition.string.end.nushell
+    let site_json = (
+#<0------------------ meta.function.body.nushell
+#<0------------------ meta.for-loop.nushell
+#   ^-- keyword.other.nushell
+#       ^-------- variable.other.nushell
+#                   ^ meta.expression.parenthesis.nushell
+#                   ^ meta.brace.round.begin.nushell
+      http get -u $env.GITHUB_USERNAME -p $env.GITHUB_PASSWORD $query_string
+#<0------------------------------------------------------------------------- meta.function.body.nushell
+#<0------------------------------------------------------------------------- meta.for-loop.nushell
+#<0------------------------------------------------------------------------- meta.expression.parenthesis.nushell
+#     ^--------------------------------------------------------------------- meta.command.nushell
+#     ^------- keyword.other.builtin.nushell
+#              ^- variable.parameter.nushell
+#              ^ keyword.control.nushell
+#                 ^--- variable.language.nushell
+#                     ^--------------- variable.other.nushell
+#                                      ^- variable.parameter.nushell
+#                                      ^ keyword.control.nushell
+#                                         ^--- variable.language.nushell
+#                                             ^--------------- variable.other.nushell
+#                                                              ^------------ variable.other.nushell
+        | get items
+#<0---------------- meta.function.body.nushell
+#<0---------------- meta.for-loop.nushell
+#<0---------------- meta.expression.parenthesis.nushell
+#       ^ keyword.control.nushell
+#         ^-------- meta.command.nushell
+#         ^-- keyword.other.builtin.nushell
+#             ^---- string.bare.nushell
+        | select html_url user.login title
+#<0--------------------------------------- meta.function.body.nushell
+#<0--------------------------------------- meta.for-loop.nushell
+#<0--------------------------------------- meta.expression.parenthesis.nushell
+#       ^ keyword.control.nushell
+#         ^------------------------------- meta.command.nushell
+#         ^----- keyword.other.builtin.nushell
+#                ^------- string.bare.nushell
+#                         ^--------- string.bare.nushell
+#                                    ^---- string.bare.nushell
+    )
+#<0-- meta.function.body.nushell
+#<0-- meta.for-loop.nushell
+#<0-- meta.expression.parenthesis.nushell
+#   ^ meta.brace.round.end.nushell
+
+    if not ($site_json | all { |it| $it | is-empty }) {
+#<0---------------------------------------------------- meta.function.body.nushell
+#<0---------------------------------------------------- meta.for-loop.nushell
+#   ^- keyword.control.nushell
+#      ^-- keyword.control.nushell
+#          ^----------------------------------------- meta.expression.parenthesis.nushell
+#          ^ meta.brace.round.begin.nushell
+#           ^--------- variable.other.nushell
+#                      ^ keyword.control.nushell
+#                        ^-------------------------- meta.command.nushell
+#                        ^-- keyword.other.builtin.nushell
+#                            ^---------------------- meta.expression.braced.nushell
+#                            ^ punctuation.section.block.begin.bracket.curly.nushell
+#                             ^---- meta.closure.parameters.nushell
+#                               ^- variable.parameter.nushell
+#                                   ^-- variable.other.nushell
+#                                       ^ keyword.control.nushell
+#                                         ^-------- meta.command.nushell
+#                                         ^------- keyword.other.builtin.nushell
+#                                                  ^ punctuation.section.block.end.bracket.curly.nushell
+#                                                   ^ meta.brace.round.end.nushell
+#                                                     ^ meta.expression.braced.nushell
+#                                                     ^ punctuation.section.block.begin.bracket.curly.nushell
+      print $"(char nl)## ($repo.site)(char nl)"
+#<0--------------------------------------------- meta.function.body.nushell
+#<0--------------------------------------------- meta.for-loop.nushell
+#<0--------------------------------------------- meta.expression.braced.nushell
+#     ^----------------------------------------- meta.command.nushell
+#     ^---- keyword.other.builtin.nushell
+#           ^----------------------------------- string.interpolated.double.nushell
+#           ^- punctuation.definition.string.begin.nushell
+#             ^-------- meta.expression.parenthesis.nushell
+#             ^ meta.brace.round.begin.nushell
+#              ^------ meta.command.nushell
+#              ^------ keyword.other.builtin.nushell
+#                     ^ meta.brace.round.end.nushell
+#                         ^-------------------- meta.expression.parenthesis.nushell
+#                         ^ meta.brace.round.begin.nushell
+#                          ^--------- variable.other.nushell
+#                                    ^ meta.brace.round.end.nushell
+#                                     ^ meta.brace.round.begin.nushell
+#                                      ^------ meta.command.nushell
+#                                      ^------ keyword.other.builtin.nushell
+#                                             ^ meta.brace.round.end.nushell
+#                                              ^ punctuation.definition.string.end.nushell
+
+      for user in ($site_json | group-by user_login | transpose user prs) {
+#<0------------------------------------------------------------------------ meta.function.body.nushell
+#<0------------------------------------------------------------------------ meta.for-loop.nushell
+#<0------------------------------------------------------------------------ meta.expression.braced.nushell
+#     ^-------------------------------------------------------------------- meta.for-loop.nushell
+#     ^-- keyword.other.nushell
+#         ^--- variable.other.nushell
+#              ^- keyword.other.nushell
+#                 ^------------------------------------------------------ meta.expression.parenthesis.nushell
+#                 ^ meta.brace.round.begin.nushell
+#                  ^--------- variable.other.nushell
+#                             ^ keyword.control.nushell
+#                               ^------------------- meta.command.nushell
+#                               ^------- keyword.other.builtin.nushell
+#                                        ^--------- string.bare.nushell
+#                                                   ^ keyword.control.nushell
+#                                                     ^----------------- meta.command.nushell
+#                                                     ^-------- keyword.other.builtin.nushell
+#                                                               ^--- string.bare.nushell
+#                                                                    ^-- string.bare.nushell
+#                                                                       ^ meta.brace.round.end.nushell
+#                                                                         ^ punctuation.section.block.begin.bracket.curly.nushell
+        let user_name = $user.user
+#<0------------------------------- meta.function.body.nushell
+#<0------------------------------- meta.for-loop.nushell
+#<0------------------------------- meta.expression.braced.nushell
+#<0------------------------------- meta.for-loop.nushell
+#       ^-- keyword.other.nushell
+#           ^-------- variable.other.nushell
+#                       ^--------- variable.other.nushell
+        let pr_count = ($user.prs | length)
+#<0---------------------------------------- meta.function.body.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#<0---------------------------------------- meta.expression.braced.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#       ^-- keyword.other.nushell
+#           ^------- variable.other.nushell
+#                      ^------------------- meta.expression.parenthesis.nushell
+#                      ^ meta.brace.round.begin.nushell
+#                       ^-------- variable.other.nushell
+#                                 ^ keyword.control.nushell
+#                                   ^----- meta.command.nushell
+#                                   ^----- keyword.other.builtin.nushell
+#                                         ^ meta.brace.round.end.nushell
+
+        print -n $"- ($user_name) created "
+#<0---------------------------------------- meta.function.body.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#<0---------------------------------------- meta.expression.braced.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#       ^---------------------------------- meta.command.nushell
+#       ^---- keyword.other.builtin.nushell
+#             ^- variable.parameter.nushell
+#             ^ keyword.control.nushell
+#                ^------------------------- string.interpolated.double.nushell
+#                ^- punctuation.definition.string.begin.nushell
+#                    ^----------- meta.expression.parenthesis.nushell
+#                    ^ meta.brace.round.begin.nushell
+#                     ^--------- variable.other.nushell
+#                               ^ meta.brace.round.end.nushell
+#                                         ^ punctuation.definition.string.end.nushell
+        for pr in ($user.prs | enumerate) {
+#<0---------------------------------------- meta.function.body.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#<0---------------------------------------- meta.expression.braced.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#       ^---------------------------------- meta.for-loop.nushell
+#       ^-- keyword.other.nushell
+#           ^- variable.other.nushell
+#              ^- keyword.other.nushell
+#                 ^---------------------- meta.expression.parenthesis.nushell
+#                 ^ meta.brace.round.begin.nushell
+#                  ^-------- variable.other.nushell
+#                            ^ keyword.control.nushell
+#                              ^-------- meta.command.nushell
+#                              ^-------- keyword.other.builtin.nushell
+#                                       ^ meta.brace.round.end.nushell
+#                                         ^ punctuation.section.block.begin.bracket.curly.nushell
+          if $pr_count == ($pr.index + 1) {
+#<0---------------------------------------- meta.function.body.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#<0---------------------------------------- meta.expression.braced.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#<0---------------------------------------- meta.for-loop.nushell
+#         ^- keyword.control.nushell
+#            ^-------- variable.other.nushell
+#                      ^- keyword.control.nushell
+#                         ^-------------- meta.expression.parenthesis.nushell
+#                         ^ meta.brace.round.begin.nushell
+#                          ^-------- variable.other.nushell
+#                                    ^ keyword.control.nushell
+#                                      ^ constant.numeric.nushell
+#                                       ^ meta.brace.round.end.nushell
+#                                         ^ meta.expression.braced.nushell
+#                                         ^ punctuation.section.block.begin.bracket.curly.nushell
+            print -n $"[($pr.item.title)](char lparen)($pr.item.html_url)(char rparen)"
+#<0------------------------------------------------------------------------------------ meta.function.body.nushell
+#<0------------------------------------------------------------------------------------ meta.for-loop.nushell
+#<0------------------------------------------------------------------------------------ meta.expression.braced.nushell
+#<0------------------------------------------------------------------------------------ meta.for-loop.nushell
+#<0------------------------------------------------------------------------------------ meta.for-loop.nushell
+#<0------------------------------------------------------------------------------------ meta.expression.braced.nushell
+#           ^-------------------------------------------------------------------------- meta.command.nushell
+#           ^---- keyword.other.builtin.nushell
+#                 ^- variable.parameter.nushell
+#                 ^ keyword.control.nushell
+#                    ^----------------------------------------------------------------- string.interpolated.double.nushell
+#                    ^- punctuation.definition.string.begin.nushell
+#                       ^--------------- meta.expression.parenthesis.nushell
+#                       ^ meta.brace.round.begin.nushell
+#                        ^------------- variable.other.nushell
+#                                      ^ meta.brace.round.end.nushell
+#                                        ^-------------------------------------------- meta.expression.parenthesis.nushell
+#                                        ^ meta.brace.round.begin.nushell
+#                                         ^---------- meta.command.nushell
+#                                         ^---------- keyword.other.builtin.nushell
+#                                                    ^ meta.brace.round.end.nushell
+#                                                     ^ meta.brace.round.begin.nushell
+#                                                      ^---------------- variable.other.nushell
+#                                                                       ^ meta.brace.round.end.nushell
+#                                                                        ^ meta.brace.round.begin.nushell
+#                                                                         ^---------- meta.command.nushell
+#                                                                         ^---------- keyword.other.builtin.nushell
+#                                                                                    ^ meta.brace.round.end.nushell
+#                                                                                     ^ punctuation.definition.string.end.nushell
+          } else {
+#<0--------------- meta.function.body.nushell
+#<0--------------- meta.for-loop.nushell
+#<0--------------- meta.expression.braced.nushell
+#<0--------------- meta.for-loop.nushell
+#<0--------------- meta.for-loop.nushell
+#<0-------- meta.expression.braced.nushell
+#         ^ punctuation.section.block.end.bracket.curly.nushell
+#           ^--- keyword.control.nushell
+#                ^ meta.expression.braced.nushell
+#                ^ punctuation.section.block.begin.bracket.curly.nushell
+            print -n $"[($pr.item.title)](char lparen)($pr.item.html_url)(char rparen), and "
+#<0------------------------------------------------------------------------------------------ meta.function.body.nushell
+#<0------------------------------------------------------------------------------------------ meta.for-loop.nushell
+#<0------------------------------------------------------------------------------------------ meta.expression.braced.nushell
+#<0------------------------------------------------------------------------------------------ meta.for-loop.nushell
+#<0------------------------------------------------------------------------------------------ meta.for-loop.nushell
+#<0------------------------------------------------------------------------------------------ meta.expression.braced.nushell
+#           ^-------------------------------------------------------------------------------- meta.command.nushell
+#           ^---- keyword.other.builtin.nushell
+#                 ^- variable.parameter.nushell
+#                 ^ keyword.control.nushell
+#                    ^----------------------------------------------------------------------- string.interpolated.double.nushell
+#                    ^- punctuation.definition.string.begin.nushell
+#                       ^--------------- meta.expression.parenthesis.nushell
+#                       ^ meta.brace.round.begin.nushell
+#                        ^------------- variable.other.nushell
+#                                      ^ meta.brace.round.end.nushell
+#                                        ^-------------------------------------------- meta.expression.parenthesis.nushell
+#                                        ^ meta.brace.round.begin.nushell
+#                                         ^---------- meta.command.nushell
+#                                         ^---------- keyword.other.builtin.nushell
+#                                                    ^ meta.brace.round.end.nushell
+#                                                     ^ meta.brace.round.begin.nushell
+#                                                      ^---------------- variable.other.nushell
+#                                                                       ^ meta.brace.round.end.nushell
+#                                                                        ^ meta.brace.round.begin.nushell
+#                                                                         ^---------- meta.command.nushell
+#                                                                         ^---------- keyword.other.builtin.nushell
+#                                                                                    ^ meta.brace.round.end.nushell
+#                                                                                           ^ punctuation.definition.string.end.nushell
+          }
+#<0-------- meta.function.body.nushell
+#<0-------- meta.for-loop.nushell
+#<0-------- meta.expression.braced.nushell
+#<0-------- meta.for-loop.nushell
+#<0-------- meta.for-loop.nushell
+#<0-------- meta.expression.braced.nushell
+#         ^ punctuation.section.block.end.bracket.curly.nushell
+        }
+#<0------ meta.function.body.nushell
+#<0------ meta.for-loop.nushell
+#<0------ meta.expression.braced.nushell
+#<0------ meta.for-loop.nushell
+#<0------ meta.for-loop.nushell
+#       ^ punctuation.section.block.end.bracket.curly.nushell
+
+        print ""
+#<0------------- meta.function.body.nushell
+#<0------------- meta.for-loop.nushell
+#<0------------- meta.expression.braced.nushell
+#<0------------- meta.for-loop.nushell
+#       ^------- meta.command.nushell
+#       ^---- keyword.other.builtin.nushell
+#             ^- string.quoted.double.nushell
+#             ^ punctuation.definition.string.begin.nushell
+#              ^ punctuation.definition.string.end.nushell
+      }
+#<0---- meta.function.body.nushell
+#<0---- meta.for-loop.nushell
+#<0---- meta.expression.braced.nushell
+#<0---- meta.for-loop.nushell
+#     ^ punctuation.section.block.end.bracket.curly.nushell
+    }
+#<0-- meta.function.body.nushell
+#<0-- meta.for-loop.nushell
+#<0-- meta.expression.braced.nushell
+#   ^ punctuation.section.block.end.bracket.curly.nushell
+  }
+#<0 meta.function.body.nushell
+#<0 meta.for-loop.nushell
+# ^ punctuation.section.block.end.bracket.curly.nushell
+}
+#<0 meta.function.body.nushell
+#<0 punctuation.definition.function.end.nushell
+
+# 2019-08-23 was the release of 0.2.0, the first public release
+#<0------------------------------------------------------------ comment.nushell
+let week_num = ((seq date -b '2019-08-23' -n 7 | length) - 1)
+#<0 keyword.other.nushell
+#   ^------- variable.other.nushell
+#              ^--------------------------------------------- meta.expression.parenthesis.nushell
+#              ^ meta.brace.round.begin.nushell
+#               ^--------------------------------------- meta.expression.parenthesis.nushell
+#               ^ meta.brace.round.begin.nushell
+#                ^----------------------------- meta.command.nushell
+#                ^------- keyword.other.builtin.nushell
+#                         ^- variable.parameter.nushell
+#                         ^ keyword.control.nushell
+#                            ^----------- string.quoted.single.nushell
+#                            ^ punctuation.definition.string.begin.nushell
+#                                       ^ punctuation.definition.string.end.nushell
+#                                         ^- variable.parameter.nushell
+#                                         ^ keyword.control.nushell
+#                                            ^ constant.numeric.nushell
+#                                              ^ keyword.control.nushell
+#                                                ^----- meta.command.nushell
+#                                                ^----- keyword.other.builtin.nushell
+#                                                      ^ meta.brace.round.end.nushell
+#                                                        ^ keyword.control.nushell
+#                                                          ^ constant.numeric.nushell
+#                                                           ^ meta.brace.round.end.nushell
+print $"# This week in Nushell #($week_num)(char nl)"
+#<0-------------------------------------------------- meta.command.nushell
+#<0-- keyword.other.builtin.nushell
+#     ^---------------------------------------------- string.interpolated.double.nushell
+#     ^- punctuation.definition.string.begin.nushell
+#                               ^------------------- meta.expression.parenthesis.nushell
+#                               ^ meta.brace.round.begin.nushell
+#                                ^-------- variable.other.nushell
+#                                         ^ meta.brace.round.end.nushell
+#                                          ^ meta.brace.round.begin.nushell
+#                                           ^------ meta.command.nushell
+#                                           ^------ keyword.other.builtin.nushell
+#                                                  ^ meta.brace.round.end.nushell
+#                                                   ^ punctuation.definition.string.end.nushell
+
+if ($env | select GITHUB_USERNAME | is-empty) or ($env | select GITHUB_PASSWORD | is-empty) {
+#<0 keyword.control.nushell
+#  ^----------------------------------------- meta.expression.parenthesis.nushell
+#  ^ meta.brace.round.begin.nushell
+#   ^--- variable.language.nushell
+#        ^ keyword.control.nushell
+#          ^---------------------- meta.command.nushell
+#          ^----- keyword.other.builtin.nushell
+#                 ^-------------- string.bare.nushell
+#                                 ^ keyword.control.nushell
+#                                   ^------- meta.command.nushell
+#                                   ^------- keyword.other.builtin.nushell
+#                                           ^ meta.brace.round.end.nushell
+#                                             ^- keyword.control.nushell
+#                                                ^----------------------------------------- meta.expression.parenthesis.nushell
+#                                                ^ meta.brace.round.begin.nushell
+#                                                 ^--- variable.language.nushell
+#                                                      ^ keyword.control.nushell
+#                                                        ^---------------------- meta.command.nushell
+#                                                        ^----- keyword.other.builtin.nushell
+#                                                               ^-------------- string.bare.nushell
+#                                                                               ^ keyword.control.nushell
+#                                                                                 ^------- meta.command.nushell
+#                                                                                 ^------- keyword.other.builtin.nushell
+#                                                                                         ^ meta.brace.round.end.nushell
+#                                                                                           ^ meta.expression.braced.nushell
+#                                                                                           ^ punctuation.section.block.begin.bracket.curly.nushell
+  print 'Please set GITHUB_USERNAME and GITHUB_PASSWORD in $env to use this script'
+#<0-------------------------------------------------------------------------------- meta.expression.braced.nushell
+# ^-------------------------------------------------------------------------------- meta.command.nushell
+# ^---- keyword.other.builtin.nushell
+#       ^-------------------------------------------------------------------------- string.quoted.single.nushell
+#       ^ punctuation.definition.string.begin.nushell
+#                                                                                 ^ punctuation.definition.string.end.nushell
+} else {
+#<0 meta.expression.braced.nushell
+#<0 punctuation.section.block.end.bracket.curly.nushell
+# ^--- keyword.control.nushell
+#      ^ meta.expression.braced.nushell
+#      ^ punctuation.section.block.begin.bracket.curly.nushell
+  query-week-span
+#<0-------------- meta.expression.braced.nushell
+# ^-------------- meta.command.nushell
+# ^-------------- entity.name.type.external.nushell
+}
+#<0 meta.expression.braced.nushell
+#<0 punctuation.section.block.end.bracket.curly.nushell
+
+# From https://github.com/nushell/nu_scripts/blob/main/make_release/this_week_in_nu_weekly.nu
+#<0------------------------------------------------------------------------------------------ comment.nushell

@@ -1,0 +1,87 @@
+// grammar: source.kdl
+
+package {
+//<0--- entity.name.tag
+  name my-pkg
+//<0-- entity.name.tag
+//     ^----- string.unquoted
+  version "1.2.3"
+//<0----- entity.name.tag
+//        ^------ string.quoted.double.kdl
+
+  dependencies {
+//<0---------- entity.name.tag
+    // Nodes can have standalone values as well as
+//  ^--------------------------------------------- comment.line.double-slash.kdl
+    // key/value pairs.
+//  ^------------------ comment.line.double-slash.kdl
+    lodash "^3.2.1" optional=#true alias=underscore
+//<0------ entity.name.tag
+//         ^------- string.quoted.double.kdl
+//                  ^-------- entity.other.attribute-name.kdl
+//                          ^ punctuation.separator.key-value.kdl
+//                           ^---- constant.language.boolean.kdl
+//                                 ^----- entity.other.attribute-name.kdl
+//                                      ^ punctuation.separator.key-value.kdl
+//                                       ^--------- string.unquoted
+  }
+
+  scripts {
+//<0----- entity.name.tag
+    // "Raw" and dedented multi-line strings are supported.
+//  ^------------------------------------------------------ comment.line.double-slash.kdl
+    message """
+//<0------- entity.name.tag
+//          ^-- string.quoted.triple.kdl
+      hello
+//<0------- string.quoted.triple.kdl
+      world
+//<0------- string.quoted.triple.kdl
+      """
+//<0----- string.quoted.triple.kdl
+    build #"""
+//<0----- entity.name.tag
+//        ^--- string.quoted.other.raw.kdl
+      echo "foo"
+//<0------------ string.quoted.other.raw.kdl
+      node -c "console.log('hello, world!');"
+//<0----------------------------------------- string.quoted.other.raw.kdl
+      echo "foo" > some-file.txt
+//<0---------------------------- string.quoted.other.raw.kdl
+      """#
+//<0------ string.quoted.other.raw.kdl
+  }
+
+  // `\` breaks up a single node across multiple lines.
+//^---------------------------------------------------- comment.line.double-slash.kdl
+  the-matrix 1 2 3 \
+//<0-------- entity.name.tag
+//           ^ constant.numeric.integer.decimal.rust
+//             ^ constant.numeric.integer.decimal.rust
+//               ^ constant.numeric.integer.decimal.rust
+             4 5 6 \
+//<0---------- entity.name.tag
+//             ^ constant.numeric.integer.decimal.rust
+//               ^ constant.numeric.integer.decimal.rust
+             7 8 9
+//<0---------- entity.name.tag
+//             ^ constant.numeric.integer.decimal.rust
+//               ^ constant.numeric.integer.decimal.rust
+
+  // "Slashdash" comments operate at the node level,
+//^------------------------------------------------- comment.line.double-slash.kdl
+  // with just `/-`.
+//^----------------- comment.line.double-slash.kdl
+  /-this-is-commented {
+//<0------------------- comment.block.slashdash.kdl
+    this entire node {
+//<0------------------ comment.block.slashdash.kdl
+      is gone
+//<0--------- comment.block.slashdash.kdl
+    }
+//<0- comment.block.slashdash.kdl
+  }
+}
+
+// From https://kdl.dev/
+//<0-------------------- comment.line.double-slash.kdl

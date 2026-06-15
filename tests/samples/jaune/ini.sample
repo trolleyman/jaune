@@ -1,0 +1,39 @@
+# grammar: source.ini
+
+; last modified 1 April 2001 by John Doe
+#<0------------------------------------- comment.line.semicolon.ini
+#<0 punctuation.definition.comment.ini
+[owner]
+#<0---- entity.name.section.group-title.ini
+#<0 punctuation.definition.entity.ini
+#     ^ punctuation.definition.entity.ini
+name = John Doe
+#<0- keyword.other.definition.ini
+#    ^ punctuation.separator.key-value.ini
+organization = Acme Widgets Inc.
+#<0--------- keyword.other.definition.ini
+#            ^ punctuation.separator.key-value.ini
+
+[database]
+#<0------- entity.name.section.group-title.ini
+#<0 punctuation.definition.entity.ini
+#        ^ punctuation.definition.entity.ini
+; use IP address in case network name resolution is not working
+#<0------------------------------------------------------------ comment.line.semicolon.ini
+#<0 punctuation.definition.comment.ini
+server = 192.0.2.62`
+#<0--- keyword.other.definition.ini
+#      ^ punctuation.separator.key-value.ini
+port = 143
+#<0- keyword.other.definition.ini
+#    ^ punctuation.separator.key-value.ini
+file = "payroll.dat"
+#<0- keyword.other.definition.ini
+#    ^ punctuation.separator.key-value.ini
+#      ^------------ string.quoted.double.ini
+#      ^ punctuation.definition.string.begin.ini
+#                  ^ punctuation.definition.string.end.ini
+
+; From https://en.wikipedia.org/wiki/INI_file
+#<0------------------------------------------ comment.line.semicolon.ini
+#<0 punctuation.definition.comment.ini

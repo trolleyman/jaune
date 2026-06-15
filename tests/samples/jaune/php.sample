@@ -1,0 +1,141 @@
+# grammar: source.php
+
+<?php
+#<0 keyword.operator.comparison.php
+#^ keyword.operator.ternary.php
+# ^-- constant.other.php
+
+namespace App\Console;
+#<0------------------ meta.namespace.php
+#<0------ keyword.other.namespace.php
+#         ^---------- entity.name.type.namespace.php
+#            ^ punctuation.separator.inheritance.php
+#                    ^ punctuation.terminator.expression.php
+
+use Illuminate\Console\Scheduling\Schedule;
+#<0--------------------------------------- meta.use.php
+#<0 keyword.other.use.php
+#   ^----------------------------- support.other.namespace.php
+#             ^ punctuation.separator.inheritance.php
+#                     ^ punctuation.separator.inheritance.php
+#                                ^ punctuation.separator.inheritance.php
+#                                 ^------- support.class.php
+#                                         ^ punctuation.terminator.expression.php
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+#<0------------------------------------------------------ meta.use.php
+#<0 keyword.other.use.php
+#   ^----------------------------- support.other.namespace.php
+#             ^ punctuation.separator.inheritance.php
+#                        ^ punctuation.separator.inheritance.php
+#                                ^ punctuation.separator.inheritance.php
+#                                 ^----- support.class.php
+#                                        ^- keyword.other.use-as.php
+#                                           ^------------ entity.other.alias.php
+#                                                        ^ punctuation.terminator.expression.php
+
+class Kernel extends ConsoleKernel
+#<0------------------------------- meta.class.php
+#<0-- storage.type.class.php
+#     ^----- entity.name.type.class.php
+#            ^------ storage.modifier.extends.php
+#                    ^------------ entity.other.inherited-class.php
+{
+#<0 meta.class.php
+#<0 punctuation.definition.class.begin.bracket.curly.php
+    /**
+#<0---- meta.class.php
+#   ^-- comment.block.php
+     * Define the application's command schedule.
+#<0---------------------------------------------- meta.class.php
+#<0---------------------------------------------- comment.block.php
+     */
+#<0---- meta.class.php
+#<0---- comment.block.php
+    protected function schedule(Schedule $schedule): void
+#<0------------------------------------------------------ meta.class.php
+#   ^---------------------------------------------------- meta.function.php
+#   ^-------- storage.modifier.php
+#   ^-------- storage.modifier.visibility.${2:/downcase}.php
+#             ^------- storage.type.function.php
+#                      ^------- entity.name.function.php
+#                              ^ punctuation.definition.parameters.begin.bracket.round.php
+#                               ^----------------- meta.function.parameter.typehinted.php
+#                               ^------- support.class.php
+#                                        ^-------- variable.other.php
+#                                        ^ punctuation.definition.variable.php
+#                                                 ^ punctuation.definition.parameters.end.bracket.round.php
+#                                                  ^ keyword.operator.return-value.php
+#                                                    ^--- keyword.other.type.php
+    {
+#<0-- meta.class.php
+#   ^ punctuation.definition.begin.bracket.curly.php
+        // $schedule->command('inspire')->hourly();
+#<0------------------------------------------------ meta.class.php
+#<0----- punctuation.whitespace.comment.leading.php
+#       ^------------------------------------------ comment.line.double-slash.php
+#       ^- punctuation.definition.comment.php
+    }
+#<0-- meta.class.php
+#   ^ punctuation.definition.end.bracket.curly.php
+
+    /**
+#<0---- meta.class.php
+#   ^-- comment.block.php
+     * Register the commands for the application.
+#<0---------------------------------------------- meta.class.php
+#<0---------------------------------------------- comment.block.php
+     */
+#<0---- meta.class.php
+#<0---- comment.block.php
+    protected function commands(): void
+#<0------------------------------------ meta.class.php
+#   ^---------------------------------- meta.function.php
+#   ^-------- storage.modifier.php
+#   ^-------- storage.modifier.visibility.${2:/downcase}.php
+#             ^------- storage.type.function.php
+#                      ^------- entity.name.function.php
+#                              ^ punctuation.definition.parameters.begin.bracket.round.php
+#                               ^ punctuation.definition.parameters.end.bracket.round.php
+#                                ^ keyword.operator.return-value.php
+#                                  ^--- keyword.other.type.php
+    {
+#<0-- meta.class.php
+#   ^ punctuation.definition.begin.bracket.curly.php
+        $this->load(__DIR__.'/Commands');
+#<0-------------------------------------- meta.class.php
+#       ^---- variable.language.this.php
+#       ^ punctuation.definition.variable.php
+#            ^-------------------------- meta.method-call.php
+#            ^- keyword.operator.class.php
+#              ^--- entity.name.function.php
+#                  ^ punctuation.definition.arguments.begin.bracket.round.php
+#                   ^------ constant.language.php
+#                          ^ keyword.operator.string.php
+#                           ^---------- string.quoted.single.php
+#                           ^ punctuation.definition.string.begin.php
+#                                     ^ punctuation.definition.string.end.php
+#                                      ^ punctuation.definition.arguments.end.bracket.round.php
+#                                       ^ punctuation.terminator.expression.php
+
+        require base_path('routes/console.php');
+#<0--------------------------------------------- meta.class.php
+#       ^-------------------------------------- meta.include.php
+#       ^------ keyword.control.import.include.php
+#               ^------------------------------ meta.function-call.php
+#               ^-------- entity.name.function.php
+#                        ^ punctuation.definition.arguments.begin.bracket.round.php
+#                         ^------------------- string.quoted.single.php
+#                         ^ punctuation.definition.string.begin.php
+#                                            ^ punctuation.definition.string.end.php
+#                                             ^ punctuation.definition.arguments.end.bracket.round.php
+#                                              ^ punctuation.terminator.expression.php
+    }
+#<0-- meta.class.php
+#   ^ punctuation.definition.end.bracket.curly.php
+}
+#<0 meta.class.php
+#<0 punctuation.definition.class.end.bracket.curly.php
+
+// From https://github.com/laravel/laravel/blob/10.x/app/Console/Kernel.php
+#<0------------------------------------------------------------------------ comment.line.double-slash.php
+#<0 punctuation.definition.comment.php

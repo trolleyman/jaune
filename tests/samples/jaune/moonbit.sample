@@ -1,0 +1,181 @@
+// grammar: source.moonbit
+
+// MoonBit sample - a Rust-like language for WebAssembly
+//<0---------------------------------------------------- comment.line
+
+// Type definitions
+//<0--------------- comment.line
+struct Point {
+//<0-- keyword.moonbit
+//     ^---- entity.name.type.moonbit
+  x : Int
+//^ variable.other.moonbit
+//    ^-- entity.name.type.moonbit
+  y : Int
+//^ variable.other.moonbit
+//    ^-- entity.name.type.moonbit
+} derive(Show, Eq)
+//^----- keyword.moonbit
+//       ^--- support.class.moonbit
+//             ^- support.class.moonbit
+
+enum Color {
+//<0 keyword.moonbit
+//   ^---- entity.name.type.moonbit
+  Red
+//^-- entity.name.type.moonbit
+  Green
+//^---- entity.name.type.moonbit
+  Blue
+//^--- entity.name.type.moonbit
+  RGB(r~ : Int, g~ : Int, b~ : Int)
+//^-- entity.name.type.moonbit
+//    ^ variable.other.moonbit
+//         ^-- entity.name.type.moonbit
+//              ^ variable.other.moonbit
+//                   ^-- entity.name.type.moonbit
+//                        ^ variable.other.moonbit
+//                             ^-- entity.name.type.moonbit
+}
+
+// Trait definition
+//<0--------------- comment.line
+trait Printable {
+//<0- keyword.moonbit
+//    ^-------- entity.name.type.moonbit
+  to_string(Self) -> String
+//^-------------- meta.function.call.moonbit
+//^-------- entity.name.function.moonbit
+//          ^--- entity.name.type.moonbit
+//              ^ punctuation.brackets.round.moonbit
+//                ^- storage.type.function.arrow.moonbit
+//                   ^----- entity.name.type.moonbit
+}
+
+// Implementation
+//<0------------- comment.line
+impl Printable for Point with to_string(self) {
+//<0 keyword.moonbit
+//   ^-------- entity.name.type.moonbit
+//             ^-- keyword.control.moonbit
+//                 ^---- entity.name.type.moonbit
+//                       ^--- keyword.moonbit
+//                            ^-------------- meta.function.call.moonbit
+//                            ^-------- entity.name.function.moonbit
+//                                      ^--- variable.other.moonbit
+//                                          ^ punctuation.brackets.round.moonbit
+  "Point(\{self.x}, \{self.y})"
+//^---------------------------- string.quoted.double.moonbit
+//       ^-------- meta.embedded.line.moonbit
+//       ^- punctuation.section.embedded.begin.moonbit
+//         ^--- variable.other.moonbit
+//               ^ punctuation.section.embedded.end.moonbit
+//                  ^-------- meta.embedded.line.moonbit
+//                  ^- punctuation.section.embedded.begin.moonbit
+//                    ^--- variable.other.moonbit
+//                          ^ punctuation.section.embedded.end.moonbit
+}
+
+// Function with pattern matching
+//<0----------------------------- comment.line
+fn describe(opt : Int?) -> String {
+//<0 keyword.moonbit
+// ^------- entity.name.function.moonbit
+//          ^-- variable.other.moonbit
+//                ^--- entity.name.type.moonbit
+//                      ^- storage.type.function.arrow.moonbit
+//                         ^----- entity.name.type.moonbit
+  match opt {
+//^---- keyword.control.moonbit
+//      ^-- variable.other.moonbit
+    Some(n) => "Got \{n}"
+//  ^--- entity.name.type.moonbit
+//       ^ variable.other.moonbit
+//          ^- storage.type.function.arrow.moonbit
+//             ^--------- string.quoted.double.moonbit
+//                  ^--- meta.embedded.line.moonbit
+//                  ^- punctuation.section.embedded.begin.moonbit
+//                    ^ variable.other.moonbit
+//                     ^ punctuation.section.embedded.end.moonbit
+    None => "Nothing"
+//  ^--- entity.name.type.moonbit
+//       ^- storage.type.function.arrow.moonbit
+//          ^-------- string.quoted.double.moonbit
+  }
+}
+
+// Main function
+//<0------------ comment.line
+fn main {
+//<0 keyword.moonbit
+// ^--- entity.name.function.moonbit
+  let point = { x: 10, y: 20 }
+//^-- keyword.moonbit
+//    ^---- variable.other.moonbit
+//          ^ keyword.operator.assignment.moonbit
+//              ^ variable.other.moonbit
+//                 ^- constant.numeric.moonbit
+//                     ^ variable.other.moonbit
+//                        ^- constant.numeric.moonbit
+  let message = describe(Some(42))
+//^-- keyword.moonbit
+//    ^------ variable.other.moonbit
+//            ^ keyword.operator.assignment.moonbit
+//              ^---------------- meta.function.call.moonbit
+//              ^------- entity.name.function.moonbit
+//                       ^--- entity.name.type.moonbit
+//                            ^- constant.numeric.moonbit
+//                              ^ punctuation.brackets.round.moonbit
+  println(point.to_string())
+//^------------------------- meta.function.call.moonbit
+//^------ entity.name.function.moonbit
+//        ^---- variable.other.moonbit
+//             ^----------- meta.function.call.moonbit
+//              ^-------- entity.name.function.moonbit
+//                        ^ punctuation.brackets.round.moonbit
+//                         ^ punctuation.brackets.round.moonbit
+  println(message)
+//^--------------- meta.function.call.moonbit
+//^------ entity.name.function.moonbit
+//        ^------ variable.other.moonbit
+//               ^ punctuation.brackets.round.moonbit
+}
+
+// Test block
+//<0--------- comment.line
+test "basic arithmetic" {
+//<0 keyword.moonbit
+//   ^----------------- string.quoted.double.moonbit
+  let x = 1 + 2 * 3
+//^-- keyword.moonbit
+//    ^ variable.other.moonbit
+//      ^ keyword.operator.assignment.moonbit
+//        ^ constant.numeric.moonbit
+//          ^ keyword.operator.math.moonbit
+//            ^ constant.numeric.moonbit
+//              ^ keyword.operator.math.moonbit
+//                ^ constant.numeric.moonbit
+  assert_eq(x, 7)
+//^-------------- meta.function.call.moonbit
+//^-------- entity.name.function.moonbit
+//          ^ variable.other.moonbit
+//             ^ constant.numeric.moonbit
+//              ^ punctuation.brackets.round.moonbit
+}
+
+// Async function
+//<0------------- comment.line
+async fn fetch_data() -> String raise Error {
+//<0- keyword.control.moonbit.async
+//    ^- keyword.moonbit
+//       ^--------- entity.name.function.moonbit
+//                    ^- storage.type.function.arrow.moonbit
+//                       ^----- entity.name.type.moonbit
+//                              ^---- keyword.control.moonbit
+//                                    ^---- entity.name.type.moonbit
+  "data"
+//^----- string.quoted.double.moonbit
+}
+
+// From https://docs.moonbitlang.com/
+//<0--------------------------------- comment.line

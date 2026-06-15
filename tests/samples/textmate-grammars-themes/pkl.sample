@@ -1,0 +1,29 @@
+// grammar: source.pkl
+
+name = "Swallow"
+//<0 variable.other.property.pkl
+//   ^ punctuation.pkl
+//     ^-------- string.quoted.double.0.pkl
+//     ^ punctuation.delimiter.pkl
+//             ^ punctuation.delimimter.pkl
+
+job {
+//<0 variable.other.property.pkl
+  title = "Sr. Nest Maker"
+//^---- variable.other.property.pkl
+//      ^ punctuation.pkl
+//        ^--------------- string.quoted.double.0.pkl
+//        ^ punctuation.delimiter.pkl
+//                       ^ punctuation.delimimter.pkl
+  company = "Nests R Us"
+//^------ variable.other.property.pkl
+//        ^ punctuation.pkl
+//          ^----------- string.quoted.double.0.pkl
+//          ^ punctuation.delimiter.pkl
+//                     ^ punctuation.delimimter.pkl
+  yearsOfExperience = 2
+//^---------------- variable.other.property.pkl
+//                  ^ punctuation.pkl
+//                    ^ constant.numeric.decimal.pkl
+}
+//<0 meta.brace.pkl

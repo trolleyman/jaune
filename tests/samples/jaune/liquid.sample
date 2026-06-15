@@ -1,0 +1,113 @@
+<!-- grammar: text.html.liquid -->
+
+<h3>Recommended Products</h3>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--<3 keyword.operator.relational.ts -->
+<!--^---------- variable.other.readwrite.ts -->
+<!--            ^------- variable.other.readwrite.ts -->
+<!--                    ^ keyword.operator.relational.ts -->
+<!--                     ^ keyword.operator.arithmetic.ts -->
+<!--                      ^- variable.other.readwrite.ts -->
+<!--                        ^ keyword.operator.relational.ts -->
+<ul class="recommended_products">
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--^---- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.assignment.ts -->
+<!--      ^--------------------- string.quoted.double.ts -->
+<!--      ^ punctuation.definition.string.begin.ts -->
+<!--       ^------------------- variable.other.readwrite.ts -->
+<!--                           ^ punctuation.definition.string.end.ts -->
+<!--                            ^ keyword.operator.relational.ts -->
+  {% assign recommended_products =  product.metafields.my_fields.rec_products.value %}
+<!--<2-------------------------------------------------------------------------------- meta.tag.liquid -->
+<!--<2 punctuation.definition.tag.begin.liquid -->
+<!--^------------------------------------------------------------------------------- meta.entity.tag.liquid -->
+<!-- ^----- entity.name.tag.liquid -->
+<!--        ^------------------- variable.other.readwrite.ts -->
+<!--                             ^ keyword.operator.assignment.ts -->
+<!--                                ^------ variable.other.object.ts -->
+<!--                                       ^ punctuation.accessor.ts -->
+<!--                                        ^--------- variable.other.object.property.ts -->
+<!--                                                  ^ punctuation.accessor.ts -->
+<!--                                                   ^-------- variable.other.object.property.ts -->
+<!--                                                            ^ punctuation.accessor.ts -->
+<!--                                                             ^----------- variable.other.object.property.ts -->
+<!--                                                                         ^ punctuation.accessor.ts -->
+<!--                                                                          ^---- variable.other.property.ts -->
+<!--                                                                                ^- punctuation.definition.tag.end.liquid -->
+  {% for product in recommended_products  %}
+<!--<2-------------------------------------- meta.tag.liquid -->
+<!--<2 punctuation.definition.tag.begin.liquid -->
+<!--^------------------------------------- meta.entity.tag.for.liquid -->
+<!-- ^-- keyword.control.for.liquid -->
+<!--     ^------ variable.other.readwrite.ts -->
+<!--             ^- keyword.operator.expression.in.ts -->
+<!--                ^------------------- variable.other.readwrite.ts -->
+<!--                                      ^- punctuation.definition.tag.end.liquid -->
+    <li>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.relational.ts -->
+      <a href="{{ product.url }}">
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^ variable.other.readwrite.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--         ^ keyword.operator.assignment.ts -->
+<!--          ^------------------ string.quoted.double.ts -->
+<!--          ^ punctuation.definition.string.begin.ts -->
+<!--           ^---------------- meta.object.liquid -->
+<!--           ^- punctuation.definition.tag.begin.liquid -->
+<!--              ^------ variable.other.object.ts -->
+<!--                     ^ punctuation.accessor.ts -->
+<!--                      ^-- variable.other.property.ts -->
+<!--                          ^- punctuation.definition.tag.end.liquid -->
+<!--                            ^ punctuation.definition.string.end.ts -->
+<!--                             ^ keyword.operator.relational.ts -->
+        {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+<!--    ^- punctuation.definition.block.ts -->
+<!--       ^------ variable.other.object.ts -->
+<!--              ^ punctuation.accessor.ts -->
+<!--               ^------------- variable.other.property.ts -->
+<!--                              ^ keyword.operator.logical.ts -->
+<!--                                ^-------- entity.name.function.pipe.ng -->
+<!--                                           ^---- variable.other.readwrite.ts -->
+<!--                                                  ^-- constant.numeric.decimal.ts -->
+<!--                                                      ^ keyword.operator.logical.ts -->
+<!--                                                        ^-------- entity.name.function.pipe.ng -->
+<!--                                                                   ^------ variable.other.readwrite.ts -->
+<!--                                                                            ^----- string.quoted.single.ts -->
+<!--                                                                            ^ punctuation.definition.string.begin.ts -->
+<!--                                                                             ^--- variable.other.readwrite.ts -->
+<!--                                                                                 ^ punctuation.definition.string.end.ts -->
+<!--                                                                                   ^- punctuation.definition.block.ts -->
+        {{product.title}}
+<!--    ^- punctuation.definition.block.ts -->
+<!--      ^------ variable.other.object.ts -->
+<!--             ^ punctuation.accessor.ts -->
+<!--              ^---- variable.other.property.ts -->
+<!--                   ^- punctuation.definition.block.ts -->
+      </a>
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^ keyword.operator.arithmetic.ts -->
+<!--    ^ variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+    </li>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.relational.ts -->
+  {% endfor %}
+<!--<2-------- meta.tag.liquid -->
+<!--<2 punctuation.definition.tag.begin.liquid -->
+<!-- ^----- keyword.control.loop.liquid -->
+<!--        ^- punctuation.definition.tag.end.liquid -->
+</ul>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--^ keyword.operator.relational.ts -->
+
+{%- comment -%} From https://www.codeshopify.com/blog_posts/related-products-with-product_list-sections-metafields {%- endcomment -%}
+<!--<0------------------------------------------------------------------------------------------------------------------------------- comment.block.liquid -->

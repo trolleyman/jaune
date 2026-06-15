@@ -1,0 +1,313 @@
+# grammar: source.gdscript
+
+extends Node
+#<0---- keyword.language.gdscript
+#       ^--- entity.name.type.class.gdscript
+class_name TestClass2
+#<0------- keyword.language.gdscript
+#          ^--------- entity.name.type.class.gdscript
+@icon("res://path/to/icon.png")
+#<0-- entity.name.function.decorator.gdscript
+#    ^ punctuation.parenthesis.begin.gdscript
+#     ^----------------------- string.quoted.gdscript
+#                             ^ punctuation.parenthesis.end.gdscript
+
+# ******************************************************************************
+#<0----------------------------------------------------------------------------- comment.line.number-sign.gdscript
+#<0 punctuation.definition.comment.number-sign.gdscript
+
+@export var x : int
+#<0---- entity.name.function.decorator.gdscript
+#       ^---------- meta.variable.declaration.gdscript
+#       ^-- keyword.language.gdscript storage.type.var.gdscript
+#           ^ variable.other.gdscript
+#             ^ punctuation.separator.annotation.gdscript
+#               ^-- entity.name.type.class.gdscript
+@export var y : int
+#<0---- entity.name.function.decorator.gdscript
+#       ^---------- meta.variable.declaration.gdscript
+#       ^-- keyword.language.gdscript storage.type.var.gdscript
+#           ^ variable.other.gdscript
+#             ^ punctuation.separator.annotation.gdscript
+#               ^-- entity.name.type.class.gdscript
+@export var z : String
+#<0---- entity.name.function.decorator.gdscript
+#       ^------------- meta.variable.declaration.gdscript
+#       ^-- keyword.language.gdscript storage.type.var.gdscript
+#           ^ variable.other.gdscript
+#             ^ punctuation.separator.annotation.gdscript
+#               ^----- entity.name.type.class.gdscript
+@export_node_path(Resource) var resource_name
+#<0-------------- entity.name.function.decorator.gdscript
+#                ^ punctuation.parenthesis.begin.gdscript
+#                 ^------- entity.name.type.class.gdscript
+#                         ^ punctuation.parenthesis.end.gdscript
+#                           ^---------------- meta.variable.declaration.gdscript
+#                           ^-- keyword.language.gdscript storage.type.var.gdscript
+#                               ^------------ variable.other.gdscript
+
+var array_a: Array[int] = [1, 2, 3]
+#<0-------------------------------- meta.variable.declaration.gdscript
+#<0 keyword.language.gdscript storage.type.var.gdscript
+#   ^------ variable.other.gdscript
+#          ^ punctuation.separator.annotation.gdscript
+#            ^---- entity.name.type.class.gdscript
+#                 ^ punctuation.definition.list.begin.gdscript
+#                  ^-- entity.name.type.class.builtin.gdscript
+#                     ^ punctuation.definition.list.end.gdscript
+#                       ^ keyword.operator.assignment.gdscript
+#                         ^ punctuation.definition.list.begin.gdscript
+#                          ^ constant.numeric.integer.gdscript
+#                             ^ constant.numeric.integer.gdscript
+#                                ^ constant.numeric.integer.gdscript
+#                                 ^ punctuation.definition.list.end.gdscript
+var array_b: Array[String] = ['1', '2', '3']
+#<0----------------------------------------- meta.variable.declaration.gdscript
+#<0 keyword.language.gdscript storage.type.var.gdscript
+#   ^------ variable.other.gdscript
+#          ^ punctuation.separator.annotation.gdscript
+#            ^---- entity.name.type.class.gdscript
+#                 ^ punctuation.definition.list.begin.gdscript
+#                  ^----- entity.name.type.class.builtin.gdscript
+#                        ^ punctuation.definition.list.end.gdscript
+#                          ^ keyword.operator.assignment.gdscript
+#                            ^ punctuation.definition.list.begin.gdscript
+#                             ^-- string.quoted.gdscript
+#                                  ^-- string.quoted.gdscript
+#                                       ^-- string.quoted.gdscript
+#                                          ^ punctuation.definition.list.end.gdscript
+
+@rpc
+#<0- entity.name.function.decorator.gdscript
+func remote_function_a():
+#<0---------------------- meta.function.gdscript
+#<0- keyword.language.gdscript storage.type.function.gdscript
+#    ^---------------- entity.name.function.gdscript
+#                     ^- meta.function.parameters.gdscript
+#                     ^ punctuation.definition.parameters.begin.gdscript
+#                      ^ punctuation.definition.parameters.end.gdscript
+#                       ^ punctuation.section.function.begin.gdscript
+	pass
+#^--- keyword.control.flow.gdscript
+
+@rpc(any_peer, call_local, unreliable)
+#<0- entity.name.function.decorator.gdscript
+#   ^ punctuation.parenthesis.begin.gdscript
+#    ^------- variable.other.gdscript
+#              ^--------- variable.other.gdscript
+#                          ^--------- variable.other.gdscript
+#                                    ^ punctuation.parenthesis.end.gdscript
+func remote_function_b():
+#<0---------------------- meta.function.gdscript
+#<0- keyword.language.gdscript storage.type.function.gdscript
+#    ^---------------- entity.name.function.gdscript
+#                     ^- meta.function.parameters.gdscript
+#                     ^ punctuation.definition.parameters.begin.gdscript
+#                      ^ punctuation.definition.parameters.end.gdscript
+#                       ^ punctuation.section.function.begin.gdscript
+	pass
+#^--- keyword.control.flow.gdscript
+
+# ------------------------------------------------------------------------------
+#<0----------------------------------------------------------------------------- comment.line.number-sign.gdscript
+#<0 punctuation.definition.comment.number-sign.gdscript
+
+func f():
+#<0------ meta.function.gdscript
+#<0- keyword.language.gdscript storage.type.function.gdscript
+#    ^ entity.name.function.gdscript
+#     ^- meta.function.parameters.gdscript
+#     ^ punctuation.definition.parameters.begin.gdscript
+#      ^ punctuation.definition.parameters.end.gdscript
+#       ^ punctuation.section.function.begin.gdscript
+    await $Button.button_up
+#   ^---- keyword.control.gdscript
+#         ^------ meta.literal.nodepath.bare.gdscript
+#         ^ keyword.control.flow.gdscript
+#          ^----- constant.character.escape.gdscript
+#                ^ punctuation.accessor.gdscript
+#                 ^-------- variable.other.property.gdscript
+    super()
+#   ^---- keyword.language.gdscript
+#        ^ punctuation.parenthesis.begin.gdscript
+#         ^ punctuation.parenthesis.end.gdscript
+    super.some_function()
+#   ^---- keyword.language.gdscript
+#         ^-------------- meta.function-call.gdscript
+#         ^------------ entity.name.function.gdscript
+#                      ^ punctuation.definition.arguments.begin.gdscript
+#                       ^ punctuation.definition.arguments.end.gdscript
+
+    for i in range(1): # `in` is a control keyword
+#       ^ variable.other.gdscript
+#         ^- keyword.control.gdscript
+#            ^------- meta.function-call.gdscript
+#            ^---- entity.name.function.gdscript
+#                 ^ punctuation.definition.arguments.begin.gdscript
+#                  ^ constant.numeric.integer.gdscript
+#                   ^ punctuation.definition.arguments.end.gdscript
+#                      ^-------------------------- comment.line.number-sign.gdscript
+#                      ^ punctuation.definition.comment.number-sign.gdscript
+        print(i in range(1)) # `in` is an operator keyword
+#       ^------------------- meta.function-call.gdscript
+#       ^---- entity.name.function.gdscript
+#            ^ punctuation.definition.arguments.begin.gdscript
+#             ^ variable.other.gdscript
+#               ^- keyword.operator.wordlike.gdscript
+#                  ^------- meta.function-call.gdscript
+#                  ^---- entity.name.function.gdscript
+#                       ^ punctuation.definition.arguments.begin.gdscript
+#                        ^ constant.numeric.integer.gdscript
+#                         ^ punctuation.definition.arguments.end.gdscript
+#                          ^ punctuation.definition.arguments.end.gdscript
+#                            ^---------------------------- comment.line.number-sign.gdscript
+#                            ^ punctuation.definition.comment.number-sign.gdscript
+
+func lambda_test():
+#<0---------------- meta.function.gdscript
+#<0- keyword.language.gdscript storage.type.function.gdscript
+#    ^---------- entity.name.function.gdscript
+#               ^- meta.function.parameters.gdscript
+#               ^ punctuation.definition.parameters.begin.gdscript
+#                ^ punctuation.definition.parameters.end.gdscript
+#                 ^ punctuation.section.function.begin.gdscript
+	var lambda_a = func(param1, param2, param3):
+#^------------------------------------------- meta.variable.declaration.gdscript
+#^-- keyword.language.gdscript storage.type.var.gdscript
+#    ^------- variable.other.gdscript
+#             ^ keyword.operator.assignment.gdscript
+#               ^---------------------------- meta.function.gdscript
+#               ^--- keyword.language.gdscript storage.type.function.gdscript
+#                   ^----------------------- meta.function.parameters.gdscript
+#                   ^ punctuation.definition.parameters.begin.gdscript
+#                    ^----- variable.parameter.function.language.gdscript
+#                          ^ punctuation.separator.parameters.gdscript
+#                            ^----- variable.parameter.function.language.gdscript
+#                                  ^ punctuation.separator.parameters.gdscript
+#                                    ^----- variable.parameter.function.language.gdscript
+#                                          ^ punctuation.definition.parameters.end.gdscript
+		pass
+# ^--- keyword.control.flow.gdscript
+	var lambda_b = func(param1, param2=func_a(10, 1.0, 'test')):
+#^----------------------------------------------------------- meta.variable.declaration.gdscript
+#^-- keyword.language.gdscript storage.type.var.gdscript
+#    ^------- variable.other.gdscript
+#             ^ keyword.operator.assignment.gdscript
+#               ^-------------------------------------------- meta.function.gdscript
+#               ^--- keyword.language.gdscript storage.type.function.gdscript
+#                   ^--------------------------------------- meta.function.parameters.gdscript
+#                   ^ punctuation.definition.parameters.begin.gdscript
+#                    ^----- variable.parameter.function.language.gdscript
+#                          ^ punctuation.separator.parameters.gdscript
+#                            ^----- variable.parameter.function.language.gdscript
+#                                  ^ keyword.operator.gdscript
+#                                   ^---------------------- meta.function-call.gdscript
+#                                   ^----- entity.name.function.gdscript
+#                                         ^ punctuation.definition.arguments.begin.gdscript
+#                                          ^- constant.numeric.integer.gdscript
+#                                            ^ punctuation.separator.arguments.gdscript
+#                                              ^-- constant.numeric.float.gdscript
+#                                                 ^ punctuation.separator.arguments.gdscript
+#                                                   ^----- string.quoted.gdscript
+#                                                         ^ punctuation.definition.arguments.end.gdscript
+#                                                          ^ punctuation.definition.parameters.end.gdscript
+		pass
+# ^--- keyword.control.flow.gdscript
+	var lambda_c = func(param1 = false, param2: bool = false, param3 := false):
+#^-------------------------------------------------------------------------- meta.variable.declaration.gdscript
+#^-- keyword.language.gdscript storage.type.var.gdscript
+#    ^------- variable.other.gdscript
+#             ^ keyword.operator.assignment.gdscript
+#               ^----------------------------------------------------------- meta.function.gdscript
+#               ^--- keyword.language.gdscript storage.type.function.gdscript
+#                   ^------------------------------------------------------ meta.function.parameters.gdscript
+#                   ^ punctuation.definition.parameters.begin.gdscript
+#                    ^----- variable.parameter.function.language.gdscript
+#                           ^ keyword.operator.gdscript
+#                             ^---- constant.language.gdscript
+#                                  ^ punctuation.separator.parameters.gdscript
+#                                    ^----- variable.parameter.function.language.gdscript
+#                                          ^ punctuation.separator.annotation.gdscript
+#                                            ^--- entity.name.type.class.gdscript
+#                                                 ^ keyword.operator.assignment.gdscript
+#                                                   ^---- constant.language.gdscript
+#                                                        ^ punctuation.separator.parameters.gdscript
+#                                                          ^----- variable.parameter.function.language.gdscript
+#                                                                 ^ punctuation.separator.annotation.gdscript
+#                                                                  ^ keyword.operator.assignment.gdscript
+#                                                                    ^---- constant.language.gdscript
+#                                                                         ^ punctuation.definition.parameters.end.gdscript
+		pass
+# ^--- keyword.control.flow.gdscript
+
+	lambda_a.call()
+#^------- variable.other.gdscript
+#         ^----- meta.function-call.gdscript
+#         ^--- entity.name.function.gdscript
+#             ^ punctuation.definition.arguments.begin.gdscript
+#              ^ punctuation.definition.arguments.end.gdscript
+	lambda_b.call()
+#^------- variable.other.gdscript
+#         ^----- meta.function-call.gdscript
+#         ^--- entity.name.function.gdscript
+#             ^ punctuation.definition.arguments.begin.gdscript
+#              ^ punctuation.definition.arguments.end.gdscript
+	lambda_c.call()
+#^------- variable.other.gdscript
+#         ^----- meta.function-call.gdscript
+#         ^--- entity.name.function.gdscript
+#             ^ punctuation.definition.arguments.begin.gdscript
+#              ^ punctuation.definition.arguments.end.gdscript
+
+# ------------------------------------------------------------------------------
+#<0----------------------------------------------------------------------------- comment.line.number-sign.gdscript
+#<0 punctuation.definition.comment.number-sign.gdscript
+
+signal changed(new_value)
+#<0---------------------- meta.signal.gdscript
+#<0--- keyword.language.gdscript storage.type.function.gdscript
+#      ^------ entity.name.function.gdscript
+#             ^---------- meta.function.parameters.gdscript
+#             ^ punctuation.definition.parameters.begin.gdscript
+#              ^-------- variable.parameter.function.language.gdscript
+#                       ^ punctuation.definition.parameters.end.gdscript
+var warns_when_changed = "some value":
+#<0----------------------------------- meta.variable.declaration.gdscript
+#<0 keyword.language.gdscript storage.type.var.gdscript
+#   ^----------------- variable.other.gdscript
+#                      ^ keyword.operator.assignment.gdscript
+#                        ^----------- string.quoted.gdscript
+#                                    ^ punctuation.separator.annotation.gdscript
+	get:
+#^--- meta.variable.declaration.getter.gdscript
+#^-- entity.name.function.gdscript
+#   ^ punctuation.separator.annotation.gdscript
+		return warns_when_changed
+# ^----- keyword.control.flow.gdscript
+#        ^----------------- variable.other.gdscript
+	set(value):
+#^---------- meta.variable.declaration.setter.gdscript
+#^-- entity.name.function.gdscript
+#   ^ punctuation.definition.arguments.begin.gdscript
+#    ^---- variable.other.gdscript
+#         ^ punctuation.definition.arguments.end.gdscript
+#          ^ punctuation.separator.annotation.gdscript
+		changed.emit(value)
+# ^------ variable.other.gdscript
+#         ^---------- meta.function-call.gdscript
+#         ^--- entity.name.function.gdscript
+#             ^ punctuation.definition.arguments.begin.gdscript
+#              ^---- variable.other.gdscript
+#                   ^ punctuation.definition.arguments.end.gdscript
+		warns_when_changed = value
+# ^----------------- variable.other.gdscript
+#                    ^ keyword.operator.assignment.gdscript
+#                      ^---- variable.other.gdscript
+
+# ------------------------------------------------------------------------------
+#<0----------------------------------------------------------------------------- comment.line.number-sign.gdscript
+#<0 punctuation.definition.comment.number-sign.gdscript
+
+# from https://github.com/godotengine/godot-vscode-plugin/blob/cdc550a412dfffd26dfe7351e429b73c819d68d0/syntaxes/examples/gdscript2.gd
+#<0----------------------------------------------------------------------------------------------------------------------------------- comment.line.number-sign.gdscript
+#<0 punctuation.definition.comment.number-sign.gdscript

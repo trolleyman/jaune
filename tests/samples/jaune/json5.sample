@@ -1,0 +1,319 @@
+// grammar: source.json5
+
+// This file is written in JSON5 syntax, naturally, but npm needs a regular
+//<0----------------------------------------------------------------------- comment.single.json5
+// JSON file, so compile via `npm run build`. Be sure to keep both in sync!
+//<0----------------------------------------------------------------------- comment.single.json5
+
+{
+//<0 meta.structure.dictionary.json5
+//<0 punctuation.definition.dictionary.begin.json5
+    name: 'json5',
+//<0-------------- meta.structure.dictionary.json5
+//  ^--- string.key.json5
+//      ^--------- meta.structure.dictionary.value.json5
+//      ^ punctuation.separator.dictionary.key-value.json5
+//        ^------ string.quoted.json5
+//        ^ punctuation.definition.string.begin.json5
+//              ^ punctuation.definition.string.end.json5
+//               ^ punctuation.separator.dictionary.pair.json5
+    version: '0.5.0',
+//<0----------------- meta.structure.dictionary.json5
+//  ^------ string.key.json5
+//         ^--------- meta.structure.dictionary.value.json5
+//         ^ punctuation.separator.dictionary.key-value.json5
+//           ^------ string.quoted.json5
+//           ^ punctuation.definition.string.begin.json5
+//                 ^ punctuation.definition.string.end.json5
+//                  ^ punctuation.separator.dictionary.pair.json5
+    description: 'JSON for the ES5 era.',
+//<0------------------------------------- meta.structure.dictionary.json5
+//  ^---------- string.key.json5
+//             ^------------------------- meta.structure.dictionary.value.json5
+//             ^ punctuation.separator.dictionary.key-value.json5
+//               ^---------------------- string.quoted.json5
+//               ^ punctuation.definition.string.begin.json5
+//                                     ^ punctuation.definition.string.end.json5
+//                                      ^ punctuation.separator.dictionary.pair.json5
+    keywords: ['json', 'es5'],
+//<0-------------------------- meta.structure.dictionary.json5
+//  ^------- string.key.json5
+//          ^----------------- meta.structure.dictionary.value.json5
+//          ^ punctuation.separator.dictionary.key-value.json5
+//            ^-------------- meta.structure.array.json5
+//            ^ punctuation.definition.array.begin.json5
+//             ^----- string.quoted.json5
+//             ^ punctuation.definition.string.begin.json5
+//                  ^ punctuation.definition.string.end.json5
+//                   ^ punctuation.separator.array.json5
+//                     ^---- string.quoted.json5
+//                     ^ punctuation.definition.string.begin.json5
+//                         ^ punctuation.definition.string.end.json5
+//                          ^ punctuation.definition.array.end.json5
+//                           ^ punctuation.separator.dictionary.pair.json5
+    author: 'Aseem Kishore <aseem.kishore@gmail.com>',
+//<0-------------------------------------------------- meta.structure.dictionary.json5
+//  ^----- string.key.json5
+//        ^------------------------------------------- meta.structure.dictionary.value.json5
+//        ^ punctuation.separator.dictionary.key-value.json5
+//          ^---------------------------------------- string.quoted.json5
+//          ^ punctuation.definition.string.begin.json5
+//                                                  ^ punctuation.definition.string.end.json5
+//                                                   ^ punctuation.separator.dictionary.pair.json5
+    contributors: [
+//<0--------------- meta.structure.dictionary.json5
+//  ^----------- string.key.json5
+//              ^-- meta.structure.dictionary.value.json5
+//              ^ punctuation.separator.dictionary.key-value.json5
+//                ^ meta.structure.array.json5
+//                ^ punctuation.definition.array.begin.json5
+        // TODO: Should we remove this section in favor of GitHub's list?
+//<0--------------------------------------------------------------------- meta.structure.dictionary.json5
+//<0--------------------------------------------------------------------- meta.structure.dictionary.value.json5
+//<0--------------------------------------------------------------------- meta.structure.array.json5
+//      ^---------------------------------------------------------------- comment.single.json5
+        // https://github.com/aseemk/json5/contributors
+//<0--------------------------------------------------- meta.structure.dictionary.json5
+//<0--------------------------------------------------- meta.structure.dictionary.value.json5
+//<0--------------------------------------------------- meta.structure.array.json5
+//      ^---------------------------------------------- comment.single.json5
+        'Max Nanasy <max.nanasy@gmail.com>',
+//<0---------------------------------------- meta.structure.dictionary.json5
+//<0---------------------------------------- meta.structure.dictionary.value.json5
+//<0---------------------------------------- meta.structure.array.json5
+//      ^---------------------------------- string.quoted.json5
+//      ^ punctuation.definition.string.begin.json5
+//                                        ^ punctuation.definition.string.end.json5
+//                                         ^ punctuation.separator.array.json5
+        'Andrew Eisenberg <andrew@eisenberg.as>',
+//<0--------------------------------------------- meta.structure.dictionary.json5
+//<0--------------------------------------------- meta.structure.dictionary.value.json5
+//<0--------------------------------------------- meta.structure.array.json5
+//      ^--------------------------------------- string.quoted.json5
+//      ^ punctuation.definition.string.begin.json5
+//                                             ^ punctuation.definition.string.end.json5
+//                                              ^ punctuation.separator.array.json5
+        'Jordan Tucker <jordanbtucker@gmail.com>',
+//<0---------------------------------------------- meta.structure.dictionary.json5
+//<0---------------------------------------------- meta.structure.dictionary.value.json5
+//<0---------------------------------------------- meta.structure.array.json5
+//      ^---------------------------------------- string.quoted.json5
+//      ^ punctuation.definition.string.begin.json5
+//                                              ^ punctuation.definition.string.end.json5
+//                                               ^ punctuation.separator.array.json5
+    ],
+//<0-- meta.structure.dictionary.json5
+//<0-- meta.structure.dictionary.value.json5
+//<0- meta.structure.array.json5
+//  ^ punctuation.definition.array.end.json5
+//   ^ punctuation.separator.dictionary.pair.json5
+    main: 'lib/json5.js',
+//<0--------------------- meta.structure.dictionary.json5
+//  ^--- string.key.json5
+//      ^---------------- meta.structure.dictionary.value.json5
+//      ^ punctuation.separator.dictionary.key-value.json5
+//        ^------------- string.quoted.json5
+//        ^ punctuation.definition.string.begin.json5
+//                     ^ punctuation.definition.string.end.json5
+//                      ^ punctuation.separator.dictionary.pair.json5
+    bin: 'lib/cli.js',
+//<0------------------ meta.structure.dictionary.json5
+//  ^-- string.key.json5
+//     ^-------------- meta.structure.dictionary.value.json5
+//     ^ punctuation.separator.dictionary.key-value.json5
+//       ^----------- string.quoted.json5
+//       ^ punctuation.definition.string.begin.json5
+//                  ^ punctuation.definition.string.end.json5
+//                   ^ punctuation.separator.dictionary.pair.json5
+    files: ["lib/"],
+//<0---------------- meta.structure.dictionary.json5
+//  ^---- string.key.json5
+//       ^---------- meta.structure.dictionary.value.json5
+//       ^ punctuation.separator.dictionary.key-value.json5
+//         ^------- meta.structure.array.json5
+//         ^ punctuation.definition.array.begin.json5
+//          ^----- string.quoted.json5
+//          ^ punctuation.definition.string.begin.json5
+//               ^ punctuation.definition.string.end.json5
+//                ^ punctuation.definition.array.end.json5
+//                 ^ punctuation.separator.dictionary.pair.json5
+    dependencies: {},
+//<0----------------- meta.structure.dictionary.json5
+//  ^----------- string.key.json5
+//              ^---- meta.structure.dictionary.value.json5
+//              ^ punctuation.separator.dictionary.key-value.json5
+//                ^- meta.structure.dictionary.json5
+//                ^ punctuation.definition.dictionary.begin.json5
+//                 ^ punctuation.definition.dictionary.end.json5
+//                  ^ punctuation.separator.dictionary.pair.json5
+    devDependencies: {
+//<0------------------ meta.structure.dictionary.json5
+//  ^-------------- string.key.json5
+//                 ^-- meta.structure.dictionary.value.json5
+//                 ^ punctuation.separator.dictionary.key-value.json5
+//                   ^ meta.structure.dictionary.json5
+//                   ^ punctuation.definition.dictionary.begin.json5
+        gulp: "^3.9.1",
+//<0------------------- meta.structure.dictionary.json5
+//<0------------------- meta.structure.dictionary.value.json5
+//<0------------------- meta.structure.dictionary.json5
+//      ^--- string.key.json5
+//          ^---------- meta.structure.dictionary.value.json5
+//          ^ punctuation.separator.dictionary.key-value.json5
+//            ^------- string.quoted.json5
+//            ^ punctuation.definition.string.begin.json5
+//                   ^ punctuation.definition.string.end.json5
+//                    ^ punctuation.separator.dictionary.pair.json5
+        'gulp-jshint': "^2.0.0",
+//<0---------------------------- meta.structure.dictionary.json5
+//<0---------------------------- meta.structure.dictionary.value.json5
+//<0---------------------------- meta.structure.dictionary.json5
+//      ^------------ string.quoted.json5
+//      ^ punctuation.definition.string.begin.json5
+//                  ^ punctuation.definition.string.end.json5
+//                   ^---------- meta.structure.dictionary.value.json5
+//                   ^ punctuation.separator.dictionary.key-value.json5
+//                     ^------- string.quoted.json5
+//                     ^ punctuation.definition.string.begin.json5
+//                            ^ punctuation.definition.string.end.json5
+//                             ^ punctuation.separator.dictionary.pair.json5
+        jshint: "^2.9.1",
+//<0--------------------- meta.structure.dictionary.json5
+//<0--------------------- meta.structure.dictionary.value.json5
+//<0--------------------- meta.structure.dictionary.json5
+//      ^----- string.key.json5
+//            ^---------- meta.structure.dictionary.value.json5
+//            ^ punctuation.separator.dictionary.key-value.json5
+//              ^------- string.quoted.json5
+//              ^ punctuation.definition.string.begin.json5
+//                     ^ punctuation.definition.string.end.json5
+//                      ^ punctuation.separator.dictionary.pair.json5
+        'jshint-stylish': "^2.1.0",
+//<0------------------------------- meta.structure.dictionary.json5
+//<0------------------------------- meta.structure.dictionary.value.json5
+//<0------------------------------- meta.structure.dictionary.json5
+//      ^--------------- string.quoted.json5
+//      ^ punctuation.definition.string.begin.json5
+//                     ^ punctuation.definition.string.end.json5
+//                      ^---------- meta.structure.dictionary.value.json5
+//                      ^ punctuation.separator.dictionary.key-value.json5
+//                        ^------- string.quoted.json5
+//                        ^ punctuation.definition.string.begin.json5
+//                               ^ punctuation.definition.string.end.json5
+//                                ^ punctuation.separator.dictionary.pair.json5
+        mocha: "^2.4.5"
+//<0------------------- meta.structure.dictionary.json5
+//<0------------------- meta.structure.dictionary.value.json5
+//<0------------------- meta.structure.dictionary.json5
+//      ^---- string.key.json5
+//           ^--------- meta.structure.dictionary.value.json5
+//           ^ punctuation.separator.dictionary.key-value.json5
+//             ^------- string.quoted.json5
+//             ^ punctuation.definition.string.begin.json5
+//                    ^ punctuation.definition.string.end.json5
+    },
+//<0-- meta.structure.dictionary.json5
+//<0-- meta.structure.dictionary.value.json5
+//<0- meta.structure.dictionary.json5
+//<0 meta.structure.dictionary.value.json5
+//  ^ punctuation.definition.dictionary.end.json5
+//   ^ punctuation.separator.dictionary.pair.json5
+    scripts: {
+//<0---------- meta.structure.dictionary.json5
+//  ^------ string.key.json5
+//         ^-- meta.structure.dictionary.value.json5
+//         ^ punctuation.separator.dictionary.key-value.json5
+//           ^ meta.structure.dictionary.json5
+//           ^ punctuation.definition.dictionary.begin.json5
+        build: 'node ./lib/cli.js -c package.json5',
+//<0------------------------------------------------ meta.structure.dictionary.json5
+//<0------------------------------------------------ meta.structure.dictionary.value.json5
+//<0------------------------------------------------ meta.structure.dictionary.json5
+//      ^---- string.key.json5
+//           ^-------------------------------------- meta.structure.dictionary.value.json5
+//           ^ punctuation.separator.dictionary.key-value.json5
+//             ^----------------------------------- string.quoted.json5
+//             ^ punctuation.definition.string.begin.json5
+//                                                ^ punctuation.definition.string.end.json5
+//                                                 ^ punctuation.separator.dictionary.pair.json5
+        test: 'mocha --ui exports --reporter spec',
+//<0----------------------------------------------- meta.structure.dictionary.json5
+//<0----------------------------------------------- meta.structure.dictionary.value.json5
+//<0----------------------------------------------- meta.structure.dictionary.json5
+//      ^--- string.key.json5
+//          ^-------------------------------------- meta.structure.dictionary.value.json5
+//          ^ punctuation.separator.dictionary.key-value.json5
+//            ^----------------------------------- string.quoted.json5
+//            ^ punctuation.definition.string.begin.json5
+//                                               ^ punctuation.definition.string.end.json5
+//                                                ^ punctuation.separator.dictionary.pair.json5
+            // TODO: Would it be better to define these in a mocha.opts file?
+//<0------------------------------------------------------------------------- meta.structure.dictionary.json5
+//<0------------------------------------------------------------------------- meta.structure.dictionary.value.json5
+//<0------------------------------------------------------------------------- meta.structure.dictionary.json5
+//          ^---------------------------------------------------------------- comment.single.json5
+    },
+//<0-- meta.structure.dictionary.json5
+//<0-- meta.structure.dictionary.value.json5
+//<0- meta.structure.dictionary.json5
+//  ^ punctuation.definition.dictionary.end.json5
+//   ^ punctuation.separator.dictionary.pair.json5
+    homepage: 'http://json5.org/',
+//<0------------------------------ meta.structure.dictionary.json5
+//  ^------- string.key.json5
+//          ^--------------------- meta.structure.dictionary.value.json5
+//          ^ punctuation.separator.dictionary.key-value.json5
+//            ^------------------ string.quoted.json5
+//            ^ punctuation.definition.string.begin.json5
+//                              ^ punctuation.definition.string.end.json5
+//                               ^ punctuation.separator.dictionary.pair.json5
+    license: 'MIT',
+//<0--------------- meta.structure.dictionary.json5
+//  ^------ string.key.json5
+//         ^------- meta.structure.dictionary.value.json5
+//         ^ punctuation.separator.dictionary.key-value.json5
+//           ^---- string.quoted.json5
+//           ^ punctuation.definition.string.begin.json5
+//               ^ punctuation.definition.string.end.json5
+//                ^ punctuation.separator.dictionary.pair.json5
+    repository: {
+//<0------------- meta.structure.dictionary.json5
+//  ^--------- string.key.json5
+//            ^-- meta.structure.dictionary.value.json5
+//            ^ punctuation.separator.dictionary.key-value.json5
+//              ^ meta.structure.dictionary.json5
+//              ^ punctuation.definition.dictionary.begin.json5
+        type: 'git',
+//<0---------------- meta.structure.dictionary.json5
+//<0---------------- meta.structure.dictionary.value.json5
+//<0---------------- meta.structure.dictionary.json5
+//      ^--- string.key.json5
+//          ^------- meta.structure.dictionary.value.json5
+//          ^ punctuation.separator.dictionary.key-value.json5
+//            ^---- string.quoted.json5
+//            ^ punctuation.definition.string.begin.json5
+//                ^ punctuation.definition.string.end.json5
+//                 ^ punctuation.separator.dictionary.pair.json5
+        url: 'https://github.com/aseemk/json5.git',
+//<0----------------------------------------------- meta.structure.dictionary.json5
+//<0----------------------------------------------- meta.structure.dictionary.value.json5
+//<0----------------------------------------------- meta.structure.dictionary.json5
+//      ^-- string.key.json5
+//         ^--------------------------------------- meta.structure.dictionary.value.json5
+//         ^ punctuation.separator.dictionary.key-value.json5
+//           ^------------------------------------ string.quoted.json5
+//           ^ punctuation.definition.string.begin.json5
+//                                               ^ punctuation.definition.string.end.json5
+//                                                ^ punctuation.separator.dictionary.pair.json5
+    },
+//<0-- meta.structure.dictionary.json5
+//<0-- meta.structure.dictionary.value.json5
+//<0- meta.structure.dictionary.json5
+//  ^ punctuation.definition.dictionary.end.json5
+//   ^ punctuation.separator.dictionary.pair.json5
+}
+//<0 meta.structure.dictionary.json5
+//<0 punctuation.definition.dictionary.end.json5
+
+// From https://github.com/mrmlnc/vscode-json5/blob/master/syntaxes/json5.json
+//<0-------------------------------------------------------------------------- comment.single.json5

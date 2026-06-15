@@ -1,0 +1,205 @@
+// grammar: source.solidity
+
+// SPDX-License-Identifier: MIT
+//<0--------------------------- comment.line
+pragma solidity ^0.8.17;
+//<0-- keyword.control.pragma
+//     ^------- entity.name.tag.pragma
+//              ^------ constant.other.pragma
+//                     ^ punctuation.terminator.statement
+
+contract Array {
+//<0---- storage.type.contract
+//      ^----- entity.name.type.contract
+//             ^ punctuation.brace.curly.begin
+    // Several ways to initialize an array
+//  ^------------------------------------- comment.line
+    uint[] public arr;
+//  ^--- support.type.primitive
+//      ^ punctuation.brace.square.begin
+//       ^ punctuation.brace.square.end
+//         ^----- storage.type.modifier.access
+//                   ^ punctuation.terminator.statement
+    uint[] public arr2 = [1, 2, 3];
+//  ^--- support.type.primitive
+//      ^ punctuation.brace.square.begin
+//       ^ punctuation.brace.square.end
+//         ^----- storage.type.modifier.access
+//                     ^ keyword.operator.assignment
+//                       ^ punctuation.brace.square.begin
+//                        ^ constant.numeric.decimal
+//                         ^ punctuation.separator
+//                           ^ constant.numeric.decimal
+//                            ^ punctuation.separator
+//                              ^ constant.numeric.decimal
+//                               ^ punctuation.brace.square.end
+//                                ^ punctuation.terminator.statement
+    // Fixed sized array, all elements initialize to 0
+//  ^------------------------------------------------- comment.line
+    uint[10] public myFixedSizeArr;
+//  ^--- support.type.primitive
+//      ^ punctuation.brace.square.begin
+//       ^- constant.numeric.decimal
+//         ^ punctuation.brace.square.end
+//           ^----- storage.type.modifier.access
+//                                ^ punctuation.terminator.statement
+
+    function get(uint i) public view returns (uint) {
+//  ^------- storage.type.function
+//           ^-- entity.name.function
+//              ^ punctuation.parameters.begin
+//               ^--- support.type.primitive
+//                    ^ variable.parameter.other
+//                     ^ punctuation.parameters.end
+//                       ^----- storage.type.modifier.access
+//                              ^--- storage.type.modifier.extendedscope
+//                                   ^------ keyword.control.flow.return
+//                                           ^ punctuation.parameters.begin
+//                                            ^--- support.type.primitive
+//                                                ^ punctuation.parameters.end
+//                                                  ^ punctuation.brace.curly.begin
+        return arr[i];
+//      ^----- keyword.control.flow
+//                ^ punctuation.brace.square.begin
+//                  ^ punctuation.brace.square.end
+//                   ^ punctuation.terminator.statement
+    }
+//  ^ punctuation.brace.curly.end
+
+    // Solidity can return the entire array.
+//  ^--------------------------------------- comment.line
+    // But this function should be avoided for
+//  ^----------------------------------------- comment.line
+    // arrays that can grow indefinitely in length.
+//  ^---------------------------------------------- comment.line
+    function getArr() public view returns (uint[] memory) {
+//  ^------- storage.type.function
+//           ^----- entity.name.function
+//                 ^ punctuation.parameters.begin
+//                  ^ punctuation.parameters.end
+//                    ^----- storage.type.modifier.access
+//                           ^--- storage.type.modifier.extendedscope
+//                                ^------ keyword.control.flow.return
+//                                        ^ punctuation.parameters.begin
+//                                         ^--- support.type.primitive
+//                                             ^ punctuation.brace.square.begin
+//                                              ^ punctuation.brace.square.end
+//                                                ^----- storage.type.modifier.extendedscope
+//                                                      ^ punctuation.parameters.end
+//                                                        ^ punctuation.brace.curly.begin
+        return arr;
+//      ^----- keyword.control.flow
+//                ^ punctuation.terminator.statement
+    }
+//  ^ punctuation.brace.curly.end
+
+    function push(uint i) public {
+//  ^------- storage.type.function
+//           ^--- entity.name.function
+//               ^ punctuation.parameters.begin
+//                ^--- support.type.primitive
+//                     ^ variable.parameter.other
+//                      ^ punctuation.parameters.end
+//                        ^----- storage.type.modifier.access
+//                               ^ punctuation.brace.curly.begin
+        // Append to array
+//      ^----------------- comment.line
+        // This will increase the array length by 1.
+//      ^------------------------------------------- comment.line
+        arr.push(i);
+//         ^ punctuation.accessor
+//          ^--- entity.name.function
+//              ^ punctuation.parameters.begin
+//                ^ punctuation.parameters.end
+//                 ^ punctuation.terminator.statement
+    }
+//  ^ punctuation.brace.curly.end
+
+    function pop() public {
+//  ^------- storage.type.function
+//           ^-- entity.name.function
+//              ^ punctuation.parameters.begin
+//               ^ punctuation.parameters.end
+//                 ^----- storage.type.modifier.access
+//                        ^ punctuation.brace.curly.begin
+        // Remove last element from array
+//      ^-------------------------------- comment.line
+        // This will decrease the array length by 1
+//      ^------------------------------------------ comment.line
+        arr.pop();
+//         ^ punctuation.accessor
+//          ^-- entity.name.function
+//             ^ punctuation.parameters.begin
+//              ^ punctuation.parameters.end
+//               ^ punctuation.terminator.statement
+    }
+//  ^ punctuation.brace.curly.end
+
+    function getLength() public view returns (uint) {
+//  ^------- storage.type.function
+//           ^-------- entity.name.function
+//                    ^ punctuation.parameters.begin
+//                     ^ punctuation.parameters.end
+//                       ^----- storage.type.modifier.access
+//                              ^--- storage.type.modifier.extendedscope
+//                                   ^------ keyword.control.flow.return
+//                                           ^ punctuation.parameters.begin
+//                                            ^--- support.type.primitive
+//                                                ^ punctuation.parameters.end
+//                                                  ^ punctuation.brace.curly.begin
+        return arr.length;
+//      ^----- keyword.control.flow
+//                ^ punctuation.accessor
+//                       ^ punctuation.terminator.statement
+    }
+//  ^ punctuation.brace.curly.end
+
+    function remove(uint index) public {
+//  ^------- storage.type.function
+//           ^----- entity.name.function
+//                 ^ punctuation.parameters.begin
+//                  ^--- support.type.primitive
+//                       ^---- variable.parameter.other
+//                            ^ punctuation.parameters.end
+//                              ^----- storage.type.modifier.access
+//                                     ^ punctuation.brace.curly.begin
+        // Delete does not change the array length.
+//      ^------------------------------------------ comment.line
+        // It resets the value at index to it's default value,
+//      ^----------------------------------------------------- comment.line
+        // in this case 0
+//      ^---------------- comment.line
+        delete arr[index];
+//      ^----- keyword.control
+//                ^ punctuation.brace.square.begin
+//                      ^ punctuation.brace.square.end
+//                       ^ punctuation.terminator.statement
+    }
+//  ^ punctuation.brace.curly.end
+
+    function examples() external {
+//  ^------- storage.type.function
+//           ^------- entity.name.function
+//                   ^ punctuation.parameters.begin
+//                    ^ punctuation.parameters.end
+//                      ^------- storage.type.modifier.access
+//                               ^ punctuation.brace.curly.begin
+        // create array in memory, only fixed size can be created
+//      ^-------------------------------------------------------- comment.line
+        uint[] memory a = new uint[](5);
+//      ^--- support.type.primitive
+//          ^ punctuation.brace.square.begin
+//           ^ punctuation.brace.square.end
+//             ^----- storage.type.modifier.extendedscope
+//                      ^ keyword.operator.assignment
+//                        ^-- keyword.control
+//                            ^--- support.type.primitive
+//                                   ^ constant.numeric.decimal
+//                                     ^ punctuation.terminator.statement
+    }
+//  ^ punctuation.brace.curly.end
+}
+//<0 punctuation.brace.curly.end
+
+// From https://solidity-by-example.org/array/
+//<0------------------------------------------ comment.line

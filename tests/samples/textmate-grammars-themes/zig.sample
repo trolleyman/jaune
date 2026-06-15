@@ -1,0 +1,150 @@
+// grammar: source.zig
+
+const std = @import("std");
+//<0- keyword.default.zig
+//    ^-- variable.zig
+//        ^ keyword.operator.assignment.zig
+//          ^------ support.function.builtin.zig
+//                  ^---- string.quoted.double.zig
+//                        ^ punctuation.terminator.statement.zig
+const parseInt = std.fmt.parseInt;
+//<0- keyword.default.zig
+//    ^------- variable.zig
+//             ^ keyword.operator.assignment.zig
+//               ^-- variable.zig
+//                  ^ punctuation.accessor.zig
+//                   ^-- variable.zig
+//                      ^ punctuation.accessor.zig
+//                       ^------- variable.zig
+//                               ^ punctuation.terminator.statement.zig
+
+test "parse integers" {
+//<0 keyword.default.zig
+//   ^--------------- string.quoted.double.zig
+    const input = "123 67 89,99";
+//  ^---- keyword.default.zig
+//        ^---- variable.zig
+//              ^ keyword.operator.assignment.zig
+//                ^------------- string.quoted.double.zig
+//                              ^ punctuation.terminator.statement.zig
+    const ally = std.testing.allocator;
+//  ^---- keyword.default.zig
+//        ^--- variable.zig
+//             ^ keyword.operator.assignment.zig
+//               ^-- variable.zig
+//                  ^ punctuation.accessor.zig
+//                   ^------ variable.zig
+//                          ^ punctuation.accessor.zig
+//                           ^-------- variable.zig
+//                                    ^ punctuation.terminator.statement.zig
+
+    var list = std.ArrayList(u32).init(ally);
+//  ^-- keyword.default.zig
+//      ^--- variable.zig
+//           ^ keyword.operator.assignment.zig
+//             ^-- variable.zig
+//                ^ punctuation.accessor.zig
+//                 ^-------- entity.name.type.zig
+//                           ^-- keyword.type.integer.zig
+//                               ^ punctuation.accessor.zig
+//                                ^--- entity.name.function.zig
+//                                     ^--- variable.zig
+//                                          ^ punctuation.terminator.statement.zig
+    // Ensure the list is freed at scope exit.
+//  ^----------------------------------------- comment.line.double-slash.zig
+    // Try commenting out this line!
+//  ^------------------------------- comment.line.double-slash.zig
+    defer list.deinit();
+//  ^---- keyword.control.flow.zig
+//        ^--- variable.zig
+//            ^ punctuation.accessor.zig
+//             ^----- entity.name.function.zig
+//                     ^ punctuation.terminator.statement.zig
+
+    var it = std.mem.tokenize(u8, input, " ,");
+//  ^-- keyword.default.zig
+//      ^- variable.zig
+//         ^ keyword.operator.assignment.zig
+//           ^-- variable.zig
+//              ^ punctuation.accessor.zig
+//               ^-- variable.zig
+//                  ^ punctuation.accessor.zig
+//                   ^------- entity.name.function.zig
+//                            ^- keyword.type.integer.zig
+//                              ^ punctuation.comma.zig
+//                                ^---- variable.zig
+//                                     ^ punctuation.comma.zig
+//                                       ^--- string.quoted.double.zig
+//                                            ^ punctuation.terminator.statement.zig
+    while (it.next()) |num| {
+//  ^---- keyword.control.repeat.zig
+//         ^- variable.zig
+//           ^ punctuation.accessor.zig
+//            ^--- entity.name.function.zig
+//                    ^ keyword.operator.bitwise.zig
+//                     ^-- variable.zig
+//                        ^ keyword.operator.bitwise.zig
+        const n = try parseInt(u32, num, 10);
+//      ^---- keyword.default.zig
+//            ^ variable.zig
+//              ^ keyword.operator.assignment.zig
+//                ^-- keyword.control.trycatch.zig
+//                    ^------- entity.name.function.zig
+//                             ^-- keyword.type.integer.zig
+//                                ^ punctuation.comma.zig
+//                                  ^-- variable.zig
+//                                     ^ punctuation.comma.zig
+//                                       ^- constant.numeric.float.zig
+//                                          ^ punctuation.terminator.statement.zig
+        try list.append(n);
+//      ^-- keyword.control.trycatch.zig
+//          ^--- variable.zig
+//              ^ punctuation.accessor.zig
+//               ^----- entity.name.function.zig
+//                      ^ variable.zig
+//                        ^ punctuation.terminator.statement.zig
+    }
+
+    const expected = [_]u32{ 123, 67, 89, 99 };
+//  ^---- keyword.default.zig
+//        ^------- variable.zig
+//                 ^ keyword.operator.assignment.zig
+//                    ^ variable.zig
+//                      ^-- keyword.type.integer.zig
+//                           ^-- constant.numeric.float.zig
+//                              ^ punctuation.comma.zig
+//                                ^- constant.numeric.float.zig
+//                                  ^ punctuation.comma.zig
+//                                    ^- constant.numeric.float.zig
+//                                      ^ punctuation.comma.zig
+//                                        ^- constant.numeric.float.zig
+//                                            ^ punctuation.terminator.statement.zig
+
+    for (expected, list.items) |exp, actual| {
+//  ^-- keyword.control.repeat.zig
+//       ^------- variable.zig
+//               ^ punctuation.comma.zig
+//                 ^--- variable.zig
+//                     ^ punctuation.accessor.zig
+//                      ^---- variable.zig
+//                             ^ keyword.operator.bitwise.zig
+//                              ^-- variable.zig
+//                                 ^ punctuation.comma.zig
+//                                   ^----- variable.zig
+//                                         ^ keyword.operator.bitwise.zig
+        try std.testing.expectEqual(exp, actual);
+//      ^-- keyword.control.trycatch.zig
+//          ^-- variable.zig
+//             ^ punctuation.accessor.zig
+//              ^------ variable.zig
+//                     ^ punctuation.accessor.zig
+//                      ^---------- entity.name.function.zig
+//                                  ^-- variable.zig
+//                                     ^ punctuation.comma.zig
+//                                       ^----- variable.zig
+//                                              ^ punctuation.terminator.statement.zig
+    }
+}
+
+// from https://ziglang.org
+//<0----------------------- comment.line.double-slash.zig

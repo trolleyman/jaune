@@ -1,0 +1,83 @@
+# grammar: source.julia
+
+function mandelbrot(a)
+#<0----- keyword.other.julia
+#        ^--------- entity.name.function.julia
+#                  ^ meta.bracket.julia
+#                    ^ meta.bracket.julia
+    z = 0
+#     ^ keyword.operator.update.julia
+#       ^ constant.numeric.julia
+    for i=1:50
+#   ^-- keyword.control.julia
+#        ^ keyword.operator.update.julia
+#         ^ constant.numeric.julia
+#          ^ keyword.operator.range.julia
+#           ^- constant.numeric.julia
+        z = z^2 + a
+#         ^ keyword.operator.update.julia
+#            ^ keyword.operator.arithmetic.julia
+#             ^ constant.numeric.julia
+#               ^ keyword.operator.arithmetic.julia
+    end
+#   ^-- keyword.control.end.julia
+    return z
+#   ^----- keyword.control.julia
+end
+#<0 keyword.control.end.julia
+
+for y=1.0:-0.05:-1.0
+#<0 keyword.control.julia
+#    ^ keyword.operator.update.julia
+#     ^-- constant.numeric.julia
+#        ^ keyword.operator.range.julia
+#         ^ keyword.operator.arithmetic.julia
+#          ^--- constant.numeric.julia
+#              ^ keyword.operator.range.julia
+#               ^ keyword.operator.arithmetic.julia
+#                ^-- constant.numeric.julia
+    for x=-2.0:0.0315:0.5
+#   ^-- keyword.control.julia
+#        ^ keyword.operator.update.julia
+#         ^ keyword.operator.arithmetic.julia
+#          ^-- constant.numeric.julia
+#             ^ keyword.operator.range.julia
+#              ^----- constant.numeric.julia
+#                    ^ keyword.operator.range.julia
+#                     ^-- constant.numeric.julia
+        abs(mandelbrot(complex(x, y))) < 2 ? print("*") : print(" ")
+#       ^-- support.function.julia
+#          ^ meta.bracket.julia
+#           ^--------- support.function.julia
+#                     ^ meta.bracket.julia
+#                      ^------ support.function.julia
+#                             ^ meta.bracket.julia
+#                               ^ punctuation.separator.comma.julia
+#                                  ^-- meta.bracket.julia
+#                                      ^ keyword.operator.relation.julia
+#                                        ^ constant.numeric.julia
+#                                          ^ keyword.operator.ternary.julia
+#                                            ^---- support.function.julia
+#                                                 ^ meta.bracket.julia
+#                                                  ^-- string.quoted.double.julia
+#                                                  ^ punctuation.definition.string.begin.julia
+#                                                    ^ punctuation.definition.string.end.julia
+#                                                     ^ meta.bracket.julia
+#                                                       ^ keyword.operator.ternary.julia
+#                                                         ^---- support.function.julia
+#                                                              ^ meta.bracket.julia
+#                                                               ^-- string.quoted.double.julia
+#                                                               ^ punctuation.definition.string.begin.julia
+#                                                                 ^ punctuation.definition.string.end.julia
+#                                                                  ^ meta.bracket.julia
+    end
+#   ^-- keyword.control.end.julia
+    println()
+#   ^------ support.function.julia
+#          ^- meta.bracket.julia
+end
+#<0 keyword.control.end.julia
+
+# From: https://rosettacode.org/wiki/Mandelbrot_set#Julia
+#<0------------------------------------------------------ comment.line.number-sign.julia
+#<0 punctuation.definition.comment.julia

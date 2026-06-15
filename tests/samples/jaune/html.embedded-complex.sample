@@ -1,0 +1,162 @@
+<!-- grammar: text.html.basic -->
+
+<!DOCTYPE html>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.logical.ts -->
+<!--<2--- constant.character.other -->
+<!--      ^--- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.relational.ts -->
+<html lang="en">
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--  ^--- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.assignment.ts -->
+<!--       ^--- string.quoted.double.ts -->
+<!--       ^ punctuation.definition.string.begin.ts -->
+<!--        ^- variable.other.readwrite.ts -->
+<!--          ^ punctuation.definition.string.end.ts -->
+<!--           ^ keyword.operator.relational.ts -->
+<head>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+  <style>
+/*<0 punctuation.whitespace.embedded.leading.html */
+/*^ keyword.operator.relational.ts */
+/* ^---- variable.other.readwrite.ts */
+/*      ^ keyword.operator.relational.ts */
+    body {
+/*  ^--- variable.other.readwrite.ts */
+      margin: 0;
+/*    ^----- variable.other.readwrite.ts */
+/*            ^ constant.numeric.decimal.ts */
+/*             ^ punctuation.terminator.statement.ts */
+      font-family: sans-serif;
+/*    ^--- variable.other.readwrite.ts */
+/*        ^ keyword.operator.arithmetic.ts */
+/*         ^----- variable.other.readwrite.ts */
+/*                 ^--- variable.other.readwrite.ts */
+/*                     ^ keyword.operator.arithmetic.ts */
+/*                      ^---- variable.other.readwrite.ts */
+/*                           ^ punctuation.terminator.statement.ts */
+    }
+    .btn:hover {
+/*  ^ punctuation.accessor.ts */
+/*   ^-- variable.other.property.ts */
+/*       ^---- variable.other.readwrite.ts */
+      color: #336699;
+/*    ^---- variable.other.readwrite.ts */
+/*            ^----- constant.numeric.decimal.ts */
+/*                  ^ punctuation.terminator.statement.ts */
+    }
+  </style>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 keyword.operator.arithmetic.ts -->
+<!--^---- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+</head>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+<body>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+  <button class="btn" id="go">Go</button>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3--- variable.other.readwrite.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--           ^ keyword.operator.assignment.ts -->
+<!--            ^---- string.quoted.double.ts -->
+<!--            ^ punctuation.definition.string.begin.ts -->
+<!--             ^-- variable.other.readwrite.ts -->
+<!--                ^ punctuation.definition.string.end.ts -->
+<!--                  ^- variable.other.readwrite.ts -->
+<!--                    ^ keyword.operator.assignment.ts -->
+<!--                     ^--- string.quoted.double.ts -->
+<!--                     ^ punctuation.definition.string.begin.ts -->
+<!--                      ^- variable.other.readwrite.ts -->
+<!--                        ^ punctuation.definition.string.end.ts -->
+<!--                         ^ keyword.operator.relational.ts -->
+<!--                          ^- variable.other.readwrite.ts -->
+<!--                            ^ keyword.operator.relational.ts -->
+<!--                             ^ keyword.operator.arithmetic.ts -->
+<!--                              ^----- variable.other.readwrite.ts -->
+<!--                                    ^ keyword.operator.relational.ts -->
+  <script>
+//<0 punctuation.whitespace.embedded.leading.html
+//^ keyword.operator.relational.ts
+// ^----- variable.other.readwrite.ts
+//       ^ keyword.operator.relational.ts
+    const greet = (name) => {
+//  ^---- variable.other.readwrite.ts
+//        ^---- entity.name.function.ts
+//              ^ keyword.operator.assignment.ts
+//                ^ meta.brace.round.ts
+//                 ^--- variable.other.readwrite.ts
+//                     ^ meta.brace.round.ts
+//                       ^ keyword.operator.assignment.ts
+//                        ^ keyword.operator.relational.ts
+      return `hello ${name}`;
+//    ^----- variable.other.readwrite.ts
+//           ^ string.template.ts punctuation.definition.string.template.begin.ts
+//            ^---- variable.other.readwrite.ts
+//                  ^ variable.other.readwrite.ts
+//                    ^--- variable.other.readwrite.ts
+//                         ^ string.template.ts punctuation.definition.string.template.end.ts
+//                          ^ punctuation.terminator.statement.ts
+    };
+//   ^ punctuation.terminator.statement.ts
+    document.querySelector("#go").addEventListener("click", () => {
+//  ^------- variable.other.object.ts
+//          ^ punctuation.accessor.ts
+//           ^------------ variable.other.property.ts
+//                        ^ meta.brace.round.ts
+//                         ^---- string.quoted.double.ts
+//                         ^ punctuation.definition.string.begin.ts
+//                           ^- variable.other.readwrite.ts
+//                             ^ punctuation.definition.string.end.ts
+//                              ^ meta.brace.round.ts
+//                               ^ punctuation.accessor.ts
+//                                ^--------------- variable.other.property.ts
+//                                                ^ meta.brace.round.ts
+//                                                 ^------ string.quoted.double.ts
+//                                                 ^ punctuation.definition.string.begin.ts
+//                                                  ^---- variable.other.readwrite.ts
+//                                                       ^ punctuation.definition.string.end.ts
+//                                                        ^ punctuation.separator.comma.ts
+//                                                          ^- meta.brace.round.ts
+//                                                             ^ keyword.operator.assignment.ts
+//                                                              ^ keyword.operator.relational.ts
+      console.log(greet("world"));
+//    ^------ variable.other.object.ts
+//           ^ punctuation.accessor.ts
+//            ^-- variable.other.property.ts
+//               ^ meta.brace.round.ts
+//                ^---- variable.other.readwrite.ts
+//                     ^ meta.brace.round.ts
+//                      ^------ string.quoted.double.ts
+//                      ^ punctuation.definition.string.begin.ts
+//                       ^---- variable.other.readwrite.ts
+//                            ^ punctuation.definition.string.end.ts
+//                             ^- meta.brace.round.ts
+//                               ^ punctuation.terminator.statement.ts
+    });
+//   ^ meta.brace.round.ts
+//    ^ punctuation.terminator.statement.ts
+  </script>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 keyword.operator.arithmetic.ts -->
+<!--^----- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+</body>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+</html>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->

@@ -1,0 +1,129 @@
+; grammar: source.llvm
+
+define dso_local i32 @array_sum(ptr nocapture noundef readonly %input, i32 noundef %length) local_unnamed_addr {
+;<0--- storage.modifier.llvm
+;      ^-------- storage.modifier.llvm
+;                ^-- storage.type.llvm
+;                    ^--------- entity.name.function.llvm
+;                                   ^-------- storage.modifier.llvm
+;                                             ^------ storage.modifier.llvm
+;                                                     ^------- storage.modifier.llvm
+;                                                              ^----- variable.llvm
+;                                                                      ^-- storage.type.llvm
+;                                                                          ^------ storage.modifier.llvm
+;                                                                                  ^------ variable.llvm
+;                                                                                           ^----------------- storage.modifier.llvm
+entry:
+;<0--- entity.name.label.llvm
+  %cmp4 = icmp sgt i32 %length, 0
+; ^---- variable.llvm
+;         ^--- keyword.instruction.llvm
+;              ^-- keyword.instruction.llvm
+;                  ^-- storage.type.llvm
+;                      ^------ variable.llvm
+;                               ^ constant.numeric.integer
+  br i1 %cmp4, label %for.body.preheader, label %for.end
+; ^- keyword.instruction.llvm
+;    ^- storage.type.llvm
+;       ^---- variable.llvm
+;              ^---- storage.type.llvm
+;                    ^------------------ variable.llvm
+;                                         ^---- storage.type.llvm
+;                                               ^------- variable.llvm
+
+for.body.preheader:
+;<0---------------- entity.name.label.llvm
+  %wide.trip.count = zext nneg i32 %length to i64
+; ^--------------- variable.llvm
+;                    ^--- keyword.instruction.llvm
+;                              ^-- storage.type.llvm
+;                                  ^------ variable.llvm
+;                                          ^- storage.modifier.llvm
+;                                             ^-- storage.type.llvm
+  br label %for.body
+; ^- keyword.instruction.llvm
+;    ^---- storage.type.llvm
+;          ^-------- variable.llvm
+
+for.body:
+;<0------ entity.name.label.llvm
+  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]
+; ^---------- variable.llvm
+;               ^-- keyword.instruction.llvm
+;                   ^-- storage.type.llvm
+;                         ^ constant.numeric.integer
+;                            ^------------------ variable.llvm
+;                                                     ^--------------- variable.llvm
+;                                                                       ^-------- variable.llvm
+  %sum.06 = phi i32 [ 0, %for.body.preheader ], [ %add, %for.body ]
+; ^------ variable.llvm
+;           ^-- keyword.instruction.llvm
+;               ^-- storage.type.llvm
+;                     ^ constant.numeric.integer
+;                        ^------------------ variable.llvm
+;                                                 ^--- variable.llvm
+;                                                       ^-------- variable.llvm
+  %arrayidx = getelementptr inbounds i32, ptr %input, i64 %indvars.iv
+; ^-------- variable.llvm
+;             ^------------ keyword.instruction.llvm
+;                           ^------- keyword.instruction.llvm
+;                                    ^-- storage.type.llvm
+;                                             ^----- variable.llvm
+;                                                     ^-- storage.type.llvm
+;                                                         ^---------- variable.llvm
+  %0 = load i32, ptr %arrayidx, align 4
+; ^- variable.llvm
+;      ^--- keyword.instruction.llvm
+;           ^-- storage.type.llvm
+;                    ^-------- variable.llvm
+;                               ^---- storage.modifier.llvm
+;                                     ^ constant.numeric.integer
+  %add = add nsw i32 %0, %sum.06
+; ^--- variable.llvm
+;        ^-- keyword.instruction.llvm
+;            ^-- keyword.instruction.llvm
+;                ^-- storage.type.llvm
+;                    ^- variable.llvm
+;                        ^------ variable.llvm
+  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
+; ^--------------- variable.llvm
+;                    ^-- keyword.instruction.llvm
+;                        ^-- keyword.instruction.llvm
+;                            ^-- keyword.instruction.llvm
+;                                ^-- storage.type.llvm
+;                                    ^---------- variable.llvm
+;                                                 ^ constant.numeric.integer
+  %exitcond.not = icmp eq i64 %indvars.iv.next, %wide.trip.count
+; ^------------ variable.llvm
+;                 ^--- keyword.instruction.llvm
+;                      ^- keyword.instruction.llvm
+;                         ^-- storage.type.llvm
+;                             ^--------------- variable.llvm
+;                                               ^--------------- variable.llvm
+  br i1 %exitcond.not, label %for.end, label %for.body
+; ^- keyword.instruction.llvm
+;    ^- storage.type.llvm
+;       ^------------ variable.llvm
+;                      ^---- storage.type.llvm
+;                            ^------- variable.llvm
+;                                      ^---- storage.type.llvm
+;                                            ^-------- variable.llvm
+
+for.end:
+;<0----- entity.name.label.llvm
+  %sum.0.lcssa = phi i32 [ 0, %entry ], [ %add, %for.body ]
+; ^----------- variable.llvm
+;                ^-- keyword.instruction.llvm
+;                    ^-- storage.type.llvm
+;                          ^ constant.numeric.integer
+;                             ^----- variable.llvm
+;                                         ^--- variable.llvm
+;                                               ^-------- variable.llvm
+  ret i32 %sum.0.lcssa
+; ^-- keyword.instruction.llvm
+;     ^-- storage.type.llvm
+;         ^----------- variable.llvm
+}
+
+; From https://godbolt.org/z/vY4GMP3Wo
+;<0----------------------------------- comment.line.llvm

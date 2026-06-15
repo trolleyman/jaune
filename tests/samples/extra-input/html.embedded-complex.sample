@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .btn:hover {
+      color: #336699;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn" id="go">Go</button>
+  <script>
+    const greet = (name) => {
+      return `hello ${name}`;
+    };
+    document.querySelector("#go").addEventListener("click", () => {
+      console.log(greet("world"));
+    });
+  </script>
+</body>
+</html>

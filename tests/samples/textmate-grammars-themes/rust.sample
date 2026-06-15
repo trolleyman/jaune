@@ -1,0 +1,208 @@
+// grammar: source.rust
+
+// Unlike C/C++, there's no restriction on the order of function definitions
+//<0------------------------------------------------------------------------ comment.line.double-slash.rust
+//<0 punctuation.definition.comment.rust
+fn main() {
+//<0------- meta.function.definition.rust
+//<0 keyword.other.fn.rust
+// ^--- entity.name.function.rust
+//     ^- punctuation.brackets.round.rust
+//        ^ punctuation.brackets.curly.rust
+    // We can use this function here, and define it somewhere later
+//  ^-------------------------------------------------------------- comment.line.double-slash.rust
+//  ^- punctuation.definition.comment.rust
+    fizzbuzz_to(100);
+//  ^--------------- meta.function.call.rust
+//  ^---------- entity.name.function.rust
+//             ^ punctuation.brackets.round.rust
+//              ^-- constant.numeric.decimal.rust
+//                 ^ punctuation.brackets.round.rust
+//                  ^ punctuation.semi.rust
+}
+//<0 punctuation.brackets.curly.rust
+
+// Function that returns a boolean value
+//<0------------------------------------ comment.line.double-slash.rust
+//<0 punctuation.definition.comment.rust
+fn is_divisible_by(lhs: u32, rhs: u32) -> bool {
+//<0-------------------------------------------- meta.function.definition.rust
+//<0 keyword.other.fn.rust
+// ^-------------- entity.name.function.rust
+//                ^ punctuation.brackets.round.rust
+//                 ^-- variable.other.rust
+//                    ^ keyword.operator.key-value.rust
+//                      ^-- entity.name.type.numeric.rust
+//                         ^ punctuation.comma.rust
+//                           ^-- variable.other.rust
+//                              ^ keyword.operator.key-value.rust
+//                                ^-- entity.name.type.numeric.rust
+//                                   ^ punctuation.brackets.round.rust
+//                                     ^- keyword.operator.arrow.skinny.rust
+//                                        ^--- entity.name.type.primitive.rust
+//                                             ^ punctuation.brackets.curly.rust
+    // Corner case, early return
+//  ^--------------------------- comment.line.double-slash.rust
+//  ^- punctuation.definition.comment.rust
+    if rhs == 0 {
+//  ^- keyword.control.rust
+//     ^-- variable.other.rust
+//         ^- keyword.operator.comparison.rust
+//            ^ constant.numeric.decimal.rust
+//              ^ punctuation.brackets.curly.rust
+        return false;
+//      ^----- keyword.control.rust
+//             ^---- constant.language.bool.rust
+//                  ^ punctuation.semi.rust
+    }
+//  ^ punctuation.brackets.curly.rust
+
+    // This is an expression, the `return` keyword is not necessary here
+//  ^------------------------------------------------------------------- comment.line.double-slash.rust
+//  ^- punctuation.definition.comment.rust
+    lhs % rhs == 0
+//  ^-- variable.other.rust
+//      ^ keyword.operator.math.rust
+//        ^-- variable.other.rust
+//            ^- keyword.operator.comparison.rust
+//               ^ constant.numeric.decimal.rust
+}
+//<0 punctuation.brackets.curly.rust
+
+// Functions that "don't" return a value, actually return the unit type `()`
+//<0------------------------------------------------------------------------ comment.line.double-slash.rust
+//<0 punctuation.definition.comment.rust
+fn fizzbuzz(n: u32) -> () {
+//<0----------------------- meta.function.definition.rust
+//<0 keyword.other.fn.rust
+// ^------- entity.name.function.rust
+//         ^ punctuation.brackets.round.rust
+//          ^ variable.other.rust
+//           ^ keyword.operator.key-value.rust
+//             ^-- entity.name.type.numeric.rust
+//                ^ punctuation.brackets.round.rust
+//                  ^- keyword.operator.arrow.skinny.rust
+//                     ^- punctuation.brackets.round.rust
+//                        ^ punctuation.brackets.curly.rust
+    if is_divisible_by(n, 15) {
+//  ^- keyword.control.rust
+//     ^--------------------- meta.function.call.rust
+//     ^-------------- entity.name.function.rust
+//                    ^ punctuation.brackets.round.rust
+//                     ^ variable.other.rust
+//                      ^ punctuation.comma.rust
+//                        ^- constant.numeric.decimal.rust
+//                          ^ punctuation.brackets.round.rust
+//                            ^ punctuation.brackets.curly.rust
+        println!("fizzbuzz");
+//      ^------- meta.macro.rust
+//      ^------- entity.name.function.macro.rust
+//              ^ punctuation.brackets.round.rust
+//               ^--------- string.quoted.double.rust
+//               ^ punctuation.definition.string.rust
+//                        ^ punctuation.definition.string.rust
+//                         ^ punctuation.brackets.round.rust
+//                          ^ punctuation.semi.rust
+    } else if is_divisible_by(n, 3) {
+//  ^ punctuation.brackets.curly.rust
+//    ^--- keyword.control.rust
+//         ^- keyword.control.rust
+//            ^-------------------- meta.function.call.rust
+//            ^-------------- entity.name.function.rust
+//                           ^ punctuation.brackets.round.rust
+//                            ^ variable.other.rust
+//                             ^ punctuation.comma.rust
+//                               ^ constant.numeric.decimal.rust
+//                                ^ punctuation.brackets.round.rust
+//                                  ^ punctuation.brackets.curly.rust
+        println!("fizz");
+//      ^------- meta.macro.rust
+//      ^------- entity.name.function.macro.rust
+//              ^ punctuation.brackets.round.rust
+//               ^----- string.quoted.double.rust
+//               ^ punctuation.definition.string.rust
+//                    ^ punctuation.definition.string.rust
+//                     ^ punctuation.brackets.round.rust
+//                      ^ punctuation.semi.rust
+    } else if is_divisible_by(n, 5) {
+//  ^ punctuation.brackets.curly.rust
+//    ^--- keyword.control.rust
+//         ^- keyword.control.rust
+//            ^-------------------- meta.function.call.rust
+//            ^-------------- entity.name.function.rust
+//                           ^ punctuation.brackets.round.rust
+//                            ^ variable.other.rust
+//                             ^ punctuation.comma.rust
+//                               ^ constant.numeric.decimal.rust
+//                                ^ punctuation.brackets.round.rust
+//                                  ^ punctuation.brackets.curly.rust
+        println!("buzz");
+//      ^------- meta.macro.rust
+//      ^------- entity.name.function.macro.rust
+//              ^ punctuation.brackets.round.rust
+//               ^----- string.quoted.double.rust
+//               ^ punctuation.definition.string.rust
+//                    ^ punctuation.definition.string.rust
+//                     ^ punctuation.brackets.round.rust
+//                      ^ punctuation.semi.rust
+    } else {
+//  ^ punctuation.brackets.curly.rust
+//    ^--- keyword.control.rust
+//         ^ punctuation.brackets.curly.rust
+        println!("{}", n);
+//      ^------- meta.macro.rust
+//      ^------- entity.name.function.macro.rust
+//              ^ punctuation.brackets.round.rust
+//               ^--- string.quoted.double.rust
+//               ^ punctuation.definition.string.rust
+//                ^- meta.interpolation.rust
+//                ^- punctuation.definition.interpolation.rust
+//                  ^ punctuation.definition.string.rust
+//                   ^ punctuation.comma.rust
+//                     ^ variable.other.rust
+//                      ^ punctuation.brackets.round.rust
+//                       ^ punctuation.semi.rust
+    }
+//  ^ punctuation.brackets.curly.rust
+}
+//<0 punctuation.brackets.curly.rust
+
+// When a function returns `()`, the return type can be omitted from the
+//<0-------------------------------------------------------------------- comment.line.double-slash.rust
+//<0 punctuation.definition.comment.rust
+// signature
+//<0-------- comment.line.double-slash.rust
+//<0 punctuation.definition.comment.rust
+fn fizzbuzz_to(n: u32) {
+//<0-------------------- meta.function.definition.rust
+//<0 keyword.other.fn.rust
+// ^---------- entity.name.function.rust
+//            ^ punctuation.brackets.round.rust
+//             ^ variable.other.rust
+//              ^ keyword.operator.key-value.rust
+//                ^-- entity.name.type.numeric.rust
+//                   ^ punctuation.brackets.round.rust
+//                     ^ punctuation.brackets.curly.rust
+    for n in 1..=n {
+//  ^-- keyword.control.rust
+//      ^ variable.other.rust
+//        ^- keyword.other.rust
+//           ^ constant.numeric.decimal.rust
+//            ^-- keyword.operator.range.rust
+//               ^ variable.other.rust
+//                 ^ punctuation.brackets.curly.rust
+        fizzbuzz(n);
+//      ^---------- meta.function.call.rust
+//      ^------- entity.name.function.rust
+//              ^ punctuation.brackets.round.rust
+//               ^ variable.other.rust
+//                ^ punctuation.brackets.round.rust
+//                 ^ punctuation.semi.rust
+    }
+//  ^ punctuation.brackets.curly.rust
+}
+//<0 punctuation.brackets.curly.rust
+
+// From https://doc.rust-lang.org/rust-by-example/fn.html
+//<0----------------------------------------------------- comment.line.double-slash.rust
+//<0 punctuation.definition.comment.rust

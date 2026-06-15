@@ -1,0 +1,83 @@
+# grammar: text.pug
+
+doctype html
+#<0--------- meta.tag.sgml.doctype.html
+html(lang="en")
+#<0------------ meta.tag.other
+#<0- entity.name.tag.pug
+#   ^ constant.name.attribute.tag.pug
+#    ^--- entity.other.attribute-name.tag.pug
+#        ^---- attribute_value
+#         ^--- string.quoted.double.js
+#         ^ punctuation.definition.string.begin.js
+#            ^ punctuation.definition.string.end.js
+#             ^ constant.name.attribute.tag.pug
+  head
+# ^--- meta.tag.other
+# ^--- entity.name.tag.pug
+    title= pageTitle
+#   ^---- meta.tag.other
+#   ^---- entity.name.tag.pug
+#        ^---------- source.js
+#        ^ constant
+#          ^-------- variable.other.readwrite.js
+    script(type='text/javascript').
+#<0-------------------------------- meta.tag.other
+#   ^----- entity.name.tag.pug
+#         ^----------------------- meta.tag.other
+#         ^ constant.name.attribute.tag.pug
+#          ^--- entity.other.attribute-name.tag.pug
+#              ^----------------- attribute_value
+#               ^---------------- string.quoted.single.js
+#               ^ punctuation.definition.string.begin.js
+#                               ^ punctuation.definition.string.end.js
+#                                ^ constant.name.attribute.tag.pug
+#                                 ^ meta.attribute.directive.vue
+#                                 ^ punctuation.attribute-shorthand.bind.html.vue
+      if (foo) bar(1 + 5);
+#<0----------------------- meta.tag.other
+#        ^---- meta.tag.other
+#        ^ constant.name.attribute.tag.pug
+#         ^-- entity.other.attribute-name.tag.pug
+#            ^ constant.name.attribute.tag.pug
+#                 ^------ meta.tag.other
+#                 ^ constant.name.attribute.tag.pug
+#                  ^ entity.other.attribute-name.tag.pug
+#                    ^ entity.other.attribute-name.tag.pug
+#                      ^ entity.other.attribute-name.tag.pug
+#                       ^ constant.name.attribute.tag.pug
+  body
+# ^--- meta.tag.other
+# ^--- entity.name.tag.pug
+    h1 Pug - node template engine
+#   ^- meta.tag.other
+#   ^- entity.name.tag.pug
+    #container.col
+#   ^------------- meta.selector.css
+#   ^--------- entity.other.attribute-name.id.css.pug
+#             ^--- entity.other.attribute-name.class.css.pug
+      if youAreUsingPug
+#     ^---------------- meta.control.flow.pug
+#     ^- storage.type.function.pug
+#        ^------------- js.embedded.control.flow.pug
+#        ^------------- variable.other.readwrite.js
+        p You are amazing
+#       ^ meta.tag.other
+#       ^ entity.name.tag.pug
+      else
+#     ^--- meta.control.flow.pug
+#     ^--- storage.type.function.pug
+        p Get on it!
+#       ^ meta.tag.other
+#       ^ entity.name.tag.pug
+      p.
+#     ^ meta.tag.other
+#     ^ entity.name.tag.pug
+#      ^ storage.type.function.pug.dot-block-dot
+        Pug is a terse and simple templating language with a
+#<0--------------------------------------------------------- text.block.pug
+        strong focus on performance and powerful features.
+#<0------------------------------------------------------- text.block.pug
+
+//- From https://github.com/pugjs/pug
+#<0---------------------------------- comment.unbuffered.block.pug

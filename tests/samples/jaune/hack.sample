@@ -1,0 +1,118 @@
+# grammar: source.hack
+
+<<__EntryPoint>>
+#<0------------- meta.attributes.php
+#<0 punctuation.definition.attributes.php
+# ^----------- entity.other.attribute-name.php
+#             ^- punctuation.definition.attributes.php
+async function my_example(): Awaitable<void> {
+#<0------------------------------------------ meta.function.php
+#<0-- storage.modifier.php
+#     ^------- storage.type.function.php
+#              ^--------- entity.name.function.php
+#                        ^ punctuation.definition.parameters.begin.php
+#                         ^ punctuation.definition.parameters.end.php
+#                          ^ punctuation.definition.type.php
+#                            ^-------- support.class.php
+#                                      ^--- support.class.php
+#                                            ^ punctuation.section.scope.begin.php
+  $user_ids = vec[1, 2, 3];
+# ^-------- variable.other.php
+# ^ punctuation.definition.variable.php
+#           ^ keyword.operator.assignment.php
+#             ^-- support.type.php
+#                ^ punctuation.section.array.begin.php
+#                 ^ constant.numeric.php
+#                    ^ constant.numeric.php
+#                       ^ constant.numeric.php
+#                        ^ punctuation.section.array.end.php
+#                         ^ punctuation.terminator.expression.php
+
+  // Initiate all the database requests together,
+#<0 punctuation.whitespace.comment.leading.php
+# ^---------------------------------------------- comment.line.double-slash.php
+# ^- punctuation.definition.comment.php
+  // so we spend less time waiting.
+#<0 punctuation.whitespace.comment.leading.php
+# ^-------------------------------- comment.line.double-slash.php
+# ^- punctuation.definition.comment.php
+  $user_names = await Vec\map_async(
+# ^---------- variable.other.php
+# ^ punctuation.definition.variable.php
+#             ^ keyword.operator.assignment.php
+#               ^---- keyword.control.php
+#                     ^-- support.type.php
+#                        ^ punctuation.separator.inheritance.php
+#                         ^-------- meta.function-call.php
+#                         ^-------- entity.name.function.php
+    $user_ids,
+#   ^-------- variable.other.php
+#   ^ punctuation.definition.variable.php
+    async ($id) ==> await fetch_user_name($id),
+#   ^---- meta.function-call.php
+#   ^---- entity.name.function.php
+#          ^-- variable.other.php
+#          ^ punctuation.definition.variable.php
+#               ^-- keyword.operator.lambda.php
+#                   ^---- keyword.control.php
+#                         ^-------------- meta.function-call.php
+#                         ^-------------- entity.name.function.php
+#                                         ^-- variable.other.php
+#                                         ^ punctuation.definition.variable.php
+  );
+#  ^ punctuation.terminator.expression.php
+  // Execution continues after requests complete.
+#<0 punctuation.whitespace.comment.leading.php
+# ^---------------------------------------------- comment.line.double-slash.php
+# ^- punctuation.definition.comment.php
+
+  echo Str\join($user_names, ", ");
+# ^--- support.function.construct.php
+#      ^------- meta.function-call.php
+#      ^--- support.other.namespace.php
+#      ^-- entity.name.type.namespace.php
+#         ^ punctuation.separator.inheritance.php
+#          ^--- entity.name.function.php
+#               ^---------- variable.other.php
+#               ^ punctuation.definition.variable.php
+#                            ^--- string.quoted.double.php
+#                            ^ punctuation.definition.string.begin.php
+#                               ^ punctuation.definition.string.end.php
+#                                 ^ punctuation.terminator.expression.php
+}
+#<0 punctuation.section.scope.end.php
+
+async function fetch_user_name(
+#<0---------------------------- meta.function.php
+#<0-- storage.modifier.php
+#     ^------- storage.type.function.php
+#              ^-------------- entity.name.function.php
+#                             ^ punctuation.definition.parameters.begin.php
+  int $_,
+#<0------ meta.function.php
+# ^-- support.type.php
+#     ^- variable.other.php
+#     ^ punctuation.definition.variable.php
+): Awaitable<string> {
+#<0------------------ meta.function.php
+#<0 punctuation.definition.parameters.end.php
+#^ punctuation.definition.type.php
+#  ^-------- support.class.php
+#            ^----- support.type.php
+#                    ^ punctuation.section.scope.begin.php
+  // This could be a database request.
+#<0 punctuation.whitespace.comment.leading.php
+# ^----------------------------------- comment.line.double-slash.php
+# ^- punctuation.definition.comment.php
+  return "";
+# ^----- keyword.control.php
+#        ^- string.quoted.double.php
+#        ^ punctuation.definition.string.begin.php
+#         ^ punctuation.definition.string.end.php
+#          ^ punctuation.terminator.expression.php
+}
+#<0 punctuation.section.scope.end.php
+
+// From hacklang.org
+#<0----------------- comment.line.double-slash.php
+#<0 punctuation.definition.comment.php

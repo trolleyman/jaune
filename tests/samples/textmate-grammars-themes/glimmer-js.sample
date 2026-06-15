@@ -1,0 +1,162 @@
+# grammar: source.gjs
+
+import { helper } from '@ember/component/helper';
+#<0--------------------------------------------- meta.import.js
+#<0--- keyword.control.import.js
+#      ^--------- meta.block.js
+#      ^ punctuation.definition.block.js
+#        ^----- variable.other.readwrite.alias.js
+#               ^ punctuation.definition.block.js
+#                 ^--- keyword.control.from.js
+#                      ^------------------------ string.quoted.single.js
+#                      ^ punctuation.definition.string.begin.js
+#                                              ^ punctuation.definition.string.end.js
+#                                               ^ punctuation.terminator.statement.js
+import { modifier } from 'ember-modifier';
+#<0-------------------------------------- meta.import.js
+#<0--- keyword.control.import.js
+#      ^----------- meta.block.js
+#      ^ punctuation.definition.block.js
+#        ^------- variable.other.readwrite.alias.js
+#                 ^ punctuation.definition.block.js
+#                   ^--- keyword.control.from.js
+#                        ^--------------- string.quoted.single.js
+#                        ^ punctuation.definition.string.begin.js
+#                                       ^ punctuation.definition.string.end.js
+#                                        ^ punctuation.terminator.statement.js
+
+const plusOne = helper(([num]) => num + 1);
+#<0--------------------------------------- meta.var.expr.js
+#<0-- storage.type.js
+#     ^------- meta.var-single-variable.expr.js
+#     ^------ meta.definition.variable.js
+#     ^------ variable.other.constant.js
+#             ^ keyword.operator.assignment.js
+#               ^----- meta.function-call.js
+#               ^----- entity.name.function.js
+#                     ^ meta.brace.round.js
+#                      ^---------- meta.arrow.js
+#                      ^------ meta.parameters.js
+#                      ^ punctuation.definition.parameters.begin.js
+#                       ^---- meta.paramter.array-binding-pattern.js
+#                       ^ punctuation.definition.binding-pattern.array.js
+#                        ^-- variable.parameter.js
+#                           ^ punctuation.definition.binding-pattern.array.js
+#                            ^ punctuation.definition.parameters.end.js
+#                              ^- storage.type.function.arrow.js
+#                                 ^-- variable.other.readwrite.js
+#                                     ^ keyword.operator.arithmetic.js
+#                                       ^ constant.numeric.decimal.js
+#                                        ^ meta.brace.round.js
+#                                         ^ punctuation.terminator.statement.js
+
+const setScrollPosition = modifier((element, [position]) => {
+#<0---------------------------------------------------------- meta.var.expr.js
+#<0-- storage.type.js
+#     ^----------------- meta.var-single-variable.expr.js
+#     ^---------------- meta.definition.variable.js
+#     ^---------------- variable.other.constant.js
+#                       ^ keyword.operator.assignment.js
+#                         ^------- meta.function-call.js
+#                         ^------- entity.name.function.js
+#                                 ^ meta.brace.round.js
+#                                  ^------------------------- meta.arrow.js
+#                                  ^-------------------- meta.parameters.js
+#                                  ^ punctuation.definition.parameters.begin.js
+#                                   ^------ variable.parameter.js
+#                                          ^ punctuation.separator.parameter.js
+#                                           ^---------- meta.paramter.array-binding-pattern.js
+#                                            ^ punctuation.definition.binding-pattern.array.js
+#                                             ^------- variable.parameter.js
+#                                                     ^ punctuation.definition.binding-pattern.array.js
+#                                                      ^ punctuation.definition.parameters.end.js
+#                                                        ^- storage.type.function.arrow.js
+#                                                           ^ meta.block.js
+#                                                           ^ punctuation.definition.block.js
+  element.scrollTop = position
+#<0--------------------------- meta.var.expr.js
+#<0--------------------------- meta.arrow.js
+#<0--------------------------- meta.block.js
+# ^------ variable.other.object.js
+#        ^ punctuation.accessor.js
+#         ^-------- variable.other.property.js
+#                   ^ keyword.operator.assignment.js
+#                     ^------- variable.other.readwrite.js
+});
+#<0 meta.var.expr.js
+#<0 meta.arrow.js
+#<0 meta.block.js
+#<0 punctuation.definition.block.js
+#^ meta.brace.round.js
+# ^ punctuation.terminator.statement.js
+
+<template>
+#<0------- meta.js.embeddedTemplateWithoutArgs
+#<0 punctuation.definition.tag.html
+#^------- entity.name.tag.other.html
+#        ^ punctuation.definition.tag.html
+  <div class="scroll-container" {{setScrollPosition @scrollPos}}>
+#<0-------------------------------------------------------------- meta.js.embeddedTemplateWithoutArgs
+# ^-------------------------------------------------------------- meta.tag.any.ember-handlebars
+# ^ punctuation.definition.tag
+#  ^-- entity.name.tag.html.ember-handlebars
+#      ^---- entity.other.attribute-name.ember-handlebars
+#           ^ punctuation.separator.key-value.html.ember-handlebars
+#            ^----------------- string.quoted.double.html.ember-handlebars
+#            ^ punctuation.definition.string.begin.ember-handlebars
+#                             ^ punctuation.definition.string.end.ember-handlebars
+#                               ^------------------------------- entity.expression.ember-handlebars
+#                               ^------------------- keyword.operator
+#                                 ^---------------- keyword.control
+#                                                   ^--------- meta.attribute.directive.vue
+#                                                   ^ punctuation.attribute-shorthand.event.html.vue
+#                                                    ^-------- entity.other.attribute-name.html.vue
+#                                                             ^- keyword.operator
+#                                                               ^ punctuation.definition.tag
+    {{#each @items as |item index|}}
+#<0--------------------------------- meta.js.embeddedTemplateWithoutArgs
+#   ^------------------------------- entity.expression.ember-handlebars
+#   ^-- punctuation.definition.tag
+#      ^--- keyword.control
+#           ^----- support.function
+#           ^ variable.language
+#                 ^-- keyword.control
+#                     ^----------- keyword.block-params.ember-handlebars
+#                     ^ constant.other.symbol.begin.ember-handlebars
+#                      ^--- support.function
+#                           ^---- support.function
+#                                ^ constant.other.symbol.end.ember-handlebars
+#                                 ^- punctuation.definition.tag
+      Item #{{plusOne index}}: {{item}}
+#<0------------------------------------ meta.js.embeddedTemplateWithoutArgs
+#           ^---------------- entity.expression.ember-handlebars
+#           ^--------- keyword.operator
+#             ^------ keyword.control
+#                     ^---- support.function
+#                          ^- keyword.operator
+#                              ^------- entity.expression.ember-handlebars
+#                              ^- keyword.operator
+#                                ^--- support.function
+#                                ^--- support.function
+#                                    ^- keyword.operator
+    {{/each}}
+#<0---------- meta.js.embeddedTemplateWithoutArgs
+#   ^-------- entity.expression.ember-handlebars
+#   ^-- punctuation.definition.tag
+#      ^--- keyword.control
+#          ^- punctuation.definition.tag
+  </div>
+#<0----- meta.js.embeddedTemplateWithoutArgs
+# ^----- meta.tag.any.ember-handlebars
+# ^- punctuation.definition.tag
+#   ^-- entity.name.tag.html.ember-handlebars
+#      ^ punctuation.definition.tag
+</template>
+#<0-------- meta.js.embeddedTemplateWithoutArgs
+#<0 punctuation.definition.tag.html
+# ^------- entity.name.tag.other.html
+#         ^ punctuation.definition.tag.html
+
+// From https://github.com/ember-template-imports/ember-template-imports
+#<0--------------------------------------------------------------------- comment.line.double-slash.js
+#<0 punctuation.definition.comment.js

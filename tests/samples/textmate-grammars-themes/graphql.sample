@@ -1,0 +1,79 @@
+// grammar: source.graphql
+
+query($number_of_repos:Int!) {
+//<0- keyword.operation.graphql
+//   ^ meta.brace.round.graphql
+//    ^-------------------- meta.variables.graphql
+//    ^--------------- variable.parameter.graphql
+//                    ^ punctuation.colon.graphql
+//                     ^-- support.type.builtin.graphql
+//                        ^ keyword.operator.nulltype.graphql
+//                         ^ meta.brace.round.graphql
+//                          ^- meta.selectionset.graphql
+//                           ^ punctuation.operation.graphql
+  viewer {
+//<0------ meta.selectionset.graphql
+//^----- variable.graphql
+//      ^- meta.selectionset.graphql
+//       ^ punctuation.operation.graphql
+    name
+//<0---- meta.selectionset.graphql
+//<0---- meta.selectionset.graphql
+//  ^--- variable.graphql
+     repositories(last: $number_of_repos) {
+//<0--------------------------------------- meta.selectionset.graphql
+//<0--------------------------------------- meta.selectionset.graphql
+//   ^----------- variable.graphql
+//               ^----------------------- meta.arguments.graphql
+//               ^ meta.brace.round.directive.graphql
+//                ^--- variable.parameter.graphql
+//                    ^ punctuation.colon.graphql
+//                      ^--------------- variable.graphql
+//                                      ^ meta.brace.round.directive.graphql
+//                                       ^- meta.selectionset.graphql
+//                                        ^ punctuation.operation.graphql
+       nodes {
+//<0---------- meta.selectionset.graphql
+//<0---------- meta.selectionset.graphql
+//<0---------- meta.selectionset.graphql
+//     ^---- variable.graphql
+//          ^- meta.selectionset.graphql
+//           ^ punctuation.operation.graphql
+         name
+//<0--------- meta.selectionset.graphql
+//<0--------- meta.selectionset.graphql
+//<0--------- meta.selectionset.graphql
+//<0--------- meta.selectionset.graphql
+//       ^--- variable.graphql
+       }
+//<0---- meta.selectionset.graphql
+//<0---- meta.selectionset.graphql
+//<0---- meta.selectionset.graphql
+//<0---- meta.selectionset.graphql
+//     ^ punctuation.operation.graphql
+     }
+//<0-- meta.selectionset.graphql
+//<0-- meta.selectionset.graphql
+//<0-- meta.selectionset.graphql
+//   ^ punctuation.operation.graphql
+   }
+//<0 meta.selectionset.graphql
+//<0 meta.selectionset.graphql
+// ^ punctuation.operation.graphql
+}
+//<0 meta.selectionset.graphql
+//<0 punctuation.operation.graphql
+variables {
+//<0----- entity.name.function.graphql
+//       ^- meta.selectionset.graphql
+//        ^ punctuation.operation.graphql
+   "number_of_repos": 3
+//<0------------------- meta.selectionset.graphql
+// ^---------------- comment.line.graphql.js
+// ^ punctuation.whitespace.comment.leading.graphql
+}
+//<0 meta.selectionset.graphql
+//<0 punctuation.operation.graphql
+
+# From https://docs.github.com/en/graphql/guides/forming-calls-with-graphql
+//<0----------------------------------------------------------------------- comment.line.graphql.js

@@ -1,0 +1,347 @@
+# grammar: source.wikitext
+
+{{short description|JavaScript runtime environment}}
+#<0 punctuation.definition.tag.template.wikitext
+# ^---------------- entity.name.tag.local-name.wikitext
+#                  ^ keyword.operator.wikitext
+#                                                 ^- punctuation.definition.tag.template.wikitext
+{{Infobox software
+#<0 punctuation.definition.tag.template.wikitext
+# ^--------------- entity.name.tag.local-name.wikitext
+| name                   = Node.js
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+| logo                   = Node.js logo.svg
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+| author                 = [[Ryan Dahl]]
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^------------ string.quoted.internal-link.wikitext
+#                          ^- punctuation.definition.tag.link.internal.wikitext
+#                            ^-------- entity.other.attribute-name.wikitext
+#                                     ^- punctuation.definition.tag.link.internal.wikitext
+| developer              = [[OpenJS Foundation]]
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^-------------------- string.quoted.internal-link.wikitext
+#                          ^- punctuation.definition.tag.link.internal.wikitext
+#                            ^---------------- entity.other.attribute-name.wikitext
+#                                             ^- punctuation.definition.tag.link.internal.wikitext
+| released               = {{Start date and age|2009|05|27}}<ref>{{cite web
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^- punctuation.definition.tag.template.wikitext
+#                            ^----------------- entity.name.tag.local-name.wikitext
+#                                              ^ keyword.operator.wikitext
+#                                                   ^ keyword.operator.wikitext
+#                                                      ^ keyword.operator.wikitext
+#                                                         ^- punctuation.definition.tag.template.wikitext
+#                                                           ^---- meta.tag.metadata.ref.start.wikitext
+#                                                           ^ punctuation.definition.tag.begin.wikitext
+#                                                            ^-- entity.name.tag.wikitext
+#                                                               ^ punctuation.definition.tag.end.wikitext
+#                                                                ^--------- meta.block.ref.wikitext
+#                                                                ^- punctuation.definition.tag.template.wikitext
+#                                                                  ^------- entity.name.tag.local-name.wikitext
+  | url=https://github.com/joyent/node/tags?after=v0.0.4
+#<0----------------------------------------------------- meta.block.ref.wikitext
+# ^ keyword.operator.wikitext
+#   ^-- entity.other.attribute-name.local-name.wikitext
+#      ^ keyword.operator.equal.wikitext
+  | access-date = 2 August 2014|title=node-v0.x-archive on GitHub| website = [[GitHub]]}}</ref>
+#<0-------------------------------------------------------------------------------------- meta.block.ref.wikitext
+# ^ keyword.operator.wikitext
+#   ^----------- entity.other.attribute-name.local-name.wikitext
+#               ^ keyword.operator.equal.wikitext
+#                              ^ keyword.operator.wikitext
+#                               ^---- entity.other.attribute-name.local-name.wikitext
+#                                    ^ keyword.operator.equal.wikitext
+#                                                                ^ keyword.operator.wikitext
+#                                                                  ^------- entity.other.attribute-name.local-name.wikitext
+#                                                                          ^ keyword.operator.equal.wikitext
+#                                                                            ^--------- string.quoted.internal-link.wikitext
+#                                                                            ^- punctuation.definition.tag.link.internal.wikitext
+#                                                                              ^----- entity.other.attribute-name.wikitext
+#                                                                                    ^- punctuation.definition.tag.link.internal.wikitext
+#                                                                                      ^- punctuation.definition.tag.template.wikitext
+#                                                                                        ^----- meta.tag.metadata.ref.end.wikitext
+#                                                                                        ^- punctuation.definition.tag.begin.wikitext
+#                                                                                          ^-- entity.name.tag.wikitext
+#                                                                                             ^ punctuation.definition.tag.end.wikitext
+| latest release version = {{wikidata|property|edit|qualifier|P548=Q2804309|reference|P348}}
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^- punctuation.definition.tag.template.wikitext
+#                            ^------- entity.name.tag.local-name.wikitext
+#                                    ^ keyword.operator.wikitext
+#                                             ^ keyword.operator.wikitext
+#                                                  ^ keyword.operator.wikitext
+#                                                            ^ keyword.operator.wikitext
+#                                                             ^--- entity.other.attribute-name.local-name.wikitext
+#                                                                 ^ keyword.operator.equal.wikitext
+#                                                                          ^ keyword.operator.wikitext
+#                                                                                    ^ keyword.operator.wikitext
+#                                                                                         ^- punctuation.definition.tag.template.wikitext
+| latest release date    = {{start date and age|{{wikidata|qualifier|mdy|P548=Q2804309|P348|P577}}}}
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^- punctuation.definition.tag.template.wikitext
+#                            ^----------------- entity.name.tag.local-name.wikitext
+#                                              ^ keyword.operator.wikitext
+#                                               ^- punctuation.definition.tag.template.wikitext
+#                                                 ^------- entity.name.tag.local-name.wikitext
+#                                                         ^ keyword.operator.wikitext
+#                                                                   ^ keyword.operator.wikitext
+#                                                                       ^ keyword.operator.wikitext
+#                                                                        ^--- entity.other.attribute-name.local-name.wikitext
+#                                                                            ^ keyword.operator.equal.wikitext
+#                                                                                     ^ keyword.operator.wikitext
+#                                                                                          ^ keyword.operator.wikitext
+#                                                                                               ^--- punctuation.definition.tag.template.wikitext
+| programming language   = [[JavaScript]], [[C++]], [[Python (programming language)|Python]],
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^------------- string.quoted.internal-link.wikitext
+#                          ^- punctuation.definition.tag.link.internal.wikitext
+#                            ^--------- entity.other.attribute-name.wikitext
+#                                      ^- punctuation.definition.tag.link.internal.wikitext
+#                                          ^------ string.quoted.internal-link.wikitext
+#                                          ^- punctuation.definition.tag.link.internal.wikitext
+#                                            ^-- entity.other.attribute-name.wikitext
+#                                               ^- punctuation.definition.tag.link.internal.wikitext
+#                                                   ^--------------------------------------- string.quoted.internal-link.wikitext
+#                                                   ^- punctuation.definition.tag.link.internal.wikitext
+#                                                     ^---------------------------- entity.other.attribute-name.wikitext
+#                                                                                  ^ keyword.operator.wikitext
+#                                                                                         ^- punctuation.definition.tag.link.internal.wikitext
+ [[C (programming language)|C]]
+#^----------------------------- string.quoted.internal-link.wikitext
+#^- punctuation.definition.tag.link.internal.wikitext
+#  ^----------------------- entity.other.attribute-name.wikitext
+#                          ^ keyword.operator.wikitext
+#                            ^- punctuation.definition.tag.link.internal.wikitext
+| operating system       = [[z/OS]], [[Linux]], [[macOS]], [[Microsoft Windows]], [[SmartOS]],
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^------- string.quoted.internal-link.wikitext
+#                          ^- punctuation.definition.tag.link.internal.wikitext
+#                            ^--- entity.other.attribute-name.wikitext
+#                                ^- punctuation.definition.tag.link.internal.wikitext
+#                                    ^-------- string.quoted.internal-link.wikitext
+#                                    ^- punctuation.definition.tag.link.internal.wikitext
+#                                      ^---- entity.other.attribute-name.wikitext
+#                                           ^- punctuation.definition.tag.link.internal.wikitext
+#                                               ^-------- string.quoted.internal-link.wikitext
+#                                               ^- punctuation.definition.tag.link.internal.wikitext
+#                                                 ^---- entity.other.attribute-name.wikitext
+#                                                      ^- punctuation.definition.tag.link.internal.wikitext
+#                                                          ^-------------------- string.quoted.internal-link.wikitext
+#                                                          ^- punctuation.definition.tag.link.internal.wikitext
+#                                                            ^---------------- entity.other.attribute-name.wikitext
+#                                                                             ^- punctuation.definition.tag.link.internal.wikitext
+#                                                                                 ^---------- string.quoted.internal-link.wikitext
+#                                                                                 ^- punctuation.definition.tag.link.internal.wikitext
+#                                                                                   ^------ entity.other.attribute-name.wikitext
+#                                                                                          ^- punctuation.definition.tag.link.internal.wikitext
+ [[FreeBSD]], [[OpenBSD]], [[IBM AIX]]<ref name="supportedOS">{{cite web
+#^---------- string.quoted.internal-link.wikitext
+#^- punctuation.definition.tag.link.internal.wikitext
+#  ^------ entity.other.attribute-name.wikitext
+#         ^- punctuation.definition.tag.link.internal.wikitext
+#             ^---------- string.quoted.internal-link.wikitext
+#             ^- punctuation.definition.tag.link.internal.wikitext
+#               ^------ entity.other.attribute-name.wikitext
+#                      ^- punctuation.definition.tag.link.internal.wikitext
+#                          ^---------- string.quoted.internal-link.wikitext
+#                          ^- punctuation.definition.tag.link.internal.wikitext
+#                            ^------ entity.other.attribute-name.wikitext
+#                                   ^- punctuation.definition.tag.link.internal.wikitext
+#                                     ^--- meta.tag.metadata.ref.start.wikitext
+#                                     ^ punctuation.definition.tag.begin.wikitext
+#                                      ^-- entity.name.tag.wikitext
+#                                          ^----------------- meta.attribute.name.html
+#                                          ^--- entity.other.attribute-name.html
+#                                              ^ punctuation.separator.key-value.html
+#                                               ^------------ string.quoted.double.html
+#                                               ^ punctuation.definition.string.begin.html
+#                                                           ^ punctuation.definition.string.end.html
+#                                                            ^ meta.tag.metadata.ref.start.wikitext
+#                                                            ^ punctuation.definition.tag.end.wikitext
+#                                                             ^--------- meta.block.ref.wikitext
+#                                                             ^- punctuation.definition.tag.template.wikitext
+#                                                               ^------- entity.name.tag.local-name.wikitext
+ |url=https://github.com/nodejs/node/blob/master/BUILDING.md|title=nodejs/node|website=GitHub
+#<0------------------------------------------------------------------------------------------ meta.block.ref.wikitext
+#^ keyword.operator.wikitext
+# ^-- entity.other.attribute-name.local-name.wikitext
+#    ^ keyword.operator.equal.wikitext
+#                                                           ^ keyword.operator.wikitext
+#                                                            ^---- entity.other.attribute-name.local-name.wikitext
+#                                                                 ^ keyword.operator.equal.wikitext
+#                                                                             ^ keyword.operator.wikitext
+#                                                                              ^------ entity.other.attribute-name.local-name.wikitext
+#                                                                                     ^ keyword.operator.equal.wikitext
+ |date=13 April 2022}}</ref>
+#<0------------------- meta.block.ref.wikitext
+#^ keyword.operator.wikitext
+# ^--- entity.other.attribute-name.local-name.wikitext
+#     ^ keyword.operator.equal.wikitext
+#                   ^- punctuation.definition.tag.template.wikitext
+#                     ^----- meta.tag.metadata.ref.end.wikitext
+#                     ^- punctuation.definition.tag.begin.wikitext
+#                       ^-- entity.name.tag.wikitext
+#                          ^ punctuation.definition.tag.end.wikitext
+| genre                  = [[Runtime system|Runtime environment]]
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^------------------------------------- string.quoted.internal-link.wikitext
+#                          ^- punctuation.definition.tag.link.internal.wikitext
+#                            ^------------- entity.other.attribute-name.wikitext
+#                                          ^ keyword.operator.wikitext
+#                                                              ^- punctuation.definition.tag.link.internal.wikitext
+| license                = [[MIT License]]<ref>{{cite web
+#<0 keyword.operator.wikitext
+# ^---------------------- entity.other.attribute-name.local-name.wikitext
+#                        ^ keyword.operator.equal.wikitext
+#                          ^-------------- string.quoted.internal-link.wikitext
+#                          ^- punctuation.definition.tag.link.internal.wikitext
+#                            ^---------- entity.other.attribute-name.wikitext
+#                                       ^- punctuation.definition.tag.link.internal.wikitext
+#                                         ^---- meta.tag.metadata.ref.start.wikitext
+#                                         ^ punctuation.definition.tag.begin.wikitext
+#                                          ^-- entity.name.tag.wikitext
+#                                             ^ punctuation.definition.tag.end.wikitext
+#                                              ^--------- meta.block.ref.wikitext
+#                                              ^- punctuation.definition.tag.template.wikitext
+#                                                ^------- entity.name.tag.local-name.wikitext
+ |title=node/LICENSE at master
+#<0--------------------------- meta.block.ref.wikitext
+#^ keyword.operator.wikitext
+# ^---- entity.other.attribute-name.local-name.wikitext
+#      ^ keyword.operator.equal.wikitext
+ |url=https://github.com/nodejs/node/blob/master/LICENSE|website=GitHub
+#<0-------------------------------------------------------------------- meta.block.ref.wikitext
+#^ keyword.operator.wikitext
+# ^-- entity.other.attribute-name.local-name.wikitext
+#    ^ keyword.operator.equal.wikitext
+#                                                       ^ keyword.operator.wikitext
+#                                                        ^------ entity.other.attribute-name.local-name.wikitext
+#                                                               ^ keyword.operator.equal.wikitext
+ |publisher=Node.js Foundation|access-date = 17 September 2018|date=17 September 2018}}</ref>
+#<0------------------------------------------------------------------------------------ meta.block.ref.wikitext
+#^ keyword.operator.wikitext
+# ^-------- entity.other.attribute-name.local-name.wikitext
+#          ^ keyword.operator.equal.wikitext
+#                             ^ keyword.operator.wikitext
+#                              ^----------- entity.other.attribute-name.local-name.wikitext
+#                                          ^ keyword.operator.equal.wikitext
+#                                                             ^ keyword.operator.wikitext
+#                                                              ^--- entity.other.attribute-name.local-name.wikitext
+#                                                                  ^ keyword.operator.equal.wikitext
+#                                                                                    ^- punctuation.definition.tag.template.wikitext
+#                                                                                      ^----- meta.tag.metadata.ref.end.wikitext
+#                                                                                      ^- punctuation.definition.tag.begin.wikitext
+#                                                                                        ^-- entity.name.tag.wikitext
+#                                                                                           ^ punctuation.definition.tag.end.wikitext
+ <ref>{{cite web|title=The MIT License|url=https://opensource.org/licenses/MIT
+#^---- meta.tag.metadata.ref.start.wikitext
+#^ punctuation.definition.tag.begin.wikitext
+# ^-- entity.name.tag.wikitext
+#    ^ punctuation.definition.tag.end.wikitext
+#     ^----------------------------------------------------------------------- meta.block.ref.wikitext
+#     ^- punctuation.definition.tag.template.wikitext
+#       ^------- entity.name.tag.local-name.wikitext
+#               ^ keyword.operator.wikitext
+#                ^---- entity.other.attribute-name.local-name.wikitext
+#                     ^ keyword.operator.equal.wikitext
+#                                     ^ keyword.operator.wikitext
+#                                      ^-- entity.other.attribute-name.local-name.wikitext
+#                                         ^ keyword.operator.equal.wikitext
+  |website=Open Source Initiative|access-date = 17 September 2018|date=17 September 2018}}</ref>
+#<0--------------------------------------------------------------------------------------- meta.block.ref.wikitext
+# ^ keyword.operator.wikitext
+#  ^------ entity.other.attribute-name.local-name.wikitext
+#         ^ keyword.operator.equal.wikitext
+#                                ^ keyword.operator.wikitext
+#                                 ^----------- entity.other.attribute-name.local-name.wikitext
+#                                             ^ keyword.operator.equal.wikitext
+#                                                                ^ keyword.operator.wikitext
+#                                                                 ^--- entity.other.attribute-name.local-name.wikitext
+#                                                                     ^ keyword.operator.equal.wikitext
+#                                                                                       ^- punctuation.definition.tag.template.wikitext
+#                                                                                         ^----- meta.tag.metadata.ref.end.wikitext
+#                                                                                         ^- punctuation.definition.tag.begin.wikitext
+#                                                                                           ^-- entity.name.tag.wikitext
+#                                                                                              ^ punctuation.definition.tag.end.wikitext
+}}
+#<0 punctuation.definition.tag.template.wikitext
+
+'''Node.js''' is a [[cross-platform]], [[Open-source software|open-source]] [[JavaScript]]
+#<0---------- markup.bold.wikitext
+#                  ^----------------- string.quoted.internal-link.wikitext
+#                  ^- punctuation.definition.tag.link.internal.wikitext
+#                    ^------------- entity.other.attribute-name.wikitext
+#                                  ^- punctuation.definition.tag.link.internal.wikitext
+#                                      ^----------------------------------- string.quoted.internal-link.wikitext
+#                                      ^- punctuation.definition.tag.link.internal.wikitext
+#                                        ^------------------- entity.other.attribute-name.wikitext
+#                                                            ^ keyword.operator.wikitext
+#                                                                        ^- punctuation.definition.tag.link.internal.wikitext
+#                                                                           ^------------- string.quoted.internal-link.wikitext
+#                                                                           ^- punctuation.definition.tag.link.internal.wikitext
+#                                                                             ^--------- entity.other.attribute-name.wikitext
+#                                                                                       ^- punctuation.definition.tag.link.internal.wikitext
+[[Runtime environment|runtime environment]] that can run on [[Microsoft Windows|Windows]],
+#<0---------------------------------------- string.quoted.internal-link.wikitext
+#<0 punctuation.definition.tag.link.internal.wikitext
+# ^------------------ entity.other.attribute-name.wikitext
+#                    ^ keyword.operator.wikitext
+#                                        ^- punctuation.definition.tag.link.internal.wikitext
+#                                                           ^---------------------------- string.quoted.internal-link.wikitext
+#                                                           ^- punctuation.definition.tag.link.internal.wikitext
+#                                                             ^---------------- entity.other.attribute-name.wikitext
+#                                                                              ^ keyword.operator.wikitext
+#                                                                                      ^- punctuation.definition.tag.link.internal.wikitext
+[[Linux]], [[Unix]], [[macOS]], and more. Node.js runs on the [[V8 (JavaScript engine)|V8]]
+#<0------ string.quoted.internal-link.wikitext
+#<0 punctuation.definition.tag.link.internal.wikitext
+# ^---- entity.other.attribute-name.wikitext
+#      ^- punctuation.definition.tag.link.internal.wikitext
+#          ^------- string.quoted.internal-link.wikitext
+#          ^- punctuation.definition.tag.link.internal.wikitext
+#            ^--- entity.other.attribute-name.wikitext
+#                ^- punctuation.definition.tag.link.internal.wikitext
+#                    ^-------- string.quoted.internal-link.wikitext
+#                    ^- punctuation.definition.tag.link.internal.wikitext
+#                      ^---- entity.other.attribute-name.wikitext
+#                           ^- punctuation.definition.tag.link.internal.wikitext
+#                                                             ^---------------------------- string.quoted.internal-link.wikitext
+#                                                             ^- punctuation.definition.tag.link.internal.wikitext
+#                                                               ^--------------------- entity.other.attribute-name.wikitext
+#                                                                                     ^ keyword.operator.wikitext
+#                                                                                        ^- punctuation.definition.tag.link.internal.wikitext
+[[JavaScript engine]], and executes JavaScript code outside a [[web browser]].
+#<0------------------ string.quoted.internal-link.wikitext
+#<0 punctuation.definition.tag.link.internal.wikitext
+# ^---------------- entity.other.attribute-name.wikitext
+#                  ^- punctuation.definition.tag.link.internal.wikitext
+#                                                             ^-------------- string.quoted.internal-link.wikitext
+#                                                             ^- punctuation.definition.tag.link.internal.wikitext
+#                                                               ^---------- entity.other.attribute-name.wikitext
+#                                                                          ^- punctuation.definition.tag.link.internal.wikitext
+
+<!-- From https://en.wikipedia.org/w/index.php?title=Node.js&oldid=1221374117 -->
+#<0------------------------------------------------------------------------------ comment.block.html
+#<0- punctuation.definition.comment.html
+#                                                                             ^-- punctuation.definition.comment.html

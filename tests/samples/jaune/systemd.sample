@@ -1,0 +1,50 @@
+# grammar: source.systemd
+
+[Unit]
+#<0--- entity.name.section
+Description=Emacs text editor
+#<0-------------------------- meta.config-entry.systemd
+#<0-------- entity.name.tag
+#          ^ keyword.operator.assignment
+Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+#<0------------------------------------------------------------------ meta.config-entry.systemd
+#<0---------- entity.name.tag
+#            ^ keyword.operator.assignment
+
+[Service]
+#<0------ entity.name.section
+Type=notify
+#<0-------- meta.config-entry.systemd
+#<0- entity.name.tag
+#   ^ keyword.operator.assignment
+#    ^----- constant.language
+ExecStart=/usr/bin/emacs --fg-daemon
+#<0--------------------------------- meta.config-entry.systemd
+#<0------ entity.name.tag
+#        ^ keyword.operator.assignment
+
+# Emacs will exit with status 15 after having received SIGTERM, which
+# is the default "KillSignal" value systemd uses to stop services.
+SuccessExitStatus=15
+#<0----------------- meta.config-entry.systemd
+#<0-------------- entity.name.tag
+#                ^ keyword.operator.assignment
+#                 ^- constant.numeric
+
+# The location of the SSH auth socket varies by distribution, and some
+# set it from PAM, so don't override by default.
+# Environment=SSH_AUTH_SOCK=%t/keyring/ssh
+Restart=on-failure
+#<0--------------- meta.config-entry.systemd
+#<0---- entity.name.tag
+#      ^ keyword.operator.assignment
+#       ^--------- constant.language
+
+[Install]
+#<0------ entity.name.section
+WantedBy=default.target
+#<0-------------------- meta.config-entry.systemd
+#<0----- entity.name.tag
+#       ^ keyword.operator.assignment
+
+# From https://git.savannah.gnu.org/cgit/emacs.git/tree/etc/emacs.service

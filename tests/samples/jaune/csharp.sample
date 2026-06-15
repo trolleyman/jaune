@@ -1,0 +1,166 @@
+// grammar: source.cs
+
+using KCTest.Infrastructure.Database;
+//<0- keyword.other.directive.using.cs
+//    ^----- entity.name.type.namespace.cs
+//          ^ punctuation.accessor.cs
+//           ^------------- entity.name.type.namespace.cs
+//                         ^ punctuation.accessor.cs
+//                          ^------- entity.name.type.namespace.cs
+//                                  ^ punctuation.terminator.statement.cs
+using Microsoft.AspNetCore.Hosting;
+//<0- keyword.other.directive.using.cs
+//    ^-------- entity.name.type.namespace.cs
+//             ^ punctuation.accessor.cs
+//              ^--------- entity.name.type.namespace.cs
+//                        ^ punctuation.accessor.cs
+//                         ^------ entity.name.type.namespace.cs
+//                                ^ punctuation.terminator.statement.cs
+using Microsoft.EntityFrameworkCore;
+//<0- keyword.other.directive.using.cs
+//    ^-------- entity.name.type.namespace.cs
+//             ^ punctuation.accessor.cs
+//              ^------------------ entity.name.type.namespace.cs
+//                                 ^ punctuation.terminator.statement.cs
+using Microsoft.Extensions.DependencyInjection;
+//<0- keyword.other.directive.using.cs
+//    ^-------- entity.name.type.namespace.cs
+//             ^ punctuation.accessor.cs
+//              ^--------- entity.name.type.namespace.cs
+//                        ^ punctuation.accessor.cs
+//                         ^------------------ entity.name.type.namespace.cs
+//                                            ^ punctuation.terminator.statement.cs
+using Microsoft.Extensions.Hosting;
+//<0- keyword.other.directive.using.cs
+//    ^-------- entity.name.type.namespace.cs
+//             ^ punctuation.accessor.cs
+//              ^--------- entity.name.type.namespace.cs
+//                        ^ punctuation.accessor.cs
+//                         ^------ entity.name.type.namespace.cs
+//                                ^ punctuation.terminator.statement.cs
+
+namespace KCTest.API
+//<0----- storage.type.namespace.cs
+//        ^----- entity.name.type.namespace.cs
+//              ^ punctuation.accessor.cs
+//               ^-- entity.name.type.namespace.cs
+{
+//<0 punctuation.curlybrace.open.cs
+    public class Program
+//  ^----- storage.modifier.public.cs
+//         ^---- storage.type.class.cs
+//               ^------ entity.name.type.class.cs
+    {
+//  ^ punctuation.curlybrace.open.cs
+        public static void Main(string[] args)
+//      ^----- storage.modifier.public.cs
+//             ^----- storage.modifier.static.cs
+//                         ^--- entity.name.function.cs
+//                             ^ punctuation.parenthesis.open.cs
+//                                    ^ punctuation.squarebracket.open.cs
+//                                     ^ punctuation.squarebracket.close.cs
+//                                           ^ punctuation.parenthesis.close.cs
+        {
+//      ^ punctuation.curlybrace.open.cs
+            var host = CreateHostBuilder(args).Build();
+//          ^-- variable.other.readwrite.cs
+//              ^--- variable.other.readwrite.cs
+//                   ^ keyword.operator.assignment.cs
+//                     ^---------------- variable.other.readwrite.cs
+//                                      ^ punctuation.parenthesis.open.cs
+//                                       ^--- variable.other.readwrite.cs
+//                                           ^ punctuation.parenthesis.close.cs
+//                                             ^---- variable.other.readwrite.cs
+//                                                  ^ punctuation.parenthesis.open.cs
+//                                                   ^ punctuation.parenthesis.close.cs
+//                                                    ^ punctuation.terminator.statement.cs
+
+            using (var scope = host.Services.CreateScope())
+//          ^---- keyword.control.context.using.cs
+//                ^ punctuation.parenthesis.open.cs
+//                 ^-- variable.other.readwrite.cs
+//                     ^---- variable.other.readwrite.cs
+//                           ^ keyword.operator.assignment.cs
+//                             ^--- variable.other.object.cs
+//                                 ^ punctuation.accessor.cs
+//                                  ^------- variable.other.object.property.cs
+//                                           ^---------- variable.other.readwrite.cs
+//                                                      ^ punctuation.parenthesis.open.cs
+//                                                       ^- punctuation.parenthesis.close.cs
+            {
+//          ^ punctuation.curlybrace.open.cs
+                var db = scope.ServiceProvider.GetRequiredService<KCTestContext>();
+//              ^-- variable.other.readwrite.cs
+//                  ^- variable.other.readwrite.cs
+//                     ^ keyword.operator.assignment.cs
+//                       ^---- variable.other.object.cs
+//                            ^ punctuation.accessor.cs
+//                             ^-------------- variable.other.object.property.cs
+//                                             ^----------------- variable.other.readwrite.cs
+//                                                               ^ keyword.operator.relational.cs
+//                                                                ^------------ variable.other.readwrite.cs
+//                                                                             ^ keyword.operator.relational.cs
+//                                                                              ^ punctuation.parenthesis.open.cs
+//                                                                               ^ punctuation.parenthesis.close.cs
+//                                                                                ^ punctuation.terminator.statement.cs
+                db.Database.Migrate();
+//              ^- variable.other.object.cs
+//                ^ punctuation.accessor.cs
+//                 ^------- variable.other.object.property.cs
+//                          ^------ variable.other.readwrite.cs
+//                                 ^ punctuation.parenthesis.open.cs
+//                                  ^ punctuation.parenthesis.close.cs
+//                                   ^ punctuation.terminator.statement.cs
+            }
+//          ^ punctuation.curlybrace.close.cs
+
+            host.Run();
+//          ^--- variable.other.object.cs
+//               ^-- variable.other.readwrite.cs
+//                  ^ punctuation.parenthesis.open.cs
+//                   ^ punctuation.parenthesis.close.cs
+//                    ^ punctuation.terminator.statement.cs
+        }
+//      ^ punctuation.curlybrace.close.cs
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+//      ^----- storage.modifier.public.cs
+//             ^----- storage.modifier.static.cs
+//                                 ^---------------- entity.name.function.cs
+//                                                  ^ punctuation.parenthesis.open.cs
+//                                                         ^ punctuation.squarebracket.open.cs
+//                                                          ^ punctuation.squarebracket.close.cs
+//                                                                ^ punctuation.parenthesis.close.cs
+//                                                                  ^- keyword.operator.arrow.cs
+            Host.CreateDefaultBuilder(args)
+//          ^--- variable.other.object.cs
+//               ^------------------- variable.other.readwrite.cs
+//                                   ^ punctuation.parenthesis.open.cs
+//                                    ^--- variable.other.readwrite.cs
+//                                        ^ punctuation.parenthesis.close.cs
+                .ConfigureWebHostDefaults(webBuilder =>
+//               ^----------------------- variable.other.readwrite.cs
+//                                       ^ punctuation.parenthesis.open.cs
+//                                        ^--------- variable.other.readwrite.cs
+//                                                    ^ keyword.operator.relational.cs
+                {
+//              ^ punctuation.curlybrace.open.cs
+                    webBuilder.UseStartup<Startup>();
+//                  ^--------- variable.other.object.cs
+//                             ^--------- variable.other.readwrite.cs
+//                                       ^ keyword.operator.relational.cs
+//                                        ^------ variable.other.readwrite.cs
+//                                               ^ keyword.operator.relational.cs
+//                                                ^ punctuation.parenthesis.open.cs
+//                                                 ^ punctuation.parenthesis.close.cs
+                });
+//              ^ punctuation.curlybrace.close.cs
+//               ^ punctuation.parenthesis.close.cs
+//                ^ punctuation.terminator.statement.cs
+    }
+//  ^ punctuation.curlybrace.close.cs
+}
+//<0 punctuation.curlybrace.close.cs
+
+// From https://github.com/Jadhielv/KCTest/blob/master/Backend/src/KCTest.API/Program.cs
+//<0------------------------------------------------------------------------------------ comment.line.double-slash.cs

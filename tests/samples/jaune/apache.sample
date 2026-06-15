@@ -1,0 +1,82 @@
+# grammar: source.apacheconf
+
+# Apache httpd v2.4 minimal configuration
+#<0-------------------------------------- comment.line.hash.ini
+# see https://wiki.apache.org/httpd/Minimal_Config for documentation
+#<0----------------------------------------------------------------- comment.line.hash.ini
+
+ServerRoot ${GITPOD_REPO_ROOT}
+#<0------- keyword.core.apacheconf
+
+PidFile ${APACHE_PID_FILE}
+#<0---- keyword.mpm.apacheconf
+User ${APACHE_RUN_USER}
+#<0- keyword.mpm.apacheconf
+Group ${APACHE_RUN_GROUP}
+#<0-- keyword.mpm.apacheconf
+
+# Modules as installed/activated via apt-get
+#<0----------------------------------------- comment.line.hash.ini
+IncludeOptional /etc/apache2/mods-enabled/*.load
+#<0------------ keyword.core.apacheconf
+IncludeOptional /etc/apache2/mods-enabled/*.conf
+#<0------------ keyword.core.apacheconf
+
+# Configure hostname and port for server
+#<0------------------------------------- comment.line.hash.ini
+ServerName ${APACHE_SERVER_NAME}
+#<0------- keyword.core.apacheconf
+Listen *:8080
+#<0--- keyword.mpm.apacheconf
+#        ^--- constant.numeric.integer.decimal.apacheconf
+
+# Configure Logging
+#<0---------------- comment.line.hash.ini
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+#<0------ keyword.log.apacheconf
+CustomLog ${APACHE_LOG_DIR}/access.log common
+#<0------ keyword.log.apacheconf
+ErrorLog ${APACHE_LOG_DIR}/error.log
+#<0----- keyword.core.apacheconf
+
+# Never change this block
+#<0---------------------- comment.line.hash.ini
+<Directory />
+#<0 punctuation.definition.tag.apacheconf
+#^-------- entity.tag.apacheconf
+#          ^ string.value.apacheconf
+#           ^ punctuation.definition.tag.apacheconf
+    AllowOverride None
+#   ^------------ keyword.core.apacheconf
+    Require all denied
+#   ^------ keyword.core.apacheconf
+</Directory>
+#<0 punctuation.definition.tag.apacheconf
+# ^-------- entity.tag.apacheconf
+#          ^ punctuation.definition.tag.apacheconf
+
+# Direcrory and files to be served
+#<0------------------------------- comment.line.hash.ini
+DirectoryIndex index.html
+#<0----------- keyword.dir.apacheconf
+DocumentRoot "${GITPOD_REPO_ROOT}/www"
+#<0--------- keyword.core.apacheconf
+<Directory "${GITPOD_REPO_ROOT}/www">
+#<0 punctuation.definition.tag.apacheconf
+#^-------- entity.tag.apacheconf
+#          ^------------------------ string.value.apacheconf
+#                                   ^ punctuation.definition.tag.apacheconf
+    Require all granted
+#   ^------ keyword.core.apacheconf
+</Directory>
+#<0 punctuation.definition.tag.apacheconf
+# ^-------- entity.tag.apacheconf
+#          ^ punctuation.definition.tag.apacheconf
+
+# Include conf installed via apt-get
+#<0--------------------------------- comment.line.hash.ini
+IncludeOptional /etc/apache2/conf-enabled/*.conf
+#<0------------ keyword.core.apacheconf
+
+# https://github.com/gitpod-io/apache-example/blob/master/apache/apache.conf
+#<0------------------------------------------------------------------------- comment.line.hash.ini

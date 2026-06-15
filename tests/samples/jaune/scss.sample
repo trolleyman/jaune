@@ -1,0 +1,95 @@
+// grammar: source.css.scss
+
+nav {
+//<0 entity.name.tag.css
+//  ^ meta.property-list.scss
+//  ^ punctuation.section.property-list.begin.bracket.curly.scss
+  ul {
+//<0-- meta.property-list.scss
+//^- entity.name.tag.css
+//   ^ meta.property-list.scss
+//   ^ punctuation.section.property-list.begin.bracket.curly.scss
+    margin: 0;
+//<0---------- meta.property-list.scss
+//<0---------- meta.property-list.scss
+//  ^----- meta.property-name.scss
+//  ^----- support.type.property-name.css
+//        ^ punctuation.separator.key-value.scss
+//          ^ constant.numeric.css
+//           ^ punctuation.terminator.rule.scss
+    padding: 0;
+//<0----------- meta.property-list.scss
+//<0----------- meta.property-list.scss
+//  ^------ meta.property-name.scss
+//  ^------ support.type.property-name.css
+//         ^ punctuation.separator.key-value.scss
+//           ^ constant.numeric.css
+//            ^ punctuation.terminator.rule.scss
+    list-style: none;
+//<0----------------- meta.property-list.scss
+//<0----------------- meta.property-list.scss
+//  ^--------- meta.property-name.scss
+//  ^--------- support.type.property-name.css
+//            ^ punctuation.separator.key-value.scss
+//              ^--- support.constant.property-value.css
+//                  ^ punctuation.terminator.rule.scss
+  }
+//<0 meta.property-list.scss
+//<0 meta.property-list.scss
+//^ punctuation.section.property-list.end.bracket.curly.scss
+
+  li { display: inline-block; }
+//<0--------------------------- meta.property-list.scss
+//^- entity.name.tag.css
+//   ^------------------------- meta.property-list.scss
+//   ^ punctuation.section.property-list.begin.bracket.curly.scss
+//     ^------ meta.property-name.scss
+//     ^------ support.type.property-name.css
+//            ^ punctuation.separator.key-value.scss
+//              ^----------- support.constant.property-value.css
+//                          ^ punctuation.terminator.rule.scss
+//                            ^ punctuation.section.property-list.end.bracket.curly.scss
+
+  a {
+//<0- meta.property-list.scss
+//^ entity.name.tag.css
+//  ^ meta.property-list.scss
+//  ^ punctuation.section.property-list.begin.bracket.curly.scss
+    display: block;
+//<0--------------- meta.property-list.scss
+//<0--------------- meta.property-list.scss
+//  ^------ meta.property-name.scss
+//  ^------ support.type.property-name.css
+//         ^ punctuation.separator.key-value.scss
+//           ^---- support.constant.property-value.css
+//                ^ punctuation.terminator.rule.scss
+    padding: 6px 12px;
+//<0------------------ meta.property-list.scss
+//<0------------------ meta.property-list.scss
+//  ^------ meta.property-name.scss
+//  ^------ support.type.property-name.css
+//         ^ punctuation.separator.key-value.scss
+//           ^-- constant.numeric.css
+//            ^- keyword.other.unit.${2:/downcase}.css
+//               ^--- constant.numeric.css
+//                 ^- keyword.other.unit.${2:/downcase}.css
+//                   ^ punctuation.terminator.rule.scss
+    text-decoration: none;
+//<0---------------------- meta.property-list.scss
+//<0---------------------- meta.property-list.scss
+//  ^-------------- meta.property-name.scss
+//  ^-------------- support.type.property-name.css
+//                 ^ punctuation.separator.key-value.scss
+//                   ^--- support.constant.property-value.css
+//                       ^ punctuation.terminator.rule.scss
+  }
+//<0 meta.property-list.scss
+//<0 meta.property-list.scss
+//^ punctuation.section.property-list.end.bracket.curly.scss
+}
+//<0 meta.property-list.scss
+//<0 punctuation.section.property-list.end.bracket.curly.scss
+
+// From https://sass-lang.com/guide/
+//<0-------------------------------- comment.line.scss
+//<0 punctuation.definition.comment.scss

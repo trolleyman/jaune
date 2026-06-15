@@ -1,0 +1,127 @@
+// grammar: source.wgsl
+
+struct CoolMaterial {
+//<0-- keyword.declaration.struct.wgsl storage.type.wgsl
+//     ^----------- entity.name.type.wgsl
+//                  ^ punctuation.brackets.curly.wgsl
+    color: vec4<f32>,
+//  ^---- variable.other.wgsl
+//         ^--- storage.type.wgsl
+//             ^ punctuation.brackets.angle.wgsl
+//              ^-- storage.type.wgsl
+//                 ^ punctuation.brackets.angle.wgsl
+//                  ^ punctuation.comma.wgsl
+};
+//<0 punctuation.brackets.curly.wgsl
+//<1 punctuation.semi.wgsl
+
+@group(1) @binding(0)
+//<0-- meta.attribute.wgsl
+//<0 keyword.operator.attribute.at
+//<1-- entity.name.attribute.wgsl
+//    ^ punctuation.brackets.round.wgsl
+//     ^ constant.numeric.decimal.wgsl
+//      ^ punctuation.brackets.round.wgsl
+//        ^------- meta.attribute.wgsl
+//        ^ keyword.operator.attribute.at
+//         ^------ entity.name.attribute.wgsl
+//                ^ punctuation.brackets.round.wgsl
+//                 ^ constant.numeric.decimal.wgsl
+//                  ^ punctuation.brackets.round.wgsl
+var<uniform> material: CoolMaterial;
+//<0 keyword.other.wgsl storage.type.wgsl
+// ^ punctuation.brackets.angle.wgsl
+//  ^------ keyword.control.wgsl
+//         ^ punctuation.brackets.angle.wgsl
+//           ^------- variable.other.wgsl
+//                     ^----------- entity.name.type.wgsl
+//                                 ^ punctuation.semi.wgsl
+@group(1) @binding(1)
+//<0-- meta.attribute.wgsl
+//<0 keyword.operator.attribute.at
+//<1-- entity.name.attribute.wgsl
+//    ^ punctuation.brackets.round.wgsl
+//     ^ constant.numeric.decimal.wgsl
+//      ^ punctuation.brackets.round.wgsl
+//        ^------- meta.attribute.wgsl
+//        ^ keyword.operator.attribute.at
+//         ^------ entity.name.attribute.wgsl
+//                ^ punctuation.brackets.round.wgsl
+//                 ^ constant.numeric.decimal.wgsl
+//                  ^ punctuation.brackets.round.wgsl
+var color_texture: texture_2d<f32>;
+//<0 keyword.other.wgsl storage.type.wgsl
+//  ^------------ variable.other.wgsl
+//                 ^--------- variable.other.wgsl
+//                           ^ punctuation.brackets.angle.wgsl
+//                            ^-- storage.type.wgsl
+//                               ^ punctuation.brackets.angle.wgsl
+//                                ^ punctuation.semi.wgsl
+@group(1) @binding(2)
+//<0-- meta.attribute.wgsl
+//<0 keyword.operator.attribute.at
+//<1-- entity.name.attribute.wgsl
+//    ^ punctuation.brackets.round.wgsl
+//     ^ constant.numeric.decimal.wgsl
+//      ^ punctuation.brackets.round.wgsl
+//        ^------- meta.attribute.wgsl
+//        ^ keyword.operator.attribute.at
+//         ^------ entity.name.attribute.wgsl
+//                ^ punctuation.brackets.round.wgsl
+//                 ^ constant.numeric.decimal.wgsl
+//                  ^ punctuation.brackets.round.wgsl
+var color_sampler: sampler;
+//<0 keyword.other.wgsl storage.type.wgsl
+//  ^------------ variable.other.wgsl
+//                 ^------ variable.other.wgsl
+//                        ^ punctuation.semi.wgsl
+
+@fragment
+//<0----- meta.attribute.wgsl
+//<0 keyword.operator.attribute.at
+//<1----- entity.name.attribute.wgsl
+fn fragment(
+//<0 keyword.other.fn.wgsl
+// ^-------- meta.function.call.wgsl
+// ^------- entity.name.function.wgsl
+//         ^ punctuation.brackets.round.wgsl
+    #import bevy_pbr::mesh_vertex_output
+//<0------------------------------------ meta.function.call.wgsl
+//   ^----- variable.other.wgsl
+//          ^------- variable.other.wgsl
+//                    ^----------------- variable.other.wgsl
+) -> @location(0) vec4<f32> {
+//<0 meta.function.call.wgsl
+//<0 punctuation.brackets.round.wgsl
+//^- keyword.operator.arrow.skinny.wgsl
+//   ^-------- meta.attribute.wgsl
+//   ^ keyword.operator.attribute.at
+//    ^------- entity.name.attribute.wgsl
+//            ^ punctuation.brackets.round.wgsl
+//             ^ constant.numeric.decimal.wgsl
+//              ^ punctuation.brackets.round.wgsl
+//                ^--- storage.type.wgsl
+//                    ^ punctuation.brackets.angle.wgsl
+//                     ^-- storage.type.wgsl
+//                        ^ punctuation.brackets.angle.wgsl
+//                          ^ punctuation.brackets.curly.wgsl
+    return material.color * textureSample(color_texture, color_sampler, uv);
+//  ^----- keyword.control.wgsl
+//         ^------- variable.other.wgsl
+//                 ^ keyword.operator.access.dot.wgsl
+//                        ^ keyword.operator.math.wgsl
+//                          ^---------------------------------------------- meta.function.call.wgsl
+//                          ^------------ entity.name.function.wgsl
+//                                       ^ punctuation.brackets.round.wgsl
+//                                        ^------------ variable.other.wgsl
+//                                                     ^ punctuation.comma.wgsl
+//                                                       ^------------ variable.other.wgsl
+//                                                                    ^ punctuation.comma.wgsl
+//                                                                      ^- variable.other.wgsl
+//                                                                        ^ punctuation.brackets.round.wgsl
+//                                                                         ^ punctuation.semi.wgsl
+}
+//<0 punctuation.brackets.curly.wgsl
+
+// From https://bevyengine.org/news/bevy-0-8/
+//<0----------------------------------------- comment.line.double-slash.wgsl

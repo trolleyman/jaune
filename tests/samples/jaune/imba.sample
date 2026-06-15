@@ -1,0 +1,598 @@
+// grammar: source.imba
+
+global css body m:0 p:0 rd:lg bg:yellow1 of:hidden
+//<0---------------------------------------------- meta.style.imba
+//<0-- keyword.control.export.imba
+//     ^-- storage.type.style.imba
+//         ^---- meta.selector.css
+//             ^ punctuation.separator.sel-properties.css
+//              ^- meta.property-name.css
+//              ^ support.type.property-name.css
+//               ^ punctuation.separator.key-value.css
+//                ^ constant.numeric.css
+//                  ^- meta.property-name.css
+//                  ^ support.type.property-name.css
+//                   ^ punctuation.separator.key-value.css
+//                    ^ constant.numeric.css
+//                      ^-- meta.property-name.css
+//                      ^- support.type.property-name.css
+//                        ^ punctuation.separator.key-value.css
+//                         ^- support.constant.size.property-value.css
+//                            ^-- meta.property-name.css
+//                            ^- support.type.property-name.css
+//                              ^ punctuation.separator.key-value.css
+//                               ^------ support.constant.property-value.css
+//                                       ^-- meta.property-name.css
+//                                       ^- support.type.property-name.css
+//                                         ^ punctuation.separator.key-value.css
+//                                          ^----- support.constant.property-value.css
+tag value-picker
+//<0 storage.type.class.imba
+//  ^----------- variable.other.readwrite.imba
+	css w:100px h:40px pos:rel
+//<0----------------------- meta.style.imba
+//<1 storage.type.style.imba
+//   ^- meta.property-name.css
+//   ^ support.type.property-name.css
+//    ^ punctuation.separator.key-value.css
+//     ^---- constant.numeric.css
+//        ^- keyword.other.unit.${2:/downcase}.css
+//           ^- meta.property-name.css
+//           ^ support.type.property-name.css
+//            ^ punctuation.separator.key-value.css
+//             ^--- constant.numeric.css
+//               ^- keyword.other.unit.${2:/downcase}.css
+//                  ^--- meta.property-name.css
+//                  ^-- support.type.property-name.css
+//                     ^ punctuation.separator.key-value.css
+//                      ^-- support.constant.property-value.css
+		d:hgrid ji:center ai:center
+//<0------------------------- meta.style.imba
+//<0 meta.selector.css
+//<1 punctuation.separator.sel-properties.css
+//^- meta.property-name.css
+//^ support.type.property-name.css
+// ^ punctuation.separator.key-value.css
+//  ^---- support.constant.property-value.css
+//        ^-- meta.property-name.css
+//        ^- support.type.property-name.css
+//          ^ punctuation.separator.key-value.css
+//           ^----- support.constant.property-value.css
+//                  ^-- meta.property-name.css
+//                  ^- support.type.property-name.css
+//                    ^ punctuation.separator.key-value.css
+//                     ^----- support.constant.property-value.css
+	css .item h:100% pos:rel tween:styles 0.1s ease-out
+//<0------------------------------------------------ meta.style.imba
+//<1 storage.type.style.imba
+//   ^----- meta.selector.css
+//        ^ punctuation.separator.sel-properties.css
+//         ^- meta.property-name.css
+//         ^ support.type.property-name.css
+//          ^ punctuation.separator.key-value.css
+//           ^--- constant.numeric.css
+//              ^ keyword.other.unit.percentage.css
+//                ^--- meta.property-name.css
+//                ^-- support.type.property-name.css
+//                   ^ punctuation.separator.key-value.css
+//                    ^-- support.constant.property-value.css
+//                        ^----- meta.property-name.css
+//                        ^---- support.type.property-name.css
+//                             ^ punctuation.separator.key-value.css
+//                              ^----- support.constant.property-value.css
+//                                     ^--- constant.numeric.css
+//                                        ^ keyword.other.unit.${2:/downcase}.css
+//                                          ^------- support.constant.property-value.css
+
+	def update e
+//<1 storage.type.function.imba
+//   ^----- variable.other.readwrite.imba
+//          ^ variable.other.readwrite.imba
+		data = options[e.x]
+//<0 invalid.whitespace
+//^--- variable.other.readwrite.imba
+//     ^ keyword.operator.assignment.imba
+//       ^------ variable.other.readwrite.imba
+//              ^ meta.brace.square.imba
+//               ^ variable.other.readwrite.imba
+//                ^ punctuation.accessor.imba
+//                 ^ variable.other.property.imba
+//                  ^ meta.brace.square.imba
+
+	<self @touch.stop.fit(0,options.length - 1,1)=update>
+//<1-------------------------------------------------- meta.tag.imba
+//<1 punctuation.section.tag.open.imba
+//^--- entity.name.tag.special.imba
+//     ^-------------- meta.attribute.directive.vue
+//     ^ punctuation.attribute-shorthand.event.html.vue
+//      ^---- entity.other.attribute-name.html.vue
+//           ^ punctuation.attribute-shorthand.bind.html.vue
+//            ^--- entity.other.attribute-name.html.vue
+//                ^ punctuation.attribute-shorthand.bind.html.vue
+//                 ^-- entity.other.attribute-name.html.vue
+//                    ^----------------------- meta.tag.expression.imba
+//                    ^ punctuation.section.tag.imba
+//                     ^ constant.numeric.decimal.imba
+//                      ^ punctuation.separator.comma.imba
+//                       ^------ variable.other.readwrite.imba
+//                              ^------ meta.attribute.directive.vue
+//                              ^ punctuation.attribute-shorthand.bind.html.vue
+//                               ^----- entity.other.attribute-name.html.vue
+//                                        ^ constant.numeric.decimal.imba
+//                                         ^ punctuation.separator.comma.imba
+//                                          ^ constant.numeric.decimal.imba
+//                                           ^ punctuation.section.tag.imba
+//                                            ^ keyword.operator.tag.assignment
+//                                             ^----- variable.other.readwrite.imba
+//                                                   ^ punctuation.section.tag.close.imba
+		for item in options
+//<0 invalid.whitespace
+//^-- keyword.control.imba
+//    ^--- variable.other.readwrite.imba
+//         ^- keyword.operator.imba
+//            ^------ variable.other.readwrite.imba
+			<div.item[$value:{item}] .sel=(item==data)>
+//<0 invalid.whitespace
+// ^------------------------------------------ meta.tag.imba
+// ^ punctuation.section.tag.open.imba
+//     ^---- meta.attribute.directive.vue
+//     ^ punctuation.attribute-shorthand.bind.html.vue
+//      ^--- entity.other.attribute-name.html.vue
+//          ^-------------- meta.tag.expression.imba
+//          ^ punctuation.section.tag.imba
+//           ^------ meta.property-name.css
+//           ^----- support.type.property-name.variable.css
+//                 ^ punctuation.separator.key-value.css
+//                   ^--- support.constant.property-value.css
+//                        ^ punctuation.section.tag.imba
+//                          ^---------------- meta.attribute.directive.vue
+//                          ^ punctuation.attribute-shorthand.bind.html.vue
+//                           ^-- entity.other.attribute-name.html.vue
+//                              ^ punctuation.separator.key-value.html.vue
+//                               ^----------- source.ts.embedded.html.vue
+//                               ^ meta.brace.round.ts
+//                                ^--- variable.other.readwrite.ts
+//                                    ^- keyword.operator.comparison.ts
+//                                      ^--- variable.other.readwrite.ts
+//                                          ^ meta.brace.round.ts
+//                                           ^ punctuation.section.tag.close.imba
+
+tag stroke-picker < value-picker
+//<0 storage.type.class.imba
+//  ^------------ variable.other.readwrite.imba
+//                ^ keyword.operator.relational.imba
+//                  ^----------- variable.other.readwrite.imba
+	css .item bg:black w:calc($value*1px) h:40% rd:sm
+//<0---------------------------------------------- meta.style.imba
+//<1 storage.type.style.imba
+//   ^----- meta.selector.css
+//        ^ punctuation.separator.sel-properties.css
+//         ^-- meta.property-name.css
+//         ^- support.type.property-name.css
+//           ^ punctuation.separator.key-value.css
+//            ^---- support.constant.color.w3c-standard-color-name.css
+//                  ^- meta.property-name.css
+//                  ^ support.type.property-name.css
+//                   ^ punctuation.separator.key-value.css
+//                    ^--------------- meta.function.calc.css
+//                    ^--- support.function.calc.css
+//                        ^ punctuation.section.function.begin.bracket.round.css
+//                               ^ keyword.operator.arithmetic.css
+//                                ^-- constant.numeric.css
+//                                 ^- keyword.other.unit.${2:/downcase}.css
+//                                   ^ punctuation.section.function.end.bracket.round.css
+//                                     ^- meta.property-name.css
+//                                     ^ support.type.property-name.css
+//                                      ^ punctuation.separator.key-value.css
+//                                       ^-- constant.numeric.css
+//                                         ^ keyword.other.unit.percentage.css
+//                                           ^-- meta.property-name.css
+//                                           ^- support.type.property-name.css
+//                                             ^ punctuation.separator.key-value.css
+//                                              ^- support.constant.size.property-value.css
+		o:0.3 @hover:0.8 .sel:1
+//<0--------------------- meta.style.imba
+//<0 meta.selector.css
+//<1 punctuation.separator.sel-properties.css
+//^- meta.property-name.css
+//^ support.type.property-name.css
+// ^ punctuation.separator.key-value.css
+//  ^-- constant.numeric.css
+//      ^------ meta.property-name.css
+//      ^----- support.type.property-name.modifier.css
+//            ^ punctuation.separator.key-value.css
+//             ^-- constant.numeric.css
+//                 ^---- meta.property-name.css
+//                 ^--- support.type.property-name.modifier.flag.css
+//                     ^ punctuation.separator.key-value.css
+//                      ^ constant.numeric.css
+
+tag color-picker < value-picker
+//<0 storage.type.class.imba
+//  ^----------- variable.other.readwrite.imba
+//               ^ keyword.operator.relational.imba
+//                 ^----------- variable.other.readwrite.imba
+	css .item js:stretch rdt:lg bg:$value mx:2px scale-y.sel:1.5
+//<0--------------------------------------------------------- meta.style.imba
+//<1 storage.type.style.imba
+//   ^----- meta.selector.css
+//        ^ punctuation.separator.sel-properties.css
+//         ^-- meta.property-name.css
+//         ^- support.type.property-name.css
+//           ^ punctuation.separator.key-value.css
+//            ^------ support.constant.property-value.css
+//                    ^--- meta.property-name.css
+//                    ^-- support.type.property-name.css
+//                       ^ punctuation.separator.key-value.css
+//                        ^- support.constant.size.property-value.css
+//                           ^-- meta.property-name.css
+//                           ^- support.type.property-name.css
+//                             ^ punctuation.separator.key-value.css
+//                              ^----- support.constant.property-value.css
+//                                     ^-- meta.property-name.css
+//                                     ^- support.type.property-name.css
+//                                       ^ punctuation.separator.key-value.css
+//                                        ^-- constant.numeric.css
+//                                         ^- keyword.other.unit.${2:/downcase}.css
+//                                            ^----------- meta.property-name.css
+//                                            ^------ support.type.property-name.css
+//                                                   ^--- support.type.property-name.modifier.flag.css
+//                                                       ^ punctuation.separator.key-value.css
+//                                                        ^-- constant.numeric.css
+
+tag app-canvas
+//<0 storage.type.class.imba
+//  ^--------- variable.other.readwrite.imba
+	prop dpr = window.devicePixelRatio
+//<1- storage.type.imba
+//    ^-- variable.other.readwrite.imba
+//        ^ keyword.operator.assignment.imba
+//          ^----- variable.other.readwrite.imba
+//                ^ punctuation.accessor.imba
+//                 ^--------------- variable.other.property.imba
+	prop state = {}
+//<1- storage.type.imba
+//    ^---- variable.other.readwrite.imba
+//          ^ keyword.operator.assignment.imba
+//            ^- meta.brace.curly.imba
+
+	def draw e
+//<1 storage.type.function.imba
+//   ^--- variable.other.readwrite.imba
+//        ^ variable.other.readwrite.imba
+		let path = e.#path ||= new Path2D
+//<0 invalid.whitespace
+//^-- storage.type.imba
+//    ^--- variable.other.readwrite.imba
+//         ^ keyword.operator.assignment.imba
+//           ^ variable.other.readwrite.imba
+//             ^---- variable.other.private.imba
+//                   ^- keyword.operator.logical.imba
+//                     ^ keyword.operator.assignment.imba
+//                       ^-- keyword.operator.imba
+//                           ^----- variable.other.class.imba
+		let ctx = $canvas.getContext('2d')
+//<0 invalid.whitespace
+//^-- storage.type.imba
+//    ^-- variable.other.readwrite.imba
+//        ^ keyword.operator.assignment.imba
+//          ^------ variable.other.internal.imba
+//                 ^ punctuation.accessor.imba
+//                  ^--------- variable.other.property.imba
+//                            ^ meta.brace.round.imba
+//                             ^--- string.quoted.single.imba
+//                             ^ punctuation.definition.string.begin.imba
+//                                ^ punctuation.definition.string.end.imba
+//                                 ^ meta.brace.round.imba
+		path.lineTo(e.x * dpr,e.y * dpr)
+//<0 invalid.whitespace
+//^--- variable.other.readwrite.imba
+//    ^ punctuation.accessor.imba
+//     ^----- variable.other.property.imba
+//           ^ meta.brace.round.imba
+//            ^ variable.other.readwrite.imba
+//             ^ punctuation.accessor.imba
+//              ^ variable.other.property.imba
+//                ^ keyword.operator.arithmetic.imba
+//                  ^-- variable.other.readwrite.imba
+//                     ^ punctuation.separator.comma.imba
+//                      ^ variable.other.readwrite.imba
+//                       ^ punctuation.accessor.imba
+//                        ^ variable.other.property.imba
+//                          ^ keyword.operator.arithmetic.imba
+//                            ^-- variable.other.readwrite.imba
+//                               ^ meta.brace.round.imba
+		ctx.lineWidth = state.stroke * dpr
+//<0 invalid.whitespace
+//^-- variable.other.readwrite.imba
+//   ^ punctuation.accessor.imba
+//    ^-------- variable.other.property.imba
+//              ^ keyword.operator.assignment.imba
+//                ^---- variable.other.readwrite.imba
+//                     ^ punctuation.accessor.imba
+//                      ^----- variable.other.property.imba
+//                             ^ keyword.operator.arithmetic.imba
+//                               ^-- variable.other.readwrite.imba
+		ctx.strokeStyle = state.color
+//<0 invalid.whitespace
+//^-- variable.other.readwrite.imba
+//   ^ punctuation.accessor.imba
+//    ^---------- variable.other.property.imba
+//                ^ keyword.operator.assignment.imba
+//                  ^---- variable.other.readwrite.imba
+//                       ^ punctuation.accessor.imba
+//                        ^---- variable.other.property.imba
+		ctx.stroke(path)
+//<0 invalid.whitespace
+//^-- variable.other.readwrite.imba
+//   ^ punctuation.accessor.imba
+//    ^----- variable.other.property.imba
+//          ^ meta.brace.round.imba
+//           ^--- variable.other.readwrite.imba
+//               ^ meta.brace.round.imba
+	
+	def resized e
+//<1 storage.type.function.imba
+//   ^------ variable.other.readwrite.imba
+//           ^ variable.other.readwrite.imba
+		$canvas.width = offsetWidth * dpr
+//<0 invalid.whitespace
+//^------ variable.other.internal.imba
+//       ^ punctuation.accessor.imba
+//        ^---- variable.other.property.imba
+//              ^ keyword.operator.assignment.imba
+//                ^---------- variable.other.readwrite.imba
+//                            ^ keyword.operator.arithmetic.imba
+//                              ^-- variable.other.readwrite.imba
+		$canvas.height = offsetHeight * dpr
+//<0 invalid.whitespace
+//^------ variable.other.internal.imba
+//       ^ punctuation.accessor.imba
+//        ^----- variable.other.property.imba
+//               ^ keyword.operator.assignment.imba
+//                 ^----------- variable.other.readwrite.imba
+//                              ^ keyword.operator.arithmetic.imba
+//                                ^-- variable.other.readwrite.imba
+
+	<self @resize=resized @touch.prevent.moved.fit(self)=draw>
+//<1------------------------------------------------------- meta.tag.imba
+//<1 punctuation.section.tag.open.imba
+//^--- entity.name.tag.special.imba
+//     ^-------------- meta.attribute.directive.vue
+//     ^ punctuation.attribute-shorthand.event.html.vue
+//      ^----- entity.other.attribute-name.html.vue
+//            ^ punctuation.separator.key-value.html.vue
+//             ^------ source.ts.embedded.html.vue
+//             ^------ variable.other.readwrite.ts
+//                     ^----------------------- meta.attribute.directive.vue
+//                     ^ punctuation.attribute-shorthand.event.html.vue
+//                      ^---- entity.other.attribute-name.html.vue
+//                           ^ punctuation.attribute-shorthand.bind.html.vue
+//                            ^------ entity.other.attribute-name.html.vue
+//                                   ^ punctuation.attribute-shorthand.bind.html.vue
+//                                    ^---- entity.other.attribute-name.html.vue
+//                                         ^ punctuation.attribute-shorthand.bind.html.vue
+//                                          ^-- entity.other.attribute-name.html.vue
+//                                             ^----- meta.tag.expression.imba
+//                                             ^ punctuation.section.tag.imba
+//                                              ^--- variable.language.this.imba
+//                                                  ^ punctuation.section.tag.imba
+//                                                   ^ keyword.operator.tag.assignment
+//                                                    ^--- variable.other.readwrite.imba
+//                                                        ^ punctuation.section.tag.close.imba
+		<canvas$canvas[pos:abs w:100% h:100%]>
+//<0 invalid.whitespace
+//^------------------------------------- meta.tag.imba
+//^ punctuation.section.tag.open.imba
+//       ^------ entity.other.tag-ref.imba
+//              ^---------------------- meta.tag.expression.imba
+//              ^ punctuation.section.tag.imba
+//               ^--- meta.property-name.css
+//               ^-- support.type.property-name.css
+//                  ^ punctuation.separator.key-value.css
+//                   ^-- support.constant.property-value.css
+//                       ^- meta.property-name.css
+//                       ^ support.type.property-name.css
+//                        ^ punctuation.separator.key-value.css
+//                         ^--- constant.numeric.css
+//                            ^ keyword.other.unit.percentage.css
+//                              ^- meta.property-name.css
+//                              ^ support.type.property-name.css
+//                               ^ punctuation.separator.key-value.css
+//                                ^--- constant.numeric.css
+//                                   ^ keyword.other.unit.percentage.css
+//                                    ^ punctuation.section.tag.imba
+//                                     ^ punctuation.section.tag.close.imba
+
+const strokes = [1,2,3,5,8,12]
+//<0- storage.type.imba
+//    ^------ variable.other.readwrite.imba
+//            ^ keyword.operator.assignment.imba
+//              ^ meta.brace.square.imba
+//               ^ constant.numeric.decimal.imba
+//                ^ punctuation.separator.comma.imba
+//                 ^ constant.numeric.decimal.imba
+//                  ^ punctuation.separator.comma.imba
+//                   ^ constant.numeric.decimal.imba
+//                    ^ punctuation.separator.comma.imba
+//                     ^ constant.numeric.decimal.imba
+//                      ^ punctuation.separator.comma.imba
+//                       ^ constant.numeric.decimal.imba
+//                        ^ punctuation.separator.comma.imba
+//                         ^- constant.numeric.decimal.imba
+//                           ^ meta.brace.square.imba
+const colors = ['#F59E0B','#10B981','#3B82F6','#8B5CF6']
+//<0- storage.type.imba
+//    ^----- variable.other.readwrite.imba
+//           ^ keyword.operator.assignment.imba
+//             ^ meta.brace.square.imba
+//              ^-------- string.quoted.single.imba
+//              ^ punctuation.definition.string.begin.imba
+//                      ^ punctuation.definition.string.end.imba
+//                       ^ punctuation.separator.comma.imba
+//                        ^-------- string.quoted.single.imba
+//                        ^ punctuation.definition.string.begin.imba
+//                                ^ punctuation.definition.string.end.imba
+//                                 ^ punctuation.separator.comma.imba
+//                                  ^-------- string.quoted.single.imba
+//                                  ^ punctuation.definition.string.begin.imba
+//                                          ^ punctuation.definition.string.end.imba
+//                                           ^ punctuation.separator.comma.imba
+//                                            ^-------- string.quoted.single.imba
+//                                            ^ punctuation.definition.string.begin.imba
+//                                                    ^ punctuation.definition.string.end.imba
+//                                                     ^ meta.brace.square.imba
+const state = {stroke: 5, color: '#3B82F6'}
+//<0- storage.type.imba
+//    ^---- variable.other.readwrite.imba
+//          ^ keyword.operator.assignment.imba
+//            ^ meta.brace.curly.imba
+//             ^------ meta.object-literal.key
+//                     ^ constant.numeric.decimal.imba
+//                      ^ punctuation.separator.comma.imba
+//                        ^----- meta.object-literal.key
+//                               ^-------- string.quoted.single.imba
+//                               ^ punctuation.definition.string.begin.imba
+//                                       ^ punctuation.definition.string.end.imba
+//                                        ^ meta.brace.curly.imba
+
+tag App
+//<0 storage.type.class.imba
+//  ^-- variable.other.class.imba
+	<self>
+//<1--- meta.tag.imba
+//<1 punctuation.section.tag.open.imba
+//^--- entity.name.tag.special.imba
+//    ^ punctuation.section.tag.close.imba
+		<div[ta:center pt:20 o:0.2 fs:xl]> 'draw here'
+//<0 invalid.whitespace
+//^--------------------------------- meta.tag.imba
+//^ punctuation.section.tag.open.imba
+//    ^---------------------------- meta.tag.expression.imba
+//    ^ punctuation.section.tag.imba
+//     ^-- meta.property-name.css
+//     ^- support.type.property-name.css
+//       ^ punctuation.separator.key-value.css
+//        ^----- support.constant.property-value.css
+//               ^-- meta.property-name.css
+//               ^- support.type.property-name.css
+//                 ^ punctuation.separator.key-value.css
+//                  ^- constant.numeric.css
+//                     ^- meta.property-name.css
+//                     ^ support.type.property-name.css
+//                      ^ punctuation.separator.key-value.css
+//                       ^-- constant.numeric.css
+//                           ^-- meta.property-name.css
+//                           ^- support.type.property-name.css
+//                             ^ punctuation.separator.key-value.css
+//                              ^- support.constant.size.property-value.css
+//                                ^ punctuation.section.tag.imba
+//                                 ^ punctuation.section.tag.close.imba
+//                                   ^---------- string.quoted.single.imba
+//                                   ^ punctuation.definition.string.begin.imba
+//                                             ^ punctuation.definition.string.end.imba
+		<app-canvas[pos:abs inset:0] state=state>
+//<0 invalid.whitespace
+//^---------------------------------------- meta.tag.imba
+//^ punctuation.section.tag.open.imba
+//           ^---------------- meta.tag.expression.imba
+//           ^ punctuation.section.tag.imba
+//            ^--- meta.property-name.css
+//            ^-- support.type.property-name.css
+//               ^ punctuation.separator.key-value.css
+//                ^-- support.constant.property-value.css
+//                    ^----- meta.property-name.css
+//                    ^---- support.type.property-name.css
+//                         ^ punctuation.separator.key-value.css
+//                          ^ constant.numeric.css
+//                           ^ punctuation.section.tag.imba
+//                             ^---- entity.other.attribute-name.imba
+//                                  ^ keyword.operator.tag.assignment
+//                                   ^---- variable.other.readwrite.imba
+//                                        ^ punctuation.section.tag.close.imba
+		<div.tools[pos:abs b:0 w:100% d:hgrid ja:center]>
+//<0 invalid.whitespace
+//^------------------------------------------------ meta.tag.imba
+//^ punctuation.section.tag.open.imba
+//    ^----- meta.attribute.directive.vue
+//    ^ punctuation.attribute-shorthand.bind.html.vue
+//     ^---- entity.other.attribute-name.html.vue
+//          ^------------------------------------- meta.tag.expression.imba
+//          ^ punctuation.section.tag.imba
+//           ^--- meta.property-name.css
+//           ^-- support.type.property-name.css
+//              ^ punctuation.separator.key-value.css
+//               ^-- support.constant.property-value.css
+//                   ^- meta.property-name.css
+//                   ^ support.type.property-name.css
+//                    ^ punctuation.separator.key-value.css
+//                     ^ constant.numeric.css
+//                       ^- meta.property-name.css
+//                       ^ support.type.property-name.css
+//                        ^ punctuation.separator.key-value.css
+//                         ^--- constant.numeric.css
+//                            ^ keyword.other.unit.percentage.css
+//                              ^- meta.property-name.css
+//                              ^ support.type.property-name.css
+//                               ^ punctuation.separator.key-value.css
+//                                ^---- support.constant.property-value.css
+//                                      ^-- meta.property-name.css
+//                                      ^- support.type.property-name.css
+//                                        ^ punctuation.separator.key-value.css
+//                                         ^----- support.constant.property-value.css
+//                                               ^ punctuation.section.tag.imba
+//                                                ^ punctuation.section.tag.close.imba
+			<stroke-picker options=strokes bind=state.stroke>
+//<0 invalid.whitespace
+// ^------------------------------------------------ meta.tag.imba
+// ^ punctuation.section.tag.open.imba
+//                ^------ entity.other.attribute-name.imba
+//                       ^ keyword.operator.tag.assignment
+//                        ^------ variable.other.readwrite.imba
+//                                ^--- entity.other.attribute-name.imba
+//                                    ^ keyword.operator.tag.assignment
+//                                     ^---- variable.other.readwrite.imba
+//                                          ^------ meta.attribute.directive.vue
+//                                          ^ punctuation.attribute-shorthand.bind.html.vue
+//                                           ^----- entity.other.attribute-name.html.vue
+//                                                 ^ punctuation.section.tag.close.imba
+			<color-picker options=colors bind=state.color>
+//<0 invalid.whitespace
+// ^--------------------------------------------- meta.tag.imba
+// ^ punctuation.section.tag.open.imba
+//               ^------ entity.other.attribute-name.imba
+//                      ^ keyword.operator.tag.assignment
+//                       ^----- variable.other.readwrite.imba
+//                              ^--- entity.other.attribute-name.imba
+//                                  ^ keyword.operator.tag.assignment
+//                                   ^---- variable.other.readwrite.imba
+//                                        ^----- meta.attribute.directive.vue
+//                                        ^ punctuation.attribute-shorthand.bind.html.vue
+//                                         ^---- entity.other.attribute-name.html.vue
+//                                              ^ punctuation.section.tag.close.imba
+
+imba.mount <App[pos:abs inset:0]>
+//<0 variable.other.readwrite.imba
+//  ^ punctuation.accessor.imba
+//   ^---- variable.other.property.imba
+//         ^--------------------- meta.tag.imba
+//         ^ punctuation.section.tag.open.imba
+//             ^---------------- meta.tag.expression.imba
+//             ^ punctuation.section.tag.imba
+//              ^--- meta.property-name.css
+//              ^-- support.type.property-name.css
+//                 ^ punctuation.separator.key-value.css
+//                  ^-- support.constant.property-value.css
+//                      ^----- meta.property-name.css
+//                      ^---- support.type.property-name.css
+//                           ^ punctuation.separator.key-value.css
+//                            ^ constant.numeric.css
+//                             ^ punctuation.section.tag.imba
+//                              ^ punctuation.section.tag.close.imba
+
+# from https://imba.io
+//<0 comment.line.double-slash.imba
+//<0 punctuation.definition.comment.imba
+# run online at https://scrimba.com/scrim/cPPdD4Aq 
+//<0 comment.line.double-slash.imba
+//<0 punctuation.definition.comment.imba

@@ -1,2 +1,5 @@
 /target
 node_modules
+/.bun-home
+/.bun-tmp
+/tests/samples/.reference-tokens

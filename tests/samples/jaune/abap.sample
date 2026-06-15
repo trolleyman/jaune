@@ -1,0 +1,56 @@
+# grammar: source.abap
+
+report zldbread no standard page heading.
+#<0--- keyword.control.simple.abap
+#                 ^-------- keyword.control.simple.abap
+#                           ^--- keyword.control.simple.abap
+#                                ^------ keyword.control.simple.abap
+tables: lfa1.
+#<0--- keyword.control.simple.abap
+data: begin of t occurs 0,
+#<0- keyword.control.simple.abap
+#     ^------- keyword.control.simple.abap
+#             ^- support.type.abap
+#                ^----- keyword.control.simple.abap
+#                       ^ constant.numeric.abap
+linfr like lfa1-lifnr,
+#    ^---- keyword.control.simple.abap
+name1 like lfa1-name1,
+#    ^---- keyword.control.simple.abap
+end of t.
+#<0--- keyword.control.simple.abap
+#     ^- support.type.abap
+
+start-of-selection.
+#<0--------------- keyword.control.simple.abap
+
+get lfa1.
+#<0 keyword.control.simple.abap
+clear t.
+#<0-- keyword.control.simple.abap
+#    ^- support.type.abap
+move-corresponding lfa1 to t.
+#<0--------------- keyword.control.simple.abap
+#                      ^-- keyword.control.simple.abap
+#                         ^- support.type.abap
+append t.
+#<0--- keyword.control.simple.abap
+#     ^- support.type.abap
+end-of-selection.
+#<0------------- keyword.control.simple.abap
+sort t by name1.
+#<0- keyword.control.simple.abap
+#   ^- support.type.abap
+#      ^- keyword.control.simple.abap
+loop at t.
+#<0---- keyword.control.flow.abap
+#      ^- support.type.abap
+
+write: / t-name1, t-lifnr.
+#<0-- keyword.control.simple.abap
+#      ^ keyword.control.simple.abap
+endloop.
+#<0---- keyword.control.flow.abap
+
+*- From https://sapbrainsonline.com/abap-tutorial/codes/reading-logical-database-using-abap-program.html -*
+#<0-------------------------------------------------------------------------------------------------------- comment.line.full.abap

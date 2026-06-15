@@ -1,0 +1,340 @@
+# grammar: source.bsl
+
+&НаСервере
+#<0------- storage.modifier.directive.bsl
+Функция ПечатнаяФорма(ПараметрКоманды)
+#<0---- storage.type.bsl
+#       ^------------ entity.name.function.bsl
+#                    ^ punctuation.bracket.begin.bsl
+#                     ^-------------- variable.parameter.bsl
+#                                    ^ punctuation.bracket.end.bsl
+	ТабличныйДокумент = Новый ТабличныйДокумент;
+#<0----------------------------------------- meta.var-single-variable.bsl
+#^---------------- variable.assignment.bsl
+#                  ^ keyword.operator.assignment.bsl
+#                    ^---- support.function.bsl
+#                                           ^ keyword.operator.bsl
+	ТабличныйДокумент.ОтображатьСетку = Истина;
+#                                  ^ keyword.operator.comparison.bsl
+#                                    ^----- constant.language.bsl
+#                                          ^ keyword.operator.bsl
+	ТабличныйДокумент.ОтображатьЗаголовки = Истина;
+#                                      ^ keyword.operator.comparison.bsl
+#                                        ^----- constant.language.bsl
+#                                              ^ keyword.operator.bsl
+	
+	Сформирован = Ложь;
+#<0---------------- meta.var-single-variable.bsl
+#^---------- variable.assignment.bsl
+#            ^ keyword.operator.assignment.bsl
+#              ^--- constant.language.bsl
+#                  ^ keyword.operator.bsl
+	ТабМакет = Справочники.Товары.ПолучитьМакет("МакетПрайсЛиста"); 
+#<0------------------------------------------------------------ meta.var-single-variable.bsl
+#^------- variable.assignment.bsl
+#         ^ keyword.operator.assignment.bsl
+#           ^---------- support.class.bsl
+#                                           ^ punctuation.bracket.begin.bsl
+#                                            ^---------------- string.quoted.double.bsl
+#                                                             ^ punctuation.bracket.end.bsl
+#                                                              ^ keyword.operator.bsl
+
+	Шапка = ТабМакет.ПолучитьОбласть("Шапка");
+#<0--------------------------------------- meta.var-single-variable.bsl
+#^---- variable.assignment.bsl
+#      ^ keyword.operator.assignment.bsl
+#                                ^ punctuation.bracket.begin.bsl
+#                                 ^------ string.quoted.double.bsl
+#                                        ^ punctuation.bracket.end.bsl
+#                                         ^ keyword.operator.bsl
+	ТабличныйДокумент.Вывести(Шапка);
+#                         ^ punctuation.bracket.begin.bsl
+#                               ^ punctuation.bracket.end.bsl
+#                                ^ keyword.operator.bsl
+
+	ОбластьНоменклатура = ТабМакет.ПолучитьОбласть("ОбластьНоменклатура");
+#<0------------------------------------------------------------------- meta.var-single-variable.bsl
+#^------------------ variable.assignment.bsl
+#                    ^ keyword.operator.assignment.bsl
+#                                              ^ punctuation.bracket.begin.bsl
+#                                               ^-------------------- string.quoted.double.bsl
+#                                                                    ^ punctuation.bracket.end.bsl
+#                                                                     ^ keyword.operator.bsl
+	
+	Запрос = Новый Запрос;
+#<0------------------- meta.var-single-variable.bsl
+#^----- variable.assignment.bsl
+#       ^ keyword.operator.assignment.bsl
+#         ^---- support.function.bsl
+#                     ^ keyword.operator.bsl
+    Запрос.Текст =  "ВЫБРАТЬ
+#                ^ keyword.operator.comparison.bsl
+#                   ^------- string.quoted.double.bsl
+#                    ^------ keyword.control.sdbl
+                    |    Товары.Код КАК Код,
+#<0----------------------------------------- string.quoted.double.bsl
+#                                   ^-- keyword.control.sdbl
+#                                          ^ keyword.operator.sdbl
+                    |    Товары.Наименование КАК Наименование,
+#<0----------------------------------------------------------- string.quoted.double.bsl
+#                                            ^-- keyword.control.sdbl
+#                                                            ^ keyword.operator.sdbl
+                    |    Товары.Артикул КАК Артикул,
+#<0------------------------------------------------- string.quoted.double.bsl
+#                                       ^-- keyword.control.sdbl
+#                                                  ^ keyword.operator.sdbl
+                    |    Товары.ФайлКартинки КАК Картинка,
+#<0------------------------------------------------------- string.quoted.double.bsl
+#                                            ^-- keyword.control.sdbl
+#                                                        ^ keyword.operator.sdbl
+                    |    Товары.Описание КАК Описание,
+#<0--------------------------------------------------- string.quoted.double.bsl
+#                                        ^-- keyword.control.sdbl
+#                                                    ^ keyword.operator.sdbl
+                    |    Товары.Вид КАК Вид,
+#<0----------------------------------------- string.quoted.double.bsl
+#                                   ^-- keyword.control.sdbl
+#                                          ^ keyword.operator.sdbl
+                    |    ЦеныТоваров.Цена КАК Цена
+#<0----------------------------------------------- string.quoted.double.bsl
+#                                         ^-- keyword.control.sdbl
+                    |ИЗ
+#<0-------------------- string.quoted.double.bsl
+#                    ^- keyword.control.sdbl
+                    |    РегистрСведений.ЦеныТоваров КАК ЦеныТоваров
+#<0----------------------------------------------------------------- string.quoted.double.bsl
+#                                                    ^-- keyword.control.sdbl
+                    |        ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Товары КАК Товары
+#<0----------------------------------------------------------------------- string.quoted.double.bsl
+#                            ^--------------- keyword.control.sdbl
+#                                                               ^-- keyword.control.sdbl
+                    |        ПО ЦеныТоваров.Товар = Товары.Ссылка
+#<0-------------------------------------------------------------- string.quoted.double.bsl
+#                            ^- keyword.control.sdbl
+#                                                 ^ keyword.operator.comparison.sdbl
+                    |ГДЕ
+#<0--------------------- string.quoted.double.bsl
+#                    ^-- keyword.control.sdbl
+                    |    Товары.ЭтоГруппа = ЛОЖЬ
+#<0--------------------------------------------- string.quoted.double.bsl
+#                                         ^ keyword.operator.comparison.sdbl
+#                                           ^--- constant.language.sdbl
+                    |    И ЦеныТоваров.ВидЦен = &ВидЦен
+#<0---------------------------------------------------- string.quoted.double.bsl
+#                        ^ keyword.operator.logical.sdbl
+#                                             ^ keyword.operator.comparison.sdbl
+#                                               ^------ variable.parameter.sdbl
+                    |
+#<0------------------ string.quoted.double.bsl
+                    |УПОРЯДОЧИТЬ ПО
+#<0-------------------------------- string.quoted.double.bsl
+#                    ^------------- keyword.control.sdbl
+                    |    Вид,
+#<0-------------------------- string.quoted.double.bsl
+#                           ^ keyword.operator.sdbl
+                    |    Товары.Родитель.Код,
+#<0------------------------------------------ string.quoted.double.bsl
+#                                           ^ keyword.operator.sdbl
+                    |    Код";
+#<0-------------------------- string.quoted.double.bsl
+#                            ^ keyword.operator.bsl
+
+    Запрос.УстановитьПараметр("ВидЦен", Справочники.ВидыЦен.НайтиПоНаименованию("Розничная"));
+#                            ^ punctuation.bracket.begin.bsl
+#                             ^------- string.quoted.double.bsl
+#                                     ^ keyword.operator.bsl
+#                                       ^---------- support.class.bsl
+#                                                                              ^ punctuation.bracket.begin.bsl
+#                                                                               ^---------- string.quoted.double.bsl
+#                                                                                          ^- punctuation.bracket.end.bsl
+#                                                                                            ^ keyword.operator.bsl
+						
+	Выборка = Запрос.Выполнить().Выбрать();
+#<0------------------------------------ meta.var-single-variable.bsl
+#^------ variable.assignment.bsl
+#        ^ keyword.operator.assignment.bsl
+#                          ^ punctuation.bracket.begin.bsl
+#                           ^ punctuation.bracket.end.bsl
+#                                    ^ punctuation.bracket.begin.bsl
+#                                     ^ punctuation.bracket.end.bsl
+#                                      ^ keyword.operator.bsl
+	Пока Выборка.Следующий() Цикл
+#^--- keyword.control.repeat.bsl
+#                      ^ punctuation.bracket.begin.bsl
+#                       ^ punctuation.bracket.end.bsl
+#                         ^--- keyword.control.repeat.bsl
+		ОбластьНоменклатура.Параметры.Заполнить(Выборка);
+#                                        ^ punctuation.bracket.begin.bsl
+#                                                ^ punctuation.bracket.end.bsl
+#                                                 ^ keyword.operator.bsl
+		
+		Описание = "";
+#<0------------ meta.var-single-variable.bsl
+# ^------- variable.assignment.bsl
+#          ^ keyword.operator.assignment.bsl
+#            ^- string.quoted.double.bsl
+#              ^ keyword.operator.bsl
+		
+		Чтение = Новый ЧтениеHTML();
+#<0-------------------------- meta.var-single-variable.bsl
+# ^----- variable.assignment.bsl
+#        ^ keyword.operator.assignment.bsl
+#          ^---- support.function.bsl
+#                          ^ punctuation.bracket.begin.bsl
+#                           ^ punctuation.bracket.end.bsl
+#                            ^ keyword.operator.bsl
+		Чтение.УстановитьСтроку(Выборка.Описание);
+#                        ^ punctuation.bracket.begin.bsl
+#                                         ^ punctuation.bracket.end.bsl
+#                                          ^ keyword.operator.bsl
+		
+		ДокDOM = Новый ПостроительDOM();
+#<0------------------------------ meta.var-single-variable.bsl
+# ^----- variable.assignment.bsl
+#        ^ keyword.operator.assignment.bsl
+#          ^---- support.function.bsl
+#                              ^ punctuation.bracket.begin.bsl
+#                               ^ punctuation.bracket.end.bsl
+#                                ^ keyword.operator.bsl
+		HTML = ДокDOM.Прочитать(Чтение);
+#<0------------------------------ meta.var-single-variable.bsl
+# ^--- variable.assignment.bsl
+#      ^ keyword.operator.assignment.bsl
+#                        ^ punctuation.bracket.begin.bsl
+#                               ^ punctuation.bracket.end.bsl
+#                                ^ keyword.operator.bsl
+		
+		Если Не HTML.ЭлементДокумента = Неопределено Тогда
+#<0------------------------------------------------- meta.conditional.bsl
+# ^--- keyword.control.conditional.bsl
+#      ^- keyword.operator.logical.bsl
+#                               ^ keyword.operator.comparison.bsl
+#                                 ^----------- constant.language.bsl
+#                                              ^---- keyword.control.conditional.bsl
+			Для Каждого Узел из HTML.ЭлементДокумента.ДочерниеУзлы Цикл 
+#  ^---------- keyword.control.repeat.bsl
+#                   ^- keyword.control.repeat.bsl
+#                                                         ^--- keyword.control.repeat.bsl
+				Если Узел.ИмяУзла = "body" Тогда
+#<0--------------------------------- meta.conditional.bsl
+#   ^--- keyword.control.conditional.bsl
+#                     ^ keyword.operator.comparison.bsl
+#                       ^----- string.quoted.double.bsl
+#                              ^---- keyword.control.conditional.bsl
+					Для Каждого ЭлементОписания из Узел.ДочерниеУзлы Цикл 
+#    ^---------- keyword.control.repeat.bsl
+#                                ^- keyword.control.repeat.bsl
+#                                                     ^--- keyword.control.repeat.bsl
+						Описание = Описание + ЭлементОписания.ТекстовоеСодержимое;
+#<0------------------------------------------------------------ meta.var-single-variable.bsl
+#     ^------- variable.assignment.bsl
+#              ^ keyword.operator.assignment.bsl
+#                         ^ keyword.operator.arithmetic.bsl
+#                                                              ^ keyword.operator.bsl
+					КонецЦикла;
+#    ^--------- keyword.control.repeat.bsl
+#              ^ keyword.operator.bsl
+				КонецЕсли;
+#   ^-------- keyword.control.conditional.bsl
+#            ^ keyword.operator.bsl
+			КонецЦикла;
+#  ^--------- keyword.control.repeat.bsl
+#            ^ keyword.operator.bsl
+		КонецЕсли;
+# ^-------- keyword.control.conditional.bsl
+#          ^ keyword.operator.bsl
+		ОбластьНоменклатура.Параметры.Описание = Описание;
+#                                        ^ keyword.operator.comparison.bsl
+#                                                  ^ keyword.operator.bsl
+		
+		Если (Выборка.Картинка <> Null) Тогда 
+#<0------------------------------------ meta.conditional.bsl
+# ^--- keyword.control.conditional.bsl
+#      ^ punctuation.bracket.begin.bsl
+#                        ^- keyword.operator.comparison.bsl
+#                           ^--- constant.language.bsl
+#                               ^ punctuation.bracket.end.bsl
+#                                 ^---- keyword.control.conditional.bsl
+			ОбластьНоменклатура.Параметры.ПараметрКартинки = Новый Картинка(Выборка.Картинка.ДанныеФайла.Получить());
+#                                                 ^ keyword.operator.comparison.bsl
+#                                                   ^---- support.function.bsl
+#                                                                 ^ punctuation.bracket.begin.bsl
+#                                                                                                       ^ punctuation.bracket.begin.bsl
+#                                                                                                        ^- punctuation.bracket.end.bsl
+#                                                                                                          ^ keyword.operator.bsl
+		КонецЕсли;
+# ^-------- keyword.control.conditional.bsl
+#          ^ keyword.operator.bsl
+		
+		ТабличныйДокумент.Вывести(ОбластьНоменклатура, Выборка.Уровень());
+#                          ^ punctuation.bracket.begin.bsl
+#                                              ^ keyword.operator.bsl
+#                                                               ^ punctuation.bracket.begin.bsl
+#                                                                ^- punctuation.bracket.end.bsl
+#                                                                  ^ keyword.operator.bsl
+		Сформирован = Истина;
+#<0------------------- meta.var-single-variable.bsl
+# ^---------- variable.assignment.bsl
+#             ^ keyword.operator.assignment.bsl
+#               ^----- constant.language.bsl
+#                     ^ keyword.operator.bsl
+	КонецЦикла;
+#^--------- keyword.control.repeat.bsl
+#          ^ keyword.operator.bsl
+	
+	Если Сформирован Тогда
+#<0-------------------- meta.conditional.bsl
+#^--- keyword.control.conditional.bsl
+#                 ^---- keyword.control.conditional.bsl
+		Возврат ТабличныйДокумент;
+# ^------ keyword.control.bsl
+#                          ^ keyword.operator.bsl
+	Иначе 	
+#^---- keyword.control.conditional.bsl
+		Возврат Неопределено;
+# ^------ keyword.control.bsl
+#         ^----------- constant.language.bsl
+#                     ^ keyword.operator.bsl
+	КонецЕсли;	
+#^-------- keyword.control.conditional.bsl
+#         ^ keyword.operator.bsl
+КонецФункции
+#<0--------- storage.type.bsl
+
+&НаКлиенте
+#<0------- storage.modifier.directive.bsl
+Процедура ОбработкаКоманды(ПараметрКоманды, ПараметрыВыполненияКоманды)
+#<0------ storage.type.bsl
+#         ^--------------- entity.name.function.bsl
+#                         ^ punctuation.bracket.begin.bsl
+#                          ^-------------- variable.parameter.bsl
+#                                         ^ keyword.operator.bsl
+#                                           ^------------------------- variable.parameter.bsl
+#                                                                     ^ punctuation.bracket.end.bsl
+	ТабличныйДокумент = ПечатнаяФорма(ПараметрКоманды);
+#<0------------------------------------------------ meta.var-single-variable.bsl
+#^---------------- variable.assignment.bsl
+#                  ^ keyword.operator.assignment.bsl
+#                                 ^ punctuation.bracket.begin.bsl
+#                                                 ^ punctuation.bracket.end.bsl
+#                                                  ^ keyword.operator.bsl
+	
+	Если ТабличныйДокумент <> Неопределено Тогда
+#<0------------------------------------------ meta.conditional.bsl
+#^--- keyword.control.conditional.bsl
+#                       ^- keyword.operator.comparison.bsl
+#                          ^----------- constant.language.bsl
+#                                       ^---- keyword.control.conditional.bsl
+		ТабличныйДокумент.Показать();
+#                           ^ punctuation.bracket.begin.bsl
+#                            ^ punctuation.bracket.end.bsl
+#                             ^ keyword.operator.bsl
+	КонецЕсли;	
+#^-------- keyword.control.conditional.bsl
+#         ^ keyword.operator.bsl
+	
+КонецПроцедуры
+#<0----------- storage.type.bsl
+
+// From: https://github.com/github-linguist/linguist/blob/main/samples/1C%20Enterprise/Catalog.%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%D1%8B.Command.%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C%D0%9F%D1%80%D0%B0%D0%B9%D1%81%D0%9B%D0%B8%D1%81%D1%82%D0%B0.CommandModule.bsl
+#<0----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- comment.line.double-slash.bsl

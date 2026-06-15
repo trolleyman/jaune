@@ -1,0 +1,613 @@
+// grammar: source.glsl
+
+#version 330
+//       ^-- constant.numeric.decimal.c
+
+const float PI = 3.1415926535897932384626433832795;
+//<0- storage.modifier.glsl
+//    ^---- storage.type.glsl
+//             ^ keyword.operator.assignment.c
+//               ^ constant.numeric.decimal.c
+//                ^ constant.numeric.decimal.point.c
+//                 ^------------------------------ constant.numeric.decimal.c
+//                                                ^ punctuation.terminator.statement.c
+
+const float waveLength = 20.0;
+//<0- storage.modifier.glsl
+//    ^---- storage.type.glsl
+//                     ^ keyword.operator.assignment.c
+//                       ^- constant.numeric.decimal.c
+//                         ^ constant.numeric.decimal.point.c
+//                          ^ constant.numeric.decimal.c
+//                           ^ punctuation.terminator.statement.c
+const float waveAmplitude = 1.0;
+//<0- storage.modifier.glsl
+//    ^---- storage.type.glsl
+//                        ^ keyword.operator.assignment.c
+//                          ^ constant.numeric.decimal.c
+//                           ^ constant.numeric.decimal.point.c
+//                            ^ constant.numeric.decimal.c
+//                             ^ punctuation.terminator.statement.c
+const float specularReflectivity = 0.4;
+//<0- storage.modifier.glsl
+//    ^---- storage.type.glsl
+//                               ^ keyword.operator.assignment.c
+//                                 ^ constant.numeric.decimal.c
+//                                  ^ constant.numeric.decimal.point.c
+//                                   ^ constant.numeric.decimal.c
+//                                    ^ punctuation.terminator.statement.c
+const float shineDamper = 20.0;
+//<0- storage.modifier.glsl
+//    ^---- storage.type.glsl
+//                      ^ keyword.operator.assignment.c
+//                        ^- constant.numeric.decimal.c
+//                          ^ constant.numeric.decimal.point.c
+//                           ^ constant.numeric.decimal.c
+//                            ^ punctuation.terminator.statement.c
+
+layout(location = 0) in vec2 in_position;
+//<0---------------- meta.function.c
+//<0---------------- meta.function.definition.parameters.c
+//<0-- entity.name.function.c
+//    ^ punctuation.section.parameters.begin.bracket.round.c
+//              ^ keyword.operator.assignment.c
+//                ^ constant.numeric.decimal.c
+//                 ^ punctuation.section.parameters.end.bracket.round.c
+//                   ^- storage.modifier.glsl
+//                      ^--- storage.type.glsl
+//                                      ^ punctuation.terminator.statement.c
+layout(location = 1) in vec4 in_indicators;
+//<0---------------- meta.function.c
+//<0---------------- meta.function.definition.parameters.c
+//<0-- entity.name.function.c
+//    ^ punctuation.section.parameters.begin.bracket.round.c
+//              ^ keyword.operator.assignment.c
+//                ^ constant.numeric.decimal.c
+//                 ^ punctuation.section.parameters.end.bracket.round.c
+//                   ^- storage.modifier.glsl
+//                      ^--- storage.type.glsl
+//                                        ^ punctuation.terminator.statement.c
+
+out vec4 pass_clipSpaceGrid;
+//<0 storage.modifier.glsl
+//  ^--- storage.type.glsl
+//                         ^ punctuation.terminator.statement.c
+out vec4 pass_clipSpaceReal;
+//<0 storage.modifier.glsl
+//  ^--- storage.type.glsl
+//                         ^ punctuation.terminator.statement.c
+out vec3 pass_normal;
+//<0 storage.modifier.glsl
+//  ^--- storage.type.glsl
+//                  ^ punctuation.terminator.statement.c
+out vec3 pass_toCameraVector;
+//<0 storage.modifier.glsl
+//  ^--- storage.type.glsl
+//                          ^ punctuation.terminator.statement.c
+out vec3 pass_specular;
+//<0 storage.modifier.glsl
+//  ^--- storage.type.glsl
+//                    ^ punctuation.terminator.statement.c
+out vec3 pass_diffuse;
+//<0 storage.modifier.glsl
+//  ^--- storage.type.glsl
+//                   ^ punctuation.terminator.statement.c
+
+uniform float height;
+//<0--- storage.modifier.glsl
+//      ^---- storage.type.glsl
+//                  ^ punctuation.terminator.statement.c
+uniform vec3 cameraPos;
+//<0--- storage.modifier.glsl
+//      ^--- storage.type.glsl
+//                    ^ punctuation.terminator.statement.c
+uniform float waveTime;
+//<0--- storage.modifier.glsl
+//      ^---- storage.type.glsl
+//                    ^ punctuation.terminator.statement.c
+
+uniform vec3 lightDirection;
+//<0--- storage.modifier.glsl
+//      ^--- storage.type.glsl
+//                         ^ punctuation.terminator.statement.c
+uniform vec3 lightColour;
+//<0--- storage.modifier.glsl
+//      ^--- storage.type.glsl
+//                      ^ punctuation.terminator.statement.c
+uniform vec2 lightBias;
+//<0--- storage.modifier.glsl
+//      ^--- storage.type.glsl
+//                    ^ punctuation.terminator.statement.c
+
+uniform mat4 projectionViewMatrix;
+//<0--- storage.modifier.glsl
+//      ^--- storage.type.glsl
+//                               ^ punctuation.terminator.statement.c
+
+vec3 calcSpecularLighting(vec3 toCamVector, vec3 toLightVector, vec3 normal){
+//<0 storage.type.glsl
+//   ^---------------------------------------------------------------------- meta.function.c
+//   ^---------------------------------------------------------------------- meta.function.definition.parameters.c
+//   ^------------------- entity.name.function.c
+//                       ^ punctuation.section.parameters.begin.bracket.round.c
+//                             ^---------- variable.parameter.probably.c
+//                                        ^ punctuation.separator.delimiter.c
+//                                               ^------------ variable.parameter.probably.c
+//                                                            ^ punctuation.separator.delimiter.c
+//                                                                   ^----- variable.parameter.probably.c
+//                                                                         ^ punctuation.section.parameters.end.bracket.round.c
+//                                                                          ^ meta.block.c
+//                                                                          ^ punctuation.section.block.begin.bracket.curly.c
+	vec3 reflectedLightDirection = reflect(-toLightVector, normal);
+//<0------------------------------------------------------------ meta.block.c
+//                            ^ keyword.operator.assignment.c
+//                              ^------------------------------ meta.function-call.c
+//                              ^------ entity.name.function.c
+//                                     ^ punctuation.section.arguments.begin.bracket.round.c
+//                                      ^ keyword.operator.c
+//                                                    ^ punctuation.separator.delimiter.c
+//                                                            ^ punctuation.section.arguments.end.bracket.round.c
+//                                                             ^ punctuation.terminator.statement.c
+	float specularFactor = dot(reflectedLightDirection , toCamVector);
+//<0--------------------------------------------------------------- meta.block.c
+//<1-- storage.type.built-in.primitive.c
+//                    ^ keyword.operator.assignment.c
+//                      ^----------------------------------------- meta.function-call.c
+//                      ^-- entity.name.function.c
+//                         ^ punctuation.section.arguments.begin.bracket.round.c
+//                                                  ^ punctuation.separator.delimiter.c
+//                                                               ^ punctuation.section.arguments.end.bracket.round.c
+//                                                                ^ punctuation.terminator.statement.c
+	specularFactor = max(specularFactor,0.0);
+//<0-------------------------------------- meta.block.c
+//              ^ keyword.operator.assignment.c
+//                ^---------------------- meta.function-call.c
+//                ^-- entity.name.function.c
+//                   ^ punctuation.section.arguments.begin.bracket.round.c
+//                                  ^ punctuation.separator.delimiter.c
+//                                   ^ constant.numeric.decimal.c
+//                                    ^ constant.numeric.decimal.point.c
+//                                     ^ constant.numeric.decimal.c
+//                                      ^ punctuation.section.arguments.end.bracket.round.c
+//                                       ^ punctuation.terminator.statement.c
+	specularFactor = pow(specularFactor, shineDamper);
+//<0----------------------------------------------- meta.block.c
+//              ^ keyword.operator.assignment.c
+//                ^------------------------------- meta.function-call.c
+//                ^-- entity.name.function.c
+//                   ^ punctuation.section.arguments.begin.bracket.round.c
+//                                  ^ punctuation.separator.delimiter.c
+//                                               ^ punctuation.section.arguments.end.bracket.round.c
+//                                                ^ punctuation.terminator.statement.c
+	return specularFactor * specularReflectivity * lightColour;
+//<0-------------------------------------------------------- meta.block.c
+//<1--- keyword.control.c
+//                     ^ keyword.operator.c
+//                                            ^ keyword.operator.c
+//                                                         ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+vec3 calculateDiffuseLighting(vec3 toLightVector, vec3 normal){
+//<0 storage.type.glsl
+//   ^-------------------------------------------------------- meta.function.c
+//   ^-------------------------------------------------------- meta.function.definition.parameters.c
+//   ^----------------------- entity.name.function.c
+//                           ^ punctuation.section.parameters.begin.bracket.round.c
+//                                 ^------------ variable.parameter.probably.c
+//                                              ^ punctuation.separator.delimiter.c
+//                                                     ^----- variable.parameter.probably.c
+//                                                           ^ punctuation.section.parameters.end.bracket.round.c
+//                                                            ^ meta.block.c
+//                                                            ^ punctuation.section.block.begin.bracket.curly.c
+	float brightness = max(dot(toLightVector, normal), 0.0);
+//<0----------------------------------------------------- meta.block.c
+//<1-- storage.type.built-in.primitive.c
+//                ^ keyword.operator.assignment.c
+//                  ^----------------------------------- meta.function-call.c
+//                  ^-- entity.name.function.c
+//                     ^ punctuation.section.arguments.begin.bracket.round.c
+//                      ^-- entity.name.function.c
+//                         ^ punctuation.section.arguments.begin.bracket.round.c
+//                                       ^ punctuation.separator.delimiter.c
+//                                               ^ punctuation.section.arguments.end.bracket.round.c
+//                                                ^ punctuation.separator.delimiter.c
+//                                                  ^ constant.numeric.decimal.c
+//                                                   ^ constant.numeric.decimal.point.c
+//                                                    ^ constant.numeric.decimal.c
+//                                                     ^ punctuation.section.arguments.end.bracket.round.c
+//                                                      ^ punctuation.terminator.statement.c
+	return (lightColour * lightBias.x) + (brightness * lightColour * lightBias.y);
+//<0--------------------------------------------------------------------------- meta.block.c
+//<1--- keyword.control.c
+//      ^-------------------------- meta.parens.block.c
+//      ^ punctuation.section.parens.begin.bracket.round.c
+//                   ^ keyword.operator.c
+//                     ^-------- variable.other.object.access.c
+//                              ^ punctuation.separator.dot-access.c
+//                               ^ variable.other.member.c
+//                                ^ punctuation.section.parens.end.bracket.round.c
+//                                  ^ keyword.operator.c
+//                                    ^--------------------------------------- meta.parens.block.c
+//                                    ^ punctuation.section.parens.begin.bracket.round.c
+//                                                ^ keyword.operator.c
+//                                                              ^ keyword.operator.c
+//                                                                ^-------- variable.other.object.access.c
+//                                                                         ^ punctuation.separator.dot-access.c
+//                                                                          ^ variable.other.member.c
+//                                                                           ^ punctuation.section.parens.end.bracket.round.c
+//                                                                            ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+vec3 calcNormal(vec3 vertex0, vec3 vertex1, vec3 vertex2){
+//<0 storage.type.glsl
+//   ^--------------------------------------------------- meta.function.c
+//   ^--------------------------------------------------- meta.function.definition.parameters.c
+//   ^--------- entity.name.function.c
+//             ^ punctuation.section.parameters.begin.bracket.round.c
+//                   ^------ variable.parameter.probably.c
+//                          ^ punctuation.separator.delimiter.c
+//                                 ^------ variable.parameter.probably.c
+//                                        ^ punctuation.separator.delimiter.c
+//                                               ^------ variable.parameter.probably.c
+//                                                      ^ punctuation.section.parameters.end.bracket.round.c
+//                                                       ^ meta.block.c
+//                                                       ^ punctuation.section.block.begin.bracket.curly.c
+	vec3 tangent = vertex1 - vertex0;
+//<0------------------------------ meta.block.c
+//            ^ keyword.operator.assignment.c
+//                      ^ keyword.operator.c
+//                               ^ punctuation.terminator.statement.c
+	vec3 bitangent = vertex2 - vertex0;
+//<0-------------------------------- meta.block.c
+//              ^ keyword.operator.assignment.c
+//                        ^ keyword.operator.c
+//                                 ^ punctuation.terminator.statement.c
+	return normalize(cross(tangent, bitangent));
+//<0----------------------------------------- meta.block.c
+//<1--- keyword.control.c
+//      ^----------------------------------- meta.function-call.c
+//      ^-------- entity.name.function.c
+//               ^ punctuation.section.arguments.begin.bracket.round.c
+//                ^---- entity.name.function.c
+//                     ^ punctuation.section.arguments.begin.bracket.round.c
+//                             ^ punctuation.separator.delimiter.c
+//                                        ^- punctuation.section.arguments.end.bracket.round.c
+//                                          ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+float generateOffset(float x, float z){
+//<0- storage.type.glsl
+//    ^------------------------------- meta.function.c
+//    ^------------------------------- meta.function.definition.parameters.c
+//    ^------------- entity.name.function.c
+//                  ^ punctuation.section.parameters.begin.bracket.round.c
+//                   ^---- storage.type.built-in.primitive.c
+//                         ^ variable.parameter.probably.c
+//                          ^ punctuation.separator.delimiter.c
+//                            ^---- storage.type.built-in.primitive.c
+//                                  ^ variable.parameter.probably.c
+//                                   ^ punctuation.section.parameters.end.bracket.round.c
+//                                    ^ meta.block.c
+//                                    ^ punctuation.section.block.begin.bracket.curly.c
+	float radiansX = (x / waveLength + waveTime) * 2.0 * PI;
+//<0----------------------------------------------------- meta.block.c
+//<1-- storage.type.built-in.primitive.c
+//              ^ keyword.operator.assignment.c
+//                ^-------------------------- meta.parens.block.c
+//                ^ punctuation.section.parens.begin.bracket.round.c
+//                   ^ keyword.operator.c
+//                                ^ keyword.operator.c
+//                                          ^ punctuation.section.parens.end.bracket.round.c
+//                                            ^ keyword.operator.c
+//                                              ^ constant.numeric.decimal.c
+//                                               ^ constant.numeric.decimal.point.c
+//                                                ^ constant.numeric.decimal.c
+//                                                  ^ keyword.operator.c
+//                                                      ^ punctuation.terminator.statement.c
+	float radiansZ = (z / waveLength + waveTime) * 2.0 * PI;
+//<0----------------------------------------------------- meta.block.c
+//<1-- storage.type.built-in.primitive.c
+//              ^ keyword.operator.assignment.c
+//                ^-------------------------- meta.parens.block.c
+//                ^ punctuation.section.parens.begin.bracket.round.c
+//                   ^ keyword.operator.c
+//                                ^ keyword.operator.c
+//                                          ^ punctuation.section.parens.end.bracket.round.c
+//                                            ^ keyword.operator.c
+//                                              ^ constant.numeric.decimal.c
+//                                               ^ constant.numeric.decimal.point.c
+//                                                ^ constant.numeric.decimal.c
+//                                                  ^ keyword.operator.c
+//                                                      ^ punctuation.terminator.statement.c
+	return waveAmplitude * 0.5 * (sin(radiansZ) + cos(radiansX));
+//<0---------------------------------------------------------- meta.block.c
+//<1--- keyword.control.c
+//                    ^ keyword.operator.c
+//                      ^ constant.numeric.decimal.c
+//                       ^ constant.numeric.decimal.point.c
+//                        ^ constant.numeric.decimal.c
+//                          ^ keyword.operator.c
+//                            ^------------------------------ meta.parens.block.c
+//                            ^ punctuation.section.parens.begin.bracket.round.c
+//                             ^------------ meta.function-call.c
+//                             ^-- entity.name.function.c
+//                                ^ punctuation.section.arguments.begin.bracket.round.c
+//                                         ^ punctuation.section.arguments.end.bracket.round.c
+//                                           ^ keyword.operator.c
+//                                             ^------------ meta.function-call.c
+//                                             ^-- entity.name.function.c
+//                                                ^ punctuation.section.arguments.begin.bracket.round.c
+//                                                         ^ punctuation.section.arguments.end.bracket.round.c
+//                                                          ^ punctuation.section.parens.end.bracket.round.c
+//                                                           ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+vec3 applyDistortion(vec3 vertex){
+//<0 storage.type.glsl
+//   ^--------------------------- meta.function.c
+//   ^--------------------------- meta.function.definition.parameters.c
+//   ^-------------- entity.name.function.c
+//                  ^ punctuation.section.parameters.begin.bracket.round.c
+//                        ^----- variable.parameter.probably.c
+//                              ^ punctuation.section.parameters.end.bracket.round.c
+//                               ^ meta.block.c
+//                               ^ punctuation.section.block.begin.bracket.curly.c
+	float xDistortion = generateOffset(vertex.x, vertex.z);
+//<0---------------------------------------------------- meta.block.c
+//<1-- storage.type.built-in.primitive.c
+//                 ^ keyword.operator.assignment.c
+//                   ^--------------------------------- meta.function-call.c
+//                   ^------------- entity.name.function.c
+//                                 ^ punctuation.section.arguments.begin.bracket.round.c
+//                                  ^----- variable.other.object.access.c
+//                                        ^ punctuation.separator.dot-access.c
+//                                         ^ variable.other.member.c
+//                                          ^ punctuation.separator.delimiter.c
+//                                            ^----- variable.other.object.access.c
+//                                                  ^ punctuation.separator.dot-access.c
+//                                                   ^ variable.other.member.c
+//                                                    ^ punctuation.section.arguments.end.bracket.round.c
+//                                                     ^ punctuation.terminator.statement.c
+	float yDistortion = generateOffset(vertex.x, vertex.z);
+//<0---------------------------------------------------- meta.block.c
+//<1-- storage.type.built-in.primitive.c
+//                 ^ keyword.operator.assignment.c
+//                   ^--------------------------------- meta.function-call.c
+//                   ^------------- entity.name.function.c
+//                                 ^ punctuation.section.arguments.begin.bracket.round.c
+//                                  ^----- variable.other.object.access.c
+//                                        ^ punctuation.separator.dot-access.c
+//                                         ^ variable.other.member.c
+//                                          ^ punctuation.separator.delimiter.c
+//                                            ^----- variable.other.object.access.c
+//                                                  ^ punctuation.separator.dot-access.c
+//                                                   ^ variable.other.member.c
+//                                                    ^ punctuation.section.arguments.end.bracket.round.c
+//                                                     ^ punctuation.terminator.statement.c
+	float zDistortion = generateOffset(vertex.x, vertex.z);
+//<0---------------------------------------------------- meta.block.c
+//<1-- storage.type.built-in.primitive.c
+//                 ^ keyword.operator.assignment.c
+//                   ^--------------------------------- meta.function-call.c
+//                   ^------------- entity.name.function.c
+//                                 ^ punctuation.section.arguments.begin.bracket.round.c
+//                                  ^----- variable.other.object.access.c
+//                                        ^ punctuation.separator.dot-access.c
+//                                         ^ variable.other.member.c
+//                                          ^ punctuation.separator.delimiter.c
+//                                            ^----- variable.other.object.access.c
+//                                                  ^ punctuation.separator.dot-access.c
+//                                                   ^ variable.other.member.c
+//                                                    ^ punctuation.section.arguments.end.bracket.round.c
+//                                                     ^ punctuation.terminator.statement.c
+	return vertex + vec3(xDistortion, yDistortion, zDistortion);
+//<0--------------------------------------------------------- meta.block.c
+//<1--- keyword.control.c
+//             ^ keyword.operator.c
+//               ^------------------------------------------ meta.function-call.c
+//               ^--- entity.name.function.c
+//                   ^ punctuation.section.arguments.begin.bracket.round.c
+//                               ^ punctuation.separator.delimiter.c
+//                                            ^ punctuation.separator.delimiter.c
+//                                                         ^ punctuation.section.arguments.end.bracket.round.c
+//                                                          ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+void main(void){
+//<0 storage.type.glsl
+//   ^--------- meta.function.c
+//   ^--------- meta.function.definition.parameters.c
+//   ^--- entity.name.function.c
+//       ^ punctuation.section.parameters.begin.bracket.round.c
+//        ^--- storage.type.built-in.primitive.c
+//            ^ punctuation.section.parameters.end.bracket.round.c
+//             ^ meta.block.c
+//             ^ punctuation.section.block.begin.bracket.curly.c
+	
+//<0 meta.block.c
+	vec3 currentVertex = vec3(in_position.x, height, in_position.y);
+//<0------------------------------------------------------------- meta.block.c
+//                  ^ keyword.operator.assignment.c
+//                    ^----------------------------------------- meta.function-call.c
+//                    ^--- entity.name.function.c
+//                        ^ punctuation.section.arguments.begin.bracket.round.c
+//                         ^---------- variable.other.object.access.c
+//                                    ^ punctuation.separator.dot-access.c
+//                                     ^ variable.other.member.c
+//                                      ^ punctuation.separator.delimiter.c
+//                                              ^ punctuation.separator.delimiter.c
+//                                                ^---------- variable.other.object.access.c
+//                                                           ^ punctuation.separator.dot-access.c
+//                                                            ^ variable.other.member.c
+//                                                             ^ punctuation.section.arguments.end.bracket.round.c
+//                                                              ^ punctuation.terminator.statement.c
+	vec3 vertex1 = currentVertex + vec3(in_indicators.x, 0.0, in_indicators.y);
+//<0------------------------------------------------------------------------ meta.block.c
+//            ^ keyword.operator.assignment.c
+//                            ^ keyword.operator.c
+//                              ^------------------------------------------ meta.function-call.c
+//                              ^--- entity.name.function.c
+//                                  ^ punctuation.section.arguments.begin.bracket.round.c
+//                                   ^------------ variable.other.object.access.c
+//                                                ^ punctuation.separator.dot-access.c
+//                                                 ^ variable.other.member.c
+//                                                  ^ punctuation.separator.delimiter.c
+//                                                    ^ constant.numeric.decimal.c
+//                                                     ^ constant.numeric.decimal.point.c
+//                                                      ^ constant.numeric.decimal.c
+//                                                       ^ punctuation.separator.delimiter.c
+//                                                         ^------------ variable.other.object.access.c
+//                                                                      ^ punctuation.separator.dot-access.c
+//                                                                       ^ variable.other.member.c
+//                                                                        ^ punctuation.section.arguments.end.bracket.round.c
+//                                                                         ^ punctuation.terminator.statement.c
+	vec3 vertex2 = currentVertex + vec3(in_indicators.z, 0.0, in_indicators.w);
+//<0------------------------------------------------------------------------ meta.block.c
+//            ^ keyword.operator.assignment.c
+//                            ^ keyword.operator.c
+//                              ^------------------------------------------ meta.function-call.c
+//                              ^--- entity.name.function.c
+//                                  ^ punctuation.section.arguments.begin.bracket.round.c
+//                                   ^------------ variable.other.object.access.c
+//                                                ^ punctuation.separator.dot-access.c
+//                                                 ^ variable.other.member.c
+//                                                  ^ punctuation.separator.delimiter.c
+//                                                    ^ constant.numeric.decimal.c
+//                                                     ^ constant.numeric.decimal.point.c
+//                                                      ^ constant.numeric.decimal.c
+//                                                       ^ punctuation.separator.delimiter.c
+//                                                         ^------------ variable.other.object.access.c
+//                                                                      ^ punctuation.separator.dot-access.c
+//                                                                       ^ variable.other.member.c
+//                                                                        ^ punctuation.section.arguments.end.bracket.round.c
+//                                                                         ^ punctuation.terminator.statement.c
+	
+//<0 meta.block.c
+	pass_clipSpaceGrid = projectionViewMatrix * vec4(currentVertex, 1.0);
+//<0------------------------------------------------------------------ meta.block.c
+//                  ^ keyword.operator.assignment.c
+//                                         ^ keyword.operator.c
+//                                           ^----------------------- meta.function-call.c
+//                                           ^--- entity.name.function.c
+//                                               ^ punctuation.section.arguments.begin.bracket.round.c
+//                                                             ^ punctuation.separator.delimiter.c
+//                                                               ^ constant.numeric.decimal.c
+//                                                                ^ constant.numeric.decimal.point.c
+//                                                                 ^ constant.numeric.decimal.c
+//                                                                  ^ punctuation.section.arguments.end.bracket.round.c
+//                                                                   ^ punctuation.terminator.statement.c
+	
+//<0 meta.block.c
+	currentVertex = applyDistortion(currentVertex);
+//<0-------------------------------------------- meta.block.c
+//             ^ keyword.operator.assignment.c
+//               ^----------------------------- meta.function-call.c
+//               ^-------------- entity.name.function.c
+//                              ^ punctuation.section.arguments.begin.bracket.round.c
+//                                            ^ punctuation.section.arguments.end.bracket.round.c
+//                                             ^ punctuation.terminator.statement.c
+	vertex1 = applyDistortion(vertex1);
+//<0-------------------------------- meta.block.c
+//       ^ keyword.operator.assignment.c
+//         ^----------------------- meta.function-call.c
+//         ^-------------- entity.name.function.c
+//                        ^ punctuation.section.arguments.begin.bracket.round.c
+//                                ^ punctuation.section.arguments.end.bracket.round.c
+//                                 ^ punctuation.terminator.statement.c
+	vertex2 = applyDistortion(vertex2);
+//<0-------------------------------- meta.block.c
+//       ^ keyword.operator.assignment.c
+//         ^----------------------- meta.function-call.c
+//         ^-------------- entity.name.function.c
+//                        ^ punctuation.section.arguments.begin.bracket.round.c
+//                                ^ punctuation.section.arguments.end.bracket.round.c
+//                                 ^ punctuation.terminator.statement.c
+	
+//<0 meta.block.c
+	pass_normal = calcNormal(currentVertex, vertex1, vertex2);
+//<0------------------------------------------------------- meta.block.c
+//           ^ keyword.operator.assignment.c
+//             ^------------------------------------------ meta.function-call.c
+//             ^--------- entity.name.function.c
+//                       ^ punctuation.section.arguments.begin.bracket.round.c
+//                                     ^ punctuation.separator.delimiter.c
+//                                              ^ punctuation.separator.delimiter.c
+//                                                       ^ punctuation.section.arguments.end.bracket.round.c
+//                                                        ^ punctuation.terminator.statement.c
+	
+//<0 meta.block.c
+	pass_clipSpaceReal = projectionViewMatrix * vec4(currentVertex, 1.0);
+//<0------------------------------------------------------------------ meta.block.c
+//                  ^ keyword.operator.assignment.c
+//                                         ^ keyword.operator.c
+//                                           ^----------------------- meta.function-call.c
+//                                           ^--- entity.name.function.c
+//                                               ^ punctuation.section.arguments.begin.bracket.round.c
+//                                                             ^ punctuation.separator.delimiter.c
+//                                                               ^ constant.numeric.decimal.c
+//                                                                ^ constant.numeric.decimal.point.c
+//                                                                 ^ constant.numeric.decimal.c
+//                                                                  ^ punctuation.section.arguments.end.bracket.round.c
+//                                                                   ^ punctuation.terminator.statement.c
+	gl_Position = pass_clipSpaceReal;
+//<0------------------------------ meta.block.c
+//           ^ keyword.operator.assignment.c
+//                               ^ punctuation.terminator.statement.c
+	
+//<0 meta.block.c
+	pass_toCameraVector = normalize(cameraPos - currentVertex);
+//<0-------------------------------------------------------- meta.block.c
+//                   ^ keyword.operator.assignment.c
+//                     ^----------------------------------- meta.function-call.c
+//                     ^-------- entity.name.function.c
+//                              ^ punctuation.section.arguments.begin.bracket.round.c
+//                                         ^ keyword.operator.c
+//                                                        ^ punctuation.section.arguments.end.bracket.round.c
+//                                                         ^ punctuation.terminator.statement.c
+	
+//<0 meta.block.c
+	vec3 toLightVector = -normalize(lightDirection);
+//<0--------------------------------------------- meta.block.c
+//                  ^ keyword.operator.assignment.c
+//                    ^ keyword.operator.c
+//                     ^------------------------ meta.function-call.c
+//                     ^-------- entity.name.function.c
+//                              ^ punctuation.section.arguments.begin.bracket.round.c
+//                                             ^ punctuation.section.arguments.end.bracket.round.c
+//                                              ^ punctuation.terminator.statement.c
+	pass_specular = calcSpecularLighting(pass_toCameraVector, toLightVector, pass_normal);
+//<0----------------------------------------------------------------------------------- meta.block.c
+//             ^ keyword.operator.assignment.c
+//               ^-------------------------------------------------------------------- meta.function-call.c
+//               ^------------------- entity.name.function.c
+//                                   ^ punctuation.section.arguments.begin.bracket.round.c
+//                                                       ^ punctuation.separator.delimiter.c
+//                                                                      ^ punctuation.separator.delimiter.c
+//                                                                                   ^ punctuation.section.arguments.end.bracket.round.c
+//                                                                                    ^ punctuation.terminator.statement.c
+	pass_diffuse = calculateDiffuseLighting(toLightVector, pass_normal);
+//<0----------------------------------------------------------------- meta.block.c
+//            ^ keyword.operator.assignment.c
+//              ^--------------------------------------------------- meta.function-call.c
+//              ^----------------------- entity.name.function.c
+//                                      ^ punctuation.section.arguments.begin.bracket.round.c
+//                                                    ^ punctuation.separator.delimiter.c
+//                                                                 ^ punctuation.section.arguments.end.bracket.round.c
+//                                                                  ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+// From https://github.com/TheThinMatrix/WaterStep10/blob/master/water/waterRendering/waterVertex.glsl
+//<0-------------------------------------------------------------------------------------------------- comment.line.double-slash.c
+//<0 punctuation.definition.comment.c

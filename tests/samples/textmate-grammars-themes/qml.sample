@@ -1,0 +1,116 @@
+// grammar: source.qml
+
+/*
+//<0 comment.line.double-slash.qml
+    SPDX-FileCopyrightText: 2019 Dan Leinir Turthra Jensen <admin@leinir.dk>
+//<0------------------------------------------------------------------------ comment.line.double-slash.qml
+
+    SPDX-License-Identifier: LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL
+//<0--------------------------------------------------------------------------------------- comment.line.double-slash.qml
+*/
+//<0 comment.line.double-slash.qml
+
+import QtQuick 2.7
+//<0-- keyword.control.import.qml
+//     ^------ variable.parameter.qml
+//             ^-- constant.numeric.qml
+import org.kde.newstuff 1.62 as NewStuff
+//<0-- keyword.control.import.qml
+//     ^-- variable.parameter.qml
+//         ^-- variable.parameter.qml
+//             ^------- variable.parameter.qml
+//                      ^--- constant.numeric.qml
+//                           ^- keyword.control.as.qml
+//                             ^-------- entity.name.type.qml
+
+NewStuff.Dialog {
+//       ^----- entity.name.type.qml
+    id: component
+//  ^- keyword.other.qml
+//     ^--------- meta.embedded.line.js
+//      ^-------- variable.other.readwrite.js
+    configFile: knsrcfile
+//  ^--------- variable.parameter.qml
+//             ^--------- meta.embedded.line.js
+//              ^-------- variable.other.readwrite.js
+    Component.onCompleted: {
+//  ^-------- entity.name.type.qml
+//            ^---------- keyword.control.qml
+        open();
+//<0----------- meta.embedded.block.js
+//      ^--- meta.function-call.js
+//      ^--- entity.name.function.js
+//          ^- meta.brace.round.js
+//            ^ punctuation.terminator.statement.js
+        if (typeof(knsProviderId) !== "undefined" && typeof(knsEntryId) !== "undefined") {
+//<0-------------------------------------------------------------------------------------- meta.embedded.block.js
+//      ^- keyword.control.conditional.js
+//         ^ meta.brace.round.js
+//          ^----- keyword.operator.expression.typeof.js
+//                ^ meta.brace.round.js
+//                 ^------------ variable.other.readwrite.js
+//                              ^ meta.brace.round.js
+//                                ^-- keyword.operator.comparison.js
+//                                    ^---------- string.quoted.double.js
+//                                    ^ punctuation.definition.string.begin.js
+//                                              ^ punctuation.definition.string.end.js
+//                                                ^- keyword.operator.logical.js
+//                                                   ^----- keyword.operator.expression.typeof.js
+//                                                         ^ meta.brace.round.js
+//                                                          ^--------- variable.other.readwrite.js
+//                                                                    ^ meta.brace.round.js
+//                                                                      ^-- keyword.operator.comparison.js
+//                                                                          ^---------- string.quoted.double.js
+//                                                                          ^ punctuation.definition.string.begin.js
+//                                                                                    ^ punctuation.definition.string.end.js
+//                                                                                     ^ meta.brace.round.js
+//                                                                                       ^ meta.block.js
+//                                                                                       ^ punctuation.definition.block.js
+            showEntryDetails(knsProviderId, knsEntryId);
+//<0---------------------------------------------------- meta.embedded.block.js
+//<0---------------------------------------------------- meta.block.js
+//          ^--------------- meta.function-call.js
+//          ^--------------- entity.name.function.js
+//                          ^ meta.brace.round.js
+//                           ^------------ variable.other.readwrite.js
+//                                        ^ punctuation.separator.comma.js
+//                                          ^--------- variable.other.readwrite.js
+//                                                    ^ meta.brace.round.js
+//                                                     ^ punctuation.terminator.statement.js
+        }
+//<0----- meta.embedded.block.js
+//<0----- meta.block.js
+//      ^ punctuation.definition.block.js
+    }
+//<0 meta.embedded.block.js
+    onVisibleChanged: {
+//  ^--------------- keyword.control.qml
+        if (visible === false) {
+//<0---------------------------- meta.embedded.block.js
+//      ^- keyword.control.conditional.js
+//         ^ meta.brace.round.js
+//          ^------ variable.other.readwrite.js
+//                  ^-- keyword.operator.comparison.js
+//                      ^---- constant.language.boolean.false.js
+//                           ^ meta.brace.round.js
+//                             ^ meta.block.js
+//                             ^ punctuation.definition.block.js
+            Qt.quit();
+//<0------------------ meta.embedded.block.js
+//<0------------------ meta.block.js
+//          ^------ meta.function-call.js
+//          ^- variable.other.object.js
+//            ^ punctuation.accessor.js
+//             ^--- entity.name.function.js
+//                 ^- meta.brace.round.js
+//                   ^ punctuation.terminator.statement.js
+        }
+//<0----- meta.embedded.block.js
+//<0----- meta.block.js
+//      ^ punctuation.definition.block.js
+    }
+//<0 meta.embedded.block.js
+}
+
+// From https://invent.kde.org/frameworks/knewstuff/-/blob/master/src/tools/knewstuff-dialog/qml/dialog.qml
+//<0------------------------------------------------------------------------------------------------------- comment.line.double-slash.qml

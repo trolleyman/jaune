@@ -1,0 +1,80 @@
+# grammar: source.makefile
+
+edit : main.o kbd.o command.o display.o \
+#<0-------------------------------------- meta.scope.target.makefile
+#<0- entity.name.function.target.makefile
+#    ^ punctuation.separator.key-value.makefile
+#     ^---------------------------------- meta.scope.prerequisites.makefile
+       insert.o search.o files.o utils.o
+#<0------------------------------------- meta.scope.target.makefile
+#<0------------------------------------- meta.scope.prerequisites.makefile
+        cc -o edit main.o kbd.o command.o display.o \
+#<0-------------------------------------------------- meta.scope.target.makefile
+#<0-------------------------------------------------- meta.scope.prerequisites.makefile
+                   insert.o search.o files.o utils.o
+#<0------------------------------------------------- meta.scope.target.makefile
+#<0------------------------------------------------- meta.scope.prerequisites.makefile
+
+main.o : main.c defs.h
+#<0------------------- meta.scope.target.makefile
+#<0------------------- meta.scope.prerequisites.makefile
+        cc -c main.c
+#<0----------------- meta.scope.target.makefile
+#<0----------------- meta.scope.prerequisites.makefile
+kbd.o : kbd.c defs.h command.h
+#<0--------------------------- meta.scope.target.makefile
+#<0--------------------------- meta.scope.prerequisites.makefile
+        cc -c kbd.c
+#<0---------------- meta.scope.target.makefile
+#<0---------------- meta.scope.prerequisites.makefile
+command.o : command.c defs.h command.h
+#<0----------------------------------- meta.scope.target.makefile
+#<0----------------------------------- meta.scope.prerequisites.makefile
+        cc -c command.c
+#<0-------------------- meta.scope.target.makefile
+#<0-------------------- meta.scope.prerequisites.makefile
+display.o : display.c defs.h buffer.h
+#<0---------------------------------- meta.scope.target.makefile
+#<0---------------------------------- meta.scope.prerequisites.makefile
+        cc -c display.c
+#<0-------------------- meta.scope.target.makefile
+#<0-------------------- meta.scope.prerequisites.makefile
+insert.o : insert.c defs.h buffer.h
+#<0-------------------------------- meta.scope.target.makefile
+#<0-------------------------------- meta.scope.prerequisites.makefile
+        cc -c insert.c
+#<0------------------- meta.scope.target.makefile
+#<0------------------- meta.scope.prerequisites.makefile
+search.o : search.c defs.h buffer.h
+#<0-------------------------------- meta.scope.target.makefile
+#<0-------------------------------- meta.scope.prerequisites.makefile
+        cc -c search.c
+#<0------------------- meta.scope.target.makefile
+#<0------------------- meta.scope.prerequisites.makefile
+files.o : files.c defs.h buffer.h command.h
+#<0---------------------------------------- meta.scope.target.makefile
+#<0---------------------------------------- meta.scope.prerequisites.makefile
+        cc -c files.c
+#<0------------------ meta.scope.target.makefile
+#<0------------------ meta.scope.prerequisites.makefile
+utils.o : utils.c defs.h
+#<0--------------------- meta.scope.target.makefile
+#<0--------------------- meta.scope.prerequisites.makefile
+        cc -c utils.c
+#<0------------------ meta.scope.target.makefile
+#<0------------------ meta.scope.prerequisites.makefile
+clean :
+#<0---- meta.scope.target.makefile
+#<0---- meta.scope.prerequisites.makefile
+        rm edit main.o kbd.o command.o display.o \
+#<0----------------------------------------------- meta.scope.target.makefile
+#<0----------------------------------------------- meta.scope.prerequisites.makefile
+           insert.o search.o files.o utils.o
+#<0----------------------------------------- meta.scope.target.makefile
+#<0----------------------------------------- meta.scope.prerequisites.makefile
+
+# From https://www.gnu.org/software/make/manual/html_node/Simple-Makefile.html
+#<0--------------------------------------------------------------------------- meta.scope.target.makefile
+#<0--------------------------------------------------------------------------- meta.scope.prerequisites.makefile
+#<0--------------------------------------------------------------------------- comment.line.number-sign.makefile
+#<0 punctuation.definition.comment.makefile

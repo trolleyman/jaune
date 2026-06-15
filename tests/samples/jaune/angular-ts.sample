@@ -1,0 +1,202 @@
+// grammar: source.ts.ng
+
+import { Component, inject } from '@angular/core';
+//<0--------------------------------------------- meta.import.ts
+//<0-- keyword.control.import.ts
+//     ^-------------------- meta.block.ts
+//     ^ punctuation.definition.block.ts
+//       ^-------- variable.other.readwrite.alias.ts
+//                ^ punctuation.separator.comma.ts
+//                  ^----- variable.other.readwrite.alias.ts
+//                         ^ punctuation.definition.block.ts
+//                           ^--- keyword.control.from.ts
+//                                ^-------------- string.quoted.single.ts
+//                                ^ punctuation.definition.string.begin.ts
+//                                              ^ punctuation.definition.string.end.ts
+//                                               ^ punctuation.terminator.statement.ts
+import { RouterLink } from '@angular/router';
+//<0---------------------------------------- meta.import.ts
+//<0-- keyword.control.import.ts
+//     ^------------- meta.block.ts
+//     ^ punctuation.definition.block.ts
+//       ^--------- variable.other.readwrite.alias.ts
+//                  ^ punctuation.definition.block.ts
+//                    ^--- keyword.control.from.ts
+//                         ^---------------- string.quoted.single.ts
+//                         ^ punctuation.definition.string.begin.ts
+//                                         ^ punctuation.definition.string.end.ts
+//                                          ^ punctuation.terminator.statement.ts
+import { CartService } from './cart.service';
+//<0---------------------------------------- meta.import.ts
+//<0-- keyword.control.import.ts
+//     ^-------------- meta.block.ts
+//     ^ punctuation.definition.block.ts
+//       ^---------- variable.other.readwrite.alias.ts
+//                   ^ punctuation.definition.block.ts
+//                     ^--- keyword.control.from.ts
+//                          ^--------------- string.quoted.single.ts
+//                          ^ punctuation.definition.string.begin.ts
+//                                         ^ punctuation.definition.string.end.ts
+//                                          ^ punctuation.terminator.statement.ts
+
+@Component({
+//<0-------- meta.decorator.ts
+//<0 punctuation.decorator.ts
+//<1------ meta.function-call.ts
+//<1------ entity.name.function.ts
+//        ^ meta.brace.round.ts
+//         ^ meta.objectliteral.ts
+//         ^ punctuation.definition.block.ts
+  selector: 'app-cart-button',
+//<0-------------------------- meta.decorator.ts
+//<0-------------------------- meta.objectliteral.ts
+//^-------------------------- meta.object.member.ts
+//^------- meta.object-literal.key.ts
+//        ^ meta.object-literal.key.ts punctuation.separator.key-value.ts
+//          ^---------------- string.quoted.single.ts
+//          ^ punctuation.definition.string.begin.ts
+//                          ^ punctuation.definition.string.end.ts
+//                           ^ punctuation.separator.comma.ts
+  standalone: true,
+//<0--------------- meta.decorator.ts
+//<0--------------- meta.objectliteral.ts
+//^--------------- meta.object.member.ts
+//^--------- meta.object-literal.key.ts
+//          ^ meta.object-literal.key.ts punctuation.separator.key-value.ts
+//            ^--- constant.language.boolean.true.ts
+//                ^ punctuation.separator.comma.ts
+  imports: [RouterLink],
+//<0-------------------- meta.decorator.ts
+//<0-------------------- meta.objectliteral.ts
+//^-------------------- meta.object.member.ts
+//^------ meta.object-literal.key.ts
+//       ^ meta.object-literal.key.ts punctuation.separator.key-value.ts
+//        ^------------ meta.array.literal.ts
+//         ^ meta.brace.square.ts
+//          ^--------- variable.other.readwrite.ts
+//                    ^ meta.brace.square.ts
+//                     ^ punctuation.separator.comma.ts
+  template: `
+//<0--------- meta.decorator.ts
+//<0--------- meta.objectliteral.ts
+//^------- meta.object-literal.key.ts
+//        ^ meta.object-literal.key.ts punctuation.separator.key-value.ts
+//          ^ string
+    <button type="button" [routerLink]="'/cart'">
+//<0--------------------------------------------- meta.decorator.ts
+//<0--------------------------------------------- meta.objectliteral.ts
+//  ^-------------------------------------------- meta.tag.structure.button.start.html
+//  ^ punctuation.definition.tag.begin.html
+//   ^----- entity.name.tag.html
+//          ^------------ meta.attribute.type.html
+//          ^--- entity.other.attribute-name.html
+//              ^ punctuation.separator.key-value.html
+//               ^------- string.quoted.double.html
+//               ^ punctuation.definition.string.begin.html
+//                      ^ punctuation.definition.string.end.html
+//                        ^--------------------- meta.attribute.unrecognized.[routerLink].html
+//                        ^----------- entity.other.attribute-name.html
+//                                    ^ punctuation.separator.key-value.html
+//                                     ^-------- string.quoted.double.html
+//                                     ^ punctuation.definition.string.begin.html
+//                                             ^ punctuation.definition.string.end.html
+//                                              ^ punctuation.definition.tag.end.html
+      @if (cartService.length > 0) {
+//<0-------------------------------- meta.decorator.ts
+//<0-------------------------------- meta.objectliteral.ts
+        <div>
+//<0--------- meta.decorator.ts
+//<0--------- meta.objectliteral.ts
+//      ^---- meta.tag.structure.div.start.html
+//      ^ punctuation.definition.tag.begin.html
+//       ^-- entity.name.tag.html
+//          ^ punctuation.definition.tag.end.html
+          @let hello = "world";
+//<0--------------------------- meta.decorator.ts
+//<0--------------------------- meta.objectliteral.ts
+          {{ cartService.length }}
+//<0------------------------------ meta.decorator.ts
+//<0------------------------------ meta.objectliteral.ts
+//        ^- punctuation.definition.block.ts
+//           ^---------- variable.other.object.ts
+//                      ^ punctuation.accessor.ts
+//                       ^----- variable.other.property.ts
+//                              ^- punctuation.definition.block.ts
+        </div>
+//<0---------- meta.decorator.ts
+//<0---------- meta.objectliteral.ts
+//      ^----- meta.tag.structure.div.end.html
+//      ^- punctuation.definition.tag.begin.html
+//        ^-- entity.name.tag.html
+//           ^ punctuation.definition.tag.end.html
+      }
+//<0--- meta.decorator.ts
+//<0--- meta.objectliteral.ts
+      Cart
+//<0------ meta.decorator.ts
+//<0------ meta.objectliteral.ts
+    </button>
+//<0--------- meta.decorator.ts
+//<0--------- meta.objectliteral.ts
+//  ^-------- meta.tag.structure.button.end.html
+//  ^- punctuation.definition.tag.begin.html
+//    ^----- entity.name.tag.html
+//          ^ punctuation.definition.tag.end.html
+  `,
+//<0 meta.decorator.ts
+//<0 meta.objectliteral.ts
+//^ string
+// ^ punctuation.separator.comma.ts
+  styles: `
+//<0------- meta.decorator.ts
+//<0------- meta.objectliteral.ts
+//^----- meta.object-literal.key.ts
+//      ^ meta.object-literal.key.ts punctuation.separator.key-value.ts
+//        ^ string
+    div { display: block; }
+//<0----------------------- meta.decorator.ts
+//<0----------------------- meta.objectliteral.ts
+//  ^-- entity.name.tag.css
+//      ^------------------ meta.property-list.scss
+//      ^ punctuation.section.property-list.begin.bracket.curly.scss
+//        ^------ meta.property-name.scss
+//        ^------ support.type.property-name.css
+//               ^ punctuation.separator.key-value.scss
+//                 ^---- support.constant.property-value.css
+//                      ^ punctuation.terminator.rule.scss
+//                        ^ punctuation.section.property-list.end.bracket.curly.scss
+  `,
+//<0 meta.decorator.ts
+//<0 meta.objectliteral.ts
+//^ string
+// ^ punctuation.separator.comma.ts
+})
+//<0 meta.decorator.ts
+//<0 meta.objectliteral.ts
+//<0 punctuation.definition.block.ts
+//<1 meta.brace.round.ts
+export class CartButtonComponent {
+//<0------------------------------ meta.class.ts
+//<0-- keyword.control.export.ts
+//     ^---- storage.type.class.ts
+//           ^------------------ entity.name.type.class.ts
+//                               ^ punctuation.definition.block.ts
+  protected cartService = inject(CartService);
+//<0------------------------------------------ meta.class.ts
+//^-------- storage.modifier.ts
+//         ^--------------------------------- meta.field.declaration.ts
+//          ^---------- meta.definition.property.ts variable.object.property.ts
+//                      ^ keyword.operator.assignment.ts
+//                        ^----- meta.function-call.ts
+//                        ^----- entity.name.function.ts
+//                              ^ meta.brace.round.ts
+//                               ^---------- variable.other.readwrite.ts
+//                                          ^ meta.brace.round.ts
+//                                           ^ punctuation.terminator.statement.ts
+}
+//<0 meta.class.ts
+//<0 punctuation.definition.block.ts
+
+// From https://github.com/niklas-wortmann/signals-observable-example/blob/main/src/app/cart/cart-button.component.ts
+//<0 comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts

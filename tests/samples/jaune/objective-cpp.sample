@@ -1,0 +1,73 @@
+// grammar: source.objcpp
+
+#include <stdio.h>
+//<0-------------- meta.preprocessor.include.objcpp
+//<0---- keyword.control.directive.include.objcpp
+//<0 punctuation.definition.directive.objcpp
+//       ^-------- string.quoted.other.lt-gt.include.objcpp
+//       ^ punctuation.definition.string.begin.objcpp
+//               ^ punctuation.definition.string.end.objcpp
+#include <Block.h>
+//<0-------------- meta.preprocessor.include.objcpp
+//<0---- keyword.control.directive.include.objcpp
+//<0 punctuation.definition.directive.objcpp
+//       ^-------- string.quoted.other.lt-gt.include.objcpp
+//       ^ punctuation.definition.string.begin.objcpp
+//               ^ punctuation.definition.string.end.objcpp
+typedef int (^IntBlock)();
+//<0--- keyword.other.typedef.objcpp
+//                       ^ punctuation.terminator.statement.objcpp
+
+IntBlock MakeCounter(int start, int increment) {
+//       ^------------------------------------ meta.function.objcpp
+  __block int i = start;
+//^------ storage.modifier.objcpp
+//                     ^ punctuation.terminator.statement.objcpp
+
+  return Block_copy( ^ {
+//^----- keyword.control.objcpp
+//       ^-------------- meta.function.objcpp
+    int ret = i;
+//<0------------ meta.function.objcpp
+    i += increment;
+//<0--------------- meta.function.objcpp
+    return ret;
+//<0----------- meta.function.objcpp
+  });
+//<0 meta.function.objcpp
+//  ^ punctuation.terminator.statement.objcpp
+
+}
+
+int main(void) {
+//  ^--------- meta.function.objcpp
+  IntBlock mycounter = MakeCounter(5, 2);
+//                     ^---------------- meta.function.objcpp
+//                                      ^ punctuation.terminator.statement.objcpp
+  printf("First call: %d\n", mycounter());
+//^------------------------------------- meta.function.objcpp
+//                                       ^ punctuation.terminator.statement.objcpp
+  printf("Second call: %d\n", mycounter());
+//^-------------------------------------- meta.function.objcpp
+//                                        ^ punctuation.terminator.statement.objcpp
+  printf("Third call: %d\n", mycounter());
+//^------------------------------------- meta.function.objcpp
+//                                       ^ punctuation.terminator.statement.objcpp
+
+  /* because it was copied, it must also be released */
+//                        ^ punctuation.separator.delimiter.objcpp
+  Block_release(mycounter);
+//^----------------------- meta.function.objcpp
+//                        ^ punctuation.terminator.statement.objcpp
+
+  return 0;
+//^----- keyword.control.objcpp
+//        ^ punctuation.terminator.statement.objcpp
+}
+/* Output:
+  First call: 5
+  Second call: 7
+  Third call: 9
+*/
+
+// From https://en.wikipedia.org/wiki/Objective-C

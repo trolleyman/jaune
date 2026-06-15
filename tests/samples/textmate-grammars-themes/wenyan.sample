@@ -1,0 +1,220 @@
+# grammar: source.wenyan
+
+吾有一術。名之曰「埃氏篩」。欲行是術。必先得一數。曰「甲」。乃行是術曰。
+#<0 keyword.other
+# ^ constant.numeric
+#  ^ storage.type
+#   ^ punctuation.separator
+#    ^-- keyword.other
+#       ^---- variable.other
+#            ^ punctuation.separator
+#             ^--- keyword.control
+#                 ^ punctuation.separator
+#                  ^-- keyword.control
+#                     ^ constant.numeric
+#                      ^ storage.type
+#                       ^ punctuation.separator
+#                        ^ keyword.other
+#                         ^-- variable.other
+#                            ^ punctuation.separator
+#                             ^---- keyword.control
+#                                  ^ punctuation.separator
+	吾有一列。名之曰「掩」。為是「甲」遍。充「掩」以陽也。
+#^- keyword.other
+#  ^ constant.numeric
+#   ^ storage.type
+#    ^ punctuation.separator
+#     ^-- keyword.other
+#        ^-- variable.other
+#           ^ punctuation.separator
+#            ^- keyword.control
+#              ^-- variable.other
+#                 ^ keyword.control
+#                  ^ punctuation.separator
+#                   ^ keyword.control
+#                    ^-- variable.other
+#                       ^ keyword.operator
+#                        ^ constant.language
+#                         ^ keyword.control
+#                          ^ punctuation.separator
+	除「甲」以二。名之曰「甲半」。
+#^ keyword.operator
+# ^-- variable.other
+#    ^ keyword.operator
+#     ^ constant.numeric
+#      ^ punctuation.separator
+#       ^-- keyword.other
+#          ^--- variable.other
+#              ^ punctuation.separator
+
+	有數二。名之曰「戊」。恆為是。若「戊」不小於「甲半」者乃止也。
+#^ keyword.other
+# ^ storage.type
+#  ^ constant.numeric
+#   ^ punctuation.separator
+#    ^-- keyword.other
+#       ^-- variable.other
+#          ^ punctuation.separator
+#           ^-- keyword.control
+#              ^ punctuation.separator
+#               ^ keyword.control
+#                ^-- variable.other
+#                   ^-- keyword.operator
+#                      ^--- variable.other
+#                          ^--- keyword.control
+#                              ^ punctuation.separator
+		有數二。名之曰「戌」。恆為是。若「戌」不小於「甲半」者乃止也。
+# ^ keyword.other
+#  ^ storage.type
+#   ^ constant.numeric
+#    ^ punctuation.separator
+#     ^-- keyword.other
+#        ^-- variable.other
+#           ^ punctuation.separator
+#            ^-- keyword.control
+#               ^ punctuation.separator
+#                ^ keyword.control
+#                 ^-- variable.other
+#                    ^-- keyword.operator
+#                       ^--- variable.other
+#                           ^--- keyword.control
+#                               ^ punctuation.separator
+
+			乘「戊」以「戌」。名之曰「合」
+#  ^ keyword.operator
+#   ^-- variable.other
+#      ^ keyword.operator
+#       ^-- variable.other
+#          ^ punctuation.separator
+#           ^-- keyword.other
+#              ^-- variable.other
+			若「合」不大於「甲」者。
+#  ^ keyword.control
+#   ^-- variable.other
+#      ^-- keyword.operator
+#         ^-- variable.other
+#            ^ keyword.control
+#             ^ punctuation.separator
+				昔之「掩」之「合」者。今陰是矣。
+#   ^- keyword.other
+#     ^-- variable.other
+#        ^ keyword.control
+#         ^-- variable.other
+#            ^ keyword.control
+#             ^ punctuation.separator
+#              ^ keyword.other
+#               ^ constant.language
+#                ^- keyword.other
+#                  ^ punctuation.separator
+			若非乃止也。
+#  ^---- keyword.control
+#       ^ punctuation.separator
+		加一以「戌」。昔之「戌」者。今其是矣云云。
+# ^ keyword.operator
+#  ^ constant.numeric
+#   ^ keyword.operator
+#    ^-- variable.other
+#       ^ punctuation.separator
+#        ^- keyword.other
+#          ^-- variable.other
+#             ^ keyword.control
+#              ^ punctuation.separator
+#               ^ keyword.other
+#                ^ constant.language
+#                 ^- keyword.other
+#                   ^- keyword.control
+#                     ^ punctuation.separator
+	加一以「戊」。昔之「戊」者。今其是矣云云。
+#^ keyword.operator
+# ^ constant.numeric
+#  ^ keyword.operator
+#   ^-- variable.other
+#      ^ punctuation.separator
+#       ^- keyword.other
+#         ^-- variable.other
+#            ^ keyword.control
+#             ^ punctuation.separator
+#              ^ keyword.other
+#               ^ constant.language
+#                ^- keyword.other
+#                  ^- keyword.control
+#                    ^ punctuation.separator
+
+	吾有一列。名之曰「諸素」。
+#^- keyword.other
+#  ^ constant.numeric
+#   ^ storage.type
+#    ^ punctuation.separator
+#     ^-- keyword.other
+#        ^--- variable.other
+#            ^ punctuation.separator
+	昔之「戊」者。今二是矣。恆為是。若「戊」等於「掩」之長者乃止也。
+#^- keyword.other
+#  ^-- variable.other
+#     ^ keyword.control
+#      ^ punctuation.separator
+#       ^ keyword.other
+#        ^ constant.numeric
+#         ^- keyword.other
+#           ^ punctuation.separator
+#            ^-- keyword.control
+#               ^ punctuation.separator
+#                ^ keyword.control
+#                 ^-- variable.other
+#                    ^- keyword.operator
+#                      ^-- variable.other
+#                         ^----- keyword.control
+#                               ^ punctuation.separator
+		夫「掩」之「戊」。名之曰「素耶」。
+# ^ keyword.other
+#  ^-- variable.other
+#     ^ keyword.control
+#      ^-- variable.other
+#         ^ punctuation.separator
+#          ^-- keyword.other
+#             ^--- variable.other
+#                 ^ punctuation.separator
+		若「素耶」者充「諸素」以「戊」也。
+# ^ keyword.control
+#  ^--- variable.other
+#      ^- keyword.control
+#        ^--- variable.other
+#            ^ keyword.operator
+#             ^-- variable.other
+#                ^ keyword.control
+#                 ^ punctuation.separator
+	加一以「戊」。昔之「戊」者。今其是矣云云。
+#^ keyword.operator
+# ^ constant.numeric
+#  ^ keyword.operator
+#   ^-- variable.other
+#      ^ punctuation.separator
+#       ^- keyword.other
+#         ^-- variable.other
+#            ^ keyword.control
+#             ^ punctuation.separator
+#              ^ keyword.other
+#               ^ constant.language
+#                ^- keyword.other
+#                  ^- keyword.control
+#                    ^ punctuation.separator
+	乃得「諸素」。
+#^- keyword.control
+#  ^--- variable.other
+#      ^ punctuation.separator
+是謂「埃氏篩」之術也。
+#<0 keyword.control
+# ^---- variable.other
+#      ^-- keyword.control
+#         ^ punctuation.separator
+
+施「埃氏篩」於一百。書之。
+#<0 keyword.other
+#^---- variable.other
+#     ^ keyword.operator
+#      ^- constant.numeric
+#        ^ punctuation.separator
+#         ^- keyword.other
+#           ^ punctuation.separator
+
+// From https://wy-lang.org/

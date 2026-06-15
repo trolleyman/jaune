@@ -1,0 +1,384 @@
+% grammar: source.erlang
+
+%% File: person.hrl
+%<0---------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+
+%%-----------------------------------------------------------
+%<0---------------------------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%% Data Type: person
+%<0----------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%% where:
+%<0------ comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%    name:  A string (default is undefined).
+%<0------------------------------------------ comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%    age:   An integer (default is undefined).
+%<0-------------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%    phone: A list of integers (default is []).
+%<0--------------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%    dict:  A dictionary containing various information 
+%<0------------------------------------------------------ comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%           about the person. 
+%<0---------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%           A {Key, Value} list (default is the empty list).
+%<0---------------------------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%------------------------------------------------------------
+%<0----------------------------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+-record(person, {name, age, phone = [], dict = []}).
+%<0------------------------------------------------- meta.directive.record.erlang
+%<0 punctuation.section.directive.begin.erlang
+%^----- keyword.control.directive.import.erlang
+%      ^ punctuation.definition.parameters.begin.erlang
+%       ^----- entity.name.type.class.record.definition.erlang
+%             ^ punctuation.separator.parameters.erlang
+%               ^--------------------------------- meta.structure.record.erlang
+%               ^ punctuation.definition.class.record.begin.erlang
+%                ^--- variable.other.field.erlang
+%                    ^ punctuation.separator.class.record.erlang
+%                      ^-- variable.other.field.erlang
+%                         ^ punctuation.separator.class.record.erlang
+%                           ^---- variable.other.field.erlang
+%                                 ^ keyword.operator.symbolic.erlang
+%                                   ^- meta.structure.list.erlang
+%                                   ^ punctuation.definition.list.begin.erlang
+%                                    ^ punctuation.definition.list.end.erlang
+%                                     ^ punctuation.separator.class.record.erlang
+%                                       ^--- variable.other.field.erlang
+%                                            ^ keyword.operator.symbolic.erlang
+%                                              ^- meta.structure.list.erlang
+%                                              ^ punctuation.definition.list.begin.erlang
+%                                               ^ punctuation.definition.list.end.erlang
+%                                                ^ punctuation.definition.class.record.end.erlang
+%                                                 ^ punctuation.definition.parameters.end.erlang
+%                                                  ^ punctuation.section.directive.end.erlang
+
+-module(person).
+%<0------------- meta.directive.module.erlang
+%<0 punctuation.section.directive.begin.erlang
+%^----- keyword.control.directive.module.erlang
+%      ^ punctuation.definition.parameters.begin.erlang
+%       ^----- entity.name.type.class.module.definition.erlang
+%             ^ punctuation.definition.parameters.end.erlang
+%              ^ punctuation.section.directive.end.erlang
+-include("person.hrl").
+%<0-------------------- meta.directive.erlang
+%<0 punctuation.section.directive.begin.erlang
+%^------ keyword.control.directive.erlang
+%       ^ punctuation.definition.parameters.begin.erlang
+%        ^----------- string.quoted.double.erlang
+%        ^ punctuation.definition.string.begin.erlang
+%                   ^ punctuation.definition.string.end.erlang
+%                    ^ punctuation.definition.parameters.end.erlang
+%                     ^ punctuation.section.directive.end.erlang
+-compile(export_all). % For test purposes only.
+%<0------------------ meta.directive.erlang
+%<0 punctuation.section.directive.begin.erlang
+%^------ keyword.control.directive.erlang
+%       ^ punctuation.definition.parameters.begin.erlang
+%        ^--------- constant.other.symbol.unquoted.erlang
+%                  ^ punctuation.definition.parameters.end.erlang
+%                   ^ punctuation.section.directive.end.erlang
+%                     ^------------------------ comment.line.percentage.erlang
+%                     ^ punctuation.definition.comment.erlang
+
+%% This creates an instance of a person.
+%<0------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%   Note: The phone number is not supplied so the
+%<0----------------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+%%         default value [] will be used.
+%<0-------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+
+make_hacker_without_phone(Name, Age) ->
+%<0------------------------------------ meta.function.erlang
+%<0---------------------- entity.name.function.definition.erlang
+%                        ^---------- meta.expression.parenthesized
+%                        ^ punctuation.section.expression.begin.erlang
+%                         ^--- variable.other.erlang
+%                               ^-- variable.other.erlang
+%                                  ^ punctuation.section.expression.end.erlang
+%                                    ^- keyword.operator.symbolic.erlang
+   #person{name = Name, age = Age, 
+%<0-------------------------------- meta.function.erlang
+%  ^------------------------------- meta.record-usage.erlang
+%  ^ keyword.operator.record.erlang
+%   ^----- entity.name.type.class.record.erlang
+%         ^------------------------ meta.structure.record.erlang
+%         ^ punctuation.definition.class.record.begin.erlang
+%          ^--- variable.other.field.erlang
+%               ^ keyword.operator.symbolic.erlang
+%                 ^--- variable.other.erlang
+%                     ^ punctuation.separator.class.record.erlang
+%                       ^-- variable.other.field.erlang
+%                           ^ keyword.operator.symbolic.erlang
+%                             ^-- variable.other.erlang
+%                                ^ punctuation.separator.class.record.erlang
+           dict = [{computer_knowledge, excellent}, 
+%<0------------------------------------------------- meta.function.erlang
+%<0------------------------------------------------- meta.record-usage.erlang
+%<0------------------------------------------------- meta.structure.record.erlang
+%          ^--- variable.other.field.erlang
+%               ^ keyword.operator.symbolic.erlang
+%                 ^--------------------------------- meta.structure.list.erlang
+%                 ^ punctuation.definition.list.begin.erlang
+%                  ^------------------------------ meta.structure.tuple.erlang
+%                  ^ punctuation.definition.tuple.begin.erlang
+%                   ^----------------- constant.other.symbol.unquoted.erlang
+%                                     ^ punctuation.separator.tuple.erlang
+%                                       ^-------- constant.other.symbol.unquoted.erlang
+%                                                ^ punctuation.definition.tuple.end.erlang
+%                                                 ^ punctuation.separator.list.erlang
+                   {drinks, coke}]}.
+%<0--------------------------------- meta.function.erlang
+%<0-------------------------------- meta.record-usage.erlang
+%<0-------------------------------- meta.structure.record.erlang
+%<0------------------------------- meta.structure.list.erlang
+%                  ^------------- meta.structure.tuple.erlang
+%                  ^ punctuation.definition.tuple.begin.erlang
+%                   ^----- constant.other.symbol.unquoted.erlang
+%                         ^ punctuation.separator.tuple.erlang
+%                           ^--- constant.other.symbol.unquoted.erlang
+%                               ^ punctuation.definition.tuple.end.erlang
+%                                ^ punctuation.definition.list.end.erlang
+%                                 ^ punctuation.definition.class.record.end.erlang
+%                                  ^ punctuation.terminator.function.erlang
+
+%% This demonstrates matching in arguments
+%<0--------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+
+print(#person{name = Name, age = Age,
+%<0---------------------------------- meta.function.erlang
+%<0-- entity.name.function.definition.erlang
+%    ^------------------------------- meta.expression.parenthesized
+%    ^ punctuation.section.expression.begin.erlang
+%     ^------------------------------ meta.record-usage.erlang
+%     ^ keyword.operator.record.erlang
+%      ^----- entity.name.type.class.record.erlang
+%            ^----------------------- meta.structure.record.erlang
+%            ^ punctuation.definition.class.record.begin.erlang
+%             ^--- variable.other.field.erlang
+%                  ^ keyword.operator.symbolic.erlang
+%                    ^--- variable.other.erlang
+%                        ^ punctuation.separator.class.record.erlang
+%                          ^-- variable.other.field.erlang
+%                              ^ keyword.operator.symbolic.erlang
+%                                ^-- variable.other.erlang
+%                                   ^ punctuation.separator.class.record.erlang
+              phone = Phone, dict = Dict}) ->
+%<0------------------------------------------ meta.function.erlang
+%<0--------------------------------------- meta.expression.parenthesized
+%<0-------------------------------------- meta.record-usage.erlang
+%<0-------------------------------------- meta.structure.record.erlang
+%             ^---- variable.other.field.erlang
+%                   ^ keyword.operator.symbolic.erlang
+%                     ^---- variable.other.erlang
+%                          ^ punctuation.separator.class.record.erlang
+%                            ^--- variable.other.field.erlang
+%                                 ^ keyword.operator.symbolic.erlang
+%                                   ^--- variable.other.erlang
+%                                       ^ punctuation.definition.class.record.end.erlang
+%                                        ^ punctuation.section.expression.end.erlang
+%                                          ^- keyword.operator.symbolic.erlang
+  io:format("Name: ~s, Age: ~w, Phone: ~w ~n" 
+%<0------------------------------------------- meta.function.erlang
+% ^------------------------------------------- meta.function-call.erlang
+% ^- entity.name.type.class.module.erlang
+%   ^ punctuation.separator.module-function.erlang
+%    ^----- entity.name.function.erlang
+%          ^ punctuation.definition.parameters.begin.erlang
+%           ^-------------------------------- string.quoted.double.erlang
+%           ^ punctuation.definition.string.begin.erlang
+%                  ^- constant.character.format.placeholder.other.erlang
+%                  ^ punctuation.definition.placeholder.erlang
+%                           ^- constant.character.format.placeholder.other.erlang
+%                           ^ punctuation.definition.placeholder.erlang
+%                                      ^- constant.character.format.placeholder.other.erlang
+%                                      ^ punctuation.definition.placeholder.erlang
+%                                         ^- constant.character.format.placeholder.other.erlang
+%                                         ^ punctuation.definition.placeholder.erlang
+%                                           ^ punctuation.definition.string.end.erlang
+            "Dictionary: ~w.~n", [Name, Age, Phone, Dict]).
+%<0-------------------------------------------------------- meta.function.erlang
+%<0------------------------------------------------------- meta.function-call.erlang
+%           ^------------------ string.quoted.double.erlang
+%           ^ punctuation.definition.string.begin.erlang
+%                        ^- constant.character.format.placeholder.other.erlang
+%                        ^ punctuation.definition.placeholder.erlang
+%                           ^- constant.character.format.placeholder.other.erlang
+%                           ^ punctuation.definition.placeholder.erlang
+%                             ^ punctuation.definition.string.end.erlang
+%                              ^ punctuation.separator.parameters.erlang
+%                                ^----------------------- meta.structure.list.erlang
+%                                ^ punctuation.definition.list.begin.erlang
+%                                 ^--- variable.other.erlang
+%                                     ^ punctuation.separator.list.erlang
+%                                       ^-- variable.other.erlang
+%                                          ^ punctuation.separator.list.erlang
+%                                            ^---- variable.other.erlang
+%                                                 ^ punctuation.separator.list.erlang
+%                                                   ^--- variable.other.erlang
+%                                                       ^ punctuation.definition.list.end.erlang
+%                                                        ^ punctuation.definition.parameters.end.erlang
+%                                                         ^ punctuation.terminator.function.erlang
+
+%% Demonstrates type testing, selector, updating.
+%<0---------------------------------------------- comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang
+
+birthday(P) when is_record(P, person) -> 
+%<0-------------------------------------- meta.function.erlang
+%<0----- entity.name.function.definition.erlang
+%       ^-- meta.expression.parenthesized
+%       ^ punctuation.section.expression.begin.erlang
+%        ^ variable.other.erlang
+%         ^ punctuation.section.expression.end.erlang
+%           ^--- keyword.control.erlang
+%                ^------------------- meta.function-call.erlang
+%                ^-------- entity.name.function.guard.erlang
+%                         ^ punctuation.definition.parameters.begin.erlang
+%                          ^ variable.other.erlang
+%                           ^ punctuation.separator.parameters.erlang
+%                             ^----- constant.other.symbol.unquoted.erlang
+%                                   ^ punctuation.definition.parameters.end.erlang
+%                                     ^- keyword.operator.symbolic.erlang
+   P#person{age = P#person.age + 1}.
+%<0--------------------------------- meta.function.erlang
+%  ^ variable.other.erlang
+%   ^------------------------------ meta.record-usage.erlang
+%   ^ keyword.operator.record.erlang
+%    ^----- entity.name.type.class.record.erlang
+%          ^----------------------- meta.structure.record.erlang
+%          ^ punctuation.definition.class.record.begin.erlang
+%           ^-- variable.other.field.erlang
+%               ^ keyword.operator.symbolic.erlang
+%                 ^ variable.other.erlang
+%                  ^---------- meta.record-usage.erlang
+%                  ^ keyword.operator.record.erlang
+%                   ^----- entity.name.type.class.record.erlang
+%                         ^ punctuation.separator.record-field.erlang
+%                          ^-- variable.other.field.erlang
+%                              ^ keyword.operator.symbolic.erlang
+%                                ^ constant.numeric.integer.decimal.erlang
+%                                 ^ punctuation.definition.class.record.end.erlang
+%                                  ^ punctuation.terminator.function.erlang
+
+register_two_hackers() ->
+%<0---------------------- meta.function.erlang
+%<0----------------- entity.name.function.definition.erlang
+%                   ^- meta.expression.parenthesized
+%                   ^ punctuation.section.expression.begin.erlang
+%                    ^ punctuation.section.expression.end.erlang
+%                      ^- keyword.operator.symbolic.erlang
+   Hacker1 = make_hacker_without_phone("Joe", 29),
+%<0----------------------------------------------- meta.function.erlang
+%  ^------ variable.other.erlang
+%          ^ keyword.operator.symbolic.erlang
+%            ^----------------------------------- meta.function-call.erlang
+%            ^------------------------ entity.name.function.erlang
+%                                     ^ punctuation.definition.parameters.begin.erlang
+%                                      ^---- string.quoted.double.erlang
+%                                      ^ punctuation.definition.string.begin.erlang
+%                                          ^ punctuation.definition.string.end.erlang
+%                                           ^ punctuation.separator.parameters.erlang
+%                                             ^- constant.numeric.integer.decimal.erlang
+%                                               ^ punctuation.definition.parameters.end.erlang
+%                                                ^ punctuation.separator.expressions.erlang
+   OldHacker = birthday(Hacker1),
+%<0------------------------------ meta.function.erlang
+%  ^-------- variable.other.erlang
+%            ^ keyword.operator.symbolic.erlang
+%              ^---------------- meta.function-call.erlang
+%              ^------- entity.name.function.erlang
+%                      ^ punctuation.definition.parameters.begin.erlang
+%                       ^------ variable.other.erlang
+%                              ^ punctuation.definition.parameters.end.erlang
+%                               ^ punctuation.separator.expressions.erlang
+   % The central_register_server should have 
+%<0------------------------------------------ meta.function.erlang
+%<0 punctuation.whitespace.comment.leading.erlang
+%  ^----------------------------------------- comment.line.percentage.erlang
+%  ^ punctuation.definition.comment.erlang
+   % an interface function for this.
+%<0--------------------------------- meta.function.erlang
+%<0 punctuation.whitespace.comment.leading.erlang
+%  ^-------------------------------- comment.line.percentage.erlang
+%  ^ punctuation.definition.comment.erlang
+   central_register_server ! {register_person, Hacker1},
+%<0----------------------------------------------------- meta.function.erlang
+%  ^---------------------- constant.other.symbol.unquoted.erlang
+%                          ^ keyword.operator.symbolic.erlang
+%                            ^------------------------- meta.structure.tuple.erlang
+%                            ^ punctuation.definition.tuple.begin.erlang
+%                             ^-------------- constant.other.symbol.unquoted.erlang
+%                                            ^ punctuation.separator.tuple.erlang
+%                                              ^------ variable.other.erlang
+%                                                     ^ punctuation.definition.tuple.end.erlang
+%                                                      ^ punctuation.separator.expressions.erlang
+   central_register_server ! {register_person, 
+%<0-------------------------------------------- meta.function.erlang
+%  ^---------------------- constant.other.symbol.unquoted.erlang
+%                          ^ keyword.operator.symbolic.erlang
+%                            ^----------------- meta.structure.tuple.erlang
+%                            ^ punctuation.definition.tuple.begin.erlang
+%                             ^-------------- constant.other.symbol.unquoted.erlang
+%                                            ^ punctuation.separator.tuple.erlang
+             OldHacker#person{name = "Robert", 
+%<0-------------------------------------------- meta.function.erlang
+%<0-------------------------------------------- meta.structure.tuple.erlang
+%            ^-------- variable.other.erlang
+%                     ^------------------------ meta.record-usage.erlang
+%                     ^ keyword.operator.record.erlang
+%                      ^----- entity.name.type.class.record.erlang
+%                            ^----------------- meta.structure.record.erlang
+%                            ^ punctuation.definition.class.record.begin.erlang
+%                             ^--- variable.other.field.erlang
+%                                  ^ keyword.operator.symbolic.erlang
+%                                    ^------- string.quoted.double.erlang
+%                                    ^ punctuation.definition.string.begin.erlang
+%                                           ^ punctuation.definition.string.end.erlang
+%                                            ^ punctuation.separator.class.record.erlang
+                              phone = [0,8,3,2,4,5,3,1]}}.
+%<0------------------------------------------------------- meta.function.erlang
+%<0------------------------------------------------------ meta.structure.tuple.erlang
+%<0----------------------------------------------------- meta.record-usage.erlang
+%<0----------------------------------------------------- meta.structure.record.erlang
+%                             ^---- variable.other.field.erlang
+%                                   ^ keyword.operator.symbolic.erlang
+%                                     ^---------------- meta.structure.list.erlang
+%                                     ^ punctuation.definition.list.begin.erlang
+%                                      ^ constant.numeric.integer.decimal.erlang
+%                                       ^ punctuation.separator.list.erlang
+%                                        ^ constant.numeric.integer.decimal.erlang
+%                                         ^ punctuation.separator.list.erlang
+%                                          ^ constant.numeric.integer.decimal.erlang
+%                                           ^ punctuation.separator.list.erlang
+%                                            ^ constant.numeric.integer.decimal.erlang
+%                                             ^ punctuation.separator.list.erlang
+%                                              ^ constant.numeric.integer.decimal.erlang
+%                                               ^ punctuation.separator.list.erlang
+%                                                ^ constant.numeric.integer.decimal.erlang
+%                                                 ^ punctuation.separator.list.erlang
+%                                                  ^ constant.numeric.integer.decimal.erlang
+%                                                   ^ punctuation.separator.list.erlang
+%                                                    ^ constant.numeric.integer.decimal.erlang
+%                                                     ^ punctuation.definition.list.end.erlang
+%                                                      ^ punctuation.definition.class.record.end.erlang
+%                                                       ^ punctuation.definition.tuple.end.erlang
+%                                                        ^ punctuation.terminator.function.erlang
+
+%% From https://erlang.org/doc/programming_examples/records.html#a-longer-example
+%<0------------------------------------------------------------------------------ comment.line.percentage.erlang
+%<0 punctuation.definition.comment.erlang

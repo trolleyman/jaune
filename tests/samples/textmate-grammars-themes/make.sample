@@ -1,0 +1,70 @@
+# grammar: source.makefile
+
+edit : main.o kbd.o command.o display.o \
+#<0-------------------------------------- meta.scope.target.makefile
+#<0- entity.name.function.target.makefile
+#    ^ punctuation.separator.key-value.makefile
+#     ^---------------------------------- meta.scope.prerequisites.makefile
+#                                       ^ constant.character.escape.continuation.makefile
+       insert.o search.o files.o utils.o
+        cc -o edit main.o kbd.o command.o display.o \
+                   insert.o search.o files.o utils.o
+
+main.o : main.c defs.h
+#<0------------------- meta.scope.target.makefile
+#<0--- entity.name.function.target.makefile
+#      ^ punctuation.separator.key-value.makefile
+#       ^------------- meta.scope.prerequisites.makefile
+        cc -c main.c
+kbd.o : kbd.c defs.h command.h
+#<0--------------------------- meta.scope.target.makefile
+#<0-- entity.name.function.target.makefile
+#     ^ punctuation.separator.key-value.makefile
+#      ^---------------------- meta.scope.prerequisites.makefile
+        cc -c kbd.c
+command.o : command.c defs.h command.h
+#<0----------------------------------- meta.scope.target.makefile
+#<0------ entity.name.function.target.makefile
+#         ^ punctuation.separator.key-value.makefile
+#          ^-------------------------- meta.scope.prerequisites.makefile
+        cc -c command.c
+display.o : display.c defs.h buffer.h
+#<0---------------------------------- meta.scope.target.makefile
+#<0------ entity.name.function.target.makefile
+#         ^ punctuation.separator.key-value.makefile
+#          ^------------------------- meta.scope.prerequisites.makefile
+        cc -c display.c
+insert.o : insert.c defs.h buffer.h
+#<0-------------------------------- meta.scope.target.makefile
+#<0----- entity.name.function.target.makefile
+#        ^ punctuation.separator.key-value.makefile
+#         ^------------------------ meta.scope.prerequisites.makefile
+        cc -c insert.c
+search.o : search.c defs.h buffer.h
+#<0-------------------------------- meta.scope.target.makefile
+#<0----- entity.name.function.target.makefile
+#        ^ punctuation.separator.key-value.makefile
+#         ^------------------------ meta.scope.prerequisites.makefile
+        cc -c search.c
+files.o : files.c defs.h buffer.h command.h
+#<0---------------------------------------- meta.scope.target.makefile
+#<0---- entity.name.function.target.makefile
+#       ^ punctuation.separator.key-value.makefile
+#        ^--------------------------------- meta.scope.prerequisites.makefile
+        cc -c files.c
+utils.o : utils.c defs.h
+#<0--------------------- meta.scope.target.makefile
+#<0---- entity.name.function.target.makefile
+#       ^ punctuation.separator.key-value.makefile
+#        ^-------------- meta.scope.prerequisites.makefile
+        cc -c utils.c
+clean :
+#<0---- meta.scope.target.makefile
+#<0-- entity.name.function.target.makefile
+#     ^ punctuation.separator.key-value.makefile
+        rm edit main.o kbd.o command.o display.o \
+           insert.o search.o files.o utils.o
+
+# From https://www.gnu.org/software/make/manual/html_node/Simple-Makefile.html
+#<0--------------------------------------------------------------------------- comment.line.number-sign.makefile
+#<0 punctuation.definition.comment.makefile

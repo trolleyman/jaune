@@ -1,0 +1,231 @@
+# grammar: source.elixir
+
+# [] can be used, first match returned
+#<0----------------------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+1 = [a: 1, b: 2, a: 3][:a]
+#<0 constant.numeric.integer.elixir
+# ^ keyword.operator.assignment.elixir
+#   ^ punctuation.section.array.elixir
+#    ^- constant.other.keywords.elixir
+#     ^ punctuation.definition.constant.elixir
+#       ^ constant.numeric.integer.elixir
+#        ^ punctuation.separator.object.elixir
+#          ^- constant.other.keywords.elixir
+#           ^ punctuation.definition.constant.elixir
+#             ^ constant.numeric.integer.elixir
+#              ^ punctuation.separator.object.elixir
+#                ^- constant.other.keywords.elixir
+#                 ^ punctuation.definition.constant.elixir
+#                   ^ constant.numeric.integer.elixir
+#                    ^- punctuation.section.array.elixir
+#                      ^- constant.other.symbol.elixir
+#                      ^ punctuation.definition.constant.elixir
+#                        ^ punctuation.section.array.elixir
+
+# [] missing value is nil
+#<0---------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+nil = [a: 1, b: 2, a: 3][:c]
+#<0 constant.language.elixir
+#   ^ keyword.operator.assignment.elixir
+#     ^ punctuation.section.array.elixir
+#      ^- constant.other.keywords.elixir
+#       ^ punctuation.definition.constant.elixir
+#         ^ constant.numeric.integer.elixir
+#          ^ punctuation.separator.object.elixir
+#            ^- constant.other.keywords.elixir
+#             ^ punctuation.definition.constant.elixir
+#               ^ constant.numeric.integer.elixir
+#                ^ punctuation.separator.object.elixir
+#                  ^- constant.other.keywords.elixir
+#                   ^ punctuation.definition.constant.elixir
+#                     ^ constant.numeric.integer.elixir
+#                      ^- punctuation.section.array.elixir
+#                        ^- constant.other.symbol.elixir
+#                        ^ punctuation.definition.constant.elixir
+#                          ^ punctuation.section.array.elixir
+
+# Keyword get also works
+#<0--------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+1 = Keyword.get([a: 1, b: 2, a: 3], :a)
+#<0 constant.numeric.integer.elixir
+# ^ keyword.operator.assignment.elixir
+#   ^------ entity.name.type.class.elixir
+#          ^ punctuation.separator.method.elixir
+#           ^-- entity.name.function.elixir
+#              ^ punctuation.section.function.elixir
+#               ^ punctuation.section.array.elixir
+#                ^- constant.other.keywords.elixir
+#                 ^ punctuation.definition.constant.elixir
+#                   ^ constant.numeric.integer.elixir
+#                    ^ punctuation.separator.object.elixir
+#                      ^- constant.other.keywords.elixir
+#                       ^ punctuation.definition.constant.elixir
+#                         ^ constant.numeric.integer.elixir
+#                          ^ punctuation.separator.object.elixir
+#                            ^- constant.other.keywords.elixir
+#                             ^ punctuation.definition.constant.elixir
+#                               ^ constant.numeric.integer.elixir
+#                                ^ punctuation.section.array.elixir
+#                                 ^ punctuation.separator.object.elixir
+#                                   ^- constant.other.symbol.elixir
+#                                   ^ punctuation.definition.constant.elixir
+#                                     ^ punctuation.section.function.elixir
+
+# missing value is nil
+#<0------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+nil = Keyword.get([a: 1, b: 2, a: 3], :c)
+#<0 constant.language.elixir
+#   ^ keyword.operator.assignment.elixir
+#     ^------ entity.name.type.class.elixir
+#            ^ punctuation.separator.method.elixir
+#             ^-- entity.name.function.elixir
+#                ^ punctuation.section.function.elixir
+#                 ^ punctuation.section.array.elixir
+#                  ^- constant.other.keywords.elixir
+#                   ^ punctuation.definition.constant.elixir
+#                     ^ constant.numeric.integer.elixir
+#                      ^ punctuation.separator.object.elixir
+#                        ^- constant.other.keywords.elixir
+#                         ^ punctuation.definition.constant.elixir
+#                           ^ constant.numeric.integer.elixir
+#                            ^ punctuation.separator.object.elixir
+#                              ^- constant.other.keywords.elixir
+#                               ^ punctuation.definition.constant.elixir
+#                                 ^ constant.numeric.integer.elixir
+#                                  ^ punctuation.section.array.elixir
+#                                   ^ punctuation.separator.object.elixir
+#                                     ^- constant.other.symbol.elixir
+#                                     ^ punctuation.definition.constant.elixir
+#                                       ^ punctuation.section.function.elixir
+
+# an optional default value can be specified
+#<0----------------------------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+# for missing keys
+#<0--------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+"missing" = Keyword.get([a: 1, b: 2, a: 3], :c, "missing")
+#<0------ string.quoted.double.elixir
+#<0 punctuation.definition.string.begin.elixir
+#       ^ punctuation.definition.string.end.elixir
+#         ^ keyword.operator.assignment.elixir
+#           ^------ entity.name.type.class.elixir
+#                  ^ punctuation.separator.method.elixir
+#                   ^-- entity.name.function.elixir
+#                      ^ punctuation.section.function.elixir
+#                       ^ punctuation.section.array.elixir
+#                        ^- constant.other.keywords.elixir
+#                         ^ punctuation.definition.constant.elixir
+#                           ^ constant.numeric.integer.elixir
+#                            ^ punctuation.separator.object.elixir
+#                              ^- constant.other.keywords.elixir
+#                               ^ punctuation.definition.constant.elixir
+#                                 ^ constant.numeric.integer.elixir
+#                                  ^ punctuation.separator.object.elixir
+#                                    ^- constant.other.keywords.elixir
+#                                     ^ punctuation.definition.constant.elixir
+#                                       ^ constant.numeric.integer.elixir
+#                                        ^ punctuation.section.array.elixir
+#                                         ^ punctuation.separator.object.elixir
+#                                           ^- constant.other.symbol.elixir
+#                                           ^ punctuation.definition.constant.elixir
+#                                             ^ punctuation.separator.object.elixir
+#                                               ^-------- string.quoted.double.elixir
+#                                               ^ punctuation.definition.string.begin.elixir
+#                                                       ^ punctuation.definition.string.end.elixir
+#                                                        ^ punctuation.section.function.elixir
+
+# Keyword.take returns a list of matching pairs
+#<0-------------------------------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+[a: 1, a: 3] = Keyword.take([a: 1, b: 2, a: 3], [:a])
+#<0 punctuation.section.array.elixir
+#^- constant.other.keywords.elixir
+# ^ punctuation.definition.constant.elixir
+#   ^ constant.numeric.integer.elixir
+#    ^ punctuation.separator.object.elixir
+#      ^- constant.other.keywords.elixir
+#       ^ punctuation.definition.constant.elixir
+#         ^ constant.numeric.integer.elixir
+#          ^ punctuation.section.array.elixir
+#            ^ keyword.operator.assignment.elixir
+#              ^------ entity.name.type.class.elixir
+#                     ^ punctuation.separator.method.elixir
+#                      ^--- entity.name.function.elixir
+#                          ^ punctuation.section.function.elixir
+#                           ^ punctuation.section.array.elixir
+#                            ^- constant.other.keywords.elixir
+#                             ^ punctuation.definition.constant.elixir
+#                               ^ constant.numeric.integer.elixir
+#                                ^ punctuation.separator.object.elixir
+#                                  ^- constant.other.keywords.elixir
+#                                   ^ punctuation.definition.constant.elixir
+#                                     ^ constant.numeric.integer.elixir
+#                                      ^ punctuation.separator.object.elixir
+#                                        ^- constant.other.keywords.elixir
+#                                         ^ punctuation.definition.constant.elixir
+#                                           ^ constant.numeric.integer.elixir
+#                                            ^ punctuation.section.array.elixir
+#                                             ^ punctuation.separator.object.elixir
+#                                               ^ punctuation.section.array.elixir
+#                                                ^- constant.other.symbol.elixir
+#                                                ^ punctuation.definition.constant.elixir
+#                                                  ^ punctuation.section.array.elixir
+#                                                   ^ punctuation.section.function.elixir
+
+[] = Keyword.take([a: 1, b: 2, a: 3], [:c])
+#<0 punctuation.section.array.elixir
+#  ^ keyword.operator.assignment.elixir
+#    ^------ entity.name.type.class.elixir
+#           ^ punctuation.separator.method.elixir
+#            ^--- entity.name.function.elixir
+#                ^ punctuation.section.function.elixir
+#                 ^ punctuation.section.array.elixir
+#                  ^- constant.other.keywords.elixir
+#                   ^ punctuation.definition.constant.elixir
+#                     ^ constant.numeric.integer.elixir
+#                      ^ punctuation.separator.object.elixir
+#                        ^- constant.other.keywords.elixir
+#                         ^ punctuation.definition.constant.elixir
+#                           ^ constant.numeric.integer.elixir
+#                            ^ punctuation.separator.object.elixir
+#                              ^- constant.other.keywords.elixir
+#                               ^ punctuation.definition.constant.elixir
+#                                 ^ constant.numeric.integer.elixir
+#                                  ^ punctuation.section.array.elixir
+#                                   ^ punctuation.separator.object.elixir
+#                                     ^ punctuation.section.array.elixir
+#                                      ^- constant.other.symbol.elixir
+#                                      ^ punctuation.definition.constant.elixir
+#                                        ^ punctuation.section.array.elixir
+#                                         ^ punctuation.section.function.elixir
+
+# dot syntax does NOT work
+#<0----------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+# results in compile error
+#<0----------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir
+[a: 1, b: 2, a: 3].a
+#<0 punctuation.section.array.elixir
+#^- constant.other.keywords.elixir
+# ^ punctuation.definition.constant.elixir
+#   ^ constant.numeric.integer.elixir
+#    ^ punctuation.separator.object.elixir
+#      ^- constant.other.keywords.elixir
+#       ^ punctuation.definition.constant.elixir
+#         ^ constant.numeric.integer.elixir
+#          ^ punctuation.separator.object.elixir
+#            ^- constant.other.keywords.elixir
+#             ^ punctuation.definition.constant.elixir
+#               ^ constant.numeric.integer.elixir
+#                ^ punctuation.section.array.elixir
+#                 ^ punctuation.separator.method.elixir
+
+# From https://elixir-examples.github.io/single-page
+#<0------------------------------------------------- comment.line.number-sign.elixir
+#<0 punctuation.definition.comment.elixir

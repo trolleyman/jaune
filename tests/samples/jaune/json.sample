@@ -1,0 +1,395 @@
+// grammar: source.json
+
+{
+//<0 meta.structure.dictionary.json
+//<0 punctuation.definition.dictionary.begin.json
+  "squadName": "Super hero squad",
+//<0------------------------------ meta.structure.dictionary.json
+//^---------- string.json support.type.property-name.json
+//^ punctuation.support.type.property-name.begin.json
+//          ^ punctuation.support.type.property-name.end.json
+//           ^-------------------- meta.structure.dictionary.value.json
+//           ^ punctuation.separator.dictionary.key-value.json
+//             ^----------------- string.quoted.double.json
+//             ^ punctuation.definition.string.begin.json
+//                              ^ punctuation.definition.string.end.json
+//                               ^ punctuation.separator.dictionary.pair.json
+  "homeTown": "Metro City",
+//<0----------------------- meta.structure.dictionary.json
+//^--------- string.json support.type.property-name.json
+//^ punctuation.support.type.property-name.begin.json
+//         ^ punctuation.support.type.property-name.end.json
+//          ^-------------- meta.structure.dictionary.value.json
+//          ^ punctuation.separator.dictionary.key-value.json
+//            ^----------- string.quoted.double.json
+//            ^ punctuation.definition.string.begin.json
+//                       ^ punctuation.definition.string.end.json
+//                        ^ punctuation.separator.dictionary.pair.json
+  "formed": 2016,
+//<0------------- meta.structure.dictionary.json
+//^------- string.json support.type.property-name.json
+//^ punctuation.support.type.property-name.begin.json
+//       ^ punctuation.support.type.property-name.end.json
+//        ^------ meta.structure.dictionary.value.json
+//        ^ punctuation.separator.dictionary.key-value.json
+//          ^--- constant.numeric.json
+//              ^ punctuation.separator.dictionary.pair.json
+  "secretBase": "Super tower",
+//<0-------------------------- meta.structure.dictionary.json
+//^----------- string.json support.type.property-name.json
+//^ punctuation.support.type.property-name.begin.json
+//           ^ punctuation.support.type.property-name.end.json
+//            ^--------------- meta.structure.dictionary.value.json
+//            ^ punctuation.separator.dictionary.key-value.json
+//              ^------------ string.quoted.double.json
+//              ^ punctuation.definition.string.begin.json
+//                          ^ punctuation.definition.string.end.json
+//                           ^ punctuation.separator.dictionary.pair.json
+  "active": true,
+//<0------------- meta.structure.dictionary.json
+//^------- string.json support.type.property-name.json
+//^ punctuation.support.type.property-name.begin.json
+//       ^ punctuation.support.type.property-name.end.json
+//        ^------ meta.structure.dictionary.value.json
+//        ^ punctuation.separator.dictionary.key-value.json
+//          ^--- constant.language.json
+//              ^ punctuation.separator.dictionary.pair.json
+  "members": [
+//<0---------- meta.structure.dictionary.json
+//^-------- string.json support.type.property-name.json
+//^ punctuation.support.type.property-name.begin.json
+//        ^ punctuation.support.type.property-name.end.json
+//         ^-- meta.structure.dictionary.value.json
+//         ^ punctuation.separator.dictionary.key-value.json
+//           ^ meta.structure.array.json
+//           ^ punctuation.definition.array.begin.json
+    {
+//<0- meta.structure.dictionary.json
+//<0- meta.structure.dictionary.value.json
+//<0- meta.structure.array.json
+//  ^ meta.structure.dictionary.json
+//  ^ punctuation.definition.dictionary.begin.json
+      "name": "Molecule Man",
+//<0------------------------- meta.structure.dictionary.json
+//<0------------------------- meta.structure.dictionary.value.json
+//<0------------------------- meta.structure.array.json
+//<0------------------------- meta.structure.dictionary.json
+//    ^----- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//         ^ punctuation.support.type.property-name.end.json
+//          ^---------------- meta.structure.dictionary.value.json
+//          ^ punctuation.separator.dictionary.key-value.json
+//            ^------------- string.quoted.double.json
+//            ^ punctuation.definition.string.begin.json
+//                         ^ punctuation.definition.string.end.json
+//                          ^ punctuation.separator.dictionary.pair.json
+      "age": 29,
+//<0------------ meta.structure.dictionary.json
+//<0------------ meta.structure.dictionary.value.json
+//<0------------ meta.structure.array.json
+//<0------------ meta.structure.dictionary.json
+//    ^---- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//        ^ punctuation.support.type.property-name.end.json
+//         ^---- meta.structure.dictionary.value.json
+//         ^ punctuation.separator.dictionary.key-value.json
+//           ^- constant.numeric.json
+//             ^ punctuation.separator.dictionary.pair.json
+      "secretIdentity": "Dan Jukes",
+//<0-------------------------------- meta.structure.dictionary.json
+//<0-------------------------------- meta.structure.dictionary.value.json
+//<0-------------------------------- meta.structure.array.json
+//<0-------------------------------- meta.structure.dictionary.json
+//    ^--------------- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//                   ^ punctuation.support.type.property-name.end.json
+//                    ^------------- meta.structure.dictionary.value.json
+//                    ^ punctuation.separator.dictionary.key-value.json
+//                      ^---------- string.quoted.double.json
+//                      ^ punctuation.definition.string.begin.json
+//                                ^ punctuation.definition.string.end.json
+//                                 ^ punctuation.separator.dictionary.pair.json
+      "powers": ["Radiation resistance", "Turning tiny", "Radiation blast"]
+//<0----------------------------------------------------------------------- meta.structure.dictionary.json
+//<0----------------------------------------------------------------------- meta.structure.dictionary.value.json
+//<0----------------------------------------------------------------------- meta.structure.array.json
+//<0----------------------------------------------------------------------- meta.structure.dictionary.json
+//    ^------- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//           ^ punctuation.support.type.property-name.end.json
+//            ^------------------------------------------------------------ meta.structure.dictionary.value.json
+//            ^ punctuation.separator.dictionary.key-value.json
+//              ^---------------------------------------------------------- meta.structure.array.json
+//              ^ punctuation.definition.array.begin.json
+//               ^--------------------- string.quoted.double.json
+//               ^ punctuation.definition.string.begin.json
+//                                    ^ punctuation.definition.string.end.json
+//                                     ^ punctuation.separator.array.json
+//                                       ^------------- string.quoted.double.json
+//                                       ^ punctuation.definition.string.begin.json
+//                                                    ^ punctuation.definition.string.end.json
+//                                                     ^ punctuation.separator.array.json
+//                                                       ^---------------- string.quoted.double.json
+//                                                       ^ punctuation.definition.string.begin.json
+//                                                                       ^ punctuation.definition.string.end.json
+//                                                                        ^ punctuation.definition.array.end.json
+    },
+//<0-- meta.structure.dictionary.json
+//<0-- meta.structure.dictionary.value.json
+//<0-- meta.structure.array.json
+//<0- meta.structure.dictionary.json
+//<0 meta.structure.dictionary.value.json
+//  ^ punctuation.definition.dictionary.end.json
+//   ^ punctuation.separator.array.json
+    {
+//<0- meta.structure.dictionary.json
+//<0- meta.structure.dictionary.value.json
+//<0- meta.structure.array.json
+//  ^ meta.structure.dictionary.json
+//  ^ punctuation.definition.dictionary.begin.json
+      "name": "Madame Uppercut",
+//<0---------------------------- meta.structure.dictionary.json
+//<0---------------------------- meta.structure.dictionary.value.json
+//<0---------------------------- meta.structure.array.json
+//<0---------------------------- meta.structure.dictionary.json
+//    ^----- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//         ^ punctuation.support.type.property-name.end.json
+//          ^------------------- meta.structure.dictionary.value.json
+//          ^ punctuation.separator.dictionary.key-value.json
+//            ^---------------- string.quoted.double.json
+//            ^ punctuation.definition.string.begin.json
+//                            ^ punctuation.definition.string.end.json
+//                             ^ punctuation.separator.dictionary.pair.json
+      "age": 39,
+//<0------------ meta.structure.dictionary.json
+//<0------------ meta.structure.dictionary.value.json
+//<0------------ meta.structure.array.json
+//<0------------ meta.structure.dictionary.json
+//    ^---- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//        ^ punctuation.support.type.property-name.end.json
+//         ^---- meta.structure.dictionary.value.json
+//         ^ punctuation.separator.dictionary.key-value.json
+//           ^- constant.numeric.json
+//             ^ punctuation.separator.dictionary.pair.json
+      "secretIdentity": "Jane Wilson",
+//<0---------------------------------- meta.structure.dictionary.json
+//<0---------------------------------- meta.structure.dictionary.value.json
+//<0---------------------------------- meta.structure.array.json
+//<0---------------------------------- meta.structure.dictionary.json
+//    ^--------------- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//                   ^ punctuation.support.type.property-name.end.json
+//                    ^--------------- meta.structure.dictionary.value.json
+//                    ^ punctuation.separator.dictionary.key-value.json
+//                      ^------------ string.quoted.double.json
+//                      ^ punctuation.definition.string.begin.json
+//                                  ^ punctuation.definition.string.end.json
+//                                   ^ punctuation.separator.dictionary.pair.json
+      "powers": [
+//<0------------- meta.structure.dictionary.json
+//<0------------- meta.structure.dictionary.value.json
+//<0------------- meta.structure.array.json
+//<0------------- meta.structure.dictionary.json
+//    ^------- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//           ^ punctuation.support.type.property-name.end.json
+//            ^-- meta.structure.dictionary.value.json
+//            ^ punctuation.separator.dictionary.key-value.json
+//              ^ meta.structure.array.json
+//              ^ punctuation.definition.array.begin.json
+        "Million tonne punch",
+//<0-------------------------- meta.structure.dictionary.json
+//<0-------------------------- meta.structure.dictionary.value.json
+//<0-------------------------- meta.structure.array.json
+//<0-------------------------- meta.structure.dictionary.json
+//<0-------------------------- meta.structure.dictionary.value.json
+//<0-------------------------- meta.structure.array.json
+//      ^-------------------- string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//                          ^ punctuation.definition.string.end.json
+//                           ^ punctuation.separator.array.json
+        "Damage resistance",
+//<0------------------------ meta.structure.dictionary.json
+//<0------------------------ meta.structure.dictionary.value.json
+//<0------------------------ meta.structure.array.json
+//<0------------------------ meta.structure.dictionary.json
+//<0------------------------ meta.structure.dictionary.value.json
+//<0------------------------ meta.structure.array.json
+//      ^------------------ string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//                        ^ punctuation.definition.string.end.json
+//                         ^ punctuation.separator.array.json
+        "Superhuman reflexes"
+//<0------------------------- meta.structure.dictionary.json
+//<0------------------------- meta.structure.dictionary.value.json
+//<0------------------------- meta.structure.array.json
+//<0------------------------- meta.structure.dictionary.json
+//<0------------------------- meta.structure.dictionary.value.json
+//<0------------------------- meta.structure.array.json
+//      ^-------------------- string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//                          ^ punctuation.definition.string.end.json
+      ]
+//<0--- meta.structure.dictionary.json
+//<0--- meta.structure.dictionary.value.json
+//<0--- meta.structure.array.json
+//<0--- meta.structure.dictionary.json
+//<0--- meta.structure.dictionary.value.json
+//<0--- meta.structure.array.json
+//    ^ punctuation.definition.array.end.json
+    },
+//<0-- meta.structure.dictionary.json
+//<0-- meta.structure.dictionary.value.json
+//<0-- meta.structure.array.json
+//<0- meta.structure.dictionary.json
+//<0 meta.structure.dictionary.value.json
+//  ^ punctuation.definition.dictionary.end.json
+//   ^ punctuation.separator.array.json
+    {
+//<0- meta.structure.dictionary.json
+//<0- meta.structure.dictionary.value.json
+//<0- meta.structure.array.json
+//  ^ meta.structure.dictionary.json
+//  ^ punctuation.definition.dictionary.begin.json
+      "name": "Eternal Flame",
+//<0-------------------------- meta.structure.dictionary.json
+//<0-------------------------- meta.structure.dictionary.value.json
+//<0-------------------------- meta.structure.array.json
+//<0-------------------------- meta.structure.dictionary.json
+//    ^----- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//         ^ punctuation.support.type.property-name.end.json
+//          ^----------------- meta.structure.dictionary.value.json
+//          ^ punctuation.separator.dictionary.key-value.json
+//            ^-------------- string.quoted.double.json
+//            ^ punctuation.definition.string.begin.json
+//                          ^ punctuation.definition.string.end.json
+//                           ^ punctuation.separator.dictionary.pair.json
+      "age": 1000000,
+//<0----------------- meta.structure.dictionary.json
+//<0----------------- meta.structure.dictionary.value.json
+//<0----------------- meta.structure.array.json
+//<0----------------- meta.structure.dictionary.json
+//    ^---- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//        ^ punctuation.support.type.property-name.end.json
+//         ^--------- meta.structure.dictionary.value.json
+//         ^ punctuation.separator.dictionary.key-value.json
+//           ^------ constant.numeric.json
+//                  ^ punctuation.separator.dictionary.pair.json
+      "secretIdentity": "Unknown",
+//<0------------------------------ meta.structure.dictionary.json
+//<0------------------------------ meta.structure.dictionary.value.json
+//<0------------------------------ meta.structure.array.json
+//<0------------------------------ meta.structure.dictionary.json
+//    ^--------------- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//                   ^ punctuation.support.type.property-name.end.json
+//                    ^----------- meta.structure.dictionary.value.json
+//                    ^ punctuation.separator.dictionary.key-value.json
+//                      ^-------- string.quoted.double.json
+//                      ^ punctuation.definition.string.begin.json
+//                              ^ punctuation.definition.string.end.json
+//                               ^ punctuation.separator.dictionary.pair.json
+      "powers": [
+//<0------------- meta.structure.dictionary.json
+//<0------------- meta.structure.dictionary.value.json
+//<0------------- meta.structure.array.json
+//<0------------- meta.structure.dictionary.json
+//    ^------- string.json support.type.property-name.json
+//    ^ punctuation.support.type.property-name.begin.json
+//           ^ punctuation.support.type.property-name.end.json
+//            ^-- meta.structure.dictionary.value.json
+//            ^ punctuation.separator.dictionary.key-value.json
+//              ^ meta.structure.array.json
+//              ^ punctuation.definition.array.begin.json
+        "Immortality",
+//<0------------------ meta.structure.dictionary.json
+//<0------------------ meta.structure.dictionary.value.json
+//<0------------------ meta.structure.array.json
+//<0------------------ meta.structure.dictionary.json
+//<0------------------ meta.structure.dictionary.value.json
+//<0------------------ meta.structure.array.json
+//      ^------------ string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//                  ^ punctuation.definition.string.end.json
+//                   ^ punctuation.separator.array.json
+        "Heat Immunity",
+//<0-------------------- meta.structure.dictionary.json
+//<0-------------------- meta.structure.dictionary.value.json
+//<0-------------------- meta.structure.array.json
+//<0-------------------- meta.structure.dictionary.json
+//<0-------------------- meta.structure.dictionary.value.json
+//<0-------------------- meta.structure.array.json
+//      ^-------------- string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//                    ^ punctuation.definition.string.end.json
+//                     ^ punctuation.separator.array.json
+        "Inferno",
+//<0-------------- meta.structure.dictionary.json
+//<0-------------- meta.structure.dictionary.value.json
+//<0-------------- meta.structure.array.json
+//<0-------------- meta.structure.dictionary.json
+//<0-------------- meta.structure.dictionary.value.json
+//<0-------------- meta.structure.array.json
+//      ^-------- string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//              ^ punctuation.definition.string.end.json
+//               ^ punctuation.separator.array.json
+        "Teleportation",
+//<0-------------------- meta.structure.dictionary.json
+//<0-------------------- meta.structure.dictionary.value.json
+//<0-------------------- meta.structure.array.json
+//<0-------------------- meta.structure.dictionary.json
+//<0-------------------- meta.structure.dictionary.value.json
+//<0-------------------- meta.structure.array.json
+//      ^-------------- string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//                    ^ punctuation.definition.string.end.json
+//                     ^ punctuation.separator.array.json
+        "Interdimensional travel"
+//<0----------------------------- meta.structure.dictionary.json
+//<0----------------------------- meta.structure.dictionary.value.json
+//<0----------------------------- meta.structure.array.json
+//<0----------------------------- meta.structure.dictionary.json
+//<0----------------------------- meta.structure.dictionary.value.json
+//<0----------------------------- meta.structure.array.json
+//      ^------------------------ string.quoted.double.json
+//      ^ punctuation.definition.string.begin.json
+//                              ^ punctuation.definition.string.end.json
+      ]
+//<0--- meta.structure.dictionary.json
+//<0--- meta.structure.dictionary.value.json
+//<0--- meta.structure.array.json
+//<0--- meta.structure.dictionary.json
+//<0--- meta.structure.dictionary.value.json
+//<0--- meta.structure.array.json
+//    ^ punctuation.definition.array.end.json
+    }
+//<0- meta.structure.dictionary.json
+//<0- meta.structure.dictionary.value.json
+//<0- meta.structure.array.json
+//<0- meta.structure.dictionary.json
+//<0 meta.structure.dictionary.value.json
+//  ^ punctuation.definition.dictionary.end.json
+  ],
+//<0 meta.structure.dictionary.json
+//<0 meta.structure.dictionary.value.json
+//<0 meta.structure.array.json
+//^ punctuation.definition.array.end.json
+// ^ punctuation.separator.dictionary.pair.json
+  "from": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON"
+//<0------------------------------------------------------------------------------ meta.structure.dictionary.json
+//^----- string.json support.type.property-name.json
+//^ punctuation.support.type.property-name.begin.json
+//     ^ punctuation.support.type.property-name.end.json
+//      ^------------------------------------------------------------------------- meta.structure.dictionary.value.json
+//      ^ punctuation.separator.dictionary.key-value.json
+//        ^----------------------------------------------------------------------- string.quoted.double.json
+//        ^ punctuation.definition.string.begin.json
+//                                                                               ^ punctuation.definition.string.end.json
+}
+//<0 meta.structure.dictionary.json
+//<0 punctuation.definition.dictionary.end.json

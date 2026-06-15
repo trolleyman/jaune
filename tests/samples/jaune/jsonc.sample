@@ -1,0 +1,258 @@
+// grammar: source.json.comments
+
+// A jsonc example document
+//<0----------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.json.comments
+{
+//<0 meta.structure.dictionary.json.comments
+//<0 punctuation.definition.dictionary.begin.json.comments
+ owner:{
+//<0---- meta.structure.dictionary.json.comments
+//<1-- invalid.illegal.expected-dictionary-separator.json.comments
+//    ^- meta.structure.dictionary.value.json.comments
+//    ^ punctuation.separator.dictionary.key-value.json.comments
+//     ^ meta.structure.dictionary.json.comments
+//     ^ punctuation.definition.dictionary.begin.json.comments
+  name:`komkom`
+//<0----------- meta.structure.dictionary.json.comments
+//<0----------- meta.structure.dictionary.value.json.comments
+//<0----------- meta.structure.dictionary.json.comments
+//^--- invalid.illegal.expected-dictionary-separator.json.comments
+//    ^-------- meta.structure.dictionary.value.json.comments
+//    ^ punctuation.separator.dictionary.key-value.json.comments
+//     ^------- invalid.illegal.expected-dictionary-separator.json.comments
+  dob: /* just some random dob */ `1975-01-25T12:00:00-02:00`
+//<0--------------------------------------------------------- meta.structure.dictionary.json.comments
+//<0--------------------------------------------------------- meta.structure.dictionary.value.json.comments
+//<0--------------------------------------------------------- meta.structure.dictionary.json.comments
+//<0--------------------------------------------------------- meta.structure.dictionary.value.json.comments
+//^--- invalid.illegal.expected-dictionary-separator.json.comments
+//     ^------------------------- comment.block.json.comments
+//                                ^ invalid.illegal.expected-dictionary-separator.json.comments
+//                                 ^--------- constant.numeric.json.comments
+//                                           ^ invalid.illegal.expected-dictionary-separator.json.comments
+//                                            ^- constant.numeric.json.comments
+//                                              ^ invalid.illegal.expected-dictionary-separator.json.comments
+//                                               ^- constant.numeric.json.comments
+//                                                 ^ invalid.illegal.expected-dictionary-separator.json.comments
+//                                                  ^---- constant.numeric.json.comments
+//                                                       ^ invalid.illegal.expected-dictionary-separator.json.comments
+//                                                        ^- constant.numeric.json.comments
+//                                                          ^ invalid.illegal.expected-dictionary-separator.json.comments
+ }
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<1 punctuation.definition.dictionary.end.json.comments
+
+ database:{ // our live db
+//<0---------------------- meta.structure.dictionary.json.comments
+//<0---------------------- meta.structure.dictionary.value.json.comments
+//<1------ invalid.illegal.expected-dictionary-separator.json.comments
+//        ^--------------- meta.structure.dictionary.json.comments
+//        ^ punctuation.definition.dictionary.begin.json.comments
+//          ^------------- comment.line.double-slash.js
+//          ^- punctuation.definition.comment.json.comments
+  server:`192.168.1.1`
+//<0------------------ meta.structure.dictionary.json.comments
+//<0------------------ meta.structure.dictionary.value.json.comments
+//<0------------------ meta.structure.dictionary.json.comments
+//^----- invalid.illegal.expected-dictionary-separator.json.comments
+//      ^------------- meta.structure.dictionary.value.json.comments
+//      ^ punctuation.separator.dictionary.key-value.json.comments
+//       ^ invalid.illegal.expected-dictionary-separator.json.comments
+//        ^------ constant.numeric.json.comments
+//               ^ invalid.illegal.expected-dictionary-separator.json.comments
+//                ^-- constant.numeric.json.comments
+//                   ^ invalid.illegal.expected-dictionary-separator.json.comments
+  ports:[8001,8002,8003]
+//<0-------------------- meta.structure.dictionary.json.comments
+//<0-------------------- meta.structure.dictionary.value.json.comments
+//<0-------------------- meta.structure.dictionary.json.comments
+//<0-------------------- meta.structure.dictionary.value.json.comments
+//^----- invalid.illegal.expected-dictionary-separator.json.comments
+//      ^--------------- meta.structure.array.json.comments
+//      ^ punctuation.definition.array.begin.json.comments
+//       ^--- constant.numeric.json.comments
+//           ^ punctuation.separator.array.json.comments
+//            ^--- constant.numeric.json.comments
+//                ^ punctuation.separator.array.json.comments
+//                 ^--- constant.numeric.json.comments
+//                     ^ punctuation.definition.array.end.json.comments
+  connectionMax:5000
+//<0---------------- meta.structure.dictionary.json.comments
+//<0---------------- meta.structure.dictionary.value.json.comments
+//<0---------------- meta.structure.dictionary.json.comments
+//<0---------------- meta.structure.dictionary.value.json.comments
+//^------------- invalid.illegal.expected-dictionary-separator.json.comments
+//              ^--- constant.numeric.json.comments
+  enabled:true
+//<0---------- meta.structure.dictionary.json.comments
+//<0---------- meta.structure.dictionary.value.json.comments
+//<0---------- meta.structure.dictionary.json.comments
+//<0---------- meta.structure.dictionary.value.json.comments
+//^------- invalid.illegal.expected-dictionary-separator.json.comments
+//        ^--- constant.language.json.comments
+ }
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<1 punctuation.definition.dictionary.end.json.comments
+
+ servers:{ // a server
+//<0------------------ meta.structure.dictionary.json.comments
+//<0------------------ meta.structure.dictionary.value.json.comments
+//<1----- invalid.illegal.expected-dictionary-separator.json.comments
+//       ^------------ meta.structure.dictionary.json.comments
+//       ^ punctuation.definition.dictionary.begin.json.comments
+//         ^---------- comment.line.double-slash.js
+//         ^- punctuation.definition.comment.json.comments
+  alpha:{
+//<0----- meta.structure.dictionary.json.comments
+//<0----- meta.structure.dictionary.value.json.comments
+//<0----- meta.structure.dictionary.json.comments
+//^---- invalid.illegal.expected-dictionary-separator.json.comments
+//     ^- meta.structure.dictionary.value.json.comments
+//     ^ punctuation.separator.dictionary.key-value.json.comments
+//      ^ meta.structure.dictionary.json.comments
+//      ^ punctuation.definition.dictionary.begin.json.comments
+   ip: /* is soon invalid */ `10.0.0.1`
+//<0----------------------------------- meta.structure.dictionary.json.comments
+//<0----------------------------------- meta.structure.dictionary.value.json.comments
+//<0----------------------------------- meta.structure.dictionary.json.comments
+//<0----------------------------------- meta.structure.dictionary.value.json.comments
+//<0----------------------------------- meta.structure.dictionary.json.comments
+// ^- invalid.illegal.expected-dictionary-separator.json.comments
+//   ^--------------------------------- meta.structure.dictionary.value.json.comments
+//   ^ punctuation.separator.dictionary.key-value.json.comments
+//     ^-------------------- comment.block.json.comments
+//                           ^ invalid.illegal.expected-dictionary-separator.json.comments
+//                            ^--- constant.numeric.json.comments
+//                                ^ invalid.illegal.expected-dictionary-separator.json.comments
+//                                 ^-- constant.numeric.json.comments
+//                                    ^ invalid.illegal.expected-dictionary-separator.json.comments
+   dc:`eqdc10`
+//<0---------- meta.structure.dictionary.json.comments
+//<0---------- meta.structure.dictionary.value.json.comments
+//<0---------- meta.structure.dictionary.json.comments
+//<0---------- meta.structure.dictionary.value.json.comments
+//<0---------- meta.structure.dictionary.json.comments
+//<0---------- meta.structure.dictionary.value.json.comments
+// ^------- invalid.illegal.expected-dictionary-separator.json.comments
+//         ^- constant.numeric.json.comments
+//           ^ invalid.illegal.expected-dictionary-separator.json.comments
+  }
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//^ punctuation.definition.dictionary.end.json.comments
+
+  beta:{
+//<0---- meta.structure.dictionary.json.comments
+//<0---- meta.structure.dictionary.value.json.comments
+//<0---- meta.structure.dictionary.json.comments
+//<0---- meta.structure.dictionary.value.json.comments
+//^---- invalid.illegal.expected-dictionary-separator.json.comments
+//     ^ meta.structure.dictionary.json.comments
+//     ^ punctuation.definition.dictionary.begin.json.comments
+   ip:`10.0.0.2`
+//<0------------ meta.structure.dictionary.json.comments
+//<0------------ meta.structure.dictionary.value.json.comments
+//<0------------ meta.structure.dictionary.json.comments
+//<0------------ meta.structure.dictionary.value.json.comments
+//<0------------ meta.structure.dictionary.json.comments
+// ^- invalid.illegal.expected-dictionary-separator.json.comments
+//   ^---------- meta.structure.dictionary.value.json.comments
+//   ^ punctuation.separator.dictionary.key-value.json.comments
+//    ^ invalid.illegal.expected-dictionary-separator.json.comments
+//     ^--- constant.numeric.json.comments
+//         ^ invalid.illegal.expected-dictionary-separator.json.comments
+//          ^-- constant.numeric.json.comments
+//             ^ invalid.illegal.expected-dictionary-separator.json.comments
+   dc:`eqdc10`
+//<0---------- meta.structure.dictionary.json.comments
+//<0---------- meta.structure.dictionary.value.json.comments
+//<0---------- meta.structure.dictionary.json.comments
+//<0---------- meta.structure.dictionary.value.json.comments
+//<0---------- meta.structure.dictionary.json.comments
+//<0---------- meta.structure.dictionary.value.json.comments
+// ^------- invalid.illegal.expected-dictionary-separator.json.comments
+//         ^- constant.numeric.json.comments
+//           ^ invalid.illegal.expected-dictionary-separator.json.comments
+  }
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//^ punctuation.definition.dictionary.end.json.comments
+ }
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<1 punctuation.definition.dictionary.end.json.comments
+
+ clients:{
+//<0------ meta.structure.dictionary.json.comments
+//<0------ meta.structure.dictionary.value.json.comments
+//<1----- invalid.illegal.expected-dictionary-separator.json.comments
+//       ^ meta.structure.dictionary.json.comments
+//       ^ punctuation.definition.dictionary.begin.json.comments
+  data:[["gamma","delta"],[1,2]]
+//<0---------------------------- meta.structure.dictionary.json.comments
+//<0---------------------------- meta.structure.dictionary.value.json.comments
+//<0---------------------------- meta.structure.dictionary.json.comments
+//^--- invalid.illegal.expected-dictionary-separator.json.comments
+//    ^------------------------- meta.structure.dictionary.value.json.comments
+//    ^ punctuation.separator.dictionary.key-value.json.comments
+//     ^------------------------ meta.structure.array.json.comments
+//     ^ punctuation.definition.array.begin.json.comments
+//      ^---------------- meta.structure.array.json.comments
+//      ^ punctuation.definition.array.begin.json.comments
+//       ^------ string.quoted.double.json.comments
+//       ^ punctuation.definition.string.begin.json.comments
+//             ^ punctuation.definition.string.end.json.comments
+//              ^ punctuation.separator.array.json.comments
+//               ^------ string.quoted.double.json.comments
+//               ^ punctuation.definition.string.begin.json.comments
+//                     ^ punctuation.definition.string.end.json.comments
+//                      ^ punctuation.definition.array.end.json.comments
+//                       ^ punctuation.separator.array.json.comments
+//                        ^---- meta.structure.array.json.comments
+//                        ^ punctuation.definition.array.begin.json.comments
+//                         ^ constant.numeric.json.comments
+//                          ^ punctuation.separator.array.json.comments
+//                           ^ constant.numeric.json.comments
+//                            ^ punctuation.definition.array.end.json.comments
+//                             ^ punctuation.definition.array.end.json.comments
+ }
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<0 meta.structure.dictionary.json.comments
+//<0 meta.structure.dictionary.value.json.comments
+//<1 punctuation.definition.dictionary.end.json.comments
+
+ hosts:[alpha,omega]
+//<0---------------- meta.structure.dictionary.json.comments
+//<0---------------- meta.structure.dictionary.value.json.comments
+//<1--- invalid.illegal.expected-dictionary-separator.json.comments
+//     ^------------ meta.structure.array.json.comments
+//     ^ punctuation.definition.array.begin.json.comments
+//      ^---- invalid.illegal.expected-array-separator.json.comments
+//           ^ punctuation.separator.array.json.comments
+//            ^---- invalid.illegal.expected-array-separator.json.comments
+//                 ^ punctuation.definition.array.end.json.comments
+}
+//<0 meta.structure.dictionary.json.comments
+//<0 punctuation.definition.dictionary.end.json.comments
+
+// From https://github.com/komkom/jsonc
+//<0----------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.json.comments

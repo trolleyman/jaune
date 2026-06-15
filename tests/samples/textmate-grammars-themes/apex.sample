@@ -1,0 +1,137 @@
+// grammar: source.apex
+
+public class EmailManager {
+//<0-- storage.modifier.apex
+//     ^---- keyword.other.class.apex
+//           ^----------- entity.name.type.class.apex
+//                        ^ punctuation.curlybrace.open.apex
+
+    public static void sendMail(String address, String subject, String body) {
+//  ^----- storage.modifier.apex
+//         ^----- storage.modifier.apex
+//                ^--- keyword.type.apex
+//                     ^------- entity.name.function.apex
+//                             ^ punctuation.parenthesis.open.apex
+//                              ^----- keyword.type.apex
+//                                     ^------ entity.name.variable.parameter.apex
+//                                            ^ punctuation.separator.comma.apex
+//                                              ^----- keyword.type.apex
+//                                                     ^------ entity.name.variable.parameter.apex
+//                                                            ^ punctuation.separator.comma.apex
+//                                                              ^----- keyword.type.apex
+//                                                                     ^--- entity.name.variable.parameter.apex
+//                                                                         ^ punctuation.parenthesis.close.apex
+//                                                                           ^ punctuation.curlybrace.open.apex
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+//      ^-------- storage.type.apex
+//               ^ punctuation.accessor.apex
+//                ^----------------- storage.type.apex
+//                                   ^--- entity.name.variable.local.apex
+//                                        ^ keyword.operator.assignment.apex
+//                                          ^-- keyword.control.new.apex
+//                                              ^-------- storage.type.apex
+//                                                       ^ punctuation.accessor.apex
+//                                                        ^----------------- storage.type.apex
+//                                                                          ^ punctuation.parenthesis.open.apex
+//                                                                           ^ punctuation.parenthesis.close.apex
+//                                                                            ^ punctuation.terminator.statement.apex
+        String[] toAddresses = new String[] {address};
+//      ^----- keyword.type.apex
+//            ^ punctuation.squarebracket.open.apex
+//             ^ punctuation.squarebracket.close.apex
+//               ^---------- entity.name.variable.local.apex
+//                           ^ keyword.operator.assignment.apex
+//                             ^-- keyword.control.new.apex
+//                                 ^----- keyword.type.apex
+//                                       ^ punctuation.squarebracket.open.apex
+//                                        ^ punctuation.squarebracket.close.apex
+//                                          ^ punctuation.curlybrace.open.apex
+//                                           ^------ variable.other.readwrite.apex
+//                                                  ^ punctuation.curlybrace.close.apex
+//                                                   ^ punctuation.terminator.statement.apex
+        mail.setToAddresses(toAddresses);
+//      ^--- variable.other.object.apex
+//          ^ punctuation.accessor.apex
+//           ^------------- entity.name.function.apex
+//                         ^ punctuation.parenthesis.open.apex
+//                          ^---------- variable.other.readwrite.apex
+//                                     ^ punctuation.parenthesis.close.apex
+//                                      ^ punctuation.terminator.statement.apex
+        mail.setSubject(subject);
+//      ^--- variable.other.object.apex
+//          ^ punctuation.accessor.apex
+//           ^--------- entity.name.function.apex
+//                     ^ punctuation.parenthesis.open.apex
+//                      ^------ variable.other.readwrite.apex
+//                             ^ punctuation.parenthesis.close.apex
+//                              ^ punctuation.terminator.statement.apex
+        mail.setPlainTextBody(body);
+//      ^--- variable.other.object.apex
+//          ^ punctuation.accessor.apex
+//           ^--------------- entity.name.function.apex
+//                           ^ punctuation.parenthesis.open.apex
+//                            ^--- variable.other.readwrite.apex
+//                                ^ punctuation.parenthesis.close.apex
+//                                 ^ punctuation.terminator.statement.apex
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+//      ^-------- variable.other.object.apex
+//               ^ punctuation.accessor.apex
+//                ^-------- entity.name.function.apex
+//                         ^ punctuation.parenthesis.open.apex
+//                          ^-- keyword.control.new.apex
+//                              ^-------- storage.type.apex
+//                                       ^ punctuation.accessor.apex
+//                                        ^----------------- storage.type.apex
+//                                                          ^ punctuation.squarebracket.open.apex
+//                                                           ^ punctuation.squarebracket.close.apex
+//                                                             ^ punctuation.curlybrace.open.apex
+//                                                               ^--- variable.other.readwrite.apex
+//                                                                    ^ punctuation.curlybrace.close.apex
+//                                                                     ^ punctuation.parenthesis.close.apex
+//                                                                      ^ punctuation.terminator.statement.apex
+    }
+//  ^ punctuation.curlybrace.close.apex
+
+}
+//<0 punctuation.curlybrace.close.apex
+
+String address = 'YOUR_EMAIL_ADDRESS';
+//<0-- keyword.type.apex
+//     ^------ entity.name.variable.local.apex
+//             ^ keyword.operator.assignment.apex
+//               ^------------------- string.quoted.single.apex
+//               ^ punctuation.definition.string.begin.apex
+//                                  ^ punctuation.definition.string.end.apex
+//                                   ^ punctuation.terminator.statement.apex
+String subject = 'Speaker Confirmation';
+//<0-- keyword.type.apex
+//     ^------ entity.name.variable.local.apex
+//             ^ keyword.operator.assignment.apex
+//               ^--------------------- string.quoted.single.apex
+//               ^ punctuation.definition.string.begin.apex
+//                                    ^ punctuation.definition.string.end.apex
+//                                     ^ punctuation.terminator.statement.apex
+String body = 'Thank you for speaking at the conference.';
+//<0-- keyword.type.apex
+//     ^--- entity.name.variable.local.apex
+//          ^ keyword.operator.assignment.apex
+//            ^------------------------------------------ string.quoted.single.apex
+//            ^ punctuation.definition.string.begin.apex
+//                                                      ^ punctuation.definition.string.end.apex
+//                                                       ^ punctuation.terminator.statement.apex
+EmailManager.sendMail(address, subject, body);
+//<0-------- variable.other.object.apex
+//          ^ punctuation.accessor.apex
+//           ^------- entity.name.function.apex
+//                   ^ punctuation.parenthesis.open.apex
+//                    ^------ variable.other.readwrite.apex
+//                           ^ punctuation.separator.comma.apex
+//                             ^------ variable.other.readwrite.apex
+//                                    ^ punctuation.separator.comma.apex
+//                                      ^--- variable.other.readwrite.apex
+//                                          ^ punctuation.parenthesis.close.apex
+//                                           ^ punctuation.terminator.statement.apex
+
+// From http://ccoenraets.github.io/salesforce-developer-workshop/Creating-an-Apex-Class.html
+//<0----------------------------------------------------------------------------------------- comment.line.double-slash.apex
+//<0 punctuation.definition.comment.apex

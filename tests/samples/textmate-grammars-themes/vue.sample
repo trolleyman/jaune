@@ -1,0 +1,385 @@
+<!-- grammar: text.html.vue -->
+
+<script setup>
+//<0 keyword.operator.relational.ts
+//<1--- variable.other.readwrite.ts
+//      ^---- variable.other.readwrite.ts
+//           ^ keyword.operator.relational.ts
+import { ref } from 'vue'
+//<0-- variable.other.readwrite.ts
+//       ^-- variable.other.readwrite.ts
+//             ^--- variable.other.readwrite.ts
+//                  ^---- string.quoted.single.ts
+//                  ^ punctuation.definition.string.begin.ts
+//                   ^-- variable.other.readwrite.ts
+//                      ^ string.quoted.single.ts
+//                      ^ punctuation.definition.string.begin.ts
+
+const message = ref('Hello World!')
+//<0------------------------------- string.quoted.single.ts
+//<0------------------------------- string.quoted.single.ts
+//<0- variable.other.readwrite.ts
+//    ^------ variable.other.readwrite.ts
+//            ^ keyword.operator.assignment.ts
+
+function reverseMessage() {
+//<0----------------------- string.quoted.single.ts
+//<0----------------------- string.quoted.single.ts
+//<0---- variable.other.readwrite.ts
+  // Access/mutate the value of a ref via
+//<0------------------------------------- string.quoted.single.ts
+//<0------------------------------------- string.quoted.single.ts
+//^- keyword.operator.arithmetic.ts
+//   ^----- variable.other.readwrite.ts
+//         ^ keyword.operator.arithmetic.ts
+//          ^----- variable.other.readwrite.ts
+//                 ^-- variable.other.readwrite.ts
+//                     ^---- variable.other.readwrite.ts
+//                           ^- keyword.operator.expression.of.ts
+//                              ^ variable.other.readwrite.ts
+//                                ^-- variable.other.readwrite.ts
+//                                    ^-- variable.other.readwrite.ts
+  // its .value property.
+//<0--------------------- string.quoted.single.ts
+//<0--------------------- string.quoted.single.ts
+//^- keyword.operator.arithmetic.ts
+//   ^-- variable.other.object.ts
+//       ^ punctuation.accessor.ts
+//        ^---- variable.other.property.ts
+//              ^------- variable.other.readwrite.ts
+//                      ^ punctuation.accessor.ts
+  message.value = message.value.split('').reverse().join('')
+//<0-------------------------------------------------------- string.quoted.single.ts
+//<0-------------------------------------------------------- string.quoted.single.ts
+//^------ variable.other.object.ts
+//       ^ punctuation.accessor.ts
+//        ^---- variable.other.property.ts
+//              ^ keyword.operator.assignment.ts
+//                ^------ variable.other.object.ts
+//                       ^ punctuation.accessor.ts
+//                        ^---- variable.other.object.property.ts
+}
+//<0 string.quoted.single.ts
+//<0 string.quoted.single.ts
+
+function notify() {
+//<0--------------- string.quoted.single.ts
+//<0--------------- string.quoted.single.ts
+//<0---- variable.other.readwrite.ts
+  alert('navigation was prevented.')
+//<0-------------------------------- string.quoted.single.ts
+//<0-------------------------------- string.quoted.single.ts
+}
+//<0 string.quoted.single.ts
+//<0 string.quoted.single.ts
+</script>
+<!--<0--- string.quoted.single.ts -->
+<!--<0--- string.quoted.single.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2-- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.relational.ts -->
+
+<template>
+<!--<0---- string.quoted.single.ts -->
+<!--<0---- string.quoted.single.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1--- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+  <h1>{{ message }}</h1>
+<!--<0------------------ string.quoted.single.ts -->
+<!--<0------------------ string.quoted.single.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+<!--  ^- punctuation.definition.block.ts -->
+<!--    ^-------- expression.ng -->
+<!--     ^------ variable.other.readwrite.ts -->
+<!--             ^- punctuation.definition.block.ts -->
+<!--               ^ keyword.operator.relational.ts -->
+<!--                ^ keyword.operator.arithmetic.ts -->
+<!--                 ^- variable.other.readwrite.ts -->
+<!--                   ^ keyword.operator.relational.ts -->
+  <button @click="reverseMessage">Reverse Message</button>
+<!--<0---------------------------------------------------- string.quoted.single.ts -->
+<!--<0---------------------------------------------------- string.quoted.single.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3--- variable.other.readwrite.ts -->
+<!--       ^---- variable.other.readwrite.ts -->
+<!--            ^ keyword.operator.assignment.ts -->
+<!--             ^---------------------------------------- string.quoted.double.ts -->
+<!--             ^ punctuation.definition.string.begin.ts -->
+<!--              ^------------- variable.other.readwrite.ts -->
+<!--                            ^------------------------- string.quoted.double.ts -->
+<!--                            ^ punctuation.definition.string.begin.ts -->
+<!--                             ^ keyword.operator.relational.ts -->
+<!--                              ^------ variable.other.readwrite.ts -->
+<!--                                      ^------ variable.other.readwrite.ts -->
+<!--                                             ^ keyword.operator.relational.ts -->
+<!--                                              ^ keyword.operator.arithmetic.ts -->
+<!--                                               ^----- variable.other.readwrite.ts -->
+<!--                                                     ^ keyword.operator.relational.ts -->
+  <button @click="message += '!'">Append "!"</button>
+<!--<0----------------------------------------------- string.quoted.single.ts -->
+<!--<0----------------------------------------------- string.quoted.single.ts -->
+<!--<0----------------------------------------------- string.quoted.double.ts -->
+<!--<0----------------------------------------------- string.quoted.double.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3--- variable.other.readwrite.ts -->
+<!--       ^---- variable.other.readwrite.ts -->
+<!--            ^ keyword.operator.assignment.ts -->
+<!--             ^----------------------------------- string.quoted.double.ts -->
+<!--             ^ punctuation.definition.string.begin.ts -->
+<!--              ^------ variable.other.readwrite.ts -->
+<!--                      ^- keyword.operator.assignment.compound.ts -->
+<!--                         ^----------------------- string.quoted.single.ts -->
+<!--                         ^ punctuation.definition.string.begin.ts -->
+<!--                          ^ keyword.operator.logical.ts -->
+<!--                           ^--------------------- string.quoted.single.ts -->
+<!--                           ^ punctuation.definition.string.begin.ts -->
+<!--                            ^-------------------- string.quoted.double.ts -->
+<!--                            ^ punctuation.definition.string.begin.ts -->
+<!--                             ^ keyword.operator.relational.ts -->
+<!--                              ^----- variable.other.readwrite.ts -->
+<!--                                     ^----------- string.quoted.double.ts -->
+<!--                                     ^ punctuation.definition.string.begin.ts -->
+<!--                                      ^ keyword.operator.logical.ts -->
+<!--                                       ^--------- string.quoted.double.ts -->
+<!--                                       ^ punctuation.definition.string.begin.ts -->
+<!--                                        ^ keyword.operator.relational.ts -->
+<!--                                         ^ keyword.operator.arithmetic.ts -->
+<!--                                          ^----- variable.other.readwrite.ts -->
+<!--                                                ^ keyword.operator.relational.ts -->
+  <a href="https://vuejs.org" @click.prevent="notify">
+<!--<0------------------------------------------------ string.quoted.single.ts -->
+<!--<0------------------------------------------------ string.quoted.single.ts -->
+<!--<0------------------------------------------------ string.quoted.double.ts -->
+<!--<0------------------------------------------------ string.quoted.double.ts -->
+<!--<0------------------------------------------------ string.quoted.double.ts -->
+<!--<0------------------------------------------------ string.quoted.single.ts -->
+<!--<0------------------------------------------------ string.quoted.single.ts -->
+<!--<0------------------------------------------------ string.quoted.double.ts -->
+<!--<0------------------------------------------------ string.quoted.double.ts -->
+<!--<0------------------------------------------------ string.quoted.double.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 variable.other.readwrite.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.assignment.ts -->
+<!--      ^------------------------------------------- string.quoted.double.ts -->
+<!--      ^ punctuation.definition.string.begin.ts -->
+<!--       ^---- variable.other.readwrite.ts -->
+<!--             ^- keyword.operator.arithmetic.ts -->
+<!--               ^---- variable.other.object.ts -->
+<!--                    ^ punctuation.accessor.ts -->
+<!--                     ^-- variable.other.property.ts -->
+<!--                        ^------------------------- string.quoted.double.ts -->
+<!--                        ^ punctuation.definition.string.begin.ts -->
+<!--                           ^---- variable.other.object.ts -->
+<!--                                ^ punctuation.accessor.ts -->
+<!--                                 ^------ variable.other.property.ts -->
+<!--                                        ^ keyword.operator.assignment.ts -->
+<!--                                         ^-------- string.quoted.double.ts -->
+<!--                                         ^ punctuation.definition.string.begin.ts -->
+<!--                                          ^----- variable.other.readwrite.ts -->
+<!--                                                ^- string.quoted.double.ts -->
+<!--                                                ^ punctuation.definition.string.begin.ts -->
+<!--                                                 ^ keyword.operator.relational.ts -->
+    A link with e.preventDefault()
+<!--<0---------------------------- string.quoted.single.ts -->
+<!--<0---------------------------- string.quoted.single.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.single.ts -->
+<!--<0---------------------------- string.quoted.single.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--^ constant.character.other -->
+<!--  ^--- variable.other.readwrite.ts -->
+<!--       ^--- variable.other.readwrite.ts -->
+<!--            ^ variable.other.object.ts -->
+  </a>
+<!--<0 string.quoted.single.ts -->
+<!--<0 string.quoted.single.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.single.ts -->
+<!--<0 string.quoted.single.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 keyword.operator.arithmetic.ts -->
+<!--^ variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+</template>
+<!--<0----- string.quoted.single.ts -->
+<!--<0----- string.quoted.single.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.single.ts -->
+<!--<0----- string.quoted.single.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0----- string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2---- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+
+<style>
+/*<0--- string.quoted.single.ts */
+/*<0--- string.quoted.single.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.single.ts */
+/*<0--- string.quoted.single.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.double.ts */
+/*<0--- string.quoted.double.ts */
+/*<0 keyword.operator.relational.ts */
+/*<1-- variable.other.readwrite.ts */
+/*    ^ keyword.operator.relational.ts */
+button, a {
+/*<0------- string.quoted.single.ts */
+/*<0------- string.quoted.single.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.single.ts */
+/*<0------- string.quoted.single.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.double.ts */
+/*<0------- string.quoted.double.ts */
+/*<0-- variable.other.readwrite.ts */
+/*    ^ punctuation.separator.comma.ts */
+/*      ^ variable.other.readwrite.ts */
+  display: block;
+/*<0------------- string.quoted.single.ts */
+/*<0------------- string.quoted.single.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.single.ts */
+/*<0------------- string.quoted.single.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.double.ts */
+/*<0------------- string.quoted.double.ts */
+/*^------ variable.other.readwrite.ts */
+/*         ^---- variable.other.readwrite.ts */
+/*              ^ punctuation.terminator.statement.ts */
+  margin-bottom: 1em;
+/*<0----------------- string.quoted.single.ts */
+/*<0----------------- string.quoted.single.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.single.ts */
+/*<0----------------- string.quoted.single.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.double.ts */
+/*<0----------------- string.quoted.double.ts */
+/*^----- variable.other.readwrite.ts */
+/*      ^ keyword.operator.arithmetic.ts */
+/*       ^----- variable.other.readwrite.ts */
+/*                ^- variable.other.readwrite.ts */
+/*                  ^ punctuation.terminator.statement.ts */
+}
+/*<0 string.quoted.single.ts */
+/*<0 string.quoted.single.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.single.ts */
+/*<0 string.quoted.single.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.double.ts */
+/*<0 string.quoted.double.ts */
+</style>
+<!--<0-- string.quoted.single.ts -->
+<!--<0-- string.quoted.single.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.single.ts -->
+<!--<0-- string.quoted.single.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.relational.ts -->
+
+<!-- from https://vuejs.org/examples/#handling-input -->
+<!--<0-------------------------------------------------- string.quoted.single.ts -->
+<!--<0-------------------------------------------------- string.quoted.single.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.single.ts -->
+<!--<0-------------------------------------------------- string.quoted.single.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.logical.ts -->
+<!--<2 keyword.operator.decrement.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--            ^- keyword.operator.arithmetic.ts -->
+<!--              ^---- variable.other.object.ts -->
+<!--                   ^ punctuation.accessor.ts -->
+<!--                    ^-- variable.other.property.ts -->
+<!--                       ^ keyword.operator.arithmetic.ts -->
+<!--                        ^------- variable.other.readwrite.ts -->
+<!--                                ^ keyword.operator.arithmetic.ts -->
+<!--                                  ^------- variable.other.readwrite.ts -->
+<!--                                          ^ keyword.operator.arithmetic.ts -->
+<!--                                           ^---- variable.other.readwrite.ts -->
+<!--                                                 ^- keyword.operator.decrement.ts -->
+<!--                                                   ^ keyword.operator.relational.ts -->

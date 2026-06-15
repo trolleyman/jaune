@@ -1,0 +1,24 @@
+# grammar: text.gherkin.feature
+
+Scenario: Eat 5 out of 12
+#<0----- keyword.language.gherkin.feature.scenario
+#        ^--------------- string.language.gherkin.scenario.title.title
+  Given there are 12 cucumbers
+# ^----- keyword.language.gherkin.feature.step
+  When I eat 5 cucumbers
+# ^---- keyword.language.gherkin.feature.step
+  Then I should have 7 cucumbers
+# ^---- keyword.language.gherkin.feature.step
+
+Scenario: Eat 5 out of 20
+#<0----- keyword.language.gherkin.feature.scenario
+#        ^--------------- string.language.gherkin.scenario.title.title
+  Given there are 20 cucumbers
+# ^----- keyword.language.gherkin.feature.step
+  When I eat 5 cucumbers
+# ^---- keyword.language.gherkin.feature.step
+  Then I should have 15 cucumbers
+# ^---- keyword.language.gherkin.feature.step
+
+# From https://gist.github.com/dogoku/0c024c55ec124355f01472abc70550f5
+#<0------------------------------------------------------------------- comment.line.number-sign

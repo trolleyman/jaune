@@ -1,0 +1,104 @@
+# grammar: source.verilog
+
+// File : tb_top.sv
+#<0---------------- comment.line.double-slash.verilog
+#<0 punctuation.definition.comment.verilog
+module tb_top ();
+#<0-------------- meta.block.module.verilog
+#<0--- storage.type.module.verilog
+#      ^----- entity.name.type.module.verilog
+
+    reg clk;
+#<0--------- meta.block.module.verilog
+#   ^-- keyword.other.verilog
+    reg resetn;
+#<0------------ meta.block.module.verilog
+#   ^-- keyword.other.verilog
+    reg d;
+#<0------- meta.block.module.verilog
+#   ^-- keyword.other.verilog
+    wire q;
+#<0-------- meta.block.module.verilog
+#   ^--- keyword.other.verilog
+
+    // Instantiate the design
+#<0-------------------------- meta.block.module.verilog
+#<0- punctuation.whitespace.comment.leading.verilog
+#   ^------------------------ comment.line.double-slash.verilog
+#   ^- punctuation.definition.comment.verilog
+    d_ff  d_ff0 (   .clk (clk),
+#<0---------------------------- meta.block.module.verilog
+#<0---------------------------- meta.block.instantiation.parameterless.verilog
+#   ^--- entity.name.tag.module.reference.verilog
+#         ^---- entity.name.tag.module.identifier.verilog
+            .resetn (resetn),
+#<0-------------------------- meta.block.module.verilog
+#<0-------------------------- meta.block.instantiation.parameterless.verilog
+            .d (d),
+#<0---------------- meta.block.module.verilog
+#<0---------------- meta.block.instantiation.parameterless.verilog
+            .q (q));
+#<0----------------- meta.block.module.verilog
+#<0----------------- meta.block.instantiation.parameterless.verilog
+#                  ^ punctuation.terminator.expression.verilog
+
+    // Create a clock
+#<0------------------ meta.block.module.verilog
+#<0- punctuation.whitespace.comment.leading.verilog
+#   ^---------------- comment.line.double-slash.verilog
+#   ^- punctuation.definition.comment.verilog
+    always #10 clk <= ~clk;
+#<0------------------------ meta.block.module.verilog
+#   ^----- keyword.other.verilog
+#          ^-- constant.numeric.delay.verilog
+#                  ^- keyword.operator.verilog
+#                     ^ keyword.operator.verilog
+
+    initial begin
+#<0-------------- meta.block.module.verilog
+#   ^------ keyword.other.verilog
+#           ^---- keyword.other.verilog
+    resetn <= 0;
+#<0------------- meta.block.module.verilog
+#          ^- keyword.operator.verilog
+#             ^ constant.numeric.integer.verilog
+    d <= 0;
+#<0-------- meta.block.module.verilog
+#     ^- keyword.operator.verilog
+#        ^ constant.numeric.integer.verilog
+
+    #10 resetn <= 1;
+#<0----------------- meta.block.module.verilog
+#   ^-- constant.numeric.delay.verilog
+#              ^- keyword.operator.verilog
+#                 ^ constant.numeric.integer.verilog
+    #5      d <= 1;
+#<0---------------- meta.block.module.verilog
+#   ^- constant.numeric.delay.verilog
+#             ^- keyword.operator.verilog
+#                ^ constant.numeric.integer.verilog
+    #8      d <= 0;
+#<0---------------- meta.block.module.verilog
+#   ^- constant.numeric.delay.verilog
+#             ^- keyword.operator.verilog
+#                ^ constant.numeric.integer.verilog
+    #2      d <= 1;
+#<0---------------- meta.block.module.verilog
+#   ^- constant.numeric.delay.verilog
+#             ^- keyword.operator.verilog
+#                ^ constant.numeric.integer.verilog
+    #10     d <= 0;
+#<0---------------- meta.block.module.verilog
+#   ^-- constant.numeric.delay.verilog
+#             ^- keyword.operator.verilog
+#                ^ constant.numeric.integer.verilog
+    end
+#<0---- meta.block.module.verilog
+#   ^-- keyword.other.verilog
+endmodule
+#<0------ meta.block.module.verilog
+#<0------ storage.type.module.verilog
+
+// From https://www.chipverify.com/tutorials/systemverilog
+#<0------------------------------------------------------- comment.line.double-slash.verilog
+#<0 punctuation.definition.comment.verilog

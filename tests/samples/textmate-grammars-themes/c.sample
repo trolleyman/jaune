@@ -1,0 +1,387 @@
+// grammar: source.c
+
+#include <stdio.h>
+//<0-------------- meta.preprocessor.include.c
+//<0---- keyword.control.directive.include.c
+//<0 punctuation.definition.directive.c
+//       ^-------- string.quoted.other.lt-gt.include.c
+//       ^ punctuation.definition.string.begin.c
+//               ^ punctuation.definition.string.end.c
+
+#define ARR_LEN 7
+//<0------------- meta.preprocessor.macro.c
+//<0--- keyword.control.directive.define.c
+//<0 punctuation.definition.directive.c
+//      ^------ entity.name.function.preprocessor.c
+//              ^ constant.numeric.decimal.c
+
+void qsort(int v[], int left, int right);
+//<0 storage.type.built-in.primitive.c
+//   ^---------------------------------- meta.function.c
+//   ^---------------------------------- meta.function.definition.parameters.c
+//   ^---- entity.name.function.c
+//        ^ punctuation.section.parameters.begin.bracket.round.c
+//         ^-- storage.type.built-in.primitive.c
+//             ^ variable.parameter.probably.c
+//              ^- storage.modifier.array.bracket.square.c
+//                ^ punctuation.separator.delimiter.c
+//                  ^-- storage.type.built-in.primitive.c
+//                      ^--- variable.parameter.probably.c
+//                          ^ punctuation.separator.delimiter.c
+//                            ^-- storage.type.built-in.primitive.c
+//                                ^---- variable.parameter.probably.c
+//                                     ^ punctuation.section.parameters.end.bracket.round.c
+//                                      ^ punctuation.terminator.statement.c
+void printArr(int v[], int len);
+//<0 storage.type.built-in.primitive.c
+//   ^------------------------- meta.function.c
+//   ^------------------------- meta.function.definition.parameters.c
+//   ^------- entity.name.function.c
+//           ^ punctuation.section.parameters.begin.bracket.round.c
+//            ^-- storage.type.built-in.primitive.c
+//                ^ variable.parameter.probably.c
+//                 ^- storage.modifier.array.bracket.square.c
+//                   ^ punctuation.separator.delimiter.c
+//                     ^-- storage.type.built-in.primitive.c
+//                         ^-- variable.parameter.probably.c
+//                            ^ punctuation.section.parameters.end.bracket.round.c
+//                             ^ punctuation.terminator.statement.c
+
+int main()
+//<0 storage.type.built-in.primitive.c
+//  ^----- meta.function.c
+//  ^----- meta.function.definition.parameters.c
+//  ^--- entity.name.function.c
+//      ^ punctuation.section.parameters.begin.bracket.round.c
+//       ^ punctuation.section.parameters.end.bracket.round.c
+{
+//<0 meta.block.c
+//<0 punctuation.section.block.begin.bracket.curly.c
+	int i;
+//<0--- meta.block.c
+//<1 storage.type.built-in.primitive.c
+//    ^ punctuation.terminator.statement.c
+	int v[ARR_LEN] = { 4, 3, 1, 7, 9, 6, 2 };
+//<0-------------------------------------- meta.block.c
+//<1 storage.type.built-in.primitive.c
+//   ^--------- meta.bracket.square.access.c
+//   ^ variable.object.c
+//    ^ punctuation.definition.begin.bracket.square.c
+//            ^ punctuation.definition.end.bracket.square.c
+//              ^ keyword.operator.assignment.c
+//                ^ punctuation.section.block.begin.bracket.curly.c
+//                  ^ constant.numeric.decimal.c
+//                   ^ punctuation.separator.delimiter.c
+//                     ^ constant.numeric.decimal.c
+//                      ^ punctuation.separator.delimiter.c
+//                        ^ constant.numeric.decimal.c
+//                         ^ punctuation.separator.delimiter.c
+//                           ^ constant.numeric.decimal.c
+//                            ^ punctuation.separator.delimiter.c
+//                              ^ constant.numeric.decimal.c
+//                               ^ punctuation.separator.delimiter.c
+//                                 ^ constant.numeric.decimal.c
+//                                  ^ punctuation.separator.delimiter.c
+//                                    ^ constant.numeric.decimal.c
+//                                      ^ punctuation.section.block.end.bracket.curly.c
+//                                       ^ punctuation.terminator.statement.c
+	printArr(v, ARR_LEN);
+//<0------------------ meta.block.c
+//<1----------------- meta.function-call.c
+//<1----- entity.name.function.c
+//       ^ punctuation.section.arguments.begin.bracket.round.c
+//         ^ punctuation.separator.delimiter.c
+//                  ^ punctuation.section.arguments.end.bracket.round.c
+//                   ^ punctuation.terminator.statement.c
+	qsort(v, 0, ARR_LEN-1);
+//<0-------------------- meta.block.c
+//<1------------------- meta.function-call.c
+//<1-- entity.name.function.c
+//    ^ punctuation.section.arguments.begin.bracket.round.c
+//      ^ punctuation.separator.delimiter.c
+//        ^ constant.numeric.decimal.c
+//         ^ punctuation.separator.delimiter.c
+//                  ^ keyword.operator.c
+//                   ^ constant.numeric.decimal.c
+//                    ^ punctuation.section.arguments.end.bracket.round.c
+//                     ^ punctuation.terminator.statement.c
+	printArr(v, ARR_LEN);
+//<0------------------ meta.block.c
+//<1----------------- meta.function-call.c
+//<1----- entity.name.function.c
+//       ^ punctuation.section.arguments.begin.bracket.round.c
+//         ^ punctuation.separator.delimiter.c
+//                  ^ punctuation.section.arguments.end.bracket.round.c
+//                   ^ punctuation.terminator.statement.c
+	return 0;
+//<0------ meta.block.c
+//<1--- keyword.control.c
+//      ^ constant.numeric.decimal.c
+//       ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+void qsort(int v[], int left, int right)
+//<0 storage.type.built-in.primitive.c
+//   ^---------------------------------- meta.function.c
+//   ^---------------------------------- meta.function.definition.parameters.c
+//   ^---- entity.name.function.c
+//        ^ punctuation.section.parameters.begin.bracket.round.c
+//         ^-- storage.type.built-in.primitive.c
+//             ^ variable.parameter.probably.c
+//              ^- storage.modifier.array.bracket.square.c
+//                ^ punctuation.separator.delimiter.c
+//                  ^-- storage.type.built-in.primitive.c
+//                      ^--- variable.parameter.probably.c
+//                          ^ punctuation.separator.delimiter.c
+//                            ^-- storage.type.built-in.primitive.c
+//                                ^---- variable.parameter.probably.c
+//                                     ^ punctuation.section.parameters.end.bracket.round.c
+{
+//<0 meta.block.c
+//<0 punctuation.section.block.begin.bracket.curly.c
+	int i, last;
+//<0--------- meta.block.c
+//<1 storage.type.built-in.primitive.c
+//    ^ punctuation.separator.delimiter.c
+//          ^ punctuation.terminator.statement.c
+	void swap(int v[], int i, int j);
+//<0------------------------------ meta.block.c
+//<1- storage.type.built-in.primitive.c
+//    ^-------------------------- meta.function-call.c
+//    ^--- entity.name.function.c
+//        ^ punctuation.section.arguments.begin.bracket.round.c
+//         ^-- storage.type.built-in.primitive.c
+//              ^- storage.modifier.array.bracket.square.c
+//                ^ punctuation.separator.delimiter.c
+//                  ^-- storage.type.built-in.primitive.c
+//                       ^ punctuation.separator.delimiter.c
+//                         ^-- storage.type.built-in.primitive.c
+//                              ^ punctuation.section.arguments.end.bracket.round.c
+//                               ^ punctuation.terminator.statement.c
+
+	if (left >= right)
+//<0--------------- meta.block.c
+//<1 keyword.control.c
+//  ^-------------- meta.parens.block.c
+//  ^ punctuation.section.parens.begin.bracket.round.c
+//        ^- keyword.operator.comparison.c
+//                ^ punctuation.section.parens.end.bracket.round.c
+		return;
+//<0----- meta.block.c
+//^----- keyword.control.c
+//      ^ punctuation.terminator.statement.c
+	swap(v, left, (left + right) / 2);
+//<0------------------------------- meta.block.c
+//<1------------------------------ meta.function-call.c
+//<1- entity.name.function.c
+//   ^ punctuation.section.arguments.begin.bracket.round.c
+//     ^ punctuation.separator.delimiter.c
+//           ^ punctuation.separator.delimiter.c
+//             ^ punctuation.section.parens.begin.bracket.round.c
+//                   ^ keyword.operator.c
+//                          ^ punctuation.section.parens.end.bracket.round.c
+//                            ^ keyword.operator.c
+//                              ^ constant.numeric.decimal.c
+//                               ^ punctuation.section.arguments.end.bracket.round.c
+//                                ^ punctuation.terminator.statement.c
+	last = left;
+//<0--------- meta.block.c
+//    ^ keyword.operator.assignment.c
+//          ^ punctuation.terminator.statement.c
+	for (i = left+1; i <= right; i++)
+//<0------------------------------ meta.block.c
+//<1 keyword.control.c
+//   ^---------------------------- meta.parens.block.c
+//   ^ punctuation.section.parens.begin.bracket.round.c
+//      ^ keyword.operator.assignment.c
+//            ^ keyword.operator.c
+//             ^ constant.numeric.decimal.c
+//              ^ punctuation.terminator.statement.c
+//                  ^- keyword.operator.comparison.c
+//                          ^ punctuation.terminator.statement.c
+//                             ^- keyword.operator.increment.c
+//                               ^ punctuation.section.parens.end.bracket.round.c
+		if (v[i] < v[left])
+//<0----------------- meta.block.c
+//^- keyword.control.c
+//   ^--------------- meta.parens.block.c
+//   ^ punctuation.section.parens.begin.bracket.round.c
+//    ^--- meta.bracket.square.access.c
+//    ^ variable.object.c
+//     ^ punctuation.definition.begin.bracket.square.c
+//       ^ punctuation.definition.end.bracket.square.c
+//         ^ keyword.operator.comparison.c
+//           ^------ meta.bracket.square.access.c
+//           ^ variable.object.c
+//            ^ punctuation.definition.begin.bracket.square.c
+//                 ^ punctuation.definition.end.bracket.square.c
+//                  ^ punctuation.section.parens.end.bracket.round.c
+			swap(v, ++last, i);
+//<0------------------ meta.block.c
+// ^----------------- meta.function-call.c
+// ^--- entity.name.function.c
+//     ^ punctuation.section.arguments.begin.bracket.round.c
+//       ^ punctuation.separator.delimiter.c
+//         ^- keyword.operator.increment.c
+//               ^ punctuation.separator.delimiter.c
+//                  ^ punctuation.section.arguments.end.bracket.round.c
+//                   ^ punctuation.terminator.statement.c
+	swap(v, left, last);
+//<0----------------- meta.block.c
+//<1---------------- meta.function-call.c
+//<1- entity.name.function.c
+//   ^ punctuation.section.arguments.begin.bracket.round.c
+//     ^ punctuation.separator.delimiter.c
+//           ^ punctuation.separator.delimiter.c
+//                 ^ punctuation.section.arguments.end.bracket.round.c
+//                  ^ punctuation.terminator.statement.c
+	qsort(v, left, last-1);
+//<0-------------------- meta.block.c
+//<1------------------- meta.function-call.c
+//<1-- entity.name.function.c
+//    ^ punctuation.section.arguments.begin.bracket.round.c
+//      ^ punctuation.separator.delimiter.c
+//            ^ punctuation.separator.delimiter.c
+//                  ^ keyword.operator.c
+//                   ^ constant.numeric.decimal.c
+//                    ^ punctuation.section.arguments.end.bracket.round.c
+//                     ^ punctuation.terminator.statement.c
+	qsort(v, last+1, right);
+//<0--------------------- meta.block.c
+//<1-------------------- meta.function-call.c
+//<1-- entity.name.function.c
+//    ^ punctuation.section.arguments.begin.bracket.round.c
+//      ^ punctuation.separator.delimiter.c
+//            ^ keyword.operator.c
+//             ^ constant.numeric.decimal.c
+//              ^ punctuation.separator.delimiter.c
+//                     ^ punctuation.section.arguments.end.bracket.round.c
+//                      ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+void swap(int v[], int i, int j)
+//<0 storage.type.built-in.primitive.c
+//   ^-------------------------- meta.function.c
+//   ^-------------------------- meta.function.definition.parameters.c
+//   ^--- entity.name.function.c
+//       ^ punctuation.section.parameters.begin.bracket.round.c
+//        ^-- storage.type.built-in.primitive.c
+//            ^ variable.parameter.probably.c
+//             ^- storage.modifier.array.bracket.square.c
+//               ^ punctuation.separator.delimiter.c
+//                 ^-- storage.type.built-in.primitive.c
+//                     ^ variable.parameter.probably.c
+//                      ^ punctuation.separator.delimiter.c
+//                        ^-- storage.type.built-in.primitive.c
+//                            ^ variable.parameter.probably.c
+//                             ^ punctuation.section.parameters.end.bracket.round.c
+{
+//<0 meta.block.c
+//<0 punctuation.section.block.begin.bracket.curly.c
+	int temp;
+//<0------ meta.block.c
+//<1 storage.type.built-in.primitive.c
+//       ^ punctuation.terminator.statement.c
+
+	temp = v[i];
+//<0--------- meta.block.c
+//    ^ keyword.operator.assignment.c
+//      ^--- meta.bracket.square.access.c
+//      ^ variable.object.c
+//       ^ punctuation.definition.begin.bracket.square.c
+//         ^ punctuation.definition.end.bracket.square.c
+//          ^ punctuation.terminator.statement.c
+	v[i] = v[j];
+//<0--------- meta.block.c
+//<1- meta.bracket.square.access.c
+//<1 variable.object.c
+//^ punctuation.definition.begin.bracket.square.c
+//  ^ punctuation.definition.end.bracket.square.c
+//    ^ keyword.operator.assignment.c
+//      ^--- meta.bracket.square.access.c
+//      ^ variable.object.c
+//       ^ punctuation.definition.begin.bracket.square.c
+//         ^ punctuation.definition.end.bracket.square.c
+//          ^ punctuation.terminator.statement.c
+	v[j] = temp;
+//<0--------- meta.block.c
+//<1- meta.bracket.square.access.c
+//<1 variable.object.c
+//^ punctuation.definition.begin.bracket.square.c
+//  ^ punctuation.definition.end.bracket.square.c
+//    ^ keyword.operator.assignment.c
+//          ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+void printArr(int v[], int len)
+//<0 storage.type.built-in.primitive.c
+//   ^------------------------- meta.function.c
+//   ^------------------------- meta.function.definition.parameters.c
+//   ^------- entity.name.function.c
+//           ^ punctuation.section.parameters.begin.bracket.round.c
+//            ^-- storage.type.built-in.primitive.c
+//                ^ variable.parameter.probably.c
+//                 ^- storage.modifier.array.bracket.square.c
+//                   ^ punctuation.separator.delimiter.c
+//                     ^-- storage.type.built-in.primitive.c
+//                         ^-- variable.parameter.probably.c
+//                            ^ punctuation.section.parameters.end.bracket.round.c
+{
+//<0 meta.block.c
+//<0 punctuation.section.block.begin.bracket.curly.c
+	int i;
+//<0--- meta.block.c
+//<1 storage.type.built-in.primitive.c
+//    ^ punctuation.terminator.statement.c
+	for (i = 0; i < len; i++)
+//<0---------------------- meta.block.c
+//<1 keyword.control.c
+//   ^-------------------- meta.parens.block.c
+//   ^ punctuation.section.parens.begin.bracket.round.c
+//      ^ keyword.operator.assignment.c
+//        ^ constant.numeric.decimal.c
+//         ^ punctuation.terminator.statement.c
+//             ^ keyword.operator.comparison.c
+//                  ^ punctuation.terminator.statement.c
+//                     ^- keyword.operator.increment.c
+//                       ^ punctuation.section.parens.end.bracket.round.c
+		printf("%d ", v[i]);
+//<0------------------ meta.block.c
+//^------------------ meta.function-call.c
+//^----- entity.name.function.c
+//      ^ punctuation.section.arguments.begin.bracket.round.c
+//       ^---- string.quoted.double.c
+//       ^ punctuation.definition.string.begin.c
+//        ^- constant.other.placeholder.c
+//           ^ punctuation.definition.string.end.c
+//            ^ punctuation.separator.delimiter.c
+//              ^--- meta.bracket.square.access.c
+//              ^ variable.object.c
+//               ^ punctuation.definition.begin.bracket.square.c
+//                 ^ punctuation.definition.end.bracket.square.c
+//                  ^ punctuation.section.arguments.end.bracket.round.c
+//                   ^ punctuation.terminator.statement.c
+	printf("\n");
+//<0---------- meta.block.c
+//<1--------- meta.function-call.c
+//<1--- entity.name.function.c
+//     ^ punctuation.section.arguments.begin.bracket.round.c
+//      ^--- string.quoted.double.c
+//      ^ punctuation.definition.string.begin.c
+//       ^- constant.character.escape.c
+//         ^ punctuation.definition.string.end.c
+//          ^ punctuation.section.arguments.end.bracket.round.c
+//           ^ punctuation.terminator.statement.c
+}
+//<0 meta.block.c
+//<0 punctuation.section.block.end.bracket.curly.c
+
+// From https://github.com/Heatwave/The-C-Programming-Language-2nd-Edition/blob/master/chapter-4-functions-and-program-structure/8.qsort.c
+//<0-------------------------------------------------------------------------------------------------------------------------------------- comment.line.double-slash.c
+//<0 punctuation.definition.comment.c

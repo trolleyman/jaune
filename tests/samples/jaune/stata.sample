@@ -1,0 +1,230 @@
+# grammar: source.stata
+
+capture program drop exit_message
+#<0---- keyword.control.flow.stata
+#       ^------ storage.type.function.stata
+#               ^---- storage.type.function.stata
+#                    ^----------- entity.name.function.stata
+program exit_message
+#<0---- storage.type.function.stata
+#       ^----------- entity.name.function.stata
+    syntax, rc(int) progname(str) start_time(str) [CAPture]
+#   ^----- keyword.functions.program.stata
+#         ^ punctuation.definition.variable.begin.stata
+#           ^- entity.name.type.class.stata
+#             ^ keyword.operator.parentheses.stata
+#              ^-- support.type.stata
+#                 ^ keyword.operator.parentheses.stata
+#                   ^------- entity.name.type.class.stata
+#                           ^ keyword.operator.parentheses.stata
+#                            ^-- support.type.stata
+#                               ^ keyword.operator.parentheses.stata
+#                                 ^--------- entity.name.type.class.stata
+#                                           ^ keyword.operator.parentheses.stata
+#                                            ^-- support.type.stata
+#                                               ^ keyword.operator.parentheses.stata
+#                                                 ^ invalid.illegal.name.stata
+#                                                  ^------ entity.name.type.class.stata
+#                                                         ^ invalid.illegal.name.stata
+    local end_time "$S_TIME $S_DATE"
+#   ^---- keyword.macro.stata
+#         ^------- entity.name.type.class.stata
+#                  ^---------------- string.quoted.double.stata
+#                  ^- punctuation.definition.string.begin.stata
+#                    ^----- entity.name.type.class.stata
+#                           ^ punctuation.definition.string.begin.stata
+#                            ^----- entity.name.type.class.stata
+#                                  ^ punctuation.definition.string.end.stata
+    local time     "Start: `start_time'" _n(1) "End: `end_time'"
+#   ^---- keyword.macro.stata
+#         ^--- entity.name.type.class.stata
+#                  ^-------------------- string.quoted.double.stata
+#                  ^ punctuation.definition.string.begin.stata
+#                          ^ punctuation.definition.string.begin.stata
+#                           ^--------- entity.name.type.class.stata
+#                                     ^- punctuation.definition.string.end.stata
+#                                        ^- support.function.custom.stata
+#                                          ^ punctuation.definition.parameters.begin.stata
+#                                           ^ constant.numeric.integer.decimal.stata
+#                                            ^ punctuation.definition.parameters.end.stata
+#                                              ^---------------- string.quoted.double.stata
+#                                              ^ punctuation.definition.string.begin.stata
+#                                                    ^ punctuation.definition.string.begin.stata
+#                                                     ^------- entity.name.type.class.stata
+#                                                             ^- punctuation.definition.string.end.stata
+    di ""
+#   ^- keyword.control.flow.stata
+#      ^- string.quoted.double.stata
+#      ^ punctuation.definition.string.begin.stata
+#       ^ punctuation.definition.string.end.stata
+    if (`rc' == 0) {
+#   ^- keyword.control.conditional.stata
+#      ^ keyword.operator.parentheses.stata
+#       ^ punctuation.definition.string.begin.stata
+#        ^- entity.name.type.class.stata
+#          ^ punctuation.definition.string.end.stata
+#            ^- keyword.operator.comparison.stata
+#               ^ constant.numeric.integer.decimal.stata
+#                ^ keyword.operator.parentheses.stata
+        di "End: $S_TIME $S_DATE"
+#       ^- keyword.control.flow.stata
+#          ^--------------------- string.quoted.double.stata
+#          ^ punctuation.definition.string.begin.stata
+#                ^ punctuation.definition.string.begin.stata
+#                 ^----- entity.name.type.class.stata
+#                        ^ punctuation.definition.string.begin.stata
+#                         ^----- entity.name.type.class.stata
+#                               ^ punctuation.definition.string.end.stata
+        local paux      ran
+#       ^---- keyword.macro.stata
+#             ^--- entity.name.type.class.stata
+        local message "`progname' finished running" _n(2) "`time'"
+#       ^---- keyword.macro.stata
+#             ^------ entity.name.type.class.stata
+#                     ^---------------------------- string.quoted.double.stata
+#                     ^- punctuation.definition.string.begin.stata
+#                       ^------- entity.name.type.class.stata
+#                               ^ punctuation.definition.string.end.stata
+#                                                 ^ punctuation.definition.string.end.stata
+#                                                   ^- support.function.custom.stata
+#                                                     ^ punctuation.definition.parameters.begin.stata
+#                                                      ^ constant.numeric.integer.decimal.stata
+#                                                       ^ punctuation.definition.parameters.end.stata
+#                                                         ^------- string.quoted.double.stata
+#                                                         ^- punctuation.definition.string.begin.stata
+#                                                           ^--- entity.name.type.class.stata
+#                                                               ^- punctuation.definition.string.end.stata
+        local subject "`progname' `paux'"
+#       ^---- keyword.macro.stata
+#             ^------ entity.name.type.class.stata
+#                     ^------------------ string.quoted.double.stata
+#                     ^- punctuation.definition.string.begin.stata
+#                       ^------- entity.name.type.class.stata
+#                               ^ punctuation.definition.string.end.stata
+#                                 ^ punctuation.definition.string.begin.stata
+#                                  ^--- entity.name.type.class.stata
+#                                      ^- punctuation.definition.string.end.stata
+    }
+    else if ("`capture'" == "") {
+#   ^------ keyword.control.conditional.stata
+#           ^ keyword.operator.parentheses.stata
+#            ^---------- string.quoted.double.stata
+#            ^- punctuation.definition.string.begin.stata
+#              ^------ entity.name.type.class.stata
+#                     ^- punctuation.definition.string.end.stata
+#                        ^- keyword.operator.comparison.stata
+#                           ^- string.quoted.double.stata
+#                           ^ punctuation.definition.string.begin.stata
+#                            ^ punctuation.definition.string.end.stata
+#                             ^ keyword.operator.parentheses.stata
+        di "WARNING: $S_TIME $S_DATE"
+#       ^- keyword.control.flow.stata
+#          ^------------------------- string.quoted.double.stata
+#          ^ punctuation.definition.string.begin.stata
+#                    ^ punctuation.definition.string.begin.stata
+#                     ^----- entity.name.type.class.stata
+#                            ^ punctuation.definition.string.begin.stata
+#                             ^----- entity.name.type.class.stata
+#                                   ^ punctuation.definition.string.end.stata
+        local paux ran with non-0 exit status
+#       ^---- keyword.macro.stata
+#             ^--- entity.name.type.class.stata
+#                              ^ keyword.operator.arithmetic.stata
+#                               ^ constant.numeric.integer.decimal.stata
+#                                 ^--- keyword.functions.data.stata
+        local message "`progname' ran but Stata gave error code r(`rc')" _n(2) "`time'"
+#       ^---- keyword.macro.stata
+#             ^------ entity.name.type.class.stata
+#                     ^------------------------------------------------- string.quoted.double.stata
+#                     ^- punctuation.definition.string.begin.stata
+#                       ^------- entity.name.type.class.stata
+#                               ^ punctuation.definition.string.end.stata
+#                                                                 ^ punctuation.definition.string.begin.stata
+#                                                                  ^- entity.name.type.class.stata
+#                                                                    ^ punctuation.definition.string.end.stata
+#                                                                      ^ punctuation.definition.string.end.stata
+#                                                                        ^- support.function.custom.stata
+#                                                                          ^ punctuation.definition.parameters.begin.stata
+#                                                                           ^ constant.numeric.integer.decimal.stata
+#                                                                            ^ punctuation.definition.parameters.end.stata
+#                                                                              ^------- string.quoted.double.stata
+#                                                                              ^- punctuation.definition.string.begin.stata
+#                                                                                ^--- entity.name.type.class.stata
+#                                                                                    ^- punctuation.definition.string.end.stata
+        local subject "`progname' `paux'"
+#       ^---- keyword.macro.stata
+#             ^------ entity.name.type.class.stata
+#                     ^------------------ string.quoted.double.stata
+#                     ^- punctuation.definition.string.begin.stata
+#                       ^------- entity.name.type.class.stata
+#                               ^ punctuation.definition.string.end.stata
+#                                 ^ punctuation.definition.string.begin.stata
+#                                  ^--- entity.name.type.class.stata
+#                                      ^- punctuation.definition.string.end.stata
+    }
+    else {
+#   ^--- keyword.control.conditional.stata
+        di "ERROR: $S_TIME $S_DATE"
+#       ^- keyword.control.flow.stata
+#          ^----------------------- string.quoted.double.stata
+#          ^ punctuation.definition.string.begin.stata
+#                  ^ punctuation.definition.string.begin.stata
+#                   ^----- entity.name.type.class.stata
+#                          ^ punctuation.definition.string.begin.stata
+#                           ^----- entity.name.type.class.stata
+#                                 ^ punctuation.definition.string.end.stata
+        local paux ran with errors
+#       ^---- keyword.macro.stata
+#             ^--- entity.name.type.class.stata
+        local message "`progname' stopped with error code r(`rc')" _n(2) "`time'"
+#       ^---- keyword.macro.stata
+#             ^------ entity.name.type.class.stata
+#                     ^------------------------------------------- string.quoted.double.stata
+#                     ^- punctuation.definition.string.begin.stata
+#                       ^------- entity.name.type.class.stata
+#                               ^ punctuation.definition.string.end.stata
+#                                                           ^ punctuation.definition.string.begin.stata
+#                                                            ^- entity.name.type.class.stata
+#                                                              ^ punctuation.definition.string.end.stata
+#                                                                ^ punctuation.definition.string.end.stata
+#                                                                  ^- support.function.custom.stata
+#                                                                    ^ punctuation.definition.parameters.begin.stata
+#                                                                     ^ constant.numeric.integer.decimal.stata
+#                                                                      ^ punctuation.definition.parameters.end.stata
+#                                                                        ^------- string.quoted.double.stata
+#                                                                        ^- punctuation.definition.string.begin.stata
+#                                                                          ^--- entity.name.type.class.stata
+#                                                                              ^- punctuation.definition.string.end.stata
+        local subject "`progname' `paux'"
+#       ^---- keyword.macro.stata
+#             ^------ entity.name.type.class.stata
+#                     ^------------------ string.quoted.double.stata
+#                     ^- punctuation.definition.string.begin.stata
+#                       ^------- entity.name.type.class.stata
+#                               ^ punctuation.definition.string.end.stata
+#                                 ^ punctuation.definition.string.begin.stata
+#                                  ^--- entity.name.type.class.stata
+#                                      ^- punctuation.definition.string.end.stata
+    }
+    di "`subject'"
+#   ^- keyword.control.flow.stata
+#      ^---------- string.quoted.double.stata
+#      ^- punctuation.definition.string.begin.stata
+#        ^------ entity.name.type.class.stata
+#               ^- punctuation.definition.string.end.stata
+    di ""
+#   ^- keyword.control.flow.stata
+#      ^- string.quoted.double.stata
+#      ^ punctuation.definition.string.begin.stata
+#       ^ punctuation.definition.string.end.stata
+    di "`message'"
+#   ^- keyword.control.flow.stata
+#      ^---------- string.quoted.double.stata
+#      ^- punctuation.definition.string.begin.stata
+#        ^------ entity.name.type.class.stata
+#               ^- punctuation.definition.string.end.stata
+end
+#<0 keyword.functions.data.stata
+
+* From https://github.com/mcaceresb/stata-gtools/blob/fad519ef0454936d450802ac732728ba953957ac/src/test/gtools_tests.do
+#<0-------------------------------------------------------------------------------------------------------------------- comment.line.star.stata

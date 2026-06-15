@@ -1,0 +1,136 @@
+// grammar: source.typst
+
+#set page(width: 10cm, height: auto)
+//<0 keyword.other.typst
+//<0 punctuation.definition.keyword.typst
+//   ^--- entity.name.function.typst
+//       ^-------------------------- meta.group.typst
+//        ^---- variable.other.typst
+//             ^ punctuation.separator.colon.typst
+//               ^--- constant.numeric.length.typst
+//                   ^ punctuation.separator.comma.typst
+//                     ^----- variable.other.typst
+//                           ^ punctuation.separator.colon.typst
+//                             ^--- constant.language.auto.typst
+#set heading(numbering: "1.")
+//<0 keyword.other.typst
+//<0 punctuation.definition.keyword.typst
+//   ^------ entity.name.function.typst
+//          ^---------------- meta.group.typst
+//           ^-------- variable.other.typst
+//                    ^ punctuation.separator.colon.typst
+//                      ^--- string.quoted.double.typst
+
+= Fibonacci sequence
+//<0---------------- markup.heading.typst
+//<0 punctuation.definition.heading.typst
+The Fibonacci sequence is defined through the
+recurrence relation $F_n = F_(n-1) + F_(n-2)$.
+//                  ^------------------------ string.other.math.typst
+It can also be expressed in _closed form:_
+//                          ^------------- markup.italic.typst
+
+$ F_n = round(1 / sqrt(5) phi.alt^n), quad
+//<0-------------------------------------- string.other.math.typst
+  phi.alt = (1 + sqrt(5)) / 2 $
+//<0--------------------------- string.other.math.typst
+
+#let count = 8
+//<0 keyword.other.typst
+//<0 punctuation.definition.keyword.typst
+//   ^---- variable.other.typst
+//         ^ keyword.operator.assignment.typst
+//           ^ constant.numeric.integer.typst
+#let nums = range(1, count + 1)
+//<0 keyword.other.typst
+//<0 punctuation.definition.keyword.typst
+//   ^--- variable.other.typst
+//        ^ keyword.operator.assignment.typst
+//          ^---- entity.name.function.typst
+//               ^------------- meta.group.typst
+//                ^ constant.numeric.integer.typst
+//                 ^ punctuation.separator.comma.typst
+//                   ^---- variable.other.typst
+//                         ^ keyword.operator.arithmetic.typst
+//                           ^ constant.numeric.integer.typst
+#let fib(n) = (
+//<0 keyword.other.typst
+//<0 punctuation.definition.keyword.typst
+//   ^-- entity.name.function.typst
+//      ^-- meta.group.typst
+//       ^ variable.other.typst
+//          ^ keyword.operator.assignment.typst
+//            ^ meta.group.typst
+  if n <= 2 { 1 }
+//<0------------- meta.group.typst
+//^- keyword.control.conditional.typst
+//   ^ variable.other.typst
+//     ^- keyword.operator.relational.typst
+//        ^ constant.numeric.integer.typst
+//          ^---- meta.block.code.typst
+//            ^ constant.numeric.integer.typst
+  else { fib(n - 1) + fib(n - 2) }
+//<0------------------------------ meta.group.typst
+//^--- keyword.control.conditional.typst
+//     ^-------------------------- meta.block.code.typst
+//       ^-- entity.name.function.typst
+//          ^------ meta.group.typst
+//           ^ variable.other.typst
+//             ^ keyword.operator.arithmetic.typst
+//               ^ constant.numeric.integer.typst
+//                  ^ keyword.operator.arithmetic.typst
+//                    ^-- entity.name.function.typst
+//                       ^------ meta.group.typst
+//                        ^ variable.other.typst
+//                          ^ keyword.operator.arithmetic.typst
+//                            ^ constant.numeric.integer.typst
+)
+//<0 meta.group.typst
+
+The first #count numbers of the sequence are:
+//        ^----- entity.other.interpolated.typst
+//        ^ punctuation.definition.variable.typst
+
+#align(center, table(
+//<0-- entity.name.function.typst
+//<0 punctuation.definition.function.typst
+//     ^----- variable.other.typst
+//           ^ punctuation.separator.comma.typst
+//             ^---- entity.name.function.typst
+//                  ^ meta.group.typst
+  columns: count,
+//<0------------- meta.group.typst
+//^------ variable.other.typst
+//       ^ punctuation.separator.colon.typst
+//         ^---- variable.other.typst
+//              ^ punctuation.separator.comma.typst
+  ..nums.map(n => $F_#n$),
+//<0---------------------- meta.group.typst
+//^- keyword.operator.typst
+//  ^--- variable.other.typst
+//       ^-- entity.name.function.typst
+//          ^------------ meta.group.typst
+//           ^ variable.other.typst
+//             ^- keyword.operator.typst
+//                ^----- string.other.math.typst
+//                       ^ punctuation.separator.comma.typst
+  ..nums.map(n => str(fib(n))),
+//<0--------------------------- meta.group.typst
+//^- keyword.operator.typst
+//  ^--- variable.other.typst
+//       ^-- entity.name.function.typst
+//          ^----------------- meta.group.typst
+//           ^ variable.other.typst
+//             ^- keyword.operator.typst
+//                ^-- entity.name.function.typst
+//                   ^------- meta.group.typst
+//                    ^-- entity.name.function.typst
+//                       ^-- meta.group.typst
+//                        ^ variable.other.typst
+//                            ^ punctuation.separator.comma.typst
+))
+//<0 meta.group.typst
+
+// https://github.com/typst/typst/blob/main/README.md
+//<0------------------------------------------------- comment.line.double-slash.typst
+//<0 punctuation.definition.comment.typst

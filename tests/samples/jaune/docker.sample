@@ -1,0 +1,44 @@
+# grammar: source.dockerfile
+
+# syntax=docker/dockerfile:1
+#<0------------------------- comment.line.number-sign.dockerfile
+#<0 punctuation.definition.comment.dockerfile
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+#<0- keyword.other.special-method.dockerfile
+#                                     ^- keyword.other.special-method.dockerfile
+WORKDIR /app
+#<0---- keyword.other.special-method.dockerfile
+
+# Copy csproj and restore as distinct layers
+#<0----------------------------------------- comment.line.number-sign.dockerfile
+#<0 punctuation.definition.comment.dockerfile
+COPY *.csproj ./
+#<0- keyword.other.special-method.dockerfile
+RUN dotnet restore
+#<0 keyword.other.special-method.dockerfile
+
+# Copy everything else and build
+#<0----------------------------- comment.line.number-sign.dockerfile
+#<0 punctuation.definition.comment.dockerfile
+COPY ../engine/examples ./
+#<0- keyword.other.special-method.dockerfile
+RUN dotnet publish -c Release -o out
+#<0 keyword.other.special-method.dockerfile
+
+# Build runtime image
+#<0------------------ comment.line.number-sign.dockerfile
+#<0 punctuation.definition.comment.dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:3.1
+#<0- keyword.other.special-method.dockerfile
+WORKDIR /app
+#<0---- keyword.other.special-method.dockerfile
+COPY --from=build-env /app/out .
+#<0- keyword.other.special-method.dockerfile
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+#<0------- keyword.other.special-method.dockerfile
+#           ^------- string.quoted.double.dockerfile
+#                     ^-------------- string.quoted.double.dockerfile
+
+# From https://docs.docker.com/samples/dotnetcore/
+#<0----------------------------------------------- comment.line.number-sign.dockerfile
+#<0 punctuation.definition.comment.dockerfile

@@ -1,0 +1,80 @@
+; grammar: source.mips
+
+.text
+;<0-- storage.type.mips
+.global AckermannFunc
+;<0 storage.modifier.mips
+
+# Preconditions:
+;<0------------- comment.line.number-sign.mips
+;<0 punctuation.definition.comment.mips
+#   1st parameter ($a0) m
+;<0---------------------- comment.line.number-sign.mips
+;<0 punctuation.definition.comment.mips
+#   2nd parameter ($a1) n
+;<0---------------------- comment.line.number-sign.mips
+;<0 punctuation.definition.comment.mips
+# Postconditions:
+;<0-------------- comment.line.number-sign.mips
+;<0 punctuation.definition.comment.mips
+#   result in ($v0) = value of A(m,n)
+;<0---------------------------------- comment.line.number-sign.mips
+;<0 punctuation.definition.comment.mips
+
+AckermannFunc:
+;<0----------- meta.function.label.mips
+;<0---------- entity.name.function.label.mips
+            addi    $sp,   $sp, -8
+;           ^--- support.function.mips
+;                   ^-- variable.other.register.usable.by-name.mips
+;                   ^ punctuation.definition.variable.mips
+;                          ^-- variable.other.register.usable.by-name.mips
+;                          ^ punctuation.definition.variable.mips
+;                                ^ constant.numeric.integer.mips
+            sw      $s0, 4($sp)
+;           ^- support.function.mips
+;                   ^-- variable.other.register.usable.by-name.mips
+;                   ^ punctuation.definition.variable.mips
+;                        ^ constant.numeric.integer.mips
+;                          ^-- variable.other.register.usable.by-name.mips
+;                          ^ punctuation.definition.variable.mips
+            sw      $ra, 0($sp)
+;           ^- support.function.mips
+;                   ^-- variable.other.register.usable.by-name.mips
+;                   ^ punctuation.definition.variable.mips
+;                        ^ constant.numeric.integer.mips
+;                          ^-- variable.other.register.usable.by-name.mips
+;                          ^ punctuation.definition.variable.mips
+
+            # move the parameter registers to temporary  - no, only when nec.
+;<0--------- punctuation.whitespace.comment.leading.mips
+;           ^---------------------------------------------------------------- comment.line.number-sign.mips
+;           ^ punctuation.definition.comment.mips
+
+LABEL_IF:   bne     $a0, $zero, LABEL_ELSE_IF
+;<0------ meta.function.label.mips
+;<0----- entity.name.function.label.mips
+;           ^-- support.function.mips
+;                   ^-- variable.other.register.usable.by-name.mips
+;                   ^ punctuation.definition.variable.mips
+;                        ^---- variable.other.register.usable.by-name.mips
+;                        ^ punctuation.definition.variable.mips
+
+            addi    $v0, $a1, 1
+;           ^--- support.function.mips
+;                   ^-- variable.other.register.usable.by-name.mips
+;                   ^ punctuation.definition.variable.mips
+;                        ^-- variable.other.register.usable.by-name.mips
+;                        ^ punctuation.definition.variable.mips
+;                             ^ constant.numeric.integer.mips
+
+            # jump to LABEL_DONE
+;<0--------- punctuation.whitespace.comment.leading.mips
+;           ^------------------- comment.line.number-sign.mips
+;           ^ punctuation.definition.comment.mips
+            j LABEL_DONE
+;           ^ support.function.mips
+
+# From https://github.com/highlightjs/highlight.js/blob/81e450f3eba5c3e9112a249ae85b696371d738f9/test/markup/mipsasm/default.txt
+;<0----------------------------------------------------------------------------------------------------------------------------- comment.line.number-sign.mips
+;<0 punctuation.definition.comment.mips

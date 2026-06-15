@@ -1,0 +1,44 @@
+// grammar: source.hlsl
+
+struct VS_OUTPUT
+//<0-- storage.type.structured.hlsl
+{
+    float4 Position   : SV_POSITION;
+//  ^----- storage.type.basic.hlsl
+//                      ^---------- support.variable.semantic.sm4.hlsl
+    float4 Diffuse    : COLOR0;
+//  ^----- storage.type.basic.hlsl
+//                      ^----- support.variable.semantic.hlsl
+    float2 TextureUV  : TEXCOORD0;
+//  ^----- storage.type.basic.hlsl
+//                      ^-------- support.variable.semantic.hlsl
+};
+
+VS_OUTPUT RenderSceneVS( float4 vPos : POSITION,
+//        ^------------ support.function.hlsl
+//                       ^----- storage.type.basic.hlsl
+//                                     ^------- support.variable.semantic.hlsl
+                         float3 vNormal : NORMAL,
+//                       ^----- storage.type.basic.hlsl
+//                                        ^----- support.variable.semantic.hlsl
+                         float2 vTexCoord0 : TEXCOORD,
+//                       ^----- storage.type.basic.hlsl
+//                                           ^------- support.variable.semantic.hlsl
+                         uniform int nNumLights,
+//                       ^------ storage.modifier.hlsl
+//                               ^-- storage.type.basic.hlsl
+                         uniform bool bTexture,
+//                       ^------ storage.modifier.hlsl
+//                               ^--- storage.type.basic.hlsl
+                         uniform bool bAnimate )
+//                       ^------ storage.modifier.hlsl
+//                               ^--- storage.type.basic.hlsl
+{
+    VS_OUTPUT Output;
+    ...
+    return Output;
+//  ^----- keyword.control.hlsl
+}
+
+// From https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-function-syntax
+//<0------------------------------------------------------------------------------------------------- comment.line.double-slash.hlsl

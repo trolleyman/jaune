@@ -1,0 +1,101 @@
+# grammar: markdown.mermaid.codeblock
+
+```mermaid
+graph TB
+#<0-- keyword.control.mermaid
+#     ^- entity.name.function.mermaid
+    sq[Square shape] --> ci((Circle shape))
+#   ^- variable
+#     ^ keyword.control.mermaid
+#      ^----------- string
+#                  ^ keyword.control.mermaid
+#                    ^-- keyword.control.mermaid
+#                        ^- variable
+#                          ^- keyword.control.mermaid
+#                            ^----------- string
+#                                        ^- keyword.control.mermaid
+
+    subgraph A
+#   ^------- keyword.control.mermaid
+#            ^ entity.name.function.mermaid
+        od>Odd shape]-- Two line<br/>edge comment --> ro
+#       ^- variable
+#         ^ keyword.control.mermaid
+#          ^-------- string
+#                   ^-- keyword.control.mermaid
+#                      ^-------------------------- string
+#                                                 ^-- keyword.control.mermaid
+#                                                     ^- variable
+        di{Diamond with <br/> line break} -.-> ro(Rounded<br>square<br>shape)
+#       ^- variable
+#         ^ keyword.control.mermaid
+#          ^---------------------------- string
+#                                       ^ keyword.control.mermaid
+#                                         ^--- keyword.control.mermaid
+#                                              ^- variable
+#                                                ^ keyword.control.mermaid
+#                                                 ^------------------------- string
+#                                                                           ^ keyword.control.mermaid
+        di==>ro2(Rounded square shape)
+#       ^- variable
+#         ^-- keyword.control.mermaid
+#            ^-- variable
+#               ^ keyword.control.mermaid
+#                ^------------------- string
+#                                    ^ keyword.control.mermaid
+    end
+#   ^-- keyword.control.mermaid
+
+    %% Notice that no text in shape are added here instead that is appended further down
+#   ^----------------------------------------------------------------------------------- comment
+    e --> od3>Really long text with linebreak<br>in an Odd shape]
+#   ^- variable
+#     ^-- keyword.control.mermaid
+#         ^-- variable
+#            ^ keyword.control.mermaid
+#             ^------------------------------------------------- string
+#                                                               ^ keyword.control.mermaid
+
+    %% Comments after double percent signs
+#   ^------------------------------------- comment
+    e((Inner / circle<br>and some odd <br>special characters)) --> f(,.?!+-*ز)
+#   ^ variable
+#    ^- keyword.control.mermaid
+#      ^---------------------------------------------------- string
+#                                                           ^- keyword.control.mermaid
+#                                                              ^-- keyword.control.mermaid
+#                                                                  ^ variable
+#                                                                   ^ keyword.control.mermaid
+#                                                                    ^---- string
+#                                                                          ^- string
+#                                                                            ^ keyword.control.mermaid
+
+    cyr[Cyrillic]-->cyr2((Circle shape Начало));
+#   ^-- variable
+#      ^ keyword.control.mermaid
+#       ^------- string
+#               ^--- keyword.control.mermaid
+#                   ^--- variable
+#                       ^- keyword.control.mermaid
+#                         ^------------------ string
+#                                            ^- keyword.control.mermaid
+
+     classDef green fill:#9f6,stroke:#333,stroke-width:2px;
+#    ^------- keyword.control.mermaid
+#             ^---- variable
+#                   ^-------------------------------------- string
+     classDef orange fill:#f96,stroke:#333,stroke-width:4px;
+#    ^------- keyword.control.mermaid
+#             ^----- variable
+#                    ^-------------------------------------- string
+     class sq,e green
+#    ^---- keyword.control.mermaid
+#          ^--- variable
+#               ^---- string
+     class di orange
+#    ^---- keyword.control.mermaid
+#          ^- variable
+#             ^----- string
+```
+
+<!-- From https://mermaid.js.org/syntax/examples.html -->

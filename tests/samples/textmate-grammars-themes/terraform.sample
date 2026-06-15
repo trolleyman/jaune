@@ -1,0 +1,235 @@
+// grammar: source.hcl.terraform
+
+resource "aws_iam_role" "example" {
+//<0------------------------------- meta.block.hcl
+//<0---- entity.name.type.terraform
+//       ^------------- variable.other.enummember.hcl
+//                      ^-------- variable.other.enummember.hcl
+//                                ^ punctuation.section.block.begin.hcl
+  name = "example"
+//<0-------------- meta.block.hcl
+//^------ variable.declaration.hcl
+//^--- variable.other.readwrite.hcl
+//     ^ keyword.operator.assignment.hcl
+//       ^-------- string.quoted.double.hcl
+//       ^ punctuation.definition.string.begin.hcl
+//               ^ punctuation.definition.string.end.hcl
+
+  # assume_role_policy is omitted for brevity in this example. Refer to the
+//<0----------------------------------------------------------------------- meta.block.hcl
+//^------------------------------------------------------------------------ comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  # documentation for aws_iam_role for a complete example.
+//<0------------------------------------------------------ meta.block.hcl
+//^------------------------------------------------------- comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  assume_role_policy = "..."
+//<0------------------------ meta.block.hcl
+//^-------------------- variable.declaration.hcl
+//^----------------- variable.other.readwrite.hcl
+//                   ^ keyword.operator.assignment.hcl
+//                     ^---- string.quoted.double.hcl
+//                     ^ punctuation.definition.string.begin.hcl
+//                         ^ punctuation.definition.string.end.hcl
+}
+//<0 meta.block.hcl
+//<0 punctuation.section.block.end.hcl
+
+resource "aws_iam_instance_profile" "example" {
+//<0------------------------------------------- meta.block.hcl
+//<0---- entity.name.type.terraform
+//       ^------------------------- variable.other.enummember.hcl
+//                                  ^-------- variable.other.enummember.hcl
+//                                            ^ punctuation.section.block.begin.hcl
+  # Because this expression refers to the role, Terraform can infer
+//<0--------------------------------------------------------------- meta.block.hcl
+//^---------------------------------------------------------------- comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  # automatically that the role must be created first.
+//<0-------------------------------------------------- meta.block.hcl
+//^--------------------------------------------------- comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  role = aws_iam_role.example.name
+//<0------------------------------ meta.block.hcl
+//^------ variable.declaration.hcl
+//^--- variable.other.readwrite.hcl
+//     ^ keyword.operator.assignment.hcl
+//                   ^ keyword.operator.accessor.hcl
+//                    ^------ variable.other.member.hcl
+//                           ^ keyword.operator.accessor.hcl
+//                            ^--- variable.other.member.hcl
+}
+//<0 meta.block.hcl
+//<0 punctuation.section.block.end.hcl
+
+resource "aws_iam_role_policy" "example" {
+//<0-------------------------------------- meta.block.hcl
+//<0---- entity.name.type.terraform
+//       ^-------------------- variable.other.enummember.hcl
+//                             ^-------- variable.other.enummember.hcl
+//                                       ^ punctuation.section.block.begin.hcl
+  name   = "example"
+//<0---------------- meta.block.hcl
+//^-------- variable.declaration.hcl
+//^--- variable.other.readwrite.hcl
+//       ^ keyword.operator.assignment.hcl
+//         ^-------- string.quoted.double.hcl
+//         ^ punctuation.definition.string.begin.hcl
+//                 ^ punctuation.definition.string.end.hcl
+  role   = aws_iam_role.example.name
+//<0-------------------------------- meta.block.hcl
+//^-------- variable.declaration.hcl
+//^--- variable.other.readwrite.hcl
+//       ^ keyword.operator.assignment.hcl
+//                     ^ keyword.operator.accessor.hcl
+//                      ^------ variable.other.member.hcl
+//                             ^ keyword.operator.accessor.hcl
+//                              ^--- variable.other.member.hcl
+  policy = jsonencode({
+//<0------------------- meta.block.hcl
+//^-------- variable.declaration.hcl
+//^----- variable.other.readwrite.hcl
+//       ^ keyword.operator.assignment.hcl
+//         ^----------- meta.function-call.hcl
+//         ^--------- support.function.builtin.terraform
+//                   ^ punctuation.section.parens.begin.hcl
+//                    ^ meta.braces.hcl
+//                    ^ punctuation.section.braces.begin.hcl
+    "Statement" = [{
+//<0---------------- meta.block.hcl
+//<0---------------- meta.function-call.hcl
+//<0---------------- meta.braces.hcl
+//  ^---------- string.quoted.double.hcl
+//  ^ punctuation.definition.string.begin.hcl
+//            ^ punctuation.definition.string.end.hcl
+//                 ^ meta.braces.hcl
+//                 ^ punctuation.section.braces.begin.hcl
+      # This policy allows software running on the EC2 instance to
+//<0-------------------------------------------------------------- meta.block.hcl
+//<0-------------------------------------------------------------- meta.function-call.hcl
+//<0-------------------------------------------------------------- meta.braces.hcl
+//<0-------------------------------------------------------------- meta.braces.hcl
+//    ^----------------------------------------------------------- comment.line.number-sign.hcl
+//    ^ punctuation.definition.comment.hcl
+      # access the S3 API.
+//<0---------------------- meta.block.hcl
+//<0---------------------- meta.function-call.hcl
+//<0---------------------- meta.braces.hcl
+//<0---------------------- meta.braces.hcl
+//    ^------------------- comment.line.number-sign.hcl
+//    ^ punctuation.definition.comment.hcl
+      "Action" = "s3:*",
+//<0-------------------- meta.block.hcl
+//<0-------------------- meta.function-call.hcl
+//<0-------------------- meta.braces.hcl
+//<0-------------------- meta.braces.hcl
+//    ^------- string.quoted.double.hcl
+//    ^ punctuation.definition.string.begin.hcl
+//           ^ punctuation.definition.string.end.hcl
+//               ^----- string.quoted.double.hcl
+//               ^ punctuation.definition.string.begin.hcl
+//                    ^ punctuation.definition.string.end.hcl
+      "Effect" = "Allow",
+//<0--------------------- meta.block.hcl
+//<0--------------------- meta.function-call.hcl
+//<0--------------------- meta.braces.hcl
+//<0--------------------- meta.braces.hcl
+//    ^------- string.quoted.double.hcl
+//    ^ punctuation.definition.string.begin.hcl
+//           ^ punctuation.definition.string.end.hcl
+//               ^------ string.quoted.double.hcl
+//               ^ punctuation.definition.string.begin.hcl
+//                     ^ punctuation.definition.string.end.hcl
+    }],
+//<0--- meta.block.hcl
+//<0--- meta.function-call.hcl
+//<0--- meta.braces.hcl
+//<0- meta.braces.hcl
+//  ^ punctuation.section.braces.end.hcl
+  })
+//<0 meta.block.hcl
+//<0 meta.function-call.hcl
+//<0 meta.braces.hcl
+//^ punctuation.section.braces.end.hcl
+// ^ punctuation.section.parens.end.hcl
+}
+//<0 meta.block.hcl
+//<0 punctuation.section.block.end.hcl
+
+resource "aws_instance" "example" {
+//<0------------------------------- meta.block.hcl
+//<0---- entity.name.type.terraform
+//       ^------------- variable.other.enummember.hcl
+//                      ^-------- variable.other.enummember.hcl
+//                                ^ punctuation.section.block.begin.hcl
+  ami           = "ami-a1b2c3d4"
+//<0---------------------------- meta.block.hcl
+//^--------------- variable.declaration.hcl
+//^-- variable.other.readwrite.hcl
+//              ^ keyword.operator.assignment.hcl
+//                ^------------- string.quoted.double.hcl
+//                ^ punctuation.definition.string.begin.hcl
+//                             ^ punctuation.definition.string.end.hcl
+  instance_type = "t2.micro"
+//<0------------------------ meta.block.hcl
+//^--------------- variable.declaration.hcl
+//^------------ variable.other.readwrite.hcl
+//              ^ keyword.operator.assignment.hcl
+//                ^--------- string.quoted.double.hcl
+//                ^ punctuation.definition.string.begin.hcl
+//                         ^ punctuation.definition.string.end.hcl
+
+  # Terraform can infer from this that the instance profile must
+//<0------------------------------------------------------------ meta.block.hcl
+//^------------------------------------------------------------- comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  # be created before the EC2 instance.
+//<0----------------------------------- meta.block.hcl
+//^------------------------------------ comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  iam_instance_profile = aws_iam_instance_profile.example
+//<0----------------------------------------------------- meta.block.hcl
+//^---------------------- variable.declaration.hcl
+//^------------------- variable.other.readwrite.hcl
+//                     ^ keyword.operator.assignment.hcl
+//                                               ^ keyword.operator.accessor.hcl
+//                                                ^------ variable.other.member.hcl
+
+  # However, if software running in this EC2 instance needs access
+//<0-------------------------------------------------------------- meta.block.hcl
+//^--------------------------------------------------------------- comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  # to the S3 API in order to boot properly, there is also a "hidden"
+//<0----------------------------------------------------------------- meta.block.hcl
+//^------------------------------------------------------------------ comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  # dependency on the aws_iam_role_policy that Terraform cannot
+//<0----------------------------------------------------------- meta.block.hcl
+//^------------------------------------------------------------ comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  # automatically infer, so it must be declared explicitly:
+//<0------------------------------------------------------- meta.block.hcl
+//^-------------------------------------------------------- comment.line.number-sign.hcl
+//^ punctuation.definition.comment.hcl
+  depends_on = [
+//<0------------ meta.block.hcl
+//^------------ variable.declaration.hcl
+//^--------- variable.other.readwrite.hcl
+//           ^ keyword.operator.assignment.hcl
+//             ^ punctuation.section.brackets.begin.hcl
+    aws_iam_role_policy.example
+//<0--------------------------- meta.block.hcl
+//  ^------------------ variable.other.readwrite.hcl
+//                     ^ keyword.operator.accessor.hcl
+//                      ^------ variable.other.member.hcl
+  ]
+//<0 meta.block.hcl
+//^ punctuation.section.brackets.end.hcl
+}
+//<0 meta.block.hcl
+//<0 punctuation.section.block.end.hcl
+
+
+// From https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on
+//<0-------------------------------------------------------------------------------- comment.line.double-slash.hcl
+//<0 punctuation.definition.comment.hcl

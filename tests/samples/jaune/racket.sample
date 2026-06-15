@@ -1,0 +1,128 @@
+; grammar: source.racket
+
+#lang racket
+;<0-- keyword.other.racket
+
+(provide time-it)
+;<0-------------- meta.list.racket
+;<0 punctuation.section.list.begin.racket
+;^------ support.function.racket
+;               ^ punctuation.section.list.end.racket
+
+(require (for-syntax syntax/parse))
+;<0-------------------------------- meta.list.racket
+;<0 punctuation.section.list.begin.racket
+;^------ support.function.racket
+;        ^------------------------ meta.list.racket
+;        ^ punctuation.section.list.begin.racket
+;         ^--------- support.function.racket
+;                                ^ punctuation.section.list.end.racket
+;                                 ^ punctuation.section.list.end.racket
+
+(define-syntax (time-it stx)
+;<0------------------------- meta.list.racket
+;<0 punctuation.section.list.begin.racket
+;^------------ storage.type.lambda.racket
+;              ^ punctuation.section.begin.racket
+;               ^ entity.name.function.racket
+;                       ^-- variable.parameter.racket
+;                          ^ punctuation.section.end.racket
+  (syntax-parse stx
+;<0---------------- meta.list.racket
+; ^---------------- meta.list.racket
+; ^ punctuation.section.list.begin.racket
+    [(_ task)
+;<0---------- meta.list.racket
+;<0---------- meta.list.racket
+;   ^-------- meta.list.racket
+;   ^ punctuation.section.list.begin.racket
+;    ^------- meta.list.racket
+;    ^ punctuation.section.list.begin.racket
+;     ^ support.function.racket
+;           ^ punctuation.section.list.end.racket
+     #'(thunk-time-it (λ () task))]))
+;<0---------------------------------- meta.list.racket
+;<0--------------------------------- meta.list.racket
+;<0-------------------------------- meta.list.racket
+;    ^- support.function.racket
+;      ^-------------------------- meta.list.racket
+;      ^ punctuation.section.list.begin.racket
+;                     ^---------- meta.list.racket
+;                     ^ punctuation.section.list.begin.racket
+;                      ^--- meta.lambda.racket
+;                      ^ storage.type.lambda.racket
+;                        ^ punctuation.section.begin.racket
+;                         ^ punctuation.section.end.racket
+;                               ^ punctuation.section.list.end.racket
+;                                ^ punctuation.section.list.end.racket
+;                                 ^ punctuation.section.list.end.racket
+;                                  ^ punctuation.section.list.end.racket
+;                                   ^ punctuation.section.list.end.racket
+
+(define (thunk-time-it task)
+;<0------------------------- meta.list.racket
+;<0 punctuation.section.list.begin.racket
+;^----- storage.type.lambda.racket
+;       ^ punctuation.section.begin.racket
+;        ^ entity.name.function.racket
+;                      ^--- variable.parameter.racket
+;                          ^ punctuation.section.end.racket
+  (define before (cim))
+;<0-------------------- meta.list.racket
+; ^-------------------- meta.list.racket
+; ^ punctuation.section.list.begin.racket
+;  ^----- storage.type.racket
+;         ^----- entity.name.constant.racket
+;                ^---- meta.list.racket
+;                ^ punctuation.section.list.begin.racket
+;                    ^ punctuation.section.list.end.racket
+;                     ^ punctuation.section.list.end.racket
+  (define answer (task))
+;<0--------------------- meta.list.racket
+; ^--------------------- meta.list.racket
+; ^ punctuation.section.list.begin.racket
+;  ^----- storage.type.racket
+;         ^----- entity.name.constant.racket
+;                ^----- meta.list.racket
+;                ^ punctuation.section.list.begin.racket
+;                     ^ punctuation.section.list.end.racket
+;                      ^ punctuation.section.list.end.racket
+  (define delta  (- (cim) before))
+;<0------------------------------- meta.list.racket
+; ^------------------------------- meta.list.racket
+; ^ punctuation.section.list.begin.racket
+;  ^----- storage.type.racket
+;         ^---- entity.name.constant.racket
+;                ^--------------- meta.list.racket
+;                ^ punctuation.section.list.begin.racket
+;                 ^ support.function.racket
+;                   ^---- meta.list.racket
+;                   ^ punctuation.section.list.begin.racket
+;                       ^ punctuation.section.list.end.racket
+;                               ^ punctuation.section.list.end.racket
+;                                ^ punctuation.section.list.end.racket
+  (printf "time: ~a ms\n" delta)
+;<0----------------------------- meta.list.racket
+; ^----------------------------- meta.list.racket
+; ^ punctuation.section.list.begin.racket
+;  ^----- support.function.racket
+;         ^ string.quoted.double.racket
+;                ^- constant.other.placeholder.racket
+;                     ^- constant.character.escape.racket
+;                       ^ string.quoted.double.racket
+;                              ^ punctuation.section.list.end.racket
+  answer)
+;<0------ meta.list.racket
+;       ^ punctuation.section.list.end.racket
+
+(define cim current-inexact-milliseconds)
+;<0-------------------------------------- meta.list.racket
+;<0 punctuation.section.list.begin.racket
+;^----- storage.type.racket
+;       ^-- entity.name.constant.racket
+;           ^--------------------------- support.function.racket
+;                                       ^ punctuation.section.list.end.racket
+
+;; From https://racket-lang.org/#little-macros
+;<0------------------------------------------- comment.line.semicolon.racket
+;<0 punctuation.definition.comment.racket

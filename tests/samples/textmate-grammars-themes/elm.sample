@@ -1,0 +1,288 @@
+-- grammar: source.elm
+
+module Main exposing (..)
+--<0--------------------- meta.declaration.module.elm
+--<0-- keyword.other.elm
+--     ^--- support.module.elm
+--         ^ punctuation.spaces.elm
+--          ^------- keyword.other.elm
+--                  ^ punctuation.spaces.elm
+--                   ^--- meta.declaration.exports.elm
+--                   ^ punctuation.parens.module-export.elm
+--                    ^- punctuation.parens.ellipses.elm
+--                      ^ punctuation.parens.module-export.elm
+
+-- Press buttons to increment and decrement a counter.
+--<0-------------------------------------------------- meta.declaration.module.elm
+--^ punctuation.spaces.elm
+-- ^---- support.module.elm
+--      ^ punctuation.spaces.elm
+--              ^ punctuation.spaces.elm
+--                 ^ punctuation.spaces.elm
+--                           ^ punctuation.spaces.elm
+--                               ^ punctuation.spaces.elm
+--                                         ^ punctuation.spaces.elm
+--                                           ^ punctuation.spaces.elm
+--                                                   ^ keyword.other.period.elm
+--
+--<0 meta.declaration.module.elm
+-- Read how it works:
+--<0----------------- meta.declaration.module.elm
+--^ punctuation.spaces.elm
+-- ^--- support.module.elm
+--     ^ punctuation.spaces.elm
+--         ^ punctuation.spaces.elm
+--            ^ punctuation.spaces.elm
+--   https://guide.elm-lang.org/architecture/buttons.html
+--<0----------------------------------------------------- meta.declaration.module.elm
+--^-- punctuation.spaces.elm
+--                ^ keyword.other.period.elm
+--                         ^ keyword.other.period.elm
+--                                                  ^ keyword.other.period.elm
+--
+--<0 meta.declaration.module.elm
+
+
+import Browser
+--<0---------- meta.declaration.module.elm
+--    ^ punctuation.spaces.elm
+--     ^------ support.module.elm
+import Html exposing (Html, button, div, text)
+--<0------------------------------------------ meta.declaration.module.elm
+--    ^ punctuation.spaces.elm
+--     ^--- support.module.elm
+--         ^ punctuation.spaces.elm
+--          ^------- keyword.other.elm
+--                  ^ punctuation.spaces.elm
+--                   ^------------------------ meta.declaration.exports.elm
+--                   ^ punctuation.parens.module-export.elm
+--                    ^--- storage.type.elm
+--                        ^ punctuation.separator.comma.elm
+--                         ^ punctuation.spaces.elm
+--                          ^----- entity.name.function.elm
+--                                ^ punctuation.separator.comma.elm
+--                                 ^ punctuation.spaces.elm
+--                                  ^-- entity.name.function.elm
+--                                     ^ punctuation.separator.comma.elm
+--                                      ^ punctuation.spaces.elm
+--                                       ^--- entity.name.function.elm
+--                                           ^ punctuation.parens.module-export.elm
+import Html.Events exposing (onClick)
+--<0--------------------------------- meta.declaration.module.elm
+--    ^ punctuation.spaces.elm
+--     ^--- support.module.elm
+--         ^ keyword.other.period.elm
+--          ^----- support.module.elm
+--                ^ punctuation.spaces.elm
+--                 ^------- keyword.other.elm
+--                         ^ punctuation.spaces.elm
+--                          ^-------- meta.declaration.exports.elm
+--                          ^ punctuation.parens.module-export.elm
+--                           ^------ entity.name.function.elm
+--                                  ^ punctuation.parens.module-export.elm
+
+
+
+-- MAIN
+--<0--- meta.declaration.module.elm
+--^ punctuation.spaces.elm
+-- ^--- support.module.elm
+
+
+main =
+--<0-- meta.declaration.module.elm
+--  ^ punctuation.spaces.elm
+  Browser.sandbox { init = init, update = update, view = view }
+--<0----------------------------------------------------------- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+--^------ support.module.elm
+--       ^ keyword.other.period.elm
+--               ^ punctuation.spaces.elm
+--                 ^ punctuation.spaces.elm
+--                      ^ punctuation.spaces.elm
+--                        ^ punctuation.spaces.elm
+--                              ^ punctuation.spaces.elm
+--                                     ^ punctuation.spaces.elm
+--                                       ^ punctuation.spaces.elm
+--                                               ^ punctuation.spaces.elm
+--                                                    ^ punctuation.spaces.elm
+--                                                      ^ punctuation.spaces.elm
+--                                                           ^ punctuation.spaces.elm
+
+
+
+-- MODEL
+--<0---- meta.declaration.module.elm
+--^ punctuation.spaces.elm
+-- ^---- support.module.elm
+
+
+type alias Model = Int
+--<0------------------ meta.declaration.module.elm
+--  ^ punctuation.spaces.elm
+--        ^ punctuation.spaces.elm
+--         ^---- support.module.elm
+--              ^ punctuation.spaces.elm
+--                ^ punctuation.spaces.elm
+--                 ^-- support.module.elm
+
+
+init : Model
+--<0-------- meta.declaration.module.elm
+--  ^ punctuation.spaces.elm
+--    ^ punctuation.spaces.elm
+--     ^---- support.module.elm
+init =
+--<0-- meta.declaration.module.elm
+--  ^ punctuation.spaces.elm
+  0
+--<0 meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+
+
+
+-- UPDATE
+--<0----- meta.declaration.module.elm
+--^ punctuation.spaces.elm
+-- ^----- support.module.elm
+
+
+type Msg
+--<0---- meta.declaration.module.elm
+--  ^ punctuation.spaces.elm
+--   ^-- support.module.elm
+  = Increment
+--<0--------- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+-- ^ punctuation.spaces.elm
+--  ^-------- support.module.elm
+  | Decrement
+--<0--------- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+-- ^ punctuation.spaces.elm
+--  ^-------- support.module.elm
+
+
+update : Msg -> Model -> Model
+--<0-------------------------- meta.declaration.module.elm
+--    ^ punctuation.spaces.elm
+--      ^ punctuation.spaces.elm
+--       ^-- support.module.elm
+--          ^ punctuation.spaces.elm
+--             ^ punctuation.spaces.elm
+--              ^---- support.module.elm
+--                   ^ punctuation.spaces.elm
+--                      ^ punctuation.spaces.elm
+--                       ^---- support.module.elm
+update msg model =
+--<0-------------- meta.declaration.module.elm
+--    ^ punctuation.spaces.elm
+--        ^ punctuation.spaces.elm
+--              ^ punctuation.spaces.elm
+  case msg of
+--<0--------- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+--    ^ punctuation.spaces.elm
+--        ^ punctuation.spaces.elm
+    Increment ->
+--<0------------ meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+--  ^-------- support.module.elm
+--           ^ punctuation.spaces.elm
+      model + 1
+--<0----------- meta.declaration.module.elm
+--<0-- punctuation.spaces.elm
+--         ^ punctuation.spaces.elm
+--           ^ punctuation.spaces.elm
+
+    Decrement ->
+--<0------------ meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+--  ^-------- support.module.elm
+--           ^ punctuation.spaces.elm
+      model - 1
+--<0----------- meta.declaration.module.elm
+--<0-- punctuation.spaces.elm
+--         ^ punctuation.spaces.elm
+--           ^ punctuation.spaces.elm
+
+
+
+-- VIEW
+--<0--- meta.declaration.module.elm
+--^ punctuation.spaces.elm
+-- ^--- support.module.elm
+
+
+view : Model -> Html Msg
+--<0-------------------- meta.declaration.module.elm
+--  ^ punctuation.spaces.elm
+--    ^ punctuation.spaces.elm
+--     ^---- support.module.elm
+--          ^ punctuation.spaces.elm
+--             ^ punctuation.spaces.elm
+--              ^--- support.module.elm
+--                  ^ punctuation.spaces.elm
+--                   ^-- support.module.elm
+view model =
+--<0-------- meta.declaration.module.elm
+--  ^ punctuation.spaces.elm
+--        ^ punctuation.spaces.elm
+  div []
+--<0---- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+--   ^ punctuation.spaces.elm
+    [ button [ onClick Decrement ] [ text "-" ]
+--<0------------------------------------------- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+--   ^ punctuation.spaces.elm
+--          ^ punctuation.spaces.elm
+--            ^ punctuation.spaces.elm
+--               ^---- support.module.elm
+--                    ^ punctuation.spaces.elm
+--                     ^-------- support.module.elm
+--                              ^ punctuation.spaces.elm
+--                                ^ punctuation.spaces.elm
+--                                  ^ punctuation.spaces.elm
+--                                       ^ punctuation.spaces.elm
+--                                           ^ punctuation.spaces.elm
+    , div [] [ text (String.fromInt model) ]
+--<0---------------------------------------- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+--   ^ punctuation.spaces.elm
+--       ^ punctuation.spaces.elm
+--          ^ punctuation.spaces.elm
+--            ^ punctuation.spaces.elm
+--                 ^ punctuation.spaces.elm
+--                  ^--------------------- meta.declaration.exports.elm
+--                  ^ punctuation.parens.module-export.elm
+--                   ^----- storage.type.elm
+--                          ^------ entity.name.function.elm
+--                                 ^ punctuation.spaces.elm
+--                                  ^---- entity.name.function.elm
+--                                       ^ punctuation.parens.module-export.elm
+--                                        ^ punctuation.spaces.elm
+    , button [ onClick Increment ] [ text "+" ]
+--<0------------------------------------------- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+--   ^ punctuation.spaces.elm
+--          ^ punctuation.spaces.elm
+--            ^ punctuation.spaces.elm
+--               ^---- support.module.elm
+--                    ^ punctuation.spaces.elm
+--                     ^-------- support.module.elm
+--                              ^ punctuation.spaces.elm
+--                                ^ punctuation.spaces.elm
+--                                  ^ punctuation.spaces.elm
+--                                       ^ punctuation.spaces.elm
+--                                           ^ punctuation.spaces.elm
+    ]
+--<0- meta.declaration.module.elm
+--<0 punctuation.spaces.elm
+
+-- From https://elm-lang.org/examples/buttons
+--<0----------------------------------------- meta.declaration.module.elm
+--^ punctuation.spaces.elm
+-- ^--- support.module.elm
+--     ^ punctuation.spaces.elm
+--                      ^ keyword.other.period.elm

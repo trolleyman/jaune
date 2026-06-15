@@ -1,0 +1,918 @@
+# grammar: source.just
+
+set shell := ["sh", "-c"]
+#<0 keyword.other.reserved.just
+#   ^---- variable.other.just
+#         ^- keyword.operator.assignment.just
+#             ^--- string.quoted.double.just
+#             ^ string.quoted.double.just
+#                   ^--- string.quoted.double.just
+#                   ^ string.quoted.double.just
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+#<0 keyword.other.reserved.just
+#   ^------------ variable.other.just
+#                 ^- keyword.operator.assignment.just
+#                     ^--------------- string.quoted.double.just
+#                     ^ string.quoted.double.just
+#                                       ^-------- string.quoted.double.just
+#                                       ^ string.quoted.double.just
+#                                                  ^--------- string.quoted.double.just
+#                                                  ^ string.quoted.double.just
+set allow-duplicate-recipes
+#<0 keyword.other.reserved.just
+#   ^---------------------- variable.other.just
+set positional-arguments
+#<0 keyword.other.reserved.just
+#   ^------------------- variable.other.just
+set dotenv-load
+#<0 keyword.other.reserved.just
+#   ^---------- variable.other.just
+set export
+#<0 keyword.other.reserved.just
+#   ^----- variable.other.just
+
+alias s := serve
+#<0-- keyword.other.reserved.just
+#     ^ variable.name.alias.just
+#       ^- keyword.operator.assignment.just
+#          ^---- variable.other.just
+
+bt := '0'
+#<0 variable.other.just
+#  ^- keyword.operator.assignment.just
+#     ^-- string.quoted.single.just
+#     ^ string.quoted.single.just
+
+export RUST_BACKTRACE_1 := bt
+#<0--- keyword.other.reserved.just
+#      ^--------------- variable.other.just
+#                       ^- keyword.operator.assignment.just
+
+log := "warn"
+#<0 variable.other.just
+#   ^- keyword.operator.assignment.just
+#      ^----- string.quoted.double.just
+#      ^ string.quoted.double.just
+
+export JUST_LOG := (log + "ing" + `grep loop /etc/networks | cut -f2`)
+#<0--- keyword.other.reserved.just
+#      ^------- variable.other.just
+#               ^- keyword.operator.assignment.just
+#                       ^ keyword.operator.concat.just
+#                         ^---- string.quoted.double.just
+#                         ^ string.quoted.double.just
+#                               ^ keyword.operator.concat.just
+#                                 ^ string.interpolated.just
+#                                  ^-------------------------------- source.shell
+#                                  ^----------------------- meta.statement.shell
+#                                  ^----------------------- meta.statement.command.shell
+#                                  ^--- meta.statement.command.name.shell
+#                                  ^--- entity.name.function.call.shell
+#                                  ^--- entity.name.command.shell
+#                                      ^------------------ meta.argument.shell
+#                                       ^--- string.unquoted.argument.shell
+#                                            ^------------ string.unquoted.argument.shell
+#                                                          ^ keyword.operator.pipe.shell
+#                                                           ^------- meta.statement.shell
+#                                                            ^------ meta.statement.command.shell
+#                                                            ^-- meta.statement.command.name.shell
+#                                                            ^-- entity.name.function.call.shell
+#                                                            ^-- entity.name.command.shell
+#                                                                ^ string.unquoted.argument.shell
+#                                                                ^ constant.other.option.dash.shell
+#                                                                 ^- string.unquoted.argument
+#                                                                 ^- constant.other.option
+#                                                                   ^ string.interpolated.just
+
+tmpdir  := `mktemp`
+#<0--- variable.other.just
+#       ^- keyword.operator.assignment.just
+#          ^ string.interpolated.just
+#           ^----- source.shell
+#           ^----- meta.statement.shell
+#           ^----- meta.statement.command.shell
+#           ^----- meta.statement.command.name.shell
+#           ^----- entity.name.function.call.shell
+#           ^----- entity.name.command.shell
+#                 ^ string.interpolated.just
+version := "0.2.7"
+#<0---- variable.other.just
+#       ^- keyword.operator.assignment.just
+#          ^------ string.quoted.double.just
+#          ^ string.quoted.double.just
+tardir  := tmpdir / "awesomesauce-" + version
+#<0--- variable.other.just
+#       ^- keyword.operator.assignment.just
+#                 ^ keyword.operator.path-join.just
+#                   ^-------------- string.quoted.double.just
+#                   ^ string.quoted.double.just
+#                                   ^ keyword.operator.concat.just
+foo1    := / "tmp"
+#<0- variable.other.just
+#       ^- keyword.operator.assignment.just
+#          ^ keyword.operator.path-join.just
+#            ^---- string.quoted.double.just
+#            ^ string.quoted.double.just
+foo2_3  := "a/"
+#<0--- variable.other.just
+#       ^- keyword.operator.assignment.just
+#          ^--- string.quoted.double.just
+#          ^ string.quoted.double.just
+tarball := tardir + ".tar.gz"
+#<0---- variable.other.just
+#       ^- keyword.operator.assignment.just
+#                 ^ keyword.operator.concat.just
+#                   ^-------- string.quoted.double.just
+#                   ^ string.quoted.double.just
+
+export RUST_BACKTRACE_2 := "1"
+#<0--- keyword.other.reserved.just
+#      ^--------------- variable.other.just
+#                       ^- keyword.operator.assignment.just
+#                          ^-- string.quoted.double.just
+#                          ^ string.quoted.double.just
+string-with-tab             := "\t"
+#<0------------ variable.other.just
+#                           ^- keyword.operator.assignment.just
+#                              ^--- string.quoted.double.just
+#                              ^ string.quoted.double.just
+#                               ^- constant.character.escape.just
+string-with-newline         := "\n"
+#<0---------------- variable.other.just
+#                           ^- keyword.operator.assignment.just
+#                              ^--- string.quoted.double.just
+#                              ^ string.quoted.double.just
+#                               ^- constant.character.escape.just
+string-with-carriage-return := "\r"
+#<0------------------------ variable.other.just
+#                           ^- keyword.operator.assignment.just
+#                              ^--- string.quoted.double.just
+#                              ^ string.quoted.double.just
+#                               ^- constant.character.escape.just
+string-with-double-quote    := "\""
+#<0--------------------- variable.other.just
+#                           ^- keyword.operator.assignment.just
+#                              ^--- string.quoted.double.just
+#                              ^ string.quoted.double.just
+#                               ^- constant.character.escape.just
+string-with-slash           := "\\"
+#<0-------------- variable.other.just
+#                           ^- keyword.operator.assignment.just
+#                              ^--- string.quoted.double.just
+#                              ^ string.quoted.double.just
+#                               ^- constant.character.escape.just
+string-with-no-newline      := "\
+#<0------------------- variable.other.just
+#                           ^- keyword.operator.assignment.just
+#                              ^- string.quoted.double.just
+#                              ^ string.quoted.double.just
+"
+#<0 string.quoted.double.just
+
+# Newlines in variables
+#<0-------------------- comment.line.number-sign.just
+single := '
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^ string.quoted.single.just
+#         ^ string.quoted.single.just
+hello
+#<0-- string.quoted.single.just
+'
+#<0 string.quoted.single.just
+
+double := "
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^ string.quoted.double.just
+#         ^ string.quoted.double.just
+goodbye
+#<0---- string.quoted.double.just
+"
+#<0 string.quoted.double.just
+escapes := '\t\n\r\"\\'
+#<0---- variable.other.just
+#       ^- keyword.operator.assignment.just
+#          ^----------- string.quoted.single.just
+#          ^ string.quoted.single.just
+
+# this string will evaluate to `foo\nbar\n`
+#<0---------------------------------------- comment.line.number-sign.just
+x := '''
+#<0 variable.other.just
+# ^- keyword.operator.assignment.just
+#    ^-- string.quoted.single.indented.just
+#    ^-- string.quoted.single.indented.just
+  foo
+#<0-- string.quoted.single.indented.just
+  bar
+#<0-- string.quoted.single.indented.just
+'''
+#<0 string.quoted.single.indented.just
+
+# this string will evaluate to `abc\n  wuv\nxyz\n`
+#<0----------------------------------------------- comment.line.number-sign.just
+y := """
+#<0 variable.other.just
+# ^- keyword.operator.assignment.just
+#    ^-- string.quoted.double.indented.just
+#    ^-- string.quoted.double.indented.just
+  abc
+#<0-- string.quoted.double.indented.just
+    wuv
+#<0---- string.quoted.double.indented.just
+  xyz
+#<0-- string.quoted.double.indented.just
+"""
+#<0 string.quoted.double.indented.just
+
+for:
+#<0 entity.name.function.just
+#  ^ keyword.operator.recipe.end.just
+  for file in `ls .`; do \
+#             ^ string.interpolated.just
+#              ^--- source.shell
+#              ^--- meta.statement.shell
+#              ^--- meta.statement.command.shell
+#              ^- meta.statement.command.name.shell
+#              ^- entity.name.function.call.shell
+#              ^- entity.name.command.shell
+#                ^- meta.argument.shell
+#                 ^ string.unquoted.argument.shell
+#                  ^ string.interpolated.just
+    echo $file; \
+  done
+
+serve:
+#<0-- entity.name.function.just
+#    ^ keyword.operator.recipe.end.just
+  touch {{tmpdir}}/file
+#       ^--------- string.interpolated.escaping.just
+#       ^- string.interpolated.escape.just
+#               ^- string.interpolated.escape.just
+#                 ^ keyword.operator.path-join.just
+
+# This backtick evaluates the command `echo foo\necho bar\n`, which produces the value `foo\nbar\n`.
+#<0------------------------------------------------------------------------------------------------- comment.line.number-sign.just
+stuff := ```
+#<0-- variable.other.just
+#     ^- keyword.operator.assignment.just
+#        ^-- string.interpolated.just
+    echo foo
+#<0--------- source.shell
+#<0--------- meta.statement.shell
+#<0--------- meta.statement.command.shell
+#   ^--- meta.statement.command.name.shell
+#   ^--- entity.name.function.call.shell
+#   ^--- entity.name.command.shell
+#   ^--- support.function.builtin.shell
+#       ^--- meta.argument.shell
+#        ^-- string.unquoted.argument.shell
+    echo bar
+#<0--------- source.shell
+#<0--------- meta.statement.shell
+#   ^------- meta.statement.command.shell
+#   ^--- meta.statement.command.name.shell
+#   ^--- entity.name.function.call.shell
+#   ^--- entity.name.command.shell
+#   ^--- support.function.builtin.shell
+#       ^--- meta.argument.shell
+#        ^-- string.unquoted.argument.shell
+  ```
+#<0 source.shell
+#<0 meta.statement.shell
+# ^-- string.interpolated.just
+
+
+an_arch := trim(lowercase(justfile())) + arch()
+#<0---- variable.other.just
+#       ^- keyword.operator.assignment.just
+#          ^--- support.function.builtin.just
+#               ^-------- support.function.builtin.just
+#                         ^------- support.function.builtin.just
+#                                      ^ keyword.operator.concat.just
+#                                        ^--- support.function.builtin.just
+trim_end := trim_end("99.99954%   ")
+#<0----- variable.other.just
+#        ^- keyword.operator.assignment.just
+#           ^------- support.function.builtin.just
+#                    ^------------- string.quoted.double.just
+#                    ^ string.quoted.double.just
+home_dir := replace(env_var('HOME') / "yep", 'yep', '')
+#<0----- variable.other.just
+#        ^- keyword.operator.assignment.just
+#           ^------ support.function.builtin.just
+#                   ^------ support.function.builtin.just
+#                           ^----- string.quoted.single.just
+#                           ^ string.quoted.single.just
+#                                   ^ keyword.operator.path-join.just
+#                                     ^---- string.quoted.double.just
+#                                     ^ string.quoted.double.just
+#                                            ^---- string.quoted.single.just
+#                                            ^ string.quoted.single.just
+#                                                   ^- string.quoted.single.just
+#                                                   ^ string.quoted.single.just
+quoted := quote("some things beyond\"$()^%#@!|-+=_*&'`")
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^---- support.function.builtin.just
+#               ^-------------------------------------- string.quoted.double.just
+#               ^ string.quoted.double.just
+#                                  ^- constant.character.escape.just
+smartphone := trim_end_match('blah.txt', 'txt')
+#<0------- variable.other.just
+#          ^- keyword.operator.assignment.just
+#             ^------------- support.function.builtin.just
+#                            ^--------- string.quoted.single.just
+#                            ^ string.quoted.single.just
+#                                        ^---- string.quoted.single.just
+#                                        ^ string.quoted.single.just
+museum := trim_start_match(trim_start(trim_end_matches('   yep_blah.txt.txt', '.txt')), 'yep_')
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^--------------- support.function.builtin.just
+#                          ^--------- support.function.builtin.just
+#                                     ^--------------- support.function.builtin.just
+#                                                      ^-------------------- string.quoted.single.just
+#                                                      ^ string.quoted.single.just
+#                                                                             ^----- string.quoted.single.just
+#                                                                             ^ string.quoted.single.just
+#                                                                                       ^----- string.quoted.single.just
+#                                                                                       ^ string.quoted.single.just
+water := trim_start_matches('ssssssoup.txt', 's')
+#<0-- variable.other.just
+#     ^- keyword.operator.assignment.just
+#        ^----------------- support.function.builtin.just
+#                           ^-------------- string.quoted.single.just
+#                           ^ string.quoted.single.just
+#                                            ^-- string.quoted.single.just
+#                                            ^ string.quoted.single.just
+congress := uppercase(os())
+#<0----- variable.other.just
+#        ^- keyword.operator.assignment.just
+#           ^-------- support.function.builtin.just
+#                     ^- support.function.builtin.just
+fam := os_family()
+#<0 variable.other.just
+#   ^- keyword.operator.assignment.just
+#      ^-------- support.function.builtin.just
+path_1 := absolute_path('test')
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^------------ support.function.builtin.just
+#                       ^----- string.quoted.single.just
+#                       ^ string.quoted.single.just
+path_2 := '/tmp/subcommittee.txt'
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^---------------------- string.quoted.single.just
+#         ^ string.quoted.single.just
+ext_z := extension(path_2)
+#<0-- variable.other.just
+#     ^- keyword.operator.assignment.just
+#        ^-------- support.function.builtin.just
+exe_name := file_name(just_executable())
+#<0----- variable.other.just
+#        ^- keyword.operator.assignment.just
+#           ^-------- support.function.builtin.just
+#                     ^-------------- support.function.builtin.just
+a_stem := file_stem(path_2)
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^-------- support.function.builtin.just
+a_parent := parent_directory(path_2)
+#<0----- variable.other.just
+#        ^- keyword.operator.assignment.just
+#           ^--------------- support.function.builtin.just
+sans_ext := without_extension(path_2)
+#<0----- variable.other.just
+#        ^- keyword.operator.assignment.just
+#           ^---------------- support.function.builtin.just
+camera := join('tmp', 'dir1', 'dir2', path_2)
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^--- support.function.builtin.just
+#              ^---- string.quoted.single.just
+#              ^ string.quoted.single.just
+#                     ^----- string.quoted.single.just
+#                     ^ string.quoted.single.just
+#                             ^----- string.quoted.single.just
+#                             ^ string.quoted.single.just
+cleaned := clean('/tmp/blah/..///thing.txt')
+#<0---- variable.other.just
+#       ^- keyword.operator.assignment.just
+#          ^---- support.function.builtin.just
+#                ^------------------------- string.quoted.single.just
+#                ^ string.quoted.single.just
+id__path := '/tmp' / sha256('blah') / sha256_file(justfile())
+#<0----- variable.other.just
+#        ^- keyword.operator.assignment.just
+#           ^----- string.quoted.single.just
+#           ^ string.quoted.single.just
+#                  ^ keyword.operator.path-join.just
+#                    ^----- support.function.builtin.just
+#                           ^----- string.quoted.single.just
+#                           ^ string.quoted.single.just
+#                                   ^ keyword.operator.path-join.just
+#                                     ^---------- support.function.builtin.just
+#                                                 ^------- support.function.builtin.just
+_another_var := env_var_or_default("HOME", justfile_directory())
+#<0--------- variable.other.just
+#            ^- keyword.operator.assignment.just
+#               ^----------------- support.function.builtin.just
+#                                  ^----- string.quoted.double.just
+#                                  ^ string.quoted.double.just
+#                                          ^----------------- support.function.builtin.just
+python := `which python`
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^ string.interpolated.just
+#          ^----------- source.shell
+#          ^----------- meta.statement.shell
+#          ^----------- meta.statement.command.shell
+#          ^---- meta.statement.command.name.shell
+#          ^---- entity.name.function.call.shell
+#          ^---- entity.name.command.shell
+#          ^---- support.function.builtin.shell
+#               ^------ meta.argument.shell
+#                ^----- string.unquoted.argument.shell
+#                      ^ string.interpolated.just
+
+exists := if path_exists(just_executable()) =~ '^/User' { uuid() } else { 'yeah' }
+#<0--- variable.other.just
+#      ^- keyword.operator.assignment.just
+#         ^- keyword.control.conditional.just
+#            ^---------- support.function.builtin.just
+#                        ^-------------- support.function.builtin.just
+#                                           ^- keyword.operator.equality.just
+#                                              ^------- string.quoted.single.just
+#                                              ^ string.quoted.single.just
+#                                                         ^--- support.function.builtin.just
+#                                                                  ^--- keyword.control.conditional.just
+#                                                                         ^----- string.quoted.single.just
+#                                                                         ^ string.quoted.single.just
+
+foo   := if env_var("_") == "/usr/bin/env" { `touch /tmp/a_file` } else { "dummy-value" }
+#<0 variable.other.just
+#     ^- keyword.operator.assignment.just
+#        ^- keyword.control.conditional.just
+#           ^------ support.function.builtin.just
+#                   ^-- string.quoted.double.just
+#                   ^ string.quoted.double.just
+#                        ^- keyword.operator.equality.just
+#                           ^------------- string.quoted.double.just
+#                           ^ string.quoted.double.just
+#                                            ^ string.interpolated.just
+#                                             ^---------------- source.shell
+#                                             ^---------------- meta.statement.shell
+#                                             ^---------------- meta.statement.command.shell
+#                                             ^---- meta.statement.command.name.shell
+#                                             ^---- entity.name.function.call.shell
+#                                             ^---- entity.name.command.shell
+#                                                  ^----------- meta.argument.shell
+#                                                   ^---------- string.unquoted.argument.shell
+#                                                              ^ string.interpolated.just
+#                                                                  ^--- keyword.control.conditional.just
+#                                                                         ^------------ string.quoted.double.just
+#                                                                         ^ string.quoted.double.just
+foo_b := if "hello" == "goodbye" { "xyz" } else { if "no" == "no" { "yep"} else { error("123") } }
+#<0-- variable.other.just
+#     ^- keyword.operator.assignment.just
+#        ^- keyword.control.conditional.just
+#           ^------ string.quoted.double.just
+#           ^ string.quoted.double.just
+#                   ^- keyword.operator.equality.just
+#                      ^-------- string.quoted.double.just
+#                      ^ string.quoted.double.just
+#                                  ^---- string.quoted.double.just
+#                                  ^ string.quoted.double.just
+#                                          ^--- keyword.control.conditional.just
+#                                                 ^- keyword.control.conditional.just
+#                                                    ^--- string.quoted.double.just
+#                                                    ^ string.quoted.double.just
+#                                                         ^- keyword.operator.equality.just
+#                                                            ^--- string.quoted.double.just
+#                                                            ^ string.quoted.double.just
+#                                                                   ^---- string.quoted.double.just
+#                                                                   ^ string.quoted.double.just
+#                                                                          ^--- keyword.control.conditional.just
+#                                                                                 ^---- support.function.builtin.just
+#                                                                                       ^---- string.quoted.double.just
+#                                                                                       ^ string.quoted.double.just
+foo_c := if "hello" == "goodbye" {
+#<0-- variable.other.just
+#     ^- keyword.operator.assignment.just
+#        ^- keyword.control.conditional.just
+#           ^------ string.quoted.double.just
+#           ^ string.quoted.double.just
+#                   ^- keyword.operator.equality.just
+#                      ^-------- string.quoted.double.just
+#                      ^ string.quoted.double.just
+  "xyz"
+# ^---- string.quoted.double.just
+# ^ string.quoted.double.just
+} else if "a" == "a" {
+# ^--- keyword.control.conditional.just
+#      ^- keyword.control.conditional.just
+#         ^-- string.quoted.double.just
+#         ^ string.quoted.double.just
+#             ^- keyword.operator.equality.just
+#                ^-- string.quoted.double.just
+#                ^ string.quoted.double.just
+  "abc"
+# ^---- string.quoted.double.just
+# ^ string.quoted.double.just
+} else {
+# ^--- keyword.control.conditional.just
+  "123"
+# ^---- string.quoted.double.just
+# ^ string.quoted.double.just
+}
+
+bar:
+#<0 entity.name.function.just
+#  ^ keyword.operator.recipe.end.just
+  @echo {{foo}}
+# ^ keyword.operator.quiet.just
+#       ^------ string.interpolated.escaping.just
+#       ^- string.interpolated.escape.just
+#            ^- string.interpolated.escape.just
+
+
+bar2 foo_stuff:
+#<0- entity.name.function.just
+#    ^-------- variable.parameter.recipe.just
+#             ^ keyword.operator.recipe.end.just
+  echo {{ if foo_stuff == "bar" { "hello" } else { "goodbye" } }}
+#      ^--------------------------------------------------------- string.interpolated.escaping.just
+#      ^- string.interpolated.escape.just
+#         ^- keyword.control.conditional.just
+#                      ^- keyword.operator.equality.just
+#                         ^---- string.quoted.double.just
+#                         ^ string.quoted.double.just
+#                                 ^------ string.quoted.double.just
+#                                 ^ string.quoted.double.just
+#                                           ^--- keyword.control.conditional.just
+#                                                  ^-------- string.quoted.double.just
+#                                                  ^ string.quoted.double.just
+#                                                              ^- string.interpolated.escape.just
+
+executable:
+#<0------- entity.name.function.just
+#         ^ keyword.operator.recipe.end.just
+  @echo The executable is at: {{just_executable()}}
+# ^ keyword.operator.quiet.just
+#                             ^-------------------- string.interpolated.escaping.just
+#                             ^- string.interpolated.escape.just
+#                               ^-------------- support.function.builtin.just
+#                                                ^- string.interpolated.escape.just
+
+
+rustfmt:
+#<0---- entity.name.function.just
+#      ^ keyword.operator.recipe.end.just
+  find {{invocation_directory()}} -name \*.rs -exec rustfmt {} \;
+#      ^------------------------- string.interpolated.escaping.just
+#      ^- string.interpolated.escape.just
+#        ^------------------- support.function.builtin.just
+#                              ^- string.interpolated.escape.just
+
+test:
+#<0- entity.name.function.just
+#   ^ keyword.operator.recipe.end.just
+  echo "{{home_dir}}"
+#      ^------------- string.quoted.double.just
+#      ^ string.quoted.double.just
+#       ^----------- string.interpolated.escaping.just
+#       ^- string.interpolated.escape.just
+#         ^------- support.function.builtin.just
+#                 ^- string.interpolated.escape.just
+
+
+linewise:
+#<0----- entity.name.function.just
+#       ^ keyword.operator.recipe.end.just
+  Write-Host "Hello, world!"
+#            ^-------------- string.quoted.double.just
+#            ^ string.quoted.double.just
+
+serve2:
+#<0--- entity.name.function.just
+#     ^ keyword.operator.recipe.end.just
+  @echo "Starting server with database $DATABASE_ADDRESS on port $SERVER_PORT…"
+# ^ keyword.operator.quiet.just
+#       ^---------------------------------------------------------------------- string.quoted.double.just
+#       ^ string.quoted.double.just
+
+
+shebang := if os() == 'windows' {
+#<0---- variable.other.just
+#       ^- keyword.operator.assignment.just
+#          ^- keyword.control.conditional.just
+#             ^- support.function.builtin.just
+#                  ^- keyword.operator.equality.just
+#                     ^-------- string.quoted.single.just
+#                     ^ string.quoted.single.just
+  'powershell.exe'
+# ^--------------- string.quoted.single.just
+# ^ string.quoted.single.just
+} else {
+# ^--- keyword.control.conditional.just
+  '/usr/bin/env pwsh'
+# ^------------------ string.quoted.single.just
+# ^ string.quoted.single.just
+}
+
+shebang:
+#<0---- entity.name.function.just
+#      ^ keyword.operator.recipe.end.just
+	#!{{shebang}}
+#  ^---------- string.interpolated.escaping.just
+#  ^- string.interpolated.escape.just
+#           ^- string.interpolated.escape.just
+	$PSV = $PSVersionTable.PSVersion | % {"$_" -split "\." }
+#                                      ^--- string.quoted.double.just
+#                                      ^ string.quoted.double.just
+#                                                  ^--- string.quoted.double.just
+#                                                  ^ string.quoted.double.just
+#                                                   ^- constant.character.escape.just
+	$psver = $PSV[0] + "." + $PSV[1]
+#                 ^ keyword.operator.concat.just
+#                   ^-- string.quoted.double.just
+#                   ^ string.quoted.double.just
+#                       ^ keyword.operator.concat.just
+#                              ^ constant.numeric.just
+	if ($PSV[2].Length -lt 4) {
+#^- keyword.control.conditional.just
+#         ^ constant.numeric.just
+#                       ^ constant.numeric.just
+		$psver += "." + $PSV[2] + " Core"
+#        ^ keyword.operator.concat.just
+#           ^-- string.quoted.double.just
+#           ^ string.quoted.double.just
+#               ^ keyword.operator.concat.just
+#                      ^ constant.numeric.just
+#                         ^ keyword.operator.concat.just
+#                           ^------ string.quoted.double.just
+#                           ^ string.quoted.double.just
+	} else {
+#  ^--- keyword.control.conditional.just
+		$psver += " Desktop"
+#        ^ keyword.operator.concat.just
+#           ^--------- string.quoted.double.just
+#           ^ string.quoted.double.just
+	}
+	echo "PowerShell $psver"
+#     ^------------------ string.quoted.double.just
+#     ^ string.quoted.double.just
+
+@foo:
+#<0 keyword.other.recipe.prefix.just
+#^-- entity.name.function.just
+#   ^ keyword.operator.recipe.end.just
+  echo bar
+
+@test5 *args='':
+#<0 keyword.other.recipe.prefix.just
+#^---- entity.name.function.just
+#      ^ keyword.other.recipe.variadic.just
+#       ^--- variable.parameter.recipe.just
+#           ^ keyword.operator.default.just
+#            ^- string.quoted.single.just
+#            ^ string.quoted.single.just
+#              ^ keyword.operator.recipe.end.just
+  bash -c 'while (( "$#" )); do echo - $1; shift; done' -- "$@"
+#         ^-------------------------------------------- string.quoted.single.just
+#         ^ string.quoted.single.just
+#                                                          ^--- string.quoted.double.just
+#                                                          ^ string.quoted.double.just
+
+test2 $RUST_BACKTRACE="1":
+#<0-- entity.name.function.just
+#     ^ keyword.other.recipe.variadic.just
+#      ^------------- variable.parameter.recipe.just
+#                    ^ keyword.operator.default.just
+#                     ^-- string.quoted.double.just
+#                     ^ string.quoted.double.just
+#                        ^ keyword.operator.recipe.end.just
+  # will print a stack trace if it crashes
+# ^--------------------------------------- comment.line.number-sign.just
+  cargo test
+
+
+notify m="":
+#<0--- entity.name.function.just
+#      ^ variable.parameter.recipe.just
+#       ^ keyword.operator.default.just
+#        ^- string.quoted.double.just
+#        ^ string.quoted.double.just
+#          ^ keyword.operator.recipe.end.just
+	keybase chat send --topic-type "chat" --channel <channel> <team> "upd(<repo>): {{m}}"
+#                               ^----- string.quoted.double.just
+#                               ^ string.quoted.double.just
+#                                                                 ^------------------- string.quoted.double.just
+#                                                                 ^ string.quoted.double.just
+#                                                                               ^---- string.interpolated.escaping.just
+#                                                                               ^- string.interpolated.escape.just
+#                                                                                  ^- string.interpolated.escape.just
+
+# Sample project script 2
+#<0---------------------- comment.line.number-sign.just
+script2 *ARGS:
+#<0---- entity.name.function.just
+#       ^ keyword.other.recipe.variadic.just
+#        ^--- variable.parameter.recipe.just
+#            ^ keyword.operator.recipe.end.just
+    {{ python }} script2.py {{ ARGS }}
+#   ^----------- string.interpolated.escaping.just
+#   ^- string.interpolated.escape.just
+#             ^- string.interpolated.escape.just
+#                           ^--------- string.interpolated.escaping.just
+#                           ^- string.interpolated.escape.just
+#                                   ^- string.interpolated.escape.just
+
+braces:
+#<0--- entity.name.function.just
+#     ^ keyword.operator.recipe.end.just
+  echo 'I {{{{LOVE}} curly braces!'
+#      ^--------------------------- string.quoted.single.just
+#      ^ string.quoted.single.just
+
+_braces2:
+#<0 keyword.other.recipe.prefix.just
+#^------ entity.name.function.just
+#       ^ keyword.operator.recipe.end.just
+  echo '{{'I {{LOVE}} curly braces!'}}'
+#      ^--- string.quoted.double.indented.just
+#            ^------- string.interpolated.escaping.just
+#            ^- string.interpolated.escape.just
+#                  ^- string.interpolated.escape.just
+#                                  ^--- string.quoted.single.just
+#                                  ^ string.quoted.single.just
+
+_braces3:
+#<0 keyword.other.recipe.prefix.just
+#^------ entity.name.function.just
+#       ^ keyword.operator.recipe.end.just
+  echo 'I {{ "{{" }}LOVE}} curly braces!'
+#      ^--------------------------------- string.quoted.single.just
+#      ^ string.quoted.single.just
+#         ^--------- string.interpolated.escaping.just
+#         ^- string.interpolated.escape.just
+#            ^--- string.quoted.double.indented.just
+#                 ^- string.interpolated.escape.just
+
+foo2:
+#<0- entity.name.function.just
+#   ^ keyword.operator.recipe.end.just
+  -@cat foo
+# ^ keyword.operator.error-suppression.just
+  echo 'Done!'
+#      ^------ string.quoted.single.just
+#      ^ string.quoted.single.just
+
+test3 target tests=path_1:
+#<0-- entity.name.function.just
+#     ^----- variable.parameter.recipe.just
+#            ^---- variable.parameter.recipe.just
+#                 ^ keyword.operator.default.just
+#                        ^ keyword.operator.recipe.end.just
+  @echo 'Testing {{target}}:{{tests}}…'
+# ^ keyword.operator.quiet.just
+#       ^------------------------------ string.quoted.single.just
+#       ^ string.quoted.single.just
+#                ^--------- string.interpolated.escaping.just
+#                ^- string.interpolated.escape.just
+#                        ^- string.interpolated.escape.just
+#                           ^-------- string.interpolated.escaping.just
+#                           ^- string.interpolated.escape.just
+#                                  ^- string.interpolated.escape.just
+  ./test --tests {{tests}} {{target}}
+#  ^ keyword.operator.path-join.just
+#                ^-------- string.interpolated.escaping.just
+#                ^- string.interpolated.escape.just
+#                       ^- string.interpolated.escape.just
+#                          ^--------- string.interpolated.escaping.just
+#                          ^- string.interpolated.escape.just
+#                                  ^- string.interpolated.escape.just
+
+test4 triple=(an_arch + "-unknown-unknown") input=(an_arch / "input.dat"):
+#<0-- entity.name.function.just
+#     ^----- variable.parameter.recipe.just
+#           ^ keyword.operator.default.just
+#                     ^ keyword.operator.concat.just
+#                       ^----------------- string.quoted.double.just
+#                       ^ string.quoted.double.just
+#                                           ^---- variable.parameter.recipe.just
+#                                                ^ keyword.operator.default.just
+#                                                          ^ keyword.operator.path-join.just
+#                                                            ^---------- string.quoted.double.just
+#                                                            ^ string.quoted.double.just
+#                                                                        ^ keyword.operator.recipe.end.just
+  ./test {{triple}}
+#  ^ keyword.operator.path-join.just
+#        ^--------- string.interpolated.escaping.just
+#        ^- string.interpolated.escape.just
+#                ^- string.interpolated.escape.just
+
+variadic $VAR1_1 VAR2 VAR3 VAR4=("a") +$FLAGS='-q': foo2 braces
+#<0----- entity.name.function.just
+#        ^ keyword.other.recipe.variadic.just
+#         ^----- variable.parameter.recipe.just
+#                ^--- variable.parameter.recipe.just
+#                     ^--- variable.parameter.recipe.just
+#                          ^--- variable.parameter.recipe.just
+#                              ^ keyword.operator.default.just
+#                                ^-- string.quoted.double.just
+#                                ^ string.quoted.double.just
+#                                      ^ keyword.other.recipe.variadic.just
+#                                       ^---- variable.parameter.recipe.just
+#                                            ^ keyword.operator.default.just
+#                                             ^--- string.quoted.single.just
+#                                             ^ string.quoted.single.just
+#                                                 ^ keyword.operator.recipe.end.just
+#                                                   ^--- entity.name.function.just
+#                                                        ^----- entity.name.function.just
+  cargo test {{FLAGS}}
+#            ^-------- string.interpolated.escaping.just
+#            ^- string.interpolated.escape.just
+#                   ^- string.interpolated.escape.just
+
+time:
+#<0- entity.name.function.just
+#   ^ keyword.operator.recipe.end.just
+  @-date +"%H:%S"
+# ^ keyword.operator.quiet.just
+#        ^ keyword.operator.concat.just
+#         ^------ string.quoted.double.just
+#         ^ string.quoted.double.just
+  -cat /tmp/nonexistent_file.txt
+# ^ keyword.operator.error-suppression.just
+#      ^ keyword.operator.path-join.just
+#          ^ keyword.operator.path-join.just
+  @echo "finished"
+# ^ keyword.operator.quiet.just
+#       ^--------- string.quoted.double.just
+#       ^ string.quoted.double.just
+
+justwords:
+#<0------ entity.name.function.just
+#        ^ keyword.operator.recipe.end.just
+  grep just \
+    --text /usr/share/dict/words \
+#   ^ keyword.operator.error-suppression.just
+#          ^ keyword.operator.path-join.just
+#              ^ keyword.operator.path-join.just
+#                    ^ keyword.operator.path-join.just
+#                         ^ keyword.operator.path-join.just
+    > /tmp/justwords
+#     ^ keyword.operator.path-join.just
+#         ^ keyword.operator.path-join.just
+
+# Subsequent dependencies
+#<0---------------------- comment.line.number-sign.just
+# https://just.systems/man/en/chapter_37.html
+#<0------------------------------------------ comment.line.number-sign.just
+# To test, run `$ just -f test-suite.just b`
+#<0----------------------------------------- comment.line.number-sign.just
+a:
+#<0 entity.name.function.just
+#^ keyword.operator.recipe.end.just
+  echo 'A!'
+#      ^--- string.quoted.single.just
+#      ^ string.quoted.single.just
+
+b: a && d
+#<0 entity.name.function.just
+#^ keyword.operator.recipe.end.just
+#  ^ entity.name.function.just
+#    ^- keyword.operator.and.just
+#       ^ entity.name.function.just
+  echo 'B start!'
+#      ^--------- string.quoted.single.just
+#      ^ string.quoted.single.just
+  just -f {{justfile()}} c
+#         ^------------- string.interpolated.escaping.just
+#         ^- string.interpolated.escape.just
+#           ^------- support.function.builtin.just
+#                     ^- string.interpolated.escape.just
+  echo 'B end!'
+#      ^------- string.quoted.single.just
+#      ^ string.quoted.single.just
+
+c:
+#<0 entity.name.function.just
+#^ keyword.operator.recipe.end.just
+  echo 'C!'
+#      ^--- string.quoted.single.just
+#      ^ string.quoted.single.just
+
+d:
+#<0 entity.name.function.just
+#^ keyword.operator.recipe.end.just
+  echo 'D!'
+#      ^--- string.quoted.single.just
+#      ^ string.quoted.single.just
+
+# From https://github.com/casey/just/blob/master/examples/kitchen-sink.just
+#<0------------------------------------------------------------------------ comment.line.number-sign.just

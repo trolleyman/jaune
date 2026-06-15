@@ -1,0 +1,47 @@
+# grammar: source.sas
+
+DATA TEMP;
+INPUT ID $ NAME $ SALARY DEPARTMENT $;
+#     ^- support.function.sas
+#     ^- support.class.sas
+comm = SALARY*0.25;
+#    ^ keyword.operator.sas
+#            ^ keyword.operator.arithmetic.sas
+#             ^--- constant.numeric.sas
+LABEL ID = 'Employee ID' comm = 'COMMISION';
+#     ^- support.function.sas
+#     ^- support.class.sas
+#        ^ keyword.operator.sas
+#          ^------------ string.quoted.single.sas
+#                             ^ keyword.operator.sas
+#                               ^---------- string.quoted.single.sas
+DATALINES;
+1 Rick 623.3 IT
+#<0 constant.numeric.sas
+#      ^---- constant.numeric.sas
+2 Dan 515.2 Operations
+#<0 constant.numeric.sas
+#     ^---- constant.numeric.sas
+3 Michelle 611 IT
+#<0 constant.numeric.sas
+#          ^-- constant.numeric.sas
+4 Ryan 729 HR
+#<0 constant.numeric.sas
+#      ^-- constant.numeric.sas
+5 Gary 843.25 Finance
+#<0 constant.numeric.sas
+#      ^----- constant.numeric.sas
+6 Nina 578 IT
+#<0 constant.numeric.sas
+#      ^-- constant.numeric.sas
+7 Simon 632.8 Operations
+#<0 constant.numeric.sas
+#       ^---- constant.numeric.sas
+8 Guru 722.5 Finance
+#<0 constant.numeric.sas
+#      ^---- constant.numeric.sas
+;
+RUN;
+
+* From https://www.tutorialspoint.com/sas/sas_program_structure.htm
+#<0---------------------------------------------------------------- comment.line.start.sas

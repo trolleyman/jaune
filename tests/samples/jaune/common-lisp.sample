@@ -1,0 +1,130 @@
+; grammar: source.commonlisp
+
+(with-test (:name :aprof-instance :skipped-on (not :immobile-space))
+;           ^---- entity.name.variable.commonlisp
+;                 ^-------------- entity.name.variable.commonlisp
+;                                 ^---------- entity.name.variable.commonlisp
+;                                              ^-- support.function.f.sideeffects.commonlisp
+;                                                  ^-------------- entity.name.variable.commonlisp
+  (let (seen-this seen-that)
+;  ^-- keyword.control.commonlisp
+    (dolist (line (split-string
+;    ^----- storage.type.function.m.nosideeffects.commonlisp
+                   (with-output-to-string (s)
+;                   ^-------------------- storage.type.function.m.sideeffects.commonlisp
+                     (sb-aprof:aprof-run #'make-structs :stream s))
+;                     ^------- support.type.package.commonlisp
+;                                        ^- variable.other.constant.sharpsign.commonlisp
+;                                                       ^------ entity.name.variable.commonlisp
+                   #\newline))
+;                  ^-------- constant.character.escape.commonlisp
+      (when (search "THIS-STRUCT" line) (setq seen-this t))
+;      ^--- storage.type.function.m.nosideeffects.commonlisp
+;            ^----- support.function.f.sideeffects.commonlisp
+;                   ^------------ string.quoted.double.commonlisp
+;                   ^ punctuation.definition.string.begin.commonlisp
+;                               ^ punctuation.definition.string.end.commonlisp
+;                                        ^--- storage.type.function.specialform.commonlisp
+;                                                       ^ constant.language.commonlisp
+      (when (search "THAT-STRUCT" line) (setq seen-that t)))
+;      ^--- storage.type.function.m.nosideeffects.commonlisp
+;            ^----- support.function.f.sideeffects.commonlisp
+;                   ^------------ string.quoted.double.commonlisp
+;                   ^ punctuation.definition.string.begin.commonlisp
+;                               ^ punctuation.definition.string.end.commonlisp
+;                                        ^--- storage.type.function.specialform.commonlisp
+;                                                       ^ constant.language.commonlisp
+    (assert (and seen-this seen-that))))
+;    ^----- storage.type.function.m.nosideeffects.commonlisp
+;            ^-- storage.type.function.m.nosideeffects.commonlisp
+
+(defun my-list (&rest x)
+;^---- storage.type.function.defname.commonlisp
+;      ^------ entity.name.function.commonlisp
+;               ^---- keyword.other.lambdalist.commonlisp
+  (declare (optimize sb-c::instrument-consing))
+;  ^------ storage.type.function.symbol.commonlisp
+;           ^------- storage.type.function.declaration.commonlisp
+;                    ^--- support.type.package.commonlisp
+  x)
+(compile 'my-list)
+;^------ support.function.f.sideeffects.commonlisp
+;        ^ variable.other.constant.singlequote.commonlisp
+
+#+nil
+;<0 variable.other.constant.sharpsign.commonlisp
+(let ((l (sb-impl::%hash-table-alist sb-c::*checkgen-used-types*)))
+;^-- keyword.control.commonlisp
+;         ^------ support.type.package.commonlisp
+;                                    ^--- support.type.package.commonlisp
+;                                          ^-------------------- string.regexp.earmuffsasterisk.commonlisp
+  (format t "~&Types needed by checkgen: ('+' = has internal error number)~%")
+;  ^----- support.function.f.sideeffects.commonlisp
+;         ^ constant.language.commonlisp
+;           ^---------------------------------------------------------------- string.quoted.double.commonlisp
+;           ^ punctuation.definition.string.begin.commonlisp
+;            ^- entity.name.variable.commonlisp
+;                                                                         ^- entity.name.variable.commonlisp
+;                                                                           ^ punctuation.definition.string.end.commonlisp
+  (setq l (sort l #'> :key #'cadr))
+;  ^--- storage.type.function.specialform.commonlisp
+;          ^--- support.function.f.sideeffects.commonlisp
+;                 ^- variable.other.constant.sharpsign.commonlisp
+;                   ^ support.function.f.sideeffects.commonlisp
+;                     ^--- entity.name.variable.commonlisp
+;                          ^- variable.other.constant.sharpsign.commonlisp
+;                            ^--- support.function.accessor.commonlisp
+  (loop for (type-spec . (count . interr-p)) in l
+;  ^--- storage.type.function.m.nosideeffects.commonlisp
+;                      ^ variable.other.constant.dot.commonlisp
+;                         ^---- support.function.f.sideeffects.commonlisp
+;                               ^ variable.other.constant.dot.commonlisp
+        do (format t "~:[ ~;+~] ~5D ~S~%" interr-p count type-spec))
+;       ^- storage.type.function.m.nosideeffects.commonlisp
+;           ^----- support.function.f.sideeffects.commonlisp
+;                  ^ constant.language.commonlisp
+;                    ^------------------- string.quoted.double.commonlisp
+;                    ^ punctuation.definition.string.begin.commonlisp
+;                     ^-- storage.type.function.formattedstring.commonlisp
+;                         ^- storage.type.function.formattedstring.commonlisp
+;                            ^- storage.type.function.formattedstring.commonlisp
+;                               ^ entity.name.variable.commonlisp
+;                                ^ variable.other.constant.formattedstring.commonlisp
+;                                 ^ entity.name.variable.commonlisp
+;                                   ^--- entity.name.variable.commonlisp
+;                                       ^ punctuation.definition.string.end.commonlisp
+;                                                  ^---- support.function.f.sideeffects.commonlisp
+  (format t "~&Error numbers not used by checkgen:~%")
+;  ^----- support.function.f.sideeffects.commonlisp
+;         ^ constant.language.commonlisp
+;           ^---------------------------------------- string.quoted.double.commonlisp
+;           ^ punctuation.definition.string.begin.commonlisp
+;            ^- entity.name.variable.commonlisp
+;                                                 ^- entity.name.variable.commonlisp
+;                                                   ^ punctuation.definition.string.end.commonlisp
+  (loop for (spec symbol) across sb-c:+backend-internal-errors+
+;  ^--- storage.type.function.m.nosideeffects.commonlisp
+;                 ^----- support.class.commonlisp
+;                                ^--- support.type.package.commonlisp
+        when (and (not (stringp spec))
+;       ^--- storage.type.function.m.nosideeffects.commonlisp
+;             ^-- storage.type.function.m.nosideeffects.commonlisp
+;                  ^-- support.function.f.sideeffects.commonlisp
+;                       ^------ support.function.f.sideeffects.commonlisp
+                  (not (gethash spec sb-c::*checkgen-used-types*)))
+;                  ^-- support.function.f.sideeffects.commonlisp
+;                       ^------ support.function.accessor.commonlisp
+;                                    ^--- support.type.package.commonlisp
+;                                          ^-------------------- string.regexp.earmuffsasterisk.commonlisp
+          do (format t "       ~S~%" spec)))
+;         ^- storage.type.function.m.nosideeffects.commonlisp
+;             ^----- support.function.f.sideeffects.commonlisp
+;                    ^ constant.language.commonlisp
+;                      ^------------ string.quoted.double.commonlisp
+;                      ^ punctuation.definition.string.begin.commonlisp
+;                              ^--- entity.name.variable.commonlisp
+;                                  ^ punctuation.definition.string.end.commonlisp
+
+;; From https://github.com/qingpeng9802/vscode-common-lisp/blob/master/syntaxes/fixtures/cases/demo.lsp
+;<0---------------------------------------------------------------------------------------------------- comment.line.semicolon.commonlisp
+;<0 punctuation.definition.comment.commonlisp

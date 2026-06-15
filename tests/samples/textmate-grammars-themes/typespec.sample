@@ -1,0 +1,301 @@
+// grammar: source.tsp
+
+import "@typespec/http";
+//<0------------------- meta.import-statement.typespec
+//<0-- keyword.other.tsp
+//     ^--------------- string.quoted.double.tsp
+//                     ^ punctuation.terminator.statement.tsp
+
+using TypeSpec.Http;
+//<0--------------- meta.using-statement.typespec
+//<0- keyword.other.tsp
+//    ^------- entity.name.type.tsp
+//            ^ punctuation.accessor.tsp
+//             ^--- entity.name.type.tsp
+//                 ^ punctuation.terminator.statement.tsp
+@service({
+//<0------ meta.decorator.typespec
+//<0---- entity.name.tag.tsp
+//<0 entity.name.tag.tsp
+//      ^- meta.parenthesized-expression.typespec
+//      ^ punctuation.parenthesis.open.tsp
+//       ^ meta.model-expression.typespec
+//       ^ punctuation.curlybrace.open.tsp
+  title: "Widget Service",
+//<0---------------------- meta.decorator.typespec
+//<0---------------------- meta.parenthesized-expression.typespec
+//<0---------------------- meta.model-expression.typespec
+//^---------------------- meta.model-property.typespec
+//^---- variable.name.tsp
+//     ^----------------- meta.type-annotation.typespec
+//     ^ keyword.operator.type.annotation.tsp
+//       ^--------------- string.quoted.double.tsp
+})
+//<0 meta.decorator.typespec
+//<0 meta.parenthesized-expression.typespec
+//<0 meta.model-expression.typespec
+//<0 punctuation.curlybrace.close.tsp
+//<1 punctuation.parenthesis.close.tsp
+namespace DemoService;
+//<0----------------- meta.namespace-statement.typespec
+//<0----- keyword.other.tsp
+//        ^---------- meta.namespace-name.typespec
+//        ^---------- entity.name.type.tsp
+//                   ^ punctuation.terminator.statement.tsp
+
+model Widget {
+//<0---------- meta.model-statement.typespec
+//<0- keyword.other.tsp
+//    ^----- entity.name.type.tsp
+//           ^ meta.model-expression.typespec
+//           ^ punctuation.curlybrace.open.tsp
+  @visibility("read", "update")
+//<0--------------------------- meta.model-statement.typespec
+//<0--------------------------- meta.model-expression.typespec
+//^---------------------------- meta.decorator.typespec
+//^---------- entity.name.tag.tsp
+//^ entity.name.tag.tsp
+//           ^----------------- meta.parenthesized-expression.typespec
+//           ^ punctuation.parenthesis.open.tsp
+//            ^----- string.quoted.double.tsp
+//                  ^ punctuation.comma.tsp
+//                    ^------- string.quoted.double.tsp
+//                            ^ punctuation.parenthesis.close.tsp
+  @path
+//<0--- meta.model-statement.typespec
+//<0--- meta.model-expression.typespec
+//<0--- meta.decorator.typespec
+//^---- entity.name.tag.tsp
+//^ entity.name.tag.tsp
+  id: string;
+//<0--------- meta.model-statement.typespec
+//<0--------- meta.model-expression.typespec
+//<0 meta.decorator.typespec
+//^--------- meta.model-property.typespec
+//^- variable.name.tsp
+//  ^------- meta.type-annotation.typespec
+//  ^ keyword.operator.type.annotation.tsp
+//    ^----- entity.name.type.tsp
+//          ^ punctuation.terminator.statement.tsp
+
+  weight: int32;
+//<0------------ meta.model-statement.typespec
+//<0------------ meta.model-expression.typespec
+//^------------ meta.model-property.typespec
+//^----- variable.name.tsp
+//      ^------ meta.type-annotation.typespec
+//      ^ keyword.operator.type.annotation.tsp
+//        ^---- entity.name.type.tsp
+//             ^ punctuation.terminator.statement.tsp
+  color: "red" | "blue";
+//<0-------------------- meta.model-statement.typespec
+//<0-------------------- meta.model-expression.typespec
+//^-------------------- meta.model-property.typespec
+//^---- variable.name.tsp
+//     ^--------------- meta.type-annotation.typespec
+//     ^ keyword.operator.type.annotation.tsp
+//       ^---- string.quoted.double.tsp
+//               ^----- string.quoted.double.tsp
+//                     ^ punctuation.terminator.statement.tsp
+}
+//<0 meta.model-statement.typespec
+//<0 meta.model-expression.typespec
+//<0 punctuation.curlybrace.close.tsp
+
+@error
+//<0-- meta.decorator.typespec
+//<0-- entity.name.tag.tsp
+//<0 entity.name.tag.tsp
+model Error {
+//<0--------- meta.model-statement.typespec
+//<0- keyword.other.tsp
+//    ^---- entity.name.type.tsp
+//          ^ meta.model-expression.typespec
+//          ^ punctuation.curlybrace.open.tsp
+  code: int32;
+//<0---------- meta.model-statement.typespec
+//<0---------- meta.model-expression.typespec
+//^---------- meta.model-property.typespec
+//^--- variable.name.tsp
+//    ^------ meta.type-annotation.typespec
+//    ^ keyword.operator.type.annotation.tsp
+//      ^---- entity.name.type.tsp
+//           ^ punctuation.terminator.statement.tsp
+  message: string;
+//<0-------------- meta.model-statement.typespec
+//<0-------------- meta.model-expression.typespec
+//^-------------- meta.model-property.typespec
+//^------ variable.name.tsp
+//       ^------- meta.type-annotation.typespec
+//       ^ keyword.operator.type.annotation.tsp
+//         ^----- entity.name.type.tsp
+//               ^ punctuation.terminator.statement.tsp
+}
+//<0 meta.model-statement.typespec
+//<0 meta.model-expression.typespec
+//<0 punctuation.curlybrace.close.tsp
+
+@route("/widgets")
+//<0-------------- meta.decorator.typespec
+//<0-- entity.name.tag.tsp
+//<0 entity.name.tag.tsp
+//    ^----------- meta.parenthesized-expression.typespec
+//    ^ punctuation.parenthesis.open.tsp
+//     ^--------- string.quoted.double.tsp
+//               ^ punctuation.parenthesis.close.tsp
+@tag("Widgets")
+//<0----------- meta.decorator.typespec
+//<0 entity.name.tag.tsp
+//<0 entity.name.tag.tsp
+//  ^---------- meta.parenthesized-expression.typespec
+//  ^ punctuation.parenthesis.open.tsp
+//   ^-------- string.quoted.double.tsp
+//            ^ punctuation.parenthesis.close.tsp
+interface Widgets {
+//<0--------------- meta.interface-statement.typespec
+//<0----- keyword.other.tsp
+//        ^------ entity.name.type.tsp
+//                ^ meta.interface-body.typespec
+//                ^ punctuation.curlybrace.open.tsp
+  @get list(): Widget[] | Error;
+//<0---------------------------- meta.interface-statement.typespec
+//<0---------------------------- meta.interface-body.typespec
+//^---- meta.decorator.typespec
+//^--- entity.name.tag.tsp
+//^ entity.name.tag.tsp
+//     ^----------------------- meta.interface-member.typespec
+//     ^--- entity.name.function.tsp
+//         ^- meta.operation-parameters.typespec
+//         ^ punctuation.parenthesis.open.tsp
+//          ^ punctuation.parenthesis.close.tsp
+//           ^----------------- meta.type-annotation.typespec
+//           ^ keyword.operator.type.annotation.tsp
+//             ^----- entity.name.type.tsp
+//                   ^- meta.tuple-expression.typespec
+//                   ^ punctuation.squarebracket.open.tsp
+//                    ^ punctuation.squarebracket.close.tsp
+//                        ^---- entity.name.type.tsp
+//                             ^ punctuation.terminator.statement.tsp
+  @get read(@path id: string): Widget | Error;
+//<0------------------------------------------ meta.interface-statement.typespec
+//<0------------------------------------------ meta.interface-body.typespec
+//^---- meta.decorator.typespec
+//^--- entity.name.tag.tsp
+//^ entity.name.tag.tsp
+//     ^------------------------------------- meta.interface-member.typespec
+//     ^--- entity.name.function.tsp
+//         ^----------------- meta.operation-parameters.typespec
+//         ^ punctuation.parenthesis.open.tsp
+//          ^----- meta.decorator.typespec
+//          ^---- entity.name.tag.tsp
+//          ^ entity.name.tag.tsp
+//                ^--------- meta.model-property.typespec
+//                ^- variable.name.tsp
+//                  ^------- meta.type-annotation.typespec
+//                  ^ keyword.operator.type.annotation.tsp
+//                    ^----- entity.name.type.tsp
+//                          ^ punctuation.parenthesis.close.tsp
+//                           ^--------------- meta.type-annotation.typespec
+//                           ^ keyword.operator.type.annotation.tsp
+//                             ^----- entity.name.type.tsp
+//                                      ^---- entity.name.type.tsp
+//                                           ^ punctuation.terminator.statement.tsp
+  @post create(...Widget): Widget | Error;
+//<0-------------------------------------- meta.interface-statement.typespec
+//<0-------------------------------------- meta.interface-body.typespec
+//^----- meta.decorator.typespec
+//^---- entity.name.tag.tsp
+//^ entity.name.tag.tsp
+//      ^-------------------------------- meta.interface-member.typespec
+//      ^----- entity.name.function.tsp
+//            ^---------- meta.operation-parameters.typespec
+//            ^ punctuation.parenthesis.open.tsp
+//             ^-------- meta.spread-operator.typespec
+//             ^-- keyword.operator.spread.tsp
+//                ^----- entity.name.type.tsp
+//                      ^ punctuation.parenthesis.close.tsp
+//                       ^--------------- meta.type-annotation.typespec
+//                       ^ keyword.operator.type.annotation.tsp
+//                         ^----- entity.name.type.tsp
+//                                  ^---- entity.name.type.tsp
+//                                       ^ punctuation.terminator.statement.tsp
+  @patch update(...Widget): Widget | Error;
+//<0--------------------------------------- meta.interface-statement.typespec
+//<0--------------------------------------- meta.interface-body.typespec
+//^------ meta.decorator.typespec
+//^----- entity.name.tag.tsp
+//^ entity.name.tag.tsp
+//       ^-------------------------------- meta.interface-member.typespec
+//       ^----- entity.name.function.tsp
+//             ^---------- meta.operation-parameters.typespec
+//             ^ punctuation.parenthesis.open.tsp
+//              ^-------- meta.spread-operator.typespec
+//              ^-- keyword.operator.spread.tsp
+//                 ^----- entity.name.type.tsp
+//                       ^ punctuation.parenthesis.close.tsp
+//                        ^--------------- meta.type-annotation.typespec
+//                        ^ keyword.operator.type.annotation.tsp
+//                          ^----- entity.name.type.tsp
+//                                   ^---- entity.name.type.tsp
+//                                        ^ punctuation.terminator.statement.tsp
+  @delete delete(@path id: string): void | Error;
+//<0--------------------------------------------- meta.interface-statement.typespec
+//<0--------------------------------------------- meta.interface-body.typespec
+//^------- meta.decorator.typespec
+//^------ entity.name.tag.tsp
+//^ entity.name.tag.tsp
+//        ^------------------------------------- meta.interface-member.typespec
+//        ^----- entity.name.function.tsp
+//              ^----------------- meta.operation-parameters.typespec
+//              ^ punctuation.parenthesis.open.tsp
+//               ^----- meta.decorator.typespec
+//               ^---- entity.name.tag.tsp
+//               ^ entity.name.tag.tsp
+//                     ^--------- meta.model-property.typespec
+//                     ^- variable.name.tsp
+//                       ^------- meta.type-annotation.typespec
+//                       ^ keyword.operator.type.annotation.tsp
+//                         ^----- entity.name.type.tsp
+//                               ^ punctuation.parenthesis.close.tsp
+//                                ^------------- meta.type-annotation.typespec
+//                                ^ keyword.operator.type.annotation.tsp
+//                                  ^--- entity.name.type.tsp
+//                                         ^---- entity.name.type.tsp
+//                                              ^ punctuation.terminator.statement.tsp
+  @route("{id}/analyze") @post analyze(@path id: string): string | Error;
+//<0--------------------------------------------------------------------- meta.interface-statement.typespec
+//<0--------------------------------------------------------------------- meta.interface-body.typespec
+//^---------------------------- meta.decorator.typespec
+//^----- entity.name.tag.tsp
+//^ entity.name.tag.tsp
+//      ^--------------- meta.parenthesized-expression.typespec
+//      ^ punctuation.parenthesis.open.tsp
+//       ^------------- string.quoted.double.tsp
+//                     ^ punctuation.parenthesis.close.tsp
+//                       ^---- entity.name.tag.tsp
+//                       ^ entity.name.tag.tsp
+//                             ^---------------------------------------- meta.interface-member.typespec
+//                             ^------ entity.name.function.tsp
+//                                    ^----------------- meta.operation-parameters.typespec
+//                                    ^ punctuation.parenthesis.open.tsp
+//                                     ^----- meta.decorator.typespec
+//                                     ^---- entity.name.tag.tsp
+//                                     ^ entity.name.tag.tsp
+//                                           ^--------- meta.model-property.typespec
+//                                           ^- variable.name.tsp
+//                                             ^------- meta.type-annotation.typespec
+//                                             ^ keyword.operator.type.annotation.tsp
+//                                               ^----- entity.name.type.tsp
+//                                                     ^ punctuation.parenthesis.close.tsp
+//                                                      ^--------------- meta.type-annotation.typespec
+//                                                      ^ keyword.operator.type.annotation.tsp
+//                                                        ^----- entity.name.type.tsp
+//                                                                 ^---- entity.name.type.tsp
+//                                                                      ^ punctuation.terminator.statement.tsp
+}
+//<0 meta.interface-statement.typespec
+//<0 meta.interface-body.typespec
+//<0 punctuation.curlybrace.close.tsp
+
+// From https://typespec.io/playground
+//<0---------------------------------- comment.line.double-slash.tsp

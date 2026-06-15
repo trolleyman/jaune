@@ -1,0 +1,315 @@
+// grammar: source.js.jsx
+
+function Item({ name, isPacked }) {
+//<0------------------------------- meta.function.js.jsx
+//<0---- storage.type.function.js.jsx
+//       ^--- meta.definition.function.js.jsx
+//       ^--- entity.name.function.js.jsx
+//           ^------------------- meta.parameters.js.jsx
+//           ^ punctuation.definition.parameters.begin.js.jsx
+//            ^----------------- meta.parameter.object-binding-pattern.js.jsx
+//            ^ punctuation.definition.binding-pattern.object.js.jsx
+//              ^--- variable.parameter.js.jsx
+//                  ^ punctuation.separator.comma.js.jsx
+//                    ^------- variable.parameter.js.jsx
+//                             ^ punctuation.definition.binding-pattern.object.js.jsx
+//                              ^ punctuation.definition.parameters.end.js.jsx
+//                                ^ meta.block.js.jsx
+//                                ^ punctuation.definition.block.js.jsx
+  if (isPacked) {
+//<0------------- meta.function.js.jsx
+//<0------------- meta.block.js.jsx
+//^- keyword.control.conditional.js.jsx
+//   ^ meta.brace.round.js.jsx
+//    ^------- variable.other.readwrite.js.jsx
+//            ^ meta.brace.round.js.jsx
+//              ^ meta.block.js.jsx
+//              ^ punctuation.definition.block.js.jsx
+    return null;
+//<0------------ meta.function.js.jsx
+//<0------------ meta.block.js.jsx
+//<0------------ meta.block.js.jsx
+//  ^----- keyword.control.flow.js.jsx
+//         ^--- constant.language.null.js.jsx
+//             ^ punctuation.terminator.statement.js.jsx
+  }
+//<0 meta.function.js.jsx
+//<0 meta.block.js.jsx
+//<0 meta.block.js.jsx
+//^ punctuation.definition.block.js.jsx
+  return <li className="item">{name}</li>;
+//<0-------------------------------------- meta.function.js.jsx
+//<0-------------------------------------- meta.block.js.jsx
+//^----- keyword.control.flow.js.jsx
+//       ^------------------------------- meta.tag.js.jsx
+//       ^ punctuation.definition.tag.begin.js.jsx
+//        ^- entity.name.tag.js.jsx
+//          ^---------------- meta.tag.attributes.js.jsx
+//           ^-------- entity.other.attribute-name.js.jsx
+//                    ^ keyword.operator.assignment.js.jsx
+//                     ^----- string.quoted.double.js.jsx
+//                     ^ punctuation.definition.string.begin.js.jsx
+//                          ^ punctuation.definition.string.end.js.jsx
+//                           ^ punctuation.definition.tag.end.js.jsx
+//                            ^----- meta.jsx.children.js.jsx
+//                            ^ punctuation.section.embedded.begin.js.jsx
+//                             ^--- meta.embedded.expression.js.jsx
+//                             ^--- variable.other.readwrite.js.jsx
+//                                 ^ punctuation.section.embedded.end.js.jsx
+//                                  ^- punctuation.definition.tag.begin.js.jsx
+//                                    ^- entity.name.tag.js.jsx
+//                                      ^ punctuation.definition.tag.end.js.jsx
+//                                       ^ punctuation.terminator.statement.js.jsx
+}
+//<0 meta.function.js.jsx
+//<0 meta.block.js.jsx
+//<0 punctuation.definition.block.js.jsx
+
+export default function PackingList() {
+//<0----------------------------------- meta.export.default.js.jsx
+//<0-- keyword.control.export.js.jsx
+//     ^------ keyword.control.default.js.jsx
+//             ^----------------------- meta.function.expression.js.jsx
+//             ^------- storage.type.function.js.jsx
+//                      ^---------- meta.definition.function.js.jsx
+//                      ^---------- entity.name.function.js.jsx
+//                                 ^- meta.parameters.js.jsx
+//                                 ^ punctuation.definition.parameters.begin.js.jsx
+//                                  ^ punctuation.definition.parameters.end.js.jsx
+//                                    ^ meta.block.js.jsx
+//                                    ^ punctuation.definition.block.js.jsx
+  return (
+//<0------ meta.export.default.js.jsx
+//<0------ meta.function.expression.js.jsx
+//<0------ meta.block.js.jsx
+//^----- keyword.control.flow.js.jsx
+//       ^ meta.brace.round.js.jsx
+    <section>
+//<0--------- meta.export.default.js.jsx
+//<0--------- meta.function.expression.js.jsx
+//<0--------- meta.block.js.jsx
+//  ^-------- meta.tag.without-attributes.js.jsx
+//  ^ punctuation.definition.tag.begin.js.jsx
+//   ^------ entity.name.tag.js.jsx
+//          ^ punctuation.definition.tag.end.js.jsx
+      <h1>Sally Ride's Packing List</h1>
+//<0------------------------------------ meta.export.default.js.jsx
+//<0------------------------------------ meta.function.expression.js.jsx
+//<0------------------------------------ meta.block.js.jsx
+//<0------------------------------------ meta.tag.without-attributes.js.jsx
+//<0------------------------------------ meta.jsx.children.js.jsx
+//    ^--------------------------------- meta.tag.without-attributes.js.jsx
+//    ^ punctuation.definition.tag.begin.js.jsx
+//     ^- entity.name.tag.js.jsx
+//       ^ punctuation.definition.tag.end.js.jsx
+//        ^------------------------ meta.jsx.children.js.jsx
+//                                 ^- punctuation.definition.tag.begin.js.jsx
+//                                   ^- entity.name.tag.js.jsx
+//                                     ^ punctuation.definition.tag.end.js.jsx
+      <ul>
+//<0------ meta.export.default.js.jsx
+//<0------ meta.function.expression.js.jsx
+//<0------ meta.block.js.jsx
+//<0------ meta.tag.without-attributes.js.jsx
+//<0------ meta.jsx.children.js.jsx
+//    ^--- meta.tag.without-attributes.js.jsx
+//    ^ punctuation.definition.tag.begin.js.jsx
+//     ^- entity.name.tag.js.jsx
+//       ^ punctuation.definition.tag.end.js.jsx
+        <Item
+//<0--------- meta.export.default.js.jsx
+//<0--------- meta.function.expression.js.jsx
+//<0--------- meta.block.js.jsx
+//<0--------- meta.tag.without-attributes.js.jsx
+//<0--------- meta.jsx.children.js.jsx
+//<0--------- meta.tag.without-attributes.js.jsx
+//<0--------- meta.jsx.children.js.jsx
+//      ^---- meta.tag.js.jsx
+//      ^ punctuation.definition.tag.begin.js.jsx
+//       ^--- entity.name.tag.js.jsx
+//       ^--- support.class.component.js.jsx
+          isPacked={true}
+//<0--------------------- meta.export.default.js.jsx
+//<0--------------------- meta.function.expression.js.jsx
+//<0--------------------- meta.block.js.jsx
+//<0--------------------- meta.tag.without-attributes.js.jsx
+//<0--------------------- meta.jsx.children.js.jsx
+//<0--------------------- meta.tag.without-attributes.js.jsx
+//<0--------------------- meta.jsx.children.js.jsx
+//<0--------------------- meta.tag.js.jsx
+//<0--------------------- meta.tag.attributes.js.jsx
+//        ^------- entity.other.attribute-name.js.jsx
+//                ^ keyword.operator.assignment.js.jsx
+//                 ^ punctuation.section.embedded.begin.js.jsx
+//                  ^--- meta.embedded.expression.js.jsx
+//                  ^--- constant.language.boolean.true.js.jsx
+//                      ^ punctuation.section.embedded.end.js.jsx
+          name="Space suit"
+//<0----------------------- meta.export.default.js.jsx
+//<0----------------------- meta.function.expression.js.jsx
+//<0----------------------- meta.block.js.jsx
+//<0----------------------- meta.tag.without-attributes.js.jsx
+//<0----------------------- meta.jsx.children.js.jsx
+//<0----------------------- meta.tag.without-attributes.js.jsx
+//<0----------------------- meta.jsx.children.js.jsx
+//<0----------------------- meta.tag.js.jsx
+//<0----------------------- meta.tag.attributes.js.jsx
+//        ^--- entity.other.attribute-name.js.jsx
+//            ^ keyword.operator.assignment.js.jsx
+//             ^----------- string.quoted.double.js.jsx
+//             ^ punctuation.definition.string.begin.js.jsx
+//                        ^ punctuation.definition.string.end.js.jsx
+        />
+//<0------ meta.export.default.js.jsx
+//<0------ meta.function.expression.js.jsx
+//<0------ meta.block.js.jsx
+//<0------ meta.tag.without-attributes.js.jsx
+//<0------ meta.jsx.children.js.jsx
+//<0------ meta.tag.without-attributes.js.jsx
+//<0------ meta.jsx.children.js.jsx
+//<0------ meta.tag.js.jsx
+//<0---- meta.tag.attributes.js.jsx
+//      ^- punctuation.definition.tag.end.js.jsx
+        <Item
+//<0--------- meta.export.default.js.jsx
+//<0--------- meta.function.expression.js.jsx
+//<0--------- meta.block.js.jsx
+//<0--------- meta.tag.without-attributes.js.jsx
+//<0--------- meta.jsx.children.js.jsx
+//<0--------- meta.tag.without-attributes.js.jsx
+//<0--------- meta.jsx.children.js.jsx
+//      ^---- meta.tag.js.jsx
+//      ^ punctuation.definition.tag.begin.js.jsx
+//       ^--- entity.name.tag.js.jsx
+//       ^--- support.class.component.js.jsx
+          isPacked={true}
+//<0--------------------- meta.export.default.js.jsx
+//<0--------------------- meta.function.expression.js.jsx
+//<0--------------------- meta.block.js.jsx
+//<0--------------------- meta.tag.without-attributes.js.jsx
+//<0--------------------- meta.jsx.children.js.jsx
+//<0--------------------- meta.tag.without-attributes.js.jsx
+//<0--------------------- meta.jsx.children.js.jsx
+//<0--------------------- meta.tag.js.jsx
+//<0--------------------- meta.tag.attributes.js.jsx
+//        ^------- entity.other.attribute-name.js.jsx
+//                ^ keyword.operator.assignment.js.jsx
+//                 ^ punctuation.section.embedded.begin.js.jsx
+//                  ^--- meta.embedded.expression.js.jsx
+//                  ^--- constant.language.boolean.true.js.jsx
+//                      ^ punctuation.section.embedded.end.js.jsx
+          name="Helmet with a golden leaf"
+//<0-------------------------------------- meta.export.default.js.jsx
+//<0-------------------------------------- meta.function.expression.js.jsx
+//<0-------------------------------------- meta.block.js.jsx
+//<0-------------------------------------- meta.tag.without-attributes.js.jsx
+//<0-------------------------------------- meta.jsx.children.js.jsx
+//<0-------------------------------------- meta.tag.without-attributes.js.jsx
+//<0-------------------------------------- meta.jsx.children.js.jsx
+//<0-------------------------------------- meta.tag.js.jsx
+//<0-------------------------------------- meta.tag.attributes.js.jsx
+//        ^--- entity.other.attribute-name.js.jsx
+//            ^ keyword.operator.assignment.js.jsx
+//             ^-------------------------- string.quoted.double.js.jsx
+//             ^ punctuation.definition.string.begin.js.jsx
+//                                       ^ punctuation.definition.string.end.js.jsx
+        />
+//<0------ meta.export.default.js.jsx
+//<0------ meta.function.expression.js.jsx
+//<0------ meta.block.js.jsx
+//<0------ meta.tag.without-attributes.js.jsx
+//<0------ meta.jsx.children.js.jsx
+//<0------ meta.tag.without-attributes.js.jsx
+//<0------ meta.jsx.children.js.jsx
+//<0------ meta.tag.js.jsx
+//<0---- meta.tag.attributes.js.jsx
+//      ^- punctuation.definition.tag.end.js.jsx
+        <Item
+//<0--------- meta.export.default.js.jsx
+//<0--------- meta.function.expression.js.jsx
+//<0--------- meta.block.js.jsx
+//<0--------- meta.tag.without-attributes.js.jsx
+//<0--------- meta.jsx.children.js.jsx
+//<0--------- meta.tag.without-attributes.js.jsx
+//<0--------- meta.jsx.children.js.jsx
+//      ^---- meta.tag.js.jsx
+//      ^ punctuation.definition.tag.begin.js.jsx
+//       ^--- entity.name.tag.js.jsx
+//       ^--- support.class.component.js.jsx
+          isPacked={false}
+//<0---------------------- meta.export.default.js.jsx
+//<0---------------------- meta.function.expression.js.jsx
+//<0---------------------- meta.block.js.jsx
+//<0---------------------- meta.tag.without-attributes.js.jsx
+//<0---------------------- meta.jsx.children.js.jsx
+//<0---------------------- meta.tag.without-attributes.js.jsx
+//<0---------------------- meta.jsx.children.js.jsx
+//<0---------------------- meta.tag.js.jsx
+//<0---------------------- meta.tag.attributes.js.jsx
+//        ^------- entity.other.attribute-name.js.jsx
+//                ^ keyword.operator.assignment.js.jsx
+//                 ^ punctuation.section.embedded.begin.js.jsx
+//                  ^---- meta.embedded.expression.js.jsx
+//                  ^---- constant.language.boolean.false.js.jsx
+//                       ^ punctuation.section.embedded.end.js.jsx
+          name="Photo of Tam"
+//<0------------------------- meta.export.default.js.jsx
+//<0------------------------- meta.function.expression.js.jsx
+//<0------------------------- meta.block.js.jsx
+//<0------------------------- meta.tag.without-attributes.js.jsx
+//<0------------------------- meta.jsx.children.js.jsx
+//<0------------------------- meta.tag.without-attributes.js.jsx
+//<0------------------------- meta.jsx.children.js.jsx
+//<0------------------------- meta.tag.js.jsx
+//<0------------------------- meta.tag.attributes.js.jsx
+//        ^--- entity.other.attribute-name.js.jsx
+//            ^ keyword.operator.assignment.js.jsx
+//             ^------------- string.quoted.double.js.jsx
+//             ^ punctuation.definition.string.begin.js.jsx
+//                          ^ punctuation.definition.string.end.js.jsx
+        />
+//<0------ meta.export.default.js.jsx
+//<0------ meta.function.expression.js.jsx
+//<0------ meta.block.js.jsx
+//<0------ meta.tag.without-attributes.js.jsx
+//<0------ meta.jsx.children.js.jsx
+//<0------ meta.tag.without-attributes.js.jsx
+//<0------ meta.jsx.children.js.jsx
+//<0------ meta.tag.js.jsx
+//<0---- meta.tag.attributes.js.jsx
+//      ^- punctuation.definition.tag.end.js.jsx
+      </ul>
+//<0------- meta.export.default.js.jsx
+//<0------- meta.function.expression.js.jsx
+//<0------- meta.block.js.jsx
+//<0------- meta.tag.without-attributes.js.jsx
+//<0------- meta.jsx.children.js.jsx
+//<0------- meta.tag.without-attributes.js.jsx
+//<0-- meta.jsx.children.js.jsx
+//    ^- punctuation.definition.tag.begin.js.jsx
+//      ^- entity.name.tag.js.jsx
+//        ^ punctuation.definition.tag.end.js.jsx
+    </section>
+//<0---------- meta.export.default.js.jsx
+//<0---------- meta.function.expression.js.jsx
+//<0---------- meta.block.js.jsx
+//<0---------- meta.tag.without-attributes.js.jsx
+//<0 meta.jsx.children.js.jsx
+//  ^- punctuation.definition.tag.begin.js.jsx
+//    ^------ entity.name.tag.js.jsx
+//           ^ punctuation.definition.tag.end.js.jsx
+  );
+//<0 meta.export.default.js.jsx
+//<0 meta.function.expression.js.jsx
+//<0 meta.block.js.jsx
+//^ meta.brace.round.js.jsx
+// ^ punctuation.terminator.statement.js.jsx
+}
+//<0 meta.export.default.js.jsx
+//<0 meta.function.expression.js.jsx
+//<0 meta.block.js.jsx
+//<0 punctuation.definition.block.js.jsx
+
+// From https://react.dev/learn/conditional-rendering
+//<0------------------------------------------------- comment.line.double-slash.js.jsx
+//<0 punctuation.definition.comment.js.jsx

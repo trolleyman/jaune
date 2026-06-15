@@ -1,0 +1,134 @@
+; grammar: source.fnl
+
+;; Sample: read the state of the keyboard and move the player accordingly
+;<0---------------------------------------------------------------------- comment.line.semicolon.fennel
+(local dirs {:up [0 -1] :down [0 1] :left [-1 0] :right [1 0]})
+;<0------------------------------------------------------------ sexp.fennel
+;<0 punctuation.paren.open.fennel
+;^---- keyword.special.fennel
+;      ^--- variable.other.fennel
+;           ^------------------------------------------------- table.fennel
+;           ^ punctuation.table.bracket.open.fennel
+;            ^-- constant.keyword.fennel
+;                ^----- meta.vector.fennel
+;                ^ punctuation.vector.bracket.open.fennel
+;                 ^ constant.numeric.integer.fennel
+;                   ^- constant.numeric.integer.fennel
+;                     ^ punctuation.vector.bracket.close.fennel
+;                       ^---- constant.keyword.fennel
+;                             ^---- meta.vector.fennel
+;                             ^ punctuation.vector.bracket.open.fennel
+;                              ^ constant.numeric.integer.fennel
+;                                ^ constant.numeric.integer.fennel
+;                                 ^ punctuation.vector.bracket.close.fennel
+;                                   ^---- constant.keyword.fennel
+;                                         ^----- meta.vector.fennel
+;                                         ^ punctuation.vector.bracket.open.fennel
+;                                          ^- constant.numeric.integer.fennel
+;                                             ^ constant.numeric.integer.fennel
+;                                              ^ punctuation.vector.bracket.close.fennel
+;                                                ^----- constant.keyword.fennel
+;                                                       ^---- meta.vector.fennel
+;                                                       ^ punctuation.vector.bracket.open.fennel
+;                                                        ^ constant.numeric.integer.fennel
+;                                                          ^ constant.numeric.integer.fennel
+;                                                           ^ punctuation.vector.bracket.close.fennel
+;                                                            ^ punctuation.table.bracket.close.fennel
+;                                                             ^ punctuation.paren.close.fennel
+
+(each [key [dx dy] (pairs dirs)]
+;<0----------------------------- sexp.fennel
+;<0 punctuation.paren.open.fennel
+;^--- keyword.special.fennel
+;     ^------------------------- meta.vector.fennel
+;     ^ punctuation.vector.bracket.open.fennel
+;      ^-- variable.other.fennel
+;          ^------ meta.vector.fennel
+;          ^ punctuation.vector.bracket.open.fennel
+;           ^- variable.other.fennel
+;              ^- variable.other.fennel
+;                ^ punctuation.vector.bracket.close.fennel
+;                  ^----------- sexp.fennel
+;                  ^ punctuation.paren.open.fennel
+;                   ^---- support.function.fennel
+;                         ^--- variable.other.fennel
+;                             ^ punctuation.paren.close.fennel
+;                              ^ punctuation.vector.bracket.close.fennel
+  (when (love.keyboard.isDown key)
+;<0------------------------------- sexp.fennel
+; ^------------------------------- sexp.fennel
+; ^ punctuation.paren.open.fennel
+;  ^--- keyword.special.fennel
+;       ^------------------------- sexp.fennel
+;       ^ punctuation.paren.open.fennel
+;        ^------------------- entity.name.function.symbol.fennel
+;                             ^-- variable.other.fennel
+;                                ^ punctuation.paren.close.fennel
+    (let [[px py] player
+;<0--------------------- sexp.fennel
+;<0--------------------- sexp.fennel
+;   ^------------------- sexp.fennel
+;   ^ punctuation.paren.open.fennel
+;    ^-- keyword.special.fennel
+;        ^-------------- meta.vector.fennel
+;        ^ punctuation.vector.bracket.open.fennel
+;         ^------ meta.vector.fennel
+;         ^ punctuation.vector.bracket.open.fennel
+;          ^- variable.other.fennel
+;             ^- variable.other.fennel
+;               ^ punctuation.vector.bracket.close.fennel
+;                 ^----- variable.other.fennel
+          x (+ px (* dx player.speed dt))
+;<0-------------------------------------- sexp.fennel
+;<0-------------------------------------- sexp.fennel
+;<0-------------------------------------- sexp.fennel
+;<0-------------------------------------- meta.vector.fennel
+;         ^ variable.other.fennel
+;           ^---------------------------- sexp.fennel
+;           ^ punctuation.paren.open.fennel
+;            ^ keyword.special.fennel
+;              ^- variable.other.fennel
+;                 ^--------------------- sexp.fennel
+;                 ^ punctuation.paren.open.fennel
+;                  ^ keyword.special.fennel
+;                    ^- variable.other.fennel
+;                       ^----------- entity.name.function.symbol.fennel
+;                                    ^- variable.other.fennel
+;                                      ^ punctuation.paren.close.fennel
+;                                       ^ punctuation.paren.close.fennel
+          y (+ py (* dy player.speed dt))]
+;<0--------------------------------------- sexp.fennel
+;<0--------------------------------------- sexp.fennel
+;<0--------------------------------------- sexp.fennel
+;<0--------------------------------------- meta.vector.fennel
+;         ^ variable.other.fennel
+;           ^---------------------------- sexp.fennel
+;           ^ punctuation.paren.open.fennel
+;            ^ keyword.special.fennel
+;              ^- variable.other.fennel
+;                 ^--------------------- sexp.fennel
+;                 ^ punctuation.paren.open.fennel
+;                  ^ keyword.special.fennel
+;                    ^- variable.other.fennel
+;                       ^----------- entity.name.function.symbol.fennel
+;                                    ^- variable.other.fennel
+;                                      ^ punctuation.paren.close.fennel
+;                                       ^ punctuation.paren.close.fennel
+;                                        ^ punctuation.vector.bracket.close.fennel
+      (world:move player x y))))
+;<0----------------------------- sexp.fennel
+;<0---------------------------- sexp.fennel
+;<0--------------------------- sexp.fennel
+;     ^---------------------- sexp.fennel
+;     ^ punctuation.paren.open.fennel
+;      ^--------- entity.name.function.method.fennel
+;                 ^----- variable.other.fennel
+;                        ^ variable.other.fennel
+;                          ^ variable.other.fennel
+;                           ^ punctuation.paren.close.fennel
+;                            ^ punctuation.paren.close.fennel
+;                             ^ punctuation.paren.close.fennel
+;                              ^ punctuation.paren.close.fennel
+
+;; From https://fennel-lang.org/
+;<0----------------------------- comment.line.semicolon.fennel

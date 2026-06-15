@@ -1,0 +1,70 @@
+<!-- grammar: source.mdx -->
+
+<MyComponent id="123" />
+<!--<0 punctuation.definition.tag.end.jsx -->
+<!--<1------ support.class.component.jsx -->
+<!--         ^- entity.other.attribute-name.tsx -->
+<!--           ^ keyword.operator.assignment.tsx -->
+<!--            ^---- string.quoted.double.tsx -->
+<!--            ^ punctuation.definition.string.begin.tsx -->
+<!--                ^ punctuation.definition.string.end.tsx -->
+<!--                  ^ punctuation.definition.tag.self-closing.jsx -->
+<!--                   ^ punctuation.definition.tag.end.jsx -->
+
+You can also use objects with components, such as the `thisOne` component on
+<!--<0---------------------------------------------------------------------- meta.paragraph.mdx -->
+<!--                                                  ^-------- markup.code.other.mdx -->
+<!--                                                  ^ string.other.begin.code.mdx -->
+<!--                                                   ^------ markup.raw.code.mdx markup.inline.raw.code.mdx -->
+<!--                                                          ^ string.other.end.code.mdx -->
+the `myComponents` object: <myComponents.thisOne />
+<!--<0--------------------------------------------- meta.paragraph.mdx -->
+<!--^------------- markup.code.other.mdx -->
+<!--^ string.other.begin.code.mdx -->
+<!-- ^----------- markup.raw.code.mdx markup.inline.raw.code.mdx -->
+<!--             ^ string.other.end.code.mdx -->
+<!--                       ^ punctuation.definition.tag.end.jsx -->
+<!--                        ^------------------- support.class.component.jsx -->
+<!--                                             ^ punctuation.definition.tag.self-closing.jsx -->
+<!--                                              ^ punctuation.definition.tag.end.jsx -->
+
+<Component
+<!--<0 punctuation.definition.tag.end.jsx -->
+<!--<1---- invalid.illegal.attribute.tsx -->
+  open
+<!--<2 invalid.illegal.attribute.tsx -->
+  x={1}
+<!--<2 entity.other.attribute-name.tsx -->
+<!--<3 keyword.operator.assignment.tsx -->
+<!--^ punctuation.section.embedded.begin.tsx -->
+<!-- ^ constant.numeric.decimal.tsx -->
+<!--  ^ punctuation.section.embedded.end.tsx -->
+  label={'this is a string, *not* markdown!'}
+<!--<2- entity.other.attribute-name.tsx -->
+<!--   ^ keyword.operator.assignment.tsx -->
+<!--    ^ punctuation.section.embedded.begin.tsx -->
+<!--     ^---------------------------------- string.quoted.single.tsx -->
+<!--     ^ punctuation.definition.string.begin.tsx -->
+<!--                                       ^ punctuation.definition.string.end.tsx -->
+<!--                                        ^ punctuation.section.embedded.end.tsx -->
+  icon={<Icon />}
+<!--<2 entity.other.attribute-name.tsx -->
+<!--  ^ keyword.operator.assignment.tsx -->
+<!--   ^ punctuation.section.embedded.begin.tsx -->
+<!--    ^------- meta.tag.tsx -->
+<!--    ^ punctuation.definition.tag.begin.tsx -->
+<!--     ^--- entity.name.tag.tsx -->
+<!--     ^--- support.class.component.tsx -->
+<!--         ^ meta.tag.attributes.tsx -->
+<!--          ^- punctuation.definition.tag.end.tsx -->
+<!--            ^ punctuation.section.embedded.end.tsx -->
+/>
+<!--<0 punctuation.definition.tag.self-closing.jsx -->
+<!--<1 punctuation.definition.tag.end.jsx -->
+
+{/* From https://mdxjs.com/docs/what-is-mdx/#mdx-syntax */}
+<!--<0 string.other.begin.expression.mdx.js -->
+<!--<1---------------------------------------------------- comment.block.tsx -->
+<!--<1 punctuation.definition.comment.tsx -->
+<!--                                                    ^- punctuation.definition.comment.tsx -->
+<!--                                                      ^ string.other.begin.expression.mdx.js -->

@@ -1,0 +1,325 @@
+# grammar: source.org
+
+#+title:  Example Org File
+#<0----- support.type.property-name.org
+#        ^---------------- meta.structure.dictionary.value.org
+#+author: TEC
+#<0------ support.type.property-name.org
+#         ^-- meta.structure.dictionary.value.org
+#+date:   2020-10-27
+#<0---- support.type.property-name.org
+#       ^----------- meta.structure.dictionary.value.org
+
+* Revamp orgmode.org website
+#<0------------------------- markup.heading.org
+
+The /beauty/ of org *must* be shared.
+#  ^--------- markup.italic.org
+#                  ^------- markup.bold.org
+[[https://upload.wikimedia.org/wikipedia/commons/b/bd/Share_Icon.svg]]
+#<0------------------------------------------------------------------- meta.link.inline.org
+#<0 punctuation.definition.string.begin.org
+# ^----------------------------------------------------------------- markup.underline.link.org
+#                                                                   ^- punctuation.definition.string.end.org
+
+** DONE Make screenshots
+#<0--------------------- entity.name.type.org
+#  ^--- keyword.control.org
+CLOSED: [2020-09-03 Thu 18:24]
+
+** DONE Restyle Site CSS
+#<0--------------------- entity.name.type.org
+#  ^--- keyword.control.org
+#                    ^-- string.quoted.double.org
+
+Go through [[file:style.scss][stylesheet]]
+#          ^------------------------------ meta.link.inline.org
+#          ^- punctuation.definition.string.begin.org
+#            ^-------------- markup.underline.link.org
+#                           ^ punctuation.definition.string.end.org
+#                            ^ punctuation.definition.string.begin.org
+#                             ^--------- string.other.link.title.org
+#                                       ^- punctuation.definition.string.end.org
+
+** TODO Check CSS on main pages [42%]
+#<0---------------------------------- entity.name.type.org
+#  ^--- invalid.illegal.org
+#             ^-- string.quoted.double.org
+
+- [X] Index page
+- [X] Quickstart
+- [ ] Features
+- [ ] Releases
+- [X] Install
+- [ ] Manual
+- [ ] Contribute
+
+* Learn Org
+#<0-------- markup.heading.org
+
+Org makes easy things trivial and complex things practical.
+
+You don't need to learn Org before using Org: read the quickstart
+page and you should be good to go.  If you need more, Org will be
+here for you as well: dive into the manual and join the community!
+
+** Feedback
+#<0-------- entity.name.type.org
+
+#+include: "other/feedback.org*manual" :only-contents t
+#<0------- support.type.property-name.org
+#          ^------------------------------------------- meta.structure.dictionary.value.org
+
+* Check CSS minification ratios
+#<0---------------------------- markup.heading.org
+#       ^-- string.quoted.double.org
+
+#+begin_src python
+#<0--------------- meta.block.source.python.org
+#<0-------- keyword.control.block.org
+#           ^----- constant.other.language.org
+from pathlib import Path
+#<0--------------------- meta.block.source.python.org
+#<0--------------------- meta.embedded.block.python
+#<0- keyword.control.import.python
+#            ^----- keyword.control.import.python
+cssRatios = []
+#<0----------- meta.block.source.python.org
+#<0----------- meta.embedded.block.python
+#         ^ keyword.operator.assignment.python
+#           ^ punctuation.definition.list.begin.python
+#            ^ punctuation.definition.list.end.python
+for css_min in Path("resources/style").glob("*.min.css"):
+#<0------------------------------------------------------ meta.block.source.python.org
+#<0------------------------------------------------------ meta.embedded.block.python
+#<0 keyword.control.flow.python
+#           ^- keyword.control.flow.python
+#              ^---------------------- meta.function-call.python
+#              ^--- meta.function-call.generic.python
+#                  ^ punctuation.definition.arguments.begin.python
+#                   ^---------------- meta.function-call.arguments.python
+#                   ^---------------- string.quoted.single.python
+#                   ^ punctuation.definition.string.begin.python
+#                                   ^ punctuation.definition.string.end.python
+#                                    ^ punctuation.definition.arguments.end.python
+#                                     ^----------------- meta.member.access.python
+#                                     ^ punctuation.separator.period.python
+#                                      ^---------------- meta.function-call.python
+#                                      ^--- meta.function-call.generic.python
+#                                          ^ punctuation.definition.arguments.begin.python
+#                                           ^---------- meta.function-call.arguments.python
+#                                           ^---------- string.quoted.single.python
+#                                           ^ punctuation.definition.string.begin.python
+#                                                     ^ punctuation.definition.string.end.python
+#                                                      ^ punctuation.definition.arguments.end.python
+#                                                       ^ punctuation.separator.colon.python
+    css = css_min.with_suffix('').with_suffix('.css')
+#<0-------------------------------------------------- meta.block.source.python.org
+#<0-------------------------------------------------- meta.embedded.block.python
+#       ^ keyword.operator.assignment.python
+#                ^----------------------------------- meta.member.access.python
+#                ^ punctuation.separator.period.python
+#                 ^-------------- meta.function-call.python
+#                 ^---------- meta.function-call.generic.python
+#                            ^ punctuation.definition.arguments.begin.python
+#                             ^- meta.function-call.arguments.python
+#                             ^- string.quoted.single.python
+#                             ^ punctuation.definition.string.begin.python
+#                              ^ punctuation.definition.string.end.python
+#                               ^ punctuation.definition.arguments.end.python
+#                                ^ punctuation.separator.period.python
+#                                 ^------------------ meta.function-call.python
+#                                 ^---------- meta.function-call.generic.python
+#                                            ^ punctuation.definition.arguments.begin.python
+#                                             ^----- meta.function-call.arguments.python
+#                                             ^----- string.quoted.single.python
+#                                             ^ punctuation.definition.string.begin.python
+#                                                  ^ punctuation.definition.string.end.python
+#                                                   ^ punctuation.definition.arguments.end.python
+    cssRatios.append([css.name,
+#<0---------------------------- meta.block.source.python.org
+#<0---------------------------- meta.embedded.block.python
+#            ^----------------- meta.member.access.python
+#            ^ punctuation.separator.period.python
+#             ^---------------- meta.function-call.python
+#             ^----- meta.function-call.generic.python
+#                   ^ punctuation.definition.arguments.begin.python
+#                    ^--------- meta.function-call.arguments.python
+#                    ^ punctuation.definition.list.begin.python
+#                        ^---- meta.member.access.python
+#                        ^ punctuation.separator.period.python
+#                         ^--- meta.attribute.python
+#                             ^ punctuation.separator.element.python
+    "{:.0f}% minified ({:4.1f} KiB)".format( 100 *
+#<0----------------------------------------------- meta.block.source.python.org
+#<0----------------------------------------------- meta.embedded.block.python
+#<0----------------------------------------------- meta.member.access.python
+#<0----------------------------------------------- meta.function-call.python
+#<0----------------------------------------------- meta.function-call.arguments.python
+#   ^------------------------------- string.quoted.single.python
+#   ^ punctuation.definition.string.begin.python
+#    ^----- meta.format.brace.python
+#    ^----- constant.character.format.placeholder.other.python
+#     ^--- storage.type.format.python
+#                      ^------ meta.format.brace.python
+#                      ^------ constant.character.format.placeholder.other.python
+#                       ^---- storage.type.format.python
+#                                  ^ punctuation.definition.string.end.python
+#                                   ^------------- meta.member.access.python
+#                                   ^ punctuation.separator.period.python
+#                                    ^------------ meta.function-call.python
+#                                    ^----- meta.function-call.generic.python
+#                                          ^ punctuation.definition.arguments.begin.python
+#                                           ^----- meta.function-call.arguments.python
+#                                            ^-- constant.numeric.dec.python
+#                                                ^ keyword.operator.arithmetic.python
+                      css_min.stat().st_size / css.stat().st_size,
+#<0--------------------------------------------------------------- meta.block.source.python.org
+#<0--------------------------------------------------------------- meta.embedded.block.python
+#<0--------------------------------------------------------------- meta.member.access.python
+#<0--------------------------------------------------------------- meta.function-call.python
+#<0--------------------------------------------------------------- meta.function-call.arguments.python
+#<0--------------------------------------------------------------- meta.member.access.python
+#<0--------------------------------------------------------------- meta.function-call.python
+#<0--------------------------------------------------------------- meta.function-call.arguments.python
+#                            ^-------------- meta.member.access.python
+#                            ^ punctuation.separator.period.python
+#                             ^----- meta.function-call.python
+#                             ^--- meta.function-call.generic.python
+#                                 ^ punctuation.definition.arguments.begin.python
+#                                  ^ punctuation.definition.arguments.end.python
+#                                   ^ punctuation.separator.period.python
+#                                    ^------ meta.attribute.python
+#                                            ^ keyword.operator.arithmetic.python
+#                                                 ^-------------- meta.member.access.python
+#                                                 ^ punctuation.separator.period.python
+#                                                  ^----- meta.function-call.python
+#                                                  ^--- meta.function-call.generic.python
+#                                                      ^ punctuation.definition.arguments.begin.python
+#                                                       ^ punctuation.definition.arguments.end.python
+#                                                        ^ punctuation.separator.period.python
+#                                                         ^------ meta.attribute.python
+#                                                                ^ punctuation.separator.arguments.python
+                      css_min.stat().st_size / 1000)])
+#<0--------------------------------------------------- meta.block.source.python.org
+#<0--------------------------------------------------- meta.embedded.block.python
+#<0--------------------------------------------------- meta.member.access.python
+#<0--------------------------------------------------- meta.function-call.python
+#<0-------------------------------------------------- meta.function-call.arguments.python
+#<0------------------------------------------------- meta.member.access.python
+#<0------------------------------------------------- meta.function-call.python
+#<0------------------------------------------------ meta.function-call.arguments.python
+#                            ^-------------- meta.member.access.python
+#                            ^ punctuation.separator.period.python
+#                             ^----- meta.function-call.python
+#                             ^--- meta.function-call.generic.python
+#                                 ^ punctuation.definition.arguments.begin.python
+#                                  ^ punctuation.definition.arguments.end.python
+#                                   ^ punctuation.separator.period.python
+#                                    ^------ meta.attribute.python
+#                                            ^ keyword.operator.arithmetic.python
+#                                              ^--- constant.numeric.dec.python
+#                                                  ^ punctuation.definition.arguments.end.python
+#                                                   ^ punctuation.definition.list.end.python
+#                                                    ^ punctuation.definition.arguments.end.python
+return cssRatios
+#<0------------- meta.block.source.python.org
+#<0------------- meta.embedded.block.python
+#<0--- keyword.control.flow.python
+#+end_src
+#<0------ meta.block.source.python.org
+#<0------ meta.embedded.block.python
+
+#+RESULTS:
+#<0------- meta.block.source.python.org
+#<0------- meta.embedded.block.python
+#<0------- comment.line.number-sign.python
+#<0 punctuation.definition.comment.python
+| index.css    | 76% minified ( 1.4 KiB) |
+#<0--------------------------------------- meta.block.source.python.org
+#<0--------------------------------------- meta.embedded.block.python
+#<0 keyword.operator.bitwise.python
+#      ^--- meta.member.access.python
+#      ^ punctuation.separator.period.python
+#       ^-- meta.attribute.python
+#              ^ keyword.operator.bitwise.python
+#                ^- constant.numeric.dec.python
+#                  ^ keyword.operator.arithmetic.python
+#                    ^------------------ meta.function-call.python
+#                    ^------- meta.function-call.generic.python
+#                             ^ punctuation.definition.arguments.begin.python
+#                              ^------- meta.function-call.arguments.python
+#                               ^-- constant.numeric.float.python
+#                                      ^ punctuation.definition.arguments.end.python
+#                                        ^ keyword.operator.bitwise.python
+| org-demo.css | 77% minified ( 2.8 KiB) |
+#<0--------------------------------------- meta.block.source.python.org
+#<0--------------------------------------- meta.embedded.block.python
+#<0 keyword.operator.bitwise.python
+#    ^ keyword.operator.arithmetic.python
+#         ^--- meta.member.access.python
+#         ^ punctuation.separator.period.python
+#          ^-- meta.attribute.python
+#              ^ keyword.operator.bitwise.python
+#                ^- constant.numeric.dec.python
+#                  ^ keyword.operator.arithmetic.python
+#                    ^------------------ meta.function-call.python
+#                    ^------- meta.function-call.generic.python
+#                             ^ punctuation.definition.arguments.begin.python
+#                              ^------- meta.function-call.arguments.python
+#                               ^-- constant.numeric.float.python
+#                                      ^ punctuation.definition.arguments.end.python
+#                                        ^ keyword.operator.bitwise.python
+| errors.css   | 74% minified ( 4.9 KiB) |
+#<0--------------------------------------- meta.block.source.python.org
+#<0--------------------------------------- meta.embedded.block.python
+#<0 keyword.operator.bitwise.python
+#       ^--- meta.member.access.python
+#       ^ punctuation.separator.period.python
+#        ^-- meta.attribute.python
+#              ^ keyword.operator.bitwise.python
+#                ^- constant.numeric.dec.python
+#                  ^ keyword.operator.arithmetic.python
+#                    ^------------------ meta.function-call.python
+#                    ^------- meta.function-call.generic.python
+#                             ^ punctuation.definition.arguments.begin.python
+#                              ^------- meta.function-call.arguments.python
+#                               ^-- constant.numeric.float.python
+#                                      ^ punctuation.definition.arguments.end.python
+#                                        ^ keyword.operator.bitwise.python
+| org.css      | 75% minified (10.7 KiB) |
+#<0--------------------------------------- meta.block.source.python.org
+#<0--------------------------------------- meta.embedded.block.python
+#<0 keyword.operator.bitwise.python
+#    ^--- meta.member.access.python
+#    ^ punctuation.separator.period.python
+#     ^-- meta.attribute.python
+#              ^ keyword.operator.bitwise.python
+#                ^- constant.numeric.dec.python
+#                  ^ keyword.operator.arithmetic.python
+#                    ^------------------ meta.function-call.python
+#                    ^------- meta.function-call.generic.python
+#                             ^ punctuation.definition.arguments.begin.python
+#                              ^------- meta.function-call.arguments.python
+#                              ^--- constant.numeric.float.python
+#                                      ^ punctuation.definition.arguments.end.python
+#                                        ^ keyword.operator.bitwise.python
+
+* COMMENT
+#<0------ meta.block.source.python.org
+#<0------ meta.embedded.block.python
+#<0 keyword.operator.arithmetic.python
+# ^------ constant.other.caps.python
+From https://orgmode.org/index.html.
+#<0--------------------------------- meta.block.source.python.org
+#<0--------------------------------- meta.embedded.block.python
+#         ^ punctuation.separator.colon.python
+#          ^- keyword.operator.arithmetic.python
+#                   ^--- meta.member.access.python
+#                   ^ punctuation.separator.period.python
+#                    ^-- meta.attribute.python
+#                       ^ keyword.operator.arithmetic.python
+#                             ^----- meta.member.access.python
+#                             ^ punctuation.separator.period.python
+#                              ^--- meta.attribute.python
+#                                  ^ punctuation.separator.period.python

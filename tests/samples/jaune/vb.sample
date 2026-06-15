@@ -1,0 +1,237 @@
+' grammar: source.asp.vb.net
+
+Imports System
+Imports System.Drawing
+Imports System.Windows.Forms
+
+Public Class HelloWindows
+'<0--- storage.modifier.asp
+'     ^------ storage.type.asp
+
+   Inherits Form
+'<0 meta.leading-space
+'<0 meta.odd-tab.spaces
+'           ^--- support.class.collection.asp
+
+   Private lblHelloWindows As Label
+'<0 meta.leading-space
+'<0 meta.odd-tab.spaces
+'  ^------ storage.modifier.asp
+'                          ^- keyword.operator.asp
+'                             ^---- support.type.vb.asp
+
+   Public Shared Sub Main(  )
+'<0 meta.leading-space
+'<0 meta.odd-tab.spaces
+'  ^----- storage.modifier.asp
+'               ^---- storage.type.asp
+'                    ^--- support.function.asp
+'                    ^--- entity.name.function.asp
+'                        ^--- meta.round-brackets
+'                        ^ punctuation.section.round-brackets.begin.asp
+'                           ^ punctuation.section.round-brackets.end.asp
+      Application.Run(New HelloWindows(  ))
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^---------- support.class.asp
+'                 ^-- support.function.asp
+'                 ^-- entity.name.function.asp
+'                    ^--------------------- meta.round-brackets
+'                    ^ punctuation.section.round-brackets.begin.asp
+'                     ^--- storage.type.asp
+'                         ^----------- support.function.asp
+'                         ^----------- entity.name.function.asp
+'                                     ^--- meta.round-brackets
+'                                     ^ punctuation.section.round-brackets.begin.asp
+'                                        ^ punctuation.section.round-brackets.end.asp
+'                                         ^ punctuation.section.round-brackets.end.asp
+   End Sub
+'<0 meta.leading-space
+'<0 meta.odd-tab.spaces
+'  ^------ storage.type.asp
+
+   Public Sub New(  )
+'<0 meta.leading-space
+'<0 meta.odd-tab.spaces
+'  ^------------- storage.type.asp
+'                ^--- meta.round-brackets
+'                ^ punctuation.section.round-brackets.begin.asp
+'                   ^ punctuation.section.round-brackets.end.asp
+
+      lblHelloWindows = New Label(  )
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^-------------- variable.other.asp
+'                     ^ keyword.operator.js
+'                      ^---- storage.type.asp
+'                           ^---- support.function.asp
+'                           ^---- entity.name.function.asp
+'                                ^--- meta.round-brackets
+'                                ^ punctuation.section.round-brackets.begin.asp
+'                                   ^ punctuation.section.round-brackets.end.asp
+      With lblHelloWindows
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^--- keyword.control.asp
+         .Location = New Point(37, 31)
+'<0------ meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^- meta.even-tab.spaces
+'         ^------- variable.other.asp
+'                  ^ keyword.operator.js
+'                   ^---- storage.type.asp
+'                        ^---- support.function.asp
+'                        ^---- entity.name.function.asp
+'                             ^------- meta.round-brackets
+'                             ^ punctuation.section.round-brackets.begin.asp
+'                              ^- constant.numeric.asp
+'                                  ^- constant.numeric.asp
+'                                    ^ punctuation.section.round-brackets.end.asp
+         .Size = New Size(392, 64)
+'<0------ meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^- meta.even-tab.spaces
+'         ^--- variable.other.asp
+'              ^ keyword.operator.js
+'               ^---- storage.type.asp
+'                    ^--- support.function.asp
+'                    ^--- entity.name.function.asp
+'                        ^-------- meta.round-brackets
+'                        ^ punctuation.section.round-brackets.begin.asp
+'                         ^-- constant.numeric.asp
+'                              ^- constant.numeric.asp
+'                                ^ punctuation.section.round-brackets.end.asp
+         .Font = New Font("Arial", 36)
+'<0------ meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^- meta.even-tab.spaces
+'         ^--- variable.other.asp
+'              ^ keyword.operator.js
+'               ^---- storage.type.asp
+'                    ^--- support.function.asp
+'                    ^--- entity.name.function.asp
+'                        ^------------ meta.round-brackets
+'                        ^ punctuation.section.round-brackets.begin.asp
+'                         ^------ string.quoted.double.asp
+'                         ^ punctuation.definition.string.begin.asp
+'                               ^ punctuation.definition.string.end.asp
+'                                  ^- constant.numeric.asp
+'                                    ^ punctuation.section.round-brackets.end.asp
+         .Text = "Hello, Windows!"
+'<0------ meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^- meta.even-tab.spaces
+'         ^--- variable.other.asp
+'              ^ keyword.operator.js
+'                ^---------------- string.quoted.double.asp
+'                ^ punctuation.definition.string.begin.asp
+'                                ^ punctuation.definition.string.end.asp
+         .TabIndex = 0
+'<0------ meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^- meta.even-tab.spaces
+'         ^------- variable.other.asp
+'                  ^ keyword.operator.js
+'                    ^ constant.numeric.asp
+         .TextAlign = ContentAlignment.TopCenter
+'<0------ meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^- meta.even-tab.spaces
+'         ^-------- variable.other.asp
+'                   ^ keyword.operator.js
+      End With
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^-- support.function.asp
+'         ^--- keyword.control.asp
+
+      Me.Text = "Programming Visual Basic .NET"
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'        ^--- variable.other.asp
+'             ^ keyword.operator.js
+'               ^------------------------------ string.quoted.double.asp
+'               ^ punctuation.definition.string.begin.asp
+'                                             ^ punctuation.definition.string.end.asp
+      AutoScaleBaseSize = New Size(5, 13)
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^---------------- variable.other.asp
+'                       ^ keyword.operator.js
+'                        ^---- storage.type.asp
+'                             ^--- support.function.asp
+'                             ^--- entity.name.function.asp
+'                                 ^------ meta.round-brackets
+'                                 ^ punctuation.section.round-brackets.begin.asp
+'                                  ^ constant.numeric.asp
+'                                     ^- constant.numeric.asp
+'                                       ^ punctuation.section.round-brackets.end.asp
+      FormBorderStyle = FormBorderStyle.FixedSingle
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^-------------- variable.other.asp
+'                     ^ keyword.operator.js
+      ClientSize = New Size(466, 127)
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'     ^--------- variable.other.asp
+'                ^ keyword.operator.js
+'                 ^---- storage.type.asp
+'                      ^--- support.function.asp
+'                      ^--- entity.name.function.asp
+'                          ^--------- meta.round-brackets
+'                          ^ punctuation.section.round-brackets.begin.asp
+'                           ^-- constant.numeric.asp
+'                                ^-- constant.numeric.asp
+'                                   ^ punctuation.section.round-brackets.end.asp
+
+      Controls.Add(lblHelloWindows)
+'<0--- meta.leading-space
+'<0 meta.odd-tab.spaces
+' ^- meta.even-tab.spaces
+'   ^- meta.odd-tab.spaces
+'              ^-- support.function.vb.asp
+'                 ^---------------- meta.round-brackets
+'                 ^ punctuation.section.round-brackets.begin.asp
+'                  ^-------------- variable.other.asp
+'                                 ^ punctuation.section.round-brackets.end.asp
+
+   End Sub
+'<0 meta.leading-space
+'<0 meta.odd-tab.spaces
+'  ^------ storage.type.asp
+
+End Class
+'<0------ storage.type.asp
+
+' From https://www.oreilly.com/library/view/programming-visual-basic/0596000936/ch01s03.html
+'<0----------------------------------------------------------------------------------------- comment.line.apostrophe.asp
+'<0 punctuation.definition.comment.asp

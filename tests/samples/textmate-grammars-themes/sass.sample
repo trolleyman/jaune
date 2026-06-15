@@ -1,0 +1,80 @@
+# grammar: source.sass
+
+/* This CSS will print because %message-shared is extended. */
+#<0----------------------------------------------------------- comment.block.sass
+%message-shared
+#<0------------ entity.other.inherited-class.placeholder-selector.css.sass
+  border: 1px solid #ccc
+# ^----- support.type.property-name.css.sass.prop.name
+#       ^--------------- meta.property-list.css.sass.prop
+#         ^ constant.numeric.css.sass
+#          ^- keyword.control.unit.css.sass
+#             ^---- meta.property-value.css.sass
+#             ^---- support.constant.property-value.css.sass
+#                   ^--- constant.language.color.rgb-value.css.sass
+  padding: 10px
+# ^------ support.type.property-name.css.sass.prop.name
+#        ^----- meta.property-list.css.sass.prop
+#          ^- constant.numeric.css.sass
+#            ^- keyword.control.unit.css.sass
+  color: #333
+# ^---- support.type.property-name.css.sass.prop.name
+#      ^----- meta.property-list.css.sass.prop
+#        ^--- constant.language.color.rgb-value.css.sass
+
+// This CSS won't print because %equal-heights is never extended.
+#<0-------------------------------------------------------------- comment.line.sass
+%equal-heights
+#<0----------- entity.other.inherited-class.placeholder-selector.css.sass
+  display: flex
+# ^------ support.type.property-name.css.sass.prop.name
+#        ^----- meta.property-list.css.sass.prop
+#          ^--- meta.property-value.css.sass
+#          ^--- support.constant.property-value.css.sass
+  flex-wrap: wrap
+# ^-------- support.type.property-name.css.sass.prop.name
+#          ^----- meta.property-list.css.sass.prop
+#            ^--- meta.property-value.css.sass
+#            ^--- support.constant.property-value.css.sass
+
+.message
+#<0----- entity.other.attribute-name.class.css.sass
+  @extend %message-shared
+# ^------- keyword.control.at-rule.css.sass
+#         ^-------------- entity.other.inherited-class.placeholder-selector.css.sass
+
+.success
+#<0----- entity.other.attribute-name.class.css.sass
+  @extend %message-shared
+# ^------- keyword.control.at-rule.css.sass
+#         ^-------------- entity.other.inherited-class.placeholder-selector.css.sass
+  border-color: green
+# ^----------- support.type.property-name.css.sass.prop.name
+#             ^------ meta.property-list.css.sass.prop
+#               ^---- meta.property-value.css.sass
+#               ^---- support.constant.property-value.css.sass
+
+.error
+#<0--- entity.other.attribute-name.class.css.sass
+  @extend %message-shared
+# ^------- keyword.control.at-rule.css.sass
+#         ^-------------- entity.other.inherited-class.placeholder-selector.css.sass
+  border-color: red
+# ^----------- support.type.property-name.css.sass.prop.name
+#             ^---- meta.property-list.css.sass.prop
+#               ^-- meta.property-value.css.sass
+#               ^-- support.constant.property-value.css.sass
+
+.warning
+#<0----- entity.other.attribute-name.class.css.sass
+  @extend %message-shared
+# ^------- keyword.control.at-rule.css.sass
+#         ^-------------- entity.other.inherited-class.placeholder-selector.css.sass
+  border-color: yellow
+# ^----------- support.type.property-name.css.sass.prop.name
+#             ^------- meta.property-list.css.sass.prop
+#               ^----- meta.property-value.css.sass
+#               ^----- support.constant.property-value.css.sass
+
+// From https://sass-lang.com/guide/
+#<0--------------------------------- comment.line.sass

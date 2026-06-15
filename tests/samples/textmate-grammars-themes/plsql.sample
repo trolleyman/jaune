@@ -1,0 +1,64 @@
+-- grammar: source.plsql.oracle
+
+-- available online in file 'examp1'
+--<0-------------------------------- comment.line.double-dash.oracle
+DECLARE
+--<0--- keyword.other.oracle
+   qty_on_hand  NUMBER(5);
+--              ^----- storage.type.oracle
+--                     ^ constant.numeric.oracle
+BEGIN
+--<0- keyword.other.oracle
+   SELECT quantity INTO qty_on_hand FROM inventory
+-- ^----- keyword.other.sql.oracle
+--                 ^--- keyword.other.oracle
+--                                  ^--- keyword.other.sql.oracle
+      WHERE product = 'TENNIS RACKET'
+--    ^---- keyword.other.sql.oracle
+--                  ^ keyword.operator.oracle
+--                    ^-------------- string.quoted.single.oracle
+      FOR UPDATE OF quantity;
+--    ^-- keyword.control.oracle
+--        ^----- keyword.other.sql.oracle
+--               ^- keyword.other.sql.oracle
+   IF qty_on_hand > 0 THEN  -- check quantity
+-- ^- keyword.control.oracle
+--                ^ keyword.operator.oracle
+--                  ^ constant.numeric.oracle
+--                    ^--- keyword.other.oracle
+--                          ^---------------- comment.line.double-dash.oracle
+      UPDATE inventory SET quantity = quantity - 1
+--    ^----- keyword.other.sql.oracle
+--                     ^-- keyword.other.sql.oracle
+--                                  ^ keyword.operator.oracle
+--                                             ^ keyword.operator.oracle
+--                                               ^ constant.numeric.oracle
+         WHERE product = 'TENNIS RACKET';
+--       ^---- keyword.other.sql.oracle
+--                     ^ keyword.operator.oracle
+--                       ^-------------- string.quoted.single.oracle
+      INSERT INTO purchase_record
+--    ^----- keyword.other.sql.oracle
+--           ^--- keyword.other.oracle
+         VALUES ('Tennis racket purchased', SYSDATE);
+--       ^----- keyword.other.sql.oracle
+--               ^------------------------ string.quoted.single.oracle
+--                                          ^------ support.function.builtin.date.oracle
+   ELSE
+-- ^--- keyword.control.oracle
+      INSERT INTO purchase_record
+--    ^----- keyword.other.sql.oracle
+--           ^--- keyword.other.oracle
+         VALUES ('Out of tennis rackets', SYSDATE);
+--       ^----- keyword.other.sql.oracle
+--               ^---------------------- string.quoted.single.oracle
+--                                        ^------ support.function.builtin.date.oracle
+   END IF;
+-- ^----- keyword.control.oracle
+   COMMIT;
+-- ^----- support.function.oracle
+END;
+--<0 keyword.other.oracle
+
+-- From https://docs.oracle.com/cd/B10500_01/appdev.920/a96624/01_oview.htm#7106
+--<0---------------------------------------------------------------------------- comment.line.double-dash.oracle

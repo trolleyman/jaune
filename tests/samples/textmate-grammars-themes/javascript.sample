@@ -1,0 +1,1186 @@
+// grammar: source.js
+
+// --- Demonstration of imports ---
+//<0------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+
+// Importing named exports and the default export
+//<0--------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+import defaultAnimal, { person, add } from './module.js';
+//<0---------------------------------------------------- meta.import.js
+//<0-- keyword.control.import.js
+//     ^------------ variable.other.readwrite.alias.js
+//                  ^ punctuation.separator.comma.js
+//                    ^-------------- meta.block.js
+//                    ^ punctuation.definition.block.js
+//                      ^----- variable.other.readwrite.alias.js
+//                            ^ punctuation.separator.comma.js
+//                              ^-- variable.other.readwrite.alias.js
+//                                  ^ punctuation.definition.block.js
+//                                    ^--- keyword.control.from.js
+//                                         ^------------ string.quoted.single.js
+//                                         ^ punctuation.definition.string.begin.js
+//                                                     ^ punctuation.definition.string.end.js
+//                                                      ^ punctuation.terminator.statement.js
+
+// Importing everything from the module as an alias
+//<0----------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+import * as Module from './module.js';
+//<0--------------------------------- meta.import.js
+//<0-- keyword.control.import.js
+//     ^ constant.language.import-export-all.js
+//       ^- keyword.control.as.js
+//          ^----- variable.other.readwrite.alias.js
+//                 ^--- keyword.control.from.js
+//                      ^------------ string.quoted.single.js
+//                      ^ punctuation.definition.string.begin.js
+//                                  ^ punctuation.definition.string.end.js
+//                                   ^ punctuation.terminator.statement.js
+
+
+// --- Demonstration of exports ---
+//<0------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+
+// Named exports
+//<0------------ comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+export const person = { name: "Alice", age: 30 };
+//<0-------------------------------------------- meta.var.expr.js
+//<0-- keyword.control.export.js
+//     ^---- storage.type.js
+//           ^------ meta.var-single-variable.expr.js
+//           ^----- meta.definition.variable.js
+//           ^----- variable.other.constant.js
+//                  ^ keyword.operator.assignment.js
+//                    ^------------------------- meta.objectliteral.js
+//                    ^ punctuation.definition.block.js
+//                      ^------------ meta.object.member.js
+//                      ^---- meta.object-literal.key.js
+//                          ^ punctuation.separator.key-value.js
+//                            ^------ string.quoted.double.js
+//                            ^ punctuation.definition.string.begin.js
+//                                  ^ punctuation.definition.string.end.js
+//                                   ^ punctuation.separator.comma.js
+//                                     ^------- meta.object.member.js
+//                                     ^--- meta.object-literal.key.js
+//                                        ^ punctuation.separator.key-value.js
+//                                          ^- constant.numeric.decimal.js
+//                                             ^ punctuation.definition.block.js
+//                                              ^ punctuation.terminator.statement.js
+
+export function add(x, y = 0) {
+//<0--------------------------- meta.function.js
+//<0-- keyword.control.export.js
+//     ^------- storage.type.function.js
+//              ^-- meta.definition.function.js
+//              ^-- entity.name.function.js
+//                 ^--------- meta.parameters.js
+//                 ^ punctuation.definition.parameters.begin.js
+//                  ^ variable.parameter.js
+//                   ^ punctuation.separator.parameter.js
+//                     ^ variable.parameter.js
+//                       ^ keyword.operator.assignment.js
+//                         ^ constant.numeric.decimal.js
+//                          ^ punctuation.definition.parameters.end.js
+//                            ^ meta.block.js
+//                            ^ punctuation.definition.block.js
+  return x + y;
+//<0----------- meta.function.js
+//<0----------- meta.block.js
+//^----- keyword.control.flow.js
+//       ^ variable.other.readwrite.js
+//         ^ keyword.operator.arithmetic.js
+//           ^ variable.other.readwrite.js
+//            ^ punctuation.terminator.statement.js
+}
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+// Default export
+//<0------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+const defaultAnimal = { name: "Default Animal" };
+//<0-------------------------------------------- meta.var.expr.js
+//<0- storage.type.js
+//    ^------------- meta.var-single-variable.expr.js
+//    ^------------ meta.definition.variable.js
+//    ^------------ variable.other.constant.js
+//                  ^ keyword.operator.assignment.js
+//                    ^------------------------- meta.objectliteral.js
+//                    ^ punctuation.definition.block.js
+//                      ^---------------------- meta.object.member.js
+//                      ^---- meta.object-literal.key.js
+//                          ^ punctuation.separator.key-value.js
+//                            ^--------------- string.quoted.double.js
+//                            ^ punctuation.definition.string.begin.js
+//                                           ^ punctuation.definition.string.end.js
+//                                             ^ punctuation.definition.block.js
+//                                              ^ punctuation.terminator.statement.js
+export default defaultAnimal;
+//<0------------------------ meta.export.default.js
+//<0-- keyword.control.export.js
+//     ^------ keyword.control.default.js
+//             ^------------ variable.other.readwrite.js
+//                          ^ punctuation.terminator.statement.js
+
+// Generator function
+//<0----------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+export function* idGenerator() {
+//<0---------------------------- meta.function.js
+//<0-- keyword.control.export.js
+//     ^------- storage.type.function.js
+//             ^ keyword.generator.asterisk.js
+//               ^---------- meta.definition.function.js
+//               ^---------- entity.name.function.js
+//                          ^- meta.parameters.js
+//                          ^ punctuation.definition.parameters.begin.js
+//                           ^ punctuation.definition.parameters.end.js
+//                             ^ meta.block.js
+//                             ^ punctuation.definition.block.js
+  let id = 0;
+//<0--------- meta.function.js
+//<0--------- meta.block.js
+//^--------- meta.var.expr.js
+//^-- storage.type.js
+//    ^-- meta.var-single-variable.expr.js
+//    ^- meta.definition.variable.js
+//    ^- variable.other.readwrite.js
+//       ^ keyword.operator.assignment.js
+//         ^ constant.numeric.decimal.js
+//          ^ punctuation.terminator.statement.js
+  while (true) {
+//<0------------ meta.function.js
+//<0------------ meta.block.js
+//^---- keyword.control.loop.js
+//      ^ meta.brace.round.js
+//       ^--- constant.language.boolean.true.js
+//           ^ meta.brace.round.js
+//             ^ meta.block.js
+//             ^ punctuation.definition.block.js
+    yield id++;
+//<0----------- meta.function.js
+//<0----------- meta.block.js
+//<0----------- meta.block.js
+//  ^---- keyword.control.flow.js
+//        ^- variable.other.readwrite.js
+//          ^- keyword.operator.increment.js
+//            ^ punctuation.terminator.statement.js
+  }
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 meta.block.js
+//^ punctuation.definition.block.js
+}
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+// Using typeof for runtime type checks
+//<0----------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+console.log(typeof person);  // object
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^----- keyword.operator.expression.typeof.js
+//                 ^----- variable.other.readwrite.js
+//                       ^ meta.brace.round.js
+//                        ^ punctuation.terminator.statement.js
+//                           ^-------- comment.line.double-slash.js
+//                           ^- punctuation.definition.comment.js
+console.log(add(2, 3));      // 5
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^-- meta.function-call.js
+//          ^-- entity.name.function.js
+//             ^ meta.brace.round.js
+//              ^ constant.numeric.decimal.js
+//               ^ punctuation.separator.comma.js
+//                 ^ constant.numeric.decimal.js
+//                  ^- meta.brace.round.js
+//                    ^ punctuation.terminator.statement.js
+//                           ^--- comment.line.double-slash.js
+//                           ^- punctuation.definition.comment.js
+console.log(defaultAnimal);  // { name: "Default Animal" }
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^------------ variable.other.readwrite.js
+//                       ^ meta.brace.round.js
+//                        ^ punctuation.terminator.statement.js
+//                           ^---------------------------- comment.line.double-slash.js
+//                           ^- punctuation.definition.comment.js
+
+// Emulating 'satisfies' behavior using runtime checks
+//<0-------------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+function createAnimal(animal) {
+//<0--------------------------- meta.function.js
+//<0---- storage.type.function.js
+//       ^----------- meta.definition.function.js
+//       ^----------- entity.name.function.js
+//                   ^------- meta.parameters.js
+//                   ^ punctuation.definition.parameters.begin.js
+//                    ^----- variable.parameter.js
+//                          ^ punctuation.definition.parameters.end.js
+//                            ^ meta.block.js
+//                            ^ punctuation.definition.block.js
+  if (typeof animal.name === 'string') {
+//<0------------------------------------ meta.function.js
+//<0------------------------------------ meta.block.js
+//^- keyword.control.conditional.js
+//   ^ meta.brace.round.js
+//    ^----- keyword.operator.expression.typeof.js
+//           ^----- variable.other.object.js
+//                 ^ punctuation.accessor.js
+//                  ^--- variable.other.property.js
+//                       ^-- keyword.operator.comparison.js
+//                           ^------- string.quoted.single.js
+//                           ^ punctuation.definition.string.begin.js
+//                                  ^ punctuation.definition.string.end.js
+//                                   ^ meta.brace.round.js
+//                                     ^ meta.block.js
+//                                     ^ punctuation.definition.block.js
+    return animal;  // Ensures the animal has a 'name' property
+//<0----------------------------------------------------------- meta.function.js
+//<0----------------------------------------------------------- meta.block.js
+//<0----------------------------------------------------------- meta.block.js
+//  ^----- keyword.control.flow.js
+//         ^----- variable.other.readwrite.js
+//               ^ punctuation.terminator.statement.js
+//                  ^------------------------------------------ comment.line.double-slash.js
+//                  ^- punctuation.definition.comment.js
+  }
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 meta.block.js
+//^ punctuation.definition.block.js
+  throw new Error("Animal must have a name");
+//<0----------------------------------------- meta.function.js
+//<0----------------------------------------- meta.block.js
+//^---- keyword.control.trycatch.js
+//      ^----------------------------------- new.expr.js
+//      ^-- keyword.operator.new.js
+//          ^---- meta.function-call.js
+//          ^---- entity.name.function.js
+//               ^ meta.brace.round.js
+//                ^------------------------ string.quoted.double.js
+//                ^ punctuation.definition.string.begin.js
+//                                        ^ punctuation.definition.string.end.js
+//                                         ^ meta.brace.round.js
+//                                          ^ punctuation.terminator.statement.js
+}
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+const dog = createAnimal({ name: "Buddy", breed: "Golden Retriever" });
+//<0------------------------------------------------------------------ meta.var.expr.js
+//<0- storage.type.js
+//    ^--- meta.var-single-variable.expr.js
+//    ^-- meta.definition.variable.js
+//    ^-- variable.other.constant.js
+//        ^ keyword.operator.assignment.js
+//          ^----------- meta.function-call.js
+//          ^----------- entity.name.function.js
+//                      ^ meta.brace.round.js
+//                       ^------------------------------------------- meta.objectliteral.js
+//                       ^ punctuation.definition.block.js
+//                         ^------------ meta.object.member.js
+//                         ^---- meta.object-literal.key.js
+//                             ^ punctuation.separator.key-value.js
+//                               ^------ string.quoted.double.js
+//                               ^ punctuation.definition.string.begin.js
+//                                     ^ punctuation.definition.string.end.js
+//                                      ^ punctuation.separator.comma.js
+//                                        ^------------------------- meta.object.member.js
+//                                        ^----- meta.object-literal.key.js
+//                                             ^ punctuation.separator.key-value.js
+//                                               ^----------------- string.quoted.double.js
+//                                               ^ punctuation.definition.string.begin.js
+//                                                                ^ punctuation.definition.string.end.js
+//                                                                  ^ punctuation.definition.block.js
+//                                                                   ^ meta.brace.round.js
+//                                                                    ^ punctuation.terminator.statement.js
+console.log(dog);  // { name: 'Buddy', breed: 'Golden Retriever' }
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^-- variable.other.readwrite.js
+//             ^ meta.brace.round.js
+//              ^ punctuation.terminator.statement.js
+//                 ^---------------------------------------------- comment.line.double-slash.js
+//                 ^- punctuation.definition.comment.js
+
+// Generator usage
+//<0-------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+const generator = Module.idGenerator();
+//<0---------------------------------- meta.var.expr.js
+//<0- storage.type.js
+//    ^--------- meta.var-single-variable.expr.js
+//    ^-------- meta.definition.variable.js
+//    ^-------- variable.other.constant.js
+//              ^ keyword.operator.assignment.js
+//                ^----------------- meta.function-call.js
+//                ^----- variable.other.object.js
+//                      ^ punctuation.accessor.js
+//                       ^---------- entity.name.function.js
+//                                  ^- meta.brace.round.js
+//                                    ^ punctuation.terminator.statement.js
+console.log(generator.next().value);  // 0
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^------------- meta.function-call.js
+//          ^-------- variable.other.object.js
+//                   ^ punctuation.accessor.js
+//                    ^--- entity.name.function.js
+//                        ^- meta.brace.round.js
+//                          ^ punctuation.accessor.js
+//                           ^---- variable.other.property.js
+//                                ^ meta.brace.round.js
+//                                 ^ punctuation.terminator.statement.js
+//                                    ^--- comment.line.double-slash.js
+//                                    ^- punctuation.definition.comment.js
+console.log(generator.next().value);  // 1
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^------------- meta.function-call.js
+//          ^-------- variable.other.object.js
+//                   ^ punctuation.accessor.js
+//                    ^--- entity.name.function.js
+//                        ^- meta.brace.round.js
+//                          ^ punctuation.accessor.js
+//                           ^---- variable.other.property.js
+//                                ^ meta.brace.round.js
+//                                 ^ punctuation.terminator.statement.js
+//                                    ^--- comment.line.double-slash.js
+//                                    ^- punctuation.definition.comment.js
+console.log(generator.next().value);  // 2
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^------------- meta.function-call.js
+//          ^-------- variable.other.object.js
+//                   ^ punctuation.accessor.js
+//                    ^--- entity.name.function.js
+//                        ^- meta.brace.round.js
+//                          ^ punctuation.accessor.js
+//                           ^---- variable.other.property.js
+//                                ^ meta.brace.round.js
+//                                 ^ punctuation.terminator.statement.js
+//                                    ^--- comment.line.double-slash.js
+//                                    ^- punctuation.definition.comment.js
+
+// Handling a generic-like behavior by allowing any type and runtime checks
+//<0----------------------------------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+function identity(arg) {
+//<0-------------------- meta.function.js
+//<0---- storage.type.function.js
+//       ^------- meta.definition.function.js
+//       ^------- entity.name.function.js
+//               ^---- meta.parameters.js
+//               ^ punctuation.definition.parameters.begin.js
+//                ^-- variable.parameter.js
+//                   ^ punctuation.definition.parameters.end.js
+//                     ^ meta.block.js
+//                     ^ punctuation.definition.block.js
+  return arg;
+//<0--------- meta.function.js
+//<0--------- meta.block.js
+//^----- keyword.control.flow.js
+//       ^-- variable.other.readwrite.js
+//          ^ punctuation.terminator.statement.js
+}
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+let str = identity("Hello");
+//<0----------------------- meta.var.expr.js
+//<0 storage.type.js
+//  ^--- meta.var-single-variable.expr.js
+//  ^-- meta.definition.variable.js
+//  ^-- variable.other.readwrite.js
+//      ^ keyword.operator.assignment.js
+//        ^------- meta.function-call.js
+//        ^------- entity.name.function.js
+//                ^ meta.brace.round.js
+//                 ^------ string.quoted.double.js
+//                 ^ punctuation.definition.string.begin.js
+//                       ^ punctuation.definition.string.end.js
+//                        ^ meta.brace.round.js
+//                         ^ punctuation.terminator.statement.js
+let num = identity(42);
+//<0------------------ meta.var.expr.js
+//<0 storage.type.js
+//  ^--- meta.var-single-variable.expr.js
+//  ^-- meta.definition.variable.js
+//  ^-- variable.other.readwrite.js
+//      ^ keyword.operator.assignment.js
+//        ^------- meta.function-call.js
+//        ^------- entity.name.function.js
+//                ^ meta.brace.round.js
+//                 ^- constant.numeric.decimal.js
+//                   ^ meta.brace.round.js
+//                    ^ punctuation.terminator.statement.js
+console.log(str, num);  // "Hello", 42
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^-- variable.other.readwrite.js
+//             ^ punctuation.separator.comma.js
+//               ^-- variable.other.readwrite.js
+//                  ^ meta.brace.round.js
+//                   ^ punctuation.terminator.statement.js
+//                      ^------------- comment.line.double-slash.js
+//                      ^- punctuation.definition.comment.js
+
+// Emulating default generics by using default parameters
+//<0----------------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+function wrapInArray(value = "") {
+//<0------------------------------ meta.function.js
+//<0---- storage.type.function.js
+//       ^---------- meta.definition.function.js
+//       ^---------- entity.name.function.js
+//                  ^----------- meta.parameters.js
+//                  ^ punctuation.definition.parameters.begin.js
+//                   ^---- variable.parameter.js
+//                         ^ keyword.operator.assignment.js
+//                           ^- string.quoted.double.js
+//                           ^ punctuation.definition.string.begin.js
+//                            ^ punctuation.definition.string.end.js
+//                             ^ punctuation.definition.parameters.end.js
+//                               ^ meta.block.js
+//                               ^ punctuation.definition.block.js
+  return [value];
+//<0------------- meta.function.js
+//<0------------- meta.block.js
+//^----- keyword.control.flow.js
+//      ^------- meta.array.literal.js
+//       ^ meta.brace.square.js
+//        ^---- variable.other.readwrite.js
+//             ^ meta.brace.square.js
+//              ^ punctuation.terminator.statement.js
+}
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+const stringArray = wrapInArray();  // Default is empty string
+//<0----------------------------- meta.var.expr.js
+//<0- storage.type.js
+//    ^----------- meta.var-single-variable.expr.js
+//    ^---------- meta.definition.variable.js
+//    ^---------- variable.other.constant.js
+//                ^ keyword.operator.assignment.js
+//                  ^---------- meta.function-call.js
+//                  ^---------- entity.name.function.js
+//                             ^- meta.brace.round.js
+//                               ^ punctuation.terminator.statement.js
+//                                  ^------------------------- comment.line.double-slash.js
+//                                  ^- punctuation.definition.comment.js
+const numberArray = wrapInArray(42);  // Passes 42 explicitly
+//<0------------------------------- meta.var.expr.js
+//<0- storage.type.js
+//    ^----------- meta.var-single-variable.expr.js
+//    ^---------- meta.definition.variable.js
+//    ^---------- variable.other.constant.js
+//                ^ keyword.operator.assignment.js
+//                  ^---------- meta.function-call.js
+//                  ^---------- entity.name.function.js
+//                             ^ meta.brace.round.js
+//                              ^- constant.numeric.decimal.js
+//                                ^ meta.brace.round.js
+//                                 ^ punctuation.terminator.statement.js
+//                                    ^---------------------- comment.line.double-slash.js
+//                                    ^- punctuation.definition.comment.js
+console.log(stringArray, numberArray);  // [""] , [42]
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^---------- variable.other.readwrite.js
+//                     ^ punctuation.separator.comma.js
+//                       ^---------- variable.other.readwrite.js
+//                                  ^ meta.brace.round.js
+//                                   ^ punctuation.terminator.statement.js
+//                                      ^------------- comment.line.double-slash.js
+//                                      ^- punctuation.definition.comment.js
+
+// --- for-of and for-in loops ---
+//<0------------------------------ comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+
+// for-of: Iterates over iterable objects like arrays, strings, maps, etc.
+//<0---------------------------------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+const fruits = ["apple", "banana", "cherry"];
+//<0---------------------------------------- meta.var.expr.js
+//<0- storage.type.js
+//    ^------ meta.var-single-variable.expr.js
+//    ^----- meta.definition.variable.js
+//    ^----- variable.other.constant.js
+//           ^ keyword.operator.assignment.js
+//            ^----------------------------- meta.array.literal.js
+//             ^ meta.brace.square.js
+//              ^------ string.quoted.double.js
+//              ^ punctuation.definition.string.begin.js
+//                    ^ punctuation.definition.string.end.js
+//                     ^ punctuation.separator.comma.js
+//                       ^------- string.quoted.double.js
+//                       ^ punctuation.definition.string.begin.js
+//                              ^ punctuation.definition.string.end.js
+//                               ^ punctuation.separator.comma.js
+//                                 ^------- string.quoted.double.js
+//                                 ^ punctuation.definition.string.begin.js
+//                                        ^ punctuation.definition.string.end.js
+//                                         ^ meta.brace.square.js
+//                                          ^ punctuation.terminator.statement.js
+for (const fruit of fruits) {
+//<0 keyword.control.loop.js
+//  ^ meta.brace.round.js
+//   ^----------- meta.var.expr.js
+//   ^---- storage.type.js
+//         ^----- meta.var-single-variable.expr.js
+//         ^---- meta.definition.variable.js
+//         ^---- variable.other.constant.js
+//               ^- keyword.operator.expression.of.js
+//                  ^----- variable.other.readwrite.js
+//                        ^ meta.brace.round.js
+//                          ^ meta.block.js
+//                          ^ punctuation.definition.block.js
+  console.log(fruit);  // Outputs: apple, banana, cherry
+//<0---------------------------------------------------- meta.block.js
+//^---------- meta.function-call.js
+//^------ variable.other.object.js
+//       ^ punctuation.accessor.js
+//        ^-- entity.name.function.js
+//           ^ meta.brace.round.js
+//            ^---- variable.other.readwrite.js
+//                 ^ meta.brace.round.js
+//                  ^ punctuation.terminator.statement.js
+//                     ^-------------------------------- comment.line.double-slash.js
+//                     ^- punctuation.definition.comment.js
+}
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+// for-in: Iterates over enumerable properties of an object
+//<0------------------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+const car = { make: "Tesla", model: "Model S", year: 2021 };
+//<0------------------------------------------------------- meta.var.expr.js
+//<0- storage.type.js
+//    ^--- meta.var-single-variable.expr.js
+//    ^-- meta.definition.variable.js
+//    ^-- variable.other.constant.js
+//        ^ keyword.operator.assignment.js
+//          ^---------------------------------------------- meta.objectliteral.js
+//          ^ punctuation.definition.block.js
+//            ^------------ meta.object.member.js
+//            ^---- meta.object-literal.key.js
+//                ^ punctuation.separator.key-value.js
+//                  ^------ string.quoted.double.js
+//                  ^ punctuation.definition.string.begin.js
+//                        ^ punctuation.definition.string.end.js
+//                         ^ punctuation.separator.comma.js
+//                           ^--------------- meta.object.member.js
+//                           ^----- meta.object-literal.key.js
+//                                ^ punctuation.separator.key-value.js
+//                                  ^-------- string.quoted.double.js
+//                                  ^ punctuation.definition.string.begin.js
+//                                          ^ punctuation.definition.string.end.js
+//                                           ^ punctuation.separator.comma.js
+//                                             ^---------- meta.object.member.js
+//                                             ^---- meta.object-literal.key.js
+//                                                 ^ punctuation.separator.key-value.js
+//                                                   ^--- constant.numeric.decimal.js
+//                                                        ^ punctuation.definition.block.js
+//                                                         ^ punctuation.terminator.statement.js
+for (const key in car) {
+//<0 keyword.control.loop.js
+//  ^ meta.brace.round.js
+//   ^--------- meta.var.expr.js
+//   ^---- storage.type.js
+//         ^--- meta.var-single-variable.expr.js
+//         ^-- meta.definition.variable.js
+//         ^-- variable.other.constant.js
+//             ^- keyword.operator.expression.in.js
+//                ^-- variable.other.readwrite.js
+//                   ^ meta.brace.round.js
+//                     ^ meta.block.js
+//                     ^ punctuation.definition.block.js
+  if (car.hasOwnProperty(key)) {
+//<0---------------------------- meta.block.js
+//^- keyword.control.conditional.js
+//   ^ meta.brace.round.js
+//    ^----------------- meta.function-call.js
+//    ^-- variable.other.object.js
+//       ^ punctuation.accessor.js
+//        ^------------- entity.name.function.js
+//                      ^ meta.brace.round.js
+//                       ^-- variable.other.readwrite.js
+//                          ^- meta.brace.round.js
+//                             ^ meta.block.js
+//                             ^ punctuation.definition.block.js
+    console.log(`${key}: ${car[key]}`);  // Outputs key-value pairs of car object
+//<0----------------------------------------------------------------------------- meta.block.js
+//<0----------------------------------------------------------------------------- meta.block.js
+//  ^---------- meta.function-call.js
+//  ^------ variable.other.object.js
+//         ^ punctuation.accessor.js
+//          ^-- entity.name.function.js
+//             ^ meta.brace.round.js
+//              ^-------------------- string.template.js
+//              ^ punctuation.definition.string.template.begin.js
+//               ^----- meta.template.expression.js
+//               ^- punctuation.definition.template-expression.begin.js
+//                 ^-- meta.embedded.line.js
+//                 ^-- variable.other.readwrite.js
+//                    ^ punctuation.definition.template-expression.end.js
+//                       ^---------- meta.template.expression.js
+//                       ^- punctuation.definition.template-expression.begin.js
+//                         ^------- meta.embedded.line.js
+//                         ^-- variable.other.readwrite.js
+//                            ^---- meta.array.literal.js
+//                            ^ meta.brace.square.js
+//                             ^-- variable.other.readwrite.js
+//                                ^ meta.brace.square.js
+//                                 ^ punctuation.definition.template-expression.end.js
+//                                  ^ punctuation.definition.string.template.end.js
+//                                   ^ meta.brace.round.js
+//                                    ^ punctuation.terminator.statement.js
+//                                       ^--------------------------------------- comment.line.double-slash.js
+//                                       ^- punctuation.definition.comment.js
+  }
+//<0 meta.block.js
+//<0 meta.block.js
+//^ punctuation.definition.block.js
+}
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+// --- IIFE (Immediately Invoked Function Expression) ---
+//<0----------------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+
+(function () {
+//<0 meta.brace.round.js
+//<1---------- meta.function.expression.js
+//<1----- storage.type.function.js
+//        ^- meta.parameters.js
+//        ^ punctuation.definition.parameters.begin.js
+//         ^ punctuation.definition.parameters.end.js
+//           ^ meta.block.js
+//           ^ punctuation.definition.block.js
+  console.log("This IIFE runs immediately after it's defined.");
+//<0------------------------------------------------------------ meta.function.expression.js
+//<0------------------------------------------------------------ meta.block.js
+//^---------- meta.function-call.js
+//^------ variable.other.object.js
+//       ^ punctuation.accessor.js
+//        ^-- entity.name.function.js
+//           ^ meta.brace.round.js
+//            ^----------------------------------------------- string.quoted.double.js
+//            ^ punctuation.definition.string.begin.js
+//                                                           ^ punctuation.definition.string.end.js
+//                                                            ^ meta.brace.round.js
+//                                                             ^ punctuation.terminator.statement.js
+  const privateVar = "I'm private inside the IIFE!";
+//<0------------------------------------------------ meta.function.expression.js
+//<0------------------------------------------------ meta.block.js
+//^------------------------------------------------ meta.var.expr.js
+//^---- storage.type.js
+//      ^---------- meta.var-single-variable.expr.js
+//      ^--------- meta.definition.variable.js
+//      ^--------- variable.other.constant.js
+//                 ^ keyword.operator.assignment.js
+//                   ^----------------------------- string.quoted.double.js
+//                   ^ punctuation.definition.string.begin.js
+//                                                ^ punctuation.definition.string.end.js
+//                                                 ^ punctuation.terminator.statement.js
+  console.log(privateVar);  // Accessing the private variable inside the IIFE
+//<0------------------------------------------------------------------------- meta.function.expression.js
+//<0------------------------------------------------------------------------- meta.block.js
+//^---------- meta.function-call.js
+//^------ variable.other.object.js
+//       ^ punctuation.accessor.js
+//        ^-- entity.name.function.js
+//           ^ meta.brace.round.js
+//            ^--------- variable.other.readwrite.js
+//                      ^ meta.brace.round.js
+//                       ^ punctuation.terminator.statement.js
+//                          ^------------------------------------------------ comment.line.double-slash.js
+//                          ^- punctuation.definition.comment.js
+})();
+//<0 meta.function.expression.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+//<1 meta.brace.round.js
+//  ^ punctuation.terminator.statement.js
+
+// --- Using a generator to loop indefinitely ---
+//<0--------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+function* infiniteGenerator() {
+//<0--------------------------- meta.function.js
+//<0---- storage.type.function.js
+//      ^ keyword.generator.asterisk.js
+//        ^---------------- meta.definition.function.js
+//        ^---------------- entity.name.function.js
+//                         ^- meta.parameters.js
+//                         ^ punctuation.definition.parameters.begin.js
+//                          ^ punctuation.definition.parameters.end.js
+//                            ^ meta.block.js
+//                            ^ punctuation.definition.block.js
+  let i = 0;
+//<0-------- meta.function.js
+//<0-------- meta.block.js
+//^-------- meta.var.expr.js
+//^-- storage.type.js
+//    ^- meta.var-single-variable.expr.js
+//    ^ meta.definition.variable.js
+//    ^ variable.other.readwrite.js
+//      ^ keyword.operator.assignment.js
+//        ^ constant.numeric.decimal.js
+//         ^ punctuation.terminator.statement.js
+  while (true) {
+//<0------------ meta.function.js
+//<0------------ meta.block.js
+//^---- keyword.control.loop.js
+//      ^ meta.brace.round.js
+//       ^--- constant.language.boolean.true.js
+//           ^ meta.brace.round.js
+//             ^ meta.block.js
+//             ^ punctuation.definition.block.js
+    yield i++;
+//<0---------- meta.function.js
+//<0---------- meta.block.js
+//<0---------- meta.block.js
+//  ^---- keyword.control.flow.js
+//        ^ variable.other.readwrite.js
+//         ^- keyword.operator.increment.js
+//           ^ punctuation.terminator.statement.js
+  }
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 meta.block.js
+//^ punctuation.definition.block.js
+}
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+const gen = infiniteGenerator();
+//<0--------------------------- meta.var.expr.js
+//<0- storage.type.js
+//    ^--- meta.var-single-variable.expr.js
+//    ^-- meta.definition.variable.js
+//    ^-- variable.other.constant.js
+//        ^ keyword.operator.assignment.js
+//          ^---------------- meta.function-call.js
+//          ^---------------- entity.name.function.js
+//                           ^- meta.brace.round.js
+//                             ^ punctuation.terminator.statement.js
+console.log(gen.next().value);  // 0
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^------- meta.function-call.js
+//          ^-- variable.other.object.js
+//             ^ punctuation.accessor.js
+//              ^--- entity.name.function.js
+//                  ^- meta.brace.round.js
+//                    ^ punctuation.accessor.js
+//                     ^---- variable.other.property.js
+//                          ^ meta.brace.round.js
+//                           ^ punctuation.terminator.statement.js
+//                              ^--- comment.line.double-slash.js
+//                              ^- punctuation.definition.comment.js
+console.log(gen.next().value);  // 1
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^------- meta.function-call.js
+//          ^-- variable.other.object.js
+//             ^ punctuation.accessor.js
+//              ^--- entity.name.function.js
+//                  ^- meta.brace.round.js
+//                    ^ punctuation.accessor.js
+//                     ^---- variable.other.property.js
+//                          ^ meta.brace.round.js
+//                           ^ punctuation.terminator.statement.js
+//                              ^--- comment.line.double-slash.js
+//                              ^- punctuation.definition.comment.js
+
+// --- Async and Await ---
+//<0---------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+
+async function fetchData(url) {
+//<0--------------------------- meta.function.js
+//<0- storage.modifier.async.js
+//    ^------- storage.type.function.js
+//             ^-------- meta.definition.function.js
+//             ^-------- entity.name.function.js
+//                      ^---- meta.parameters.js
+//                      ^ punctuation.definition.parameters.begin.js
+//                       ^-- variable.parameter.js
+//                          ^ punctuation.definition.parameters.end.js
+//                            ^ meta.block.js
+//                            ^ punctuation.definition.block.js
+  try {
+//<0--- meta.function.js
+//<0--- meta.block.js
+//^-- keyword.control.trycatch.js
+//    ^ meta.block.js
+//    ^ punctuation.definition.block.js
+    const response = await fetch(url);
+//<0---------------------------------- meta.function.js
+//<0---------------------------------- meta.block.js
+//<0---------------------------------- meta.block.js
+//  ^-------------------------------- meta.var.expr.js
+//  ^---- storage.type.js
+//        ^-------- meta.var-single-variable.expr.js
+//        ^------- meta.definition.variable.js
+//        ^------- variable.other.constant.js
+//                 ^ keyword.operator.assignment.js
+//                   ^---- keyword.control.flow.js
+//                         ^---- meta.function-call.js
+//                         ^---- entity.name.function.js
+//                              ^ meta.brace.round.js
+//                               ^-- variable.other.readwrite.js
+//                                  ^ meta.brace.round.js
+//                                   ^ punctuation.terminator.statement.js
+    if (!response.ok) {
+//<0------------------- meta.function.js
+//<0------------------- meta.block.js
+//<0------------------- meta.block.js
+//  ^- keyword.control.conditional.js
+//     ^ meta.brace.round.js
+//      ^ keyword.operator.logical.js
+//       ^------- variable.other.object.js
+//               ^ punctuation.accessor.js
+//                ^- variable.other.property.js
+//                  ^ meta.brace.round.js
+//                    ^ meta.block.js
+//                    ^ punctuation.definition.block.js
+      throw new Error('Network response was not ok');
+//<0------------------------------------------------- meta.function.js
+//<0------------------------------------------------- meta.block.js
+//<0------------------------------------------------- meta.block.js
+//<0------------------------------------------------- meta.block.js
+//    ^---- keyword.control.trycatch.js
+//          ^--------------------------------------- new.expr.js
+//          ^-- keyword.operator.new.js
+//              ^---- meta.function-call.js
+//              ^---- entity.name.function.js
+//                   ^ meta.brace.round.js
+//                    ^---------------------------- string.quoted.single.js
+//                    ^ punctuation.definition.string.begin.js
+//                                                ^ punctuation.definition.string.end.js
+//                                                 ^ meta.brace.round.js
+//                                                  ^ punctuation.terminator.statement.js
+    }
+//<0- meta.function.js
+//<0- meta.block.js
+//<0- meta.block.js
+//<0- meta.block.js
+//  ^ punctuation.definition.block.js
+    const data = await response.json();
+//<0----------------------------------- meta.function.js
+//<0----------------------------------- meta.block.js
+//<0----------------------------------- meta.block.js
+//  ^--------------------------------- meta.var.expr.js
+//  ^---- storage.type.js
+//        ^---- meta.var-single-variable.expr.js
+//        ^--- meta.definition.variable.js
+//        ^--- variable.other.constant.js
+//             ^ keyword.operator.assignment.js
+//               ^---- keyword.control.flow.js
+//                     ^------------ meta.function-call.js
+//                     ^------- variable.other.object.js
+//                             ^ punctuation.accessor.js
+//                              ^--- entity.name.function.js
+//                                  ^- meta.brace.round.js
+//                                    ^ punctuation.terminator.statement.js
+    return data;
+//<0------------ meta.function.js
+//<0------------ meta.block.js
+//<0------------ meta.block.js
+//  ^----- keyword.control.flow.js
+//         ^--- variable.other.readwrite.js
+//             ^ punctuation.terminator.statement.js
+  } catch (error) {
+//<0--------------- meta.function.js
+//<0--------------- meta.block.js
+//<0 meta.block.js
+//^ punctuation.definition.block.js
+//  ^---- keyword.control.trycatch.js
+//        ^ meta.brace.round.js
+//         ^---- variable.other.readwrite.js
+//              ^ meta.brace.round.js
+//                ^ meta.block.js
+//                ^ punctuation.definition.block.js
+    console.error('There has been a problem with your fetch operation:', error);
+//<0---------------------------------------------------------------------------- meta.function.js
+//<0---------------------------------------------------------------------------- meta.block.js
+//<0---------------------------------------------------------------------------- meta.block.js
+//  ^------------ meta.function-call.js
+//  ^------ variable.other.object.js
+//         ^ punctuation.accessor.js
+//          ^---- entity.name.function.js
+//               ^ meta.brace.round.js
+//                ^---------------------------------------------------- string.quoted.single.js
+//                ^ punctuation.definition.string.begin.js
+//                                                                    ^ punctuation.definition.string.end.js
+//                                                                     ^ punctuation.separator.comma.js
+//                                                                       ^---- variable.other.readwrite.js
+//                                                                            ^ meta.brace.round.js
+//                                                                             ^ punctuation.terminator.statement.js
+  }
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 meta.block.js
+//^ punctuation.definition.block.js
+}
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+// Example usage of async function
+//<0------------------------------ comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+fetchData('https://jsonplaceholder.typicode.com/todos/1')
+//<0----- meta.function-call.js
+//<0----- entity.name.function.js
+//       ^ meta.brace.round.js
+//        ^--------------------------------------------- string.quoted.single.js
+//        ^ punctuation.definition.string.begin.js
+//                                                     ^ punctuation.definition.string.end.js
+//                                                      ^ meta.brace.round.js
+  .then(data => console.log(data))  // Outputs fetched data
+//^---- meta.function-call.js
+//^ punctuation.accessor.js
+// ^--- entity.name.function.js
+//     ^ meta.brace.round.js
+//      ^------- meta.arrow.js
+//      ^--- variable.parameter.js
+//           ^- storage.type.function.arrow.js
+//              ^---------- meta.function-call.js
+//              ^------ variable.other.object.js
+//                     ^ punctuation.accessor.js
+//                      ^-- entity.name.function.js
+//                         ^ meta.brace.round.js
+//                          ^--- variable.other.readwrite.js
+//                              ^- meta.brace.round.js
+//                                  ^---------------------- comment.line.double-slash.js
+//                                  ^- punctuation.definition.comment.js
+  .catch(error => console.error(error));
+//^----- meta.function-call.js
+//^ punctuation.accessor.js
+// ^---- entity.name.function.js
+//      ^ meta.brace.round.js
+//       ^-------- meta.arrow.js
+//       ^---- variable.parameter.js
+//             ^- storage.type.function.arrow.js
+//                ^------------ meta.function-call.js
+//                ^------ variable.other.object.js
+//                       ^ punctuation.accessor.js
+//                        ^---- entity.name.function.js
+//                             ^ meta.brace.round.js
+//                              ^---- variable.other.readwrite.js
+//                                   ^- meta.brace.round.js
+//                                     ^ punctuation.terminator.statement.js
+
+// JSDoc type annotations
+//<0--------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+/**
+//<0 comment.block.documentation.js
+//<0 punctuation.definition.comment.js
+ * @typedef {Object} Task
+//<0--------------------- comment.block.documentation.js
+// ^------- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//          ^------- entity.name.type.instance.jsdoc
+//          ^ punctuation.definition.bracket.curly.begin.jsdoc
+//                 ^ punctuation.definition.bracket.curly.end.jsdoc
+//                   ^--- entity.name.type.instance.jsdoc
+ * @property {string} title
+//<0----------------------- comment.block.documentation.js
+// ^-------- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//           ^------- entity.name.type.instance.jsdoc
+//           ^ punctuation.definition.bracket.curly.begin.jsdoc
+//                  ^ punctuation.definition.bracket.curly.end.jsdoc
+//                    ^---- variable.other.jsdoc
+ * @property {boolean} completed
+//<0---------------------------- comment.block.documentation.js
+// ^-------- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//           ^-------- entity.name.type.instance.jsdoc
+//           ^ punctuation.definition.bracket.curly.begin.jsdoc
+//                   ^ punctuation.definition.bracket.curly.end.jsdoc
+//                     ^-------- variable.other.jsdoc
+ */
+//<0 comment.block.documentation.js
+//<1 punctuation.definition.comment.js
+
+/**
+//<0 comment.block.documentation.js
+//<0 punctuation.definition.comment.js
+ * Create a task
+//<0------------ comment.block.documentation.js
+ * @param {Task} task
+//<0----------------- comment.block.documentation.js
+// ^----- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//        ^----- entity.name.type.instance.jsdoc
+//        ^ punctuation.definition.bracket.curly.begin.jsdoc
+//             ^ punctuation.definition.bracket.curly.end.jsdoc
+//               ^--- variable.other.jsdoc
+ * @returns {Task}
+//<0-------------- comment.block.documentation.js
+// ^------- storage.type.class.jsdoc
+// ^ punctuation.definition.block.tag.jsdoc
+//          ^----- entity.name.type.instance.jsdoc
+//          ^ punctuation.definition.bracket.curly.begin.jsdoc
+//               ^ punctuation.definition.bracket.curly.end.jsdoc
+ */
+//<0 comment.block.documentation.js
+//<1 punctuation.definition.comment.js
+function createTask(task) {
+//<0----------------------- meta.function.js
+//<0---- storage.type.function.js
+//       ^--------- meta.definition.function.js
+//       ^--------- entity.name.function.js
+//                 ^----- meta.parameters.js
+//                 ^ punctuation.definition.parameters.begin.js
+//                  ^--- variable.parameter.js
+//                      ^ punctuation.definition.parameters.end.js
+//                        ^ meta.block.js
+//                        ^ punctuation.definition.block.js
+  return task;
+//<0---------- meta.function.js
+//<0---------- meta.block.js
+//^----- keyword.control.flow.js
+//       ^--- variable.other.readwrite.js
+//           ^ punctuation.terminator.statement.js
+}
+//<0 meta.function.js
+//<0 meta.block.js
+//<0 punctuation.definition.block.js
+
+const myTask = createTask({
+//<0----------------------- meta.var.expr.js
+//<0- storage.type.js
+//    ^------ meta.var-single-variable.expr.js
+//    ^----- meta.definition.variable.js
+//    ^----- variable.other.constant.js
+//           ^ keyword.operator.assignment.js
+//             ^--------- meta.function-call.js
+//             ^--------- entity.name.function.js
+//                       ^ meta.brace.round.js
+//                        ^ meta.objectliteral.js
+//                        ^ punctuation.definition.block.js
+  title: "Learn JavaScript",
+//<0------------------------ meta.var.expr.js
+//<0------------------------ meta.objectliteral.js
+//^------------------------ meta.object.member.js
+//^----- meta.object-literal.key.js
+//     ^ punctuation.separator.key-value.js
+//       ^----------------- string.quoted.double.js
+//       ^ punctuation.definition.string.begin.js
+//                        ^ punctuation.definition.string.end.js
+//                         ^ punctuation.separator.comma.js
+  completed: false,
+//<0--------------- meta.var.expr.js
+//<0--------------- meta.objectliteral.js
+//^--------------- meta.object.member.js
+//^--------- meta.object-literal.key.js
+//         ^ punctuation.separator.key-value.js
+//           ^---- constant.language.boolean.false.js
+//                ^ punctuation.separator.comma.js
+});
+//<0 meta.var.expr.js
+//<0 meta.objectliteral.js
+//<0 punctuation.definition.block.js
+//<1 meta.brace.round.js
+//^ punctuation.terminator.statement.js
+console.log(myTask);
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^----- variable.other.readwrite.js
+//                ^ meta.brace.round.js
+//                 ^ punctuation.terminator.statement.js
+
+// Importing everything as a namespace (simulated for demonstration)
+//<0---------------------------------------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.js
+console.log(Module.person);  // { name: "Alice", age: 30 }
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^----- variable.other.object.js
+//                ^ punctuation.accessor.js
+//                 ^----- variable.other.property.js
+//                       ^ meta.brace.round.js
+//                        ^ punctuation.terminator.statement.js
+//                           ^---------------------------- comment.line.double-slash.js
+//                           ^- punctuation.definition.comment.js
+console.log(Module.add(10, 20));  // 30
+//<0------- meta.function-call.js
+//<0--- variable.other.object.js
+//     ^ punctuation.accessor.js
+//      ^-- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^--------- meta.function-call.js
+//          ^----- variable.other.object.js
+//                ^ punctuation.accessor.js
+//                 ^-- entity.name.function.js
+//                    ^ meta.brace.round.js
+//                     ^- constant.numeric.decimal.js
+//                       ^ punctuation.separator.comma.js
+//                         ^- constant.numeric.decimal.js
+//                           ^- meta.brace.round.js
+//                             ^ punctuation.terminator.statement.js
+//                                ^---- comment.line.double-slash.js
+//                                ^- punctuation.definition.comment.js

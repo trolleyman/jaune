@@ -1,0 +1,27 @@
+# grammar: text.shell-session
+
+$ echo $EDITOR
+#<0----------- meta.output.shell-session
+vim
+#<0 meta.output.shell-session
+$ git checkout main
+#<0---------------- meta.output.shell-session
+Switched to branch 'main'
+#<0---------------------- meta.output.shell-session
+Your branch is up-to-date with 'origin/main'.
+#<0------------------------------------------ meta.output.shell-session
+$ git push
+#<0------- meta.output.shell-session
+Everything up-to-date
+#<0------------------ meta.output.shell-session
+$ echo 'All
+#<0-------- meta.output.shell-session
+> done!'
+#<0----- meta.output.shell-session
+All
+#<0 meta.output.shell-session
+done!
+#<0-- meta.output.shell-session
+
+# From https://github.com/highlightjs/highlight.js/blob/fcefad4a6bf99b88c54b2b724ca77466e94c374d/test/detect/shell/default.txt#L4
+#<0------------------------------------------------------------------------------------------------------------------------------ meta.output.shell-session

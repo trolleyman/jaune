@@ -1,0 +1,50 @@
+// grammar: source.luau
+
+--!strict
+//<0----- comment.line.double-dash.luau
+
+function ispositive(x : number) : string
+//<0--------------------------- meta.function.luau
+//<0---- keyword.control.luau
+//       ^--------- entity.name.function.luau
+//                 ^----------- meta.parameter.luau
+//                 ^ punctuation.definition.parameters.begin.luau
+//                  ^ variable.parameter.function.luau
+//                    ^ keyword.operator.type.luau
+//                      ^----- support.type.primitive.luau
+//                            ^ punctuation.definition.parameters.end.luau
+//                                ^----- support.type.primitive.luau
+    if x > 0 then
+//  ^- keyword.control.luau
+//     ^ variable.other.readwrite.luau
+//       ^ keyword.operator.comparison.luau
+//         ^ constant.numeric.decimal.luau
+//           ^--- keyword.control.luau
+        return "yes"
+//      ^----- keyword.control.luau
+//             ^---- string.quoted.double.luau
+    else
+//  ^--- keyword.control.luau
+        return "no"
+//      ^----- keyword.control.luau
+//             ^--- string.quoted.double.luau
+    end
+//  ^-- keyword.control.luau
+end
+//<0 keyword.control.luau
+
+local result : string
+//<0- storage.modifier.local.luau
+//    ^----- variable.other.readwrite.luau
+//           ^ keyword.operator.type.luau
+//             ^----- support.type.primitive.luau
+result = ispositive(1)
+//<0-- variable.other.readwrite.luau
+//     ^ keyword.operator.assignment.luau
+//       ^--------- entity.name.function.luau
+//                 ^ punctuation.arguments.begin.luau
+//                  ^ constant.numeric.decimal.luau
+//                   ^ punctuation.arguments.end.luau
+
+-- From https://luau-lang.org/getting-started
+//<0----------------------------------------- comment.line.double-dash.luau

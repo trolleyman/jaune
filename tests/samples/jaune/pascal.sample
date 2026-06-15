@@ -1,0 +1,234 @@
+(* grammar: source.pascal *)
+
+{*****************************************************************************
+(*<0-------------------------------------------------------------------------- comment.block.pascal.two *)
+ * A Pascal quicksort.
+(*<0------------------ comment.block.pascal.two *)
+ *****************************************************************************}
+(*<0--------------------------------------------------------------------------- comment.block.pascal.two *)
+PROGRAM Sort(input, output);
+(*<0--- keyword.pascal *)
+    CONST
+(*  ^---- keyword.pascal *)
+        { Max array size. }
+(*      ^------------------ comment.block.pascal.two *)
+        MaxElts = 50;
+(*                ^- constant.numeric.pascal *)
+    TYPE
+(*  ^--- keyword.pascal *)
+        { Type of the element array. }
+(*      ^----------------------------- comment.block.pascal.two *)
+        IntArrType = ARRAY [1..MaxElts] OF Integer;
+(*                   ^---- keyword.pascal *)
+(*                          ^ constant.numeric.pascal *)
+(*                                      ^- keyword.pascal *)
+(*                                         ^------ storage.support.type.pascal *)
+
+    VAR
+(*  ^-- keyword.pascal *)
+        { Indexes, exchange temp, array size. }
+(*      ^-------------------------------------- comment.block.pascal.two *)
+        i, j, tmp, size: integer;
+(*                       ^------ storage.support.type.pascal *)
+
+        { Array of ints }
+(*      ^---------------- comment.block.pascal.two *)
+        arr: IntArrType;
+
+    { Read in the integers. }
+(*  ^------------------------ comment.block.pascal.two *)
+    PROCEDURE ReadArr(VAR size: Integer; VAR a: IntArrType);
+(*  ^---------------- meta.function.pascal *)
+(*  ^-------- storage.type.function.pascal *)
+(*            ^------ entity.name.function.pascal *)
+(*                    ^-- keyword.pascal *)
+(*                              ^------ storage.support.type.pascal *)
+(*                                       ^-- keyword.pascal *)
+        BEGIN
+(*      ^---- keyword.pascal *)
+            size := 1;
+(*                  ^ constant.numeric.pascal *)
+            WHILE NOT eof DO BEGIN
+(*          ^---- keyword.control.pascal *)
+(*                ^-- keyword.pascal *)
+(*                        ^- keyword.control.pascal *)
+(*                           ^---- keyword.pascal *)
+                readln(a[size]);
+                IF NOT eof THEN
+(*              ^- keyword.pascal *)
+(*                 ^-- keyword.pascal *)
+(*                         ^--- keyword.pascal *)
+                    size := size + 1
+(*                                 ^ constant.numeric.pascal *)
+            END
+(*          ^-- keyword.pascal *)
+        END;
+(*      ^-- keyword.pascal *)
+
+    { Use quicksort to sort the array of integers. }
+(*  ^----------------------------------------------- comment.block.pascal.two *)
+    PROCEDURE Quicksort(size: Integer; VAR arr: IntArrType);
+(*  ^------------------ meta.function.pascal *)
+(*  ^-------- storage.type.function.pascal *)
+(*            ^-------- entity.name.function.pascal *)
+(*                            ^------ storage.support.type.pascal *)
+(*                                     ^-- keyword.pascal *)
+        { This does the actual work of the quicksort.  It takes the
+(*      ^---------------------------------------------------------- comment.block.pascal.two *)
+          parameters which define the range of the array to work on,
+(*<0---------------------------------------------------------------- comment.block.pascal.two *)
+          and references the array as a global. }
+(*<0--------------------------------------------- comment.block.pascal.two *)
+        PROCEDURE QuicksortRecur(start, stop: integer);
+(*      ^----------------------- meta.function.pascal *)
+(*      ^-------- storage.type.function.pascal *)
+(*                ^------------- entity.name.function.pascal *)
+(*                                            ^------ storage.support.type.pascal *)
+            VAR
+(*          ^-- keyword.pascal *)
+                m: integer;
+(*                 ^------ storage.support.type.pascal *)
+
+                { The location separating the high and low parts. }
+(*              ^-------------------------------------------------- comment.block.pascal.two *)
+                splitpt: integer;
+(*                       ^------ storage.support.type.pascal *)
+
+            { The quicksort split algorithm.  Takes the range, and
+(*          ^----------------------------------------------------- comment.block.pascal.two *)
+              returns the split point. }
+(*<0------------------------------------ comment.block.pascal.two *)
+            FUNCTION Split(start, stop: integer): integer;
+(*          ^------------- meta.function.pascal *)
+(*          ^------- storage.type.function.pascal *)
+(*                   ^---- entity.name.function.pascal *)
+(*                                      ^------ storage.support.type.pascal *)
+(*                                                ^------ storage.support.type.pascal *)
+                VAR
+(*              ^-- keyword.pascal *)
+                    left, right: integer;       { Scan pointers. }
+(*                               ^------ storage.support.type.pascal *)
+(*                                              ^----------------- comment.block.pascal.two *)
+                    pivot: integer;             { Pivot value. }
+(*                         ^------ storage.support.type.pascal *)
+(*                                              ^--------------- comment.block.pascal.two *)
+
+                { Interchange the parameters. }
+(*              ^------------------------------ comment.block.pascal.two *)
+                PROCEDURE swap(VAR a, b: integer);
+(*              ^------------- meta.function.pascal *)
+(*              ^-------- storage.type.function.pascal *)
+(*                        ^--- entity.name.function.pascal *)
+(*                             ^-- keyword.pascal *)
+(*                                       ^------ storage.support.type.pascal *)
+                    VAR
+(*                  ^-- keyword.pascal *)
+                        t: integer;
+(*                         ^------ storage.support.type.pascal *)
+                    BEGIN
+(*                  ^---- keyword.pascal *)
+                        t := a;
+                        a := b;
+                        b := t
+                    END;
+(*                  ^-- keyword.pascal *)
+
+                BEGIN { Split }
+(*              ^---- keyword.pascal *)
+(*                    ^-------- comment.block.pascal.two *)
+                    { Set up the pointers for the hight and low sections, and
+(*                  ^-------------------------------------------------------- comment.block.pascal.two *)
+                      get the pivot value. }
+(*<0---------------------------------------- comment.block.pascal.two *)
+                    pivot := arr[start];
+                    left := start + 1;
+(*                                  ^ constant.numeric.pascal *)
+                    right := stop;
+
+                    { Look for pairs out of place and swap 'em. }
+(*                  ^-------------------------------------------- comment.block.pascal.two *)
+                    WHILE left <= right DO BEGIN
+(*                  ^---- keyword.control.pascal *)
+(*                                      ^- keyword.control.pascal *)
+(*                                         ^---- keyword.pascal *)
+                        WHILE (left <= stop) AND (arr[left] < pivot) DO
+(*                      ^---- keyword.control.pascal *)
+(*                                           ^-- keyword.operator.pascal *)
+(*                                                                   ^- keyword.control.pascal *)
+                            left := left + 1;
+(*                                         ^ constant.numeric.pascal *)
+                        WHILE (right > start) AND (arr[right] >= pivot) DO
+(*                      ^---- keyword.control.pascal *)
+(*                                            ^-- keyword.operator.pascal *)
+(*                                                                      ^- keyword.control.pascal *)
+                            right := right - 1;
+(*                                           ^ constant.numeric.pascal *)
+                        IF left < right THEN
+(*                      ^- keyword.pascal *)
+(*                                      ^--- keyword.pascal *)
+                            swap(arr[left], arr[right]);
+                    END;
+(*                  ^-- keyword.pascal *)
+
+                    { Put the pivot between the halves. }
+(*                  ^------------------------------------ comment.block.pascal.two *)
+                    swap(arr[start], arr[right]);
+
+                    { This is how you return function values in pascal.
+(*                  ^-------------------------------------------------- comment.block.pascal.two *)
+                      Yeccch. }
+(*<0--------------------------- comment.block.pascal.two *)
+                    Split := right
+                END;
+(*              ^-- keyword.pascal *)
+
+            BEGIN { QuicksortRecur }
+(*          ^---- keyword.pascal *)
+(*                ^----------------- comment.block.pascal.two *)
+                { If there's anything to do... }
+(*              ^------------------------------- comment.block.pascal.two *)
+                IF start < stop THEN BEGIN
+(*              ^- keyword.pascal *)
+(*                              ^--- keyword.pascal *)
+(*                                   ^---- keyword.pascal *)
+                    splitpt := Split(start, stop);
+                    QuicksortRecur(start, splitpt-1);
+(*                                                ^ constant.numeric.pascal *)
+                    QuicksortRecur(splitpt+1, stop);
+(*                                         ^ constant.numeric.pascal *)
+                END
+(*              ^-- keyword.pascal *)
+            END;
+(*          ^-- keyword.pascal *)
+
+        BEGIN { Quicksort }
+(*      ^---- keyword.pascal *)
+(*            ^------------ comment.block.pascal.two *)
+            QuicksortRecur(1, size)
+(*                         ^ constant.numeric.pascal *)
+        END;
+(*      ^-- keyword.pascal *)
+
+    BEGIN
+(*  ^---- keyword.pascal *)
+        { Read }
+(*      ^------- comment.block.pascal.two *)
+        ReadArr(size, arr);
+
+        { Sort the contents. }
+(*      ^--------------------- comment.block.pascal.two *)
+        Quicksort(size, arr);
+
+        { Print. }
+(*      ^--------- comment.block.pascal.two *)
+        FOR i := 1 TO size DO
+(*      ^-- keyword.control.pascal *)
+(*               ^ constant.numeric.pascal *)
+(*                 ^- keyword.pascal *)
+(*                         ^- keyword.control.pascal *)
+            writeln(arr[i])
+    END.
+(*  ^-- keyword.pascal *)
+
+{ From http://sandbox.mc.edu/~bennet/cs404/doc/qsort_pas.html }
+(*<0----------------------------------------------------------- comment.block.pascal.two *)

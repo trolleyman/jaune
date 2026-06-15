@@ -1,0 +1,12 @@
+// grammar: source.gleam
+
+import gleam/io
+//<0-- keyword.control.gleam
+//          ^ keyword.operator.arithmetic.int.gleam
+
+pub fn main() {
+//<0 keyword.control.gleam
+//  ^- keyword.control.gleam
+  io.println("hello, friend!")
+//           ^--------------- string.quoted.double.gleam
+}

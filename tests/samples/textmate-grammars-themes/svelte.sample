@@ -1,0 +1,312 @@
+<!-- grammar: source.svelte -->
+
+<script>
+//<0---- meta.script.svelte
+//<0---- meta.tag.start.svelte
+//<0 punctuation.definition.tag.begin.svelte
+//<1--- entity.name.tag.svelte
+//     ^ punctuation.definition.tag.end.svelte
+	let files;
+//<0------- meta.script.svelte
+//<0------- meta.embedded.block.svelte
+//<0------- source.js
+//<1------ meta.var.expr.js
+//<1 storage.type.js
+//   ^---- meta.var-single-variable.expr.js
+//   ^---- meta.definition.variable.js
+//   ^---- variable.other.readwrite.js
+//        ^ punctuation.terminator.statement.js
+
+	$: if (files) {
+//<0------------ meta.script.svelte
+//<0------------ meta.embedded.block.svelte
+//<0------------ source.js
+//<1 entity.name.label.js
+//^ punctuation.separator.label.js
+//  ^- keyword.control.conditional.js
+//     ^ meta.brace.round.js
+//      ^---- variable.other.readwrite.js
+//           ^ meta.brace.round.js
+//             ^ meta.block.js
+//             ^ punctuation.definition.block.js
+		// Note that `files` is of type `FileList`, not an Array:
+//<0------------------------------------------------------- meta.script.svelte
+//<0------------------------------------------------------- meta.embedded.block.svelte
+//<0------------------------------------------------------- source.js
+//<0------------------------------------------------------- meta.block.js
+//<0 punctuation.whitespace.comment.leading.js
+//^-------------------------------------------------------- comment.line.double-slash.js
+//^- punctuation.definition.comment.js
+		// https://developer.mozilla.org/en-US/docs/Web/API/FileList
+//<0---------------------------------------------------------- meta.script.svelte
+//<0---------------------------------------------------------- meta.embedded.block.svelte
+//<0---------------------------------------------------------- source.js
+//<0---------------------------------------------------------- meta.block.js
+//<0 punctuation.whitespace.comment.leading.js
+//^----------------------------------------------------------- comment.line.double-slash.js
+//^- punctuation.definition.comment.js
+		console.log(files);
+//<0----------------- meta.script.svelte
+//<0----------------- meta.embedded.block.svelte
+//<0----------------- source.js
+//<0----------------- meta.block.js
+//^---------- meta.function-call.js
+//^------ variable.other.object.js
+//       ^ punctuation.accessor.js
+//        ^-- entity.name.function.js
+//           ^ meta.brace.round.js
+//            ^---- variable.other.readwrite.js
+//                 ^ meta.brace.round.js
+//                  ^ punctuation.terminator.statement.js
+
+		for (const file of files) {
+//<0------------------------- meta.script.svelte
+//<0------------------------- meta.embedded.block.svelte
+//<0------------------------- source.js
+//<0------------------------- meta.block.js
+//^-- keyword.control.loop.js
+//    ^ meta.brace.round.js
+//     ^---------- meta.var.expr.js
+//     ^---- storage.type.js
+//           ^---- meta.var-single-variable.expr.js
+//           ^--- meta.definition.variable.js
+//           ^--- variable.other.constant.js
+//                ^- keyword.operator.expression.of.js
+//                   ^---- variable.other.readwrite.js
+//                        ^ meta.brace.round.js
+//                          ^ meta.block.js
+//                          ^ punctuation.definition.block.js
+			console.log(`${file.name}: ${file.size} bytes`);
+//<0----------------------------------------------- meta.script.svelte
+//<0----------------------------------------------- meta.embedded.block.svelte
+//<0----------------------------------------------- source.js
+//<0----------------------------------------------- meta.block.js
+//<0----------------------------------------------- meta.block.js
+// ^---------- meta.function-call.js
+// ^------ variable.other.object.js
+//        ^ punctuation.accessor.js
+//         ^-- entity.name.function.js
+//            ^ meta.brace.round.js
+//             ^--------------------------------- string.template.js
+//             ^ punctuation.definition.string.template.begin.js
+//              ^----------- meta.template.expression.js
+//              ^- punctuation.definition.template-expression.begin.js
+//                ^-------- meta.embedded.line.js
+//                ^--- variable.other.object.js
+//                    ^ punctuation.accessor.js
+//                     ^--- variable.other.property.js
+//                         ^ punctuation.definition.template-expression.end.js
+//                            ^----------- meta.template.expression.js
+//                            ^- punctuation.definition.template-expression.begin.js
+//                              ^-------- meta.embedded.line.js
+//                              ^--- variable.other.object.js
+//                                  ^ punctuation.accessor.js
+//                                   ^--- variable.other.property.js
+//                                       ^ punctuation.definition.template-expression.end.js
+//                                              ^ punctuation.definition.string.template.end.js
+//                                               ^ meta.brace.round.js
+//                                                ^ punctuation.terminator.statement.js
+		}
+//<0 meta.script.svelte
+//<0 meta.embedded.block.svelte
+//<0 source.js
+//<0 meta.block.js
+//<0 meta.block.js
+//^ punctuation.definition.block.js
+	}
+//<0 meta.script.svelte
+//<0 meta.embedded.block.svelte
+//<0 source.js
+//<0 meta.block.js
+//<1 punctuation.definition.block.js
+</script>
+<!--<0--- meta.script.svelte -->
+<!--<0--- meta.tag.end.svelte -->
+<!--<0 punctuation.definition.tag.begin.svelte -->
+<!--<2-- entity.name.tag.svelte -->
+<!--    ^ punctuation.definition.tag.end.svelte -->
+
+<label for="avatar">Upload a picture:</label>
+<!--<0-------------- meta.scope.tag.label.svelte -->
+<!--<0-------------- meta.tag.start.svelte -->
+<!--<0 punctuation.definition.tag.begin.svelte -->
+<!--<1 entity.name.tag.svelte -->
+<!--   ^----------- meta.attribute.for.svelte -->
+<!--   ^-- entity.other.attribute-name.svelte -->
+<!--      ^ punctuation.separator.key-value.svelte -->
+<!--       ^------- string.quoted.svelte -->
+<!--       ^ punctuation.definition.string.begin.svelte -->
+<!--              ^ punctuation.definition.string.end.svelte -->
+<!--               ^ punctuation.definition.tag.end.svelte -->
+<!--                ^---------------- text.svelte -->
+<!--                                 ^------- meta.scope.tag.label.svelte -->
+<!--                                 ^------- meta.tag.end.svelte -->
+<!--                                 ^- punctuation.definition.tag.begin.svelte -->
+<!--                                   ^---- entity.name.tag.svelte -->
+<!--                                        ^ punctuation.definition.tag.end.svelte -->
+<input accept="image/png, image/jpeg" bind:files id="avatar" name="avatar" type="file" />
+<!--<0----------------------------------------------------------------------------------- meta.tag.void.svelte -->
+<!--<0 punctuation.definition.tag.begin.svelte -->
+<!--<1 entity.name.tag.svelte -->
+<!--   ^----------------------------- meta.attribute.accept.svelte -->
+<!--   ^----- entity.other.attribute-name.svelte -->
+<!--         ^ punctuation.separator.key-value.svelte -->
+<!--          ^---------------------- string.quoted.svelte -->
+<!--          ^ punctuation.definition.string.begin.svelte -->
+<!--                                ^ punctuation.definition.string.end.svelte -->
+<!--                                  ^--------- meta.directive.bind.svelte -->
+<!--                                  ^--- keyword.control.svelte -->
+<!--                                      ^ punctuation.definition.keyword.svelte -->
+<!--                                       ^---- variable.parameter.svelte -->
+<!--                                             ^---------- meta.attribute.id.svelte -->
+<!--                                             ^- entity.other.attribute-name.svelte -->
+<!--                                               ^ punctuation.separator.key-value.svelte -->
+<!--                                                ^------- string.quoted.svelte -->
+<!--                                                ^ punctuation.definition.string.begin.svelte -->
+<!--                                                       ^ punctuation.definition.string.end.svelte -->
+<!--                                                         ^------------ meta.attribute.name.svelte -->
+<!--                                                         ^--- entity.other.attribute-name.svelte -->
+<!--                                                             ^ punctuation.separator.key-value.svelte -->
+<!--                                                              ^------- string.quoted.svelte -->
+<!--                                                              ^ punctuation.definition.string.begin.svelte -->
+<!--                                                                     ^ punctuation.definition.string.end.svelte -->
+<!--                                                                       ^---------- meta.attribute.type.svelte -->
+<!--                                                                       ^--- entity.other.attribute-name.svelte -->
+<!--                                                                           ^ punctuation.separator.key-value.svelte -->
+<!--                                                                            ^----- string.quoted.svelte -->
+<!--                                                                            ^ punctuation.definition.string.begin.svelte -->
+<!--                                                                                 ^ punctuation.definition.string.end.svelte -->
+<!--                                                                                   ^- punctuation.definition.tag.begin.svelte -->
+
+<label for="many">Upload multiple files of any type:</label>
+<!--<0------------ meta.scope.tag.label.svelte -->
+<!--<0------------ meta.tag.start.svelte -->
+<!--<0 punctuation.definition.tag.begin.svelte -->
+<!--<1 entity.name.tag.svelte -->
+<!--   ^--------- meta.attribute.for.svelte -->
+<!--   ^-- entity.other.attribute-name.svelte -->
+<!--      ^ punctuation.separator.key-value.svelte -->
+<!--       ^----- string.quoted.svelte -->
+<!--       ^ punctuation.definition.string.begin.svelte -->
+<!--            ^ punctuation.definition.string.end.svelte -->
+<!--             ^ punctuation.definition.tag.end.svelte -->
+<!--              ^--------------------------------- text.svelte -->
+<!--                                                ^------- meta.scope.tag.label.svelte -->
+<!--                                                ^------- meta.tag.end.svelte -->
+<!--                                                ^- punctuation.definition.tag.begin.svelte -->
+<!--                                                  ^---- entity.name.tag.svelte -->
+<!--                                                       ^ punctuation.definition.tag.end.svelte -->
+<input bind:files id="many" multiple type="file" />
+<!--<0--------------------------------------------- meta.tag.void.svelte -->
+<!--<0 punctuation.definition.tag.begin.svelte -->
+<!--<1 entity.name.tag.svelte -->
+<!--   ^--------- meta.directive.bind.svelte -->
+<!--   ^--- keyword.control.svelte -->
+<!--       ^ punctuation.definition.keyword.svelte -->
+<!--        ^---- variable.parameter.svelte -->
+<!--              ^-------- meta.attribute.id.svelte -->
+<!--              ^- entity.other.attribute-name.svelte -->
+<!--                ^ punctuation.separator.key-value.svelte -->
+<!--                 ^----- string.quoted.svelte -->
+<!--                 ^ punctuation.definition.string.begin.svelte -->
+<!--                      ^ punctuation.definition.string.end.svelte -->
+<!--                        ^------- meta.attribute.multiple.svelte -->
+<!--                        ^------- entity.other.attribute-name.svelte -->
+<!--                                 ^---------- meta.attribute.type.svelte -->
+<!--                                 ^--- entity.other.attribute-name.svelte -->
+<!--                                     ^ punctuation.separator.key-value.svelte -->
+<!--                                      ^----- string.quoted.svelte -->
+<!--                                      ^ punctuation.definition.string.begin.svelte -->
+<!--                                           ^ punctuation.definition.string.end.svelte -->
+<!--                                             ^- punctuation.definition.tag.begin.svelte -->
+
+{#if files}
+<!--<0----- meta.special.if.svelte -->
+<!--<0----- meta.special.start.svelte -->
+<!--<0 punctuation.definition.block.begin.svelte -->
+<!--<1 punctuation.definition.keyword.svelte -->
+<!--<2 keyword.control.conditional.svelte -->
+<!--^----- meta.embedded.expression.svelte -->
+<!--^----- source.ts -->
+<!-- ^---- variable.other.readwrite.ts -->
+<!--      ^ punctuation.definition.block.end.svelte -->
+	<h2>Selected files:</h2>
+<!--<0 text.svelte -->
+<!--<1 meta.scope.tag.h2.svelte -->
+<!--<1 meta.tag.start.svelte -->
+<!--<1 punctuation.definition.tag.begin.svelte -->
+<!--<2 entity.name.tag.svelte -->
+<!--^ punctuation.definition.tag.end.svelte -->
+<!-- ^-------------- text.svelte -->
+<!--                ^---- meta.scope.tag.h2.svelte -->
+<!--                ^---- meta.tag.end.svelte -->
+<!--                ^- punctuation.definition.tag.begin.svelte -->
+<!--                  ^- entity.name.tag.svelte -->
+<!--                    ^ punctuation.definition.tag.end.svelte -->
+	{#each Array.from(files) as file}
+<!--<0 text.svelte -->
+<!--<1---------------------------- meta.special.each.svelte -->
+<!--<1---------------------------- meta.special.start.svelte -->
+<!--<1 punctuation.definition.block.begin.svelte -->
+<!--<2 punctuation.definition.keyword.svelte -->
+<!--<3- keyword.control.svelte -->
+<!--    ^---------------- meta.embedded.expression.svelte -->
+<!--    ^---------------- source.ts -->
+<!--    ^--------- meta.function-call.ts -->
+<!--    ^---- variable.other.object.ts -->
+<!--         ^ punctuation.accessor.ts -->
+<!--          ^--- entity.name.function.ts -->
+<!--              ^ meta.brace.round.ts -->
+<!--               ^---- variable.other.readwrite.ts -->
+<!--                    ^ meta.brace.round.ts -->
+<!--                      ^- keyword.control.as.svelte -->
+<!--                        ^---- meta.embedded.expression.svelte -->
+<!--                        ^---- source.ts -->
+<!--                         ^--- variable.other.readwrite.ts -->
+<!--                             ^ punctuation.definition.block.end.svelte -->
+		<p>{file.name} ({file.size} bytes)</p>
+<!--<0 text.svelte -->
+<!--<2 meta.scope.tag.p.svelte -->
+<!--<2 meta.tag.start.svelte -->
+<!--<2 punctuation.definition.tag.begin.svelte -->
+<!--<3 entity.name.tag.svelte -->
+<!--^ punctuation.definition.tag.end.svelte -->
+<!-- ^ punctuation.section.embedded.begin.svelte -->
+<!--  ^-------- meta.embedded.expression.svelte -->
+<!--  ^-------- source.ts -->
+<!--  ^--- variable.other.object.ts -->
+<!--      ^ punctuation.accessor.ts -->
+<!--       ^--- variable.other.property.ts -->
+<!--           ^ punctuation.section.embedded.end.svelte -->
+<!--            ^- text.svelte -->
+<!--              ^ punctuation.section.embedded.begin.svelte -->
+<!--               ^-------- meta.embedded.expression.svelte -->
+<!--               ^-------- source.ts -->
+<!--               ^--- variable.other.object.ts -->
+<!--                   ^ punctuation.accessor.ts -->
+<!--                    ^--- variable.other.property.ts -->
+<!--                        ^ punctuation.section.embedded.end.svelte -->
+<!--                         ^------ text.svelte -->
+<!--                                ^--- meta.scope.tag.p.svelte -->
+<!--                                ^--- meta.tag.end.svelte -->
+<!--                                ^- punctuation.definition.tag.begin.svelte -->
+<!--                                  ^ entity.name.tag.svelte -->
+<!--                                   ^ punctuation.definition.tag.end.svelte -->
+	{/each}
+<!--<0 text.svelte -->
+<!--<1-- meta.special.each.svelte -->
+<!--<1-- meta.special.end.svelte -->
+<!--<1 punctuation.definition.block.begin.svelte -->
+<!--<2 punctuation.definition.keyword.svelte -->
+<!--<3- keyword.control.svelte -->
+<!--   ^ punctuation.definition.block.end.svelte -->
+{/if}
+<!--<0 meta.special.if.svelte -->
+<!--<0 meta.special.end.svelte -->
+<!--<0 punctuation.definition.block.begin.svelte -->
+<!--<1 punctuation.definition.keyword.svelte -->
+<!--<2 keyword.control.conditional.svelte -->
+<!--^ punctuation.definition.block.end.svelte -->
+
+// From https://svelte.dev/examples/file-inputs
+<!--<0----------------------------------------- text.svelte -->

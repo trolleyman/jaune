@@ -1,0 +1,73 @@
+// grammar: text.asciidoc
+
+= Heading level 1
+//<0------------- markup.heading.heading-0.asciidoc
+//<0 markup.heading.marker.asciidoc
+//<1 markup.heading.space.asciidoc
+:showtitle:
+//<0------- meta.definition.attribute-entry.asciidoc
+//<0 punctuation.separator.asciidoc
+//<1------ support.constant.attribute-name.asciidoc
+//        ^ punctuation.separator.asciidoc
+
+This is a short presentation on AsciiDoc's core capabilities.
+Preview as you type, including formatting like *this*, or _this_.
+//                                             ^----- markup.strong.constrained.asciidoc
+//                                             ^----- markup.bold.asciidoc
+//                                             ^ punctuation.definition.asciidoc
+//                                                  ^ punctuation.definition.asciidoc
+//                                                        ^----- markup.emphasis.constrained.asciidoc
+//                                                        ^----- markup.italic.asciidoc
+//                                                        ^ punctuation.definition.asciidoc
+//                                                             ^ punctuation.definition.asciidoc
+
+== You can also add your custom CSS style
+//<0------------------------------------- markup.heading.heading-1.asciidoc
+//<0 markup.heading.marker.asciidoc
+//^ markup.heading.space.asciidoc
+It will automatically refresh, just as you type
+
+== Heading level 2
+//<0-------------- markup.heading.heading-1.asciidoc
+//<0 markup.heading.marker.asciidoc
+//^ markup.heading.space.asciidoc
+Different heading levels are easily found with the # symbol .
+You can also do _italic_ or *bold* like in the more common mark down.
+//              ^------- markup.emphasis.constrained.asciidoc
+//              ^------- markup.italic.asciidoc
+//              ^ punctuation.definition.asciidoc
+//                     ^ punctuation.definition.asciidoc
+//                          ^----- markup.strong.constrained.asciidoc
+//                          ^----- markup.bold.asciidoc
+//                          ^ punctuation.definition.asciidoc
+//                               ^ punctuation.definition.asciidoc
+
+AsciiDoc supports tables and much more.
+[width="15%"]
+//<0--------- markup.heading.block-attribute.asciidoc
+//<1------ markup.meta.attribute-list.asciidoc
+//        ^ punctuation.separator.asciidoc
+//         ^ markup.meta.attribute-list.asciidoc
+|=======
+|1 |2 |A
+|3 |4 |B
+|5 |6 |C
+|=======
+
+.Bulleted List
+//<1---------- markup.heading.blocktitle.asciidoc
+* item 1
+//<0 markup.list.asciidoc
+//<0 markup.list.bullet.asciidoc
+* More items
+//<0 markup.list.asciidoc
+//<0 markup.list.bullet.asciidoc
+    - One more
+//<0- markup.list.asciidoc
+//  ^ markup.list.bullet.asciidoc
+    - And again
+//<0- markup.list.asciidoc
+//  ^ markup.list.bullet.asciidoc
+
+// From https://github.com/asciidoctor/asciidoctor-vscode/blob/master/examples/simple.adoc
+//<0-------------------------------------------------------------------------------------- comment.inline.asciidoc

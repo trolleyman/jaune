@@ -1,0 +1,323 @@
+// grammar: source.kotlin
+
+package com.example.kotlin
+//<0---------------------- meta.package.kotlin
+//<0--- keyword.hard.package.kotlin
+
+import java.util.Random as Rand
+//<0--------------------------- meta.import.kotlin
+//<0-- keyword.soft.kotlin
+//                      ^- keyword.hard.kotlin
+import android.support.v7.app.AppCompatActivity
+//<0------------------------------------------- meta.import.kotlin
+//<0-- keyword.soft.kotlin
+import org.amshove.kluent.`should equal` as Type
+//<0-------------------------------------------- meta.import.kotlin
+//<0-- keyword.soft.kotlin
+//                                       ^- keyword.hard.kotlin
+
+fun main(@NonNull args: Array<String>) {
+//       ^------- entity.name.type.annotation.kotlin
+//                           ^ keyword.operator.comparison.kotlin
+//                                  ^ keyword.operator.comparison.kotlin
+    println("Hello Kotlin! ${/*test*/}")
+//          ^-------------------------- string.quoted.double.kotlin
+//                         ^---------- meta.template.expression.kotlin
+//                         ^- punctuation.definition.template-expression.begin
+//                           ^------- comment.block.kotlin
+//                                   ^ punctuation.definition.template-expression.end
+
+    val map = mutableMapOf("A" to "B")
+//          ^ keyword.operator.assignment.kotlin
+//                         ^-- string.quoted.double.kotlin
+//                                ^-- string.quoted.double.kotlin
+
+    thing.apply("random string here \n\t\r")
+//              ^-------------------------- string.quoted.double.kotlin
+//                                  ^----- constant.character.escape.kotlin
+    thing.let { test: ->    }
+//                    ^- storage.type.function.arrow.kotlin
+
+    val string = "${getThing()}"
+//             ^ keyword.operator.assignment.kotlin
+//               ^-------------- string.quoted.double.kotlin
+//                ^------------ meta.template.expression.kotlin
+//                ^- punctuation.definition.template-expression.begin
+//                            ^ punctuation.definition.template-expression.end
+}
+
+val items = listOf("apple", "banana", "kiwifruit")
+//        ^ keyword.operator.assignment.kotlin
+//                 ^------ string.quoted.double.kotlin
+//                          ^------- string.quoted.double.kotlin
+//                                    ^---------- string.quoted.double.kotlin
+var x = 9
+//    ^ keyword.operator.assignment.kotlin
+//      ^ constant.numeric.decimal.kotlin
+const val CONSTANT = 99
+//<0- storage.modifier.other.kotlin
+//                 ^ keyword.operator.assignment.kotlin
+//                   ^- constant.numeric.decimal.kotlin
+
+@get:Rule
+//<0 entity.name.type.annotation-site.kotlin
+//   ^--- entity.name.type.annotation.kotlin
+val activityRule = ActivityTestRule(SplashActivity::class.java)
+//               ^ keyword.operator.assignment.kotlin
+//                                                  ^---- entity.name.function.reference.kotlin
+
+val oneMillion = 1_000_000
+//             ^ keyword.operator.assignment.kotlin
+//               ^-------- constant.numeric.decimal.kotlin
+val creditCardNumber = 1234_5678_9012_3456L
+//                   ^ keyword.operator.assignment.kotlin
+//                     ^------------------- constant.numeric.decimal.kotlin
+val socialSecurityNumber = 999_99_9999L
+//                       ^ keyword.operator.assignment.kotlin
+//                         ^----------- constant.numeric.decimal.kotlin
+val hexBytes = 0xFF_EC_DE_5E
+//           ^ keyword.operator.assignment.kotlin
+//             ^------------ constant.numeric.hex.kotlin
+val float = 0.043_331F
+//        ^ keyword.operator.assignment.kotlin
+//          ^--------- constant.numeric.decimal.kotlin
+val bytes = 0b11010010_01101001_10010100_10010010
+//        ^ keyword.operator.assignment.kotlin
+//          ^------------------------------------ constant.numeric.binary.kotlin
+
+if(test == "") {
+//<0 keyword.control.kotlin
+//      ^- keyword.operator.comparison.kotlin
+//         ^- string.quoted.double.kotlin
+    1 and 2 not 3
+//  ^ constant.numeric.decimal.kotlin
+//        ^ constant.numeric.decimal.kotlin
+//              ^ constant.numeric.decimal.kotlin
+} else {
+//^--- keyword.control.kotlin
+    
+}
+
+fun <T> foo() {
+//  ^ keyword.operator.comparison.kotlin
+//    ^ keyword.operator.comparison.kotlin
+    val x  = Bar::class
+//         ^ keyword.operator.assignment.kotlin
+//                ^---- entity.name.function.reference.kotlin
+    val y = hello?.test
+//        ^ keyword.operator.assignment.kotlin
+}
+
+suspend fun <T, U> SequenceBuilder<Int>.yieldIfOdd(x: Int) {
+//<0--- storage.modifier.other.kotlin
+//          ^ keyword.operator.comparison.kotlin
+//               ^ keyword.operator.comparison.kotlin
+//                                ^ keyword.operator.comparison.kotlin
+//                                    ^ keyword.operator.comparison.kotlin
+    if (x % 2 != 0) yield(x)
+//  ^- keyword.control.kotlin
+//        ^ keyword.operator.arithmetic.kotlin
+//          ^ constant.numeric.decimal.kotlin
+//            ^- keyword.operator.comparison.kotlin
+//               ^ constant.numeric.decimal.kotlin
+}
+
+val function = fun(@Inject x: Int, y: Int, lamda: (A, B) -> Unit): Int {
+//           ^ keyword.operator.assignment.kotlin
+//                 ^------ entity.name.type.annotation.kotlin
+//                                                       ^- storage.type.function.arrow.kotlin
+    test.test()
+    return x + y;
+//  ^----- keyword.control.kotlin
+//           ^ keyword.operator.arithmetic.kotlin
+}
+
+abstract fun onCreate(savedInstanceState: Bundle?)
+//<0---- storage.modifier.other.kotlin
+
+fun isOdd(x: Int) = x % 2 != 0
+//                ^ keyword.operator.assignment.kotlin
+//                    ^ keyword.operator.arithmetic.kotlin
+//                      ^ constant.numeric.decimal.kotlin
+//                        ^- keyword.operator.comparison.kotlin
+//                           ^ constant.numeric.decimal.kotlin
+fun isOdd(s: String) = s == "brillig" || s == "slithy" || s == "tove"
+//                   ^ keyword.operator.assignment.kotlin
+//                       ^- keyword.operator.comparison.kotlin
+//                          ^-------- string.quoted.double.kotlin
+//                                    ^- keyword.operator.logical.kotlin
+//                                         ^- keyword.operator.comparison.kotlin
+//                                            ^------- string.quoted.double.kotlin
+//                                                     ^- keyword.operator.logical.kotlin
+//                                                          ^- keyword.operator.comparison.kotlin
+//                                                             ^----- string.quoted.double.kotlin
+
+val numbers = listOf(1, 2, 3)
+//          ^ keyword.operator.assignment.kotlin
+//                   ^ constant.numeric.decimal.kotlin
+//                      ^ constant.numeric.decimal.kotlin
+//                         ^ constant.numeric.decimal.kotlin
+println(numbers.filter(::isOdd))
+//                       ^---- entity.name.function.reference.kotlin
+
+fun foo(node: Node?): String? {
+    val parent = node.getParent() ?: return null
+//             ^ keyword.operator.assignment.kotlin
+//                                   ^----- keyword.control.kotlin
+//                                          ^--- constant.language.null.kotlin
+}
+
+interface Greetable {
+    fun greet()
+}
+
+open class Greeter: Greetable {
+//<0 storage.modifier.other.kotlin
+    companion object {
+//  ^-------- storage.modifier.other.kotlin
+//            ^----- keyword.hard.object.kotlin
+        private const val GREETING = "Hello, World!"
+//      ^------ storage.modifier.other.kotlin
+//              ^---- storage.modifier.other.kotlin
+//                                 ^ keyword.operator.assignment.kotlin
+//                                   ^-------------- string.quoted.double.kotlin
+    }
+    
+    override fun greet() {
+//  ^------- storage.modifier.other.kotlin
+        println(GREETING)
+    }
+}
+
+expect class Foo(bar: String) {
+    fun frob() 
+}
+
+actual class Foo actual constructor(val bar: String) {
+    actual fun frob() {
+        println("Frobbing the $bar")
+//              ^------------------ string.quoted.double.kotlin
+//                            ^--- variable.string-escape.kotlin
+    }
+}
+
+expect fun formatString(source: String, vararg args: Any): String
+//                                      ^----- storage.modifier.other.kotlin
+expect annotation class Test
+//     ^--------- storage.modifier.other.kotlin
+
+actual fun formatString(source: String, vararg args: Any) = String.format(source, args)
+//                                      ^----- storage.modifier.other.kotlin
+//                                                        ^ keyword.operator.assignment.kotlin
+actual typealias Test = org.junit.Test
+//                    ^ keyword.operator.assignment.kotlin
+
+sealed class Expr
+//<0-- storage.modifier.other.kotlin
+data class Const(val number: Double) : Expr()
+//<0 storage.modifier.other.kotlin
+data class Sum(val e1: Expr, val e2: Expr) : Expr()
+//<0 storage.modifier.other.kotlin
+object NotANumber : Expr()
+//<0-- keyword.hard.object.kotlin
+//     ^--------- entity.name.type.object.kotlin
+
+@file:JvmName("Foo")
+//<0- entity.name.type.annotation-site.kotlin
+//    ^------ entity.name.type.annotation.kotlin
+//             ^-- entity.name.type.annotation.kotlin
+private sealed class InjectedClass<T, U> @Inject constructor(
+//<0--- storage.modifier.other.kotlin
+//      ^----- storage.modifier.other.kotlin
+//                                ^ keyword.operator.comparison.kotlin
+//                                     ^ keyword.operator.comparison.kotlin
+//                                       ^------ entity.name.type.annotation.kotlin
+    val test: Int = 50, 
+//                ^ keyword.operator.assignment.kotlin
+//                  ^- constant.numeric.decimal.kotlin
+    var anotherVar: String = "hello world"
+//                         ^ keyword.operator.assignment.kotlin
+//                           ^------------ string.quoted.double.kotlin
+) : SomeSuperClass(test, anotherVar) {
+
+    init {
+//  ^--- keyword.soft.kotlin
+        //
+//      ^- comment.line.double-slash.kotlin
+    }
+
+    constructor(param1: String, param2: Int): this(param1, param2) {
+//                                            ^--- variable.language.this.kotlin
+        //
+//      ^- comment.line.double-slash.kotlin
+    }
+
+    companion object {
+//  ^-------- storage.modifier.other.kotlin
+//            ^----- keyword.hard.object.kotlin
+        //
+//      ^- comment.line.double-slash.kotlin
+    }
+}
+annotation class Suspendable
+//<0------ storage.modifier.other.kotlin
+val f = @Suspendable { Fiber.sleep(10) }
+//    ^ keyword.operator.assignment.kotlin
+//      ^----------- entity.name.type.annotation.kotlin
+//                                 ^- constant.numeric.decimal.kotlin
+
+
+private data class Foo(
+//<0--- storage.modifier.other.kotlin
+//      ^--- storage.modifier.other.kotlin
+    /**
+//  ^-- comment.block.javadoc.kotlin
+     * ```
+//<0------ comment.block.javadoc.kotlin
+     * ($)
+//<0------ comment.block.javadoc.kotlin
+     * ```
+//<0------ comment.block.javadoc.kotlin
+     */
+//<0--- comment.block.javadoc.kotlin
+    val variables: Map<String, String>
+//                    ^ keyword.operator.comparison.kotlin
+//                                   ^ keyword.operator.comparison.kotlin
+)
+
+data class Response(@SerializedName("param1") val param1: String,
+//<0 storage.modifier.other.kotlin
+//                  ^-------------- entity.name.type.annotation.kotlin
+//                                  ^------- string.quoted.double.kotlin
+                    @SerializedName("param2") val param2: String,
+//                  ^-------------- entity.name.type.annotation.kotlin
+//                                  ^------- string.quoted.double.kotlin
+                    @SerializedName("param3") val param3: String) {
+//                  ^-------------- entity.name.type.annotation.kotlin
+//                                  ^------- string.quoted.double.kotlin
+}
+
+object DefaultListener : MouseAdapter() {
+//<0-- keyword.hard.object.kotlin
+//     ^-------------- entity.name.type.object.kotlin
+    override fun mouseClicked(e: MouseEvent) { }
+//  ^------- storage.modifier.other.kotlin
+
+    override fun mouseEntered(e: MouseEvent) { }
+//  ^------- storage.modifier.other.kotlin
+}
+
+class Feature : Node("Title", "Content", "Description") {
+//                   ^------ string.quoted.double.kotlin
+//                            ^-------- string.quoted.double.kotlin
+//                                       ^------------ string.quoted.double.kotlin
+
+}
+
+class Outer {
+    inner class Inner {}
+//  ^---- storage.modifier.other.kotlin
+}
+
+// From: https://github.com/nishtahir/language-kotlin/blob/master/snapshots/corpus.kt
+//<0--------------------------------------------------------------------------------- comment.line.double-slash.kotlin

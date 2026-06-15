@@ -1,0 +1,287 @@
+# grammar: source.chapel
+
+use Random;
+#<0 keyword.control.chapel
+
+/* outer /* nested */ block comment */
+#<0----------------------------------- comment.block.chapel
+#<0 punctuation.definition.comment.chapel
+#        ^----------- comment.block.chapel
+#        ^- punctuation.definition.comment.chapel
+#                  ^- punctuation.definition.comment.chapel
+#                                   ^- punctuation.definition.comment.chapel
+
+config const n = 10;
+#<0--- storage.modifier.chapel
+#      ^---- storage.modifier.chapel
+#              ^ keyword.operator.assignment.chapel
+#                ^- constant.numeric.chapel
+const D = {1..n, 1..n};
+#<0-- storage.modifier.chapel
+#       ^ keyword.operator.assignment.chapel
+#          ^ constant.numeric.chapel
+#           ^- keyword.operator.arithmetic.chapel
+#                ^ constant.numeric.chapel
+#                 ^- keyword.operator.arithmetic.chapel
+const halfOpen = 0..<n;
+#<0-- storage.modifier.chapel
+#              ^ keyword.operator.assignment.chapel
+#                ^ constant.numeric.chapel
+#                 ^-- keyword.operator.arithmetic.chapel
+const counted = 1..#5;
+#<0-- storage.modifier.chapel
+#             ^ keyword.operator.assignment.chapel
+#               ^ constant.numeric.chapel
+#                ^-- keyword.operator.arithmetic.chapel
+#                   ^ constant.numeric.chapel
+
+var A: [D] real;
+#<0 storage.modifier.chapel
+#    ^ keyword.operator.others.chapel
+#      ^ keyword.operator.domain.chapel
+#        ^ keyword.operator.domain.chapel
+#          ^--- storage.type.chapel
+var scratch: real = noinit;
+#<0 storage.modifier.chapel
+#          ^ keyword.operator.others.chapel
+#            ^--- storage.type.chapel
+#                 ^ keyword.operator.assignment.chapel
+#                   ^----- keyword.control.chapel
+fillRandom(A);
+
+const story = """
+#<0-- storage.modifier.chapel
+#           ^ keyword.operator.assignment.chapel
+#             ^-- string.quoted.double.multi.chapel
+#             ^-- punctuation.definition.string.begin.chapel
+multi-line "double" and 'single' quotes
+#<0------------------------------------ string.quoted.double.multi.chapel
+""";
+#<0 string.quoted.double.multi.chapel
+#<0 punctuation.definition.string.end.chapel
+
+@deprecated("use newPoint instead")
+#<0-------- storage.type.attribute.chapel
+#           ^--------------------- string.quoted.double.chapel
+#           ^ punctuation.definition.string.begin.chapel
+#                                ^ punctuation.definition.string.end.chapel
+proc oldPoint() do return (0.0, 0.0);
+#<0- keyword.control.chapel
+#               ^- keyword.control.chapel
+#                  ^----- keyword.control.chapel
+#                          ^-- constant.numeric.chapel
+#                               ^-- constant.numeric.chapel
+
+record Point {
+#<0--- keyword.control.chapel
+  var x, y: real;
+# ^-- storage.modifier.chapel
+#         ^ keyword.operator.others.chapel
+#           ^--- storage.type.chapel
+  proc init(x: real, y: real) {
+# ^--- keyword.control.chapel
+#      ^--- keyword.control.chapel
+#            ^ keyword.operator.others.chapel
+#              ^--- storage.type.chapel
+#                     ^ keyword.operator.others.chapel
+#                       ^--- storage.type.chapel
+    this.x = x;
+#   ^--- variable.language.chapel
+#          ^ keyword.operator.assignment.chapel
+    this.y = y;
+#   ^--- variable.language.chapel
+#          ^ keyword.operator.assignment.chapel
+  }
+  proc postinit() { writeln("post-init"); }
+# ^--- keyword.control.chapel
+#      ^------- keyword.control.chapel
+#                           ^---------- string.quoted.double.chapel
+#                           ^ punctuation.definition.string.begin.chapel
+#                                     ^ punctuation.definition.string.end.chapel
+  proc deinit() { writeln("destroy point"); }
+# ^--- keyword.control.chapel
+#      ^----- keyword.control.chapel
+#                         ^-------------- string.quoted.double.chapel
+#                         ^ punctuation.definition.string.begin.chapel
+#                                       ^ punctuation.definition.string.end.chapel
+}
+
+class Tree {
+#<0-- keyword.control.chapel
+  var val: int;
+# ^-- storage.modifier.chapel
+#        ^ keyword.operator.others.chapel
+#          ^-- storage.type.chapel
+  var left, right: owned Tree?;
+# ^-- storage.modifier.chapel
+#                ^ keyword.operator.others.chapel
+#                  ^---- storage.modifier.chapel
+#                            ^ keyword.operator.others.chapel
+  proc deinit() { writeln("freeing ", val); }
+# ^--- keyword.control.chapel
+#      ^----- keyword.control.chapel
+#                         ^--------- string.quoted.double.chapel
+#                         ^ punctuation.definition.string.begin.chapel
+#                                  ^ punctuation.definition.string.end.chapel
+}
+
+var sharedRoot: shared Tree = new shared Tree(0);
+#<0 storage.modifier.chapel
+#             ^ keyword.operator.others.chapel
+#               ^----- storage.modifier.chapel
+#                           ^ keyword.operator.assignment.chapel
+#                             ^-- keyword.control.chapel
+#                                 ^----- storage.modifier.chapel
+#                                             ^ constant.numeric.chapel
+var borrowedRef: borrowed Tree?;
+#<0 storage.modifier.chapel
+#              ^ keyword.operator.others.chapel
+#                ^------- storage.modifier.chapel
+#                             ^ keyword.operator.others.chapel
+var unmanagedRef: unmanaged Tree?;
+#<0 storage.modifier.chapel
+#               ^ keyword.operator.others.chapel
+#                 ^-------- storage.modifier.chapel
+#                               ^ keyword.operator.others.chapel
+
+iter fibonacci(count: int) {
+#<0- keyword.control.chapel
+#                   ^ keyword.operator.others.chapel
+#                     ^-- storage.type.chapel
+  var (cur, next) = (0, 1);
+# ^-- storage.modifier.chapel
+#                 ^ keyword.operator.assignment.chapel
+#                    ^ constant.numeric.chapel
+#                       ^ constant.numeric.chapel
+  for 1..count {
+# ^-- keyword.control.chapel
+#     ^ constant.numeric.chapel
+#      ^- keyword.operator.arithmetic.chapel
+    yield cur;
+#   ^---- keyword.control.chapel
+    (cur, next) = (next, cur + next);
+#               ^ keyword.operator.assignment.chapel
+#                            ^ keyword.operator.arithmetic.chapel
+  }
+}
+
+var counter: atomic int;
+#<0 storage.modifier.chapel
+#          ^ keyword.operator.others.chapel
+#            ^----- keyword.control.chapel
+#                   ^-- storage.type.chapel
+var done: sync bool;
+#<0 storage.modifier.chapel
+#       ^ keyword.operator.others.chapel
+#         ^--- storage.modifier.chapel
+#              ^--- storage.type.chapel
+var a = 1, b = 2;
+#<0 storage.modifier.chapel
+#     ^ keyword.operator.assignment.chapel
+#       ^ constant.numeric.chapel
+#            ^ keyword.operator.assignment.chapel
+#              ^ constant.numeric.chapel
+a <=> b;
+# ^-- keyword.operator.comparison.chapel
+
+forall (i, j) in D do
+#<0--- keyword.control.chapel
+#             ^- keyword.control.chapel
+#                  ^- keyword.control.chapel
+  A[i, j] = if i == j then 1.0 else A[i, j];
+#  ^ keyword.operator.domain.chapel
+#       ^ keyword.operator.domain.chapel
+#         ^ keyword.operator.assignment.chapel
+#           ^- keyword.control.chapel
+#                ^- keyword.operator.comparison.chapel
+#                     ^--- keyword.control.chapel
+#                          ^-- constant.numeric.chapel
+#                              ^--- keyword.control.chapel
+#                                    ^ keyword.operator.domain.chapel
+#                                         ^ keyword.operator.domain.chapel
+
+cobegin {
+#<0---- keyword.control.chapel
+  { A[1, ..] = 0.0; done.writeEF(true); }
+#    ^ keyword.operator.domain.chapel
+#     ^ constant.numeric.chapel
+#        ^- keyword.operator.arithmetic.chapel
+#          ^ keyword.operator.domain.chapel
+#            ^ keyword.operator.assignment.chapel
+#              ^-- constant.numeric.chapel
+#                                ^--- constant.language.chapel
+  { done.readFE(); writeln("phase done"); }
+#                          ^----------- string.quoted.double.chapel
+#                          ^ punctuation.definition.string.begin.chapel
+#                                     ^ punctuation.definition.string.end.chapel
+}
+
+coforall loc in Locales do on loc {
+#<0----- keyword.control.chapel
+#            ^- keyword.control.chapel
+#               ^------ support.variable.chapel
+#                       ^- keyword.control.chapel
+#                          ^- keyword.control.chapel
+  counter.add(1);
+#             ^ constant.numeric.chapel
+  writeln("locale ", loc.id, ": ", here.maxTaskPar, " tasks");
+#         ^-------- string.quoted.double.chapel
+#         ^ punctuation.definition.string.begin.chapel
+#                 ^ punctuation.definition.string.end.chapel
+#                            ^--- string.quoted.double.chapel
+#                            ^ punctuation.definition.string.begin.chapel
+#                               ^ punctuation.definition.string.end.chapel
+#                                  ^--- support.variable.chapel
+#                                                   ^------- string.quoted.double.chapel
+#                                                   ^ punctuation.definition.string.begin.chapel
+#                                                          ^ punctuation.definition.string.end.chapel
+}
+
+extern {
+#<0----- meta.extern.chapel
+#<0--- keyword.control.chapel
+  #include <math.h>
+#<0---------------- meta.extern.chapel
+#<0---------------- meta.preprocessor.include.c
+# ^------- keyword.control.directive.include.c
+# ^ punctuation.definition.directive.c
+#          ^------- string.quoted.other.lt-gt.include.c
+#          ^ punctuation.definition.string.begin.c
+#                 ^ punctuation.definition.string.end.c
+  static inline double square(double v) { return v * v; }
+#<0------------------------------------------------------ meta.extern.chapel
+# ^----- storage.modifier.c
+#        ^----- storage.modifier.c
+#               ^----- storage.type.built-in.primitive.c
+#                      ^--------------- meta.function.c
+#                      ^--------------- meta.function.definition.parameters.c
+#                      ^----- entity.name.function.c
+#                            ^ punctuation.section.parameters.begin.bracket.round.c
+#                             ^----- storage.type.built-in.primitive.c
+#                                    ^ variable.parameter.probably.c
+#                                     ^ punctuation.section.parameters.end.bracket.round.c
+#                                       ^---------------- meta.block.c
+#                                       ^ punctuation.section.block.begin.bracket.curly.c
+#                                         ^----- keyword.control.c
+#                                                  ^ keyword.operator.c
+#                                                     ^ punctuation.terminator.statement.c
+#                                                       ^ punctuation.section.block.end.bracket.curly.c
+}
+#<0 meta.extern.chapel
+
+writeln(story);
+writeln("sum=", + reduce A, " swapped: a=", a, " b=", b);
+#       ^----- string.quoted.double.chapel
+#       ^ punctuation.definition.string.begin.chapel
+#            ^ punctuation.definition.string.end.chapel
+#               ^ keyword.operator.arithmetic.chapel
+#                 ^----- keyword.control.chapel
+#                           ^------------- string.quoted.double.chapel
+#                           ^ punctuation.definition.string.begin.chapel
+#                                        ^ punctuation.definition.string.end.chapel
+#                                              ^---- string.quoted.double.chapel
+#                                              ^ punctuation.definition.string.begin.chapel
+#                                                  ^ punctuation.definition.string.end.chapel
+// From https://github.com/chapel-lang/chapel/tree/main/test/release/examples/primers
+#<0---------------------------------------------------------------------------------- comment.line.double-slash.chapel
+#<0 punctuation.definition.comment.chapel

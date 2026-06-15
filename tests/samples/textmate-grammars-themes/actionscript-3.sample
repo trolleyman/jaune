@@ -1,0 +1,122 @@
+# grammar: source.actionscript.3
+
+private function createParticles( count ):void{
+#       ^------------------------------------- meta.function.actionscript.3
+#       ^------- storage.type.function.actionscript.3
+#                ^-------------- entity.name.function.actionscript.3
+#                               ^-------- meta.function_arguments.actionscript.3
+#                                 ^---- variable.parameter.actionscript.3
+#                                        ^ keyword.operator.actionscript.3
+#                                         ^--- support.type.actionscript.3
+    var anchorPoint = 0;
+#   ^-------------- meta.variable_declaration.actionscript.3
+#   ^-- storage.modifier.actionscript.3
+#                   ^ keyword.operator.actionscript.3
+#                     ^ constant.numeric.actionscript.3
+    for(var i:uint = 0; i < count; i++){
+#   ^-- keyword.control.actionscript.3
+#       ^----- meta.variable_declaration.actionscript.3
+#       ^-- storage.modifier.actionscript.3
+#            ^ keyword.operator.actionscript.3
+#             ^--- support.class.builtin.actionscript.3
+#                  ^ keyword.operator.actionscript.3
+#                    ^ constant.numeric.actionscript.3
+#                         ^ keyword.operator.actionscript.3
+#                                   ^- keyword.operator.actionscript.3
+     
+        var particle:Object;
+#       ^------------ meta.variable_declaration.actionscript.3
+#       ^-- storage.modifier.actionscript.3
+#                   ^ keyword.operator.actionscript.3
+#                    ^----- support.class.builtin.actionscript.3
+        if( inactiveFireParticles.length > 0 ){ 
+#       ^- keyword.control.actionscript.3
+#                                ^ keyword.operator.actionscript.3
+#                                        ^ keyword.operator.actionscript.3
+#                                          ^ constant.numeric.actionscript.3
+            particle = inactiveFireParticles.shift();
+#                    ^ keyword.operator.actionscript.3
+#                                           ^ keyword.operator.actionscript.3
+        }else {
+#        ^--- keyword.control.actionscript.3
+            particle = new Object(); 
+#                    ^ keyword.operator.actionscript.3
+#                      ^-- keyword.other.actionscript.3
+#                          ^----- support.class.builtin.actionscript.3
+            fireParticles.push( particle );                 
+#                        ^ keyword.operator.actionscript.3
+        }               
+         
+        particle.x = uint( Math.random() * frame.width * 0.1 ) + anchors[anchorPoint];
+#               ^ keyword.operator.actionscript.3
+#                  ^ keyword.operator.actionscript.3
+#                    ^--- support.class.builtin.actionscript.3
+#                          ^--- support.class.builtin.actionscript.3
+#                              ^ keyword.operator.actionscript.3
+#                                        ^ keyword.operator.actionscript.3
+#                                               ^ keyword.operator.actionscript.3
+#                                                      ^ keyword.operator.actionscript.3
+#                                                        ^-- constant.numeric.actionscript.3
+#                                                              ^ keyword.operator.actionscript.3
+#                                                                       ^ keyword.operator.actionscript.3
+#                                                                                   ^ keyword.operator.actionscript.3
+        particle.y = frame.bottom;
+#               ^ keyword.operator.actionscript.3
+#                  ^ keyword.operator.actionscript.3
+#                         ^ keyword.operator.actionscript.3
+        particle.life = 70 + uint( Math.random() * 30 ); 
+#               ^ keyword.operator.actionscript.3
+#                     ^ keyword.operator.actionscript.3
+#                       ^- constant.numeric.actionscript.3
+#                          ^ keyword.operator.actionscript.3
+#                            ^--- support.class.builtin.actionscript.3
+#                                  ^--- support.class.builtin.actionscript.3
+#                                      ^ keyword.operator.actionscript.3
+#                                                ^ keyword.operator.actionscript.3
+#                                                  ^- constant.numeric.actionscript.3
+        particle.size = 5 + uint( Math.random() * 10 );
+#               ^ keyword.operator.actionscript.3
+#                     ^ keyword.operator.actionscript.3
+#                       ^ constant.numeric.actionscript.3
+#                         ^ keyword.operator.actionscript.3
+#                           ^--- support.class.builtin.actionscript.3
+#                                 ^--- support.class.builtin.actionscript.3
+#                                     ^ keyword.operator.actionscript.3
+#                                               ^ keyword.operator.actionscript.3
+#                                                 ^- constant.numeric.actionscript.3
+         
+        if(particle.size > 12){
+#       ^- keyword.control.actionscript.3
+#                  ^ keyword.operator.actionscript.3
+#                        ^ keyword.operator.actionscript.3
+#                          ^- constant.numeric.actionscript.3
+            particle.size = 10;
+#                   ^ keyword.operator.actionscript.3
+#                         ^ keyword.operator.actionscript.3
+#                           ^- constant.numeric.actionscript.3
+        }
+        particle.anchor = anchors[anchorPoint] + uint( Math.random() * 5 );
+#               ^ keyword.operator.actionscript.3
+#                       ^ keyword.operator.actionscript.3
+#                                ^ keyword.operator.actionscript.3
+#                                            ^ keyword.operator.actionscript.3
+#                                              ^ keyword.operator.actionscript.3
+#                                                ^--- support.class.builtin.actionscript.3
+#                                                      ^--- support.class.builtin.actionscript.3
+#                                                          ^ keyword.operator.actionscript.3
+#                                                                    ^ keyword.operator.actionscript.3
+#                                                                      ^ constant.numeric.actionscript.3
+         
+        anchorPoint = (anchorPoint == 9)? 0 : anchorPoint + 1;
+#                   ^ keyword.operator.actionscript.3
+#                                  ^- keyword.operator.actionscript.3
+#                                     ^ constant.numeric.actionscript.3
+#                                       ^ keyword.operator.actionscript.3
+#                                         ^ constant.numeric.actionscript.3
+#                                                         ^ keyword.operator.actionscript.3
+#                                                           ^ constant.numeric.actionscript.3
+    }       
+}
+
+// From https://code.tutsplus.com/tutorials/actionscript-30-optimization-a-practical-example--active-11295
+#<0------------------------------------------------------------------------------------------------------- comment.line.actionscript.3

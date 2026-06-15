@@ -1,0 +1,126 @@
+<!-- grammar: text.markdown.mdc.standalone -->
+
+---
+<!--<0 punctuation.definition.begin.frontmatter -->
+title: Introduction
+<!--<0------------- meta.embedded.block.frontmatter -->
+<!--<0 string.unquoted.plain.out.yaml -->
+<!--<0 entity.name.tag.yaml -->
+<!-- ^ punctuation.separator.key-value.mapping.yaml -->
+<!--   ^----------- string.unquoted.plain.out.yaml -->
+---
+<!--<0 meta.embedded.block.frontmatter -->
+
+::card
+<!--<0 meta.embedded.block.frontmatter -->
+<!--<0 string.unquoted.plain.out.yaml -->
+---
+<!--<0 meta.embedded.block.frontmatter -->
+icon: Icon
+<!--<0---- meta.embedded.block.frontmatter -->
+<!--<0 string.unquoted.plain.out.yaml -->
+<!--<0 entity.name.tag.yaml -->
+<!--^ punctuation.separator.key-value.mapping.yaml -->
+<!--  ^--- string.unquoted.plain.out.yaml -->
+title: A complex card.
+<!--<0---------------- meta.embedded.block.frontmatter -->
+<!--<0 string.unquoted.plain.out.yaml -->
+<!--<0 entity.name.tag.yaml -->
+<!-- ^ punctuation.separator.key-value.mapping.yaml -->
+<!--   ^-------------- string.unquoted.plain.out.yaml -->
+---
+<!--<0 meta.embedded.block.frontmatter -->
+
+Default slot
+<!--<0------ meta.embedded.block.frontmatter -->
+<!--<0------ string.unquoted.plain.out.yaml -->
+
+#description
+<!--<0------ meta.embedded.block.frontmatter -->
+<!--<0------ comment.line.number-sign.yaml -->
+<!--<0 punctuation.definition.comment.yaml -->
+  ::alert
+<!--<0--- meta.embedded.block.frontmatter -->
+<!--<2--- string.unquoted.plain.out.yaml -->
+    Description slot
+<!--<0-------------- meta.embedded.block.frontmatter -->
+<!--^--------------- string.unquoted.plain.out.yaml -->
+  ::
+<!--<0 meta.embedded.block.frontmatter -->
+<!--<2 string.unquoted.plain.out.yaml -->
+::
+<!--<0 meta.embedded.block.frontmatter -->
+<!--<0 string.unquoted.plain.out.yaml -->
+
+::alert{type="warning" icon="exclamation-circle"}
+<!--<0------------------------------------------- meta.embedded.block.frontmatter -->
+<!--<0------------------------------------------- string.unquoted.plain.out.yaml -->
+Oops! An error occurred
+<!--<0----------------- meta.embedded.block.frontmatter -->
+<!--<0----------------- string.unquoted.plain.out.yaml -->
+::
+<!--<0 meta.embedded.block.frontmatter -->
+<!--<0 string.unquoted.plain.out.yaml -->
+
+Hello [World]{style="background-color: var(--color-primary-500)"}!
+<!--<0------------------------------------------------------------ meta.embedded.block.frontmatter -->
+<!--<0------------------------------- string.unquoted.plain.out.yaml -->
+<!--<0------------------------------- entity.name.tag.yaml -->
+<!--                                 ^ punctuation.separator.key-value.mapping.yaml -->
+<!--                                   ^-------------------------- string.unquoted.plain.out.yaml -->
+
+Hello [World]{style="color: green;" .custom-class #custom-id}!
+<!--<0-------------------------------------------------------- meta.embedded.block.frontmatter -->
+<!--<0-------------------- string.unquoted.plain.out.yaml -->
+<!--<0-------------------- entity.name.tag.yaml -->
+<!--                      ^ punctuation.separator.key-value.mapping.yaml -->
+<!--                        ^-------------------- string.unquoted.plain.out.yaml -->
+<!--                                              ^----------- comment.line.number-sign.yaml -->
+<!--                                              ^ punctuation.definition.comment.yaml -->
+
+Attributes work on:
+<!--<0------------- meta.embedded.block.frontmatter -->
+<!--<0------------ string.unquoted.plain.out.yaml -->
+<!--<0------------ entity.name.tag.yaml -->
+<!--              ^ punctuation.separator.key-value.mapping.yaml -->
+
+- ![](/favicon.ico){style="display: inline; margin: 0;"} image,
+<!--<0--------------------------------------------------------- meta.embedded.block.frontmatter -->
+<!--<0 punctuation.definition.block.sequence.item.yaml -->
+<!--<2----------------------------- meta.property.yaml -->
+<!--<2----------------------------- invalid.illegal.tag-handle.yaml -->
+<!--                                ^------------- string.unquoted.plain.out.yaml -->
+<!--                                ^------------- entity.name.tag.yaml -->
+<!--                                              ^ punctuation.separator.key-value.mapping.yaml -->
+<!--                                                ^---------- string.unquoted.plain.out.yaml -->
+- [link](#attributes){style="background-color: pink;"}, `code`{style="color: cyan;"},
+<!--<0------------------------------------------------------------------------------- meta.embedded.block.frontmatter -->
+<!--<0 punctuation.definition.block.sequence.item.yaml -->
+<!--<2-- meta.flow-sequence.yaml -->
+<!--<2 punctuation.definition.sequence.begin.yaml -->
+<!--<3- string.unquoted.plain.in.yaml -->
+<!--   ^ punctuation.definition.sequence.end.yaml -->
+<!--    ^------------------------------------ string.unquoted.plain.out.yaml -->
+<!--    ^------------------------------------ entity.name.tag.yaml -->
+<!--                                         ^ punctuation.separator.key-value.mapping.yaml -->
+<!--                                           ^--------------------------- string.unquoted.plain.out.yaml -->
+<!--                                           ^--------------------------- entity.name.tag.yaml -->
+<!--                                                                       ^ punctuation.separator.key-value.mapping.yaml -->
+<!--                                                                         ^------- string.unquoted.plain.out.yaml -->
+- _italic_{style="background-color: yellow; color:black;"} and **bold**{style="background-color: lightgreen;"} texts.
+<!--<0--------------------------------------------------------------------------------------------------------------- meta.embedded.block.frontmatter -->
+<!--<0 punctuation.definition.block.sequence.item.yaml -->
+<!--<2---------------------------- string.unquoted.plain.out.yaml -->
+<!--<2---------------------------- entity.name.tag.yaml -->
+<!--                              ^ punctuation.separator.key-value.mapping.yaml -->
+<!--                                ^---------------------------------------------------------- string.unquoted.plain.out.yaml -->
+<!--                                ^---------------------------------------------------------- entity.name.tag.yaml -->
+<!--                                                                                           ^ punctuation.separator.key-value.mapping.yaml -->
+<!--                                                                                             ^------------------- string.unquoted.plain.out.yaml -->
+
+<!-- from: https://content.nuxt.com/usage/markdown -->
+<!--<0------------------------------------------------ meta.embedded.block.frontmatter -->
+<!--<0--- string.unquoted.plain.out.yaml -->
+<!--<0--- entity.name.tag.yaml -->
+<!--     ^ punctuation.separator.key-value.mapping.yaml -->
+<!--       ^------------------------------------------ string.unquoted.plain.out.yaml -->

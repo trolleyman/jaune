@@ -1,0 +1,186 @@
+// grammar: source.objcpp
+
+#include <stdio.h>
+//<0-------------- meta.preprocessor.include.objcpp
+//<0---- keyword.control.directive.include.objcpp
+//<0 punctuation.definition.directive.objcpp
+//       ^-------- string.quoted.other.lt-gt.include.objcpp
+//       ^ punctuation.definition.string.begin.objcpp
+//               ^ punctuation.definition.string.end.objcpp
+#include <Block.h>
+//<0-------------- meta.preprocessor.include.objcpp
+//<0---- keyword.control.directive.include.objcpp
+//<0 punctuation.definition.directive.objcpp
+//       ^-------- string.quoted.other.lt-gt.include.objcpp
+//       ^ punctuation.definition.string.begin.objcpp
+//               ^ punctuation.definition.string.end.objcpp
+typedef int (^IntBlock)();
+//<0--- keyword.other.typedef.objcpp
+//      ^-- storage.type.built-in.primitive.objcpp
+//          ^------------ meta.parens.objcpp
+//          ^ punctuation.section.parens.begin.bracket.round.objcpp
+//           ^ keyword.operator.objcpp
+//                    ^ punctuation.section.parens.end.bracket.round.objcpp
+//                     ^ punctuation.section.parens.begin.bracket.round.objcpp
+//                      ^ punctuation.section.parens.end.bracket.round.objcpp
+//                       ^ punctuation.terminator.statement.objcpp
+
+IntBlock MakeCounter(int start, int increment) {
+//       ^------------------------------------ meta.function.objcpp
+//       ^------------------------------------ meta.function.definition.parameters.objcpp
+//       ^---------- entity.name.function.objcpp
+//                  ^ punctuation.section.parameters.begin.bracket.round.objcpp
+//                   ^-- storage.type.built-in.primitive.objcpp
+//                       ^---- variable.parameter.probably.objcpp
+//                            ^ punctuation.separator.delimiter.objcpp
+//                              ^-- storage.type.built-in.primitive.objcpp
+//                                  ^-------- variable.parameter.probably.objcpp
+//                                           ^ punctuation.section.parameters.end.bracket.round.objcpp
+//                                             ^ meta.block.objcpp
+//                                             ^ punctuation.section.block.begin.bracket.curly.objcpp
+  __block int i = start;
+//<0-------------------- meta.block.objcpp
+//^------ storage.modifier.objcpp
+//        ^-- storage.type.built-in.primitive.objcpp
+//              ^ keyword.operator.assignment.objcpp
+//                     ^ punctuation.terminator.statement.objcpp
+
+  return Block_copy( ^ {
+//<0-------------------- meta.block.objcpp
+//^----- keyword.control.objcpp
+//       ^-------------- meta.function-call.objcpp
+//       ^--------- entity.name.function.objcpp
+//                 ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//                   ^ keyword.operator.objcpp
+//                     ^ punctuation.section.block.begin.bracket.curly.objcpp
+    int ret = i;
+//<0------------ meta.block.objcpp
+//<0------------ meta.function-call.objcpp
+//  ^-- storage.type.built-in.primitive.objcpp
+//          ^ keyword.operator.assignment.objcpp
+//             ^ punctuation.terminator.statement.objcpp
+    i += increment;
+//<0--------------- meta.block.objcpp
+//<0--------------- meta.function-call.objcpp
+//    ^- keyword.operator.assignment.compound.objcpp
+//                ^ punctuation.terminator.statement.objcpp
+    return ret;
+//<0----------- meta.block.objcpp
+//<0----------- meta.function-call.objcpp
+//  ^----- keyword.control.objcpp
+//            ^ punctuation.terminator.statement.objcpp
+  });
+//<0- meta.block.objcpp
+//<0 meta.function-call.objcpp
+//^ punctuation.section.block.end.bracket.curly.objcpp
+// ^ punctuation.section.arguments.end.bracket.round.objcpp
+//  ^ punctuation.terminator.statement.objcpp
+
+}
+//<0 meta.block.objcpp
+//<0 punctuation.section.block.end.bracket.curly.objcpp
+
+int main(void) {
+//<0 storage.type.built-in.primitive.objcpp
+//  ^--------- meta.function.objcpp
+//  ^--------- meta.function.definition.parameters.objcpp
+//  ^--- entity.name.function.objcpp
+//      ^ punctuation.section.parameters.begin.bracket.round.objcpp
+//       ^--- storage.type.built-in.primitive.objcpp
+//           ^ punctuation.section.parameters.end.bracket.round.objcpp
+//             ^ meta.block.objcpp
+//             ^ punctuation.section.block.begin.bracket.curly.objcpp
+  IntBlock mycounter = MakeCounter(5, 2);
+//<0------------------------------------- meta.block.objcpp
+//                   ^ keyword.operator.assignment.objcpp
+//                     ^---------------- meta.function-call.objcpp
+//                     ^---------- entity.name.function.objcpp
+//                                ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//                                 ^ constant.numeric.decimal.objcpp
+//                                  ^ punctuation.separator.delimiter.objcpp
+//                                    ^ constant.numeric.decimal.objcpp
+//                                     ^ punctuation.section.arguments.end.bracket.round.objcpp
+//                                      ^ punctuation.terminator.statement.objcpp
+  printf("First call: %d\n", mycounter());
+//<0-------------------------------------- meta.block.objcpp
+//^-------------------------------------- meta.function-call.objcpp
+//^----- entity.name.function.objcpp
+//      ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//       ^----------------- string.quoted.double.objcpp
+//       ^ punctuation.definition.string.begin.objcpp
+//                    ^- constant.other.placeholder.objcpp
+//                      ^- constant.character.escape.objcpp
+//                        ^ punctuation.definition.string.end.objcpp
+//                         ^ punctuation.separator.delimiter.objcpp
+//                           ^-------- entity.name.function.objcpp
+//                                    ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//                                     ^- punctuation.section.arguments.end.bracket.round.objcpp
+//                                       ^ punctuation.terminator.statement.objcpp
+  printf("Second call: %d\n", mycounter());
+//<0--------------------------------------- meta.block.objcpp
+//^--------------------------------------- meta.function-call.objcpp
+//^----- entity.name.function.objcpp
+//      ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//       ^------------------ string.quoted.double.objcpp
+//       ^ punctuation.definition.string.begin.objcpp
+//                     ^- constant.other.placeholder.objcpp
+//                       ^- constant.character.escape.objcpp
+//                         ^ punctuation.definition.string.end.objcpp
+//                          ^ punctuation.separator.delimiter.objcpp
+//                            ^-------- entity.name.function.objcpp
+//                                     ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//                                      ^- punctuation.section.arguments.end.bracket.round.objcpp
+//                                        ^ punctuation.terminator.statement.objcpp
+  printf("Third call: %d\n", mycounter());
+//<0-------------------------------------- meta.block.objcpp
+//^-------------------------------------- meta.function-call.objcpp
+//^----- entity.name.function.objcpp
+//      ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//       ^----------------- string.quoted.double.objcpp
+//       ^ punctuation.definition.string.begin.objcpp
+//                    ^- constant.other.placeholder.objcpp
+//                      ^- constant.character.escape.objcpp
+//                        ^ punctuation.definition.string.end.objcpp
+//                         ^ punctuation.separator.delimiter.objcpp
+//                           ^-------- entity.name.function.objcpp
+//                                    ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//                                     ^- punctuation.section.arguments.end.bracket.round.objcpp
+//                                       ^ punctuation.terminator.statement.objcpp
+
+  /* because it was copied, it must also be released */
+//<0--------------------------------------------------- meta.block.objcpp
+//^---------------------------------------------------- comment.block.objcpp
+//^- punctuation.definition.comment.begin.objcpp
+//                                                   ^- punctuation.definition.comment.end.objcpp
+  Block_release(mycounter);
+//<0----------------------- meta.block.objcpp
+//^----------------------- meta.function-call.objcpp
+//^------------ entity.name.function.objcpp
+//             ^ punctuation.section.arguments.begin.bracket.round.objcpp
+//                       ^ punctuation.section.arguments.end.bracket.round.objcpp
+//                        ^ punctuation.terminator.statement.objcpp
+
+  return 0;
+//<0------- meta.block.objcpp
+//^----- keyword.control.objcpp
+//       ^ constant.numeric.decimal.objcpp
+//        ^ punctuation.terminator.statement.objcpp
+}
+//<0 meta.block.objcpp
+//<0 punctuation.section.block.end.bracket.curly.objcpp
+/* Output:
+//<0------ comment.block.objcpp
+//<0 punctuation.definition.comment.begin.objcpp
+  First call: 5
+//<0----------- comment.block.objcpp
+  Second call: 7
+//<0------------ comment.block.objcpp
+  Third call: 9
+//<0----------- comment.block.objcpp
+*/
+//<0 comment.block.objcpp
+//<0 punctuation.definition.comment.end.objcpp
+
+// From https://en.wikipedia.org/wiki/Objective-C
+//<0--------------------------------------------- comment.line.double-slash.objcpp
+//<0 punctuation.definition.comment.objcpp

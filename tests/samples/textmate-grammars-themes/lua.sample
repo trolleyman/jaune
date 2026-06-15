@@ -1,0 +1,67 @@
+-- grammar: source.lua
+
+ball = {
+--<0 variable.other.lua
+--   ^ keyword.operator.lua
+  xpos = 60,
+--^--- variable.other.lua
+--     ^ keyword.operator.lua
+--       ^- constant.numeric.float.lua
+  ypos = 60,
+--^--- variable.other.lua
+--     ^ keyword.operator.lua
+--       ^- constant.numeric.float.lua
+
+  -- without the colon syntax, must mention self argument explicitly
+--<0 punctuation.whitespace.comment.leading.lua
+--^----------------------------------------------------------------- comment.line.double-dash.lua
+--^- punctuation.definition.comment.lua
+  move = function(self, newx, newy)
+--^--- entity.name.function.lua
+--     ^ keyword.operator.lua
+--       ^------------------------- meta.function.lua
+--       ^------- keyword.control.lua
+--               ^----------------- meta.parameter.lua
+--               ^ punctuation.definition.parameters.begin.lua
+--                ^--- variable.parameter.function.lua
+--                    ^ punctuation.separator.arguments.lua
+--                      ^--- variable.parameter.function.lua
+--                          ^ punctuation.separator.arguments.lua
+--                            ^--- variable.parameter.function.lua
+--                                ^ punctuation.definition.parameters.finish.lua
+    self.xpos = newx
+--  ^--- variable.language.self.lua
+--       ^--- entity.other.attribute.lua
+--            ^ keyword.operator.lua
+--              ^--- variable.other.lua
+    self.ypos = newy
+--  ^--- variable.language.self.lua
+--       ^--- entity.other.attribute.lua
+--            ^ keyword.operator.lua
+--              ^--- variable.other.lua
+  end
+--^-- keyword.control.lua
+}
+
+-- using the colon, ball is passed as self automatically
+--<0---------------------------------------------------- comment.line.double-dash.lua
+--<0 punctuation.definition.comment.lua
+ball:move(100, 120)
+--<0 entity.name.class.lua
+--   ^--- support.function.any-method.lua
+--        ^-- constant.numeric.float.lua
+--             ^-- constant.numeric.float.lua
+
+-- using the dot, must pass self explicitly
+--<0--------------------------------------- comment.line.double-dash.lua
+--<0 punctuation.definition.comment.lua
+ball.move(ball, 100, 120)
+--<0 variable.other.lua
+--   ^--- support.function.any-method.lua
+--        ^--- variable.other.lua
+--              ^-- constant.numeric.float.lua
+--                   ^-- constant.numeric.float.lua
+
+-- From https://pico-8.fandom.com/wiki/Lua
+--<0-------------------------------------- comment.line.double-dash.lua
+--<0 punctuation.definition.comment.lua

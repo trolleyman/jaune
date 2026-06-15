@@ -1,0 +1,35 @@
+// grammar: source.kusto
+
+let dt = datetime(2017-01-29 09:00:05);
+//<0 keyword.control.kusto
+//  ^-- entity.function.name.lambda.kusto
+//       ^------- storage.type.kusto
+//                ^--- constant.numeric.kusto
+//                     ^- constant.numeric.kusto
+//                        ^- constant.numeric.kusto
+//                           ^- constant.numeric.kusto
+//                              ^- constant.numeric.kusto
+//                                 ^- constant.numeric.kusto
+print
+//<0- keyword.other.query.kusto
+v1=format_datetime(dt,'yy-MM-dd [HH:mm:ss]'),
+// ^---------------------------------------- meta.scalar.function.format_datetime.kusto
+// ^-------------- support.function.kusto
+//                    ^-------------------- string.quoted.single.kusto
+//                    ^ punctuation.definition.string.kusto
+//                                        ^ punctuation.definition.string.kusto
+v2=format_datetime(dt, 'yyyy-M-dd [H:mm:ss]'),
+// ^----------------------------------------- meta.scalar.function.format_datetime.kusto
+// ^-------------- support.function.kusto
+//                     ^-------------------- string.quoted.single.kusto
+//                     ^ punctuation.definition.string.kusto
+//                                         ^ punctuation.definition.string.kusto
+v3=format_datetime(dt, 'yy-MM-dd [hh:mm:ss tt]')
+// ^-------------------------------------------- meta.scalar.function.format_datetime.kusto
+// ^-------------- support.function.kusto
+//                     ^----------------------- string.quoted.single.kusto
+//                     ^ punctuation.definition.string.kusto
+//                                            ^ punctuation.definition.string.kusto
+
+// From https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/
+//<0---------------------------------------------------------------------- comment.line.kusto

@@ -1,0 +1,93 @@
+# grammar: source.scad
+
+Logo(50);
+#   ^ meta.brace.round.scad
+#    ^- constant.numeric.scad
+#      ^ meta.brace.round.scad
+#       ^ punctuation.terminator.statement.scad
+
+module Logo(size=50, $fn=100) {
+#<0---------------------------- meta.function.scad
+#<0--- keyword.control.scad
+  hole = size/2;
+#      ^ keyword.operator.scad
+#             ^ constant.numeric.scad
+#              ^ punctuation.terminator.statement.scad
+  cylinderHeight = size * 1.25;
+#                ^ keyword.operator.scad
+#                       ^ keyword.operator.scad
+#                         ^--- constant.numeric.scad
+#                             ^ punctuation.terminator.statement.scad
+
+  difference() {
+# ^--------- support.function.scad
+#           ^- meta.brace.round.scad
+#              ^ meta.brace.curly.scad
+    sphere(d=size);
+#   ^----- support.function.scad
+#         ^ meta.brace.round.scad
+#           ^ keyword.operator.scad
+#                ^ meta.brace.round.scad
+#                 ^ punctuation.terminator.statement.scad
+
+    cylinder(d=hole, h=cylinderHeight, center=true);
+#   ^------- support.function.scad
+#           ^ meta.brace.round.scad
+#             ^ keyword.operator.scad
+#                  ^- meta.delimiter.object.comma.scad
+#                     ^ keyword.operator.scad
+#                                    ^- meta.delimiter.object.comma.scad
+#                                            ^ keyword.operator.scad
+#                                             ^--- constant.language.boolean.true.scad
+#                                                 ^ meta.brace.round.scad
+#                                                  ^ punctuation.terminator.statement.scad
+    #rotate([90, 0, 0]) cylinder(d=hole, h=cylinderHeight, center=true);
+#    ^----- support.function.scad
+#          ^ meta.brace.round.scad
+#           ^ meta.brace.square.scad
+#            ^- constant.numeric.scad
+#              ^- meta.delimiter.object.comma.scad
+#                ^ constant.numeric.scad
+#                 ^- meta.delimiter.object.comma.scad
+#                   ^ constant.numeric.scad
+#                    ^ meta.brace.square.scad
+#                     ^ meta.brace.round.scad
+#                       ^------- support.function.scad
+#                               ^ meta.brace.round.scad
+#                                 ^ keyword.operator.scad
+#                                      ^- meta.delimiter.object.comma.scad
+#                                         ^ keyword.operator.scad
+#                                                        ^- meta.delimiter.object.comma.scad
+#                                                                ^ keyword.operator.scad
+#                                                                 ^--- constant.language.boolean.true.scad
+#                                                                     ^ meta.brace.round.scad
+#                                                                      ^ punctuation.terminator.statement.scad
+    rotate([0, 90, 0]) cylinder(d=hole, h=cylinderHeight, center=true);
+#   ^----- support.function.scad
+#         ^ meta.brace.round.scad
+#          ^ meta.brace.square.scad
+#           ^ constant.numeric.scad
+#            ^- meta.delimiter.object.comma.scad
+#              ^- constant.numeric.scad
+#                ^- meta.delimiter.object.comma.scad
+#                  ^ constant.numeric.scad
+#                   ^ meta.brace.square.scad
+#                    ^ meta.brace.round.scad
+#                      ^------- support.function.scad
+#                              ^ meta.brace.round.scad
+#                                ^ keyword.operator.scad
+#                                     ^- meta.delimiter.object.comma.scad
+#                                        ^ keyword.operator.scad
+#                                                       ^- meta.delimiter.object.comma.scad
+#                                                               ^ keyword.operator.scad
+#                                                                ^--- constant.language.boolean.true.scad
+#                                                                    ^ meta.brace.round.scad
+#                                                                     ^ punctuation.terminator.statement.scad
+  }
+# ^ meta.brace.curly.scad
+}
+#<0 meta.brace.curly.scad
+
+// From https://github.com/openscad/openscad/blob/6d8ff058743023a0e0013caa6954b57474be45ec/examples/Basics/logo.scad
+#<0----------------------------------------------------------------------------------------------------------------- comment.line.double-slash.scad
+#<0 punctuation.definition.comment.scad

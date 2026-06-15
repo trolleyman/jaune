@@ -1,0 +1,141 @@
+// grammar: source.swift
+
+class Residence {
+//<0------------- meta.definition.type.class.swift
+//<0- storage.type.class.swift
+//    ^-------- entity.name.type.class.swift
+//              ^ meta.definition.type.body.swift
+//              ^ punctuation.definition.type.begin.swift
+    var rooms: [Room] = []
+//<0---------------------- meta.definition.type.class.swift
+//<0---------------------- meta.definition.type.body.swift
+//  ^-- keyword.other.declaration-specifier.swift
+//             ^ punctuation.section.collection-type.begin.swift
+//                  ^ punctuation.section.collection-type.end.swift
+//                    ^ keyword.operator.custom.infix.swift
+    var numberOfRooms: Int {
+//<0------------------------ meta.definition.type.class.swift
+//<0------------------------ meta.definition.type.body.swift
+//  ^-- keyword.other.declaration-specifier.swift
+//                     ^-- support.type.swift
+//                         ^ punctuation.section.scope.begin.swift
+        return rooms.count
+//<0---------------------- meta.definition.type.class.swift
+//<0---------------------- meta.definition.type.body.swift
+//      ^----- keyword.control.transfer.swift
+//                   ^---- support.variable.swift
+    }
+//<0- meta.definition.type.class.swift
+//<0- meta.definition.type.body.swift
+//  ^ punctuation.section.scope.end.swift
+    subscript(i: Int) -> Room {
+//<0--------------------------- meta.definition.type.class.swift
+//<0--------------------------- meta.definition.type.body.swift
+//  ^-------------------------- meta.definition.function.subscript.swift
+//  ^-------- storage.type.function.swift
+//           ^------- meta.parameter-clause.swift
+//           ^ punctuation.definition.parameters.begin.swift
+//            ^ variable.parameter.function.swift
+//            ^ entity.name.function.swift
+//               ^-- support.type.swift
+//                  ^ punctuation.definition.parameters.end.swift
+//                    ^------- meta.function-result.swift
+//                    ^- keyword.operator.function-result.swift
+//                            ^ meta.definition.function.body.swift
+//                            ^ punctuation.section.function.begin.swift
+        get {
+//<0--------- meta.definition.type.class.swift
+//<0--------- meta.definition.type.body.swift
+//<0--------- meta.definition.function.subscript.swift
+//<0--------- meta.definition.function.body.swift
+//      ^-- storage.type.function.swift
+//          ^ punctuation.section.scope.begin.swift
+            return rooms[i]
+//<0----------------------- meta.definition.type.class.swift
+//<0----------------------- meta.definition.type.body.swift
+//<0----------------------- meta.definition.function.subscript.swift
+//<0----------------------- meta.definition.function.body.swift
+//          ^----- keyword.control.transfer.swift
+//                      ^-- meta.subscript-expression.swift
+//                      ^ punctuation.definition.arguments.begin.swift
+//                        ^ punctuation.definition.arguments.end.swift
+        }
+//<0----- meta.definition.type.class.swift
+//<0----- meta.definition.type.body.swift
+//<0----- meta.definition.function.subscript.swift
+//<0----- meta.definition.function.body.swift
+//      ^ punctuation.section.scope.end.swift
+        set {
+//<0--------- meta.definition.type.class.swift
+//<0--------- meta.definition.type.body.swift
+//<0--------- meta.definition.function.subscript.swift
+//<0--------- meta.definition.function.body.swift
+//      ^-- storage.type.function.swift
+//          ^ punctuation.section.scope.begin.swift
+            rooms[i] = newValue
+//<0--------------------------- meta.definition.type.class.swift
+//<0--------------------------- meta.definition.type.body.swift
+//<0--------------------------- meta.definition.function.subscript.swift
+//<0--------------------------- meta.definition.function.body.swift
+//               ^-- meta.subscript-expression.swift
+//               ^ punctuation.definition.arguments.begin.swift
+//                 ^ punctuation.definition.arguments.end.swift
+//                   ^ keyword.operator.custom.infix.swift
+        }
+//<0----- meta.definition.type.class.swift
+//<0----- meta.definition.type.body.swift
+//<0----- meta.definition.function.subscript.swift
+//<0----- meta.definition.function.body.swift
+//      ^ punctuation.section.scope.end.swift
+    }
+//<0- meta.definition.type.class.swift
+//<0- meta.definition.type.body.swift
+//<0- meta.definition.function.subscript.swift
+//<0- meta.definition.function.body.swift
+//  ^ punctuation.section.function.end.swift
+    func printNumberOfRooms() {
+//<0--------------------------- meta.definition.type.class.swift
+//<0--------------------------- meta.definition.type.body.swift
+//  ^-------------------------- meta.definition.function.swift
+//  ^--- storage.type.function.swift
+//       ^----------------- entity.name.function.swift
+//                         ^- meta.parameter-clause.swift
+//                         ^ punctuation.definition.parameters.begin.swift
+//                          ^ punctuation.definition.parameters.end.swift
+//                            ^ meta.definition.function.body.swift
+//                            ^ punctuation.section.function.begin.swift
+        print("The number of rooms is \(numberOfRooms)")
+//<0---------------------------------------------------- meta.definition.type.class.swift
+//<0---------------------------------------------------- meta.definition.type.body.swift
+//<0---------------------------------------------------- meta.definition.function.swift
+//<0---------------------------------------------------- meta.definition.function.body.swift
+//      ^---- support.function.swift
+//           ^------------------------------------------ meta.function-call.swift
+//           ^ punctuation.definition.arguments.begin.swift
+//            ^---------------------------------------- string.quoted.double.single-line.swift
+//            ^ punctuation.definition.string.begin.swift
+//                                    ^--------------- meta.embedded.line.swift
+//                                    ^- punctuation.section.embedded.begin.swift
+//                                      ^------------ source.swift
+//                                                   ^ punctuation.section.embedded.end.swift
+//                                                    ^ punctuation.definition.string.end.swift
+//                                                     ^ punctuation.definition.arguments.end.swift
+    }
+//<0- meta.definition.type.class.swift
+//<0- meta.definition.type.body.swift
+//<0- meta.definition.function.swift
+//<0- meta.definition.function.body.swift
+//  ^ punctuation.section.function.end.swift
+    var address: Address?
+//<0--------------------- meta.definition.type.class.swift
+//<0--------------------- meta.definition.type.body.swift
+//  ^-- keyword.other.declaration-specifier.swift
+//                      ^ keyword.operator.type.optional.swift
+}
+//<0 meta.definition.type.class.swift
+//<0 meta.definition.type.body.swift
+//<0 punctuation.definition.type.end.swift
+
+// From https://docs.swift.org/swift-book/documentation/the-swift-programming-language/optionalchaining#Defining-Model-Classes-for-Optional-Chaining
+//<0------------------------------------------------------------------------------------------------------------------------------------------------ comment.line.double-slash.swift
+//<0 punctuation.definition.comment.swift

@@ -1,0 +1,193 @@
+// grammar: source.ballerina
+
+import ballerina/io;
+//<0---------------- meta.import.ballerina
+//<0-- keyword.control.import.ballerina
+//     ^-------- variable.other.readwrite.ballerina
+//     ^-------- meta.import.module.ballerina
+//               ^- variable.other.readwrite.ballerina
+//               ^- meta.import.module.ballerina
+//                 ^ punctuation.terminator.statement.ballerina
+
+// This function definition has two parameters of type `int`. 
+//<0---------------------------------------------------------- comment.ballerina
+// `returns` clause specifies type of return value.
+//<0----------------------------------------------- comment.ballerina
+function add(int x, int y) returns int {
+//<0------------------------------------ meta.function.ballerina
+//<0---- keyword.other.ballerina
+//       ^-- meta.definition.function.ballerina
+//       ^-- entity.name.function.ballerina
+//          ^------------- meta.parameters.ballerina
+//          ^ punctuation.definition.parameters.begin.ballerina
+//           ^-- support.type.primitive.ballerina
+//               ^ variable.parameter.ballerina
+//                ^ punctuation.separator.parameter.ballerina
+//                  ^-- support.type.primitive.ballerina
+//                      ^ variable.parameter.ballerina
+//                       ^ punctuation.definition.parameters.end.ballerina
+//                        ^------------ meta.type.function.return.ballerina
+//                         ^------ keyword.other.ballerina
+//                                 ^-- support.type.primitive.ballerina
+//                                     ^ meta.block.ballerina
+//                                     ^ punctuation.definition.block.ballerina
+
+    int sum = x + y;
+//<0---------------- meta.function.ballerina
+//<0---------------- meta.block.ballerina
+//  ^-------------- meta.var.expr.ballerina
+//  ^-- support.type.primitive.ballerina
+//      ^--- meta.var-single-variable.expr.ballerina
+//      ^-- meta.definition.variable.ballerina
+//      ^-- variable.other.readwrite.ballerina
+//          ^ keyword.operator.assignment.ballerina
+//            ^ variable.other.readwrite.ballerina
+//              ^ keyword.operator.ballerina
+//                ^ variable.other.readwrite.ballerina
+//                 ^ punctuation.terminator.statement.ballerina
+    // `return` statement returns a value.
+//<0-------------------------------------- meta.function.ballerina
+//<0-------------------------------------- meta.block.ballerina
+//  ^------------------------------------- comment.ballerina
+    return sum;
+//<0----------- meta.function.ballerina
+//<0----------- meta.block.ballerina
+//  ^----- keyword.control.flow.ballerina
+//         ^-- variable.other.readwrite.ballerina
+//            ^ punctuation.terminator.statement.ballerina
+
+}
+//<0 meta.function.ballerina
+//<0 meta.block.ballerina
+//<0 punctuation.definition.block.ballerina
+
+public function main() {
+//<0-------------------- meta.function.ballerina
+//<0-- keyword.other.ballerina
+//     ^------- keyword.other.ballerina
+//              ^--- meta.definition.function.ballerina
+//              ^--- entity.name.function.ballerina
+//                  ^- meta.parameters.ballerina
+//                  ^ punctuation.definition.parameters.begin.ballerina
+//                   ^ punctuation.definition.parameters.end.ballerina
+//                     ^ meta.block.ballerina
+//                     ^ punctuation.definition.block.ballerina
+    io:println(add(5, 11));
+//<0----------------------- meta.function.ballerina
+//<0----------------------- meta.block.ballerina
+//  ^- variable.other.readwrite.ballerina
+//    ^------------------- meta.type.annotation.ballerina
+//    ^ keyword.operator.type.annotation.ballerina
+//     ^------ entity.name.function.ballerina
+//            ^----------- meta.brace.round.block.ballerina
+//            ^ meta.brace.round.ballerina
+//             ^-- variable.parameter.ballerina
+//                ^------ meta.brace.round.block.ballerina
+//                ^ meta.brace.round.ballerina
+//                 ^ constant.numeric.decimal.ballerina
+//                  ^ punctuation.separator.parameter.ballerina
+//                    ^- constant.numeric.decimal.ballerina
+//                      ^ meta.brace.round.ballerina
+//                       ^ meta.brace.round.ballerina
+//                        ^ punctuation.terminator.statement.ballerina
+}
+//<0 meta.function.ballerina
+//<0 meta.block.ballerina
+//<0 punctuation.definition.block.ballerina
+import ballerina/io;
+//<0---------------- meta.import.ballerina
+//<0-- keyword.control.import.ballerina
+//     ^-------- variable.other.readwrite.ballerina
+//     ^-------- meta.import.module.ballerina
+//               ^- variable.other.readwrite.ballerina
+//               ^- meta.import.module.ballerina
+//                 ^ punctuation.terminator.statement.ballerina
+
+// This function definition has two parameters of type `int`. 
+//<0---------------------------------------------------------- comment.ballerina
+// `returns` clause specifies type of return value.
+//<0----------------------------------------------- comment.ballerina
+function add(int x, int y) returns int {
+//<0------------------------------------ meta.function.ballerina
+//<0---- keyword.other.ballerina
+//       ^-- meta.definition.function.ballerina
+//       ^-- entity.name.function.ballerina
+//          ^------------- meta.parameters.ballerina
+//          ^ punctuation.definition.parameters.begin.ballerina
+//           ^-- support.type.primitive.ballerina
+//               ^ variable.parameter.ballerina
+//                ^ punctuation.separator.parameter.ballerina
+//                  ^-- support.type.primitive.ballerina
+//                      ^ variable.parameter.ballerina
+//                       ^ punctuation.definition.parameters.end.ballerina
+//                        ^------------ meta.type.function.return.ballerina
+//                         ^------ keyword.other.ballerina
+//                                 ^-- support.type.primitive.ballerina
+//                                     ^ meta.block.ballerina
+//                                     ^ punctuation.definition.block.ballerina
+
+    int sum = x + y;
+//<0---------------- meta.function.ballerina
+//<0---------------- meta.block.ballerina
+//  ^-------------- meta.var.expr.ballerina
+//  ^-- support.type.primitive.ballerina
+//      ^--- meta.var-single-variable.expr.ballerina
+//      ^-- meta.definition.variable.ballerina
+//      ^-- variable.other.readwrite.ballerina
+//          ^ keyword.operator.assignment.ballerina
+//            ^ variable.other.readwrite.ballerina
+//              ^ keyword.operator.ballerina
+//                ^ variable.other.readwrite.ballerina
+//                 ^ punctuation.terminator.statement.ballerina
+    // `return` statement returns a value.
+//<0-------------------------------------- meta.function.ballerina
+//<0-------------------------------------- meta.block.ballerina
+//  ^------------------------------------- comment.ballerina
+    return sum;
+//<0----------- meta.function.ballerina
+//<0----------- meta.block.ballerina
+//  ^----- keyword.control.flow.ballerina
+//         ^-- variable.other.readwrite.ballerina
+//            ^ punctuation.terminator.statement.ballerina
+
+}
+//<0 meta.function.ballerina
+//<0 meta.block.ballerina
+//<0 punctuation.definition.block.ballerina
+
+public function main() {
+//<0-------------------- meta.function.ballerina
+//<0-- keyword.other.ballerina
+//     ^------- keyword.other.ballerina
+//              ^--- meta.definition.function.ballerina
+//              ^--- entity.name.function.ballerina
+//                  ^- meta.parameters.ballerina
+//                  ^ punctuation.definition.parameters.begin.ballerina
+//                   ^ punctuation.definition.parameters.end.ballerina
+//                     ^ meta.block.ballerina
+//                     ^ punctuation.definition.block.ballerina
+    io:println(add(5, 11));
+//<0----------------------- meta.function.ballerina
+//<0----------------------- meta.block.ballerina
+//  ^- variable.other.readwrite.ballerina
+//    ^------------------- meta.type.annotation.ballerina
+//    ^ keyword.operator.type.annotation.ballerina
+//     ^------ entity.name.function.ballerina
+//            ^----------- meta.brace.round.block.ballerina
+//            ^ meta.brace.round.ballerina
+//             ^-- variable.parameter.ballerina
+//                ^------ meta.brace.round.block.ballerina
+//                ^ meta.brace.round.ballerina
+//                 ^ constant.numeric.decimal.ballerina
+//                  ^ punctuation.separator.parameter.ballerina
+//                    ^- constant.numeric.decimal.ballerina
+//                      ^ meta.brace.round.ballerina
+//                       ^ meta.brace.round.ballerina
+//                        ^ punctuation.terminator.statement.ballerina
+}
+//<0 meta.function.ballerina
+//<0 meta.block.ballerina
+//<0 punctuation.definition.block.ballerina
+
+// From https://ballerina.io/learn/by-example/functions
+//<0--------------------------------------------------- comment.ballerina

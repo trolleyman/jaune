@@ -1,0 +1,513 @@
+# grammar: source.bird2
+
+# Basic BIRD2 configuration file
+#<0----------------------------- comment.line.number-sign.bird
+#<0 punctuation.definition.comment.bird
+router id 192.168.1.1;
+#<0--- keyword.control.routing.bird
+#      ^- keyword.control.routing.bird
+#         ^---------- constant.numeric.ip.ipv4.bird
+#                    ^ punctuation.terminator.statement.bird
+log    syslog all;
+#<0 keyword.other.config.bird
+#      ^----- keyword.other.config.bird
+#             ^-- keyword.other.quick-declaration.bird
+#                ^ punctuation.terminator.statement.bird
+debug  protocols all;
+#<0-- keyword.other.config.bird
+#      ^-------- keyword.other.config.bird
+#                ^-- keyword.other.quick-declaration.bird
+#                   ^ punctuation.terminator.statement.bird
+
+# Community list definition
+#<0------------------------ comment.line.number-sign.bird
+#<0 punctuation.definition.comment.bird
+define LOCAL_PREF_HIGH = [(65001,100), (65001,200)];
+#<0--- keyword.control.structure.bird
+#      ^-------------- variable.other.user-defined.bird
+#                      ^ keyword.operator.comparison.bird
+#                        ^------------------------- meta.set.bird
+#                        ^ punctuation.definition.set.begin.bird
+#                         ^---------- meta.tuple.bird
+#                         ^ punctuation.definition.tuple.begin.bird
+#                          ^---- constant.numeric.decimal.bird
+#                               ^ punctuation.separator.bird
+#                                ^-- constant.numeric.decimal.bird
+#                                   ^ punctuation.definition.tuple.end.bird
+#                                    ^ punctuation.separator.bird
+#                                      ^---------- meta.tuple.bird
+#                                      ^ punctuation.definition.tuple.begin.bird
+#                                       ^---- constant.numeric.decimal.bird
+#                                            ^ punctuation.separator.bird
+#                                             ^-- constant.numeric.decimal.bird
+#                                                ^ punctuation.definition.tuple.end.bird
+#                                                 ^ punctuation.definition.set.end.bird
+#                                                  ^ punctuation.terminator.statement.bird
+define AS_PATH_FILTER = [= 65001 65002 * =];
+#<0--- keyword.control.structure.bird
+#      ^------------- variable.other.user-defined.bird
+#                     ^ keyword.operator.comparison.bird
+#                       ^------------------ meta.bgp-path.bird
+#                       ^- punctuation.definition.bgp-path.begin.bird
+#                          ^---- constant.numeric.asn.bird
+#                                ^---- constant.numeric.asn.bird
+#                                      ^ keyword.operator.wildcard.bird
+#                                        ^- punctuation.definition.bgp-path.end.bird
+#                                          ^ punctuation.terminator.statement.bird
+define MY_ASN = 65001;
+#<0--- keyword.control.structure.bird
+#      ^----- variable.other.user-defined.bird
+#             ^ keyword.operator.comparison.bird
+#               ^---- constant.numeric.decimal.bird
+#                    ^ punctuation.terminator.statement.bird
+define TEST_STR = "test";
+#<0--- keyword.control.structure.bird
+#      ^------- variable.other.user-defined.bird
+#               ^ keyword.operator.comparison.bird
+#                 ^----- string.quoted.double.bird
+#                 ^ punctuation.definition.string.begin.bird
+#                      ^ punctuation.definition.string.end.bird
+#                       ^ punctuation.terminator.statement.bird
+define PREFIX_LIST = [
+#<0--- keyword.control.structure.bird
+#      ^---------- variable.other.user-defined.bird
+#                  ^ keyword.operator.comparison.bird
+#                    ^ meta.set.bird
+#                    ^ punctuation.definition.set.begin.bird
+  10.0.0.0/8+,
+#<0----------- meta.set.bird
+# ^--------- constant.numeric.ip.ipv4.bird
+#           ^ keyword.operator.arithmetic.bird
+#            ^ punctuation.separator.bird
+  172.16.0.0/12+,
+#<0-------------- meta.set.bird
+# ^------------ constant.numeric.ip.ipv4.bird
+#              ^ keyword.operator.arithmetic.bird
+#               ^ punctuation.separator.bird
+  192.168.0.0/16+,
+#<0--------------- meta.set.bird
+# ^------------- constant.numeric.ip.ipv4.bird
+#               ^ keyword.operator.arithmetic.bird
+#                ^ punctuation.separator.bird
+  2001::/32{33,128}
+#<0---------------- meta.set.bird
+# ^-------- constant.numeric.ip.ipv6.bird
+#          ^------- meta.block.bird
+#          ^ punctuation.definition.block.begin.bird
+#           ^- constant.numeric.decimal.bird
+#             ^ punctuation.separator.bird
+#              ^-- constant.numeric.decimal.bird
+#                 ^ punctuation.definition.block.end.bird
+];
+#<0 meta.set.bird
+#<0 punctuation.definition.set.end.bird
+#^ punctuation.terminator.statement.bird
+
+# Define a protocol
+#<0---------------- comment.line.number-sign.bird
+#<0 punctuation.definition.comment.bird
+protocol static static_routes {
+#<0---------------------------- meta.protocol-definition-with-name.bird
+#<0----- keyword.control.protocol.bird
+#        ^----- entity.name.type.protocol.bird
+#               ^------------ entity.name.function.protocol.bird
+  ipv4 {
+#<0----- meta.protocol-definition-with-name.bird
+# ^--- keyword.control.structure.bird
+#      ^ meta.block.bird
+#      ^ punctuation.definition.block.begin.bird
+    table  master4;
+#<0---------------- meta.protocol-definition-with-name.bird
+#<0---------------- meta.block.bird
+#   ^---- keyword.control.structure.bird
+#          ^------ variable.other.bird
+#                 ^ punctuation.terminator.statement.bird
+    export all;
+#<0------------ meta.protocol-definition-with-name.bird
+#<0------------ meta.block.bird
+#   ^----- variable.other.bird
+#          ^-- keyword.other.quick-declaration.bird
+#             ^ punctuation.terminator.statement.bird
+    import none;
+#<0------------- meta.protocol-definition-with-name.bird
+#<0------------- meta.block.bird
+#   ^----- variable.other.bird
+#          ^--- keyword.other.auth.bird
+#              ^ punctuation.terminator.statement.bird
+  }
+#<0 meta.protocol-definition-with-name.bird
+#<0 meta.block.bird
+# ^ punctuation.definition.block.end.bird
+
+  route 10.0.0.0/8 via 192.168.1.254;
+#<0---------------------------------- meta.protocol-definition-with-name.bird
+# ^---- storage.type.bird
+#       ^--------- constant.numeric.ip.ipv4.bird
+#                  ^-- keyword.other.config.bird
+#                      ^------------ constant.numeric.ip.ipv4.bird
+#                                   ^ punctuation.terminator.statement.bird
+  route 172.16.0.0/12 blackhole;
+#<0----------------------------- meta.protocol-definition-with-name.bird
+# ^---- storage.type.bird
+#       ^------------ constant.numeric.ip.ipv4.bird
+#                     ^-------- keyword.other.config.bird
+#                              ^ punctuation.terminator.statement.bird
+}
+#<0 meta.protocol-definition-with-name.bird
+#<0 punctuation.definition.block.end.bird
+
+# BGP protocol with AS path filtering
+#<0---------------------------------- comment.line.number-sign.bird
+#<0 punctuation.definition.comment.bird
+protocol bgp peer1 {
+#<0----------------- meta.protocol-definition-with-name.bird
+#<0----- keyword.control.protocol.bird
+#        ^-- entity.name.type.protocol.bird
+#            ^---- entity.name.function.protocol.bird
+  local    as 65001;
+#<0----------------- meta.protocol-definition-with-name.bird
+# ^---------------- meta.local-as-template-statement.bird
+# ^---- keyword.control.local.bird
+#          ^- keyword.control.as.bird
+#             ^---- constant.numeric.asn.bird
+#                  ^ punctuation.terminator.statement.bird
+  neighbor 192.168.1.2 as 65002;
+#<0----------------------------- meta.protocol-definition-with-name.bird
+# ^---------------------------- meta.neighbor-statement.bird
+# ^------- keyword.control.neighbor.bird
+#          ^---------- constant.numeric.ip-address.bird
+#                      ^- keyword.control.as.bird
+#                         ^---- constant.numeric.asn.bird
+#                              ^ punctuation.terminator.statement.bird
+
+  ipv4 {
+#<0----- meta.protocol-definition-with-name.bird
+# ^--- keyword.control.structure.bird
+#      ^ meta.block.bird
+#      ^ punctuation.definition.block.begin.bird
+    export filter {
+#<0---------------- meta.protocol-definition-with-name.bird
+#<0---------------- meta.block.bird
+#   ^----- variable.other.bird
+#          ^----- variable.other.bird
+#                 ^ meta.block.bird
+#                 ^ punctuation.definition.block.begin.bird
+      if     bgp_path ~ [= * 65003 * =] then reject;
+#<0------------------------------------------------- meta.protocol-definition-with-name.bird
+#<0------------------------------------------------- meta.block.bird
+#<0------------------------------------------------- meta.block.bird
+#     ^- keyword.control.bird
+#            ^------- support.variable.route-attribute.bird
+#                     ^ keyword.operator.comparison.bird
+#                       ^-------------- meta.bgp-path.bird
+#                       ^- punctuation.definition.bgp-path.begin.bird
+#                          ^ keyword.operator.wildcard.bird
+#                            ^---- constant.numeric.asn.bird
+#                                  ^ keyword.operator.wildcard.bird
+#                                    ^- punctuation.definition.bgp-path.end.bird
+#                                       ^--- keyword.control.bird
+#                                            ^----- keyword.control.flow.bird
+#                                                  ^ punctuation.terminator.statement.bird
+      accept;
+#<0---------- meta.protocol-definition-with-name.bird
+#<0---------- meta.block.bird
+#<0---------- meta.block.bird
+#     ^----- keyword.control.flow.bird
+#           ^ punctuation.terminator.statement.bird
+    }
+#<0-- meta.protocol-definition-with-name.bird
+#<0-- meta.block.bird
+#<0-- meta.block.bird
+#   ^ punctuation.definition.block.end.bird
+
+    import all;
+#<0------------ meta.protocol-definition-with-name.bird
+#<0------------ meta.block.bird
+#   ^----- variable.other.bird
+#          ^-- keyword.other.quick-declaration.bird
+#             ^ punctuation.terminator.statement.bird
+  }
+#<0 meta.protocol-definition-with-name.bird
+#<0 meta.block.bird
+# ^ punctuation.definition.block.end.bird
+}
+#<0 meta.protocol-definition-with-name.bird
+#<0 punctuation.definition.block.end.bird
+
+# OSPF protocol
+#<0------------ comment.line.number-sign.bird
+#<0 punctuation.definition.comment.bird
+protocol ospf v2 ospf1 {
+#<0----- keyword.control.structure.bird
+#        ^--- keyword.control.protocol-type.bird
+#             ^- variable.other.bird
+#                ^---- variable.other.bird
+#                      ^ meta.block.bird
+#                      ^ punctuation.definition.block.begin.bird
+  ipv4 {
+#<0----- meta.block.bird
+# ^--- keyword.control.structure.bird
+#      ^ meta.block.bird
+#      ^ punctuation.definition.block.begin.bird
+    export all;
+#<0------------ meta.block.bird
+#<0------------ meta.block.bird
+#   ^----- variable.other.bird
+#          ^-- keyword.other.quick-declaration.bird
+#             ^ punctuation.terminator.statement.bird
+  }
+#<0 meta.block.bird
+#<0 meta.block.bird
+# ^ punctuation.definition.block.end.bird
+
+  area 0 {
+#<0------- meta.block.bird
+# ^--- keyword.other.config.bird
+#      ^ constant.numeric.decimal.bird
+#        ^ meta.block.bird
+#        ^ punctuation.definition.block.begin.bird
+    interface "eth0" {
+#<0------------------- meta.block.bird
+#<0------------------- meta.block.bird
+#   ^-------- keyword.other.interface.bird
+#             ^----- string.quoted.double.bird
+#             ^ punctuation.definition.string.begin.bird
+#                  ^ punctuation.definition.string.end.bird
+#                    ^ meta.block.bird
+#                    ^ punctuation.definition.block.begin.bird
+      hello 10;
+#<0------------ meta.block.bird
+#<0------------ meta.block.bird
+#<0------------ meta.block.bird
+#     ^---- keyword.other.interface.bird
+#           ^- constant.numeric.decimal.bird
+#             ^ punctuation.terminator.statement.bird
+    }
+#<0-- meta.block.bird
+#<0-- meta.block.bird
+#<0-- meta.block.bird
+#   ^ punctuation.definition.block.end.bird
+  }
+#<0 meta.block.bird
+#<0 meta.block.bird
+# ^ punctuation.definition.block.end.bird
+}
+#<0 meta.block.bird
+#<0 punctuation.definition.block.end.bird
+
+protocol bgp Upstream {
+#<0-------------------- meta.protocol-definition-with-name.bird
+#<0----- keyword.control.protocol.bird
+#        ^-- entity.name.type.protocol.bird
+#            ^------- entity.name.function.protocol.bird
+  local    as 65001;
+#<0----------------- meta.protocol-definition-with-name.bird
+# ^---------------- meta.local-as-template-statement.bird
+# ^---- keyword.control.local.bird
+#          ^- keyword.control.as.bird
+#             ^---- constant.numeric.asn.bird
+#                  ^ punctuation.terminator.statement.bird
+  neighbor 203.0.113.1 as 174;
+#<0--------------------------- meta.protocol-definition-with-name.bird
+# ^-------------------------- meta.neighbor-statement.bird
+# ^------- keyword.control.neighbor.bird
+#          ^---------- constant.numeric.ip-address.bird
+#                      ^- keyword.control.as.bird
+#                         ^-- constant.numeric.asn.bird
+#                            ^ punctuation.terminator.statement.bird
+
+  ipv4 {
+#<0----- meta.protocol-definition-with-name.bird
+# ^--- keyword.control.structure.bird
+#      ^ meta.block.bird
+#      ^ punctuation.definition.block.begin.bird
+    import filter {
+#<0---------------- meta.protocol-definition-with-name.bird
+#<0---------------- meta.block.bird
+#   ^-------------- meta.import-filter-inline.bird
+#   ^----- keyword.control.import-export.bird
+#          ^----- keyword.control.filter.bird
+      if     bgp_path ~ AS_PATH_FILTER then reject;
+#<0------------------------------------------------ meta.protocol-definition-with-name.bird
+#<0------------------------------------------------ meta.block.bird
+#<0------------------------------------------------ meta.import-filter-inline.bird
+#     ^- keyword.control.bird
+#            ^------- support.variable.route-attribute.bird
+#                     ^ keyword.operator.comparison.bird
+#                       ^------------- variable.other.user-defined.bird
+#                                      ^--- keyword.control.bird
+#                                           ^----- keyword.control.flow.bird
+#                                                 ^ punctuation.terminator.statement.bird
+      accept;
+#<0---------- meta.protocol-definition-with-name.bird
+#<0---------- meta.block.bird
+#<0---------- meta.import-filter-inline.bird
+#     ^----- keyword.control.flow.bird
+#           ^ punctuation.terminator.statement.bird
+    }
+#<0-- meta.protocol-definition-with-name.bird
+#<0-- meta.block.bird
+#<0-- meta.import-filter-inline.bird
+#   ^ punctuation.definition.block.end.bird
+
+    export filter export_filter;
+#<0----------------------------- meta.protocol-definition-with-name.bird
+#<0----------------------------- meta.block.bird
+#   ^-------------------------- meta.export-statement.bird
+#   ^----- keyword.control.import-export.bird
+#          ^----- keyword.control.filter.bird
+#                 ^------------ entity.name.function.filter.bird
+#                              ^ punctuation.terminator.statement.bird
+  }
+#<0 meta.protocol-definition-with-name.bird
+#<0 meta.block.bird
+# ^ punctuation.definition.block.end.bird
+}
+#<0 meta.protocol-definition-with-name.bird
+#<0 punctuation.definition.block.end.bird
+
+protocol kernel Kernel {
+#<0--------------------- meta.protocol-definition-with-name.bird
+#<0----- keyword.control.protocol.bird
+#        ^----- entity.name.type.protocol.bird
+#               ^----- entity.name.function.protocol.bird
+  ipv4;
+#<0---- meta.protocol-definition-with-name.bird
+# ^--- keyword.control.structure.bird
+#     ^ punctuation.terminator.statement.bird
+  scan time 10;
+#<0------------ meta.protocol-definition-with-name.bird
+# ^--- keyword.control.routing.bird
+#      ^--- keyword.other.time.bird
+#           ^- constant.numeric.decimal.bird
+#             ^ punctuation.terminator.statement.bird
+}
+#<0 meta.protocol-definition-with-name.bird
+#<0 punctuation.definition.block.end.bird
+
+# Filter and function definitions
+#<0------------------------------ comment.line.number-sign.bird
+#<0 punctuation.definition.comment.bird
+function is_private_network() -> bool {
+#<0------------------------------------ meta.function-definition.bird
+#<0----- keyword.control.function.bird
+#        ^----------------- entity.name.function.user-defined.bird
+#                          ^- meta.function-parameters.bird
+#                          ^ punctuation.definition.parameters.begin.bird
+#                           ^ punctuation.definition.parameters.end.bird
+#                             ^------- meta.function-return-type.bird
+#                             ^- keyword.operator.return-type.bird
+#                                ^--- storage.type.bird
+#                                     ^ meta.block.bird
+#                                     ^ punctuation.definition.block.begin.bird
+  if     net ~ [ 10.0.0.0/8+, 172.16.0.0/12+, 192.168.0.0/16+ ] then return true;
+#<0------------------------------------------------------------------------------ meta.function-definition.bird
+#<0------------------------------------------------------------------------------ meta.block.bird
+# ^- keyword.control.bird
+#        ^-- support.variable.route-attribute.bird
+#            ^ keyword.operator.comparison.bird
+#              ^----------------------------------------------- meta.set.bird
+#              ^ punctuation.definition.set.begin.bird
+#                ^--------- constant.numeric.ip.ipv4.bird
+#                          ^ keyword.operator.arithmetic.bird
+#                           ^ punctuation.separator.bird
+#                             ^------------ constant.numeric.ip.ipv4.bird
+#                                          ^ keyword.operator.arithmetic.bird
+#                                           ^ punctuation.separator.bird
+#                                             ^------------- constant.numeric.ip.ipv4.bird
+#                                                           ^ keyword.operator.arithmetic.bird
+#                                                             ^ punctuation.definition.set.end.bird
+#                                                               ^--- keyword.control.bird
+#                                                                    ^----- keyword.control.bird
+#                                                                           ^--- constant.language.boolean.bird
+#                                                                               ^ punctuation.terminator.statement.bird
+  return false;
+#<0------------ meta.function-definition.bird
+#<0------------ meta.block.bird
+# ^----- keyword.control.bird
+#        ^---- constant.language.boolean.bird
+#             ^ punctuation.terminator.statement.bird
+}
+#<0 meta.function-definition.bird
+#<0 meta.block.bird
+#<0 punctuation.definition.block.end.bird
+
+filter export_filter {
+#<0------------------- meta.function-definition.bird
+#<0------------------- meta.filter-definition.bird
+#<0--- keyword.control.filter.bird
+#      ^------------ entity.name.function.filter.bird
+  if is_private_network() then reject;
+#<0----------------------------------- meta.function-definition.bird
+#<0----------------------------------- meta.filter-definition.bird
+# ^- keyword.control.bird
+#    ^------------------- meta.function-call.bird
+#    ^----------------- entity.name.function.call.bird
+#                         ^--- keyword.control.bird
+#                              ^----- keyword.control.flow.bird
+#                                    ^ punctuation.terminator.statement.bird
+  if bgp_path.len > 10 then reject;
+#<0-------------------------------- meta.function-definition.bird
+#<0-------------------------------- meta.filter-definition.bird
+# ^- keyword.control.bird
+#    ^------- support.variable.route-attribute.bird
+#            ^--- meta.method-access.bird
+#             ^-- variable.other.property.bird
+#                 ^ keyword.operator.comparison.bird
+#                   ^- constant.numeric.decimal.bird
+#                      ^--- keyword.control.bird
+#                           ^----- keyword.control.flow.bird
+#                                 ^ punctuation.terminator.statement.bird
+
+  if bgp_community ~ [(65001,100)] then {
+#<0-------------------------------------- meta.function-definition.bird
+#<0-------------------------------------- meta.filter-definition.bird
+# ^- keyword.control.bird
+#    ^------------ support.variable.route-attribute.bird
+#                  ^ keyword.operator.comparison.bird
+#                    ^------------ meta.set.bird
+#                    ^ punctuation.definition.set.begin.bird
+#                     ^---------- meta.tuple.bird
+#                     ^ punctuation.definition.tuple.begin.bird
+#                      ^---- constant.numeric.decimal.bird
+#                           ^ punctuation.separator.bird
+#                            ^-- constant.numeric.decimal.bird
+#                               ^ punctuation.definition.tuple.end.bird
+#                                ^ punctuation.definition.set.end.bird
+#                                  ^--- keyword.control.bird
+#                                       ^ meta.block.bird
+#                                       ^ punctuation.definition.block.begin.bird
+    bgp_local_pref = 200;
+#<0---------------------- meta.function-definition.bird
+#<0---------------------- meta.filter-definition.bird
+#<0---------------------- meta.block.bird
+#   ^------------- support.variable.route-attribute.bird
+#                  ^ keyword.operator.comparison.bird
+#                    ^-- constant.numeric.decimal.bird
+#                       ^ punctuation.terminator.statement.bird
+    accept;
+#<0-------- meta.function-definition.bird
+#<0-------- meta.filter-definition.bird
+#<0-------- meta.block.bird
+#   ^----- keyword.control.flow.bird
+#         ^ punctuation.terminator.statement.bird
+  }
+#<0 meta.function-definition.bird
+#<0 meta.filter-definition.bird
+#<0 meta.block.bird
+# ^ punctuation.definition.block.end.bird
+
+  accept;
+#<0------ meta.function-definition.bird
+#<0------ meta.filter-definition.bird
+# ^----- keyword.control.flow.bird
+#       ^ punctuation.terminator.statement.bird
+}
+#<0 meta.function-definition.bird
+#<0 meta.filter-definition.bird
+#<0 punctuation.definition.block.end.bird
+
+# From https://github.com/bird-chinese-community/BIRD-tm-language-grammar/blob/main/sample/basic.conf
+#<0-------------------------------------------------------------------------------------------------- meta.function-definition.bird
+#<0-------------------------------------------------------------------------------------------------- comment.line.number-sign.bird
+#<0 punctuation.definition.comment.bird

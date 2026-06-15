@@ -1,0 +1,239 @@
+! grammar: source.fortran.free
+
+program mandel
+!<0----------- meta.program.fortran
+!<0---- keyword.control.program.fortran
+!       ^----- entity.name.program.fortran
+    implicit none
+!<0-------------- meta.program.fortran
+!<0-------------- meta.block.specification.program.fortran
+!   ^------------ meta.statement.implicit.fortran
+!   ^------- keyword.other.implicit.fortran
+!            ^--- keyword.other.none.fortran
+    integer, parameter :: N = 99  ! smaller than half of terminal width
+!<0-------------------------------------------------------------------- meta.program.fortran
+!<0-------------------------------------------------------------------- meta.block.specification.program.fortran
+!   ^----------------------------- meta.specification.type.fortran
+!   ^------ storage.type.integer.fortran
+!          ^ punctuation.comma.fortran
+!            ^-------- storage.modifier.parameter.fortran
+!                      ^- keyword.operator.double-colon.fortran
+!                         ^ meta.parameter.fortran
+!                           ^ keyword.operator.assignment.fortran
+!                             ^- constant.numeric.fortran
+!                                 ^------------------------------------ comment.line.fortran
+    character(3) :: N_str
+!<0---------------------- meta.program.fortran
+!<0---------------------- meta.block.specification.program.fortran
+!   ^-------------------- meta.specification.type.fortran
+!   ^-------- storage.type.character.fortran
+!            ^ punctuation.parentheses.left.fortran
+!             ^ constant.numeric.fortran
+!              ^ punctuation.parentheses.right.fortran
+!                ^- keyword.operator.double-colon.fortran
+!                   ^---- meta.parameter.fortran
+    complex :: c(N,N)  ! coordinates
+!<0--------------------------------- meta.program.fortran
+!<0--------------------------------- meta.block.specification.program.fortran
+!   ^------------------ meta.specification.type.fortran
+!   ^------ storage.type.complex.fortran
+!           ^- keyword.operator.double-colon.fortran
+!              ^ meta.parameter.fortran
+!               ^ punctuation.parentheses.left.fortran
+!                ^ meta.parameter.fortran
+!                  ^ meta.parameter.fortran
+!                   ^ punctuation.parentheses.right.fortran
+!                      ^------------ comment.line.fortran
+    complex :: z(N,N)  ! values for iteration
+!<0------------------------------------------ meta.program.fortran
+!<0------------------------------------------ meta.block.specification.program.fortran
+!   ^------------------ meta.specification.type.fortran
+!   ^------ storage.type.complex.fortran
+!           ^- keyword.operator.double-colon.fortran
+!              ^ meta.parameter.fortran
+!               ^ punctuation.parentheses.left.fortran
+!                ^ meta.parameter.fortran
+!                  ^ meta.parameter.fortran
+!                   ^ punctuation.parentheses.right.fortran
+!                      ^--------------------- comment.line.fortran
+    integer :: i, j
+!<0---------------- meta.program.fortran
+!<0---------------- meta.block.specification.program.fortran
+!   ^-------------- meta.specification.type.fortran
+!   ^------ storage.type.integer.fortran
+!           ^- keyword.operator.double-colon.fortran
+!              ^ meta.parameter.fortran
+!                 ^ meta.parameter.fortran
+    c = 0.0
+!<0-------- meta.program.fortran
+!<0-------- meta.block.specification.program.fortran
+!   ^ meta.parameter.fortran
+!     ^ keyword.operator.assignment.fortran
+!       ^-- constant.numeric.fortran
+    z = 0.0
+!<0-------- meta.program.fortran
+!<0-------- meta.block.specification.program.fortran
+!   ^ meta.parameter.fortran
+!     ^ keyword.operator.assignment.fortran
+!       ^-- constant.numeric.fortran
+    do i = 1, N
+!<0------------ meta.program.fortran
+!<0------------ meta.block.specification.program.fortran
+!   ^---------- meta.block.do.unlabeled.fortran
+!   ^- keyword.control.do.fortran
+!     ^-------- meta.loop-control.fortran
+!      ^ meta.parameter.fortran
+!        ^ keyword.operator.assignment.fortran
+!          ^ constant.numeric.fortran
+!             ^ meta.parameter.fortran
+        c(:, i) = c(:, i) + [(cmplx(3.*j/(N-1)-2, 0.),j=0,N-1)]
+!<0------------------------------------------------------------ meta.program.fortran
+!<0------------------------------------------------------------ meta.block.specification.program.fortran
+!<0------------------------------------------------------------ meta.block.do.unlabeled.fortran
+!       ^ meta.parameter.fortran
+!        ^ punctuation.parentheses.left.fortran
+!            ^ meta.parameter.fortran
+!             ^ punctuation.parentheses.right.fortran
+!               ^ keyword.operator.assignment.fortran
+!                 ^ meta.parameter.fortran
+!                  ^ punctuation.parentheses.left.fortran
+!                      ^ meta.parameter.fortran
+!                       ^ punctuation.parentheses.right.fortran
+!                         ^ keyword.operator.addition.fortran
+!                          ^----------------------------------- meta.contructor.array
+!                           ^ punctuation.bracket.left.fortran
+!                            ^ punctuation.parentheses.left.fortran
+!                             ^---- support.function.intrinsic.fortran
+!                                  ^ punctuation.parentheses.left.fortran
+!                                   ^- constant.numeric.fortran
+!                                     ^ keyword.operator.power.fortran
+!                                      ^ meta.parameter.fortran
+!                                        ^ punctuation.parentheses.left.fortran
+!                                         ^ meta.parameter.fortran
+!                                          ^- constant.numeric.fortran
+!                                            ^ punctuation.parentheses.right.fortran
+!                                             ^- constant.numeric.fortran
+!                                                 ^- constant.numeric.fortran
+!                                                   ^ punctuation.parentheses.right.fortran
+!                                                     ^ meta.parameter.fortran
+!                                                      ^ keyword.operator.assignment.fortran
+!                                                       ^ constant.numeric.fortran
+!                                                         ^ meta.parameter.fortran
+!                                                          ^- constant.numeric.fortran
+!                                                            ^ punctuation.parentheses.right.fortran
+!                                                             ^ punctuation.bracket.left.fortran
+        c(i, :) = c(i, :) + [(cmplx(0., 3.*j/(N-1)-1.5),j=0,N-1)]
+!<0-------------------------------------------------------------- meta.program.fortran
+!<0-------------------------------------------------------------- meta.block.specification.program.fortran
+!<0-------------------------------------------------------------- meta.block.do.unlabeled.fortran
+!       ^ meta.parameter.fortran
+!        ^ punctuation.parentheses.left.fortran
+!         ^ meta.parameter.fortran
+!             ^ punctuation.parentheses.right.fortran
+!               ^ keyword.operator.assignment.fortran
+!                 ^ meta.parameter.fortran
+!                  ^ punctuation.parentheses.left.fortran
+!                   ^ meta.parameter.fortran
+!                       ^ punctuation.parentheses.right.fortran
+!                         ^ keyword.operator.addition.fortran
+!                          ^------------------------------------- meta.contructor.array
+!                           ^ punctuation.bracket.left.fortran
+!                            ^ punctuation.parentheses.left.fortran
+!                             ^---- support.function.intrinsic.fortran
+!                                  ^ punctuation.parentheses.left.fortran
+!                                   ^- constant.numeric.fortran
+!                                       ^- constant.numeric.fortran
+!                                         ^ keyword.operator.power.fortran
+!                                          ^ meta.parameter.fortran
+!                                            ^ punctuation.parentheses.left.fortran
+!                                             ^ meta.parameter.fortran
+!                                              ^- constant.numeric.fortran
+!                                                ^ punctuation.parentheses.right.fortran
+!                                                 ^--- constant.numeric.fortran
+!                                                     ^ punctuation.parentheses.right.fortran
+!                                                       ^ meta.parameter.fortran
+!                                                        ^ keyword.operator.assignment.fortran
+!                                                         ^ constant.numeric.fortran
+!                                                           ^ meta.parameter.fortran
+!                                                            ^- constant.numeric.fortran
+!                                                              ^ punctuation.parentheses.right.fortran
+!                                                               ^ punctuation.bracket.left.fortran
+    end do
+!<0------- meta.program.fortran
+!<0------- meta.block.specification.program.fortran
+!<0------- meta.block.do.unlabeled.fortran
+!   ^----- keyword.control.enddo.fortran
+    do i = 1, 100
+!<0-------------- meta.program.fortran
+!<0-------------- meta.block.specification.program.fortran
+!   ^------------ meta.block.do.unlabeled.fortran
+!   ^- keyword.control.do.fortran
+!     ^---------- meta.loop-control.fortran
+!      ^ meta.parameter.fortran
+!        ^ keyword.operator.assignment.fortran
+!          ^ constant.numeric.fortran
+!             ^-- constant.numeric.fortran
+        z = z**2 + c
+!<0----------------- meta.program.fortran
+!<0----------------- meta.block.specification.program.fortran
+!<0----------------- meta.block.do.unlabeled.fortran
+!       ^ meta.parameter.fortran
+!         ^ keyword.operator.assignment.fortran
+!           ^ meta.parameter.fortran
+!            ^- keyword.operator.division.fortran
+!              ^ constant.numeric.fortran
+!                ^ keyword.operator.addition.fortran
+!                  ^ meta.parameter.fortran
+    end do
+!<0------- meta.program.fortran
+!<0------- meta.block.specification.program.fortran
+!<0------- meta.block.do.unlabeled.fortran
+!   ^----- keyword.control.enddo.fortran
+    write(N_str, "(i3)") N
+!<0----------------------- meta.program.fortran
+!<0----------------------- meta.block.specification.program.fortran
+!   ^--------------------- meta.statement.IO.fortran
+!   ^---- keyword.control.write.fortran
+!        ^ punctuation.parentheses.left.fortran
+!         ^---- meta.parameter.fortran
+!                ^----- string.quoted.double.fortran
+!                ^ punctuation.definition.string.begin.fortran
+!                     ^ punctuation.definition.string.end.fortran
+!                      ^ punctuation.parentheses.right.fortran
+!                        ^ meta.parameter.fortran
+    print "("//trim(N_str)//"(a))", merge('##', '  ', abs(z)<2)
+!<0------------------------------------------------------------ meta.program.fortran
+!<0------------------------------------------------------------ meta.block.specification.program.fortran
+!   ^---- keyword.control.print.fortran
+!         ^-- string.quoted.double.fortran
+!         ^ punctuation.definition.string.begin.fortran
+!           ^ punctuation.definition.string.end.fortran
+!            ^- keyword.other.concatination.fortran
+!              ^--- support.function.intrinsic.fortran
+!                  ^ punctuation.parentheses.left.fortran
+!                   ^---- meta.parameter.fortran
+!                        ^ punctuation.parentheses.right.fortran
+!                         ^- keyword.other.concatination.fortran
+!                           ^----- string.quoted.double.fortran
+!                           ^ punctuation.definition.string.begin.fortran
+!                                ^ punctuation.definition.string.end.fortran
+!                                   ^---- support.function.intrinsic.fortran
+!                                        ^ punctuation.parentheses.left.fortran
+!                                         ^--- string.quoted.single.fortran
+!                                         ^ punctuation.definition.string.begin.fortran
+!                                            ^ punctuation.definition.string.end.fortran
+!                                               ^--- string.quoted.single.fortran
+!                                               ^ punctuation.definition.string.begin.fortran
+!                                                  ^ punctuation.definition.string.end.fortran
+!                                                     ^-- support.function.intrinsic.fortran
+!                                                        ^ punctuation.parentheses.left.fortran
+!                                                         ^ meta.parameter.fortran
+!                                                          ^ punctuation.parentheses.right.fortran
+!                                                           ^ keyword.logical.fortran.modern
+!                                                            ^ constant.numeric.fortran
+!                                                             ^ punctuation.parentheses.right.fortran
+end program mandel
+!<0--------------- meta.program.fortran
+
+! From https://fortran-lang.discourse.group/t/modern-fortran-sample-code/2019/14
+!<0----------------------------------------------------------------------------- meta.program.fortran

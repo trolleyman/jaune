@@ -1,0 +1,68 @@
+# grammar: source.gts
+
+import type { TemplateOnlyComponent } from '@glimmer/component';
+#<0------------------------------------------------------------ meta.import.ts
+#<0--- keyword.control.import.ts
+#      ^--- keyword.control.type.ts
+#           ^------------------------ meta.block.ts
+#           ^ punctuation.definition.block.ts
+#             ^-------------------- variable.other.readwrite.alias.ts
+#                                   ^ punctuation.definition.block.ts
+#                                     ^--- keyword.control.from.ts
+#                                          ^------------------- string.quoted.single.ts
+#                                          ^ punctuation.definition.string.begin.ts
+#                                                             ^ punctuation.definition.string.end.ts
+#                                                              ^ punctuation.terminator.statement.ts
+
+const Greet: TemplateOnlyComponent<{ name: string }> = <template>
+#<0-------------------------------------------------------------- meta.var.expr.ts
+#<0-- storage.type.ts
+#     ^---------------------------------------------- meta.var-single-variable.expr.ts
+#     ^---- meta.definition.variable.ts
+#     ^---- variable.other.constant.ts
+#          ^----------------------------------------- meta.type.annotation.ts
+#          ^ keyword.operator.type.annotation.ts
+#            ^-------------------- entity.name.type.ts
+#                                 ^----------------- meta.type.parameters.ts
+#                                 ^ punctuation.definition.typeparameters.begin.ts
+#                                  ^--------------- meta.object.type.ts
+#                                  ^ punctuation.definition.block.ts
+#                                   ^------------- meta.field.declaration.ts
+#                                    ^--- meta.definition.property.ts
+#                                    ^--- variable.object.property.ts
+#                                        ^-------- meta.type.annotation.ts
+#                                        ^ keyword.operator.type.annotation.ts
+#                                          ^----- support.type.primitive.ts
+#                                                 ^ punctuation.definition.block.ts
+#                                                  ^ punctuation.definition.typeparameters.end.ts
+#                                                    ^ keyword.operator.assignment.ts
+#                                                     ^---------- meta.js.embeddedTemplateWithoutArgs
+#                                                      ^ punctuation.definition.tag.html
+#                                                       ^------- entity.name.tag.other.html
+#                                                               ^ punctuation.definition.tag.html
+  <p>Hello, {{@name}}!</p>
+#<0----------------------- meta.var.expr.ts
+#<0----------------------- meta.js.embeddedTemplateWithoutArgs
+# ^-- meta.tag.any.ember-handlebars
+# ^ punctuation.definition.tag
+#  ^ entity.name.tag.html.ember-handlebars
+#   ^ punctuation.definition.tag
+#           ^-------- entity.expression.ember-handlebars
+#           ^- keyword.operator
+#             ^---- support.function
+#             ^ variable.language
+#                  ^- keyword.operator
+#                     ^--- meta.tag.any.ember-handlebars
+#                     ^- punctuation.definition.tag
+#                       ^ entity.name.tag.html.ember-handlebars
+#                        ^ punctuation.definition.tag
+</template>
+#<0-------- meta.var.expr.ts
+#<0-------- meta.js.embeddedTemplateWithoutArgs
+#<0 punctuation.definition.tag.html
+# ^------- entity.name.tag.other.html
+#         ^ punctuation.definition.tag.html
+
+// From https://rfcs.emberjs.com/id/0779-first-class-component-templates
+#<0--------------------------------------------------------------------- comment.line.double-slash.ts
+#<0 punctuation.definition.comment.ts

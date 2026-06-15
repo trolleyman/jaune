@@ -1,0 +1,339 @@
+# grammar: source.jison
+
+/* description: Parses end executes mathematical expressions. */
+#<0------------------------------------------------------------- meta.section.declarations.jison
+#<0------------------------------------------------------------- comment.block.jison
+#<0 punctuation.definition.comment.begin.jison
+#                                                             ^- punctuation.definition.comment.end.jison
+
+/* lexical grammar */
+#<0------------------ meta.section.declarations.jison
+#<0------------------ comment.block.jison
+#<0 punctuation.definition.comment.begin.jison
+#                  ^- punctuation.definition.comment.end.jison
+%lex
+#<0- meta.section.declarations.jison
+#<0- entity.name.tag.lexer.begin.jison
+
+%%
+#<0 meta.section.declarations.jison
+#<0 meta.separator.section.jisonlex
+\s+                   /* skip whitespace */
+#<0---------------------------------------- meta.section.declarations.jison
+#<0---------------------------------------- meta.section.rules.jisonlex
+[0-9]+("."[0-9]+)?\b  return 'NUMBER';
+#<0----------------------------------- meta.section.declarations.jison
+#<0----------------------------------- meta.section.rules.jisonlex
+"*"                   return '*';
+#<0------------------------------ meta.section.declarations.jison
+#<0------------------------------ meta.section.rules.jisonlex
+"/"                   return '/';
+#<0------------------------------ meta.section.declarations.jison
+#<0------------------------------ meta.section.rules.jisonlex
+"-"                   return '-';
+#<0------------------------------ meta.section.declarations.jison
+#<0------------------------------ meta.section.rules.jisonlex
+"+"                   return '+';
+#<0------------------------------ meta.section.declarations.jison
+#<0------------------------------ meta.section.rules.jisonlex
+"^"                   return '^';
+#<0------------------------------ meta.section.declarations.jison
+#<0------------------------------ meta.section.rules.jisonlex
+"("                   return '(';
+#<0------------------------------ meta.section.declarations.jison
+#<0------------------------------ meta.section.rules.jisonlex
+")"                   return ')';
+#<0------------------------------ meta.section.declarations.jison
+#<0------------------------------ meta.section.rules.jisonlex
+"PI"                  return 'PI';
+#<0------------------------------- meta.section.declarations.jison
+#<0------------------------------- meta.section.rules.jisonlex
+"E"                   return 'E';
+#<0------------------------------ meta.section.declarations.jison
+#<0------------------------------ meta.section.rules.jisonlex
+<<EOF>>               return 'EOF';
+#<0-------------------------------- meta.section.declarations.jison
+#<0-------------------------------- meta.section.rules.jisonlex
+
+/lex
+#<0- meta.section.declarations.jison
+#<0- entity.name.tag.lexer.end.jison
+
+/* operator associations and precedence */
+#<0--------------------------------------- meta.section.declarations.jison
+#<0--------------------------------------- comment.block.jison
+#<0 punctuation.definition.comment.begin.jison
+#                                       ^- punctuation.definition.comment.end.jison
+
+%left '+' '-'
+#<0---------- meta.section.declarations.jison
+#<0-- keyword.other.declaration.left.jison
+#     ^-- string.quoted.single.jison
+#         ^-- string.quoted.single.jison
+%left '*' '/'
+#<0---------- meta.section.declarations.jison
+#<0-- keyword.other.declaration.left.jison
+#     ^-- string.quoted.single.jison
+#         ^-- string.quoted.single.jison
+%left '^'
+#<0------ meta.section.declarations.jison
+#<0-- keyword.other.declaration.left.jison
+#     ^-- string.quoted.single.jison
+%left UMINUS
+#<0--------- meta.section.declarations.jison
+#<0-- keyword.other.declaration.left.jison
+
+%start expressions
+#<0--------------- meta.section.declarations.jison
+#<0--- keyword.other.declaration.start.jison
+
+%% /* language grammar */
+#<0 meta.separator.section.jison
+# ^---------------------- meta.section.rules.jison
+#  ^--------------------- comment.block.jison
+#  ^- punctuation.definition.comment.begin.jison
+#                      ^- punctuation.definition.comment.end.jison
+
+expressions
+#<0-------- meta.section.rules.jison
+#<0-------- meta.rule.jison
+#<0-------- entity.name.constant.rule-result.jison
+    : e EOF
+#<0-------- meta.section.rules.jison
+#<0-------- meta.rule.jison
+#   ^------ meta.rule-components.jison
+#   ^ keyword.operator.rule-components.assignment.jison
+#       ^-- keyword.other.EOF.jison
+        {print($1); return $1;}
+#<0---------------------------- meta.section.rules.jison
+#<0---------------------------- meta.rule.jison
+#<0---------------------------- meta.rule-components.jison
+#       ^---------------------- meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^---- meta.function-call.js
+#        ^---- entity.name.function.js
+#             ^ meta.brace.round.js
+#              ^- support.variable.token-value.jison
+#                ^ meta.brace.round.js
+#                 ^ punctuation.terminator.statement.js
+#                   ^----- keyword.control.flow.js
+#                          ^- support.variable.token-value.jison
+#                            ^ punctuation.terminator.statement.js
+#                             ^ punctuation.definition.action.end.jison
+    ;
+#<0-- meta.section.rules.jison
+#<0-- meta.rule.jison
+#<0- meta.rule-components.jison
+#   ^ punctuation.terminator.rule.jison
+
+e
+#<0 meta.section.rules.jison
+#<0 meta.rule.jison
+#<0 entity.name.constant.rule-result.jison
+    : e '+' e
+#<0---------- meta.section.rules.jison
+#<0---------- meta.rule.jison
+#   ^-------- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.assignment.jison
+#       ^-- string.quoted.single.jison
+        {$$ = $1+$3;}
+#<0------------------ meta.section.rules.jison
+#<0------------------ meta.rule.jison
+#<0------------------ meta.rule-components.jison
+#       ^------------ meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^- support.variable.token-value.jison
+#               ^ keyword.operator.arithmetic.js
+#                ^- support.variable.token-value.jison
+#                  ^ punctuation.terminator.statement.js
+#                   ^ punctuation.definition.action.end.jison
+    | e '-' e
+#<0---------- meta.section.rules.jison
+#<0---------- meta.rule.jison
+#<0---------- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+#       ^-- string.quoted.single.jison
+        {$$ = $1-$3;}
+#<0------------------ meta.section.rules.jison
+#<0------------------ meta.rule.jison
+#<0------------------ meta.rule-components.jison
+#       ^------------ meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^- support.variable.token-value.jison
+#               ^ keyword.operator.arithmetic.js
+#                ^- support.variable.token-value.jison
+#                  ^ punctuation.terminator.statement.js
+#                   ^ punctuation.definition.action.end.jison
+    | e '*' e
+#<0---------- meta.section.rules.jison
+#<0---------- meta.rule.jison
+#<0---------- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+#       ^-- string.quoted.single.jison
+        {$$ = $1*$3;}
+#<0------------------ meta.section.rules.jison
+#<0------------------ meta.rule.jison
+#<0------------------ meta.rule-components.jison
+#       ^------------ meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^- support.variable.token-value.jison
+#               ^ keyword.operator.arithmetic.js
+#                ^- support.variable.token-value.jison
+#                  ^ punctuation.terminator.statement.js
+#                   ^ punctuation.definition.action.end.jison
+    | e '/' e
+#<0---------- meta.section.rules.jison
+#<0---------- meta.rule.jison
+#<0---------- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+#       ^-- string.quoted.single.jison
+        {$$ = $1/$3;}
+#<0------------------ meta.section.rules.jison
+#<0------------------ meta.rule.jison
+#<0------------------ meta.rule-components.jison
+#       ^------------ meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^- support.variable.token-value.jison
+#               ^ keyword.operator.arithmetic.js
+#                ^- support.variable.token-value.jison
+#                  ^ punctuation.terminator.statement.js
+#                   ^ punctuation.definition.action.end.jison
+    | e '^' e
+#<0---------- meta.section.rules.jison
+#<0---------- meta.rule.jison
+#<0---------- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+#       ^-- string.quoted.single.jison
+        {$$ = Math.pow($1, $3);}
+#<0----------------------------- meta.section.rules.jison
+#<0----------------------------- meta.rule.jison
+#<0----------------------------- meta.rule-components.jison
+#       ^----------------------- meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^------- meta.function-call.js
+#             ^--- variable.other.object.js
+#                 ^ punctuation.accessor.js
+#                  ^-- entity.name.function.js
+#                     ^ meta.brace.round.js
+#                      ^- support.variable.token-value.jison
+#                        ^ punctuation.separator.comma.js
+#                          ^- support.variable.token-value.jison
+#                            ^ meta.brace.round.js
+#                             ^ punctuation.terminator.statement.js
+#                              ^ punctuation.definition.action.end.jison
+    | '-' e %prec UMINUS
+#<0--------------------- meta.section.rules.jison
+#<0--------------------- meta.rule.jison
+#<0--------------------- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+#     ^-- string.quoted.single.jison
+#           ^----------- meta.prec.jison
+#           ^---- keyword.other.prec.jison
+#                 ^----- constant.other.token.jison
+        {$$ = -$2;}
+#<0---------------- meta.section.rules.jison
+#<0---------------- meta.rule.jison
+#<0---------------- meta.rule-components.jison
+#       ^---------- meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^ keyword.operator.arithmetic.js
+#              ^- support.variable.token-value.jison
+#                ^ punctuation.terminator.statement.js
+#                 ^ punctuation.definition.action.end.jison
+    | '(' e ')'
+#<0------------ meta.section.rules.jison
+#<0------------ meta.rule.jison
+#<0------------ meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+#     ^-- string.quoted.single.jison
+#           ^-- string.quoted.single.jison
+        {$$ = $2;}
+#<0--------------- meta.section.rules.jison
+#<0--------------- meta.rule.jison
+#<0--------------- meta.rule-components.jison
+#       ^--------- meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^- support.variable.token-value.jison
+#               ^ punctuation.terminator.statement.js
+#                ^ punctuation.definition.action.end.jison
+    | NUMBER
+#<0--------- meta.section.rules.jison
+#<0--------- meta.rule.jison
+#<0--------- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+        {$$ = Number(yytext);}
+#<0--------------------------- meta.section.rules.jison
+#<0--------------------------- meta.rule.jison
+#<0--------------------------- meta.rule-components.jison
+#       ^--------------------- meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^----- meta.function-call.js
+#             ^----- entity.name.function.js
+#                   ^ meta.brace.round.js
+#                    ^----- variable.language.jison
+#                          ^ meta.brace.round.js
+#                           ^ punctuation.terminator.statement.js
+#                            ^ punctuation.definition.action.end.jison
+    | E
+#<0---- meta.section.rules.jison
+#<0---- meta.rule.jison
+#<0---- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+        {$$ = Math.E;}
+#<0------------------- meta.section.rules.jison
+#<0------------------- meta.rule.jison
+#<0------------------- meta.rule-components.jison
+#       ^------------- meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^--- variable.other.object.js
+#                 ^ punctuation.accessor.js
+#                  ^ variable.other.constant.property.js
+#                   ^ punctuation.terminator.statement.js
+#                    ^ punctuation.definition.action.end.jison
+    | PI
+#<0----- meta.section.rules.jison
+#<0----- meta.rule.jison
+#<0----- meta.rule-components.jison
+#   ^ keyword.operator.rule-components.separator.jison
+        {$$ = Math.PI;}
+#<0-------------------- meta.section.rules.jison
+#<0-------------------- meta.rule.jison
+#<0-------------------- meta.rule-components.jison
+#       ^-------------- meta.action.jison
+#       ^ punctuation.definition.action.begin.jison
+#        ^- variable.language.semantic-value.jison
+#           ^ keyword.operator.assignment.js
+#             ^--- variable.other.object.js
+#                 ^ punctuation.accessor.js
+#                  ^- variable.other.constant.property.js
+#                    ^ punctuation.terminator.statement.js
+#                     ^ punctuation.definition.action.end.jison
+    ;
+#<0-- meta.section.rules.jison
+#<0-- meta.rule.jison
+#<0- meta.rule-components.jison
+#   ^ punctuation.terminator.rule.jison
+
+/* From https://gerhobbelt.github.io/jison/docs/#specifying-a-language */
+#<0---------------------------------------------------------------------- meta.section.rules.jison
+#<0---------------------------------------------------------------------- comment.block.jison
+#<0 punctuation.definition.comment.begin.jison
+#                                                                      ^- punctuation.definition.comment.end.jison

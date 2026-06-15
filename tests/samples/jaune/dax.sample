@@ -1,0 +1,49 @@
+// grammar: source.dax
+
+--  COALESCE returns the first non-blank of its arguments
+//<0----------------------------------------------------- comment.line.dax
+--  It is commonly used to provide default values to expressions
+//<0------------------------------------------------------------ comment.line.dax
+--  that might result in a blank
+//<0---------------------------- comment.line.dax
+EVALUATE
+//<0---- keyword.control.dax
+SELECTCOLUMNS (
+//<0--------- variable.language.dax
+    TOPN ( 10, Store ),
+//  ^--- variable.language.dax
+//         ^- constant.numeric.dax
+//             ^---- variable.other.constant.dax
+    "Store name", Store[Store Name],
+//  ^----------- string.quoted.double.dax
+//                ^---- variable.other.constant.dax
+//                     ^----------- support.function.dax
+    "Manager",
+//  ^-------- string.quoted.double.dax
+        COALESCE ( Store[Area Manager], "** Not Assigned **" ),
+//      ^------- variable.language.dax
+//                 ^---- variable.other.constant.dax
+//                      ^------------- support.function.dax
+//                                      ^------------------- string.quoted.double.dax
+    "Years open",
+//  ^----------- string.quoted.double.dax
+        DATEDIFF (
+//      ^------- variable.language.dax
+            Store[Open Date],
+//          ^---- variable.other.constant.dax
+//               ^---------- support.function.dax
+            COALESCE ( Store[Close Date], TODAY () ),
+//          ^------- variable.language.dax
+//                     ^---- variable.other.constant.dax
+//                          ^----------- support.function.dax
+//                                        ^---- variable.language.dax
+            YEAR
+//          ^--- variable.language.dax
+        )
+)
+ORDER BY [Manager]
+//<0---- keyword.control.dax
+//       ^-------- support.function.dax
+
+-- From https://dax.guide/coalesce/
+//<0------------------------------- comment.line.dax

@@ -1,0 +1,83 @@
+# grammar: source.rosmsg
+
+#goal definition
+#<0------------- comment.line.number-sign.rosmsg
+nav_msgs/Goals poses
+#<0----------- support.type.rosmsg
+#              ^---- variable.other.field.rosmsg
+string behavior_tree
+#<0--- storage.type.rosmsg
+#      ^------------ variable.other.field.rosmsg
+---
+#<0 meta.separator.rosmsg
+#result definition
+#<0--------------- comment.line.number-sign.rosmsg
+
+# Error codes
+#<0---------- comment.line.number-sign.rosmsg
+# Note: The expected priority order of the errors should match the message order
+#<0----------------------------------------------------------------------------- comment.line.number-sign.rosmsg
+uint16 NONE=0
+#<0--- support.type.rosmsg
+#<0--- storage.type.rosmsg
+#      ^--- variable.other.field.rosmsg
+#           ^ constant.numeric.integer.rosmsg
+uint16 UNKNOWN=9100
+#<0--- support.type.rosmsg
+#<0--- storage.type.rosmsg
+#      ^------ variable.other.field.rosmsg
+#              ^--- constant.numeric.integer.rosmsg
+uint16 FAILED_TO_LOAD_BEHAVIOR_TREE=9101
+#<0--- support.type.rosmsg
+#<0--- storage.type.rosmsg
+#      ^--------------------------- variable.other.field.rosmsg
+#                                   ^--- constant.numeric.integer.rosmsg
+uint16 TF_ERROR=9102
+#<0--- support.type.rosmsg
+#<0--- storage.type.rosmsg
+#      ^------- variable.other.field.rosmsg
+#               ^--- constant.numeric.integer.rosmsg
+uint16 TIMEOUT=9103
+#<0--- support.type.rosmsg
+#<0--- storage.type.rosmsg
+#      ^------ variable.other.field.rosmsg
+#              ^--- constant.numeric.integer.rosmsg
+
+uint16 error_code
+#<0--- support.type.rosmsg
+#<0--- storage.type.rosmsg
+#      ^--------- variable.other.field.rosmsg
+string error_msg
+#<0--- storage.type.rosmsg
+#      ^-------- variable.other.field.rosmsg
+WaypointStatus[] waypoint_statuses
+#<0----------- support.type.rosmsg
+#                ^---------------- variable.other.field.rosmsg
+---
+#<0 meta.separator.rosmsg
+#feedback definition
+#<0----------------- comment.line.number-sign.rosmsg
+geometry_msgs/PoseStamped current_pose
+#<0---------------------- support.type.rosmsg
+#                         ^----------- variable.other.field.rosmsg
+builtin_interfaces/Duration navigation_time
+#<0------------------------ support.type.rosmsg
+#                           ^-------------- variable.other.field.rosmsg
+builtin_interfaces/Duration estimated_time_remaining
+#<0------------------------ support.type.rosmsg
+#                           ^----------------------- variable.other.field.rosmsg
+int16 number_of_recoveries
+#<0-- support.type.rosmsg
+#<0-- storage.type.rosmsg
+#     ^------------------- variable.other.field.rosmsg
+float32 distance_remaining
+#<0---- support.type.rosmsg
+#<0---- storage.type.rosmsg
+#       ^----------------- variable.other.field.rosmsg
+int16 number_of_poses_remaining
+#<0-- support.type.rosmsg
+#<0-- storage.type.rosmsg
+#     ^------------------------ variable.other.field.rosmsg
+
+# From https://github.com/ros-navigation/navigation2/blob/f7b665406c46494b0f6fbfe80bd16d4f0d85e1df/nav2_msgs/action/NavigateThroughPoses.action
+#<0-------------------------------------------------------------------------------------------------------------------------------------------- comment.line.number-sign.rosmsg

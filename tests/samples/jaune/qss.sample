@@ -1,0 +1,106 @@
+# grammar: source.qss
+
+QComboBox:on
+#<0------ entity.name.type.qss
+#         ^- keyword.control.qss
+{
+    padding-top: 3px;
+#   ^---------- support.type.property-name.qss
+#                ^-- constant.numeric.qss
+    padding-left: 4px;
+#   ^----------- support.type.property-name.qss
+#                 ^-- constant.numeric.qss
+    background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #2d2d2d, stop: 0.1 #2b2b2b, stop: 0.5 #292929, stop: 0.9 #282828, stop: 1 #252525);
+#   ^--------------- support.type.property-name.qss
+#                                          ^ constant.numeric.qss
+#                                                 ^ constant.numeric.qss
+#                                                        ^ constant.numeric.qss
+#                                                               ^ constant.numeric.qss
+#                                                                        ^ constant.numeric.qss
+#                                                                          ^------ support.constant.property-value.color.qss
+#                                                                                         ^-- constant.numeric.qss
+#                                                                                             ^------ support.constant.property-value.color.qss
+#                                                                                                            ^-- constant.numeric.qss
+#                                                                                                                ^------ support.constant.property-value.color.qss
+#                                                                                                                               ^-- constant.numeric.qss
+#                                                                                                                                   ^------ support.constant.property-value.color.qss
+#                                                                                                                                                  ^ constant.numeric.qss
+#                                                                                                                                                    ^------ support.constant.property-value.color.qss
+    selection-background-color: #ffaa00;
+#   ^------------------------- support.type.property-name.qss
+#                               ^------ support.constant.property-value.color.qss
+}
+
+QComboBox::down-arrow
+#<0------ entity.name.type.qss
+#          ^--------- entity.other.inherited-class.qss
+{
+     image: url(:/stylesheet/resources/stylesheet/down_arrow.png);
+#    ^---- support.type.property-name.qss
+#           ^-- entity.name.function.qss
+}
+
+QTabBar::tab:first:!selected
+#<0---- entity.name.type.qss
+#        ^-- entity.other.inherited-class.qss
+#            ^---- keyword.control.qss
+#                   ^------- keyword.control.qss
+{
+    margin-left: 0px; /* the last selected tab has nothing to overlap with on the right */
+#   ^---------- support.type.property-name.qss
+#                ^-- constant.numeric.qss
+#                     ^------------------------------------------------------------------- comment.block.qss
+    border-top-left-radius: 3px;
+#   ^--------------------- support.type.property-name.qss
+#                           ^-- constant.numeric.qss
+}
+
+QRadioButton::indicator:checked
+#<0--------- entity.name.type.qss
+#             ^-------- entity.other.inherited-class.qss
+#                       ^------ keyword.control.qss
+{
+    background-color: qradialgradient(
+#   ^--------------- support.type.property-name.qss
+#                     ^-------------- entity.name.function.qss
+        cx: 0.5, cy: 0.5,
+#       ^- variable.parameter.qss
+#           ^-- constant.numeric.qss
+#                ^- variable.parameter.qss
+#                    ^-- constant.numeric.qss
+        fx: 0.5, fy: 0.5,
+#       ^- variable.parameter.qss
+#           ^-- constant.numeric.qss
+#                ^- variable.parameter.qss
+#                    ^-- constant.numeric.qss
+        radius: 1.0,
+#       ^----- variable.parameter.qss
+#               ^-- constant.numeric.qss
+        stop: 0.25 #ffaa00,
+#       ^--- variable.parameter.qss
+#             ^--- constant.numeric.qss
+#                  ^------ support.constant.property-value.color.qss
+        stop: 0.3 #323232
+#       ^--- variable.parameter.qss
+#             ^-- constant.numeric.qss
+#                 ^------ support.constant.property-value.color.qss
+    );
+}
+
+QRadioButton::indicator:hover, QCheckBox::indicator:hover
+#<0--------- entity.name.type.qss
+#             ^-------- entity.other.inherited-class.qss
+#                       ^---- keyword.control.qss
+#                              ^-------- entity.name.type.qss
+#                                         ^-------- entity.other.inherited-class.qss
+#                                                   ^---- keyword.control.qss
+{
+    border: 1px solid #ffaa00;
+#   ^----- support.type.property-name.qss
+#           ^-- constant.numeric.qss
+#               ^---- support.constant.property-value.qss
+#                     ^------ support.constant.property-value.color.qss
+}
+
+/* From https://invent.kde.org/rolisteam/rolisteam/-/blob/master/resources/stylesheet/client/darkorange/darkorange.qss */
+#<0---------------------------------------------------------------------------------------------------------------------- comment.block.qss

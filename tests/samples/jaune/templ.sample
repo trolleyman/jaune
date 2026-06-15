@@ -1,0 +1,93 @@
+// grammar: source.templ
+
+package main
+//<0--- keyword.package.go
+//      ^--- entity.name.type.package.go
+
+templ body() {
+//<0---------- html-template.templ
+//<0- keyword.control.go
+//    ^--- variable.other.go
+//        ^ punctuation.definition.begin.bracket.round.go
+//         ^ params.html-template.templ
+//         ^ punctuation.definition.end.bracket.round.go
+//          ^- block.html-template.templ
+//           ^ punctuation.definition.begin.bracket.curly.go
+  <script type="text/javascript">
+//<0----------------------------- html-template.templ
+//<0----------------------------- block.html-template.templ
+//^------------------------------ meta.tag.script.html
+//^ punctuation.definition.tag.html
+// ^----- entity.name.tag.html
+//        ^--- entity.other.attribute-name.html
+//             ^---------------- string.quoted.double.html
+//             ^ punctuation.definition.string.begin.html
+//                             ^ punctuation.definition.string.end.html
+//                              ^ punctuation.definition.tag.html
+    function handleClick(event) {
+//<0----------------------------- html-template.templ
+//<0----------------------------- block.html-template.templ
+//<0----------------------------- meta.tag.script.html
+//  ^---------------------------- meta.function.js
+//  ^------- storage.type.function.js
+//           ^---------- meta.definition.function.js entity.name.function.js
+//                      ^------ meta.parameters.js
+//                      ^ punctuation.definition.parameters.begin.js
+//                       ^---- variable.parameter.js
+//                            ^ punctuation.definition.parameters.end.js
+//                              ^ meta.block.js
+//                              ^ punctuation.definition.block.js
+      alert(event + ' clicked');
+//<0---------------------------- html-template.templ
+//<0---------------------------- block.html-template.templ
+//<0---------------------------- meta.tag.script.html
+//<0---------------------------- meta.function.js
+//<0---------------------------- meta.block.js
+//    ^---- meta.function-call.js
+//    ^---- entity.name.function.js
+//         ^ meta.brace.round.js
+//          ^---- variable.other.readwrite.js
+//                ^ keyword.operator.arithmetic.js
+//                  ^--------- string.quoted.single.js
+//                  ^ punctuation.definition.string.begin.js
+//                           ^ punctuation.definition.string.end.js
+//                            ^ meta.brace.round.js
+//                             ^ punctuation.terminator.statement.js
+    }
+//<0- html-template.templ
+//<0- block.html-template.templ
+//<0- meta.tag.script.html
+//<0- meta.function.js
+//<0- meta.block.js
+//  ^ punctuation.definition.block.js
+  </script>
+//<0------- html-template.templ
+//<0------- block.html-template.templ
+//<0------- meta.tag.script.html
+//^-------- meta.tag.other.html
+//^- punctuation.definition.tag.begin.html
+//  ^----- entity.name.tag.other.html
+//        ^ punctuation.definition.tag.end.html
+  <button onclick="handleClick(this)">Click me</button>
+//<0--------------------------------------------------- html-template.templ
+//<0--------------------------------------------------- block.html-template.templ
+//^----------------------------------- meta.tag.inline.any.html
+//^ punctuation.definition.tag.begin.html
+// ^----- entity.name.tag.inline.any.html
+//        ^------ entity.other.attribute-name.html
+//                ^------------------ string.quoted.double.html
+//                ^ punctuation.definition.string.begin.html
+//                                  ^ punctuation.definition.string.end.html
+//                                   ^ punctuation.definition.tag.end.html
+//                                            ^-------- meta.tag.inline.any.html
+//                                            ^- punctuation.definition.tag.begin.html
+//                                              ^----- entity.name.tag.inline.any.html
+//                                                    ^ punctuation.definition.tag.end.html
+}
+//<0 html-template.templ
+//<0 block.html-template.templ
+//<0 punctuation.definition.end.bracket.curly.go
+
+// From https://templ.guide/syntax-and-usage/script-templates
+//<0--------------------------------------------------------- comment.line.double-slash.go
+//<0 punctuation.definition.comment.go

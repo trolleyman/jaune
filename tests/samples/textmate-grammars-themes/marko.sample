@@ -1,0 +1,84 @@
+<!-- grammar: text.marko -->
+
+<await(slowPromise) timeout=5000>
+<!--<0 punctuation.definition.tag.begin.marko -->
+<!--<1 keyword.control.flow.marko -->
+<!--  ^------------ meta.embedded.ts -->
+<!--  ^------------ source.ts -->
+<!--  ^ meta.brace.round.ts -->
+<!--   ^---------- variable.other.readwrite.ts -->
+<!--              ^ meta.brace.round.ts -->
+<!--                ^----------- meta.marko-attribute -->
+<!--                ^------ entity.other.attribute-name.marko -->
+<!--                       ^---- meta.embedded.ts -->
+<!--                       ^ keyword.operator.assignment.ts -->
+<!--                        ^--- source.ts -->
+<!--                        ^--- constant.numeric.decimal.ts -->
+<!--                            ^ punctuation.definition.tag.end.marko -->
+  <@then>Done</@then>
+<!--<2 punctuation.definition.tag.begin.marko -->
+<!--<3-- entity.other.attribute-name.marko -->
+<!--    ^ punctuation.definition.tag.end.marko -->
+<!--     ^--- text.marko -->
+<!--         ^- punctuation.definition.tag.begin.marko -->
+<!--           ^---- entity.other.attribute-name.marko -->
+<!--                ^ punctuation.definition.tag.end.marko -->
+  <@catch|err|>
+<!--<2 punctuation.definition.tag.begin.marko -->
+<!--<3--- entity.other.attribute-name.marko -->
+<!--     ^ punctuation.section.scope.begin.marko -->
+<!--      ^-- source.ts -->
+<!--      ^-- variable.parameter.ts -->
+<!--         ^ punctuation.section.scope.end.marko -->
+<!--          ^ punctuation.definition.tag.end.marko -->
+    <if(err.name === "TimeoutError")>
+<!--^ punctuation.definition.tag.begin.marko -->
+<!-- ^- keyword.control.flow.marko -->
+<!--   ^---------------------------- meta.embedded.ts -->
+<!--   ^---------------------------- source.ts -->
+<!--   ^ meta.brace.round.ts -->
+<!--    ^-- variable.other.object.ts -->
+<!--       ^ punctuation.accessor.ts -->
+<!--        ^--- variable.other.property.ts -->
+<!--             ^-- keyword.operator.comparison.ts -->
+<!--                 ^------------- string.quoted.double.ts -->
+<!--                 ^ punctuation.definition.string.begin.ts -->
+<!--                              ^ punctuation.definition.string.end.ts -->
+<!--                               ^ meta.brace.round.ts -->
+<!--                                ^ punctuation.definition.tag.end.marko -->
+      Took too long to fetch the data!
+<!--<0-------------------------------- text.marko -->
+    </if>
+<!--^- punctuation.definition.tag.begin.marko -->
+<!--  ^- keyword.control.flow.marko -->
+<!--    ^ punctuation.definition.tag.end.marko -->
+    <else>
+<!--^ punctuation.definition.tag.begin.marko -->
+<!-- ^--- keyword.control.flow.marko -->
+<!--     ^ punctuation.definition.tag.end.marko -->
+      Promise failed with ${err.message}.
+<!--<0-------------------- text.marko -->
+<!--                      ^- punctuation.definition.template-expression.begin.ts -->
+<!--                        ^---------- source.ts -->
+<!--                        ^-- variable.other.object.ts -->
+<!--                           ^ punctuation.accessor.ts -->
+<!--                            ^------ variable.other.property.ts -->
+<!--                                   ^ punctuation.definition.template-expression.end.ts -->
+<!--                                    ^ text.marko -->
+    </else>
+<!--^- punctuation.definition.tag.begin.marko -->
+<!--  ^--- keyword.control.flow.marko -->
+<!--      ^ punctuation.definition.tag.end.marko -->
+  </@catch>
+<!--<2 punctuation.definition.tag.begin.marko -->
+<!--^----- entity.other.attribute-name.marko -->
+<!--      ^ punctuation.definition.tag.end.marko -->
+</await>
+<!--<0 punctuation.definition.tag.begin.marko -->
+<!--<2- keyword.control.flow.marko -->
+<!--   ^ punctuation.definition.tag.end.marko -->
+
+<!-- from https://markojs.com/docs/core-tags/ -->
+<!--<0------------------------------------------- comment.block.marko -->
+<!--<0 punctuation.definition.comment.marko -->
+<!--                                          ^-- punctuation.definition.comment.marko -->

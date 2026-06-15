@@ -1,0 +1,50 @@
+<!-- grammar: text.html.basic -->
+
+<div id="x">
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!-- ^- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.assignment.ts -->
+<!--    ^--- string.quoted.double.ts -->
+<!--    ^ punctuation.definition.string.begin.ts -->
+<!--     ^ variable.other.readwrite.ts -->
+<!--      ^- string.quoted.double.ts -->
+<!--      ^ punctuation.definition.string.begin.ts -->
+<!--       ^ keyword.operator.relational.ts -->
+  <style>.x { color: red; }</style>
+<!--<0----------------------------- string.quoted.double.ts -->
+<!--<0----------------------------- string.quoted.double.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3-- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^ punctuation.accessor.ts -->
+<!--      ^ variable.other.property.ts -->
+<!--          ^---- variable.other.readwrite.ts -->
+<!--                 ^-- variable.other.readwrite.ts -->
+<!--                    ^ punctuation.terminator.statement.ts -->
+<!--                       ^ keyword.operator.relational.ts -->
+<!--                        ^ keyword.operator.arithmetic.ts -->
+<!--                         ^---- variable.other.readwrite.ts -->
+<!--                              ^ keyword.operator.relational.ts -->
+  <script>const n = 1;</script>
+<!--<0------------------------- string.quoted.double.ts -->
+<!--<0------------------------- string.quoted.double.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3--- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--            ^ variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--                ^ constant.numeric.decimal.ts -->
+<!--                 ^ punctuation.terminator.statement.ts -->
+<!--                  ^ keyword.operator.relational.ts -->
+<!--                   ^ keyword.operator.arithmetic.ts -->
+<!--                    ^----- variable.other.readwrite.ts -->
+<!--                          ^ keyword.operator.relational.ts -->
+</div>
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->

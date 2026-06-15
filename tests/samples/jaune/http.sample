@@ -1,0 +1,79 @@
+# grammar: source.http
+
+// Basic authentication
+#<0-------------------- comment.line.double-slash.http
+GET http://example.com
+#<0------------------- http.requestline
+#<0 keyword.control.http
+#   ^----------------- const.language.http
+Authorization: Basic username password
+#<0----------------------------------- http.headers
+#<0---------- entity.name.tag.http
+#            ^ keyword.other.http
+#              ^---------------------- string.other.http
+
+###
+#<0 comment.line.sharp.http
+
+// Digest authentication
+#<0--------------------- comment.line.double-slash.http
+GET http://example.com
+#<0------------------- http.requestline
+#<0 keyword.control.http
+#   ^----------------- const.language.http
+Authorization: Digest username password
+#<0------------------------------------ http.headers
+#<0---------- entity.name.tag.http
+#            ^ keyword.other.http
+#              ^----------------------- string.other.http
+
+// The request body is provided in place
+#<0------------------------------------- comment.line.double-slash.http
+POST https://example.com:8080/api/html/post HTTP/1.1
+#<0------------------------------------------------- http.requestline
+#<0- keyword.control.http
+#    ^------------------------------------- const.language.http
+#                                           ^------- http.version
+#                                           ^--- keyword.other.http
+#                                                ^-- constant.numeric.http
+Content-Type: application/json
+#<0--------------------------- http.headers
+#<0--------- entity.name.tag.http
+#           ^ keyword.other.http
+#             ^--------------- string.other.http
+Cookie: key=first-value
+#<0-------------------- http.headers
+#<0--- entity.name.tag.http
+#     ^ keyword.other.http
+#       ^-------------- string.other.http
+
+{ "key" : "value", "list": [1, 2, 3] }
+#<0----------------------------------- http.request.body.json
+#<0----------------------------------- meta.structure.dictionary.json
+#<0 punctuation.definition.dictionary.begin.json
+# ^---- string.json support.type.property-name.json
+# ^ punctuation.support.type.property-name.begin.json
+#     ^ punctuation.support.type.property-name.end.json
+#       ^--------- meta.structure.dictionary.value.json
+#       ^ punctuation.separator.dictionary.key-value.json
+#         ^------ string.quoted.double.json
+#         ^ punctuation.definition.string.begin.json
+#               ^ punctuation.definition.string.end.json
+#                ^ punctuation.separator.dictionary.pair.json
+#                  ^----- string.json support.type.property-name.json
+#                  ^ punctuation.support.type.property-name.begin.json
+#                       ^ punctuation.support.type.property-name.end.json
+#                        ^----------- meta.structure.dictionary.value.json
+#                        ^ punctuation.separator.dictionary.key-value.json
+#                          ^-------- meta.structure.array.json
+#                          ^ punctuation.definition.array.begin.json
+#                           ^ constant.numeric.json
+#                            ^ punctuation.separator.array.json
+#                              ^ constant.numeric.json
+#                               ^ punctuation.separator.array.json
+#                                 ^ constant.numeric.json
+#                                  ^ punctuation.definition.array.end.json
+#                                    ^ punctuation.definition.dictionary.end.json
+
+// From https://www.jetbrains.com/help/idea/exploring-http-syntax.html#use-multipart-form-data
+#<0------------------------------------------------------------------------------------------- comment.line.double-slash.http

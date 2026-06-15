@@ -1,0 +1,99 @@
+; grammar: source.reg
+
+Windows Registry Editor Version 5.00
+;<0--------------------------------- keyword.control.import.reg
+
+
+; WARNING: before run replace PATH_TO_APP with correct value
+;<0--------------------------------------------------------- comment.line.semicolon.reg
+;<0 punctuation.definition.comment.reg
+; Example: C:\\Anaconda3
+;<0--------------------- comment.line.semicolon.reg
+;<0 punctuation.definition.comment.reg
+
+[HKEY_CLASSES_ROOT\Directory\shell\AnacondaJupyterNotebook]
+;<0-------------------------------------------------------- entity.name.function.section.add.reg
+;<0 punctuation.definition.section.reg
+;^-------------------------------------------------------- entity.section.reg
+;                                                         ^ punctuation.definition.section.reg
+; This will make it appear when you right click ON a folder
+;<0-------------------------------------------------------- comment.line.semicolon.reg
+;<0 punctuation.definition.comment.reg
+; The "Icon" line can be removed if you don't want the icon to appear
+;<0------------------------------------------------------------------ comment.line.semicolon.reg
+;<0 punctuation.definition.comment.reg
+@="&Jupyter Notebook There"
+;<0------------------------ meta.declaration.reg
+;<0 support.function.regname.ini
+;^ punctuation.definition.equals.reg
+; ^ punctuation.definition.quote.reg
+;  ^---------------------- string.name.regdata.reg
+;                         ^ punctuation.definition.quote.reg
+"Icon"="\"PATH_TO_APP\\Menu\\jupyter.ico""
+;<0--------------------------------------- meta.declaration.reg
+;<0 punctuation.definition.quote.reg
+;^--- support.function.regname.ini
+;    ^ punctuation.definition.quote.reg
+;     ^ punctuation.definition.equals.reg
+;      ^ punctuation.definition.quote.reg
+;       ^-------------------------------- string.name.regdata.reg
+;                                        ^ punctuation.definition.quote.reg
+
+[HKEY_CLASSES_ROOT\Directory\shell\AnacondaJupyterNotebook\command]
+;<0---------------------------------------------------------------- entity.name.function.section.add.reg
+;<0 punctuation.definition.section.reg
+;^---------------------------------------------------------------- entity.section.reg
+;                                                                 ^ punctuation.definition.section.reg
+@="cmd /K pushd \"%1\" && \"PATH_TO_APP\\Scripts\\activate.bat\" && jupyter-notebook"
+;<0---------------------------------------------------------------------------------- meta.declaration.reg
+;<0 support.function.regname.ini
+;^ punctuation.definition.equals.reg
+; ^ punctuation.definition.quote.reg
+;  ^-------------------------------------------------------------------------------- string.name.regdata.reg
+;                                                                                   ^ punctuation.definition.quote.reg
+
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\AnacondaJupyterNotebook]
+;<0------------------------------------------------------------------- entity.name.function.section.add.reg
+;<0 punctuation.definition.section.reg
+;^------------------------------------------------------------------- entity.section.reg
+;                                                                    ^ punctuation.definition.section.reg
+; This will make it appear when you right click INSIDE a folder
+;<0------------------------------------------------------------ comment.line.semicolon.reg
+;<0 punctuation.definition.comment.reg
+; The "Icon" line can be removed if you don't want the icon to appear
+;<0------------------------------------------------------------------ comment.line.semicolon.reg
+;<0 punctuation.definition.comment.reg
+@="&Jupyter Notebook Here"
+;<0----------------------- meta.declaration.reg
+;<0 support.function.regname.ini
+;^ punctuation.definition.equals.reg
+; ^ punctuation.definition.quote.reg
+;  ^--------------------- string.name.regdata.reg
+;                        ^ punctuation.definition.quote.reg
+"Icon"="\"PATH_TO_APP\\Menu\\jupyter.ico\""
+;<0---------------------------------------- meta.declaration.reg
+;<0 punctuation.definition.quote.reg
+;^--- support.function.regname.ini
+;    ^ punctuation.definition.quote.reg
+;     ^ punctuation.definition.equals.reg
+;      ^ punctuation.definition.quote.reg
+;       ^--------------------------------- string.name.regdata.reg
+;                                         ^ punctuation.definition.quote.reg
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\AnacondaJupyterNotebook\command]
+;<0--------------------------------------------------------------------------- entity.name.function.section.add.reg
+;<0 punctuation.definition.section.reg
+;^--------------------------------------------------------------------------- entity.section.reg
+;                                                                            ^ punctuation.definition.section.reg
+@="cmd /K \"PATH_TO_APP\\Scripts\\activate.bat\" && jupyter-notebook"
+;<0------------------------------------------------------------------ meta.declaration.reg
+;<0 support.function.regname.ini
+;^ punctuation.definition.equals.reg
+; ^ punctuation.definition.quote.reg
+;  ^---------------------------------------------------------------- string.name.regdata.reg
+;                                                                   ^ punctuation.definition.quote.reg
+
+; From https://github.com/NickVeld/win-registry-snippets/blob/main/AnacondaJupyterNotebookHere.reg
+;<0----------------------------------------------------------------------------------------------- comment.line.semicolon.reg
+;<0 punctuation.definition.comment.reg

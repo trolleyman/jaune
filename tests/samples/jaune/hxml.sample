@@ -1,0 +1,41 @@
+# grammar: source.hxml
+
+# @install: lix --silent download "haxelib:/hxnodejs#12.1.0" into hxnodejs/12.1.0/haxelib
+#<0-------------------------------------------------------------------------------------- comment.line.number-sign.hxml
+#<0 punctuation.definition.comment.hxml
+-cp ${HAXE_LIBCACHE}/hxnodejs/12.1.0/haxelib/src
+#<0 keyword.other.hxml
+-D hxnodejs=12.1.0
+#<0 keyword.other.hxml
+--macro allowPackage('sys')
+#<0---- keyword.other.hxml
+#       ^----------- entity.name.function.hx
+#                   ^ meta.brace.round.hx
+#                    ^ string.quoted.single.hx
+#                    ^ punctuation.definition.string.begin.hx
+#                        ^ string.quoted.single.hx
+#                        ^ punctuation.definition.string.end.hx
+#                         ^ meta.brace.round.hx
+# should behave like other target defines and not be defined in macro context
+#<0-------------------------------------------------------------------------- comment.line.number-sign.hxml
+#<0 punctuation.definition.comment.hxml
+--macro define('nodejs')
+#<0---- keyword.other.hxml
+#       ^----- entity.name.function.hx
+#             ^ meta.brace.round.hx
+#              ^ string.quoted.single.hx
+#              ^ punctuation.definition.string.begin.hx
+#                     ^ string.quoted.single.hx
+#                     ^ punctuation.definition.string.end.hx
+#                      ^ meta.brace.round.hx
+--macro _internal.SuppressDeprecated.run()
+#<0---- keyword.other.hxml
+#       ^--------- support.package.hx
+#                 ^----------------- entity.name.type.hx
+#                                   ^ punctuation.accessor.hx
+#                                    ^-- entity.name.function.hx
+#                                       ^- meta.brace.round.hx
+
+# From https://github.com/vshaxe/vscode-checkstyle/blob/master/haxe_libraries/hxnodejs.hxml
+#<0---------------------------------------------------------------------------------------- comment.line.number-sign.hxml
+#<0 punctuation.definition.comment.hxml

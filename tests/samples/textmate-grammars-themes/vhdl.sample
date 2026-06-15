@@ -1,0 +1,192 @@
+-- grammar: source.vhdl
+
+-- dual_port_RAM_visualTest.vhd
+--<0--------------------------- comment.line.double-dash.vhdl
+
+-- created by   :   Meher Krishna Patel
+--<0----------------------------------- comment.line.double-dash.vhdl
+-- date         :   26-Dec-16
+--<0------------------------- comment.line.double-dash.vhdl
+
+-- Functionality:
+--<0------------- comment.line.double-dash.vhdl
+  -- store and retrieve data from dual port RAM
+--^-------------------------------------------- comment.line.double-dash.vhdl
+
+-- ports:
+--<0----- comment.line.double-dash.vhdl
+   -- Write Enable (we) : SW[16]
+-- ^---------------------------- comment.line.double-dash.vhdl
+    -- Address (addr_wr)    : SW[15-14]
+--  ^---------------------------------- comment.line.double-dash.vhdl
+    -- Address (addr_rd)    : SW[13-12]
+--  ^---------------------------------- comment.line.double-dash.vhdl
+    -- din                      : SW[2:0]
+--  ^------------------------------------ comment.line.double-dash.vhdl
+    -- dout                 : LEDR
+--  ^----------------------------- comment.line.double-dash.vhdl
+
+use ieee.numeric_std.all;library ieee;
+--<0 keyword.language.vhdl
+--  ^--- standard.library.language.vhdl
+--      ^ punctuation.vhdl
+--       ^---------- standard.library.language.vhdl
+--                  ^ punctuation.vhdl
+--                   ^-- keyword.language.vhdl
+--                      ^ punctuation.vhdl
+--                       ^------ keyword.language.vhdl
+--                               ^--- standard.library.language.vhdl
+--                                   ^ punctuation.vhdl
+use ieee.std_logic_1164.all;
+--<0 keyword.language.vhdl
+--  ^--- standard.library.language.vhdl
+--      ^ punctuation.vhdl
+--       ^------------- standard.library.language.vhdl
+--                     ^ punctuation.vhdl
+--                      ^-- keyword.language.vhdl
+--                         ^ punctuation.vhdl
+use ieee.numeric_std.all;
+--<0 keyword.language.vhdl
+--  ^--- standard.library.language.vhdl
+--      ^ punctuation.vhdl
+--       ^---------- standard.library.language.vhdl
+--                  ^ punctuation.vhdl
+--                   ^-- keyword.language.vhdl
+--                      ^ punctuation.vhdl
+
+entity dual_port_RAM_visualTest is
+--<0-- keyword.language.vhdl
+--     ^----------------------- entity.name.type.entity.begin.vhdl
+--                              ^- keyword.language.vhdl
+    generic (
+--  ^------ keyword.language.vhdl
+--          ^ punctuation.vhdl
+        ADDR_WIDTH : integer := 2;
+--      ^------------------------- source.vhdl
+--                 ^ punctuation.vhdl
+--                   ^------ support.type.std.standard.vhdl
+--                           ^- keyword.operator.vhdl
+--                              ^ constant.numeric.integer.vhdl
+--                               ^ punctuation.vhdl
+        DATA_WIDTH : integer := 3
+--      ^------------------------ source.vhdl
+--                 ^ punctuation.vhdl
+--                   ^------ support.type.std.standard.vhdl
+--                           ^- keyword.operator.vhdl
+--                              ^ constant.numeric.integer.vhdl
+    );
+--<0- source.vhdl
+--  ^ punctuation.vhdl
+--   ^ punctuation.vhdl
+
+    port(
+--  ^--- keyword.language.vhdl
+--      ^ punctuation.vhdl
+        CLOCK_50: in std_logic;
+--      ^---------------------- source.vhdl
+--              ^ punctuation.vhdl
+--                ^- keyword.language.vhdl
+--                   ^-------- support.type.ieee.std_logic_1164.vhdl
+--                            ^ punctuation.vhdl
+        SW : in std_logic_vector(16 downto 0);
+--      ^------------------------------------- source.vhdl
+--         ^ punctuation.vhdl
+--           ^- keyword.language.vhdl
+--              ^--------------- support.type.ieee.std_logic_1164.vhdl
+--                              ^ punctuation.vhdl
+--                               ^- constant.numeric.integer.vhdl
+--                                  ^----- keyword.language.vhdl
+--                                         ^ constant.numeric.integer.vhdl
+--                                          ^- punctuation.vhdl
+        LEDR : out std_logic_vector(DATA_WIDTH-1 downto 0)
+--      ^------------------------------------------------- source.vhdl
+--           ^ punctuation.vhdl
+--             ^-- keyword.language.vhdl
+--                 ^--------------- support.type.ieee.std_logic_1164.vhdl
+--                                 ^ punctuation.vhdl
+--                                            ^ keyword.operator.vhdl
+--                                             ^ constant.numeric.integer.vhdl
+--                                               ^----- keyword.language.vhdl
+--                                                      ^ constant.numeric.integer.vhdl
+--                                                       ^ punctuation.vhdl
+        );
+--<0----- source.vhdl
+--      ^ punctuation.vhdl
+--       ^ punctuation.vhdl
+end dual_port_RAM_visualTest;
+--<0 keyword.language.vhdl
+--  ^----------------------- entity.name.type.entity.end.vhdl
+--                          ^ punctuation.vhdl
+
+architecture arch of dual_port_RAM_visualTest is
+--<0-------------------------------------------- support.block.architecture
+--<0-------- keyword.language.vhdl
+--           ^--- entity.name.type.architecture.begin.vhdl
+--                ^- keyword.language.vhdl
+--                   ^----------------------- entity.name.type.entity.reference.vhdl
+--                                            ^- keyword.language.vhdl
+begin
+--<0- support.block.architecture
+--<0- keyword.language.vhdl
+    dual_port_RAM_test: entity work.dual_port_RAM
+--<0--------------------------------------------- support.block.architecture
+--  ^----------------- entity.name.section.entity_instantiation.vhdl
+--                    ^ punctuation.vhdl
+--                      ^----- keyword.language.vhdl
+--                             ^--- entity.name.tag.library.reference.vhdl
+--                                 ^ punctuation.vhdl
+--                                  ^------------ entity.name.tag.entity.reference.vhdl
+    port map (clk=>CLOCK_50, we=>SW(16),
+--<0------------------------------------ support.block.architecture
+--  ^--- keyword.language.vhdl
+--       ^-- keyword.language.vhdl
+--           ^ punctuation.vhdl
+--            ^------------- source.vhdl
+--               ^- keyword.operator.vhdl
+--                         ^ punctuation.vhdl
+--                           ^---------- source.vhdl
+--                             ^- keyword.operator.vhdl
+--                                 ^ punctuation.vhdl
+--                                  ^- constant.numeric.integer.vhdl
+--                                    ^- punctuation.vhdl
+                    addr_wr => SW(15 downto 14),
+--<0-------------------------------------------- support.block.architecture
+--                  ^--------------------------- source.vhdl
+--                          ^- keyword.operator.vhdl
+--                               ^ punctuation.vhdl
+--                                ^- constant.numeric.integer.vhdl
+--                                   ^----- keyword.language.vhdl
+--                                          ^- constant.numeric.integer.vhdl
+--                                            ^- punctuation.vhdl
+                    addr_rd => SW(13 downto 12),
+--<0-------------------------------------------- support.block.architecture
+--                  ^--------------------------- source.vhdl
+--                          ^- keyword.operator.vhdl
+--                               ^ punctuation.vhdl
+--                                ^- constant.numeric.integer.vhdl
+--                                   ^----- keyword.language.vhdl
+--                                          ^- constant.numeric.integer.vhdl
+--                                            ^- punctuation.vhdl
+                    din => SW(2 downto 0),
+--<0-------------------------------------- support.block.architecture
+--                  ^--------------------- source.vhdl
+--                      ^- keyword.operator.vhdl
+--                           ^ punctuation.vhdl
+--                            ^ constant.numeric.integer.vhdl
+--                              ^----- keyword.language.vhdl
+--                                     ^ constant.numeric.integer.vhdl
+--                                      ^- punctuation.vhdl
+                    dout =>LEDR);
+--<0----------------------------- support.block.architecture
+--                  ^----------- source.vhdl
+--                       ^- keyword.operator.vhdl
+--                             ^ punctuation.vhdl
+--                              ^ punctuation.vhdl
+end arch;
+--<0---- support.block.architecture
+--<0 keyword.language.vhdl
+--  ^--- entity.name.type.architecture.end.vhdl
+--      ^ punctuation.vhdl
+
+-- From https://vhdlguide.readthedocs.io/en/latest/vhdl/dex.html
+--<0------------------------------------------------------------ comment.line.double-dash.vhdl

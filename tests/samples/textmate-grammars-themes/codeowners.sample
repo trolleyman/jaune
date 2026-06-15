@@ -1,0 +1,20 @@
+# grammar: text.codeowners
+
+# this is a comment
+#<0---------------- comment.line.codeowners
+#<0 punctuation.definition.comment.codeowners
+
+* @antfu @OrbisK
+#<0 variable.other.codeowners
+# ^----- storage.type.function.codeowners
+#        ^------ storage.type.function.codeowners
+
+# group vue with 2 required approvals
+#<0---------------------------------- comment.line.codeowners
+#<0 punctuation.definition.comment.codeowners
+[Vue] [2] @OrbisK @antfu
+#<0-- variable.other.codeowners
+#         ^------ storage.type.function.codeowners
+#                 ^----- storage.type.function.codeowners
+*.vue
+#<0-- variable.other.codeowners

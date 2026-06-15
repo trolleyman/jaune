@@ -1,0 +1,120 @@
+# grammar: source.systemverilog
+
+// File : tb_top.sv
+#<0---------------- comment.line.double-slash.systemverilog
+#<0 punctuation.definition.comment.systemverilog
+module tb_top ();
+#<0-------------- meta.module.systemverilog
+#<0--- keyword.control.systemverilog
+#      ^----- entity.name.type.module.systemverilog
+#               ^ punctuation.definition.module.end.systemverilog
+
+    reg clk;
+#<0---- storage.type.vector.systemverilog
+#      ^--- meta.port-net-parameter.declaration.systemverilog
+#       ^-- variable.other.identifier.systemverilog
+    reg resetn;
+#<0---- storage.type.vector.systemverilog
+#      ^------ meta.port-net-parameter.declaration.systemverilog
+#       ^----- variable.other.identifier.systemverilog
+    reg d;
+#<0---- storage.type.vector.systemverilog
+#      ^- meta.port-net-parameter.declaration.systemverilog
+#       ^ variable.other.identifier.systemverilog
+    wire q;
+#<0----- storage.type.net.systemverilog
+#       ^- meta.port-net-parameter.declaration.systemverilog
+#        ^ variable.other.identifier.systemverilog
+
+    // Instantiate the design
+#   ^------------------------ comment.line.double-slash.systemverilog
+#   ^- punctuation.definition.comment.systemverilog
+    d_ff  d_ff0 (   .clk (clk),
+#<0---------------------------- meta.module.no_parameters.systemverilog
+#   ^--- entity.name.type.module.systemverilog
+#         ^---- variable.other.module.systemverilog
+#                   ^---------- meta.port.binding.systemverilog
+#                    ^-- support.function.port.systemverilog
+#                         ^-- variable.other.identifier.systemverilog
+            .resetn (resetn),
+#<0-------------------------- meta.module.no_parameters.systemverilog
+#           ^---------------- meta.port.binding.systemverilog
+#            ^----- support.function.port.systemverilog
+#                    ^----- variable.other.identifier.systemverilog
+            .d (d),
+#<0---------------- meta.module.no_parameters.systemverilog
+#           ^------ meta.port.binding.systemverilog
+#            ^ support.function.port.systemverilog
+#               ^ variable.other.identifier.systemverilog
+            .q (q));
+#<0----------------- meta.module.no_parameters.systemverilog
+#           ^----- meta.port.binding.systemverilog
+#            ^ support.function.port.systemverilog
+#               ^ variable.other.identifier.systemverilog
+#                  ^ punctuation.module.instantiation.end.systemverilog
+
+    // Create a clock
+#   ^---------------- comment.line.double-slash.systemverilog
+#   ^- punctuation.definition.comment.systemverilog
+    always #10 clk <= ~clk;
+#   ^----- keyword.control.systemverilog
+#          ^ keyword.operator.channel.systemverilog
+#           ^- constant.numeric.decimal.systemverilog
+#              ^-- variable.other.identifier.systemverilog
+#                  ^- keyword.operator.assignment.systemverilog
+#                     ^ keyword.operator.bitwise.systemverilog
+#                      ^-- variable.other.identifier.systemverilog
+
+    initial begin
+#   ^------ keyword.control.systemverilog
+#          ^----- meta.item.begin.systemverilog
+#           ^---- keyword.control.systemverilog
+    resetn <= 0;
+#   ^----- variable.other.identifier.systemverilog
+#          ^- keyword.operator.assignment.systemverilog
+#             ^ constant.numeric.decimal.systemverilog
+    d <= 0;
+#   ^ variable.other.identifier.systemverilog
+#     ^- keyword.operator.assignment.systemverilog
+#        ^ constant.numeric.decimal.systemverilog
+
+    #10 resetn <= 1;
+#   ^ keyword.operator.channel.systemverilog
+#    ^- constant.numeric.decimal.systemverilog
+#       ^----- variable.other.identifier.systemverilog
+#              ^- keyword.operator.assignment.systemverilog
+#                 ^ constant.numeric.decimal.systemverilog
+    #5      d <= 1;
+#   ^ keyword.operator.channel.systemverilog
+#    ^ constant.numeric.decimal.systemverilog
+#           ^ variable.other.identifier.systemverilog
+#             ^- keyword.operator.assignment.systemverilog
+#                ^ constant.numeric.decimal.systemverilog
+    #8      d <= 0;
+#   ^ keyword.operator.channel.systemverilog
+#    ^ constant.numeric.decimal.systemverilog
+#           ^ variable.other.identifier.systemverilog
+#             ^- keyword.operator.assignment.systemverilog
+#                ^ constant.numeric.decimal.systemverilog
+    #2      d <= 1;
+#   ^ keyword.operator.channel.systemverilog
+#    ^ constant.numeric.decimal.systemverilog
+#           ^ variable.other.identifier.systemverilog
+#             ^- keyword.operator.assignment.systemverilog
+#                ^ constant.numeric.decimal.systemverilog
+    #10     d <= 0;
+#   ^ keyword.operator.channel.systemverilog
+#    ^- constant.numeric.decimal.systemverilog
+#           ^ variable.other.identifier.systemverilog
+#             ^- keyword.operator.assignment.systemverilog
+#                ^ constant.numeric.decimal.systemverilog
+    end
+#<0---- meta.item.end.systemverilog
+#   ^-- keyword.control.systemverilog
+endmodule
+#<0------ meta.item.end.systemverilog
+#<0------ keyword.control.systemverilog
+
+// From https://www.chipverify.com/tutorials/systemverilog
+#<0------------------------------------------------------- comment.line.double-slash.systemverilog
+#<0 punctuation.definition.comment.systemverilog

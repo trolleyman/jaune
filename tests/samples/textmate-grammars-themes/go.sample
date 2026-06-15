@@ -1,0 +1,106 @@
+// grammar: source.go
+
+package main
+//<0--- keyword.package.go
+//      ^--- entity.name.type.package.go
+
+import (
+//<0-- keyword.control.import.go
+//     ^ punctuation.definition.imports.begin.bracket.round.go
+    "fmt"
+//  ^---- string.quoted.double.go
+//  ^ punctuation.definition.string.begin.go
+//   ^-- entity.name.import.go
+//      ^ punctuation.definition.string.end.go
+    "log"
+//  ^---- string.quoted.double.go
+//  ^ punctuation.definition.string.begin.go
+//   ^-- entity.name.import.go
+//      ^ punctuation.definition.string.end.go
+    "net/http"
+//  ^--------- string.quoted.double.go
+//  ^ punctuation.definition.string.begin.go
+//   ^------- entity.name.import.go
+//           ^ punctuation.definition.string.end.go
+)
+//<0 punctuation.definition.imports.end.bracket.round.go
+
+func handler(w http.ResponseWriter, r *http.Request) {
+//<0 keyword.function.go
+//   ^------ entity.name.function.go
+//          ^ punctuation.definition.begin.bracket.round.go
+//           ^ variable.parameter.go
+//             ^--- entity.name.type.go
+//                 ^ punctuation.other.period.go
+//                  ^------------- entity.name.type.go
+//                                ^ punctuation.other.comma.go
+//                                  ^ variable.parameter.go
+//                                    ^ keyword.operator.address.go
+//                                     ^--- entity.name.type.go
+//                                         ^ punctuation.other.period.go
+//                                          ^------ entity.name.type.go
+//                                                 ^ punctuation.definition.end.bracket.round.go
+//                                                   ^ punctuation.definition.begin.bracket.curly.go
+    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+//  ^-- variable.other.go
+//     ^ punctuation.other.period.go
+//      ^------ entity.name.function.support.go
+//             ^ punctuation.definition.begin.bracket.round.go
+//              ^ variable.other.go
+//               ^ punctuation.other.comma.go
+//                 ^--------------------- string.quoted.double.go
+//                 ^ punctuation.definition.string.begin.go
+//                                   ^- constant.other.placeholder.go
+//                                      ^ punctuation.definition.string.end.go
+//                                       ^ punctuation.other.comma.go
+//                                         ^ variable.other.go
+//                                          ^ punctuation.other.period.go
+//                                           ^-- variable.other.go
+//                                              ^ punctuation.other.period.go
+//                                               ^--- variable.other.go
+//                                                   ^ punctuation.definition.begin.bracket.square.go
+//                                                    ^ constant.numeric.decimal.go
+//                                                     ^ punctuation.other.colon.go
+//                                                      ^ punctuation.definition.end.bracket.square.go
+//                                                       ^ punctuation.definition.end.bracket.round.go
+}
+//<0 punctuation.definition.end.bracket.curly.go
+
+func main() {
+//<0 keyword.function.go
+//   ^--- entity.name.function.go
+//       ^ punctuation.definition.begin.bracket.round.go
+//        ^ punctuation.definition.end.bracket.round.go
+//          ^ punctuation.definition.begin.bracket.curly.go
+    http.HandleFunc("/", handler)
+//  ^--- variable.other.go
+//      ^ punctuation.other.period.go
+//       ^--------- entity.name.function.support.go
+//                 ^ punctuation.definition.begin.bracket.round.go
+//                  ^-- string.quoted.double.go
+//                  ^ punctuation.definition.string.begin.go
+//                    ^ punctuation.definition.string.end.go
+//                     ^ punctuation.other.comma.go
+//                       ^------ variable.other.go
+//                              ^ punctuation.definition.end.bracket.round.go
+    log.Fatal(http.ListenAndServe(":8080", nil))
+//  ^-- variable.other.go
+//     ^ punctuation.other.period.go
+//      ^---- entity.name.function.support.go
+//           ^ punctuation.definition.begin.bracket.round.go
+//            ^--- variable.other.go
+//                ^ punctuation.other.period.go
+//                 ^------------- entity.name.function.support.go
+//                               ^ punctuation.definition.begin.bracket.round.go
+//                                ^------ string.quoted.double.go
+//                                ^ punctuation.definition.string.begin.go
+//                                      ^ punctuation.definition.string.end.go
+//                                       ^ punctuation.other.comma.go
+//                                         ^-- constant.language.null.go
+//                                            ^- punctuation.definition.end.bracket.round.go
+}
+//<0 punctuation.definition.end.bracket.curly.go
+
+// From https://golang.org/doc/articles/wiki/#tmp_3
+//<0----------------------------------------------- comment.line.double-slash.go
+//<0 punctuation.definition.comment.go

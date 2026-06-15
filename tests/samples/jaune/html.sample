@@ -1,0 +1,526 @@
+<!-- grammar: text.html.basic -->
+
+<!DOCTYPE html>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.logical.ts -->
+<!--<2--- constant.character.other -->
+<!--      ^--- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.relational.ts -->
+<html lang="en-us">
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--  ^--- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.assignment.ts -->
+<!--       ^------ string.quoted.double.ts -->
+<!--       ^ punctuation.definition.string.begin.ts -->
+<!--        ^- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.arithmetic.ts -->
+<!--           ^- variable.other.readwrite.ts -->
+<!--             ^ punctuation.definition.string.end.ts -->
+<!--              ^ keyword.operator.relational.ts -->
+  <head>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.relational.ts -->
+    <meta charset="utf-8" />
+<!--^ keyword.operator.relational.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--      ^------ variable.other.readwrite.ts -->
+<!--             ^ keyword.operator.assignment.ts -->
+<!--              ^------ string.quoted.double.ts -->
+<!--              ^ punctuation.definition.string.begin.ts -->
+<!--               ^-- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.arithmetic.ts -->
+<!--                   ^ constant.numeric.decimal.ts -->
+<!--                    ^ punctuation.definition.string.end.ts -->
+<!--                      ^ keyword.operator.arithmetic.ts -->
+<!--                       ^ keyword.operator.relational.ts -->
+    <meta name="viewport" content="width=device-width" />
+<!--^ keyword.operator.relational.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--      ^--- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.assignment.ts -->
+<!--           ^--------- string.quoted.double.ts -->
+<!--           ^ punctuation.definition.string.begin.ts -->
+<!--            ^------- variable.other.readwrite.ts -->
+<!--                    ^ punctuation.definition.string.end.ts -->
+<!--                      ^------ variable.other.readwrite.ts -->
+<!--                             ^ keyword.operator.assignment.ts -->
+<!--                              ^------------------- string.quoted.double.ts -->
+<!--                              ^ punctuation.definition.string.begin.ts -->
+<!--                               ^---- variable.other.readwrite.ts -->
+<!--                                    ^ keyword.operator.assignment.ts -->
+<!--                                     ^----- variable.other.readwrite.ts -->
+<!--                                           ^ keyword.operator.arithmetic.ts -->
+<!--                                            ^---- variable.other.readwrite.ts -->
+<!--                                                 ^ punctuation.definition.string.end.ts -->
+<!--                                                   ^ keyword.operator.arithmetic.ts -->
+<!--                                                    ^ keyword.operator.relational.ts -->
+    <title>MDN Web Docs Example: Toggling full-screen mode</title>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^---- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+<!--       ^-- constant.character.other -->
+<!--           ^-- variable.other.readwrite.ts -->
+<!--               ^--- variable.other.readwrite.ts -->
+<!--                    ^------ variable.other.readwrite.ts -->
+<!--                             ^------- variable.other.readwrite.ts -->
+<!--                                      ^--- variable.other.readwrite.ts -->
+<!--                                          ^ keyword.operator.arithmetic.ts -->
+<!--                                           ^----- variable.other.readwrite.ts -->
+<!--                                                  ^--- variable.other.readwrite.ts -->
+<!--                                                      ^ keyword.operator.relational.ts -->
+<!--                                                       ^ keyword.operator.arithmetic.ts -->
+<!--                                                        ^---- variable.other.readwrite.ts -->
+<!--                                                             ^ keyword.operator.relational.ts -->
+    <link rel="stylesheet" href="styles.css">
+<!--^ keyword.operator.relational.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--      ^-- variable.other.readwrite.ts -->
+<!--         ^ keyword.operator.assignment.ts -->
+<!--          ^----------- string.quoted.double.ts -->
+<!--          ^ punctuation.definition.string.begin.ts -->
+<!--           ^--------- variable.other.readwrite.ts -->
+<!--                     ^ punctuation.definition.string.end.ts -->
+<!--                       ^--- variable.other.readwrite.ts -->
+<!--                           ^ keyword.operator.assignment.ts -->
+<!--                            ^----------- string.quoted.double.ts -->
+<!--                            ^ punctuation.definition.string.begin.ts -->
+<!--                             ^----- variable.other.object.ts -->
+<!--                                   ^ punctuation.accessor.ts -->
+<!--                                    ^-- variable.other.property.ts -->
+<!--                                       ^ punctuation.definition.string.end.ts -->
+<!--                                        ^ keyword.operator.relational.ts -->
+    <style class="editable">
+/*<0 punctuation.whitespace.embedded.leading.html */
+/*  ^ keyword.operator.relational.ts */
+/*   ^---- variable.other.readwrite.ts */
+/*         ^---- variable.other.readwrite.ts */
+/*              ^ keyword.operator.assignment.ts */
+/*               ^--------- string.quoted.double.ts */
+/*               ^ punctuation.definition.string.begin.ts */
+/*                ^------- variable.other.readwrite.ts */
+/*                        ^ punctuation.definition.string.end.ts */
+/*                         ^ keyword.operator.relational.ts */
+        video::backdrop {
+/*      ^---- variable.other.readwrite.ts */
+/*             ^------- variable.other.readwrite.ts */
+          background-color: #448;
+/*        ^--------- variable.other.readwrite.ts */
+/*                  ^ keyword.operator.arithmetic.ts */
+/*                   ^---- variable.other.readwrite.ts */
+/*                           ^-- constant.numeric.decimal.ts */
+/*                              ^ punctuation.terminator.statement.ts */
+        }
+    </style>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^---- variable.other.readwrite.ts -->
+<!--       ^ keyword.operator.relational.ts -->
+
+    <!-- import the webpage's javascript file -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.logical.ts -->
+<!--  ^- keyword.operator.decrement.ts -->
+<!--     ^----- variable.other.readwrite.ts -->
+<!--            ^-- variable.other.readwrite.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                       ^--------------------- string.quoted.single.ts -->
+<!--                       ^ punctuation.definition.string.begin.ts -->
+<!--                        ^ variable.other.readwrite.ts -->
+<!--                          ^--------- variable.other.readwrite.ts -->
+<!--                                     ^--- variable.other.readwrite.ts -->
+<!--                                          ^- keyword.operator.decrement.ts -->
+<!--                                            ^ invalid.illegal.newline.ts -->
+    <script src="script.js" defer></script>
+<!--<0 punctuation.whitespace.embedded.leading.html -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^----- variable.other.readwrite.ts -->
+<!--        ^-- variable.other.readwrite.ts -->
+<!--           ^ keyword.operator.assignment.ts -->
+<!--            ^---------- string.quoted.double.ts -->
+<!--            ^ punctuation.definition.string.begin.ts -->
+<!--             ^----- variable.other.object.ts -->
+<!--                   ^ punctuation.accessor.ts -->
+<!--                    ^- variable.other.property.ts -->
+<!--                      ^ punctuation.definition.string.end.ts -->
+<!--                        ^---- variable.other.readwrite.ts -->
+<!--                             ^- keyword.operator.relational.ts -->
+<!--                               ^ keyword.operator.arithmetic.ts -->
+<!--                                ^----- variable.other.readwrite.ts -->
+<!--                                      ^ keyword.operator.relational.ts -->
+  </head>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 keyword.operator.arithmetic.ts -->
+<!--^--- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.relational.ts -->
+  <body>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.relational.ts -->
+    <section class="preview">
+<!--^ keyword.operator.relational.ts -->
+<!-- ^------ variable.other.readwrite.ts -->
+<!--         ^---- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^-------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                       ^ punctuation.definition.string.end.ts -->
+<!--                        ^ keyword.operator.relational.ts -->
+      <video controls
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^---- variable.other.readwrite.ts -->
+<!--         ^------- variable.other.readwrite.ts -->
+        src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+<!--    ^-- variable.other.readwrite.ts -->
+<!--       ^ keyword.operator.assignment.ts -->
+<!--        ^--------------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--        ^ punctuation.definition.string.begin.ts -->
+<!--         ^---- variable.other.readwrite.ts -->
+<!--               ^- keyword.operator.arithmetic.ts -->
+<!--                 ^------ variable.other.object.ts -->
+<!--                        ^ punctuation.accessor.ts -->
+<!--                         ^-- variable.other.property.ts -->
+<!--                            ^ keyword.operator.arithmetic.ts -->
+<!--                             ^------- variable.other.readwrite.ts -->
+<!--                                     ^ keyword.operator.arithmetic.ts -->
+<!--                                      ^--------------- variable.other.readwrite.ts -->
+<!--                                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                                       ^------ variable.other.readwrite.ts -->
+<!--                                                              ^ keyword.operator.arithmetic.ts -->
+<!--                                                               ^--------------------------- variable.other.object.ts -->
+<!--                                                                                           ^ punctuation.accessor.ts -->
+<!--                                                                                            ^-- variable.other.property.ts -->
+<!--                                                                                               ^ punctuation.definition.string.end.ts -->
+        poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+<!--    ^----- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.assignment.ts -->
+<!--           ^-------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--           ^ punctuation.definition.string.begin.ts -->
+<!--            ^---- variable.other.readwrite.ts -->
+<!--                  ^- keyword.operator.arithmetic.ts -->
+<!--                    ^---- variable.other.object.ts -->
+<!--                         ^ punctuation.accessor.ts -->
+<!--                          ^------ variable.other.object.property.ts -->
+<!--                                 ^ punctuation.accessor.ts -->
+<!--                                  ^-- variable.other.property.ts -->
+<!--                                     ^ keyword.operator.arithmetic.ts -->
+<!--                                      ^- variable.other.readwrite.ts -->
+<!--                                        ^ keyword.operator.arithmetic.ts -->
+<!--                                         ^------ variable.other.readwrite.ts -->
+<!--                                                ^ keyword.operator.arithmetic.ts -->
+<!--                                                 ^------ variable.other.readwrite.ts -->
+<!--                                                        ^ keyword.operator.arithmetic.ts -->
+<!--                                                         ^---------------- variable.other.object.ts -->
+<!--                                                                          ^ punctuation.accessor.ts -->
+<!--                                                                           ^-- variable.other.property.ts -->
+<!--                                                                              ^ keyword.operator.ternary.ts -->
+<!--                                                                               ^----- variable.other.readwrite.ts -->
+<!--                                                                                     ^ string.quoted.double.ts -->
+<!--                                                                                     ^ punctuation.definition.string.begin.ts -->
+        width="620">
+<!--<0-------------- string.quoted.double.ts -->
+<!--<0--------- string.quoted.double.ts -->
+<!--    ^---- variable.other.readwrite.ts -->
+<!--         ^ keyword.operator.assignment.ts -->
+<!--          ^ punctuation.definition.string.end.ts -->
+<!--           ^-- constant.numeric.decimal.ts -->
+<!--              ^- string.quoted.double.ts -->
+<!--              ^ punctuation.definition.string.begin.ts -->
+<!--               ^ invalid.illegal.newline.ts -->
+
+        Sorry, your browser doesn't support embedded videos.  Time to upgrade!
+<!--<0------------------------------------------------------------------------ string.quoted.double.ts -->
+<!--    ^---- variable.other.readwrite.ts -->
+<!--         ^ punctuation.separator.comma.ts -->
+<!--           ^--- variable.other.readwrite.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                        ^---- variable.other.readwrite.ts -->
+<!--                             ^-------------------------------------------- string.quoted.single.ts -->
+<!--                             ^ punctuation.definition.string.begin.ts -->
+<!--                              ^ variable.other.readwrite.ts -->
+<!--                                ^------ variable.other.readwrite.ts -->
+<!--                                        ^------- variable.other.readwrite.ts -->
+<!--                                                 ^----- variable.other.object.ts -->
+<!--                                                       ^ punctuation.accessor.ts -->
+<!--                                                          ^--- variable.other.property.ts -->
+<!--                                                               ^- variable.other.readwrite.ts -->
+<!--                                                                  ^------ variable.other.readwrite.ts -->
+<!--                                                                         ^ invalid.illegal.newline.ts -->
+
+      </video>
+<!--<0-------- string.quoted.double.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^ keyword.operator.arithmetic.ts -->
+<!--    ^---- variable.other.readwrite.ts -->
+<!--         ^ keyword.operator.relational.ts -->
+    </section>
+<!--<0-------- string.quoted.double.ts -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^------ variable.other.readwrite.ts -->
+<!--         ^ keyword.operator.relational.ts -->
+
+<textarea class="playable playable-css" style="height: 100px;">
+<!--<0--------------------------------------------------------- string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1--- variable.other.readwrite.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--           ^ keyword.operator.assignment.ts -->
+<!--            ^---------------------- string.quoted.double.ts -->
+<!--            ^ punctuation.definition.string.begin.ts -->
+<!--             ^------- variable.other.readwrite.ts -->
+<!--                      ^------- variable.other.readwrite.ts -->
+<!--                              ^ keyword.operator.arithmetic.ts -->
+<!--                               ^-- variable.other.readwrite.ts -->
+<!--                                  ^ punctuation.definition.string.end.ts -->
+<!--                                    ^---- variable.other.readwrite.ts -->
+<!--                                         ^ keyword.operator.assignment.ts -->
+<!--                                          ^--------------- string.quoted.double.ts -->
+<!--                                          ^ punctuation.definition.string.begin.ts -->
+<!--                                           ^----- variable.other.readwrite.ts -->
+<!--                                                      ^- variable.other.readwrite.ts -->
+<!--                                                        ^ punctuation.terminator.statement.ts -->
+<!--                                                         ^ punctuation.definition.string.end.ts -->
+<!--                                                          ^ keyword.operator.relational.ts -->
+video::backdrop {
+<!--<0----------- string.quoted.double.ts -->
+<!--<0 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.ternary.ts -->
+<!--   ^------- variable.other.readwrite.ts -->
+<!--            ^ invalid.illegal.newline.ts -->
+  background-color: #448;
+<!--<2------ variable.other.readwrite.ts -->
+<!--        ^ keyword.operator.arithmetic.ts -->
+<!--         ^---- variable.other.readwrite.ts -->
+<!--                 ^-- constant.numeric.decimal.ts -->
+<!--                    ^ punctuation.terminator.statement.ts -->
+}
+</textarea>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2---- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+
+<textarea class="playable playable-html" style="height: 200px;">
+<!--<0 keyword.operator.relational.ts -->
+<!--<1--- variable.other.readwrite.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--           ^ keyword.operator.assignment.ts -->
+<!--            ^----------------------- string.quoted.double.ts -->
+<!--            ^ punctuation.definition.string.begin.ts -->
+<!--             ^------- variable.other.readwrite.ts -->
+<!--                      ^------- variable.other.readwrite.ts -->
+<!--                              ^ keyword.operator.arithmetic.ts -->
+<!--                               ^--- variable.other.readwrite.ts -->
+<!--                                   ^ punctuation.definition.string.end.ts -->
+<!--                                     ^---- variable.other.readwrite.ts -->
+<!--                                          ^ keyword.operator.assignment.ts -->
+<!--                                           ^--------------- string.quoted.double.ts -->
+<!--                                           ^ punctuation.definition.string.begin.ts -->
+<!--                                            ^----- variable.other.readwrite.ts -->
+<!--                                                       ^- variable.other.readwrite.ts -->
+<!--                                                         ^ punctuation.terminator.statement.ts -->
+<!--                                                          ^ punctuation.definition.string.end.ts -->
+<!--                                                           ^ keyword.operator.relational.ts -->
+<video controls
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--   ^------- variable.other.readwrite.ts -->
+  src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+<!--<2 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.assignment.ts -->
+<!--  ^--------------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--  ^ punctuation.definition.string.begin.ts -->
+<!--   ^---- variable.other.readwrite.ts -->
+<!--         ^- keyword.operator.arithmetic.ts -->
+<!--           ^------ variable.other.object.ts -->
+<!--                  ^ punctuation.accessor.ts -->
+<!--                   ^-- variable.other.property.ts -->
+<!--                      ^ keyword.operator.arithmetic.ts -->
+<!--                       ^------- variable.other.readwrite.ts -->
+<!--                               ^ keyword.operator.arithmetic.ts -->
+<!--                                ^--------------- variable.other.readwrite.ts -->
+<!--                                                ^ keyword.operator.arithmetic.ts -->
+<!--                                                 ^------ variable.other.readwrite.ts -->
+<!--                                                        ^ keyword.operator.arithmetic.ts -->
+<!--                                                         ^--------------------------- variable.other.object.ts -->
+<!--                                                                                     ^ punctuation.accessor.ts -->
+<!--                                                                                      ^-- variable.other.property.ts -->
+<!--                                                                                         ^ punctuation.definition.string.end.ts -->
+  poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+<!--<2-- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.assignment.ts -->
+<!--     ^-------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--     ^ punctuation.definition.string.begin.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--            ^- keyword.operator.arithmetic.ts -->
+<!--              ^---- variable.other.object.ts -->
+<!--                   ^ punctuation.accessor.ts -->
+<!--                    ^------ variable.other.object.property.ts -->
+<!--                           ^ punctuation.accessor.ts -->
+<!--                            ^-- variable.other.property.ts -->
+<!--                               ^ keyword.operator.arithmetic.ts -->
+<!--                                ^- variable.other.readwrite.ts -->
+<!--                                  ^ keyword.operator.arithmetic.ts -->
+<!--                                   ^------ variable.other.readwrite.ts -->
+<!--                                          ^ keyword.operator.arithmetic.ts -->
+<!--                                           ^------ variable.other.readwrite.ts -->
+<!--                                                  ^ keyword.operator.arithmetic.ts -->
+<!--                                                   ^---------------- variable.other.object.ts -->
+<!--                                                                    ^ punctuation.accessor.ts -->
+<!--                                                                     ^-- variable.other.property.ts -->
+<!--                                                                        ^ keyword.operator.ternary.ts -->
+<!--                                                                         ^----- variable.other.readwrite.ts -->
+<!--                                                                               ^ string.quoted.double.ts -->
+<!--                                                                               ^ punctuation.definition.string.begin.ts -->
+  width="620">
+<!--<0-------- string.quoted.double.ts -->
+<!--<0--- string.quoted.double.ts -->
+<!--<2- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.assignment.ts -->
+<!--    ^ punctuation.definition.string.end.ts -->
+<!--     ^-- constant.numeric.decimal.ts -->
+<!--        ^- string.quoted.double.ts -->
+<!--        ^ punctuation.definition.string.begin.ts -->
+<!--         ^ invalid.illegal.newline.ts -->
+Sorry, your browser doesn't support embedded videos.  Time to upgrade!
+<!--<0---------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0 variable.other.readwrite.ts -->
+<!-- ^ punctuation.separator.comma.ts -->
+<!--   ^--- variable.other.readwrite.ts -->
+<!--        ^------ variable.other.readwrite.ts -->
+<!--                ^---- variable.other.readwrite.ts -->
+<!--                     ^-------------------------------------------- string.quoted.single.ts -->
+<!--                     ^ punctuation.definition.string.begin.ts -->
+<!--                      ^ variable.other.readwrite.ts -->
+<!--                        ^------ variable.other.readwrite.ts -->
+<!--                                ^------- variable.other.readwrite.ts -->
+<!--                                         ^----- variable.other.object.ts -->
+<!--                                               ^ punctuation.accessor.ts -->
+<!--                                                  ^--- variable.other.property.ts -->
+<!--                                                       ^- variable.other.readwrite.ts -->
+<!--                                                          ^------ variable.other.readwrite.ts -->
+<!--                                                                 ^ invalid.illegal.newline.ts -->
+</video>
+<!--<0-- string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.relational.ts -->
+</textarea>
+<!--<0----- string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2---- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+
+    <div class="playable-buttons">
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^-- variable.other.readwrite.ts -->
+<!--     ^---- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.assignment.ts -->
+<!--           ^----------------- string.quoted.double.ts -->
+<!--           ^ punctuation.definition.string.begin.ts -->
+<!--            ^------- variable.other.readwrite.ts -->
+<!--                    ^ keyword.operator.arithmetic.ts -->
+<!--                     ^------ variable.other.readwrite.ts -->
+<!--                            ^ punctuation.definition.string.end.ts -->
+<!--                             ^ keyword.operator.relational.ts -->
+        <input id="reset" type="button" value="Reset" />
+<!--<0-------------------------------------------------- string.quoted.double.ts -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^---- variable.other.readwrite.ts -->
+<!--           ^- variable.other.readwrite.ts -->
+<!--             ^ keyword.operator.assignment.ts -->
+<!--              ^------ string.quoted.double.ts -->
+<!--              ^ punctuation.definition.string.begin.ts -->
+<!--               ^---- variable.other.readwrite.ts -->
+<!--                    ^ punctuation.definition.string.end.ts -->
+<!--                      ^--- variable.other.readwrite.ts -->
+<!--                          ^ keyword.operator.assignment.ts -->
+<!--                           ^------- string.quoted.double.ts -->
+<!--                           ^ punctuation.definition.string.begin.ts -->
+<!--                            ^----- variable.other.readwrite.ts -->
+<!--                                  ^ punctuation.definition.string.end.ts -->
+<!--                                    ^---- variable.other.readwrite.ts -->
+<!--                                         ^ keyword.operator.assignment.ts -->
+<!--                                          ^------ string.quoted.double.ts -->
+<!--                                          ^ punctuation.definition.string.begin.ts -->
+<!--                                           ^---- variable.other.readwrite.ts -->
+<!--                                                ^ punctuation.definition.string.end.ts -->
+<!--                                                  ^ keyword.operator.arithmetic.ts -->
+<!--                                                   ^ keyword.operator.relational.ts -->
+      </div>
+<!--<0------ string.quoted.double.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^ keyword.operator.arithmetic.ts -->
+<!--    ^-- variable.other.readwrite.ts -->
+<!--       ^ keyword.operator.relational.ts -->
+    </body>
+<!--<0----- string.quoted.double.ts -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^--- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+    <script src="playable.js"></script>
+<!--<0--------------------------------- string.quoted.double.ts -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^----- variable.other.readwrite.ts -->
+<!--        ^-- variable.other.readwrite.ts -->
+<!--           ^ keyword.operator.assignment.ts -->
+<!--            ^------------ string.quoted.double.ts -->
+<!--            ^ punctuation.definition.string.begin.ts -->
+<!--             ^------- variable.other.object.ts -->
+<!--                     ^ punctuation.accessor.ts -->
+<!--                      ^- variable.other.property.ts -->
+<!--                        ^ punctuation.definition.string.end.ts -->
+<!--                         ^- keyword.operator.relational.ts -->
+<!--                           ^ keyword.operator.arithmetic.ts -->
+<!--                            ^----- variable.other.readwrite.ts -->
+<!--                                  ^ keyword.operator.relational.ts -->
+  </body>
+<!--<0--- string.quoted.double.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 keyword.operator.arithmetic.ts -->
+<!--^--- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.relational.ts -->
+</html>
+<!--<0- string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+
+<!-- From https://github.com/mdn/css-examples/blob/main/backdrop/index.html -->
+<!--<0------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.logical.ts -->
+<!--<2 keyword.operator.decrement.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--           ^ keyword.operator.ternary.ts -->
+<!--            ^- keyword.operator.arithmetic.ts -->
+<!--              ^----- variable.other.object.ts -->
+<!--                    ^ punctuation.accessor.ts -->
+<!--                     ^-- variable.other.property.ts -->
+<!--                        ^ keyword.operator.arithmetic.ts -->
+<!--                         ^-- variable.other.readwrite.ts -->
+<!--                            ^ keyword.operator.arithmetic.ts -->
+<!--                             ^-- variable.other.readwrite.ts -->
+<!--                                ^ keyword.operator.arithmetic.ts -->
+<!--                                 ^------- variable.other.readwrite.ts -->
+<!--                                         ^ keyword.operator.arithmetic.ts -->
+<!--                                          ^--- variable.other.readwrite.ts -->
+<!--                                              ^ keyword.operator.arithmetic.ts -->
+<!--                                               ^--- variable.other.readwrite.ts -->
+<!--                                                   ^ keyword.operator.arithmetic.ts -->
+<!--                                                    ^------- variable.other.readwrite.ts -->
+<!--                                                            ^ keyword.operator.arithmetic.ts -->
+<!--                                                             ^---- variable.other.object.ts -->
+<!--                                                                  ^ punctuation.accessor.ts -->
+<!--                                                                   ^--- variable.other.property.ts -->
+<!--                                                                        ^- keyword.operator.decrement.ts -->
+<!--                                                                          ^ invalid.illegal.newline.ts -->

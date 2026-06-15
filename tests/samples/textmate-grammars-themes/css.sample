@@ -1,0 +1,263 @@
+// grammar: source.css
+
+html {
+//<0 meta.selector.css
+//<0 entity.name.tag.css
+//   ^ meta.property-list.css
+//   ^ punctuation.section.property-list.begin.bracket.curly.css
+	margin: 0;
+//<0------- meta.property-list.css
+//<1--- meta.property-name.css
+//<1--- support.type.property-name.css
+//     ^ punctuation.separator.key-value.css
+//       ^ meta.property-value.css
+//       ^ constant.numeric.css
+//        ^ punctuation.terminator.rule.css
+	background: black;
+//<0--------------- meta.property-list.css
+//<1------- meta.property-name.css
+//<1------- support.type.property-name.css
+//         ^ punctuation.separator.key-value.css
+//           ^---- meta.property-value.css
+//           ^---- support.constant.color.w3c-standard-color-name.css
+//                ^ punctuation.terminator.rule.css
+	height: 100%;
+//<0---------- meta.property-list.css
+//<1--- meta.property-name.css
+//<1--- support.type.property-name.css
+//     ^ punctuation.separator.key-value.css
+//       ^--- meta.property-value.css
+//       ^--- constant.numeric.css
+//          ^ keyword.other.unit.percentage.css
+//           ^ punctuation.terminator.rule.css
+}
+//<0 meta.property-list.css
+//<0 punctuation.section.property-list.end.bracket.curly.css
+
+body {
+//<0 meta.selector.css
+//<0 entity.name.tag.css
+//   ^ meta.property-list.css
+//   ^ punctuation.section.property-list.begin.bracket.curly.css
+	margin: 0;
+//<0------- meta.property-list.css
+//<1--- meta.property-name.css
+//<1--- support.type.property-name.css
+//     ^ punctuation.separator.key-value.css
+//       ^ meta.property-value.css
+//       ^ constant.numeric.css
+//        ^ punctuation.terminator.rule.css
+	width: 100%;
+//<0--------- meta.property-list.css
+//<1-- meta.property-name.css
+//<1-- support.type.property-name.css
+//    ^ punctuation.separator.key-value.css
+//      ^--- meta.property-value.css
+//      ^--- constant.numeric.css
+//         ^ keyword.other.unit.percentage.css
+//          ^ punctuation.terminator.rule.css
+	height: inherit;
+//<0------------- meta.property-list.css
+//<1--- meta.property-name.css
+//<1--- support.type.property-name.css
+//     ^ punctuation.separator.key-value.css
+//       ^------ meta.property-value.css
+//       ^------ support.constant.property-value.css
+//              ^ punctuation.terminator.rule.css
+}
+//<0 meta.property-list.css
+//<0 punctuation.section.property-list.end.bracket.curly.css
+
+/* the three main rows going down the page */
+//<0----------------------------------------- comment.block.css
+//<0 punctuation.definition.comment.begin.css
+//                                         ^- punctuation.definition.comment.end.css
+
+body > div {
+//<0------ meta.selector.css
+//<0 entity.name.tag.css
+//   ^ keyword.operator.combinator.css
+//     ^-- entity.name.tag.css
+//         ^ meta.property-list.css
+//         ^ punctuation.section.property-list.begin.bracket.curly.css
+  height: 25%;
+//<0---------- meta.property-list.css
+//^----- meta.property-name.css
+//^----- support.type.property-name.css
+//      ^ punctuation.separator.key-value.css
+//        ^-- meta.property-value.css
+//        ^-- constant.numeric.css
+//          ^ keyword.other.unit.percentage.css
+//           ^ punctuation.terminator.rule.css
+}
+//<0 meta.property-list.css
+//<0 punctuation.section.property-list.end.bracket.curly.css
+
+.thumb {
+//<0-- meta.selector.css
+//<0-- entity.other.attribute-name.class.css
+//<0 punctuation.definition.entity.css
+//     ^ meta.property-list.css
+//     ^ punctuation.section.property-list.begin.bracket.curly.css
+	float: left;
+//<0--------- meta.property-list.css
+//<1-- meta.property-name.css
+//<1-- support.type.property-name.css
+//    ^ punctuation.separator.key-value.css
+//      ^--- meta.property-value.css
+//      ^--- support.constant.property-value.css
+//          ^ punctuation.terminator.rule.css
+	width: 25%;
+//<0-------- meta.property-list.css
+//<1-- meta.property-name.css
+//<1-- support.type.property-name.css
+//    ^ punctuation.separator.key-value.css
+//      ^-- meta.property-value.css
+//      ^-- constant.numeric.css
+//        ^ keyword.other.unit.percentage.css
+//         ^ punctuation.terminator.rule.css
+	height: 100%;
+//<0---------- meta.property-list.css
+//<1--- meta.property-name.css
+//<1--- support.type.property-name.css
+//     ^ punctuation.separator.key-value.css
+//       ^--- meta.property-value.css
+//       ^--- constant.numeric.css
+//          ^ keyword.other.unit.percentage.css
+//           ^ punctuation.terminator.rule.css
+	object-fit: cover;
+//<0--------------- meta.property-list.css
+//<1------- meta.property-name.css
+//<1------- support.type.property-name.css
+//         ^ punctuation.separator.key-value.css
+//           ^---- meta.property-value.css
+//           ^---- support.constant.property-value.css
+//                ^ punctuation.terminator.rule.css
+}
+//<0 meta.property-list.css
+//<0 punctuation.section.property-list.end.bracket.curly.css
+
+.main {
+//<0- meta.selector.css
+//<0- entity.other.attribute-name.class.css
+//<0 punctuation.definition.entity.css
+//    ^ meta.property-list.css
+//    ^ punctuation.section.property-list.begin.bracket.curly.css
+  display: none;
+//<0------------ meta.property-list.css
+//^------ meta.property-name.css
+//^------ support.type.property-name.css
+//       ^ punctuation.separator.key-value.css
+//         ^--- meta.property-value.css
+//         ^--- support.constant.property-value.css
+//             ^ punctuation.terminator.rule.css
+}
+//<0 meta.property-list.css
+//<0 punctuation.section.property-list.end.bracket.curly.css
+
+.blowup {
+//<0--- meta.selector.css
+//<0--- entity.other.attribute-name.class.css
+//<0 punctuation.definition.entity.css
+//      ^ meta.property-list.css
+//      ^ punctuation.section.property-list.begin.bracket.curly.css
+  display: block;
+//<0------------- meta.property-list.css
+//^------ meta.property-name.css
+//^------ support.type.property-name.css
+//       ^ punctuation.separator.key-value.css
+//         ^---- meta.property-value.css
+//         ^---- support.constant.property-value.css
+//              ^ punctuation.terminator.rule.css
+  position: absolute;
+//<0----------------- meta.property-list.css
+//^------- meta.property-name.css
+//^------- support.type.property-name.css
+//        ^ punctuation.separator.key-value.css
+//          ^------- meta.property-value.css
+//          ^------- support.constant.property-value.css
+//                  ^ punctuation.terminator.rule.css
+  object-fit: contain;
+//<0------------------ meta.property-list.css
+//^--------- meta.property-name.css
+//^--------- support.type.property-name.css
+//          ^ punctuation.separator.key-value.css
+//            ^------ meta.property-value.css
+//            ^------ support.constant.property-value.css
+//                   ^ punctuation.terminator.rule.css
+  object-position: center;
+//<0---------------------- meta.property-list.css
+//^-------------- meta.property-name.css
+//^-------------- support.type.property-name.css
+//               ^ punctuation.separator.key-value.css
+//                 ^----- meta.property-value.css
+//                 ^----- support.constant.property-value.css
+//                       ^ punctuation.terminator.rule.css
+  top: 0;
+//<0----- meta.property-list.css
+//^-- meta.property-name.css
+//^-- support.type.property-name.css
+//   ^ punctuation.separator.key-value.css
+//     ^ meta.property-value.css
+//     ^ constant.numeric.css
+//      ^ punctuation.terminator.rule.css
+  left: 0;
+//<0------ meta.property-list.css
+//^--- meta.property-name.css
+//^--- support.type.property-name.css
+//    ^ punctuation.separator.key-value.css
+//      ^ meta.property-value.css
+//      ^ constant.numeric.css
+//       ^ punctuation.terminator.rule.css
+  width: 100%;
+//<0---------- meta.property-list.css
+//^---- meta.property-name.css
+//^---- support.type.property-name.css
+//     ^ punctuation.separator.key-value.css
+//       ^--- meta.property-value.css
+//       ^--- constant.numeric.css
+//          ^ keyword.other.unit.percentage.css
+//           ^ punctuation.terminator.rule.css
+  height: 100%;
+//<0----------- meta.property-list.css
+//^----- meta.property-name.css
+//^----- support.type.property-name.css
+//      ^ punctuation.separator.key-value.css
+//        ^--- meta.property-value.css
+//        ^--- constant.numeric.css
+//           ^ keyword.other.unit.percentage.css
+//            ^ punctuation.terminator.rule.css
+  z-index: 2000;
+//<0------------ meta.property-list.css
+//^------ meta.property-name.css
+//^------ support.type.property-name.css
+//       ^ punctuation.separator.key-value.css
+//         ^--- meta.property-value.css
+//         ^--- constant.numeric.css
+//             ^ punctuation.terminator.rule.css
+}
+//<0 meta.property-list.css
+//<0 punctuation.section.property-list.end.bracket.curly.css
+
+.darken {
+//<0--- meta.selector.css
+//<0--- entity.other.attribute-name.class.css
+//<0 punctuation.definition.entity.css
+//      ^ meta.property-list.css
+//      ^ punctuation.section.property-list.begin.bracket.curly.css
+  opacity: 0.4;
+//<0----------- meta.property-list.css
+//^------ meta.property-name.css
+//^------ support.type.property-name.css
+//       ^ punctuation.separator.key-value.css
+//         ^-- meta.property-value.css
+//         ^-- constant.numeric.css
+//            ^ punctuation.terminator.rule.css
+}
+//<0 meta.property-list.css
+//<0 punctuation.section.property-list.end.bracket.curly.css
+
+/* From https://github.com/mdn/css-examples/blob/main/object-fit-gallery/style.css */
+//<0--------------------------------------------------------------------------------- comment.block.css
+//<0 punctuation.definition.comment.begin.css
+//                                                                                 ^- punctuation.definition.comment.end.css

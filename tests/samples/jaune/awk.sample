@@ -1,0 +1,68 @@
+# grammar: source.awk
+
+#!/bin/awk -f
+#<0---------- comment.line.number-sign.awk
+BEGIN {
+#<0-- constant.language.awk
+# How many lines
+#<0------------- comment.line.number-sign.awk
+    lines=0;
+#        ^ keyword.operator.assignment.awk
+#         ^ constant.numeric.awk
+    total=0;
+#        ^ keyword.operator.assignment.awk
+#         ^ constant.numeric.awk
+}
+{
+# this code is executed once for each line
+#<0--------------------------------------- comment.line.number-sign.awk
+# increase the number of files
+#<0--------------------------- comment.line.number-sign.awk
+    lines++;
+#        ^- keyword.operator.assignment.awk
+# increase the total size, which is field #1
+#<0----------------------------------------- comment.line.number-sign.awk
+    total+=$1;
+#        ^- keyword.operator.assignment.awk
+#          ^- variable.language.awk
+}
+END {
+#<0 constant.language.awk
+# end, now output the total
+#<0------------------------ comment.line.number-sign.awk
+    print lines " lines read";
+#   ^---- keyword.other.command.awk
+#               ^------------ string.quoted.double.awk
+#               ^ punctuation.definition.string.begin.awk
+#                           ^ punctuation.definition.string.end.awk
+    print "total is ", total;
+#   ^---- keyword.other.command.awk
+#         ^---------- string.quoted.double.awk
+#         ^ punctuation.definition.string.begin.awk
+#                   ^ punctuation.definition.string.end.awk
+#                    ^ punctuation.separator.parameters.awk
+    if (lines > 0 ) {
+#   ^- keyword.control.awk
+#      ^ meta.brace.round.awk
+#             ^ keyword.operator.comparison.awk
+#               ^ constant.numeric.awk
+#                 ^ meta.brace.round.awk
+	print "average is ", total/lines;
+#^---- keyword.other.command.awk
+#      ^------------ string.quoted.double.awk
+#      ^ punctuation.definition.string.begin.awk
+#                  ^ punctuation.definition.string.end.awk
+#                   ^ punctuation.separator.parameters.awk
+#                          ^ keyword.operator.arithmetic.awk
+    } else {
+#     ^--- keyword.control.awk
+	print "average is 0";
+#^---- keyword.other.command.awk
+#      ^------------- string.quoted.double.awk
+#      ^ punctuation.definition.string.begin.awk
+#                   ^ punctuation.definition.string.end.awk
+    }
+}
+
+#From https://www.grymoire.com/Unix/Awk.html
+#<0----------------------------------------- comment.line.number-sign.awk

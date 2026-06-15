@@ -1,0 +1,84 @@
+// grammar: source.scala
+
+class Date(y: Int, m: Int, d: Int) extends Ord:
+//<0- keyword.declaration.scala
+//    ^--- entity.name.class.declaration
+//        ^ meta.bracket.scala
+//         ^ variable.parameter.scala
+//          ^ meta.colon.scala
+//            ^-- entity.name.class
+//                 ^ variable.parameter.scala
+//                  ^ meta.colon.scala
+//                    ^-- entity.name.class
+//                         ^ variable.parameter.scala
+//                          ^ meta.colon.scala
+//                            ^-- entity.name.class
+//                               ^ meta.bracket.scala
+//                                 ^------ keyword.declaration.scala
+//                                         ^-- entity.name.class
+//                                            ^ keyword.operator.scala
+  // previous decls here
+//<0 punctuation.whitespace.comment.leading.scala
+//^--------------------- comment.line.double-slash.scala
+//^- punctuation.definition.comment.scala
+
+  def <(that: Any): Boolean = that match
+//^-- keyword.declaration.scala
+//    ^ entity.name.function.declaration
+//     ^ meta.bracket.scala
+//      ^--- variable.parameter.scala
+//          ^ meta.colon.scala
+//            ^-- entity.name.class
+//               ^ meta.bracket.scala
+//                ^ keyword.operator.scala
+//                  ^------ entity.name.class
+//                          ^ keyword.operator.comparison.scala
+//                                 ^---- keyword.control.flow.scala
+    case d: Date =>
+//  ^--- keyword.control.flow.scala
+//       ^ variable.parameter.scala
+//        ^ meta.colon.scala
+//          ^--- entity.name.class
+//               ^- keyword.operator.scala
+      (year < d.year) ||
+//    ^ meta.bracket.scala
+//          ^ keyword.operator.comparison.scala
+//                  ^ meta.bracket.scala
+//                    ^- keyword.operator.logical.scala
+      (year == d.year && (month < d.month ||
+//    ^ meta.bracket.scala
+//          ^- keyword.operator.comparison.scala
+//                    ^- keyword.operator.logical.scala
+//                       ^ meta.bracket.scala
+//                              ^ keyword.operator.comparison.scala
+//                                        ^- keyword.operator.logical.scala
+                         (month == d.month && day < d.day)))
+//                       ^ meta.bracket.scala
+//                              ^- keyword.operator.comparison.scala
+//                                         ^- keyword.operator.logical.scala
+//                                                ^ keyword.operator.comparison.scala
+//                                                       ^-- meta.bracket.scala
+
+    case _ => sys.error("cannot compare " + that + " and a Date")
+//  ^--- keyword.control.flow.scala
+//         ^- keyword.operator.scala
+//                     ^ meta.bracket.scala
+//                      ^---------------- string.quoted.double.scala
+//                      ^ punctuation.definition.string.begin.scala
+//                                      ^ punctuation.definition.string.end.scala
+//                                        ^ keyword.operator.arithmetic.scala
+//                                               ^ keyword.operator.arithmetic.scala
+//                                                 ^------------ string.quoted.double.scala
+//                                                 ^ punctuation.definition.string.begin.scala
+//                                                             ^ punctuation.definition.string.end.scala
+//                                                              ^ meta.bracket.scala
+  end <
+//^-- keyword.declaration.end.scala
+//    ^ entity.name.declaration
+end Date
+//<0 keyword.declaration.end.scala
+//  ^--- entity.name.type.declaration
+
+// From https://docs.scala-lang.org/tutorials/scala-for-java-programmers.html
+//<0------------------------------------------------------------------------- comment.line.double-slash.scala
+//<0 punctuation.definition.comment.scala

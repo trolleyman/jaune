@@ -1,0 +1,782 @@
+// grammar: source.cue
+
+package kube
+//<0--- keyword.other.package
+//      ^--- entity.name.namespace
+
+service: [ID=_]: {
+//<0--- variable.other
+//     ^ punctuation.colon
+//       ^----- meta.brackets
+//       ^ punctuation.section.brackets.begin
+//        ^- variable.other
+//          ^ punctuation.alias
+//           ^ constant.language.top
+//            ^ punctuation.section.brackets.end
+//             ^ punctuation.colon
+//               ^ meta.struct
+//               ^ punctuation.definition.struct.begin
+	apiVersion: "v1"
+//<0------------- meta.struct
+//<1------- variable.other
+//         ^ punctuation.colon
+//           ^--- meta.string
+//           ^ punctuation.definition.string.begin
+//              ^ punctuation.definition.string.end
+	kind:       "Service"
+//<0------------------ meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//           ^-------- meta.string
+//           ^ punctuation.definition.string.begin
+//                   ^ punctuation.definition.string.end
+	metadata: {
+//<0-------- meta.struct
+//<1----- variable.other
+//       ^ punctuation.colon
+//         ^ meta.struct
+//         ^ punctuation.definition.struct.begin
+		name: ID
+//<0------ meta.struct
+//<0------ meta.struct
+//^--- variable.other
+//    ^ punctuation.colon
+//      ^- variable.other
+		labels: {
+//<0------- meta.struct
+//<0------- meta.struct
+//^----- variable.other
+//      ^ punctuation.colon
+//        ^ meta.struct
+//        ^ punctuation.definition.struct.begin
+			app:       ID         // by convention
+//<0------------------------------------- meta.struct
+//<0------------------------------------- meta.struct
+//<0------------------------------------- meta.struct
+// ^-- variable.other
+//    ^ punctuation.colon
+//            ^- variable.other
+//                       ^--------------- comment.line
+//                       ^- punctuation.definition.comment
+			domain:    "prod"     // always the same in the given files
+//<0---------------------------------------------------------- meta.struct
+//<0---------------------------------------------------------- meta.struct
+//<0---------------------------------------------------------- meta.struct
+// ^----- variable.other
+//       ^ punctuation.colon
+//            ^----- meta.string
+//            ^ punctuation.definition.string.begin
+//                 ^ punctuation.definition.string.end
+//                       ^------------------------------------ comment.line
+//                       ^- punctuation.definition.comment
+			component: #Component // varies per directory
+//<0-------------------------------------------- meta.struct
+//<0-------------------------------------------- meta.struct
+//<0-------------------------------------------- meta.struct
+// ^-------- variable.other
+//          ^ punctuation.colon
+//            ^--------- variable.other
+//                       ^---------------------- comment.line
+//                       ^- punctuation.definition.comment
+		}
+//<0 meta.struct
+//<0 meta.struct
+//<0 meta.struct
+//^ punctuation.definition.struct.end
+	}
+//<0 meta.struct
+//<0 meta.struct
+//<1 punctuation.definition.struct.end
+	spec: {
+//<0---- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//     ^ meta.struct
+//     ^ punctuation.definition.struct.begin
+		// Any port has the following properties.
+//<0--------------------------------------- meta.struct
+//<0--------------------------------------- meta.struct
+//^---------------------------------------- comment.line
+//^- punctuation.definition.comment
+		ports: [...{
+//<0---------- meta.struct
+//<0---------- meta.struct
+//^---- variable.other
+//     ^ punctuation.colon
+//       ^---- meta.brackets
+//       ^ punctuation.section.brackets.begin
+//        ^-- punctuation.ellipsis
+//           ^ meta.struct
+//           ^ punctuation.definition.struct.begin
+			port:     int
+//<0------------ meta.struct
+//<0------------ meta.struct
+//<0------------ meta.brackets
+//<0------------ meta.struct
+// ^--- variable.other
+//     ^ punctuation.colon
+//           ^-- support.type
+			protocol: *"TCP" | "UDP" // from the Kubernetes definition
+//<0--------------------------------------------------------- meta.struct
+//<0--------------------------------------------------------- meta.struct
+//<0--------------------------------------------------------- meta.brackets
+//<0--------------------------------------------------------- meta.struct
+// ^------- variable.other
+//         ^ punctuation.colon
+//           ^ keyword.operator
+//            ^---- meta.string
+//            ^ punctuation.definition.string.begin
+//                ^ punctuation.definition.string.end
+//                  ^ keyword.operator.set
+//                    ^---- meta.string
+//                    ^ punctuation.definition.string.begin
+//                        ^ punctuation.definition.string.end
+//                          ^-------------------------------- comment.line
+//                          ^- punctuation.definition.comment
+			name:     string | *"client"
+//<0--------------------------- meta.struct
+//<0--------------------------- meta.struct
+//<0--------------------------- meta.brackets
+//<0--------------------------- meta.struct
+// ^--- variable.other
+//     ^ punctuation.colon
+//           ^----- support.type
+//                  ^ keyword.operator.set
+//                    ^ keyword.operator
+//                     ^------- meta.string
+//                     ^ punctuation.definition.string.begin
+//                            ^ punctuation.definition.string.end
+		}]
+//<0 meta.struct
+//<0 meta.struct
+//<0 meta.brackets
+//<0 meta.struct
+//^ punctuation.definition.struct.end
+// ^ punctuation.section.brackets.end
+		selector: metadata.labels // we want those to be the same
+//<0------------------------------------------------------- meta.struct
+//<0------------------------------------------------------- meta.struct
+//^------- variable.other
+//        ^ punctuation.colon
+//          ^------- variable.other
+//                  ^ punctuation.accessor
+//                   ^----- variable.other.member
+//                          ^------------------------------ comment.line
+//                          ^- punctuation.definition.comment
+	}
+//<0 meta.struct
+//<0 meta.struct
+//<1 punctuation.definition.struct.end
+}
+//<0 meta.struct
+//<0 punctuation.definition.struct.end
+
+deployment: [ID=_]: {
+//<0------ variable.other
+//        ^ punctuation.colon
+//          ^----- meta.brackets
+//          ^ punctuation.section.brackets.begin
+//           ^- variable.other
+//             ^ punctuation.alias
+//              ^ constant.language.top
+//               ^ punctuation.section.brackets.end
+//                ^ punctuation.colon
+//                  ^ meta.struct
+//                  ^ punctuation.definition.struct.begin
+	apiVersion: "apps/v1"
+//<0------------------ meta.struct
+//<1------- variable.other
+//         ^ punctuation.colon
+//           ^-------- meta.string
+//           ^ punctuation.definition.string.begin
+//                   ^ punctuation.definition.string.end
+	kind:       "Deployment"
+//<0--------------------- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//           ^----------- meta.string
+//           ^ punctuation.definition.string.begin
+//                      ^ punctuation.definition.string.end
+	metadata: name: ID
+//<0--------------- meta.struct
+//<1----- variable.other
+//       ^ punctuation.colon
+//         ^--- variable.other
+//             ^ punctuation.colon
+//               ^- variable.other
+	spec: {
+//<0---- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//     ^ meta.struct
+//     ^ punctuation.definition.struct.begin
+		// 1 is the default, but we allow any number
+//<0------------------------------------------ meta.struct
+//<0------------------------------------------ meta.struct
+//^------------------------------------------- comment.line
+//^- punctuation.definition.comment
+		replicas: *1 | int
+//<0---------------- meta.struct
+//<0---------------- meta.struct
+//^------- variable.other
+//        ^ punctuation.colon
+//          ^ keyword.operator
+//           ^ constant.numeric.integer.decimal
+//             ^ keyword.operator.set
+//               ^-- support.type
+		template: {
+//<0--------- meta.struct
+//<0--------- meta.struct
+//^------- variable.other
+//        ^ punctuation.colon
+//          ^ meta.struct
+//          ^ punctuation.definition.struct.begin
+			metadata: labels: {
+//<0------------------ meta.struct
+//<0------------------ meta.struct
+//<0------------------ meta.struct
+// ^------- variable.other
+//         ^ punctuation.colon
+//           ^----- variable.other
+//                 ^ punctuation.colon
+//                   ^ meta.struct
+//                   ^ punctuation.definition.struct.begin
+				app:       ID
+//<0------------- meta.struct
+//<0------------- meta.struct
+//<0------------- meta.struct
+//<0------------- meta.struct
+//  ^-- variable.other
+//     ^ punctuation.colon
+//             ^- variable.other
+				domain:    "prod"
+//<0----------------- meta.struct
+//<0----------------- meta.struct
+//<0----------------- meta.struct
+//<0----------------- meta.struct
+//  ^----- variable.other
+//        ^ punctuation.colon
+//             ^----- meta.string
+//             ^ punctuation.definition.string.begin
+//                  ^ punctuation.definition.string.end
+				component: #Component
+//<0--------------------- meta.struct
+//<0--------------------- meta.struct
+//<0--------------------- meta.struct
+//<0--------------------- meta.struct
+//  ^-------- variable.other
+//           ^ punctuation.colon
+//             ^--------- variable.other
+			}
+//<0 meta.struct
+//<0 meta.struct
+//<0 meta.struct
+//<0 meta.struct
+// ^ punctuation.definition.struct.end
+			// we always have one namesake container
+//<0--------------------------------------- meta.struct
+//<0--------------------------------------- meta.struct
+//<0--------------------------------------- meta.struct
+// ^--------------------------------------- comment.line
+// ^- punctuation.definition.comment
+			spec: containers: [{name: ID}]
+//<0----------------------------- meta.struct
+//<0----------------------------- meta.struct
+//<0----------------------------- meta.struct
+// ^--- variable.other
+//     ^ punctuation.colon
+//       ^--------- variable.other
+//                 ^ punctuation.colon
+//                   ^----------- meta.brackets
+//                   ^ punctuation.section.brackets.begin
+//                    ^--------- meta.struct
+//                    ^ punctuation.definition.struct.begin
+//                     ^--- variable.other
+//                         ^ punctuation.colon
+//                           ^- variable.other
+//                             ^ punctuation.definition.struct.end
+//                              ^ punctuation.section.brackets.end
+		}
+//<0 meta.struct
+//<0 meta.struct
+//<0 meta.struct
+//^ punctuation.definition.struct.end
+	}
+//<0 meta.struct
+//<0 meta.struct
+//<1 punctuation.definition.struct.end
+}
+//<0 meta.struct
+//<0 punctuation.definition.struct.end
+
+#Component: string
+//<0------ variable.other
+//        ^ punctuation.colon
+//          ^----- support.type
+
+daemonSet: [ID=_]: _spec & {
+//<0----- variable.other
+//       ^ punctuation.colon
+//         ^----- meta.brackets
+//         ^ punctuation.section.brackets.begin
+//          ^- variable.other
+//            ^ punctuation.alias
+//             ^ constant.language.top
+//              ^ punctuation.section.brackets.end
+//               ^ punctuation.colon
+//                 ^---- variable.other
+//                       ^ keyword.operator.set
+//                         ^ meta.struct
+//                         ^ punctuation.definition.struct.begin
+	apiVersion: "apps/v1"
+//<0------------------ meta.struct
+//<1------- variable.other
+//         ^ punctuation.colon
+//           ^-------- meta.string
+//           ^ punctuation.definition.string.begin
+//                   ^ punctuation.definition.string.end
+	kind:       "DaemonSet"
+//<0-------------------- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//           ^---------- meta.string
+//           ^ punctuation.definition.string.begin
+//                     ^ punctuation.definition.string.end
+	_name:      ID
+//<0----------- meta.struct
+//<1-- variable.other
+//    ^ punctuation.colon
+//           ^- variable.other
+}
+//<0 meta.struct
+//<0 punctuation.definition.struct.end
+
+statefulSet: [ID=_]: _spec & {
+//<0------- variable.other
+//         ^ punctuation.colon
+//           ^----- meta.brackets
+//           ^ punctuation.section.brackets.begin
+//            ^- variable.other
+//              ^ punctuation.alias
+//               ^ constant.language.top
+//                ^ punctuation.section.brackets.end
+//                 ^ punctuation.colon
+//                   ^---- variable.other
+//                         ^ keyword.operator.set
+//                           ^ meta.struct
+//                           ^ punctuation.definition.struct.begin
+	apiVersion: "apps/v1"
+//<0------------------ meta.struct
+//<1------- variable.other
+//         ^ punctuation.colon
+//           ^-------- meta.string
+//           ^ punctuation.definition.string.begin
+//                   ^ punctuation.definition.string.end
+	kind:       "StatefulSet"
+//<0---------------------- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//           ^------------ meta.string
+//           ^ punctuation.definition.string.begin
+//                       ^ punctuation.definition.string.end
+	_name:      ID
+//<0----------- meta.struct
+//<1-- variable.other
+//    ^ punctuation.colon
+//           ^- variable.other
+}
+//<0 meta.struct
+//<0 punctuation.definition.struct.end
+
+deployment: [ID=_]: _spec & {
+//<0------ variable.other
+//        ^ punctuation.colon
+//          ^----- meta.brackets
+//          ^ punctuation.section.brackets.begin
+//           ^- variable.other
+//             ^ punctuation.alias
+//              ^ constant.language.top
+//               ^ punctuation.section.brackets.end
+//                ^ punctuation.colon
+//                  ^---- variable.other
+//                        ^ keyword.operator.set
+//                          ^ meta.struct
+//                          ^ punctuation.definition.struct.begin
+	apiVersion: "apps/v1"
+//<0------------------ meta.struct
+//<1------- variable.other
+//         ^ punctuation.colon
+//           ^-------- meta.string
+//           ^ punctuation.definition.string.begin
+//                   ^ punctuation.definition.string.end
+	kind:       "Deployment"
+//<0--------------------- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//           ^----------- meta.string
+//           ^ punctuation.definition.string.begin
+//                      ^ punctuation.definition.string.end
+	_name:      ID
+//<0----------- meta.struct
+//<1-- variable.other
+//    ^ punctuation.colon
+//           ^- variable.other
+	spec: replicas: *1 | int
+//<0--------------------- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//     ^------- variable.other
+//             ^ punctuation.colon
+//               ^ keyword.operator
+//                ^ constant.numeric.integer.decimal
+//                  ^ keyword.operator.set
+//                    ^-- support.type
+}
+//<0 meta.struct
+//<0 punctuation.definition.struct.end
+
+configMap: [ID=_]: {
+//<0----- variable.other
+//       ^ punctuation.colon
+//         ^----- meta.brackets
+//         ^ punctuation.section.brackets.begin
+//          ^- variable.other
+//            ^ punctuation.alias
+//             ^ constant.language.top
+//              ^ punctuation.section.brackets.end
+//               ^ punctuation.colon
+//                 ^ meta.struct
+//                 ^ punctuation.definition.struct.begin
+	metadata: name: ID
+//<0--------------- meta.struct
+//<1----- variable.other
+//       ^ punctuation.colon
+//         ^--- variable.other
+//             ^ punctuation.colon
+//               ^- variable.other
+	metadata: labels: component: #Component
+//<0------------------------------------ meta.struct
+//<1----- variable.other
+//       ^ punctuation.colon
+//         ^----- variable.other
+//               ^ punctuation.colon
+//                 ^-------- variable.other
+//                          ^ punctuation.colon
+//                            ^--------- variable.other
+}
+//<0 meta.struct
+//<0 punctuation.definition.struct.end
+
+_spec: {
+//<0- variable.other
+//   ^ punctuation.colon
+//     ^ meta.struct
+//     ^ punctuation.definition.struct.begin
+	_name: string
+//<0---------- meta.struct
+//<1-- variable.other
+//    ^ punctuation.colon
+//      ^----- support.type
+
+	metadata: name: _name
+//<0------------------ meta.struct
+//<1----- variable.other
+//       ^ punctuation.colon
+//         ^--- variable.other
+//             ^ punctuation.colon
+//               ^---- variable.other
+	metadata: labels: component: #Component
+//<0------------------------------------ meta.struct
+//<1----- variable.other
+//       ^ punctuation.colon
+//         ^----- variable.other
+//               ^ punctuation.colon
+//                 ^-------- variable.other
+//                          ^ punctuation.colon
+//                            ^--------- variable.other
+	spec: selector: {}
+//<0--------------- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//     ^------- variable.other
+//             ^ punctuation.colon
+//               ^- meta.struct
+//               ^ punctuation.definition.struct.begin
+//                ^ punctuation.definition.struct.end
+	spec: template: {
+//<0-------------- meta.struct
+//<1- variable.other
+//   ^ punctuation.colon
+//     ^------- variable.other
+//             ^ punctuation.colon
+//               ^ meta.struct
+//               ^ punctuation.definition.struct.begin
+		metadata: labels: {
+//<0----------------- meta.struct
+//<0----------------- meta.struct
+//^------- variable.other
+//        ^ punctuation.colon
+//          ^----- variable.other
+//                ^ punctuation.colon
+//                  ^ meta.struct
+//                  ^ punctuation.definition.struct.begin
+			app:       _name
+//<0--------------- meta.struct
+//<0--------------- meta.struct
+//<0--------------- meta.struct
+// ^-- variable.other
+//    ^ punctuation.colon
+//            ^---- variable.other
+			component: #Component
+//<0-------------------- meta.struct
+//<0-------------------- meta.struct
+//<0-------------------- meta.struct
+// ^-------- variable.other
+//          ^ punctuation.colon
+//            ^--------- variable.other
+			domain:    "prod"
+//<0---------------- meta.struct
+//<0---------------- meta.struct
+//<0---------------- meta.struct
+// ^----- variable.other
+//       ^ punctuation.colon
+//            ^----- meta.string
+//            ^ punctuation.definition.string.begin
+//                 ^ punctuation.definition.string.end
+		}
+//<0 meta.struct
+//<0 meta.struct
+//<0 meta.struct
+//^ punctuation.definition.struct.end
+		spec: containers: [{name: _name}]
+//<0------------------------------- meta.struct
+//<0------------------------------- meta.struct
+//^--- variable.other
+//    ^ punctuation.colon
+//      ^--------- variable.other
+//                ^ punctuation.colon
+//                  ^-------------- meta.brackets
+//                  ^ punctuation.section.brackets.begin
+//                   ^------------ meta.struct
+//                   ^ punctuation.definition.struct.begin
+//                    ^--- variable.other
+//                        ^ punctuation.colon
+//                          ^---- variable.other
+//                               ^ punctuation.definition.struct.end
+//                                ^ punctuation.section.brackets.end
+	}
+//<0 meta.struct
+//<0 meta.struct
+//<1 punctuation.definition.struct.end
+}
+//<0 meta.struct
+//<0 punctuation.definition.struct.end
+
+// Define the _export option and set the default to true
+//<0---------------------------------------------------- comment.line
+//<0 punctuation.definition.comment
+// for all ports defined in all containers.
+//<0--------------------------------------- comment.line
+//<0 punctuation.definition.comment
+_spec: spec: template: spec: containers: [...{
+//<0- variable.other
+//   ^ punctuation.colon
+//     ^--- variable.other
+//         ^ punctuation.colon
+//           ^------- variable.other
+//                   ^ punctuation.colon
+//                     ^--- variable.other
+//                         ^ punctuation.colon
+//                           ^--------- variable.other
+//                                     ^ punctuation.colon
+//                                       ^---- meta.brackets
+//                                       ^ punctuation.section.brackets.begin
+//                                        ^-- punctuation.ellipsis
+//                                           ^ meta.struct
+//                                           ^ punctuation.definition.struct.begin
+	ports: [...{
+//<0--------- meta.brackets
+//<0--------- meta.struct
+//<1-- variable.other
+//    ^ punctuation.colon
+//      ^---- meta.brackets
+//      ^ punctuation.section.brackets.begin
+//       ^-- punctuation.ellipsis
+//          ^ meta.struct
+//          ^ punctuation.definition.struct.begin
+		_export: *true | false // include the port in the service
+//<0------------------------------------------------------- meta.brackets
+//<0------------------------------------------------------- meta.struct
+//<0------------------------------------------------------- meta.brackets
+//<0------------------------------------------------------- meta.struct
+//^------ variable.other
+//       ^ punctuation.colon
+//         ^ keyword.operator
+//          ^--- constant.language.bool
+//               ^ keyword.operator.set
+//                 ^---- constant.language.bool
+//                       ^--------------------------------- comment.line
+//                       ^- punctuation.definition.comment
+	}]
+//<0 meta.brackets
+//<0 meta.struct
+//<0 meta.brackets
+//<0 meta.struct
+//<1 punctuation.definition.struct.end
+//^ punctuation.section.brackets.end
+}]
+//<0 meta.brackets
+//<0 meta.struct
+//<0 punctuation.definition.struct.end
+//<1 punctuation.section.brackets.end
+
+for x in [deployment, daemonSet, statefulSet] for k, v in x {
+//<0 keyword.control.for
+//  ^ variable.other
+//    ^- keyword.control.in
+//       ^----------------------------------- meta.brackets
+//       ^ punctuation.section.brackets.begin
+//        ^--------- variable.other
+//                  ^ punctuation.separator
+//                    ^-------- variable.other
+//                             ^ punctuation.separator
+//                               ^---------- variable.other
+//                                          ^ punctuation.section.brackets.end
+//                                            ^-- keyword.control.for
+//                                                ^ variable.other
+//                                                 ^ punctuation.separator
+//                                                   ^ variable.other
+//                                                     ^- keyword.control.in
+//                                                        ^ variable.other
+//                                                          ^ meta.struct
+//                                                          ^ punctuation.definition.struct.begin
+	service: "\(k)": {
+//<0--------------- meta.struct
+//<1---- variable.other
+//      ^ punctuation.colon
+//        ^----- meta.string
+//        ^ punctuation.definition.string.begin
+//         ^--- meta.interpolation
+//         ^- punctuation.section.interpolation.begin
+//           ^ variable.other
+//            ^ punctuation.section.interpolation.end
+//             ^ punctuation.definition.string.end
+//              ^ punctuation.colon
+//                ^ meta.struct
+//                ^ punctuation.definition.struct.begin
+		spec: selector: v.spec.template.metadata.labels
+//<0--------------------------------------------- meta.struct
+//<0--------------------------------------------- meta.struct
+//^--- variable.other
+//    ^ punctuation.colon
+//      ^------- variable.other
+//              ^ punctuation.colon
+//                ^ variable.other
+//                 ^ punctuation.accessor
+//                  ^--- variable.other.member
+//                      ^ punctuation.accessor
+//                       ^------- variable.other.member
+//                               ^ punctuation.accessor
+//                                ^------- variable.other.member
+//                                        ^ punctuation.accessor
+//                                         ^----- variable.other.member
+
+		spec: ports: [
+//<0------------ meta.struct
+//<0------------ meta.struct
+//^--- variable.other
+//    ^ punctuation.colon
+//      ^---- variable.other
+//           ^ punctuation.colon
+//             ^ meta.brackets
+//             ^ punctuation.section.brackets.begin
+			for c in v.spec.template.spec.containers
+//<0--------------------------------------- meta.struct
+//<0--------------------------------------- meta.struct
+//<0--------------------------------------- meta.brackets
+// ^-- keyword.control.for
+//     ^ variable.other
+//       ^- keyword.control.in
+//          ^ variable.other
+//           ^ punctuation.accessor
+//            ^--- variable.other.member
+//                ^ punctuation.accessor
+//                 ^------- variable.other.member
+//                         ^ punctuation.accessor
+//                          ^--- variable.other.member
+//                              ^ punctuation.accessor
+//                               ^--------- variable.other.member
+			for p in c.ports
+//<0--------------- meta.struct
+//<0--------------- meta.struct
+//<0--------------- meta.brackets
+// ^-- keyword.control.for
+//     ^ variable.other
+//       ^- keyword.control.in
+//          ^ variable.other
+//           ^ punctuation.accessor
+//            ^---- variable.other.member
+			if p._export {
+//<0------------- meta.struct
+//<0------------- meta.struct
+//<0------------- meta.brackets
+// ^- keyword.control.conditional
+//    ^ variable.other
+//     ^ punctuation.accessor
+//      ^------ variable.other.member
+//              ^ meta.struct
+//              ^ punctuation.definition.struct.begin
+				let Port = p.containerPort // Port is an alias
+//<0---------------------------------------------- meta.struct
+//<0---------------------------------------------- meta.struct
+//<0---------------------------------------------- meta.brackets
+//<0---------------------------------------------- meta.struct
+//  ^-- keyword.control.let
+//      ^--- variable.other
+//           ^ punctuation.bind
+//             ^ variable.other
+//              ^ punctuation.accessor
+//               ^------------ variable.other.member
+//                             ^------------------ comment.line
+//                             ^- punctuation.definition.comment
+				port:       *Port | int
+//<0----------------------- meta.struct
+//<0----------------------- meta.struct
+//<0----------------------- meta.brackets
+//<0----------------------- meta.struct
+//  ^--- variable.other
+//      ^ punctuation.colon
+//              ^ keyword.operator
+//               ^--- variable.other
+//                    ^ keyword.operator.set
+//                      ^-- support.type
+				targetPort: *Port | int
+//<0----------------------- meta.struct
+//<0----------------------- meta.struct
+//<0----------------------- meta.brackets
+//<0----------------------- meta.struct
+//  ^--------- variable.other
+//            ^ punctuation.colon
+//              ^ keyword.operator
+//               ^--- variable.other
+//                    ^ keyword.operator.set
+//                      ^-- support.type
+			},
+//<0- meta.struct
+//<0- meta.struct
+//<0- meta.brackets
+//<0 meta.struct
+// ^ punctuation.definition.struct.end
+//  ^ punctuation.separator
+		]
+//<0 meta.struct
+//<0 meta.struct
+//<0 meta.brackets
+//^ punctuation.section.brackets.end
+	}
+//<0 meta.struct
+//<0 meta.struct
+//<1 punctuation.definition.struct.end
+}
+//<0 meta.struct
+//<0 punctuation.definition.struct.end

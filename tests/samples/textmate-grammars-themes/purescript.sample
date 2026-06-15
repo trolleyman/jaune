@@ -1,0 +1,484 @@
+-- grammar: source.purescript
+
+module Main where
+--<0------------- meta.declaration.module.purescript
+--<0-- keyword.other.purescript
+--     ^--- support.other.module.purescript
+--          ^---- keyword.other.purescript
+
+import Data.Either (Either(..))
+--<0--------------------------- meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^---------- support.other.module.purescript
+--                 ^----------- meta.declaration.exports.purescript
+--                  ^----- entity.name.type.purescript
+--                        ^--- entity.name.function.infix.purescript
+import Data.Eq (class Eq)
+--<0--------------------- meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^------ support.other.module.purescript
+--             ^--------- meta.declaration.exports.purescript
+--              ^---- entity.name.function.purescript
+--                    ^- entity.name.type.purescript
+import Data.Function.Uncurried (Fn2, mkFn2, runFn2)
+--<0----------------------------------------------- meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^---------------------- support.other.module.purescript
+--                             ^------------------- meta.declaration.exports.purescript
+--                              ^-- entity.name.type.purescript
+--                                 ^ punctuation.separator.comma.purescript
+--                                   ^---- entity.name.function.purescript
+--                                        ^ punctuation.separator.comma.purescript
+--                                          ^----- entity.name.function.purescript
+import Data.List (List(..), filter, (:))
+--<0------------------------------------ meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^-------- support.other.module.purescript
+--               ^---------------------- meta.declaration.exports.purescript
+--                ^--- entity.name.type.purescript
+--                    ^--- entity.name.function.infix.purescript
+--                        ^ punctuation.separator.comma.purescript
+--                          ^----- entity.name.function.purescript
+--                                ^ punctuation.separator.comma.purescript
+--                                  ^-- entity.name.function.infix.purescript
+import Data.Maybe (Maybe(..))
+--<0------------------------- meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^--------- support.other.module.purescript
+--                ^---------- meta.declaration.exports.purescript
+--                 ^---- entity.name.type.purescript
+--                      ^--- entity.name.function.infix.purescript
+import Data.String.Regex (Regex, parseFlags, regex, replace)
+--<0-------------------------------------------------------- meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^---------------- support.other.module.purescript
+--                       ^---------------------------------- meta.declaration.exports.purescript
+--                        ^---- entity.name.type.purescript
+--                             ^ punctuation.separator.comma.purescript
+--                               ^--------- entity.name.function.purescript
+--                                         ^ punctuation.separator.comma.purescript
+--                                           ^---- entity.name.function.purescript
+--                                                ^ punctuation.separator.comma.purescript
+--                                                  ^------ entity.name.function.purescript
+import Effect (Effect)
+--<0------------------ meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^----- support.other.module.purescript
+--            ^------- meta.declaration.exports.purescript
+--             ^----- entity.name.type.purescript
+import Effect.Console (log, logShow)
+--<0-------------------------------- meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^------------- support.other.module.purescript
+--                    ^------------- meta.declaration.exports.purescript
+--                     ^-- entity.name.function.purescript
+--                        ^ punctuation.separator.comma.purescript
+--                          ^------ entity.name.function.purescript
+import Partial.Unsafe (unsafePartial)
+--<0--------------------------------- meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^------------- support.other.module.purescript
+--                    ^-------------- meta.declaration.exports.purescript
+--                     ^------------ entity.name.function.purescript
+import Prelude (Unit, discard, map, mod, show, (+), (==), ($), (/=), (<>))
+--<0---------------------------------------------------------------------- meta.import.purescript
+--<0-- keyword.other.purescript
+--     ^------ support.other.module.purescript
+--             ^---------------------------------------------------------- meta.declaration.exports.purescript
+--              ^--- entity.name.type.purescript
+--                  ^ punctuation.separator.comma.purescript
+--                    ^------ entity.name.function.purescript
+--                           ^ punctuation.separator.comma.purescript
+--                             ^-- entity.name.function.purescript
+--                                ^ punctuation.separator.comma.purescript
+--                                  ^-- entity.name.function.purescript
+--                                     ^ punctuation.separator.comma.purescript
+--                                       ^--- entity.name.function.purescript
+--                                           ^ punctuation.separator.comma.purescript
+--                                             ^-- entity.name.function.infix.purescript
+--                                                ^ punctuation.separator.comma.purescript
+--                                                  ^--- entity.name.function.infix.purescript
+--                                                      ^ punctuation.separator.comma.purescript
+--                                                        ^-- entity.name.function.infix.purescript
+--                                                           ^ punctuation.separator.comma.purescript
+--                                                             ^--- entity.name.function.infix.purescript
+--                                                                 ^ punctuation.separator.comma.purescript
+--                                                                   ^--- entity.name.function.infix.purescript
+
+type Dict key value = key → Maybe value
+--<0----------------------------------- meta.declaration.type.type.purescript
+--<0 storage.type.data.purescript
+--   ^------------- meta.type-signature.purescript
+--   ^--- entity.name.type.purescript
+--        ^-- variable.other.generic-type.purescript
+--            ^---- variable.other.generic-type.purescript
+--                  ^------------------ meta.type-signature.purescript
+--                  ^ keyword.operator.assignment.purescript
+--                    ^-- variable.other.generic-type.purescript
+--                        ^ keyword.other.arrow.purescript
+--                          ^---- entity.name.type.purescript
+--                                ^---- variable.other.generic-type.purescript
+
+emptyDict :: ∀ k v. Dict k v
+--<0------------------------ meta.function.type-declaration.purescript
+--<0----- entity.name.function.purescript
+--        ^- keyword.other.double-colon.purescript
+--          ^--------------- meta.type-signature.purescript
+--           ^ keyword.other.forall.purescript
+--             ^ variable.other.generic-type.purescript
+--               ^ variable.other.generic-type.purescript
+--                ^ keyword.other.purescript
+--                  ^--- entity.name.type.purescript
+--                       ^ variable.other.generic-type.purescript
+--                         ^ variable.other.generic-type.purescript
+emptyDict _ = Nothing
+--          ^ keyword.operator.purescript
+--            ^------ entity.name.tag.purescript
+
+insertDict :: ∀ k v. (Eq k) => k → v → Dict k v → Dict k v
+--<0------------------------------------------------------ meta.function.type-declaration.purescript
+--<0------ entity.name.function.purescript
+--         ^- keyword.other.double-colon.purescript
+--           ^-------------------------------------------- meta.type-signature.purescript
+--            ^ keyword.other.forall.purescript
+--              ^ variable.other.generic-type.purescript
+--                ^ variable.other.generic-type.purescript
+--                 ^ keyword.other.purescript
+--                   ^-------- meta.class-constraints.purescript
+--                    ^--- meta.class-constraint.purescript
+--                    ^- entity.name.type.purescript
+--                       ^ variable.other.generic-type.purescript
+--                          ^- keyword.other.big-arrow.purescript
+--                             ^ variable.other.generic-type.purescript
+--                               ^ keyword.other.arrow.purescript
+--                                 ^ variable.other.generic-type.purescript
+--                                   ^ keyword.other.arrow.purescript
+--                                     ^--- entity.name.type.purescript
+--                                          ^ variable.other.generic-type.purescript
+--                                            ^ variable.other.generic-type.purescript
+--                                              ^ keyword.other.arrow.purescript
+--                                                ^--- entity.name.type.purescript
+--                                                     ^ variable.other.generic-type.purescript
+--                                                       ^ variable.other.generic-type.purescript
+insertDict key value dict =
+--                        ^ keyword.operator.purescript
+  \key' → if key == key'
+--^ keyword.operator.purescript
+--      ^ keyword.operator.purescript
+--        ^- keyword.control.purescript
+--               ^- keyword.operator.purescript
+            then (Just value)
+--          ^--- keyword.control.purescript
+--                ^--- entity.name.tag.purescript
+            else dict key'
+--          ^--- keyword.control.purescript
+
+
+-- | Take a look at src/Main.js to see how we curry arguments
+--<0--------------------------------------------------------- comment.line.double-dash.purescript
+--<0 punctuation.definition.comment.purescript
+-- | in Javascript
+--<0-------------- comment.line.double-dash.purescript
+--<0 punctuation.definition.comment.purescript
+foreign import myAdd :: Int → Int → Int
+--<0----------------------------------- meta.foreign.purescript
+--<0--- keyword.other.purescript
+--      ^----- keyword.other.purescript
+--             ^---- entity.name.function.purescript
+--                  ^------------------ meta.type-signature.purescript
+--                   ^- keyword.other.double-colon.purescript
+--                      ^-- entity.name.type.purescript
+--                          ^ keyword.other.arrow.purescript
+--                            ^-- entity.name.type.purescript
+--                                ^ keyword.other.arrow.purescript
+--                                  ^-- entity.name.type.purescript
+
+-- | When performance is critical then use Data.Function.Uncurried
+--<0-------------------------------------------------------------- comment.line.double-dash.purescript
+--<0 punctuation.definition.comment.purescript
+myAddFast :: Fn2 Int Int Int
+--<0------------------------ meta.function.type-declaration.purescript
+--<0----- entity.name.function.purescript
+--        ^- keyword.other.double-colon.purescript
+--          ^--------------- meta.type-signature.purescript
+--           ^-- entity.name.type.purescript
+--               ^-- entity.name.type.purescript
+--                   ^-- entity.name.type.purescript
+--                       ^-- entity.name.type.purescript
+myAddFast = mkFn2 \x y → x + y
+--        ^ keyword.operator.purescript
+--                ^ keyword.operator.purescript
+--                     ^ keyword.operator.purescript
+--                         ^ keyword.operator.purescript
+
+add10 :: Int -> Int
+--<0--------------- meta.function.type-declaration.purescript
+--<0- entity.name.function.purescript
+--    ^- keyword.other.double-colon.purescript
+--      ^---------- meta.type-signature.purescript
+--       ^-- entity.name.type.purescript
+--           ^- keyword.other.arrow.purescript
+--              ^-- entity.name.type.purescript
+add10 = myAdd 10
+--    ^ keyword.operator.purescript
+--            ^- constant.numeric.decimal.purescript
+--            ^- constant.numeric.decimal.purescript
+
+modulo :: Int -> Int -> Int
+--<0----------------------- meta.function.type-declaration.purescript
+--<0-- entity.name.function.purescript
+--     ^- keyword.other.double-colon.purescript
+--       ^----------------- meta.type-signature.purescript
+--        ^-- entity.name.type.purescript
+--            ^- keyword.other.arrow.purescript
+--               ^-- entity.name.type.purescript
+--                   ^- keyword.other.arrow.purescript
+--                      ^-- entity.name.type.purescript
+modulo dvr dvd = dvd `mod` dvr
+--             ^ keyword.operator.purescript
+--                   ^---- keyword.operator.function.infix.purescript
+--                   ^ punctuation.definition.entity.purescript
+--                       ^ punctuation.definition.entity.purescript
+
+isOdd :: Int -> Int
+--<0--------------- meta.function.type-declaration.purescript
+--<0- entity.name.function.purescript
+--    ^- keyword.other.double-colon.purescript
+--      ^---------- meta.type-signature.purescript
+--       ^-- entity.name.type.purescript
+--           ^- keyword.other.arrow.purescript
+--              ^-- entity.name.type.purescript
+isOdd = modulo 2
+--    ^ keyword.operator.purescript
+--             ^ constant.numeric.decimal.purescript
+--             ^ constant.numeric.decimal.purescript
+
+getAllOdds :: List Int -> List Int
+--<0------------------------------ meta.function.type-declaration.purescript
+--<0------ entity.name.function.purescript
+--         ^- keyword.other.double-colon.purescript
+--           ^-------------------- meta.type-signature.purescript
+--            ^--- entity.name.type.purescript
+--                 ^-- entity.name.type.purescript
+--                     ^- keyword.other.arrow.purescript
+--                        ^--- entity.name.type.purescript
+--                             ^-- entity.name.type.purescript
+getAllOdds = filter (\x -> isOdd x /= 0)
+--         ^ keyword.operator.purescript
+--                   ^ keyword.operator.purescript
+--                      ^- keyword.other.arrow.purescript
+--                                 ^- keyword.operator.purescript
+--                                    ^ constant.numeric.decimal.purescript
+--                                    ^ constant.numeric.decimal.purescript
+
+regexString :: Regex
+--<0---------------- meta.function.type-declaration.purescript
+--<0------- entity.name.function.purescript
+--          ^- keyword.other.double-colon.purescript
+--            ^----- meta.type-signature.purescript
+--             ^---- entity.name.type.purescript
+regexString =
+--          ^ keyword.operator.purescript
+  unsafePartial
+    case (regex "[aeiou]" (parseFlags "ig")) of
+--  ^--- keyword.control.purescript
+--              ^-------- string.quoted.double.purescript
+--              ^ punctuation.definition.string.begin.purescript
+--                      ^ punctuation.definition.string.end.purescript
+--                                    ^--- string.quoted.double.purescript
+--                                    ^ punctuation.definition.string.begin.purescript
+--                                       ^ punctuation.definition.string.end.purescript
+--                                           ^- keyword.control.purescript
+      Right r -> r
+--    ^---- entity.name.tag.purescript
+--            ^- keyword.other.arrow.purescript
+
+censor :: String -> String
+--<0---------------------- meta.function.type-declaration.purescript
+--<0-- entity.name.function.purescript
+--     ^- keyword.other.double-colon.purescript
+--       ^---------------- meta.type-signature.purescript
+--        ^----- entity.name.type.purescript
+--               ^- keyword.other.arrow.purescript
+--                  ^----- entity.name.type.purescript
+censor = replace regexString "*"
+--     ^ keyword.operator.purescript
+--                           ^-- string.quoted.double.purescript
+--                           ^ punctuation.definition.string.begin.purescript
+--                             ^ punctuation.definition.string.end.purescript
+
+censorAll :: Array String -> Array String
+--<0------------------------------------- meta.function.type-declaration.purescript
+--<0----- entity.name.function.purescript
+--        ^- keyword.other.double-colon.purescript
+--          ^---------------------------- meta.type-signature.purescript
+--           ^---- entity.name.type.purescript
+--                 ^----- entity.name.type.purescript
+--                        ^- keyword.other.arrow.purescript
+--                           ^---- entity.name.type.purescript
+--                                 ^----- entity.name.type.purescript
+censorAll = map censor
+--        ^ keyword.operator.purescript
+
+main :: Effect Unit
+--<0--------------- meta.function.type-declaration.purescript
+--<0 entity.name.function.purescript
+--   ^- keyword.other.double-colon.purescript
+--     ^----------- meta.type-signature.purescript
+--      ^----- entity.name.type.purescript
+--             ^--- entity.name.type.purescript
+main = do
+--   ^ keyword.operator.purescript
+--     ^- keyword.control.purescript
+  log "Build curried functions"
+--    ^------------------------ string.quoted.double.purescript
+--    ^ punctuation.definition.string.begin.purescript
+--                            ^ punctuation.definition.string.end.purescript
+  log "\nAdvantage 1: Partially applying functions"
+--    ^-------------------------------------------- string.quoted.double.purescript
+--    ^ punctuation.definition.string.begin.purescript
+--     ^- constant.character.escape.purescript
+--                                                ^ punctuation.definition.string.end.purescript
+  log     $ "myAdd: " <> (show $ myAdd 2 2)
+--        ^ keyword.operator.purescript
+--          ^-------- string.quoted.double.purescript
+--          ^ punctuation.definition.string.begin.purescript
+--                  ^ punctuation.definition.string.end.purescript
+--                    ^- keyword.operator.purescript
+--                             ^ keyword.operator.purescript
+--                                     ^ constant.numeric.decimal.purescript
+--                                     ^ constant.numeric.decimal.purescript
+--                                       ^ constant.numeric.decimal.purescript
+--                                       ^ constant.numeric.decimal.purescript
+  log "\nAdvantage 2: function types"
+--    ^------------------------------ string.quoted.double.purescript
+--    ^ punctuation.definition.string.begin.purescript
+--     ^- constant.character.escape.purescript
+--                                  ^ punctuation.definition.string.end.purescript
+  -- notice key' == key ('a' == 'a'), so return Just 1
+--<0 punctuation.whitespace.comment.leading.purescript
+--^--------------------------------------------------- comment.line.double-dash.purescript
+--^- punctuation.definition.comment.purescript
+  logShow $ (insertDict 'a' (1::Int) emptyDict) 'a'
+--        ^ keyword.operator.purescript
+--                      ^-- string.quoted.single.purescript
+--                      ^ punctuation.definition.string.begin.purescript
+--                        ^ punctuation.definition.string.end.purescript
+--                           ^ constant.numeric.decimal.purescript
+--                           ^ constant.numeric.decimal.purescript
+--                            ^- keyword.other.double-colon.purescript
+--                              ^-- meta.type-signature.purescript
+--                              ^-- entity.name.type.purescript
+--                                              ^-- string.quoted.single.purescript
+--                                              ^ punctuation.definition.string.begin.purescript
+--                                                ^ punctuation.definition.string.end.purescript
+  -- search for 'a' in Dict and return its value
+--<0 punctuation.whitespace.comment.leading.purescript
+--^--------------------------------------------- comment.line.double-dash.purescript
+--^- punctuation.definition.comment.purescript
+  logShow $ insertDict 'b' 2 (insertDict 'a' (1::Int) emptyDict) 'a'
+--        ^ keyword.operator.purescript
+--                     ^-- string.quoted.single.purescript
+--                     ^ punctuation.definition.string.begin.purescript
+--                       ^ punctuation.definition.string.end.purescript
+--                         ^ constant.numeric.decimal.purescript
+--                         ^ constant.numeric.decimal.purescript
+--                                       ^-- string.quoted.single.purescript
+--                                       ^ punctuation.definition.string.begin.purescript
+--                                         ^ punctuation.definition.string.end.purescript
+--                                            ^ constant.numeric.decimal.purescript
+--                                            ^ constant.numeric.decimal.purescript
+--                                             ^- keyword.other.double-colon.purescript
+--                                               ^-- meta.type-signature.purescript
+--                                               ^-- entity.name.type.purescript
+--                                                               ^-- string.quoted.single.purescript
+--                                                               ^ punctuation.definition.string.begin.purescript
+--                                                                 ^ punctuation.definition.string.end.purescript
+  -- the 'x' key is not in Dict, so fall back to Nothing
+--<0 punctuation.whitespace.comment.leading.purescript
+--^----------------------------------------------------- comment.line.double-dash.purescript
+--^- punctuation.definition.comment.purescript
+  logShow $ insertDict 'b' 2 (insertDict 'a' (1::Int) emptyDict) 'x'
+--        ^ keyword.operator.purescript
+--                     ^-- string.quoted.single.purescript
+--                     ^ punctuation.definition.string.begin.purescript
+--                       ^ punctuation.definition.string.end.purescript
+--                         ^ constant.numeric.decimal.purescript
+--                         ^ constant.numeric.decimal.purescript
+--                                       ^-- string.quoted.single.purescript
+--                                       ^ punctuation.definition.string.begin.purescript
+--                                         ^ punctuation.definition.string.end.purescript
+--                                            ^ constant.numeric.decimal.purescript
+--                                            ^ constant.numeric.decimal.purescript
+--                                             ^- keyword.other.double-colon.purescript
+--                                               ^-- meta.type-signature.purescript
+--                                               ^-- entity.name.type.purescript
+--                                                               ^-- string.quoted.single.purescript
+--                                                               ^ punctuation.definition.string.begin.purescript
+--                                                                 ^ punctuation.definition.string.end.purescript
+  log "\nCurrying Examples: add10, isOdd, isOdd21, getAllOdds"
+--    ^------------------------------------------------------- string.quoted.double.purescript
+--    ^ punctuation.definition.string.begin.purescript
+--     ^- constant.character.escape.purescript
+--                                                           ^ punctuation.definition.string.end.purescript
+  logShow $ add10 2
+--        ^ keyword.operator.purescript
+--                ^ constant.numeric.decimal.purescript
+--                ^ constant.numeric.decimal.purescript
+  logShow $ isOdd 2
+--        ^ keyword.operator.purescript
+--                ^ constant.numeric.decimal.purescript
+--                ^ constant.numeric.decimal.purescript
+  logShow $ isOdd 21
+--        ^ keyword.operator.purescript
+--                ^- constant.numeric.decimal.purescript
+--                ^- constant.numeric.decimal.purescript
+  logShow $ getAllOdds (1 : 2 : 3 : 4 : Nil)
+--        ^ keyword.operator.purescript
+--                      ^ constant.numeric.decimal.purescript
+--                      ^ constant.numeric.decimal.purescript
+--                        ^ keyword.operator.purescript
+--                          ^ constant.numeric.decimal.purescript
+--                          ^ constant.numeric.decimal.purescript
+--                            ^ keyword.operator.purescript
+--                              ^ constant.numeric.decimal.purescript
+--                              ^ constant.numeric.decimal.purescript
+--                                ^ keyword.operator.purescript
+--                                  ^ constant.numeric.decimal.purescript
+--                                  ^ constant.numeric.decimal.purescript
+--                                    ^ keyword.operator.purescript
+--                                      ^-- entity.name.tag.purescript
+  log "\nBuild up predicate functions"
+--    ^------------------------------- string.quoted.double.purescript
+--    ^ punctuation.definition.string.begin.purescript
+--     ^- constant.character.escape.purescript
+--                                   ^ punctuation.definition.string.end.purescript
+  log $ censor "hello world"
+--    ^ keyword.operator.purescript
+--             ^------------ string.quoted.double.purescript
+--             ^ punctuation.definition.string.begin.purescript
+--                         ^ punctuation.definition.string.end.purescript
+  logShow $ censorAll ["hello", "world"]
+--        ^ keyword.operator.purescript
+--                     ^------ string.quoted.double.purescript
+--                     ^ punctuation.definition.string.begin.purescript
+--                           ^ punctuation.definition.string.end.purescript
+--                            ^ punctuation.separator.comma.purescript
+--                              ^------ string.quoted.double.purescript
+--                              ^ punctuation.definition.string.begin.purescript
+--                                    ^ punctuation.definition.string.end.purescript
+  log "\nUse Data.Function.Uncurried when performance is critical"
+--    ^----------------------------------------------------------- string.quoted.double.purescript
+--    ^ punctuation.definition.string.begin.purescript
+--     ^- constant.character.escape.purescript
+--                                                               ^ punctuation.definition.string.end.purescript
+  logShow $ runFn2 myAddFast 10 10
+--        ^ keyword.operator.purescript
+--                           ^- constant.numeric.decimal.purescript
+--                           ^- constant.numeric.decimal.purescript
+--                              ^- constant.numeric.decimal.purescript
+--                              ^- constant.numeric.decimal.purescript
+
+-- From https://github.com/adkelley/javascript-to-purescript/blob/master/tut17/src/Main.purs
+--<0---------------------------------------------------------------------------------------- comment.line.double-dash.purescript
+--<0 punctuation.definition.comment.purescript

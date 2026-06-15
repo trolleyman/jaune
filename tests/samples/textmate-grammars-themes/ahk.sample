@@ -1,0 +1,43 @@
+; grammar: source.ahk
+
+#z::Run https://www.autohotkey.com  ; Win+Z
+;<0- hotkeyline.ahk
+;<0 entity.name.function.label.ahk
+; ^- punctuation.definition.equals.colon
+;   ^-- support.function.ahk
+;       ^---- variable.def.ahk
+;            ^ punctuation.ahk
+;             ^- keyword.operator.arithmetic.ahk
+;               ^-- variable.def.ahk
+;                   ^--------- variable.def.ahk
+;                              ^-- variable.def.ahk
+;                                 ^-------- comment.line.semicolon.ahk
+;                                   ^ punctuation.definition.comment.ahk
+
+^!n::  ; Ctrl+Alt+N
+;<0-- hotkeyline.ahk
+;<0 entity.name.function.label.ahk
+;  ^- punctuation.definition.equals.colon
+;    ^------------- comment.line.semicolon.ahk
+;      ^ punctuation.definition.comment.ahk
+if WinExist("Untitled - Notepad")
+;<0 keyword.control.ahk
+;  ^------- support.function.ahk
+;          ^ punctuation.bracket.ahk
+;           ^------------------- string.quoted.double.ahk
+;           ^ punctuation.definition.string.begin.ahk
+;                              ^ punctuation.definition.string.end.ahk
+;                               ^ punctuation.bracket.ahk
+    WinActivate
+;   ^---------- support.function.ahk
+else
+;<0- keyword.control.ahk
+    Run Notepad
+;   ^-- support.function.ahk
+;       ^------ variable.def.ahk
+return
+;<0--- keyword.control.ahk
+
+; https://www.autohotkey.com/docs/v1/Program.htm
+;<0--------------------------------------------- comment.line.semicolon.ahk
+;<0 punctuation.definition.comment.ahk

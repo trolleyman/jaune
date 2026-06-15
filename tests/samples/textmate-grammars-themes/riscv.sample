@@ -1,0 +1,120 @@
+; grammar: source.riscv
+
+#
+;<0 comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+# Risc-V Assembler program to print "Hello World!"
+;<0----------------------------------------------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+# to stdout.
+;<0--------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+#
+;<0 comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+# a0-a2 - parameters to linux function services
+;<0-------------------------------------------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+# a7 - linux function number
+;<0------------------------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+#
+;<0 comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+
+.global _start      # Provide program starting address to linker
+;<0---- storage.modifier.riscv
+;                   ^------------------------------------------- comment.line.number-sign.riscv
+;                   ^ punctuation.definition.comment.riscv
+
+# Setup the parameters to print hello world
+;<0---------------------------------------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+# and then call Linux to do it.
+;<0---------------------------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+
+_start: addi  a0, x0, 1      # 1 = StdOut
+;<0---- meta.function.label.riscv
+;<0--- entity.name.function.label.riscv
+;       ^--- support.function.riscv
+;             ^- variable.other.register.usable.by-name.riscv
+;             ^- punctuation.definition.variable.riscv
+;                 ^- variable.other.register.usable.by-number.riscv
+;                 ^- punctuation.definition.variable.riscv
+;                     ^ constant.numeric.integer.riscv
+;                            ^----------- comment.line.number-sign.riscv
+;                            ^ punctuation.definition.comment.riscv
+        la    a1, helloworld # load address of helloworld
+;       ^- support.function.pseudo.riscv
+;             ^- variable.other.register.usable.by-name.riscv
+;             ^- punctuation.definition.variable.riscv
+;                            ^--------------------------- comment.line.number-sign.riscv
+;                            ^ punctuation.definition.comment.riscv
+        addi  a2, x0, 13     # length of our string
+;       ^--- support.function.riscv
+;             ^- variable.other.register.usable.by-name.riscv
+;             ^- punctuation.definition.variable.riscv
+;                 ^- variable.other.register.usable.by-number.riscv
+;                 ^- punctuation.definition.variable.riscv
+;                     ^- constant.numeric.integer.riscv
+;                            ^--------------------- comment.line.number-sign.riscv
+;                            ^ punctuation.definition.comment.riscv
+        addi  a7, x0, 64     # linux write system call
+;       ^--- support.function.riscv
+;             ^- variable.other.register.usable.by-name.riscv
+;             ^- punctuation.definition.variable.riscv
+;                 ^- variable.other.register.usable.by-number.riscv
+;                 ^- punctuation.definition.variable.riscv
+;                     ^- constant.numeric.integer.riscv
+;                            ^------------------------ comment.line.number-sign.riscv
+;                            ^ punctuation.definition.comment.riscv
+        ecall                # Call linux to output the string
+;       ^---- support.function.riscv.privileged
+;                            ^-------------------------------- comment.line.number-sign.riscv
+;                            ^ punctuation.definition.comment.riscv
+
+# Setup the parameters to exit the program
+;<0--------------------------------------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+# and then call Linux to do it.
+;<0---------------------------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv
+
+        addi    a0, x0, 0   # Use 0 return code
+;       ^--- support.function.riscv
+;               ^- variable.other.register.usable.by-name.riscv
+;               ^- punctuation.definition.variable.riscv
+;                   ^- variable.other.register.usable.by-number.riscv
+;                   ^- punctuation.definition.variable.riscv
+;                       ^ constant.numeric.integer.riscv
+;                           ^------------------ comment.line.number-sign.riscv
+;                           ^ punctuation.definition.comment.riscv
+        addi    a7, x0, 93  # Service command code 93 terminates
+;       ^--- support.function.riscv
+;               ^- variable.other.register.usable.by-name.riscv
+;               ^- punctuation.definition.variable.riscv
+;                   ^- variable.other.register.usable.by-number.riscv
+;                   ^- punctuation.definition.variable.riscv
+;                       ^- constant.numeric.integer.riscv
+;                           ^----------------------------------- comment.line.number-sign.riscv
+;                           ^ punctuation.definition.comment.riscv
+        ecall               # Call linux to terminate the program
+;       ^---- support.function.riscv.privileged
+;                           ^------------------------------------ comment.line.number-sign.riscv
+;                           ^ punctuation.definition.comment.riscv
+
+.data
+;<0-- storage.type.riscv
+helloworld:      .ascii "Hello World!\n"
+;<0-------- meta.function.label.riscv
+;<0------- entity.name.function.label.riscv
+;                ^----- storage.type.riscv
+;                       ^--------------- string.quoted.double.riscv
+;                       ^ punctuation.definition.string.begin.riscv
+;                                    ^- constant.character.escape.riscv
+;                                      ^ punctuation.definition.string.end.riscv
+
+# From https://smist08.wordpress.com/2019/09/07/risc-v-assembly-language-hello-world/
+;<0---------------------------------------------------------------------------------- comment.line.number-sign.riscv
+;<0 punctuation.definition.comment.riscv

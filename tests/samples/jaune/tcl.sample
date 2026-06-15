@@ -1,0 +1,223 @@
+# grammar: source.tcl
+
+proc set'contains {set el} {expr {[lsearch -exact $set $el]>=0}}
+#<0- keyword.other.tcl
+#    ^----------- entity.name.function.tcl
+#                  ^-- keyword.other.tcl
+#                           ^--- keyword.other.tcl
+#                                  ^------ keyword.other.tcl
+#                                                 ^--- support.function.tcl
+#                                                 ^ punctuation.definition.variable.tcl
+#                                                      ^-- support.function.tcl
+#                                                      ^ punctuation.definition.variable.tcl
+#                                                            ^ constant.numeric.tcl
+
+e.g. {set'contains {A B C} A} -> 1
+#     ^-- keyword.other.tcl
+#                                ^ constant.numeric.tcl
+e.g. {set'contains {A B C} D} -> 0
+#     ^-- keyword.other.tcl
+#                                ^ constant.numeric.tcl
+
+proc set'add {_set args} {
+#<0- keyword.other.tcl
+#    ^------ entity.name.function.tcl
+   upvar 1 $_set set
+#  ^---- keyword.other.tcl
+#        ^ constant.numeric.tcl
+#          ^---- support.function.tcl
+#          ^ punctuation.definition.variable.tcl
+   foreach el $args {
+#  ^------ keyword.control.tcl
+#             ^---- support.function.tcl
+#             ^ punctuation.definition.variable.tcl
+       if {![set'contains $set $el]} {lappend set $el}
+#      ^- keyword.control.tcl
+#            ^-- keyword.other.tcl
+#                         ^--- support.function.tcl
+#                         ^ punctuation.definition.variable.tcl
+#                              ^-- support.function.tcl
+#                              ^ punctuation.definition.variable.tcl
+#                                     ^------ keyword.other.tcl
+#                                                 ^-- support.function.tcl
+#                                                 ^ punctuation.definition.variable.tcl
+   }
+   set set
+#  ^-- keyword.other.tcl
+}
+
+set example {1 2 3}
+#<0 keyword.other.tcl
+#            ^ constant.numeric.tcl
+#              ^ constant.numeric.tcl
+#                ^ constant.numeric.tcl
+e.g. {set'add example 4} -> {1 2 3 4}
+#     ^-- keyword.other.tcl
+#                     ^ constant.numeric.tcl
+#                            ^ constant.numeric.tcl
+#                              ^ constant.numeric.tcl
+#                                ^ constant.numeric.tcl
+#                                  ^ constant.numeric.tcl
+e.g. {set'add example 4} -> {1 2 3 4}
+#     ^-- keyword.other.tcl
+#                     ^ constant.numeric.tcl
+#                            ^ constant.numeric.tcl
+#                              ^ constant.numeric.tcl
+#                                ^ constant.numeric.tcl
+#                                  ^ constant.numeric.tcl
+
+proc set'remove {_set args} {
+#<0- keyword.other.tcl
+#    ^--------- entity.name.function.tcl
+   upvar 1 $_set set
+#  ^---- keyword.other.tcl
+#        ^ constant.numeric.tcl
+#          ^---- support.function.tcl
+#          ^ punctuation.definition.variable.tcl
+   foreach el $args {
+#  ^------ keyword.control.tcl
+#             ^---- support.function.tcl
+#             ^ punctuation.definition.variable.tcl
+       set pos [lsearch -exact $set $el]
+#      ^-- keyword.other.tcl
+#               ^------ keyword.other.tcl
+#                              ^--- support.function.tcl
+#                              ^ punctuation.definition.variable.tcl
+#                                   ^-- support.function.tcl
+#                                   ^ punctuation.definition.variable.tcl
+       set set [lreplace $set $pos $pos]
+#      ^-- keyword.other.tcl
+#               ^------- keyword.other.tcl
+#                        ^--- support.function.tcl
+#                        ^ punctuation.definition.variable.tcl
+#                             ^--- support.function.tcl
+#                             ^ punctuation.definition.variable.tcl
+#                                  ^--- support.function.tcl
+#                                  ^ punctuation.definition.variable.tcl
+   }
+   set set
+#  ^-- keyword.other.tcl
+}
+
+e.g. {set'remove example 3} -> {1 2 4}
+#     ^-- keyword.other.tcl
+#                        ^ constant.numeric.tcl
+#                               ^ constant.numeric.tcl
+#                                 ^ constant.numeric.tcl
+#                                   ^ constant.numeric.tcl
+
+proc set'intersection {a b} {
+#<0- keyword.other.tcl
+#    ^--------------- entity.name.function.tcl
+   foreach el $a {set arr($el) ""}
+#  ^------ keyword.control.tcl
+#             ^- support.function.tcl
+#             ^ punctuation.definition.variable.tcl
+#                 ^-- keyword.other.tcl
+#                         ^-- support.function.tcl
+#                         ^ punctuation.definition.variable.tcl
+#                              ^- string.quoted.double.tcl
+#                              ^ punctuation.definition.string.begin.tcl
+#                               ^ punctuation.definition.string.end.tcl
+   set res {}
+#  ^-- keyword.other.tcl
+   foreach el $b {if {[info exists arr($el)]} {lappend res $el}}
+#  ^------ keyword.control.tcl
+#             ^- support.function.tcl
+#             ^ punctuation.definition.variable.tcl
+#                 ^- keyword.control.tcl
+#                      ^--- keyword.other.tcl
+#                                      ^-- support.function.tcl
+#                                      ^ punctuation.definition.variable.tcl
+#                                              ^------ keyword.other.tcl
+#                                                          ^-- support.function.tcl
+#                                                          ^ punctuation.definition.variable.tcl
+   set res
+#  ^-- keyword.other.tcl
+
+e.g. {set'intersection {1 2 3 4} {2 4 6 8}} -> {2 4}
+#     ^-- keyword.other.tcl
+#                       ^ constant.numeric.tcl
+#                         ^ constant.numeric.tcl
+#                           ^ constant.numeric.tcl
+#                             ^ constant.numeric.tcl
+#                                 ^ constant.numeric.tcl
+#                                   ^ constant.numeric.tcl
+#                                     ^ constant.numeric.tcl
+#                                       ^ constant.numeric.tcl
+#                                               ^ constant.numeric.tcl
+#                                                 ^ constant.numeric.tcl
+
+proc set'union {a b} {
+#<0- keyword.other.tcl
+#    ^-------- entity.name.function.tcl
+   foreach el $a {set arr($el) ""}
+#  ^------ keyword.control.tcl
+#             ^- support.function.tcl
+#             ^ punctuation.definition.variable.tcl
+#                 ^-- keyword.other.tcl
+#                         ^-- support.function.tcl
+#                         ^ punctuation.definition.variable.tcl
+#                              ^- string.quoted.double.tcl
+#                              ^ punctuation.definition.string.begin.tcl
+#                               ^ punctuation.definition.string.end.tcl
+   foreach el $b {set arr($el) ""}
+#  ^------ keyword.control.tcl
+#             ^- support.function.tcl
+#             ^ punctuation.definition.variable.tcl
+#                 ^-- keyword.other.tcl
+#                         ^-- support.function.tcl
+#                         ^ punctuation.definition.variable.tcl
+#                              ^- string.quoted.double.tcl
+#                              ^ punctuation.definition.string.begin.tcl
+#                               ^ punctuation.definition.string.end.tcl
+   lsort [array names arr]
+#  ^---- keyword.other.tcl
+#         ^---- keyword.other.tcl
+}
+
+e.g. {set'union {1 3 5 7} {2 4 6 8}} -> {1 2 3 4 5 6 7 8}
+#     ^-- keyword.other.tcl
+#                ^ constant.numeric.tcl
+#                  ^ constant.numeric.tcl
+#                    ^ constant.numeric.tcl
+#                      ^ constant.numeric.tcl
+#                          ^ constant.numeric.tcl
+#                            ^ constant.numeric.tcl
+#                              ^ constant.numeric.tcl
+#                                ^ constant.numeric.tcl
+#                                        ^ constant.numeric.tcl
+#                                          ^ constant.numeric.tcl
+#                                            ^ constant.numeric.tcl
+#                                              ^ constant.numeric.tcl
+#                                                ^ constant.numeric.tcl
+#                                                  ^ constant.numeric.tcl
+#                                                    ^ constant.numeric.tcl
+#                                                      ^ constant.numeric.tcl
+
+proc set'difference {a b} {
+#<0- keyword.other.tcl
+#    ^------------- entity.name.function.tcl
+   eval set'remove a $b
+#  ^--- keyword.other.tcl
+#                    ^- support.function.tcl
+#                    ^ punctuation.definition.variable.tcl
+}
+
+e.g. {set'difference {1 2 3 4 5} {2 4 6}} -> {1 3 5}
+#     ^-- keyword.other.tcl
+#                     ^ constant.numeric.tcl
+#                       ^ constant.numeric.tcl
+#                         ^ constant.numeric.tcl
+#                           ^ constant.numeric.tcl
+#                             ^ constant.numeric.tcl
+#                                 ^ constant.numeric.tcl
+#                                   ^ constant.numeric.tcl
+#                                     ^ constant.numeric.tcl
+#                                             ^ constant.numeric.tcl
+#                                               ^ constant.numeric.tcl
+#                                                 ^ constant.numeric.tcl
+
+# https://en.wikibooks.org/wiki/Tcl_Programming/Examples
+#<0 comment.line.number-sign.tcl
+#<0 punctuation.definition.comment.tcl

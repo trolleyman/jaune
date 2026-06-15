@@ -1,0 +1,31 @@
+" grammar: source.viml
+
+" This is the Hello World program in Vim script.
+"<0--------------------------------------------- comment.line.viml
+echo "Hello, world!"
+"<0- support.function.viml
+"    ^-------------- string.quoted.double.viml
+
+" This is a simple while loop in Vim script.
+"<0----------------------------------------- comment.line.viml
+let i = 1
+"<0 storage.viml
+"     ^ keyword.operator.viml
+"       ^ constant.numeric.viml
+while i < 5
+"<0-- keyword.control.viml
+"      ^-- keyword.operator.viml
+"         ^ constant.numeric.viml
+  echo "count is" i
+" ^--- support.function.viml
+"      ^--------- string.quoted.double.viml
+  let i += 1
+" ^-- storage.viml
+"       ^- keyword.operator.viml
+"          ^ constant.numeric.viml
+endwhile
+unlet i
+"<0-- storage.viml
+
+" From https://en.wikipedia.org/wiki/Vim_%28text_editor%29#Vim_script
+"<0------------------------------------------------------------------ comment.line.viml

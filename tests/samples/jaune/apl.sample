@@ -1,0 +1,229 @@
+# grammar: source.apl
+
+CND ← {
+#<0 variable.other.readwrite.apl
+#   ^ keyword.spaced.operator.assignment.apl
+#     ^ meta.lambda.function.apl
+#     ^ punctuation.definition.lambda.begin.apl
+    X ← ⍵
+#<0------ meta.lambda.function.apl
+#   ^ variable.other.readwrite.apl
+#     ^ keyword.spaced.operator.assignment.apl
+#       ^ constant.language.lambda.arguments.right.apl
+    a ← 0.31938153 ¯0.356563782 1.781477937 ¯1.821255978 1.330274429
+#<0----------------------------------------------------------------- meta.lambda.function.apl
+#   ^ variable.other.readwrite.apl
+#     ^ keyword.spaced.operator.assignment.apl
+#       ^--------- constant.numeric.apl
+#                  ^----------- constant.numeric.apl
+#                               ^---------- constant.numeric.apl
+#                                           ^----------- constant.numeric.apl
+#                                                        ^---------- constant.numeric.apl
+
+    l ← |X
+#<0------- meta.lambda.function.apl
+#   ^ variable.other.readwrite.apl
+#     ^ keyword.spaced.operator.assignment.apl
+#       ^ keyword.operator.absolute.apl
+#        ^ variable.other.readwrite.apl
+    k ← ÷1+0.2316419×l
+#<0------------------- meta.lambda.function.apl
+#   ^ variable.other.readwrite.apl
+#     ^ keyword.spaced.operator.assignment.apl
+#       ^ keyword.operator.divide.apl
+#        ^ constant.numeric.apl
+#         ^ keyword.operator.plus.apl
+#          ^-------- constant.numeric.apl
+#                   ^ keyword.operator.times.apl
+#                    ^ variable.other.readwrite.apl
+    w ← 1 - (÷((2×(○1))*0.5)) × (*-(l×l)÷2) × (a +.× (k*⍳5))
+#<0--------------------------------------------------------- meta.lambda.function.apl
+#   ^ variable.other.readwrite.apl
+#     ^ keyword.spaced.operator.assignment.apl
+#       ^ constant.numeric.apl
+#         ^ keyword.operator.minus.apl
+#            ^ keyword.operator.divide.apl
+#               ^ constant.numeric.apl
+#                ^ keyword.operator.times.apl
+#                  ^ keyword.operator.circle.apl
+#                   ^ constant.numeric.apl
+#                      ^ keyword.operator.exponent.apl
+#                       ^-- constant.numeric.apl
+#                             ^ keyword.operator.times.apl
+#                                ^ keyword.operator.exponent.apl
+#                                 ^ keyword.operator.minus.apl
+#                                   ^ variable.other.readwrite.apl
+#                                    ^ keyword.operator.times.apl
+#                                     ^ variable.other.readwrite.apl
+#                                       ^ keyword.operator.divide.apl
+#                                        ^ constant.numeric.apl
+#                                           ^ keyword.operator.times.apl
+#                                              ^ variable.other.readwrite.apl
+#                                                ^ keyword.operator.plus.apl
+#                                                 ^ keyword.operator.dot.apl
+#                                                  ^ keyword.operator.times.apl
+#                                                     ^ variable.other.readwrite.apl
+#                                                      ^ keyword.operator.exponent.apl
+#                                                       ^ keyword.operator.iota.apl
+#                                                        ^ constant.numeric.apl
+
+    ((|0⌊×X)×(1-w))+(1-|0⌊×X)×w
+#<0---------------------------- meta.lambda.function.apl
+#     ^ keyword.operator.absolute.apl
+#      ^ constant.numeric.apl
+#       ^ keyword.operator.floor.apl
+#        ^ keyword.operator.times.apl
+#         ^ variable.other.readwrite.apl
+#           ^ keyword.operator.times.apl
+#             ^ constant.numeric.apl
+#              ^ keyword.operator.minus.apl
+#               ^ variable.other.readwrite.apl
+#                  ^ keyword.operator.plus.apl
+#                    ^ constant.numeric.apl
+#                     ^ keyword.operator.minus.apl
+#                      ^ keyword.operator.absolute.apl
+#                       ^ constant.numeric.apl
+#                        ^ keyword.operator.floor.apl
+#                         ^ keyword.operator.times.apl
+#                          ^ variable.other.readwrite.apl
+#                            ^ keyword.operator.times.apl
+#                             ^ variable.other.readwrite.apl
+}
+#<0 meta.lambda.function.apl
+#<0 punctuation.definition.lambda.end.apl
+
+⍝ S - current price
+#<0---------------- comment.line.apl
+⍝ X - strike price
+#<0--------------- comment.line.apl
+⍝ T - expiry in years
+#<0------------------ comment.line.apl
+⍝ r - riskless interest rate
+#<0------------------------- comment.line.apl
+⍝ v - volatility
+#<0------------- comment.line.apl
+
+S ← 60
+#<0 variable.other.readwrite.apl
+# ^ keyword.spaced.operator.assignment.apl
+#   ^- constant.numeric.apl
+X ← 65
+#<0 variable.other.readwrite.apl
+# ^ keyword.spaced.operator.assignment.apl
+#   ^- constant.numeric.apl
+T ← 1
+#<0 variable.other.readwrite.apl
+# ^ keyword.spaced.operator.assignment.apl
+#   ^ constant.numeric.apl
+r ← 0.1
+#<0 variable.other.readwrite.apl
+# ^ keyword.spaced.operator.assignment.apl
+#   ^-- constant.numeric.apl
+v ← 0.2
+#<0 variable.other.readwrite.apl
+# ^ keyword.spaced.operator.assignment.apl
+#   ^-- constant.numeric.apl
+
+d1 ← { ((⍟S÷X)+(r+(v*2)÷2)×⍵)÷(v×⍵*0.5) }
+#<0 variable.other.readwrite.apl
+#  ^ keyword.spaced.operator.assignment.apl
+#    ^----------------------------------- meta.lambda.function.apl
+#    ^ punctuation.definition.lambda.begin.apl
+#        ^ keyword.operator.logarithm.apl
+#         ^ variable.other.readwrite.apl
+#          ^ keyword.operator.divide.apl
+#           ^ variable.other.readwrite.apl
+#             ^ keyword.operator.plus.apl
+#               ^ variable.other.readwrite.apl
+#                ^ keyword.operator.plus.apl
+#                  ^ variable.other.readwrite.apl
+#                   ^ keyword.operator.exponent.apl
+#                    ^ constant.numeric.apl
+#                      ^ keyword.operator.divide.apl
+#                       ^ constant.numeric.apl
+#                         ^ keyword.operator.times.apl
+#                          ^ constant.language.lambda.arguments.right.apl
+#                            ^ keyword.operator.divide.apl
+#                              ^ variable.other.readwrite.apl
+#                               ^ keyword.operator.times.apl
+#                                ^ constant.language.lambda.arguments.right.apl
+#                                 ^ keyword.operator.exponent.apl
+#                                  ^-- constant.numeric.apl
+#                                       ^ punctuation.definition.lambda.end.apl
+d2 ← { (d1 ⍵) -v×⍵*0.5 }
+#<0 variable.other.readwrite.apl
+#  ^ keyword.spaced.operator.assignment.apl
+#    ^------------------ meta.lambda.function.apl
+#    ^ punctuation.definition.lambda.begin.apl
+#       ^- variable.other.readwrite.apl
+#          ^ constant.language.lambda.arguments.right.apl
+#             ^ keyword.operator.minus.apl
+#              ^ variable.other.readwrite.apl
+#               ^ keyword.operator.times.apl
+#                ^ constant.language.lambda.arguments.right.apl
+#                 ^ keyword.operator.exponent.apl
+#                  ^-- constant.numeric.apl
+#                      ^ punctuation.definition.lambda.end.apl
+
+⍝ Call price
+#<0--------- comment.line.apl
+callPrice ← { (S×CND(d1 ⍵))-(X×*-r×⍵)×CND(d2 ⍵) }
+#<0------ variable.other.readwrite.apl
+#         ^ keyword.spaced.operator.assignment.apl
+#           ^------------------------------------ meta.lambda.function.apl
+#           ^ punctuation.definition.lambda.begin.apl
+#              ^ variable.other.readwrite.apl
+#               ^ keyword.operator.times.apl
+#                ^-- variable.other.readwrite.apl
+#                    ^- variable.other.readwrite.apl
+#                       ^ constant.language.lambda.arguments.right.apl
+#                          ^ keyword.operator.minus.apl
+#                            ^ variable.other.readwrite.apl
+#                             ^ keyword.operator.times.apl
+#                              ^ keyword.operator.exponent.apl
+#                               ^ keyword.operator.minus.apl
+#                                ^ variable.other.readwrite.apl
+#                                 ^ keyword.operator.times.apl
+#                                  ^ constant.language.lambda.arguments.right.apl
+#                                    ^ keyword.operator.times.apl
+#                                     ^-- variable.other.readwrite.apl
+#                                         ^- variable.other.readwrite.apl
+#                                            ^ constant.language.lambda.arguments.right.apl
+#                                               ^ punctuation.definition.lambda.end.apl
+
+avg ← { (+/⍵) ÷ ⊃⍴ ⍵ }
+#<0 variable.other.readwrite.apl
+#   ^ keyword.spaced.operator.assignment.apl
+#     ^--------------- meta.lambda.function.apl
+#     ^ punctuation.definition.lambda.begin.apl
+#        ^ keyword.operator.plus.apl
+#         ^ keyword.operator.slash.apl
+#          ^ constant.language.lambda.arguments.right.apl
+#             ^ keyword.operator.divide.apl
+#               ^ keyword.operator.pick.apl
+#                ^ keyword.operator.rho.apl
+#                  ^ constant.language.lambda.arguments.right.apl
+#                    ^ punctuation.definition.lambda.end.apl
+
+⎕←avg callPrice¨ (⍳ 100000) ÷ 10000
+#<0 support.system.variable.apl
+#<0 punctuation.definition.quad.apl
+#^ keyword.operator.assignment.apl
+# ^-- variable.other.readwrite.apl
+#     ^-------- variable.other.readwrite.apl
+#              ^ keyword.operator.each.apl
+#                ^--------- meta.round.bracketed.group.apl
+#                ^ punctuation.round.bracket.begin.apl
+#                 ^ keyword.operator.iota.apl
+#                   ^----- constant.numeric.apl
+#                         ^ punctuation.round.bracket.end.apl
+#                           ^ keyword.operator.divide.apl
+#                             ^---- constant.numeric.apl
+
+⍝ Put price (not tested)
+#<0--------------------- comment.line.apl
+⍝ putPrice ← { (X×*-r×⍵)×CND(-d2 ⍵)-S×CND(-d1 ⍵) }
+#<0----------------------------------------------- comment.line.apl
+
+⍝ From https://github.com/melsman/apltail/blob/master/tests/blacksch.apl
+#<0--------------------------------------------------------------------- comment.line.apl

@@ -1,0 +1,319 @@
+// grammar: source.hx
+
+// Game.hx
+//<0------ comment.line.double-slash.hx
+//<0 punctuation.definition.comment.hx
+class Game {
+//<0-------- meta.class.hx
+//<0------ meta.class.identifier.hx
+//<0- storage.type.class.hx
+//    ^--- entity.name.type.class.hx
+//         ^ punctuation.definition.block.begin.hx
+  // Haxe applications have a static entry point called main
+//<0-------------------------------------------------------- meta.class.hx
+//<0-------------------------------------------------------- meta.block.hx
+//^--------------------------------------------------------- comment.line.double-slash.hx
+//^- punctuation.definition.comment.hx
+  static function main() {
+//<0---------------------- meta.class.hx
+//<0---------------------- meta.block.hx
+//^----- storage.modifier.hx
+//       ^---------------- meta.method.hx
+//       ^------- storage.type.function.hx
+//                ^--- entity.name.function.hx
+//                    ^- meta.parameters.hx
+//                    ^ punctuation.definition.parameters.begin.hx
+//                     ^ punctuation.definition.parameters.end.hx
+//                       ^ punctuation.definition.block.begin.hx
+    // Anonymous structures.
+//<0------------------------ meta.class.hx
+//<0------------------------ meta.block.hx
+//<0------------------------ meta.method.hx
+//<0------------------------ meta.method.block.hx
+//  ^----------------------- comment.line.double-slash.hx
+//  ^- punctuation.definition.comment.hx
+    var playerA = { name: "Simon", move: Paper }
+//<0-------------------------------------------- meta.class.hx
+//<0-------------------------------------------- meta.block.hx
+//<0-------------------------------------------- meta.method.hx
+//<0-------------------------------------------- meta.method.block.hx
+//  ^-- storage.type.variable.hx
+//      ^------ variable.other.hx
+//              ^ keyword.operator.assignment.hx
+//                ^ punctuation.definition.block.begin.hx
+//                  ^--- variable.other.hx
+//                        ^------ string.quoted.double.hx
+//                        ^ punctuation.definition.string.begin.hx
+//                              ^ punctuation.definition.string.end.hx
+//                               ^ punctuation.separator.comma.hx
+//                                 ^--- variable.other.hx
+//                                       ^---- entity.name.type.hx
+//                                             ^ punctuation.definition.block.end.hx
+    var playerB = { name: "Nicolas", move: Rock }
+//<0--------------------------------------------- meta.class.hx
+//<0--------------------------------------------- meta.block.hx
+//<0--------------------------------------------- meta.method.hx
+//<0--------------------------------------------- meta.method.block.hx
+//  ^-- storage.type.variable.hx
+//      ^------ variable.other.hx
+//              ^ keyword.operator.assignment.hx
+//                ^ punctuation.definition.block.begin.hx
+//                  ^--- variable.other.hx
+//                        ^-------- string.quoted.double.hx
+//                        ^ punctuation.definition.string.begin.hx
+//                                ^ punctuation.definition.string.end.hx
+//                                 ^ punctuation.separator.comma.hx
+//                                   ^--- variable.other.hx
+//                                         ^--- entity.name.type.hx
+//                                              ^ punctuation.definition.block.end.hx
+
+    // Array pattern matching. A switch can return a value.
+//<0------------------------------------------------------- meta.class.hx
+//<0------------------------------------------------------- meta.block.hx
+//<0------------------------------------------------------- meta.method.hx
+//<0------------------------------------------------------- meta.method.block.hx
+//  ^------------------------------------------------------ comment.line.double-slash.hx
+//  ^- punctuation.definition.comment.hx
+    var result = switch [playerA.move, playerB.move] {
+//<0-------------------------------------------------- meta.class.hx
+//<0-------------------------------------------------- meta.block.hx
+//<0-------------------------------------------------- meta.method.hx
+//<0-------------------------------------------------- meta.method.block.hx
+//  ^-- storage.type.variable.hx
+//      ^----- variable.other.hx
+//             ^ keyword.operator.assignment.hx
+//               ^----- keyword.control.flow-control.hx
+//                      ^--------------------------- meta.array.literal.hx
+//                      ^ punctuation.definition.array.begin.hx
+//                       ^------ variable.other.hx
+//                              ^ punctuation.accessor.hx
+//                               ^--- variable.other.hx
+//                                   ^ punctuation.separator.comma.hx
+//                                     ^------ variable.other.hx
+//                                            ^ punctuation.accessor.hx
+//                                             ^--- variable.other.hx
+//                                                 ^ punctuation.definition.array.end.hx
+//                                                   ^ punctuation.definition.block.begin.hx
+      case [Rock, Scissors] |
+//<0------------------------- meta.class.hx
+//<0------------------------- meta.block.hx
+//<0------------------------- meta.method.hx
+//<0------------------------- meta.method.block.hx
+//    ^--- keyword.control.flow-control.hx
+//         ^--------------- meta.array.literal.hx
+//         ^ punctuation.definition.array.begin.hx
+//          ^--- entity.name.type.hx
+//              ^ punctuation.separator.comma.hx
+//                ^------- entity.name.type.hx
+//                        ^ punctuation.definition.array.end.hx
+           [Paper, Rock] |
+//<0---------------------- meta.class.hx
+//<0---------------------- meta.block.hx
+//<0---------------------- meta.method.hx
+//<0---------------------- meta.method.block.hx
+//         ^------------ meta.array.literal.hx
+//         ^ punctuation.definition.array.begin.hx
+//          ^---- entity.name.type.hx
+//               ^ punctuation.separator.comma.hx
+//                 ^--- entity.name.type.hx
+//                     ^ punctuation.definition.array.end.hx
+//                       ^ keyword.operator.bitwise.hx
+           [Scissors, Paper]: Winner(playerA);
+//<0------------------------------------------ meta.class.hx
+//<0------------------------------------------ meta.block.hx
+//<0------------------------------------------ meta.method.hx
+//<0------------------------------------------ meta.method.block.hx
+//         ^---------------- meta.array.literal.hx
+//         ^ punctuation.definition.array.begin.hx
+//          ^------- entity.name.type.hx
+//                  ^ punctuation.separator.comma.hx
+//                    ^---- entity.name.type.hx
+//                         ^ punctuation.definition.array.end.hx
+//                            ^----- entity.name.type.hx
+//                                  ^ meta.brace.round.hx
+//                                   ^------ variable.other.hx
+//                                          ^ meta.brace.round.hx
+//                                           ^ punctuation.terminator.hx
+
+      case [Rock, Paper] |
+//<0---------------------- meta.class.hx
+//<0---------------------- meta.block.hx
+//<0---------------------- meta.method.hx
+//<0---------------------- meta.method.block.hx
+//    ^--- keyword.control.flow-control.hx
+//         ^------------ meta.array.literal.hx
+//         ^ punctuation.definition.array.begin.hx
+//          ^--- entity.name.type.hx
+//              ^ punctuation.separator.comma.hx
+//                ^---- entity.name.type.hx
+//                     ^ punctuation.definition.array.end.hx
+           [Paper, Scissors] |
+//<0-------------------------- meta.class.hx
+//<0-------------------------- meta.block.hx
+//<0-------------------------- meta.method.hx
+//<0-------------------------- meta.method.block.hx
+//         ^---------------- meta.array.literal.hx
+//         ^ punctuation.definition.array.begin.hx
+//          ^---- entity.name.type.hx
+//               ^ punctuation.separator.comma.hx
+//                 ^------- entity.name.type.hx
+//                         ^ punctuation.definition.array.end.hx
+//                           ^ keyword.operator.bitwise.hx
+           [Scissors, Rock]: Winner(playerB);
+//<0----------------------------------------- meta.class.hx
+//<0----------------------------------------- meta.block.hx
+//<0----------------------------------------- meta.method.hx
+//<0----------------------------------------- meta.method.block.hx
+//         ^--------------- meta.array.literal.hx
+//         ^ punctuation.definition.array.begin.hx
+//          ^------- entity.name.type.hx
+//                  ^ punctuation.separator.comma.hx
+//                    ^--- entity.name.type.hx
+//                        ^ punctuation.definition.array.end.hx
+//                           ^----- entity.name.type.hx
+//                                 ^ meta.brace.round.hx
+//                                  ^------ variable.other.hx
+//                                         ^ meta.brace.round.hx
+//                                          ^ punctuation.terminator.hx
+
+      case _: Draw;
+//<0--------------- meta.class.hx
+//<0--------------- meta.block.hx
+//<0--------------- meta.method.hx
+//<0--------------- meta.method.block.hx
+//    ^--- keyword.control.flow-control.hx
+//         ^ variable.other.hx
+//            ^--- entity.name.type.hx
+//                ^ punctuation.terminator.hx
+    }
+//<0- meta.class.hx
+//<0- meta.block.hx
+//<0- meta.method.hx
+//<0- meta.method.block.hx
+//  ^ punctuation.definition.block.end.hx
+    // Paper vs Rock, who wins?
+//<0--------------------------- meta.class.hx
+//<0--------------------------- meta.block.hx
+//<0--------------------------- meta.method.hx
+//<0--------------------------- meta.method.block.hx
+//  ^-------------------------- comment.line.double-slash.hx
+//  ^- punctuation.definition.comment.hx
+    trace('result: $result');
+//<0------------------------- meta.class.hx
+//<0------------------------- meta.block.hx
+//<0------------------------- meta.method.hx
+//<0------------------------- meta.method.block.hx
+//  ^---- keyword.other.trace.hx
+//       ^ meta.brace.round.hx
+//        ^ string.quoted.single.hx
+//        ^ punctuation.definition.string.begin.hx
+//                 ^ punctuation.definition.block.begin.hx
+//                  ^----- variable.other.hx
+//                        ^ string.quoted.single.hx
+//                        ^ punctuation.definition.string.end.hx
+//                         ^ meta.brace.round.hx
+//                          ^ punctuation.terminator.hx
+  }
+//<0 meta.class.hx
+//<0 meta.block.hx
+//<0 meta.method.hx
+//<0 meta.method.block.hx
+}
+//<0 meta.class.hx
+//<0 meta.block.hx
+//<0 meta.method.hx
+//<0 meta.method.block.hx
+
+// Allow anonymous structure named as type.
+//<0--------------------------------------- meta.class.hx
+//<0--------------------------------------- meta.block.hx
+//<0--------------------------------------- meta.method.hx
+//<0--------------------------------------- meta.method.block.hx
+//<0--------------------------------------- comment.line.double-slash.hx
+//<0 punctuation.definition.comment.hx
+typedef Player = { name: String, move: Move }
+//<0----------------------------------------- meta.class.hx
+//<0----------------------------------------- meta.block.hx
+//<0----------------------------------------- meta.method.hx
+//<0----------------------------------------- meta.method.block.hx
+//<0--- storage.type.hx
+//      ^----- entity.name.type.hx
+//             ^ keyword.operator.assignment.hx
+//               ^ punctuation.definition.block.begin.hx
+//                 ^--- variable.other.hx
+//                       ^----- support.class.builtin.hx
+//                             ^ punctuation.separator.comma.hx
+//                               ^--- variable.other.hx
+//                                     ^--- entity.name.type.hx
+//                                          ^ punctuation.definition.block.end.hx
+
+// Define multiple enum values.
+//<0--------------------------- meta.class.hx
+//<0--------------------------- meta.block.hx
+//<0--------------------------- meta.method.hx
+//<0--------------------------- meta.method.block.hx
+//<0--------------------------- comment.line.double-slash.hx
+//<0 punctuation.definition.comment.hx
+enum Move { Rock; Paper; Scissors; }
+//<0-------------------------------- meta.class.hx
+//<0-------------------------------- meta.block.hx
+//<0-------------------------------- meta.method.hx
+//<0-------------------------------- meta.method.block.hx
+//<0 storage.type.class
+//   ^--- entity.name.type.hx
+//        ^ punctuation.definition.block.begin.hx
+//          ^--- entity.name.type.hx
+//              ^ punctuation.terminator.hx
+//                ^---- entity.name.type.hx
+//                     ^ punctuation.terminator.hx
+//                       ^------- entity.name.type.hx
+//                               ^ punctuation.terminator.hx
+//                                 ^ punctuation.definition.block.end.hx
+
+// Enums in Haxe are algebraic data type (ADT), so they can hold data.
+//<0------------------------------------------------------------------ meta.class.hx
+//<0------------------------------------------------------------------ meta.block.hx
+//<0------------------------------------------------------------------ meta.method.hx
+//<0------------------------------------------------------------------ meta.method.block.hx
+//<0------------------------------------------------------------------ comment.line.double-slash.hx
+//<0 punctuation.definition.comment.hx
+enum Result {
+//<0--------- meta.class.hx
+//<0--------- meta.block.hx
+//<0--------- meta.method.hx
+//<0--------- meta.method.block.hx
+//<0 storage.type.class
+//   ^----- entity.name.type.hx
+//          ^ punctuation.definition.block.begin.hx
+  Winner(player:Player);
+//<0-------------------- meta.class.hx
+//<0-------------------- meta.block.hx
+//<0-------------------- meta.method.hx
+//<0-------------------- meta.method.block.hx
+//^----- entity.name.type.hx
+//      ^ meta.brace.round.hx
+//       ^----- variable.other.hx
+//              ^----- entity.name.type.hx
+//                    ^ meta.brace.round.hx
+//                     ^ punctuation.terminator.hx
+  Draw;
+//<0--- meta.class.hx
+//<0--- meta.block.hx
+//<0--- meta.method.hx
+//<0--- meta.method.block.hx
+//^--- entity.name.type.hx
+//    ^ punctuation.terminator.hx
+}
+//<0 meta.class.hx
+//<0 meta.block.hx
+//<0 meta.method.hx
+//<0 meta.method.block.hx
+//<0 punctuation.definition.block.end.hx
+
+// From https://haxe.org/
+//<0--------------------- meta.class.hx
+//<0--------------------- meta.block.hx
+//<0--------------------- meta.method.hx
+//<0--------------------- meta.method.block.hx
+//<0--------------------- comment.line.double-slash.hx
+//<0 punctuation.definition.comment.hx

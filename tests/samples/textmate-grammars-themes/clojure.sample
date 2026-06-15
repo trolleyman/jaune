@@ -1,0 +1,151 @@
+; grammar: source.clojure
+
+(let [my-vector [1 2 3 4]
+;<0---------------------- meta.expression.clojure
+;<0 punctuation.section.expression.begin.clojure
+;^-- storage.control.clojure
+;    ^------------------- meta.vector.clojure
+;    ^ punctuation.section.vector.begin.clojure
+;     ^-------- meta.symbol.clojure
+;               ^-------- meta.vector.clojure
+;               ^ punctuation.section.vector.begin.clojure
+;                ^ constant.numeric.long.clojure
+;                  ^ constant.numeric.long.clojure
+;                    ^ constant.numeric.long.clojure
+;                      ^ constant.numeric.long.clojure
+;                       ^ punctuation.section.vector.end.trailing.clojure
+      my-map {:fred "ethel"}
+;<0------------------------- meta.expression.clojure
+;<0------------------------- meta.vector.clojure
+;     ^----- meta.symbol.clojure
+;            ^-------------- meta.map.clojure
+;            ^ punctuation.section.map.begin.clojure
+;             ^---- constant.keyword.clojure
+;                   ^------ string.quoted.double.clojure
+;                   ^ punctuation.definition.string.begin.clojure
+;                         ^ punctuation.definition.string.end.clojure
+;                          ^ punctuation.section.map.end.trailing.clojure
+      my-list (list 4 3 2 1)]
+;<0-------------------------- meta.expression.clojure
+;<0-------------------------- meta.vector.clojure
+;     ^------ meta.symbol.clojure
+;             ^------------- meta.expression.clojure
+;             ^ punctuation.section.expression.begin.clojure
+;              ^--- entity.name.function.clojure
+;                   ^ constant.numeric.long.clojure
+;                     ^ constant.numeric.long.clojure
+;                       ^ constant.numeric.long.clojure
+;                         ^ constant.numeric.long.clojure
+;                          ^ punctuation.section.expression.end.trailing.clojure
+;                           ^ punctuation.section.vector.end.trailing.clojure
+  (list
+;<0---- meta.expression.clojure
+; ^---- meta.expression.clojure
+; ^ punctuation.section.expression.begin.clojure
+;  ^--- entity.name.function.clojure
+    (conj my-vector 5)
+;<0------------------- meta.expression.clojure
+;<0------------------- meta.expression.clojure
+;   ^----------------- meta.expression.clojure
+;   ^ punctuation.section.expression.begin.clojure
+;    ^--- entity.name.function.clojure
+;         ^-------- meta.symbol.clojure
+;                   ^ constant.numeric.long.clojure
+;                    ^ punctuation.section.expression.end.trailing.clojure
+    (assoc my-map :ricky "lucy")
+;<0----------------------------- meta.expression.clojure
+;<0----------------------------- meta.expression.clojure
+;   ^--------------------------- meta.expression.clojure
+;   ^ punctuation.section.expression.begin.clojure
+;    ^---- entity.name.function.clojure
+;          ^----- meta.symbol.clojure
+;                 ^----- constant.keyword.clojure
+;                        ^----- string.quoted.double.clojure
+;                        ^ punctuation.definition.string.begin.clojure
+;                             ^ punctuation.definition.string.end.clojure
+;                              ^ punctuation.section.expression.end.trailing.clojure
+    (conj my-list 5)
+;<0----------------- meta.expression.clojure
+;<0----------------- meta.expression.clojure
+;   ^--------------- meta.expression.clojure
+;   ^ punctuation.section.expression.begin.clojure
+;    ^--- entity.name.function.clojure
+;         ^------ meta.symbol.clojure
+;                 ^ constant.numeric.long.clojure
+;                  ^ punctuation.section.expression.end.trailing.clojure
+    ;the originals are intact
+;<0-------------------------- meta.expression.clojure
+;<0-------------------------- meta.expression.clojure
+;   ^------------------------ comment.line.semicolon.clojure
+;   ^ punctuation.definition.comment.clojure
+    my-vector
+;<0---------- meta.expression.clojure
+;<0---------- meta.expression.clojure
+;   ^-------- meta.symbol.clojure
+    my-map
+;<0------- meta.expression.clojure
+;<0------- meta.expression.clojure
+;   ^----- meta.symbol.clojure
+    my-list))
+;<0---------- meta.expression.clojure
+;<0--------- meta.expression.clojure
+;   ^------ meta.symbol.clojure
+;          ^ punctuation.section.expression.end.trailing.clojure
+;           ^ punctuation.section.expression.end.trailing.clojure
+-> ([1 2 3 4 5] {:ricky "lucy", :fred "ethel"} (5 4 3 2 1) [1 2 3 4] {:fred "ethel"} (4 3 2 1))
+;<0 meta.symbol.clojure
+;  ^------------------------------------------------------------------------------------------- meta.expression.clojure
+;  ^ punctuation.section.expression.begin.clojure
+;   ^---------- meta.vector.clojure
+;   ^ punctuation.section.vector.begin.clojure
+;    ^ constant.numeric.long.clojure
+;      ^ constant.numeric.long.clojure
+;        ^ constant.numeric.long.clojure
+;          ^ constant.numeric.long.clojure
+;            ^ constant.numeric.long.clojure
+;             ^ punctuation.section.vector.end.clojure
+;               ^----------------------------- meta.map.clojure
+;               ^ punctuation.section.map.begin.clojure
+;                ^----- constant.keyword.clojure
+;                       ^----- string.quoted.double.clojure
+;                       ^ punctuation.definition.string.begin.clojure
+;                            ^ punctuation.definition.string.end.clojure
+;                               ^---- constant.keyword.clojure
+;                                     ^------ string.quoted.double.clojure
+;                                     ^ punctuation.definition.string.begin.clojure
+;                                           ^ punctuation.definition.string.end.clojure
+;                                            ^ punctuation.section.map.end.clojure
+;                                              ^---------- meta.expression.clojure
+;                                              ^ punctuation.section.expression.begin.clojure
+;                                               ^ constant.numeric.long.clojure
+;                                                 ^ constant.numeric.long.clojure
+;                                                   ^ constant.numeric.long.clojure
+;                                                     ^ constant.numeric.long.clojure
+;                                                       ^ constant.numeric.long.clojure
+;                                                        ^ punctuation.section.expression.end.clojure
+;                                                          ^-------- meta.vector.clojure
+;                                                          ^ punctuation.section.vector.begin.clojure
+;                                                           ^ constant.numeric.long.clojure
+;                                                             ^ constant.numeric.long.clojure
+;                                                               ^ constant.numeric.long.clojure
+;                                                                 ^ constant.numeric.long.clojure
+;                                                                  ^ punctuation.section.vector.end.clojure
+;                                                                    ^-------------- meta.map.clojure
+;                                                                    ^ punctuation.section.map.begin.clojure
+;                                                                     ^---- constant.keyword.clojure
+;                                                                           ^------ string.quoted.double.clojure
+;                                                                           ^ punctuation.definition.string.begin.clojure
+;                                                                                 ^ punctuation.definition.string.end.clojure
+;                                                                                  ^ punctuation.section.map.end.clojure
+;                                                                                    ^-------- meta.expression.clojure
+;                                                                                    ^ punctuation.section.expression.begin.clojure
+;                                                                                     ^ constant.numeric.long.clojure
+;                                                                                       ^ constant.numeric.long.clojure
+;                                                                                         ^ constant.numeric.long.clojure
+;                                                                                           ^ constant.numeric.long.clojure
+;                                                                                            ^ punctuation.section.expression.end.trailing.clojure
+;                                                                                             ^ punctuation.section.expression.end.trailing.clojure
+
+;From https://clojure.org/about/functional_programming#_immutable_data_structures
+;<0------------------------------------------------------------------------------ comment.line.semicolon.clojure
+;<0 punctuation.definition.comment.clojure

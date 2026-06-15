@@ -1,0 +1,327 @@
+<!-- grammar: text.html.markdown -->
+
+An h1 header
+<!--<0------ meta.paragraph.markdown -->
+============
+<!--<0------ meta.paragraph.markdown -->
+<!--<0------ meta.paragraph.markdown -->
+
+Paragraphs are separated by a blank line.
+<!--<0----------------------------------- meta.paragraph.markdown -->
+
+2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
+<!--<0------------------------------------------------------------ meta.paragraph.markdown -->
+look like:
+<!--<0---- meta.paragraph.markdown -->
+
+  * this one
+<!--<0------ markup.list.unnumbered.markdown -->
+<!--<2 punctuation.definition.list.begin.markdown -->
+<!--^------- meta.paragraph.markdown -->
+  * that one
+<!--<0------ markup.list.unnumbered.markdown -->
+<!--<2------ markup.list.unnumbered.markdown -->
+<!--<2 punctuation.definition.list.begin.markdown -->
+<!--^------- meta.paragraph.markdown -->
+  * the other one
+<!--<0----------- markup.list.unnumbered.markdown -->
+<!--<2----------- markup.list.unnumbered.markdown -->
+
+Note that --- not considering the asterisk --- the actual text
+<!--<0-------------------------------------------------------- markup.list.unnumbered.markdown -->
+content starts at 4-columns in.
+<!--<0------------------------- markup.list.unnumbered.markdown -->
+
+> Block quotes are
+<!--<0------------ markup.list.unnumbered.markdown -->
+> written like so.
+<!--<0------------ markup.list.unnumbered.markdown -->
+>
+<!--<0 markup.list.unnumbered.markdown -->
+> They can span multiple paragraphs,
+<!--<0------------------------------ markup.list.unnumbered.markdown -->
+> if you like.
+<!--<0-------- markup.list.unnumbered.markdown -->
+
+Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., "it's all
+<!--<0-------------------------------------------------------------- markup.list.unnumbered.markdown -->
+in chapters 12--14"). Three dots ... will be converted to an ellipsis.
+<!--<0---------------------------------------------------------------- markup.list.unnumbered.markdown -->
+Unicode is supported. ☺
+<!--<0----------------- markup.list.unnumbered.markdown -->
+
+
+
+An h2 header
+<!--<0------ markup.list.unnumbered.markdown -->
+------------
+<!--<0------ markup.list.unnumbered.markdown -->
+
+Here's a numbered list:
+<!--<0----------------- markup.list.unnumbered.markdown -->
+
+ 1. first item
+<!--<0-------- markup.list.unnumbered.markdown -->
+<!--<1-------- markup.list.unnumbered.markdown -->
+ 2. second item
+<!--<0--------- markup.list.unnumbered.markdown -->
+<!--<1--------- markup.list.unnumbered.markdown -->
+ 3. third item
+<!--<0-------- markup.list.unnumbered.markdown -->
+<!--<1-------- markup.list.unnumbered.markdown -->
+
+Note again how the actual text starts at 4 columns in (4 characters
+<!--<0------------------------------------------------------------- markup.list.unnumbered.markdown -->
+from the left side). Here's a code sample:
+<!--<0------------------------------------ markup.list.unnumbered.markdown -->
+
+    # Let me re-iterate ...
+<!--<0--------------------- markup.list.unnumbered.markdown -->
+<!--^---------------------- markup.list.unnumbered.markdown -->
+    for i in 1 .. 10 { do-something(i) }
+<!--<0---------------------------------- markup.list.unnumbered.markdown -->
+<!--^----------------------------------- markup.list.unnumbered.markdown -->
+
+As you probably guessed, indented 4 spaces. By the way, instead of
+<!--<0------------------------------------------------------------ markup.list.unnumbered.markdown -->
+indenting the block, you can use delimited blocks, if you like:
+<!--<0--------------------------------------------------------- markup.list.unnumbered.markdown -->
+
+~~~
+<!--<0 markup.list.unnumbered.markdown -->
+define foobar() {
+<!--<0----------- markup.list.unnumbered.markdown -->
+    print "Welcome to flavor country!";
+<!--<0--------------------------------- markup.list.unnumbered.markdown -->
+<!--^---------------------------------- markup.list.unnumbered.markdown -->
+}
+<!--<0 markup.list.unnumbered.markdown -->
+~~~
+<!--<0 markup.list.unnumbered.markdown -->
+
+(which makes copying & pasting easier). You can optionally mark the
+<!--<0------------------------------------------------------------- markup.list.unnumbered.markdown -->
+delimited block for Pandoc to syntax highlight it:
+<!--<0-------------------------------------------- markup.list.unnumbered.markdown -->
+
+~~~python
+<!--<0--- markup.list.unnumbered.markdown -->
+import time
+<!--<0----- markup.list.unnumbered.markdown -->
+# Quick, count to ten!
+<!--<0---------------- markup.list.unnumbered.markdown -->
+for i in range(10):
+<!--<0------------- markup.list.unnumbered.markdown -->
+    # (but not *too* quick)
+<!--<0--------------------- markup.list.unnumbered.markdown -->
+<!--^---------------------- markup.list.unnumbered.markdown -->
+    time.sleep(0.5)
+<!--<0------------- markup.list.unnumbered.markdown -->
+<!--^-------------- markup.list.unnumbered.markdown -->
+    print(i)
+<!--<0------ markup.list.unnumbered.markdown -->
+<!--^------- markup.list.unnumbered.markdown -->
+~~~
+<!--<0 markup.list.unnumbered.markdown -->
+
+
+
+### An h3 header ###
+<!--<0-------------- markup.list.unnumbered.markdown -->
+
+Now a nested list:
+<!--<0------------ markup.list.unnumbered.markdown -->
+
+ 1. First, get these ingredients:
+<!--<0--------------------------- markup.list.unnumbered.markdown -->
+<!--<1--------------------------- markup.list.unnumbered.markdown -->
+
+      * carrots
+<!--<0--------- markup.list.unnumbered.markdown -->
+<!--  ^-------- markup.list.unnumbered.markdown -->
+      * celery
+<!--<0-------- markup.list.unnumbered.markdown -->
+<!--  ^------- markup.list.unnumbered.markdown -->
+      * lentils
+<!--<0--------- markup.list.unnumbered.markdown -->
+<!--  ^-------- markup.list.unnumbered.markdown -->
+
+ 2. Boil some water.
+<!--<0-------------- markup.list.unnumbered.markdown -->
+<!--<1-------------- markup.list.unnumbered.markdown -->
+
+ 3. Dump everything in the pot and follow
+<!--<0----------------------------------- markup.list.unnumbered.markdown -->
+<!--<1----------------------------------- markup.list.unnumbered.markdown -->
+    this algorithm:
+<!--<0------------- markup.list.unnumbered.markdown -->
+<!--^-------------- markup.list.unnumbered.markdown -->
+
+        find wooden spoon
+<!--<0------------------- markup.list.unnumbered.markdown -->
+<!--    ^---------------- markup.list.unnumbered.markdown -->
+        uncover pot
+<!--<0------------- markup.list.unnumbered.markdown -->
+<!--    ^---------- markup.list.unnumbered.markdown -->
+        stir
+<!--<0------ markup.list.unnumbered.markdown -->
+<!--    ^--- markup.list.unnumbered.markdown -->
+        cover pot
+<!--<0----------- markup.list.unnumbered.markdown -->
+<!--    ^-------- markup.list.unnumbered.markdown -->
+        balance wooden spoon precariously on pot handle
+<!--<0------------------------------------------------- markup.list.unnumbered.markdown -->
+<!--    ^---------------------------------------------- markup.list.unnumbered.markdown -->
+        wait 10 minutes
+<!--<0----------------- markup.list.unnumbered.markdown -->
+<!--    ^-------------- markup.list.unnumbered.markdown -->
+        goto first step (or shut off burner when done)
+<!--<0------------------------------------------------ markup.list.unnumbered.markdown -->
+<!--    ^--------------------------------------------- markup.list.unnumbered.markdown -->
+
+    Do not bump wooden spoon or it will fall.
+<!--<0--------------------------------------- markup.list.unnumbered.markdown -->
+<!--^---------------------------------------- markup.list.unnumbered.markdown -->
+
+Notice again how text always lines up on 4-space indents (including
+<!--<0------------------------------------------------------------- markup.list.unnumbered.markdown -->
+that last line which continues item 3 above).
+<!--<0--------------------------------------- markup.list.unnumbered.markdown -->
+
+Here's a link to [a website](http://foo.bar), to a [local
+<!--<0--------------------------------------------------- markup.list.unnumbered.markdown -->
+doc](local-doc.html), and to a [section heading in the current
+<!--<0-------------------------------------------------------- markup.list.unnumbered.markdown -->
+doc](#an-h2-header). Here's a footnote [^1].
+<!--<0-------------------------------------- markup.list.unnumbered.markdown -->
+
+[^1]: Some footnote text.
+<!--<0------------------- markup.list.unnumbered.markdown -->
+
+Tables can look like this:
+<!--<0-------------------- markup.list.unnumbered.markdown -->
+
+Name           Size  Material      Color
+<!--<0---------------------------------- markup.list.unnumbered.markdown -->
+------------- -----  ------------  ------------
+<!--<0----------------------------------------- markup.list.unnumbered.markdown -->
+All Business      9  leather       brown
+<!--<0---------------------------------- markup.list.unnumbered.markdown -->
+Roundabout       10  hemp canvas   natural
+<!--<0------------------------------------ markup.list.unnumbered.markdown -->
+Cinderella       11  glass         transparent
+<!--<0---------------------------------------- markup.list.unnumbered.markdown -->
+
+Table: Shoes sizes, materials, and colors.
+<!--<0------------------------------------ markup.list.unnumbered.markdown -->
+
+(The above is the caption for the table.) Pandoc also supports
+<!--<0-------------------------------------------------------- markup.list.unnumbered.markdown -->
+multi-line tables:
+<!--<0------------ markup.list.unnumbered.markdown -->
+
+--------  -----------------------
+<!--<0--------------------------- markup.list.unnumbered.markdown -->
+Keyword   Text
+<!--<0-------- markup.list.unnumbered.markdown -->
+--------  -----------------------
+<!--<0--------------------------- markup.list.unnumbered.markdown -->
+red       Sunsets, apples, and
+<!--<0------------------------ markup.list.unnumbered.markdown -->
+          other red or reddish
+<!--<0------------------------ markup.list.unnumbered.markdown -->
+<!--      ^------------------- markup.list.unnumbered.markdown -->
+          things.
+<!--<0----------- markup.list.unnumbered.markdown -->
+<!--      ^------ markup.list.unnumbered.markdown -->
+
+green     Leaves, grass, frogs
+<!--<0------------------------ markup.list.unnumbered.markdown -->
+          and other things it's
+<!--<0------------------------- markup.list.unnumbered.markdown -->
+<!--      ^-------------------- markup.list.unnumbered.markdown -->
+          not easy being.
+<!--<0------------------- markup.list.unnumbered.markdown -->
+<!--      ^-------------- markup.list.unnumbered.markdown -->
+--------  -----------------------
+<!--<0--------------------------- markup.list.unnumbered.markdown -->
+
+A horizontal rule follows.
+<!--<0-------------------- markup.list.unnumbered.markdown -->
+
+***
+<!--<0 markup.list.unnumbered.markdown -->
+
+Here's a definition list:
+<!--<0------------------- markup.list.unnumbered.markdown -->
+
+apples
+<!--<0 markup.list.unnumbered.markdown -->
+  : Good for making applesauce.
+<!--<0------------------------- markup.list.unnumbered.markdown -->
+<!--<2------------------------- markup.list.unnumbered.markdown -->
+
+oranges
+<!--<0- markup.list.unnumbered.markdown -->
+  : Citrus!
+<!--<0----- markup.list.unnumbered.markdown -->
+<!--<2----- markup.list.unnumbered.markdown -->
+
+tomatoes
+<!--<0-- markup.list.unnumbered.markdown -->
+  : There's no "e" in tomatoe.
+<!--<0------------------------ markup.list.unnumbered.markdown -->
+<!--<2------------------------ markup.list.unnumbered.markdown -->
+
+Again, text is indented 4 spaces. (Put a blank line between each
+<!--<0---------------------------------------------------------- markup.list.unnumbered.markdown -->
+term and  its definition to spread things out more.)
+<!--<0---------------------------------------------- markup.list.unnumbered.markdown -->
+
+Here's a "line block" (note how whitespace is honored):
+<!--<0------------------------------------------------- markup.list.unnumbered.markdown -->
+
+| Line one
+<!--<0---- markup.list.unnumbered.markdown -->
+|   Line too
+<!--<0------ markup.list.unnumbered.markdown -->
+| Line tree
+<!--<0----- markup.list.unnumbered.markdown -->
+
+and images can be specified like so:
+<!--<0------------------------------ markup.list.unnumbered.markdown -->
+
+![example image](example-image.jpg "An exemplary image")
+<!--<0-------------------------------------------------- markup.list.unnumbered.markdown -->
+
+Inline math equation: $\omega = d\phi / dt$. Display
+<!--<0---------------------------------------------- markup.list.unnumbered.markdown -->
+math should get its own line like so:
+<!--<0------------------------------- markup.list.unnumbered.markdown -->
+
+$$I = \int \rho R^{2} dV$$
+<!--<0-------------------- markup.list.unnumbered.markdown -->
+
+And note that you can backslash-escape any punctuation characters
+<!--<0----------------------------------------------------------- markup.list.unnumbered.markdown -->
+which you wish to be displayed literally, ex.: \`foo\`, \*bar\*, etc.
+<!--<0--------------------------------------------------------------- markup.list.unnumbered.markdown -->
+
+| Syntax | Description |
+<!--<0------------------ markup.list.unnumbered.markdown -->
+| ----------- | ----------- |
+<!--<0----------------------- markup.list.unnumbered.markdown -->
+| Header | Title |
+<!--<0------------ markup.list.unnumbered.markdown -->
+| Paragraph | Text |
+<!--<0-------------- markup.list.unnumbered.markdown -->
+
+- [x] Write the press release
+<!--<0----------------------- markup.list.unnumbered.markdown -->
+- [ ] Update the website
+<!--<0------------------ markup.list.unnumbered.markdown -->
+- [ ] Contact the media
+<!--<0----------------- markup.list.unnumbered.markdown -->
+
+<!--- From http://www.unexpected-vortices.com/sw/rippledoc/quick-markdown-example.html -->
+<!--<0------------------------------------------------------------------------------------ markup.list.unnumbered.markdown -->

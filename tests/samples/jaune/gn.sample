@@ -1,0 +1,327 @@
+# grammar: source.gn
+
+# Copyright 2018 The Chromium Authors
+#<0---------------------------------- comment.line.number-sign.gn
+# Use of this source code is governed by a BSD-style license that can be
+#<0--------------------------------------------------------------------- comment.line.number-sign.gn
+# found in the LICENSE file.
+#<0------------------------- comment.line.number-sign.gn
+
+import("//build/buildflag_header.gni")
+#<0--- support.function.gn
+#      ^----------------------------- string.quoted.double.gn
+import("//build/config/cast.gni")
+#<0--- support.function.gn
+#      ^------------------------ string.quoted.double.gn
+import("//build/config/chrome_build.gni")
+#<0--- support.function.gn
+#      ^-------------------------------- string.quoted.double.gn
+import("//build/config/chromeos/args.gni")
+#<0--- support.function.gn
+#      ^--------------------------------- string.quoted.double.gn
+import("//build/config/features.gni")
+#<0--- support.function.gn
+#      ^---------------------------- string.quoted.double.gn
+import("//build/util/process_version.gni")
+#<0--- support.function.gn
+#      ^--------------------------------- string.quoted.double.gn
+import("//build_overrides/build.gni")
+#<0--- support.function.gn
+#      ^---------------------------- string.quoted.double.gn
+
+if (is_ios) {
+#<0 keyword.control.if.gn
+#   ^----- variable.general.gn
+  import("//build/config/ios/ios_sdk.gni")
+# ^----- support.function.gn
+#        ^------------------------------- string.quoted.double.gn
+}
+
+source_set("buildflag_header_h") {
+#<0------- support.function.gn
+#          ^------------------- string.quoted.double.gn
+  sources = [ "buildflag.h" ]
+# ^------ variable.language.gn
+#             ^------------ string.quoted.double.gn
+}
+
+buildflag_header("branding_buildflags") {
+#<0------------- entity.name.function.gn
+#                ^-------------------- string.quoted.double.gn
+  header = "branding_buildflags.h"
+# ^----- variable.general.gn
+#          ^---------------------- string.quoted.double.gn
+
+  if (is_chrome_branded) {
+# ^- keyword.control.if.gn
+#     ^---------------- variable.general.gn
+    flags = [
+#   ^---- variable.general.gn
+      "CHROMIUM_BRANDING=false",
+#     ^------------------------ string.quoted.double.gn
+      "GOOGLE_CHROME_BRANDING=true",
+#     ^---------------------------- string.quoted.double.gn
+    ]
+  } else {
+#   ^--- keyword.control.if.gn
+    flags = [
+#   ^---- variable.general.gn
+      "CHROMIUM_BRANDING=true",
+#     ^----------------------- string.quoted.double.gn
+      "GOOGLE_CHROME_BRANDING=false",
+#     ^----------------------------- string.quoted.double.gn
+    ]
+  }
+
+  if (is_chrome_for_testing) {
+# ^- keyword.control.if.gn
+#     ^-------------------- variable.general.gn
+    assert(!is_chrome_branded,
+#   ^----- support.function.gn
+#           ^---------------- variable.general.gn
+           "`is_chrome_for_testing` is incompatible with `is_chrome_branded`")
+#          ^----------------------------------------------------------------- string.quoted.double.gn
+
+    flags += [ "CHROME_FOR_TESTING=true" ]
+#   ^---- variable.general.gn
+#              ^------------------------ string.quoted.double.gn
+  } else {
+#   ^--- keyword.control.if.gn
+    flags += [ "CHROME_FOR_TESTING=false" ]
+#   ^---- variable.general.gn
+#              ^------------------------- string.quoted.double.gn
+  }
+
+  # Note: `GOOGLE_CHROME_FOR_TESTING_BRANDING` and `CHROMIUM_BRANDING` are not
+# ^--------------------------------------------------------------------------- comment.line.number-sign.gn
+  # mutually exclusive.
+# ^-------------------- comment.line.number-sign.gn
+  if (is_chrome_for_testing_branded) {
+# ^- keyword.control.if.gn
+#     ^---------------------------- variable.general.gn
+    assert(is_chrome_for_testing,
+#   ^----- support.function.gn
+#          ^-------------------- variable.general.gn
+           "`is_chrome_for_testing_branded` requires `is_chrome_for_testing`")
+#          ^----------------------------------------------------------------- string.quoted.double.gn
+
+    flags += [ "GOOGLE_CHROME_FOR_TESTING_BRANDING=true" ]
+#   ^---- variable.general.gn
+#              ^---------------------------------------- string.quoted.double.gn
+  } else {
+#   ^--- keyword.control.if.gn
+    flags += [ "GOOGLE_CHROME_FOR_TESTING_BRANDING=false" ]
+#   ^---- variable.general.gn
+#              ^----------------------------------------- string.quoted.double.gn
+  }
+
+  flags += [ "ENABLE_BUILTIN_SEARCH_PROVIDER_ASSETS=$enable_builtin_search_provider_assets" ]
+# ^---- variable.general.gn
+#            ^----------------------------------------------------------------------------- string.quoted.double.gn
+#                                                   ^ punctuation.definition.template-expression.begin.gn
+#                                                    ^------------------------------------ meta.embedded.substitution.gn variable.general.gn
+}
+
+buildflag_header("blink_buildflags") {
+#<0------------- entity.name.function.gn
+#                ^----------------- string.quoted.double.gn
+  header = "blink_buildflags.h"
+# ^----- variable.general.gn
+#          ^------------------- string.quoted.double.gn
+  flags = [ "USE_BLINK=$use_blink" ]
+# ^---- variable.general.gn
+#           ^--------------------- string.quoted.double.gn
+#                      ^ punctuation.definition.template-expression.begin.gn
+#                       ^-------- meta.embedded.substitution.gn variable.general.gn
+}
+
+buildflag_header("chromecast_buildflags") {
+#<0------------- entity.name.function.gn
+#                ^---------------------- string.quoted.double.gn
+  header = "chromecast_buildflags.h"
+# ^----- variable.general.gn
+#          ^------------------------ string.quoted.double.gn
+
+  flags = [
+# ^---- variable.general.gn
+    "IS_CASTOS=$is_castos",
+#   ^--------------------- string.quoted.double.gn
+#              ^ punctuation.definition.template-expression.begin.gn
+#               ^-------- meta.embedded.substitution.gn variable.general.gn
+    "IS_CAST_ANDROID=$is_cast_android",
+#   ^--------------------------------- string.quoted.double.gn
+#                    ^ punctuation.definition.template-expression.begin.gn
+#                     ^-------------- meta.embedded.substitution.gn variable.general.gn
+    "ENABLE_CAST_RECEIVER=$enable_cast_receiver",
+#   ^------------------------------------------- string.quoted.double.gn
+#                         ^ punctuation.definition.template-expression.begin.gn
+#                          ^------------------- meta.embedded.substitution.gn variable.general.gn
+  ]
+}
+
+buildflag_header("chromeos_buildflags") {
+#<0------------- entity.name.function.gn
+#                ^-------------------- string.quoted.double.gn
+  header = "chromeos_buildflags.h"
+# ^----- variable.general.gn
+#          ^---------------------- string.quoted.double.gn
+
+  flags = [
+# ^---- variable.general.gn
+    "IS_CHROMEOS_DEVICE=$is_chromeos_device",
+#   ^--------------------------------------- string.quoted.double.gn
+#                       ^ punctuation.definition.template-expression.begin.gn
+#                        ^----------------- meta.embedded.substitution.gn variable.general.gn
+
+    # TODO(b:354842935): Remove once all the occurrence of IS_CHROMEOS_ASH is
+#   ^------------------------------------------------------------------------ comment.line.number-sign.gn
+    # removed from cc files.
+#   ^----------------------- comment.line.number-sign.gn
+    "IS_CHROMEOS_ASH=$is_chromeos",
+#   ^----------------------------- string.quoted.double.gn
+#                    ^ punctuation.definition.template-expression.begin.gn
+#                     ^---------- meta.embedded.substitution.gn variable.general.gn
+    "IS_CHROMEOS_WITH_HW_DETAILS=$is_chromeos_with_hw_details",
+#   ^--------------------------------------------------------- string.quoted.double.gn
+#                                ^ punctuation.definition.template-expression.begin.gn
+#                                 ^-------------------------- meta.embedded.substitution.gn variable.general.gn
+    "IS_REVEN=$is_reven",
+#   ^------------------- string.quoted.double.gn
+#             ^ punctuation.definition.template-expression.begin.gn
+#              ^------- meta.embedded.substitution.gn variable.general.gn
+  ]
+}
+
+buildflag_header("robolectric_buildflags") {
+#<0------------- entity.name.function.gn
+#                ^----------------------- string.quoted.double.gn
+  header = "robolectric_buildflags.h"
+# ^----- variable.general.gn
+#          ^------------------------- string.quoted.double.gn
+  flags = [ "IS_ROBOLECTRIC=$is_robolectric" ]
+# ^---- variable.general.gn
+#           ^------------------------------- string.quoted.double.gn
+#                           ^ punctuation.definition.template-expression.begin.gn
+#                            ^------------- meta.embedded.substitution.gn variable.general.gn
+}
+
+buildflag_header("ios_buildflags") {
+#<0------------- entity.name.function.gn
+#                ^--------------- string.quoted.double.gn
+  header = "ios_buildflags.h"
+# ^----- variable.general.gn
+#          ^----------------- string.quoted.double.gn
+  _is_ios_app_extension = is_ios && ios_is_app_extension
+# ^-------------------- variable.general.gn
+#                         ^----- variable.general.gn
+#                                   ^------------------- variable.general.gn
+  flags = [ "IS_IOS_APP_EXTENSION=$_is_ios_app_extension" ]
+# ^---- variable.general.gn
+#           ^-------------------------------------------- string.quoted.double.gn
+#                                 ^ punctuation.definition.template-expression.begin.gn
+#                                  ^-------------------- meta.embedded.substitution.gn variable.general.gn
+}
+
+#
+#<0 comment.line.number-sign.gn
+# NOTE: IS_DESKTOP_ANDROID should be used sparingly.
+#<0------------------------------------------------- comment.line.number-sign.gn
+#
+#<0 comment.line.number-sign.gn
+# General Recommendation:
+#<0---------------------- comment.line.number-sign.gn
+#   Avoid using this build time flag whenever possible. Rely on runtime
+#<0-------------------------------------------------------------------- comment.line.number-sign.gn
+#   detection of features such as:
+#<0------------------------------- comment.line.number-sign.gn
+#     - Large screen availability
+#<0------------------------------ comment.line.number-sign.gn
+#     - Input modalities (e.g., touch, keyboard, mouse)
+#<0---------------------------------------------------- comment.line.number-sign.gn
+#     - Relevant Android system flags.
+#<0----------------------------------- comment.line.number-sign.gn
+#
+#<0 comment.line.number-sign.gn
+# DO:
+#<0-- comment.line.number-sign.gn
+#   - Use this flag ONLY for features with substantial binary size impact,
+#<0----------------------------------------------------------------------- comment.line.number-sign.gn
+#     such as DevTools or Extensions, which contain significant code and
+#<0--------------------------------------------------------------------- comment.line.number-sign.gn
+#     resource sizes.
+#<0------------------ comment.line.number-sign.gn
+#
+#<0 comment.line.number-sign.gn
+# DON'T:
+#<0----- comment.line.number-sign.gn
+#   - Use this flag to enable feature flags or experiments.
+#<0-------------------------------------------------------- comment.line.number-sign.gn
+#   - Use this flag in code shared with Android WebView.
+#<0----------------------------------------------------- comment.line.number-sign.gn
+#     Restrict its usage to the //chrome code directory whenever possible.
+#<0----------------------------------------------------------------------- comment.line.number-sign.gn
+#
+#<0 comment.line.number-sign.gn
+# If you're unsure please reach out to is-android-desktop-help@google.com
+#<0---------------------------------------------------------------------- comment.line.number-sign.gn
+#
+#<0 comment.line.number-sign.gn
+buildflag_header("android_buildflags") {
+#<0------------- entity.name.function.gn
+#                ^------------------- string.quoted.double.gn
+  header = "android_buildflags.h"
+# ^----- variable.general.gn
+#          ^--------------------- string.quoted.double.gn
+  flags = [ "IS_DESKTOP_ANDROID=$is_desktop_android" ]
+# ^---- variable.general.gn
+#           ^--------------------------------------- string.quoted.double.gn
+#                               ^ punctuation.definition.template-expression.begin.gn
+#                                ^----------------- meta.embedded.substitution.gn variable.general.gn
+}
+
+if (build_with_chromium) {
+#<0 keyword.control.if.gn
+#   ^------------------ variable.general.gn
+  group("gold_common_pytype") {
+# ^---- support.function.gn
+#       ^------------------- string.quoted.double.gn
+    testonly = true
+#   ^------- variable.language.gn
+#              ^--- constant.language.boolean.gn
+
+    data = [ "//build/skia_gold_common/" ]
+#   ^--- variable.language.gn
+#            ^-------------------------- string.quoted.double.gn
+
+    data_deps = [ "//testing:pytype_dependencies" ]
+#   ^-------- variable.language.gn
+#                 ^------------------------------ string.quoted.double.gn
+  }
+}
+
+if (is_chromeos) {
+#<0 keyword.control.if.gn
+#   ^---------- variable.general.gn
+  process_version("version_metadata") {
+# ^-------------- entity.name.function.gn
+#                 ^----------------- string.quoted.double.gn
+    sources = [ "//chrome/VERSION" ]
+#   ^------ variable.language.gn
+#               ^----------------- string.quoted.double.gn
+
+    template_file = "metadata.json.in"
+#   ^------------ variable.general.gn
+#                   ^----------------- string.quoted.double.gn
+    output = "$root_out_dir/metadata.json"
+#   ^----- variable.general.gn
+#            ^---------------------------- string.quoted.double.gn
+#             ^ punctuation.definition.template-expression.begin.gn
+#              ^----------- meta.embedded.substitution.gn variable.general.gn
+    process_only = true
+#   ^----------- variable.general.gn
+#                  ^--- constant.language.boolean.gn
+  }
+}
+
+# From https://github.com/chromium/chromium/blob/main/build/BUILD.gn
+#<0----------------------------------------------------------------- comment.line.number-sign.gn

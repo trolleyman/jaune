@@ -1,0 +1,311 @@
+# grammar: source.nginx
+
+user       www www;  ## Default: nobody
+#<0-- keyword.directive.nginx
+#                 ^ punctuation.terminator.nginx
+#                    ^----------------- comment.line.number-sign
+worker_processes  5;  ## Default: 1
+#<0-------------- keyword.directive.nginx
+#                 ^ constant.numeric.nginx
+#                  ^ punctuation.terminator.nginx
+#                     ^------------ comment.line.number-sign
+error_log  logs/error.log;
+#<0------- keyword.directive.nginx
+#                        ^ punctuation.terminator.nginx
+pid        logs/nginx.pid;
+#<0- keyword.directive.nginx
+#                        ^ punctuation.terminator.nginx
+worker_rlimit_nofile 8192;
+#<0------------------ keyword.directive.nginx
+#                    ^--- constant.numeric.nginx
+#                        ^ punctuation.terminator.nginx
+
+events {
+#<0----- meta.context.events.nginx
+#<0--- storage.type.directive.context.nginx
+  worker_connections  4096;  ## Default: 1024
+#<0------------------------------------------ meta.context.events.nginx
+#^------------------- keyword.directive.nginx
+#                     ^--- constant.numeric.nginx
+#                         ^ punctuation.terminator.nginx
+#                            ^--------------- comment.line.number-sign
+}
+#<0 meta.context.events.nginx
+
+http {
+#<0--- meta.context.http.nginx
+#<0- storage.type.directive.context.nginx
+  include    conf/mime.types;
+#<0-------------------------- meta.context.http.nginx
+#^-------- keyword.directive.nginx
+#                           ^ punctuation.terminator.nginx
+  include    /etc/nginx/proxy.conf;
+#<0-------------------------------- meta.context.http.nginx
+#^-------- keyword.directive.nginx
+#                                 ^ punctuation.terminator.nginx
+  include    /etc/nginx/fastcgi.conf;
+#<0---------------------------------- meta.context.http.nginx
+#^-------- keyword.directive.nginx
+#                                   ^ punctuation.terminator.nginx
+  index    index.html index.htm index.php;
+#<0--------------------------------------- meta.context.http.nginx
+#^------ keyword.directive.nginx
+#                                        ^ punctuation.terminator.nginx
+
+  default_type application/octet-stream;
+#<0------------------------------------- meta.context.http.nginx
+#^------------- keyword.directive.nginx
+#                                      ^ punctuation.terminator.nginx
+  log_format   main '$remote_addr - $remote_user [$time_local]  $status '
+#<0---------------------------------------------------------------------- meta.context.http.nginx
+#^----------- keyword.directive.nginx
+#              ^--- constant.language.nginx
+#                   ^---------------------------------------------------- string.quoted.single.nginx
+#                    ^ punctuation.definition.variable.nginx
+#                     ^---------- variable.other.nginx
+#                                   ^ punctuation.definition.variable.nginx
+#                                    ^---------- variable.other.nginx
+#                                                 ^ punctuation.definition.variable.nginx
+#                                                  ^--------- variable.other.nginx
+#                                                               ^ punctuation.definition.variable.nginx
+#                                                                ^----- variable.other.nginx
+    '"$request" $body_bytes_sent "$http_referer" '
+#<0----------------------------------------------- meta.context.http.nginx
+#   ^--------------------------------------------- string.quoted.single.nginx
+#     ^ punctuation.definition.variable.nginx
+#      ^------ variable.other.nginx
+#               ^ punctuation.definition.variable.nginx
+#                ^-------------- variable.other.nginx
+#                                 ^ punctuation.definition.variable.nginx
+#                                  ^----------- variable.other.nginx
+    '"$http_user_agent" "$http_x_forwarded_for"';
+#<0---------------------------------------------- meta.context.http.nginx
+#   ^------------------------------------------- string.quoted.single.nginx
+#     ^ punctuation.definition.variable.nginx
+#      ^-------------- variable.other.nginx
+#                        ^ punctuation.definition.variable.nginx
+#                         ^------------------- variable.other.nginx
+#                                               ^ punctuation.terminator.nginx
+  access_log   logs/access.log  main;
+#<0---------------------------------- meta.context.http.nginx
+#^----------- keyword.directive.nginx
+#                               ^--- constant.language.nginx
+#                                   ^ punctuation.terminator.nginx
+  sendfile     on;
+#<0--------------- meta.context.http.nginx
+#^--------- keyword.directive.nginx
+#              ^- constant.language.nginx
+#                ^ punctuation.terminator.nginx
+  tcp_nopush   on;
+#<0--------------- meta.context.http.nginx
+#^----------- keyword.directive.nginx
+#              ^- constant.language.nginx
+#                ^ punctuation.terminator.nginx
+  server_names_hash_bucket_size 128; # this seems to be required for some vhosts
+#<0----------------------------------------------------------------------------- meta.context.http.nginx
+#^------------------------------ keyword.directive.nginx
+#                               ^-- constant.numeric.nginx
+#                                  ^ punctuation.terminator.nginx
+#                                    ^------------------------------------------ comment.line.number-sign
+
+  server { # php/fastcgi
+#<0--------------------- meta.context.http.nginx
+# ^--------------------- meta.context.server.nginx
+# ^----- storage.type.directive.context.nginx
+#          ^------------ comment.line.number-sign
+    listen       80;
+#<0----------------- meta.context.http.nginx
+#<0----------------- meta.context.server.nginx
+#  ^------- keyword.directive.nginx
+#                ^- constant.numeric.nginx
+#                  ^ punctuation.terminator.nginx
+    server_name  domain1.com www.domain1.com;
+#<0------------------------------------------ meta.context.http.nginx
+#<0------------------------------------------ meta.context.server.nginx
+#  ^------------ keyword.directive.nginx
+#                                           ^ punctuation.terminator.nginx
+    access_log   logs/domain1.access.log  main;
+#<0-------------------------------------------- meta.context.http.nginx
+#<0-------------------------------------------- meta.context.server.nginx
+#  ^----------- keyword.directive.nginx
+#                                         ^--- constant.language.nginx
+#                                             ^ punctuation.terminator.nginx
+    root         html;
+#<0------------------- meta.context.http.nginx
+#<0------------------- meta.context.server.nginx
+#  ^----- keyword.directive.nginx
+#                    ^ punctuation.terminator.nginx
+
+    location ~ \.php$ {
+#<0-------------------- meta.context.http.nginx
+#<0-------------------- meta.context.server.nginx
+#   ^------------------ meta.context.location.nginx
+#   ^------- storage.type.directive.context.nginx
+#            ^ keyword.operator.nginx
+#              ^------ string.regexp.nginx
+      fastcgi_pass   127.0.0.1:1025;
+#<0--------------------------------- meta.context.http.nginx
+#<0--------------------------------- meta.context.server.nginx
+#<0--------------------------------- meta.context.location.nginx
+#    ^------------- keyword.directive.nginx
+#                                  ^ punctuation.terminator.nginx
+    }
+#<0-- meta.context.http.nginx
+#<0-- meta.context.server.nginx
+#<0-- meta.context.location.nginx
+  }
+#<0 meta.context.http.nginx
+#<0 meta.context.server.nginx
+
+  server { # simple reverse-proxy
+#<0------------------------------ meta.context.http.nginx
+# ^------------------------------ meta.context.server.nginx
+# ^----- storage.type.directive.context.nginx
+#          ^--------------------- comment.line.number-sign
+    listen       80;
+#<0----------------- meta.context.http.nginx
+#<0----------------- meta.context.server.nginx
+#  ^------- keyword.directive.nginx
+#                ^- constant.numeric.nginx
+#                  ^ punctuation.terminator.nginx
+    server_name  domain2.com www.domain2.com;
+#<0------------------------------------------ meta.context.http.nginx
+#<0------------------------------------------ meta.context.server.nginx
+#  ^------------ keyword.directive.nginx
+#                                           ^ punctuation.terminator.nginx
+    access_log   logs/domain2.access.log  main;
+#<0-------------------------------------------- meta.context.http.nginx
+#<0-------------------------------------------- meta.context.server.nginx
+#  ^----------- keyword.directive.nginx
+#                                         ^--- constant.language.nginx
+#                                             ^ punctuation.terminator.nginx
+
+    # serve static files
+#<0--------------------- meta.context.http.nginx
+#<0--------------------- meta.context.server.nginx
+#   ^------------------- comment.line.number-sign
+    location ~ ^/(images|javascript|js|css|flash|media|static)/  {
+#<0--------------------------------------------------------------- meta.context.http.nginx
+#<0--------------------------------------------------------------- meta.context.server.nginx
+#   ^------------------------------------------------------------- meta.context.location.nginx
+#   ^------- storage.type.directive.context.nginx
+#            ^ keyword.operator.nginx
+#              ^------------------------------------------------- string.regexp.nginx
+      root    /var/www/virtual/big.server.com/htdocs;
+#<0-------------------------------------------------- meta.context.http.nginx
+#<0-------------------------------------------------- meta.context.server.nginx
+#<0-------------------------------------------------- meta.context.location.nginx
+#    ^----- keyword.directive.nginx
+#                                                   ^ punctuation.terminator.nginx
+      expires 30d;
+#<0--------------- meta.context.http.nginx
+#<0--------------- meta.context.server.nginx
+#<0--------------- meta.context.location.nginx
+#    ^-------- keyword.directive.nginx
+#             ^-- constant.numeric.nginx
+#                ^ punctuation.terminator.nginx
+    }
+#<0-- meta.context.http.nginx
+#<0-- meta.context.server.nginx
+#<0-- meta.context.location.nginx
+
+    # pass requests for dynamic content to rails/turbogears/zope, et al
+#<0-------------------------------------------------------------------- meta.context.http.nginx
+#<0-------------------------------------------------------------------- meta.context.server.nginx
+#   ^------------------------------------------------------------------ comment.line.number-sign
+    location / {
+#<0------------- meta.context.http.nginx
+#<0------------- meta.context.server.nginx
+#   ^----------- meta.context.location.nginx
+#   ^------- storage.type.directive.context.nginx
+#            ^- entity.name.context.location.nginx
+      proxy_pass      http://127.0.0.1:8080;
+#<0----------------------------------------- meta.context.http.nginx
+#<0----------------------------------------- meta.context.server.nginx
+#<0----------------------------------------- meta.context.location.nginx
+#    ^----------- keyword.directive.nginx
+#                                          ^ punctuation.terminator.nginx
+    }
+#<0-- meta.context.http.nginx
+#<0-- meta.context.server.nginx
+#<0-- meta.context.location.nginx
+  }
+#<0 meta.context.http.nginx
+#<0 meta.context.server.nginx
+
+  upstream big_server_com {
+#<0------------------------ meta.context.http.nginx
+# ^------------------------ meta.context.upstream.nginx
+# ^------- storage.type.directive.context.nginx
+#          ^-------------- entity.name.context.location.nginx
+    server 127.0.0.3:8000 weight=5;
+#<0-------------------------------- meta.context.http.nginx
+#<0-------------------------------- meta.context.upstream.nginx
+#   ^----- keyword.directive.nginx
+#                         ^----- variable.parameter.nginx
+#                               ^ keyword.operator.nginx
+#                                ^ constant.numeric.nginx
+    server 127.0.0.3:8001 weight=5;
+#<0-------------------------------- meta.context.http.nginx
+#<0-------------------------------- meta.context.upstream.nginx
+#                         ^----- variable.parameter.nginx
+#                               ^ keyword.operator.nginx
+#                                ^ constant.numeric.nginx
+    server 192.168.0.1:8000;
+#<0------------------------- meta.context.http.nginx
+#<0------------------------- meta.context.upstream.nginx
+    server 192.168.0.1:8001;
+#<0------------------------- meta.context.http.nginx
+#<0------------------------- meta.context.upstream.nginx
+#   ^----- keyword.directive.nginx
+  }
+#<0 meta.context.http.nginx
+#<0 meta.context.upstream.nginx
+
+  server { # simple load balancing
+#<0------------------------------- meta.context.http.nginx
+# ^------------------------------- meta.context.server.nginx
+# ^----- storage.type.directive.context.nginx
+#          ^---------------------- comment.line.number-sign
+    listen          80;
+#<0-------------------- meta.context.http.nginx
+#<0-------------------- meta.context.server.nginx
+#  ^------- keyword.directive.nginx
+#                   ^- constant.numeric.nginx
+#                     ^ punctuation.terminator.nginx
+    server_name     big.server.com;
+#<0-------------------------------- meta.context.http.nginx
+#<0-------------------------------- meta.context.server.nginx
+#  ^------------ keyword.directive.nginx
+#                                 ^ punctuation.terminator.nginx
+    access_log      logs/big.server.access.log main;
+#<0------------------------------------------------- meta.context.http.nginx
+#<0------------------------------------------------- meta.context.server.nginx
+#  ^----------- keyword.directive.nginx
+#                                              ^--- constant.language.nginx
+#                                                  ^ punctuation.terminator.nginx
+
+    location / {
+#<0------------- meta.context.http.nginx
+#<0------------- meta.context.server.nginx
+#   ^----------- meta.context.location.nginx
+#   ^------- storage.type.directive.context.nginx
+#            ^- entity.name.context.location.nginx
+      proxy_pass      http://big_server_com;
+#<0----------------------------------------- meta.context.http.nginx
+#<0----------------------------------------- meta.context.server.nginx
+#<0----------------------------------------- meta.context.location.nginx
+#    ^----------- keyword.directive.nginx
+#                                          ^ punctuation.terminator.nginx
+    }
+#<0-- meta.context.http.nginx
+#<0-- meta.context.server.nginx
+#<0-- meta.context.location.nginx
+  }
+#<0 meta.context.http.nginx
+#<0 meta.context.server.nginx
+}
+#<0 meta.context.http.nginx
+
+# From https://www.nginx.com/resources/wiki/start/topics/examples/full/
+#<0-------------------------------------------------------------------- comment.line.number-sign

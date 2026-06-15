@@ -1,0 +1,93 @@
+# grammar: source.turtle
+
+ @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+#^------- keyword.operator.turtle
+#        ^---- constant.complex.turtle
+#        ^---- storage.type.PNAME_NS.turtle
+#              ^--------------------------- entity.name.type.iriref.turtle
+ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^------- keyword.operator.turtle
+#        ^---- constant.complex.turtle
+#        ^---- storage.type.PNAME_NS.turtle
+#              ^-------------------------------------- entity.name.type.iriref.turtle
+
+ <http://example.org/alice#me> a foaf:Person .
+#^---------------------------- entity.name.type.iriref.turtle
+#                             ^-- meta.specialPredicate.turtle
+#                              ^ keyword.control.turtle
+#                                ^---------- constant.complex.turtle
+#                                ^---- storage.type.PNAME_NS.turtle
+#                                     ^----- support.variable.PN_LOCAL.turtle
+ <http://example.org/alice#me> foaf:name "Alice" .
+#^---------------------------- entity.name.type.iriref.turtle
+#                              ^-------- constant.complex.turtle
+#                              ^---- storage.type.PNAME_NS.turtle
+#                                   ^--- support.variable.PN_LOCAL.turtle
+#                                        ^------ string.quoted.double.turtle
+#                                        ^ punctuation.definition.string.begin.turtle
+#                                              ^ punctuation.definition.string.end.turtle
+ <http://example.org/alice#me> foaf:mbox <mailto:alice@example.org> .
+#^---------------------------- entity.name.type.iriref.turtle
+#                              ^-------- constant.complex.turtle
+#                              ^---- storage.type.PNAME_NS.turtle
+#                                   ^--- support.variable.PN_LOCAL.turtle
+#                                        ^------------------------- entity.name.type.iriref.turtle
+ <http://example.org/alice#me> foaf:knows <http://example.org/bob#me> .
+#^---------------------------- entity.name.type.iriref.turtle
+#                              ^--------- constant.complex.turtle
+#                              ^---- storage.type.PNAME_NS.turtle
+#                                   ^---- support.variable.PN_LOCAL.turtle
+#                                         ^-------------------------- entity.name.type.iriref.turtle
+ <http://example.org/bob#me> foaf:knows <http://example.org/alice#me> .
+#^-------------------------- entity.name.type.iriref.turtle
+#                            ^--------- constant.complex.turtle
+#                            ^---- storage.type.PNAME_NS.turtle
+#                                 ^---- support.variable.PN_LOCAL.turtle
+#                                       ^---------------------------- entity.name.type.iriref.turtle
+ <http://example.org/bob#me> foaf:name "Bob" .
+#^-------------------------- entity.name.type.iriref.turtle
+#                            ^-------- constant.complex.turtle
+#                            ^---- storage.type.PNAME_NS.turtle
+#                                 ^--- support.variable.PN_LOCAL.turtle
+#                                      ^---- string.quoted.double.turtle
+#                                      ^ punctuation.definition.string.begin.turtle
+#                                          ^ punctuation.definition.string.end.turtle
+ <http://example.org/alice#me> foaf:knows <http://example.org/charlie#me> .
+#^---------------------------- entity.name.type.iriref.turtle
+#                              ^--------- constant.complex.turtle
+#                              ^---- storage.type.PNAME_NS.turtle
+#                                   ^---- support.variable.PN_LOCAL.turtle
+#                                         ^------------------------------ entity.name.type.iriref.turtle
+ <http://example.org/charlie#me> foaf:knows <http://example.org/alice#me> .
+#^------------------------------ entity.name.type.iriref.turtle
+#                                ^--------- constant.complex.turtle
+#                                ^---- storage.type.PNAME_NS.turtle
+#                                     ^---- support.variable.PN_LOCAL.turtle
+#                                           ^---------------------------- entity.name.type.iriref.turtle
+ <http://example.org/charlie#me> foaf:name "Charlie" .
+#^------------------------------ entity.name.type.iriref.turtle
+#                                ^-------- constant.complex.turtle
+#                                ^---- storage.type.PNAME_NS.turtle
+#                                     ^--- support.variable.PN_LOCAL.turtle
+#                                          ^-------- string.quoted.double.turtle
+#                                          ^ punctuation.definition.string.begin.turtle
+#                                                  ^ punctuation.definition.string.end.turtle
+ <http://example.org/alice#me> foaf:knows <http://example.org/snoopy> .
+#^---------------------------- entity.name.type.iriref.turtle
+#                              ^--------- constant.complex.turtle
+#                              ^---- storage.type.PNAME_NS.turtle
+#                                   ^---- support.variable.PN_LOCAL.turtle
+#                                         ^-------------------------- entity.name.type.iriref.turtle
+ <http://example.org/snoopy> foaf:name "Snoopy"@en .
+#^-------------------------- entity.name.type.iriref.turtle
+#                            ^-------- constant.complex.turtle
+#                            ^---- storage.type.PNAME_NS.turtle
+#                                 ^--- support.variable.PN_LOCAL.turtle
+#                                      ^------- string.quoted.double.turtle
+#                                      ^ punctuation.definition.string.begin.turtle
+#                                             ^ punctuation.definition.string.end.turtle
+#                                              ^-- meta.string-literal-language-tag.turtle
+#                                               ^- entity.name.class.turtle
+
+# From https://www.w3.org/TR/sparql11-overview/#Example
+#<0---------------------------------------------------- comment.line.number-sign.turtle

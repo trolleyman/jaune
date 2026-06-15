@@ -1,0 +1,156 @@
+<!-- grammar: text.html.vue-html -->
+
+
+<div>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--^ keyword.operator.relational.ts -->
+  <button @click="insert">insert at random index</button>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3--- variable.other.readwrite.ts -->
+<!--       ^---- variable.other.readwrite.ts -->
+<!--            ^ keyword.operator.assignment.ts -->
+<!--             ^------- string.quoted.double.ts -->
+<!--             ^ punctuation.definition.string.begin.ts -->
+<!--              ^----- variable.other.readwrite.ts -->
+<!--                    ^ punctuation.definition.string.end.ts -->
+<!--                     ^ keyword.operator.relational.ts -->
+<!--                      ^----- variable.other.readwrite.ts -->
+<!--                             ^- variable.other.readwrite.ts -->
+<!--                                ^----- variable.other.readwrite.ts -->
+<!--                                       ^---- variable.other.readwrite.ts -->
+<!--                                            ^ keyword.operator.relational.ts -->
+<!--                                             ^ keyword.operator.arithmetic.ts -->
+<!--                                              ^----- variable.other.readwrite.ts -->
+<!--                                                    ^ keyword.operator.relational.ts -->
+  <button @click="reset">reset</button>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3--- variable.other.readwrite.ts -->
+<!--       ^---- variable.other.readwrite.ts -->
+<!--            ^ keyword.operator.assignment.ts -->
+<!--             ^------ string.quoted.double.ts -->
+<!--             ^ punctuation.definition.string.begin.ts -->
+<!--              ^---- variable.other.readwrite.ts -->
+<!--                   ^ punctuation.definition.string.end.ts -->
+<!--                    ^ keyword.operator.relational.ts -->
+<!--                     ^---- variable.other.readwrite.ts -->
+<!--                          ^ keyword.operator.relational.ts -->
+<!--                           ^ keyword.operator.arithmetic.ts -->
+<!--                            ^----- variable.other.readwrite.ts -->
+<!--                                  ^ keyword.operator.relational.ts -->
+  <button @click="shuffle">shuffle</button>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3--- variable.other.readwrite.ts -->
+<!--       ^---- variable.other.readwrite.ts -->
+<!--            ^ keyword.operator.assignment.ts -->
+<!--             ^-------- string.quoted.double.ts -->
+<!--             ^ punctuation.definition.string.begin.ts -->
+<!--              ^------ variable.other.readwrite.ts -->
+<!--                     ^ punctuation.definition.string.end.ts -->
+<!--                      ^ keyword.operator.relational.ts -->
+<!--                       ^------ variable.other.readwrite.ts -->
+<!--                              ^ keyword.operator.relational.ts -->
+<!--                               ^ keyword.operator.arithmetic.ts -->
+<!--                                ^----- variable.other.readwrite.ts -->
+<!--                                      ^ keyword.operator.relational.ts -->
+
+  <TransitionGroup tag="ul" name="fade" class="container">
+<!--<2 keyword.operator.relational.ts -->
+<!--<3------------ variable.other.readwrite.ts -->
+<!--               ^-- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.assignment.ts -->
+<!--                   ^--- string.quoted.double.ts -->
+<!--                   ^ punctuation.definition.string.begin.ts -->
+<!--                    ^- variable.other.readwrite.ts -->
+<!--                      ^ punctuation.definition.string.end.ts -->
+<!--                        ^--- variable.other.readwrite.ts -->
+<!--                            ^ keyword.operator.assignment.ts -->
+<!--                             ^----- string.quoted.double.ts -->
+<!--                             ^ punctuation.definition.string.begin.ts -->
+<!--                              ^--- variable.other.readwrite.ts -->
+<!--                                  ^ punctuation.definition.string.end.ts -->
+<!--                                    ^---- variable.other.readwrite.ts -->
+<!--                                         ^ keyword.operator.assignment.ts -->
+<!--                                          ^---------- string.quoted.double.ts -->
+<!--                                          ^ punctuation.definition.string.begin.ts -->
+<!--                                           ^-------- variable.other.readwrite.ts -->
+<!--                                                    ^ punctuation.definition.string.end.ts -->
+<!--                                                     ^ keyword.operator.relational.ts -->
+    <div v-for="item in items" class="item" :key="item">
+<!--^ keyword.operator.relational.ts -->
+<!-- ^-- variable.other.readwrite.ts -->
+<!--     ^ variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.arithmetic.ts -->
+<!--       ^-- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.assignment.ts -->
+<!--           ^-------------- string.quoted.double.ts -->
+<!--           ^ punctuation.definition.string.begin.ts -->
+<!--            ^--- variable.other.readwrite.ts -->
+<!--                 ^- keyword.operator.expression.in.ts -->
+<!--                    ^---- variable.other.readwrite.ts -->
+<!--                         ^ punctuation.definition.string.end.ts -->
+<!--                           ^---- variable.other.readwrite.ts -->
+<!--                                ^ keyword.operator.assignment.ts -->
+<!--                                 ^----- string.quoted.double.ts -->
+<!--                                 ^ punctuation.definition.string.begin.ts -->
+<!--                                  ^--- variable.other.readwrite.ts -->
+<!--                                      ^ punctuation.definition.string.end.ts -->
+<!--                                         ^-- variable.other.readwrite.ts -->
+<!--                                            ^ keyword.operator.assignment.ts -->
+<!--                                             ^----- string.quoted.double.ts -->
+<!--                                             ^ punctuation.definition.string.begin.ts -->
+<!--                                              ^--- variable.other.readwrite.ts -->
+<!--                                                  ^ punctuation.definition.string.end.ts -->
+<!--                                                   ^ keyword.operator.relational.ts -->
+      {{ item }}
+<!--  ^- punctuation.definition.block.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^- punctuation.definition.block.ts -->
+      <button @click="remove(item)">x</button>
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^----- variable.other.readwrite.ts -->
+<!--           ^---- variable.other.readwrite.ts -->
+<!--                ^ keyword.operator.assignment.ts -->
+<!--                 ^------------- string.quoted.double.ts -->
+<!--                 ^ punctuation.definition.string.begin.ts -->
+<!--                  ^----- variable.other.readwrite.ts -->
+<!--                        ^ meta.brace.round.ts -->
+<!--                         ^--- variable.other.readwrite.ts -->
+<!--                             ^ meta.brace.round.ts -->
+<!--                              ^ punctuation.definition.string.end.ts -->
+<!--                               ^ keyword.operator.relational.ts -->
+<!--                                ^ variable.other.readwrite.ts -->
+<!--                                 ^ keyword.operator.relational.ts -->
+<!--                                  ^ keyword.operator.arithmetic.ts -->
+<!--                                   ^----- variable.other.readwrite.ts -->
+<!--                                         ^ keyword.operator.relational.ts -->
+    </div>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^-- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+  </TransitionGroup>
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 keyword.operator.arithmetic.ts -->
+<!--^-------------- variable.other.readwrite.ts -->
+<!--               ^ keyword.operator.relational.ts -->
+</div>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+
+// From https://vuejs.org/examples/#list-transition
+<!--<0 keyword.operator.arithmetic.ts -->
+<!--<3- variable.other.readwrite.ts -->
+<!--    ^---- variable.other.readwrite.ts -->
+<!--          ^- keyword.operator.arithmetic.ts -->
+<!--            ^---- variable.other.object.ts -->
+<!--                 ^ punctuation.accessor.ts -->
+<!--                  ^-- variable.other.property.ts -->
+<!--                     ^ keyword.operator.arithmetic.ts -->
+<!--                      ^------- variable.other.readwrite.ts -->
+<!--                              ^ keyword.operator.arithmetic.ts -->
+<!--                                ^--- variable.other.readwrite.ts -->
+<!--                                    ^ keyword.operator.arithmetic.ts -->
+<!--                                     ^--------- variable.other.readwrite.ts -->

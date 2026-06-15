@@ -1,0 +1,64 @@
+# grammar: source.python
+
+def fib(n):    # write Fibonacci series up to n
+#<0-------- meta.function.python
+#<0 storage.type.function.python
+#   ^-- entity.name.function.python
+#      ^-- meta.function.parameters.python
+#      ^ punctuation.definition.parameters.begin.python
+#       ^ variable.parameter.function.language.python
+#        ^ punctuation.definition.parameters.end.python
+#         ^ punctuation.section.function.begin.python
+#              ^------------------------------- comment.line.number-sign.python
+#              ^ punctuation.definition.comment.python
+    """Print a Fibonacci series up to n."""
+#   ^-------------------------------------- string.quoted.docstring.multi.python
+#   ^-- punctuation.definition.string.begin.python
+#                                       ^-- punctuation.definition.string.end.python
+    a, b = 0, 1
+#    ^ punctuation.separator.element.python
+#        ^ keyword.operator.assignment.python
+#          ^ constant.numeric.dec.python
+#           ^ punctuation.separator.element.python
+#             ^ constant.numeric.dec.python
+    while a < n:
+#   ^---- keyword.control.flow.python
+#           ^ keyword.operator.comparison.python
+#              ^ punctuation.separator.colon.python
+        print(a, end=' ')
+#       ^---------------- meta.function-call.python
+#       ^---- support.function.builtin.python
+#            ^ punctuation.definition.arguments.begin.python
+#             ^--------- meta.function-call.arguments.python
+#              ^ punctuation.separator.arguments.python
+#                ^-- variable.parameter.function-call.python
+#                   ^ keyword.operator.assignment.python
+#                    ^-- string.quoted.single.python
+#                    ^ punctuation.definition.string.begin.python
+#                      ^ punctuation.definition.string.end.python
+#                       ^ punctuation.definition.arguments.end.python
+        a, b = b, a+b
+#        ^ punctuation.separator.element.python
+#            ^ keyword.operator.assignment.python
+#               ^ punctuation.separator.element.python
+#                  ^ keyword.operator.arithmetic.python
+    print()
+#   ^------ meta.function-call.python
+#   ^---- support.function.builtin.python
+#        ^ punctuation.definition.arguments.begin.python
+#         ^ punctuation.definition.arguments.end.python
+
+# Now call the function we just defined:
+#<0------------------------------------- comment.line.number-sign.python
+#<0 punctuation.definition.comment.python
+fib(2000)
+#<0------ meta.function-call.python
+#<0 meta.function-call.generic.python
+#  ^ punctuation.definition.arguments.begin.python
+#   ^--- meta.function-call.arguments.python
+#   ^--- constant.numeric.dec.python
+#       ^ punctuation.definition.arguments.end.python
+
+# From https://docs.python.org/3/tutorial/controlflow.html#defining-functions
+#<0-------------------------------------------------------------------------- comment.line.number-sign.python
+#<0 punctuation.definition.comment.python

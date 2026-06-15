@@ -1,0 +1,45 @@
+# grammar: source.jinja
+
+{# templates/results.html #}
+#<0------------------------- comment.block.jinja
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Results</title>
+</head>
+
+<body>
+  <h1>{{ test_name }} Results</h1>
+#     ^-------------- variable.meta.scope.jinja
+#        ^-------- variable.other.jinja
+  <ul>
+  {% for student in students %}
+# ^---------------------------- meta.scope.jinja.tag
+#    ^-- keyword.control.jinja
+#        ^------ variable.other.jinja
+#                ^- keyword.control.jinja
+#                   ^------- variable.other.jinja
+    <li>
+      <em>{{ student.name }}:</em> {{ student.score }}/{{ max_score }}
+#         ^----------------- variable.meta.scope.jinja
+#            ^------ variable.other.jinja
+#                   ^ punctuation.other.jinja
+#                    ^--- variable.other.jinja.attribute
+#                                  ^------------------ variable.meta.scope.jinja
+#                                     ^------ variable.other.jinja
+#                                            ^ punctuation.other.jinja
+#                                             ^---- variable.other.jinja.attribute
+#                                                      ^-------------- variable.meta.scope.jinja
+#                                                         ^-------- variable.other.jinja
+    </li>
+  {% endfor %}
+# ^----------- meta.scope.jinja.tag
+#    ^----- keyword.control.jinja
+  </ul>
+</body>
+</html>
+
+{# From https://realpython.com/primer-on-jinja-templating/#use-if-statements #}
+#<0---------------------------------------------------------------------------- comment.block.jinja

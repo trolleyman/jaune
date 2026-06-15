@@ -1,0 +1,143 @@
+// grammar: source.dart
+
+import 'package:flutter/material.dart';
+//<0----------------------------------- meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^------------------------------ string.interpolated.single.dart
+//                                    ^ punctuation.terminator.dart
+import 'package:flutter_workshop/screens/about_screen.dart';
+//<0-------------------------------------------------------- meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^--------------------------------------------------- string.interpolated.single.dart
+//                                                         ^ punctuation.terminator.dart
+import 'package:flutter_workshop/screens/home_demo_screen.dart';
+//<0------------------------------------------------------------ meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^------------------------------------------------------- string.interpolated.single.dart
+//                                                             ^ punctuation.terminator.dart
+import 'package:flutter_workshop/screens/home_screen.dart';
+//<0------------------------------------------------------- meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^-------------------------------------------------- string.interpolated.single.dart
+//                                                        ^ punctuation.terminator.dart
+import 'package:flutter_workshop/screens/product_detail_screen.dart';
+//<0----------------------------------------------------------------- meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^------------------------------------------------------------ string.interpolated.single.dart
+//                                                                  ^ punctuation.terminator.dart
+import 'package:flutter_workshop/screens/product_screen.dart';
+//<0---------------------------------------------------------- meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^----------------------------------------------------- string.interpolated.single.dart
+//                                                           ^ punctuation.terminator.dart
+import 'package:flutter_workshop/screens/random_words_screen.dart';
+//<0--------------------------------------------------------------- meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^---------------------------------------------------------- string.interpolated.single.dart
+//                                                                ^ punctuation.terminator.dart
+import 'package:flutter_workshop/screens/unknown_screen.dart';
+//<0---------------------------------------------------------- meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^----------------------------------------------------- string.interpolated.single.dart
+//                                                           ^ punctuation.terminator.dart
+import 'package:device_simulator/device_simulator.dart';
+//<0---------------------------------------------------- meta.declaration.dart
+//<0-- keyword.other.import.dart
+//     ^----------------------------------------------- string.interpolated.single.dart
+//                                                     ^ punctuation.terminator.dart
+
+void main() => runApp(MyApp());
+//<0 storage.type.primitive.dart
+//   ^--- entity.name.function.dart
+//          ^- keyword.operator.closure.dart
+//             ^----- entity.name.function.dart
+//                    ^---- support.class.dart
+//                            ^ punctuation.terminator.dart
+
+class MyApp extends StatelessWidget {
+//<0- keyword.declaration.dart
+//    ^---- support.class.dart
+//          ^------ keyword.declaration.dart
+//                  ^-------------- support.class.dart
+  @override
+//^-------- storage.type.annotation.dart
+  Widget build(BuildContext context) {
+//^----- support.class.dart
+//       ^---- entity.name.function.dart
+//             ^----------- support.class.dart
+    return MaterialApp(
+//  ^----- keyword.control.return.dart
+//         ^---------- support.class.dart
+        initialRoute: '/',
+//                  ^ keyword.operator.ternary.dart
+//                    ^-- string.interpolated.single.dart
+//                       ^ punctuation.comma.dart
+        routes: {
+//            ^ keyword.operator.ternary.dart
+          HomeScreen.routeName: (_) => DeviceSimulator(
+//        ^--------- support.class.dart
+//                  ^ punctuation.dot.dart
+//                            ^ keyword.operator.ternary.dart
+//                                  ^- keyword.operator.closure.dart
+//                                     ^-------------- support.class.dart
+              brightness: Brightness.dark, enable: true, child: HomeScreen()),
+//                      ^ keyword.operator.ternary.dart
+//                        ^--------- support.class.dart
+//                                  ^ punctuation.dot.dart
+//                                       ^ punctuation.comma.dart
+//                                               ^ keyword.operator.ternary.dart
+//                                                 ^--- constant.language.dart
+//                                                     ^ punctuation.comma.dart
+//                                                            ^ keyword.operator.ternary.dart
+//                                                              ^--------- support.class.dart
+//                                                                           ^ punctuation.comma.dart
+          ProductScreen.routeName: (_) => ProductScreen(),
+//        ^------------ support.class.dart
+//                     ^ punctuation.dot.dart
+//                               ^ keyword.operator.ternary.dart
+//                                     ^- keyword.operator.closure.dart
+//                                        ^------------ support.class.dart
+//                                                       ^ punctuation.comma.dart
+          ProductDetailScreen.routeName: (_) => ProductDetailScreen(),
+//        ^------------------ support.class.dart
+//                           ^ punctuation.dot.dart
+//                                     ^ keyword.operator.ternary.dart
+//                                           ^- keyword.operator.closure.dart
+//                                              ^------------------ support.class.dart
+//                                                                   ^ punctuation.comma.dart
+          RandomWordsScreen.routeName: (_) => RandomWordsScreen(),
+//        ^---------------- support.class.dart
+//                         ^ punctuation.dot.dart
+//                                   ^ keyword.operator.ternary.dart
+//                                         ^- keyword.operator.closure.dart
+//                                            ^---------------- support.class.dart
+//                                                               ^ punctuation.comma.dart
+          HomeDemoScreen.routeName: (_) => HomeDemoScreen(),
+//        ^------------- support.class.dart
+//                      ^ punctuation.dot.dart
+//                                ^ keyword.operator.ternary.dart
+//                                      ^- keyword.operator.closure.dart
+//                                         ^------------- support.class.dart
+//                                                         ^ punctuation.comma.dart
+          AboutScreen.routeName: (_) => AboutScreen()
+//        ^---------- support.class.dart
+//                   ^ punctuation.dot.dart
+//                             ^ keyword.operator.ternary.dart
+//                                   ^- keyword.operator.closure.dart
+//                                      ^---------- support.class.dart
+        },
+//       ^ punctuation.comma.dart
+        onUnknownRoute: (_) =>
+//                    ^ keyword.operator.ternary.dart
+//                          ^- keyword.operator.closure.dart
+            MaterialPageRoute(builder: (_) => UnknownScreen()));
+//          ^---------------- support.class.dart
+//                                   ^ keyword.operator.ternary.dart
+//                                         ^- keyword.operator.closure.dart
+//                                            ^------------ support.class.dart
+//                                                             ^ punctuation.terminator.dart
+  }
+}
+
+// From https://github.com/Jadhielv/flutter-workshop/blob/master/lib/main.dart
+//<0-------------------------------------------------------------------------- comment.line.double-slash.dart

@@ -1,0 +1,118 @@
+# grammar: source.hy
+
+(setv foobar (+ 2 2))
+#^--- keyword.control.hy
+#     ^----- variable.other.hy
+#             ^ keyword.control.hy
+#               ^ constant.numeric.hy
+#                 ^ constant.numeric.hy
+(setv [tim eric] ["jim" "derrick"])
+#^--- keyword.control.hy
+#      ^-- variable.other.hy
+#          ^--- variable.other.hy
+#                 ^---- string.quoted.double.hy
+#                       ^-------- string.quoted.double.hy
+(setv  alpha "a"  beta "b")
+#^--- keyword.control.hy
+#      ^---- variable.other.hy
+#            ^-- string.quoted.double.hy
+#                 ^--- variable.other.hy
+#                      ^-- string.quoted.double.hy
+
+(sorted "abcBC"
+#^----- storage.builtin.hy
+#       ^------ string.quoted.double.hy
+  :key (fn [x] (.lower x)))
+# ^--- variable.other.constant
+#       ^- keyword.control.hy
+#           ^ variable.other.hy
+#               ^----- variable.other.hy
+#                      ^ variable.other.hy
+
+(defn test [a b [c "x"] #* d]
+#^--- keyword.control.hy
+#     ^--- variable.other.hy
+#           ^ variable.other.hy
+#             ^ variable.other.hy
+#                ^ variable.other.hy
+#                  ^-- string.quoted.double.hy
+#                       ^- keyword.control.hy
+#                          ^ variable.other.hy
+  [a b c d])
+#  ^ variable.other.hy
+#    ^ variable.other.hy
+#      ^ variable.other.hy
+#        ^ variable.other.hy
+
+(with [o (open "file.txt" "rt")]
+#^--- keyword.control.hy
+#      ^ variable.other.hy
+#         ^--- storage.builtin.hy
+#              ^--------- string.quoted.double.hy
+#                         ^--- string.quoted.double.hy
+  (setv buffer [])
+#  ^--- keyword.control.hy
+#       ^----- variable.other.hy
+  (while (< (len buffer) 10)
+#  ^---- keyword.control.hy
+#         ^ keyword.control.hy
+#            ^-- storage.builtin.hy
+#                ^----- variable.other.hy
+#                        ^- constant.numeric.hy
+    (.append buffer (next o))))
+#    ^------ variable.other.hy
+#            ^----- variable.other.hy
+#                    ^--- storage.builtin.hy
+#                         ^ variable.other.hy
+
+(lfor
+#^--- keyword.control.hy
+  x (range 3)
+# ^ variable.other.hy
+#    ^---- storage.builtin.hy
+#          ^ constant.numeric.hy
+  y (range 3)
+# ^ variable.other.hy
+#    ^---- storage.builtin.hy
+#          ^ constant.numeric.hy
+  :if (= (+ x y) 3)
+# ^-- variable.other.constant
+#      ^ keyword.control.hy
+#         ^ keyword.control.hy
+#           ^ variable.other.hy
+#             ^ variable.other.hy
+#                ^ constant.numeric.hy
+  (* x y))
+#  ^ keyword.control.hy
+#    ^ variable.other.hy
+#      ^ variable.other.hy
+
+(defmacro do-while [test #* body]
+#^------- keyword.control.hy
+#         ^------- variable.other.hy
+#                   ^--- variable.other.hy
+#                        ^- keyword.control.hy
+#                           ^--- variable.other.hy
+  `(do
+#   ^- keyword.control.hy
+    ~@body
+#    ^---- variable.other.hy
+    (while ~test
+#    ^---- keyword.control.hy
+#           ^--- variable.other.hy
+      ~@body)))
+#      ^---- variable.other.hy
+
+(setv x 0)
+#^--- keyword.control.hy
+#     ^ variable.other.hy
+#       ^ constant.numeric.hy
+(do-while x
+#^------- variable.other.hy
+#         ^ variable.other.hy
+  (print "Printed once."))
+#  ^---- storage.builtin.hy
+#        ^-------------- string.quoted.double.hy
+
+;; From https://hylang.org/
+#<0------------------------ comment.line.hy

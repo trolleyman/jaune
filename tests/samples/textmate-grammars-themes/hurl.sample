@@ -1,0 +1,516 @@
+# grammar: source.hurl
+
+# Perform basic authentication with login `bob` and password `secret`.
+#<0------------------------------------------------------------------- comment.line.number-sign.hurl
+GET https://example.org/protected
+#<0 keyword.control.method.hurl
+#   ^---------------------------- string.unquoted.url.hurl
+#   ^---------------------------- string.unquoted.url.hurl
+[BasicAuth]
+#<0-------- entity.name.section.hurl
+bob: secret
+#<0-------- entity.name.tag.header.hurl
+#<0 entity.name.tag.header.hurl
+#  ^ punctuation.separator.key-value.hurl
+#    ^----- string.unquoted.hurl
+POST https://example.org
+#<0- keyword.control.method.hurl
+#    ^------------------ string.unquoted.url.hurl
+#    ^------------------ string.unquoted.url.hurl
+# Some random comments before body
+#<0------------------------------- comment.line.number-sign.hurl
+base64,TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIG
+#<0---------------------------------------------------------- support.function
+#<0--- support.function.name
+#      ^----------------------------------------------------- text.plain
+FkaXBpc2NpbmcgZWxpdC4gSW4gbWFsZXN1YWRhLCBuaXNsIHZlbCBkaWN0dW0g
+#<0----------------------------------------------------------- support.function
+#<0----------------------------------------------------------- text.plain
+aGVuZHJlcml0LCBlc3QganVzdG8gYmliZW5kdW0gbWV0dXMsIG5lYyBydXRydW
+#<0----------------------------------------------------------- support.function
+#<0----------------------------------------------------------- text.plain
+0gdG9ydG9yIG1hc3NhIGlkIG1ldHVzLiA=;
+#<0-------------------------------- support.function
+#<0------------------------------- text.plain
+#                                 ^ support.function
+POST https://example.org/graphql
+#<0- keyword.control.method.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+```graphql
+#<0------- meta.embedded.block.graphql.hurl
+{
+#<0 meta.embedded.block.graphql.hurl
+#<0 meta.selectionset.graphql
+#<0 punctuation.operation.graphql
+  human(id: "1000") {
+#<0------------------ meta.embedded.block.graphql.hurl
+#<0------------------ meta.selectionset.graphql
+# ^---- variable.graphql
+#      ^----------- meta.arguments.graphql
+#      ^ meta.brace.round.directive.graphql
+#       ^- variable.parameter.graphql
+#         ^ punctuation.colon.graphql
+#           ^----- string.quoted.double.graphql
+#           ^ punctuation.definition.string.begin.graphql
+#                ^ punctuation.definition.string.end.graphql
+#                 ^ meta.brace.round.directive.graphql
+#                  ^- meta.selectionset.graphql
+#                   ^ punctuation.operation.graphql
+    name
+#<0----- meta.embedded.block.graphql.hurl
+#<0----- meta.selectionset.graphql
+#<0----- meta.selectionset.graphql
+#   ^--- variable.graphql
+    height(unit: FOOT)
+#<0------------------- meta.embedded.block.graphql.hurl
+#<0------------------- meta.selectionset.graphql
+#<0------------------- meta.selectionset.graphql
+#   ^----- variable.graphql
+#         ^----------- meta.arguments.graphql
+#         ^ meta.brace.round.directive.graphql
+#          ^--- variable.parameter.graphql
+#              ^ punctuation.colon.graphql
+#               ^---- constant.character.enum.graphql
+#                    ^ meta.brace.round.directive.graphql
+  }
+#<0 meta.embedded.block.graphql.hurl
+#<0 meta.selectionset.graphql
+#<0 meta.selectionset.graphql
+# ^ punctuation.operation.graphql
+}
+#<0 meta.embedded.block.graphql.hurl
+#<0 meta.selectionset.graphql
+#<0 punctuation.operation.graphql
+```
+#<0 meta.embedded.block.graphql.hurl
+HTTP 200
+#<0- constant.language.version.hurl
+#   ^--- constant.numeric.status.hurl
+PUT https://example.org
+#<0 keyword.control.method.hurl
+#   ^------------------ string.unquoted.url.hurl
+#   ^------------------ string.unquoted.url.hurl
+# Send a café, encoded in UTF-8
+#<0---------------------------- comment.line.number-sign.hurl
+hex,636166c3a90a;
+#<0-------------- support.function
+#<0 support.function.name
+#   ^----------- text.plain
+#               ^ support.function
+
+POST https://example.org/InStock
+#<0- keyword.control.method.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+```json
+#<0---- string.quoted.multiline.hurl
+#  ^--- support.type
+{
+#<0 string.quoted.multiline.hurl
+  "a": 1
+#<0----- string.quoted.multiline.hurl
+}
+#<0 string.quoted.multiline.hurl
+```
+#<0 string.quoted.multiline.hurl
+HTTP 200
+#<0- constant.language.version.hurl
+#   ^--- constant.numeric.status.hurl
+POST https://example.org/InStock
+#<0- keyword.control.method.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+{
+  "a": 1
+# ^-- string.quoted.double.hurl
+}
+HTTP 200
+#<0- constant.language.version.hurl
+#   ^--- constant.numeric.status.hurl
+POST https://example.org/upload
+#<0- keyword.control.method.hurl
+#    ^------------------------- string.unquoted.url.hurl
+#    ^------------------------- string.unquoted.url.hurl
+Content-Type: multipart/form-data; boundary="boundary"
+#<0--------------------------------------------------- entity.name.tag.header.hurl
+#<0--------- entity.name.tag.header.hurl
+#           ^ punctuation.separator.key-value.hurl
+#             ^--------------------------------------- string.unquoted.hurl
+```
+#<0 string.quoted.multiline.hurl
+--boundary
+#<0------- string.quoted.multiline.hurl
+Content-Disposition: form-data; name="key1"
+#<0---------------------------------------- string.quoted.multiline.hurl
+
+value1
+#<0--- string.quoted.multiline.hurl
+--boundary
+#<0------- string.quoted.multiline.hurl
+Content-Disposition: form-data; name="upload1"; filename="data.txt"
+#<0---------------------------------------------------------------- string.quoted.multiline.hurl
+Content-Type: text/plain
+#<0--------------------- string.quoted.multiline.hurl
+
+Hello World!
+#<0--------- string.quoted.multiline.hurl
+--boundary
+#<0------- string.quoted.multiline.hurl
+Content-Disposition: form-data; name="upload2"; filename="data.html"
+#<0----------------------------------------------------------------- string.quoted.multiline.hurl
+Content-Type: text/html
+#<0-------------------- string.quoted.multiline.hurl
+
+<div>Hello <b>World</b>!</div>
+#<0--------------------------- string.quoted.multiline.hurl
+--boundary--
+#<0--------- string.quoted.multiline.hurl
+```
+#<0 string.quoted.multiline.hurl
+POST https://example.org/models
+#<0- keyword.control.method.hurl
+#    ^------------------------- string.unquoted.url.hurl
+#    ^------------------------- string.unquoted.url.hurl
+```
+#<0 string.quoted.multiline.hurl
+Year,Make,Model,Description,Price
+#<0------------------------------ string.quoted.multiline.hurl
+1997,Ford,E350,"ac, abs, moon",3000.00
+#<0----------------------------------- string.quoted.multiline.hurl
+1999,Chevy,"Venture ""Extended Edition""","",4900.00
+#<0------------------------------------------------- string.quoted.multiline.hurl
+1999,Chevy,"Venture ""Extended Edition, Very Large""",,5000.00
+#<0----------------------------------------------------------- string.quoted.multiline.hurl
+1996,Jeep,Grand Cherokee,"MUST SELL! air, moon roof, loaded",4799.00
+#<0----------------------------------------------------------------- string.quoted.multiline.hurl
+```
+#<0 string.quoted.multiline.hurl
+POST https://example.org/helloworld
+#<0- keyword.control.method.hurl
+#    ^----------------------------- string.unquoted.url.hurl
+#    ^----------------------------- string.unquoted.url.hurl
+`Hello world!`
+#<0----------- string.quoted.backtick.hurl
+HTTP 200
+#<0- constant.language.version.hurl
+#   ^--- constant.numeric.status.hurl
+POST https://example.org/InStock
+#<0- keyword.control.method.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+Content-Type: application/soap+xml; charset=utf-8
+#<0---------------------------------------------- entity.name.tag.header.hurl
+#<0--------- entity.name.tag.header.hurl
+#           ^ punctuation.separator.key-value.hurl
+#             ^---------------------------------- string.unquoted.hurl
+SOAPAction: "http://www.w3.org/2003/05/soap-envelope"
+#<0-------------------------------------------------- entity.name.tag.header.hurl
+#<0------- entity.name.tag.header.hurl
+#         ^ punctuation.separator.key-value.hurl
+#           ^---------------------------------------- string.unquoted.hurl
+```xml
+#<0--- meta.embedded.block.xml.hurl
+<?xml version="1.0" encoding="UTF-8"?>
+#<0----------------------------------- meta.embedded.block.xml.hurl
+#<0----------------------------------- meta.tag.preprocessor.xml
+#<0 punctuation.definition.tag.xml
+# ^-- entity.name.tag.xml
+#    ^------- entity.other.attribute-name.xml
+#             ^---- string.quoted.double.xml
+#             ^ punctuation.definition.string.begin.xml
+#               ^- meta.attribute.directive.vue
+#               ^ punctuation.attribute-shorthand.bind.html.vue
+#                ^ entity.other.attribute-name.html.vue
+#                 ^ punctuation.definition.string.end.xml
+#                  ^-------- entity.other.attribute-name.xml
+#                            ^------ string.quoted.double.xml
+#                            ^ punctuation.definition.string.begin.xml
+#                                  ^ punctuation.definition.string.end.xml
+#                                   ^- punctuation.definition.tag.xml
+<soap:Envelope
+#<0----------- meta.embedded.block.xml.hurl
+#<0----------- meta.tag.xml
+#<0 punctuation.definition.tag.xml
+#^--- entity.name.tag.namespace.xml
+#    ^ entity.name.tag.xml
+#    ^ punctuation.separator.namespace.xml
+#     ^------- entity.name.tag.localname.xml
+  xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+#<0--------------------------------------------------- meta.embedded.block.xml.hurl
+#<0--------------------------------------------------- meta.tag.xml
+# ^---- entity.other.attribute-name.namespace.xml
+#      ^ entity.other.attribute-name.xml
+#      ^ punctuation.separator.namespace.xml
+#       ^--- entity.other.attribute-name.localname.xml
+#            ^---------------------------------------- string.quoted.double.xml
+#            ^ punctuation.definition.string.begin.xml
+#                 ^ meta.attribute.directive.vue
+#                 ^ punctuation.attribute-shorthand.bind.html.vue
+#                       ^------ meta.attribute.directive.vue
+#                       ^ punctuation.attribute-shorthand.bind.html.vue
+#                        ^- entity.other.attribute-name.html.vue
+#                          ^ punctuation.attribute-shorthand.bind.html.vue
+#                           ^-- entity.other.attribute-name.html.vue
+#                                                    ^ punctuation.definition.string.end.xml
+  xmlns:m="https://example.org"
+#<0---------------------------- meta.embedded.block.xml.hurl
+#<0---------------------------- meta.tag.xml
+# ^---- entity.other.attribute-name.namespace.xml
+#      ^ entity.other.attribute-name.xml
+#      ^ punctuation.separator.namespace.xml
+#       ^ entity.other.attribute-name.localname.xml
+#         ^-------------------- string.quoted.double.xml
+#         ^ punctuation.definition.string.begin.xml
+#               ^ meta.attribute.directive.vue
+#               ^ punctuation.attribute-shorthand.bind.html.vue
+#                         ^--- meta.attribute.directive.vue
+#                         ^ punctuation.attribute-shorthand.bind.html.vue
+#                          ^-- entity.other.attribute-name.html.vue
+#                             ^ punctuation.definition.string.end.xml
+>
+#<0 meta.embedded.block.xml.hurl
+#<0 meta.tag.xml
+#<0 punctuation.definition.tag.xml
+  <soap:Header></soap:Header>
+#<0-------------------------- meta.embedded.block.xml.hurl
+# ^-------------------------- meta.tag.no-content.xml
+# ^ punctuation.definition.tag.xml
+#  ^---------- entity.name.tag.xml
+#  ^--- entity.name.tag.namespace.xml
+#      ^ punctuation.separator.namespace.xml
+#       ^----- entity.name.tag.localname.xml
+#             ^-- punctuation.definition.tag.xml
+#                ^---------- entity.name.tag.xml
+#                ^--- entity.name.tag.namespace.xml
+#                    ^ punctuation.separator.namespace.xml
+#                     ^----- entity.name.tag.localname.xml
+#                           ^ punctuation.definition.tag.xml
+  <soap:Body>
+#<0---------- meta.embedded.block.xml.hurl
+# ^---------- meta.tag.xml
+# ^ punctuation.definition.tag.xml
+#  ^--- entity.name.tag.namespace.xml
+#      ^ entity.name.tag.xml
+#      ^ punctuation.separator.namespace.xml
+#       ^--- entity.name.tag.localname.xml
+#           ^ punctuation.definition.tag.xml
+    <m:GetStockPrice>
+#<0------------------ meta.embedded.block.xml.hurl
+#   ^---------------- meta.tag.xml
+#   ^ punctuation.definition.tag.xml
+#    ^ entity.name.tag.namespace.xml
+#     ^ entity.name.tag.xml
+#     ^ punctuation.separator.namespace.xml
+#      ^------------ entity.name.tag.localname.xml
+#                   ^ punctuation.definition.tag.xml
+      <m:StockName>GOOG</m:StockName>
+#<0---------------------------------- meta.embedded.block.xml.hurl
+#     ^------------ meta.tag.xml
+#     ^ punctuation.definition.tag.xml
+#      ^ entity.name.tag.namespace.xml
+#       ^ entity.name.tag.xml
+#       ^ punctuation.separator.namespace.xml
+#        ^-------- entity.name.tag.localname.xml
+#                 ^ punctuation.definition.tag.xml
+#                      ^------------- meta.tag.xml
+#                      ^- punctuation.definition.tag.xml
+#                        ^ entity.name.tag.namespace.xml
+#                         ^ entity.name.tag.xml
+#                         ^ punctuation.separator.namespace.xml
+#                          ^-------- entity.name.tag.localname.xml
+#                                   ^ punctuation.definition.tag.xml
+    </m:GetStockPrice>
+#<0------------------- meta.embedded.block.xml.hurl
+#   ^----------------- meta.tag.xml
+#   ^- punctuation.definition.tag.xml
+#     ^ entity.name.tag.namespace.xml
+#      ^ entity.name.tag.xml
+#      ^ punctuation.separator.namespace.xml
+#       ^------------ entity.name.tag.localname.xml
+#                    ^ punctuation.definition.tag.xml
+  </soap:Body>
+#<0----------- meta.embedded.block.xml.hurl
+# ^----------- meta.tag.xml
+# ^- punctuation.definition.tag.xml
+#   ^--- entity.name.tag.namespace.xml
+#       ^ entity.name.tag.xml
+#       ^ punctuation.separator.namespace.xml
+#        ^--- entity.name.tag.localname.xml
+#            ^ punctuation.definition.tag.xml
+</soap:Envelope>
+#<0------------- meta.embedded.block.xml.hurl
+#<0------------- meta.tag.xml
+#<0 punctuation.definition.tag.xml
+# ^--- entity.name.tag.namespace.xml
+#     ^ entity.name.tag.xml
+#     ^ punctuation.separator.namespace.xml
+#      ^------- entity.name.tag.localname.xml
+#              ^ punctuation.definition.tag.xml
+```
+#<0 meta.embedded.block.xml.hurl
+
+HTTP 200
+#<0- constant.language.version.hurl
+#   ^--- constant.numeric.status.hurl
+POST https://example.org/InStock
+#<0- keyword.control.method.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+#    ^-------------------------- string.unquoted.url.hurl
+Content-Type: application/soap+xml; charset=utf-8
+#<0---------------------------------------------- entity.name.tag.header.hurl
+#<0--------- entity.name.tag.header.hurl
+#           ^ punctuation.separator.key-value.hurl
+#             ^---------------------------------- string.unquoted.hurl
+SOAPAction: "http://www.w3.org/2003/05/soap-envelope"
+#<0-------------------------------------------------- entity.name.tag.header.hurl
+#<0------- entity.name.tag.header.hurl
+#         ^ punctuation.separator.key-value.hurl
+#           ^---------------------------------------- string.unquoted.hurl
+<?xml version="1.0" encoding="UTF-8"?>
+#             ^---- string.quoted.double.hurl
+#                            ^------ string.quoted.double.hurl
+<soap:Envelope
+  xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+#            ^---------------------------------------- string.quoted.double.hurl
+  xmlns:m="https://example.org"
+#         ^-------------------- string.quoted.double.hurl
+>
+  <soap:Header></soap:Header>
+  <soap:Body>
+    <m:GetStockPrice>
+      <m:StockName>GOOG</m:StockName>
+    </m:GetStockPrice>
+  </soap:Body>
+</soap:Envelope>
+HTTP 200
+#<0- constant.language.version.hurl
+#   ^--- constant.numeric.status.hurl
+# this is a comment
+#<0---------------- comment.line.number-sign.hurl
+
+# these are also comments:
+#<0----------------------- comment.line.number-sign.hurl
+
+# "asdasd"
+#<0------- comment.line.number-sign.hurl
+# `asdasd`
+#<0------- comment.line.number-sign.hurl
+
+# csrf_token: xpath "string(//meta[@name='_csrf_token']/@content)"
+#<0--------------------------------------------------------------- comment.line.number-sign.hurl
+# GET https://example.org/api/health
+#<0--------------------------------- comment.line.number-sign.hurl
+# Run a GET request with cookies section:
+#<0-------------------------------------- comment.line.number-sign.hurl
+GET https://example.org/index.html
+#<0 keyword.control.method.hurl
+#   ^----------------------------- string.unquoted.url.hurl
+#   ^----------------------------- string.unquoted.url.hurl
+[Cookies]
+#<0------ entity.name.section.hurl
+theme: light
+#<0--------- entity.name.tag.header.hurl
+#<0-- entity.name.tag.header.hurl
+#    ^ punctuation.separator.key-value.hurl
+#      ^---- string.unquoted.hurl
+sessionToken: abc123
+#<0----------------- entity.name.tag.header.hurl
+#<0--------- entity.name.tag.header.hurl
+#           ^ punctuation.separator.key-value.hurl
+#             ^----- string.unquoted.hurl
+
+# Run the same GET request with a header:
+#<0-------------------------------------- comment.line.number-sign.hurl
+GET https://example.org/index.html
+#<0 keyword.control.method.hurl
+#   ^----------------------------- string.unquoted.url.hurl
+#   ^----------------------------- string.unquoted.url.hurl
+Cookie: theme=light; sessionToken=abc123
+#<0------------------------------------- entity.name.tag.header.hurl
+#<0--- entity.name.tag.header.hurl
+#     ^ punctuation.separator.key-value.hurl
+#       ^------------------------------- string.unquoted.hurl
+POST https://example.org/contact/{{foo }}?q={{ bar }}
+#<0- keyword.control.method.hurl
+#    ^----------------------------------------------- string.unquoted.url.hurl
+#    ^----------------------------------------------- string.unquoted.url.hurl
+#                                ^- string.interpolated.hurl
+#                                  ^-- variable.other.hurl
+#                                      ^- string.interpolated.hurl
+#                                           ^- string.interpolated.hurl
+#                                              ^-- variable.other.hurl
+#                                                  ^- string.interpolated.hurl
+[Form]
+#<0--- entity.name.section.hurl
+default: false
+#<0----------- entity.name.tag.header.hurl
+#<0---- entity.name.tag.header.hurl
+#      ^ punctuation.separator.key-value.hurl
+#        ^---- string.unquoted.hurl
+token: {{token}}
+#<0------------- entity.name.tag.header.hurl
+#<0-- entity.name.tag.header.hurl
+#    ^ punctuation.separator.key-value.hurl
+#      ^-------- string.unquoted.hurl
+#      ^- string.interpolated.hurl
+#        ^---- variable.other.hurl
+#             ^- string.interpolated.hurl
+token2: {{ token2 }}
+#<0----------------- entity.name.tag.header.hurl
+#<0--- entity.name.tag.header.hurl
+#     ^ punctuation.separator.key-value.hurl
+#       ^----------- string.unquoted.hurl
+#       ^- string.interpolated.hurl
+#          ^----- variable.other.hurl
+#                 ^- string.interpolated.hurl
+email: john.doe@rookie.org
+#<0----------------------- entity.name.tag.header.hurl
+#<0-- entity.name.tag.header.hurl
+#    ^ punctuation.separator.key-value.hurl
+#      ^------------------ string.unquoted.hurl
+number: 33611223344
+#<0---------------- entity.name.tag.header.hurl
+#<0--- entity.name.tag.header.hurl
+#     ^ punctuation.separator.key-value.hurl
+#       ^---------- string.unquoted.hurl
+POST https://example.org/upload
+#<0- keyword.control.method.hurl
+#    ^------------------------- string.unquoted.url.hurl
+#    ^------------------------- string.unquoted.url.hurl
+[Multipart]
+#<0-------- entity.name.section.hurl
+field1: value1
+#<0----------- entity.name.tag.header.hurl
+#<0--- entity.name.tag.header.hurl
+#     ^ punctuation.separator.key-value.hurl
+#       ^----- string.unquoted.hurl
+field2: file,example.txt;
+#<0---------------------- entity.name.tag.header.hurl
+#<0--- entity.name.tag.header.hurl
+#     ^ punctuation.separator.key-value.hurl
+#       ^---------------- string.unquoted.hurl
+# One can specify the file content type:
+#<0------------------------------------- comment.line.number-sign.hurl
+field3: file,example.zip; application/zip
+#<0-------------------------------------- entity.name.tag.header.hurl
+#<0--- entity.name.tag.header.hurl
+#     ^ punctuation.separator.key-value.hurl
+#       ^-------------------------------- string.unquoted.hurl
+GET https://example.org
+#<0 keyword.control.method.hurl
+#   ^------------------ string.unquoted.url.hurl
+#   ^------------------ string.unquoted.url.hurl
+HTTP
+#<0- constant.language.version.hurl
+
+HTTP 200
+#<0- constant.language.version.hurl
+#   ^--- constant.numeric.status.hurl
+
+HTTP/1.1 200
+#<0----- constant.language.version.hurl
+#       ^--- constant.numeric.status.hurl
+
+# From: https://github.com/nikeee/language-hurl, https://hurl.dev
+#<0-------------------------------------------------------------- comment.line.number-sign.hurl

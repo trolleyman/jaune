@@ -1,0 +1,139 @@
+-- grammar: source.ada
+
+with Ada.Text_IO;
+--<0------------- meta.context.with.ada
+--<0 keyword.other.using.ada
+--   ^---------- entity.name.package.ada
+--              ^ punctuation.ada
+with Ada.Integer_Text_IO;
+--<0--------------------- meta.context.with.ada
+--<0 keyword.other.using.ada
+--   ^------------------ entity.name.package.ada
+--                      ^ punctuation.ada
+
+procedure Fizz_Buzz is
+--<0------------------ meta.declaration.procedure.body.ada
+--<0----- keyword.ada
+--        ^-------- entity.name.function.ada
+--                  ^- keyword.ada
+begin
+--<0- meta.declaration.procedure.body.ada
+--<0- keyword.ada
+   for I in 1 .. 100 loop
+--<0--------------------- meta.declaration.procedure.body.ada
+-- ^--------------------- meta.statement.loop.for.ada
+-- ^-- keyword.control.ada
+--     ^ variable.name.ada
+--       ^- keyword.control.ada
+--          ^ constant.numeric.ada
+--            ^- keyword.ada
+--               ^-- constant.numeric.ada
+--                   ^--- keyword.control.ada
+      if I mod 15 = 0 then
+--<0---------------------- meta.declaration.procedure.body.ada
+--<0---------------------- meta.statement.loop.for.ada
+--    ^------------------- meta.statement.if.ada
+--    ^- keyword.control.ada
+--         ^-- keyword.operator.multiplying.ada
+--             ^- constant.numeric.ada
+--                ^ keyword.operator.relational.ada
+--                  ^ constant.numeric.ada
+--                   ^---- keyword.control.ada
+         Ada.Text_IO.Put_Line ("fizz buzz");
+--<0---------------------------------------- meta.declaration.procedure.body.ada
+--<0---------------------------------------- meta.statement.loop.for.ada
+--<0---------------------------------------- meta.statement.if.ada
+--       ^---------------------------------- meta.statement.call.ada
+--       ^------------------- entity.name.function.ada
+--                            ^ punctuation.ada
+--                             ^---------- string.quoted.double.ada
+--                             ^ punctuation.definition.string.ada
+--                                       ^ punctuation.definition.string.ada
+--                                        ^- punctuation.ada
+      elsif I mod 5 = 0 then
+--<0------------------------ meta.declaration.procedure.body.ada
+--<0------------------------ meta.statement.loop.for.ada
+--<0------------------------ meta.statement.if.ada
+--    ^---- keyword.control.ada
+--            ^-- keyword.operator.multiplying.ada
+--                ^ constant.numeric.ada
+--                  ^ keyword.operator.relational.ada
+--                    ^ constant.numeric.ada
+--                      ^--- keyword.control.ada
+         Ada.Text_IO.Put_Line ("buzz");
+--<0----------------------------------- meta.declaration.procedure.body.ada
+--<0----------------------------------- meta.statement.loop.for.ada
+--<0----------------------------------- meta.statement.if.ada
+--       ^----------------------------- meta.statement.call.ada
+--       ^------------------- entity.name.function.ada
+--                            ^ punctuation.ada
+--                             ^----- string.quoted.double.ada
+--                             ^ punctuation.definition.string.ada
+--                                  ^ punctuation.definition.string.ada
+--                                   ^- punctuation.ada
+      elsif I mod 3 = 0 then
+--<0------------------------ meta.declaration.procedure.body.ada
+--<0------------------------ meta.statement.loop.for.ada
+--<0------------------------ meta.statement.if.ada
+--    ^---- keyword.control.ada
+--            ^-- keyword.operator.multiplying.ada
+--                ^ constant.numeric.ada
+--                  ^ keyword.operator.relational.ada
+--                    ^ constant.numeric.ada
+--                      ^--- keyword.control.ada
+         Ada.Text_IO.Put_Line ("fizz");
+--<0----------------------------------- meta.declaration.procedure.body.ada
+--<0----------------------------------- meta.statement.loop.for.ada
+--<0----------------------------------- meta.statement.if.ada
+--       ^----------------------------- meta.statement.call.ada
+--       ^------------------- entity.name.function.ada
+--                            ^ punctuation.ada
+--                             ^----- string.quoted.double.ada
+--                             ^ punctuation.definition.string.ada
+--                                  ^ punctuation.definition.string.ada
+--                                   ^- punctuation.ada
+      else
+--<0------ meta.declaration.procedure.body.ada
+--<0------ meta.statement.loop.for.ada
+--<0------ meta.statement.if.ada
+--    ^--- keyword.control.ada
+         Ada.Integer_Text_IO.Put (I, Width => 0);
+--<0--------------------------------------------- meta.declaration.procedure.body.ada
+--<0--------------------------------------------- meta.statement.loop.for.ada
+--<0--------------------------------------------- meta.statement.if.ada
+--       ^--------------------------------------- meta.statement.call.ada
+--       ^---------------------- entity.name.function.ada
+--                               ^ punctuation.ada
+--                                 ^ punctuation.ada
+--                                   ^---- variable.parameter.ada
+--                                         ^- keyword.other.ada
+--                                            ^ constant.numeric.ada
+--                                             ^- punctuation.ada
+         Ada.Text_IO.New_Line;
+--<0-------------------------- meta.declaration.procedure.body.ada
+--<0-------------------------- meta.statement.loop.for.ada
+--<0-------------------------- meta.statement.if.ada
+--       ^-------------------- meta.statement.call.ada
+--       ^------------------- entity.name.function.ada
+--                           ^ punctuation.ada
+      end if;
+--<0--------- meta.declaration.procedure.body.ada
+--<0--------- meta.statement.loop.for.ada
+--<0--------- meta.statement.if.ada
+--    ^-- keyword.control.ada
+--        ^- keyword.control.ada
+--          ^ punctuation.ada
+   end loop;
+--<0-------- meta.declaration.procedure.body.ada
+--<0-------- meta.statement.loop.for.ada
+-- ^-- keyword.control.ada
+--     ^--- keyword.control.ada
+--         ^ punctuation.ada
+end Fizz_Buzz;
+--<0---------- meta.declaration.procedure.body.ada
+--<0 keyword.ada
+--  ^-------- entity.name.function.ada
+--           ^ punctuation.ada
+
+--  From https://github.com/kylelk/ada-examples/blob/master/fizz_buzz.adb
+--<0--------------------------------------------------------------------- comment.line.double-dash.ada

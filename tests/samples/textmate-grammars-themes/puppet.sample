@@ -1,0 +1,74 @@
+# grammar: source.puppet
+
+class ntp::service {
+#<0---------------- meta.definition.class.puppet
+#<0-- storage.type.puppet
+#     ^----------- entity.name.type.class.puppet
+
+  if ! ($ntp::service_ensure in [ 'running', 'stopped' ]) {
+# ^- keyword.control.puppet
+#       ^------------------- variable.other.readwrite.global.puppet
+#       ^ punctuation.definition.variable.puppet
+#                               ^----------------------- meta.array.puppet
+#                               ^ punctuation.definition.array.begin.puppet
+#                                 ^-------- string.quoted.single.puppet
+#                                 ^ punctuation.definition.string.begin.puppet
+#                                         ^ punctuation.definition.string.end.puppet
+#                                            ^-------- string.quoted.single.puppet
+#                                            ^ punctuation.definition.string.begin.puppet
+#                                                    ^ punctuation.definition.string.end.puppet
+#                                                      ^ punctuation.definition.array.end.puppet
+    fail('service_ensure parameter must be running or stopped')
+#   ^--- support.function.puppet
+#        ^---------------------------------------------------- string.quoted.single.puppet
+#        ^ punctuation.definition.string.begin.puppet
+#                                                            ^ punctuation.definition.string.end.puppet
+  }
+
+  if $ntp::service_manage == true {
+# ^- keyword.control.puppet
+#    ^------------------- variable.other.readwrite.global.puppet
+#    ^ punctuation.definition.variable.puppet
+#                            ^--- meta.definition.resource.puppet
+#                            ^--- storage.type.puppet
+    service { 'ntp':
+#<0---------------- entity.name.section.puppet
+#             ^---- string.quoted.single.puppet
+#             ^ punctuation.definition.string.begin.puppet
+#                 ^ punctuation.definition.string.end.puppet
+      ensure     => $ntp::service_ensure,
+#     ^---------- constant.other.key.puppet
+#                ^- punctuation.separator.key-value.puppet
+#                   ^------------------- variable.other.readwrite.global.puppet
+#                   ^ punctuation.definition.variable.puppet
+      enable     => $ntp::service_enable,
+#     ^---------- constant.other.key.puppet
+#                ^- punctuation.separator.key-value.puppet
+#                   ^------------------- variable.other.readwrite.global.puppet
+#                   ^ punctuation.definition.variable.puppet
+      name       => $ntp::service_name,
+#     ^---------- constant.other.key.puppet
+#                ^- punctuation.separator.key-value.puppet
+#                   ^----------------- variable.other.readwrite.global.puppet
+#                   ^ punctuation.definition.variable.puppet
+      provider   => $ntp::service_provider,
+#     ^---------- constant.other.key.puppet
+#                ^- punctuation.separator.key-value.puppet
+#                   ^--------------------- variable.other.readwrite.global.puppet
+#                   ^ punctuation.definition.variable.puppet
+      hasstatus  => true,
+#     ^---------- constant.other.key.puppet
+#                ^- punctuation.separator.key-value.puppet
+#                   ^--- constant.language.puppet
+      hasrestart => true,
+#     ^---------- constant.other.key.puppet
+#                ^- punctuation.separator.key-value.puppet
+#                   ^--- constant.language.puppet
+    }
+  }
+}
+
+# From https://www.puppet.com/docs/puppet/8/bgtm.html
+#<0-------------------------------------------------- meta.comment.full-line.puppet
+#<0-------------------------------------------------- comment.line.number-sign.puppet
+#<0 punctuation.definition.comment.puppet

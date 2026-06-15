@@ -1,0 +1,248 @@
+// grammar: source.berry
+
+class node
+//<0- keyword.berry
+//    ^--- identifier.berry
+    var v, l, r
+//  ^-- keyword.berry
+    def init(v, l, r)
+//  ^-- keyword.berry
+//      ^--- entity.name.function.berry
+//          ^ keyword.operator.berry
+//                  ^ keyword.operator.berry
+        self.v = v
+//      ^--- keyword.berry
+//          ^- entity.other.attribute-name.berry
+//             ^ keyword.operator.berry
+        self.l = l
+//      ^--- keyword.berry
+//          ^- entity.other.attribute-name.berry
+//             ^ keyword.operator.berry
+        self.r = r
+//      ^--- keyword.berry
+//          ^- entity.other.attribute-name.berry
+//             ^ keyword.operator.berry
+    end
+//  ^-- keyword.control.berry
+    def insert(v)
+//  ^-- keyword.berry
+//      ^----- entity.name.function.berry
+//            ^ keyword.operator.berry
+//              ^ keyword.operator.berry
+        if v < self.v
+//      ^- keyword.control.berry
+//           ^ keyword.operator.berry
+//             ^--- keyword.berry
+//                 ^- entity.other.attribute-name.berry
+            if self.l
+//          ^- keyword.control.berry
+//             ^--- keyword.berry
+//                 ^- entity.other.attribute-name.berry
+                self.l.insert(v)
+//              ^--- keyword.berry
+//                  ^-------- entity.other.attribute-name.berry
+//                           ^ keyword.operator.berry
+//                             ^ keyword.operator.berry
+            else
+//          ^--- keyword.control.berry
+                self.l = node(v)
+//              ^--- keyword.berry
+//                  ^- entity.other.attribute-name.berry
+//                     ^ keyword.operator.berry
+//                       ^--- entity.name.function.berry
+//                           ^ keyword.operator.berry
+//                             ^ keyword.operator.berry
+            end
+//          ^-- keyword.control.berry
+        else
+//      ^--- keyword.control.berry
+            if self.r
+//          ^- keyword.control.berry
+//             ^--- keyword.berry
+//                 ^- entity.other.attribute-name.berry
+                self.r.insert(v)
+//              ^--- keyword.berry
+//                  ^-------- entity.other.attribute-name.berry
+//                           ^ keyword.operator.berry
+//                             ^ keyword.operator.berry
+            else
+//          ^--- keyword.control.berry
+                self.r = node (v)
+//              ^--- keyword.berry
+//                  ^- entity.other.attribute-name.berry
+//                     ^ keyword.operator.berry
+//                       ^--- entity.name.function.berry
+//                            ^ keyword.operator.berry
+//                              ^ keyword.operator.berry
+            end
+//          ^-- keyword.control.berry
+        end
+//      ^-- keyword.control.berry
+    end
+//  ^-- keyword.control.berry
+    def sort(l)
+//  ^-- keyword.berry
+//      ^--- entity.name.function.berry
+//          ^ keyword.operator.berry
+//            ^ keyword.operator.berry
+        if (self.l) self.l.sort(l) end
+//      ^- keyword.control.berry
+//         ^ keyword.operator.berry
+//          ^--- keyword.berry
+//              ^- entity.other.attribute-name.berry
+//                ^ keyword.operator.berry
+//                  ^--- keyword.berry
+//                      ^------ entity.other.attribute-name.berry
+//                             ^ keyword.operator.berry
+//                               ^ keyword.operator.berry
+//                                 ^-- keyword.control.berry
+        l.push(self.v)
+//       ^---- entity.other.attribute-name.berry
+//            ^ keyword.operator.berry
+//             ^--- keyword.berry
+//                 ^- entity.other.attribute-name.berry
+//                   ^ keyword.operator.berry
+        if (self.r) self.r.sort(l) end
+//      ^- keyword.control.berry
+//         ^ keyword.operator.berry
+//          ^--- keyword.berry
+//              ^- entity.other.attribute-name.berry
+//                ^ keyword.operator.berry
+//                  ^--- keyword.berry
+//                      ^------ entity.other.attribute-name.berry
+//                             ^ keyword.operator.berry
+//                               ^ keyword.operator.berry
+//                                 ^-- keyword.control.berry
+    end
+//  ^-- keyword.control.berry
+end
+//<0 keyword.control.berry
+
+class btree
+//<0- keyword.berry
+//    ^---- identifier.berry
+    var root
+//  ^-- keyword.berry
+//      ^--- identifier.berry
+    def insert(v)
+//  ^-- keyword.berry
+//      ^----- entity.name.function.berry
+//            ^ keyword.operator.berry
+//              ^ keyword.operator.berry
+        if self.root
+//      ^- keyword.control.berry
+//         ^--- keyword.berry
+//             ^---- entity.other.attribute-name.berry
+            self.root.insert(v)
+//          ^--- keyword.berry
+//              ^----------- entity.other.attribute-name.berry
+//                          ^ keyword.operator.berry
+//                            ^ keyword.operator.berry
+        else
+//      ^--- keyword.control.berry
+            self.root = node(v)
+//          ^--- keyword.berry
+//              ^---- entity.other.attribute-name.berry
+//                    ^ keyword.operator.berry
+//                      ^--- entity.name.function.berry
+//                          ^ keyword.operator.berry
+//                            ^ keyword.operator.berry
+        end
+//      ^-- keyword.control.berry
+    end
+//  ^-- keyword.control.berry
+    def sort()
+//  ^-- keyword.berry
+//      ^--- entity.name.function.berry
+//          ^- keyword.operator.berry
+        var l = []
+//      ^-- keyword.berry
+//            ^ keyword.operator.berry
+//              ^- keyword.operator.berry
+        if self.root
+//      ^- keyword.control.berry
+//         ^--- keyword.berry
+//             ^---- entity.other.attribute-name.berry
+            self.root.sort(l)
+//          ^--- keyword.berry
+//              ^--------- entity.other.attribute-name.berry
+//                        ^ keyword.operator.berry
+//                          ^ keyword.operator.berry
+        end
+//      ^-- keyword.control.berry
+        return l
+//      ^----- keyword.control.berry
+    end
+//  ^-- keyword.control.berry
+end
+//<0 keyword.control.berry
+
+var tree = btree()
+//<0 keyword.berry
+//  ^--- identifier.berry
+//       ^ keyword.operator.berry
+//         ^---- entity.name.function.berry
+//              ^- keyword.operator.berry
+tree.insert(-100)
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^- keyword.operator.berry
+//           ^-- constant.numeric.berry
+//              ^ keyword.operator.berry
+tree.insert(5);
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^ keyword.operator.berry
+//          ^ constant.numeric.berry
+//           ^ keyword.operator.berry
+tree.insert(3);
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^ keyword.operator.berry
+//          ^ constant.numeric.berry
+//           ^ keyword.operator.berry
+tree.insert(9);
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^ keyword.operator.berry
+//          ^ constant.numeric.berry
+//           ^ keyword.operator.berry
+tree.insert(10);
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^ keyword.operator.berry
+//          ^- constant.numeric.berry
+//            ^ keyword.operator.berry
+tree.insert(10000000);
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^ keyword.operator.berry
+//          ^------- constant.numeric.berry
+//                  ^ keyword.operator.berry
+tree.insert(1);
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^ keyword.operator.berry
+//          ^ constant.numeric.berry
+//           ^ keyword.operator.berry
+tree.insert(-1);
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^- keyword.operator.berry
+//           ^ constant.numeric.berry
+//            ^ keyword.operator.berry
+tree.insert(-10);
+//<0 identifier.berry
+//  ^------ entity.other.attribute-name.berry
+//         ^- keyword.operator.berry
+//           ^- constant.numeric.berry
+//             ^ keyword.operator.berry
+print(tree.sort());
+//<0- entity.name.function.berry
+//   ^ keyword.operator.berry
+//    ^--- identifier.berry
+//        ^---- entity.other.attribute-name.berry
+//             ^-- keyword.operator.berry
+
+# From https://github.com/berry-lang/berry/blob/master/examples/bintree.be
+//<0---------------------------------------------------------------------- comment.line.berry

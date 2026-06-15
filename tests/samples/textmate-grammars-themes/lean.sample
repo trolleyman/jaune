@@ -1,0 +1,294 @@
+-- grammar: source.lean4
+
+structure Point (α : Type u) where
+--<0------------ meta.definitioncommand.lean4
+--<0----- keyword.other.definitioncommand.lean4
+--        ^---- entity.name.function.lean4
+--                   ^--- storage.type.lean4
+--                           ^---- keyword.other.lean4
+  mk :: (x : α) (y : α)
+  deriving Repr
+--^------- keyword.other.lean4
+
+#check Point       -- a Type
+--<0-- keyword.other.lean4
+--                      ^--- storage.type.lean4
+#check @Point.rec  -- the eliminator
+--<0-- keyword.other.lean4
+#check @Point.mk   -- the constructor
+--<0-- keyword.other.lean4
+#check @Point.x    -- a projection
+--<0-- keyword.other.lean4
+#check @Point.y    -- a projection
+--<0-- keyword.other.lean4
+
+#eval Point.x (Point.mk 10 20)
+--<0- keyword.other.lean4
+--                      ^- constant.numeric.lean4
+--                         ^- constant.numeric.lean4
+#eval Point.y (Point.mk 10 20)
+--<0- keyword.other.lean4
+--                      ^- constant.numeric.lean4
+--                         ^- constant.numeric.lean4
+
+open Point
+--<0 keyword.other.lean4
+
+example (a b : α) : x (mk a b) = a :=
+--<0--- keyword.other.lean4
+  rfl
+
+example (a b : α) : y (mk a b) = b :=
+--<0--- keyword.other.lean4
+  rfl
+
+def p := Point.mk 10 20
+--<0-- meta.definitioncommand.lean4
+--<0 keyword.other.definitioncommand.lean4
+--  ^ entity.name.function.lean4
+--                ^- constant.numeric.lean4
+--                   ^- constant.numeric.lean4
+
+def Point.smul (n : Nat) (p : Point Nat) :=
+--<0----------- meta.definitioncommand.lean4
+--<0 keyword.other.definitioncommand.lean4
+--  ^--------- entity.name.function.lean4
+  Point.mk (n * p.x) (n * p.y)
+
+def xs : List Nat := [1, 2, 3]
+--<0--- meta.definitioncommand.lean4
+--<0 keyword.other.definitioncommand.lean4
+--  ^- entity.name.function.lean4
+--                    ^ constant.numeric.lean4
+--                       ^ constant.numeric.lean4
+--                          ^ constant.numeric.lean4
+def f : Nat → Nat := fun x => x * x
+--<0-- meta.definitioncommand.lean4
+--<0 keyword.other.definitioncommand.lean4
+--  ^ entity.name.function.lean4
+--                   ^-- keyword.other.lean4
+
+#eval xs.map f  -- [1, 4, 9]
+--<0- keyword.other.lean4
+--                  ^ constant.numeric.lean4
+--                     ^ constant.numeric.lean4
+--                        ^ constant.numeric.lean4
+
+
+structure MyStruct where
+--<0--------------- meta.definitioncommand.lean4
+--<0----- keyword.other.definitioncommand.lean4
+--        ^------- entity.name.function.lean4
+--                 ^---- keyword.other.lean4
+    {α : Type u}
+--       ^--- storage.type.lean4
+    {β : Type v}
+--       ^--- storage.type.lean4
+    a : α
+    b : β
+
+#check { a := 10, b := true : MyStruct }
+--<0-- keyword.other.lean4
+--            ^- constant.numeric.lean4
+--                     ^--- constant.language.lean4
+
+
+structure Point (α : Type u) where
+--<0------------ meta.definitioncommand.lean4
+--<0----- keyword.other.definitioncommand.lean4
+--        ^---- entity.name.function.lean4
+--                   ^--- storage.type.lean4
+--                           ^---- keyword.other.lean4
+  x : α
+  y : α
+  z : α
+
+structure RGBValue where
+--<0--------------- meta.definitioncommand.lean4
+--<0----- keyword.other.definitioncommand.lean4
+--        ^------- entity.name.function.lean4
+--                 ^---- keyword.other.lean4
+  red : Nat
+  green : Nat
+  blue : Nat
+
+structure RedGreenPoint (α : Type u) extends Point α, RGBValue where
+--<0-------------------- meta.definitioncommand.lean4
+--<0----- keyword.other.definitioncommand.lean4
+--        ^------------ entity.name.function.lean4
+--                           ^--- storage.type.lean4
+--                                   ^------ keyword.other.lean4
+--                                                             ^---- keyword.other.lean4
+  no_blue : blue = 0
+--                 ^ constant.numeric.lean4
+
+def p : Point Nat :=
+--<0-- meta.definitioncommand.lean4
+--<0 keyword.other.definitioncommand.lean4
+--  ^ entity.name.function.lean4
+  { x := 10, y := 10, z := 20 }
+--       ^- constant.numeric.lean4
+--                ^- constant.numeric.lean4
+--                         ^- constant.numeric.lean4
+
+def rgp : RedGreenPoint Nat :=
+--<0---- meta.definitioncommand.lean4
+--<0 keyword.other.definitioncommand.lean4
+--  ^-- entity.name.function.lean4
+  { p with red := 200, green := 40, blue := 0, no_blue := rfl }
+--    ^--- keyword.other.lean4
+--                ^-- constant.numeric.lean4
+--                              ^- constant.numeric.lean4
+--                                          ^ constant.numeric.lean4
+
+example : rgp.x   = 10 := rfl
+--<0--- keyword.other.lean4
+--                  ^- constant.numeric.lean4
+example : rgp.red = 200 := rfl
+--<0--- keyword.other.lean4
+--                  ^-- constant.numeric.lean4
+
+
+class Add (a : Type) where
+--<0------ meta.definitioncommand.lean4
+--<0- keyword.other.definitioncommand.lean4
+--    ^-- entity.name.function.lean4
+--             ^--- storage.type.lean4
+--                   ^---- keyword.other.lean4
+  add : a → a → a
+
+instance [Add a] : Add (Array a) where
+--<0----- meta.definitioncommand.lean4
+--<0---- keyword.other.definitioncommand.lean4
+--                               ^---- keyword.other.lean4
+  add x y := Array.zipWith x y (· + ·)
+
+instance [Inhabited a] [Inhabited b] : Inhabited (a × b) where
+--<0----- meta.definitioncommand.lean4
+--<0---- keyword.other.definitioncommand.lean4
+--                                                       ^---- keyword.other.lean4
+  default := (default, default)
+
+
+#print inferInstance
+--<0-- keyword.other.lean4
+
+def foo : Inhabited (Nat × Nat) :=
+--<0---- meta.definitioncommand.lean4
+--<0 keyword.other.definitioncommand.lean4
+--  ^-- entity.name.function.lean4
+  inferInstance
+
+theorem ex : foo.default = (default, default) :=
+--<0------- meta.definitioncommand.lean4
+--<0--- keyword.other.definitioncommand.lean4
+--      ^- entity.name.function.lean4
+  rfl
+
+structure Rational where
+--<0--------------- meta.definitioncommand.lean4
+--<0----- keyword.other.definitioncommand.lean4
+--        ^------- entity.name.function.lean4
+--                 ^---- keyword.other.lean4
+  num : Int
+  den : Nat
+  inv : den ≠ 0
+--            ^ constant.numeric.lean4
+
+instance : OfNat Rational n where
+--<0----- meta.definitioncommand.lean4
+--<0---- keyword.other.definitioncommand.lean4
+--                          ^---- keyword.other.lean4
+  ofNat := { num := n, den := 1, inv := by decide }
+--                            ^ constant.numeric.lean4
+--                                      ^- keyword.other.lean4
+
+instance : ToString Rational where
+--<0----- meta.definitioncommand.lean4
+--<0---- keyword.other.definitioncommand.lean4
+--                           ^---- keyword.other.lean4
+  toString r := s!"{r.num}/{r.den}"
+--              ^------------------ string.interpolated.lean4
+--              ^- keyword.other.lean4
+--                 ^ keyword.other.lean4
+--                       ^ keyword.other.lean4
+--                         ^ keyword.other.lean4
+--                               ^ keyword.other.lean4
+
+#eval (2 : Rational) -- 2/1
+--<0- keyword.other.lean4
+--     ^ constant.numeric.lean4
+--                      ^ constant.numeric.lean4
+--                        ^ constant.numeric.lean4
+
+#check (2 : Rational) -- Rational
+--<0-- keyword.other.lean4
+--      ^ constant.numeric.lean4
+#check (2 : Nat)      -- Nat
+--<0-- keyword.other.lean4
+--      ^ constant.numeric.lean4
+
+class HMul (α : Type u) (β : Type v) (γ : outParam (Type w)) where
+--<0------- meta.definitioncommand.lean4
+--<0- keyword.other.definitioncommand.lean4
+--    ^--- entity.name.function.lean4
+--              ^--- storage.type.lean4
+--                           ^--- storage.type.lean4
+--                                                  ^--- storage.type.lean4
+--                                                           ^---- keyword.other.lean4
+  hMul : α → β → γ
+
+export HMul (hMul)
+--<0-- keyword.other.lean4
+
+@[default_instance]
+--<0--------------- storage.modifier.lean4
+instance : HMul Int Int Int where
+--<0----- meta.definitioncommand.lean4
+--<0---- keyword.other.definitioncommand.lean4
+--                          ^---- keyword.other.lean4
+  hMul := Int.mul
+
+local instance : Add Point where
+--<0- storage.modifier.lean4
+--    ^-------- meta.definitioncommand.lean4
+--    ^------- keyword.other.definitioncommand.lean4
+--                         ^---- keyword.other.lean4
+  add a b := { x := a.x + b.x, y := a.y + b.y }
+
+attribute [-instance] addPoint
+--<0----------------- storage.modifier.lean4
+
+namespace Point
+--<0----- keyword.other.lean4
+
+scoped instance : Add Point where
+--<0-- storage.modifier.lean4
+--     ^-------- meta.definitioncommand.lean4
+--     ^------- keyword.other.definitioncommand.lean4
+--                          ^---- keyword.other.lean4
+  add a b := { x := a.x + b.x, y := a.y + b.y }
+
+def double (p : Point) :=
+--<0------- meta.definitioncommand.lean4
+--<0 keyword.other.definitioncommand.lean4
+--  ^----- entity.name.function.lean4
+  p + p
+
+end Point
+--<0 keyword.other.lean4
+
+open Classical
+--<0 keyword.other.lean4
+noncomputable scoped
+--<0--------- storage.modifier.lean4
+--            ^----- storage.modifier.lean4
+instance (priority := low) propDecidable (a : Prop) : Decidable a :=
+--<0----- meta.definitioncommand.lean4
+--<0---- keyword.other.definitioncommand.lean4
+--                                            ^--- storage.type.lean4
+  choice <| match em a with
+--          ^---- keyword.other.lean4
+--                     ^--- keyword.other.lean4
+    | Or.inl h => ⟨isTrue h⟩
+    | Or.inr h => ⟨isFalse h⟩

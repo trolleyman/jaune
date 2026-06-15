@@ -1,0 +1,183 @@
+// grammar: source.tsx
+
+// posts will be populated at build time by getStaticProps()
+//<0 comment.line.double-slash.tsx
+//<0 punctuation.definition.comment.tsx
+function Blog({ posts }) {
+//<0---------------------- meta.function.tsx
+//<0---- storage.type.function.tsx
+//       ^--- meta.definition.function.tsx entity.name.function.tsx
+//           ^---------- meta.parameters.tsx
+//           ^ punctuation.definition.parameters.begin.tsx
+//            ^-------- meta.parameter.object-binding-pattern.tsx
+//            ^ punctuation.definition.binding-pattern.object.tsx
+//              ^---- variable.parameter.tsx
+//                    ^ punctuation.definition.binding-pattern.object.tsx
+//                     ^ punctuation.definition.parameters.end.tsx
+//                       ^ meta.block.tsx
+//                       ^ punctuation.definition.block.tsx
+  return (
+//<0------ meta.function.tsx
+//<0------ meta.block.tsx
+//^----- keyword.control.flow.tsx
+//       ^ meta.brace.round.tsx
+    <ul>
+//<0---- meta.function.tsx
+//<0---- meta.block.tsx
+//  ^--- meta.tag.without-attributes.tsx
+//  ^ punctuation.definition.tag.begin.tsx
+//   ^- entity.name.tag.tsx
+//     ^ punctuation.definition.tag.end.tsx
+      {posts.map((post) => (
+//<0------------------------ meta.function.tsx
+//<0------------------------ meta.block.tsx
+//<0------------------------ meta.tag.without-attributes.tsx
+//    ^ punctuation.section.embedded.begin.tsx
+//     ^-------- meta.function-call.tsx
+//     ^---- variable.other.object.tsx
+//          ^ punctuation.accessor.tsx
+//           ^-- entity.name.function.tsx
+//              ^ meta.brace.round.tsx
+//               ^---------- meta.arrow.tsx
+//               ^----- meta.parameters.tsx
+//               ^ punctuation.definition.parameters.begin.tsx
+//                ^--- variable.parameter.tsx
+//                    ^ punctuation.definition.parameters.end.tsx
+//                      ^- storage.type.function.arrow.tsx
+//                         ^ meta.brace.round.tsx
+        <li>{post.title}</li>
+//<0------------------------- meta.function.tsx
+//<0------------------------- meta.block.tsx
+//<0------------------------- meta.tag.without-attributes.tsx
+//<0------------------------- meta.arrow.tsx
+//      ^-------------------- meta.tag.without-attributes.tsx
+//      ^ punctuation.definition.tag.begin.tsx
+//       ^- entity.name.tag.tsx
+//         ^ punctuation.definition.tag.end.tsx
+//          ^ punctuation.section.embedded.begin.tsx
+//           ^--- variable.other.object.tsx
+//               ^ punctuation.accessor.tsx
+//                ^---- variable.other.property.tsx
+//                     ^ punctuation.section.embedded.end.tsx
+//                      ^- punctuation.definition.tag.begin.tsx
+//                        ^- entity.name.tag.tsx
+//                          ^ punctuation.definition.tag.end.tsx
+      ))}
+//<0----- meta.function.tsx
+//<0----- meta.block.tsx
+//<0----- meta.tag.without-attributes.tsx
+//<0--- meta.arrow.tsx
+//    ^ meta.brace.round.tsx
+//     ^ meta.brace.round.tsx
+//      ^ punctuation.section.embedded.end.tsx
+    </ul>
+//<0----- meta.function.tsx
+//<0----- meta.block.tsx
+//<0----- meta.tag.without-attributes.tsx
+//  ^- punctuation.definition.tag.begin.tsx
+//    ^- entity.name.tag.tsx
+//      ^ punctuation.definition.tag.end.tsx
+  )
+//<0 meta.function.tsx
+//<0 meta.block.tsx
+//^ meta.brace.round.tsx
+}
+//<0 meta.function.tsx
+//<0 meta.block.tsx
+//<0 punctuation.definition.block.tsx
+
+// This function gets called at build time on server-side.
+//<0 comment.line.double-slash.tsx
+//<0 punctuation.definition.comment.tsx
+export async function getStaticProps() {
+//<0------------------------------------ meta.function.tsx
+//<0-- keyword.control.export.tsx
+//     ^---- storage.modifier.async.tsx
+//           ^------- storage.type.function.tsx
+//                    ^------------- meta.definition.function.tsx entity.name.function.tsx
+//                                  ^- meta.parameters.tsx
+//                                  ^ punctuation.definition.parameters.begin.tsx
+//                                   ^ punctuation.definition.parameters.end.tsx
+//                                     ^ meta.block.tsx
+//                                     ^ punctuation.definition.block.tsx
+  const res = await fetch('https://.../posts')
+//<0------------------------------------------ meta.function.tsx
+//<0------------------------------------------ meta.block.tsx
+//^------------------------------------------- meta.var.expr.tsx
+//^---- storage.type.tsx
+//      ^--- meta.var-single-variable.expr.tsx
+//      ^-- meta.definition.variable.tsx variable.other.constant.tsx
+//          ^ keyword.operator.assignment.tsx
+//            ^---- keyword.control.flow.tsx
+//                  ^---- meta.function-call.tsx
+//                  ^---- entity.name.function.tsx
+//                       ^ meta.brace.round.tsx
+//                        ^------------------ string.quoted.single.tsx
+//                        ^ punctuation.definition.string.begin.tsx
+//                                          ^ punctuation.definition.string.end.tsx
+//                                           ^ meta.brace.round.tsx
+  const posts = await res.json()
+//<0---------------------------- meta.function.tsx
+//<0---------------------------- meta.block.tsx
+//^----------------------------- meta.var.expr.tsx
+//^---- storage.type.tsx
+//      ^----- meta.var-single-variable.expr.tsx
+//      ^---- meta.definition.variable.tsx variable.other.constant.tsx
+//            ^ keyword.operator.assignment.tsx
+//              ^---- keyword.control.flow.tsx
+//                    ^------- meta.function-call.tsx
+//                    ^-- variable.other.object.tsx
+//                       ^ punctuation.accessor.tsx
+//                        ^--- entity.name.function.tsx
+//                            ^- meta.brace.round.tsx
+
+  return {
+//<0------ meta.function.tsx
+//<0------ meta.block.tsx
+//^----- keyword.control.flow.tsx
+//       ^ meta.objectliteral.tsx
+//       ^ punctuation.definition.block.tsx
+    props: {
+//<0-------- meta.function.tsx
+//<0-------- meta.block.tsx
+//<0-------- meta.objectliteral.tsx
+//  ^------- meta.object.member.tsx
+//  ^---- meta.object-literal.key.tsx
+//       ^ meta.object-literal.key.tsx punctuation.separator.key-value.tsx
+//         ^ meta.objectliteral.tsx
+//         ^ punctuation.definition.block.tsx
+      posts
+//<0------- meta.function.tsx
+//<0------- meta.block.tsx
+//<0------- meta.objectliteral.tsx
+//<0------- meta.object.member.tsx
+//<0------- meta.objectliteral.tsx
+//    ^---- meta.object.member.tsx
+//    ^---- variable.other.readwrite.tsx
+    }
+//<0- meta.function.tsx
+//<0- meta.block.tsx
+//<0- meta.objectliteral.tsx
+//<0- meta.object.member.tsx
+//<0- meta.objectliteral.tsx
+//  ^ punctuation.definition.block.tsx
+  }
+//<0 meta.function.tsx
+//<0 meta.block.tsx
+//<0 meta.objectliteral.tsx
+//<0 meta.object.member.tsx
+//^ punctuation.definition.block.tsx
+}
+//<0 meta.function.tsx
+//<0 meta.block.tsx
+//<0 punctuation.definition.block.tsx
+
+export default Blog
+//<0--------------- meta.export.default.tsx
+//<0-- keyword.control.export.tsx
+//     ^------ keyword.control.default.tsx
+//             ^--- variable.other.readwrite.tsx
+
+// From https://nextjs.org/docs/basic-features/data-fetching
+//<0 comment.line.double-slash.tsx
+//<0 punctuation.definition.comment.tsx

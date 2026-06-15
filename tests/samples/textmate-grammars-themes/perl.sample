@@ -1,0 +1,92 @@
+# grammar: source.perl
+
+#!/usr/bin/perl
+#<0------------ comment.line.number-sign.perl
+#<0 punctuation.definition.comment.perl
+use strict;
+#<0 keyword.control.perl
+use warnings;
+#<0 keyword.control.perl
+
+# first, create your message
+#<0------------------------- comment.line.number-sign.perl
+#<0 punctuation.definition.comment.perl
+use Email::MIME;
+#<0 keyword.control.perl
+my $message = Email::MIME->create(
+#<0 storage.modifier.perl
+#  ^------- variable.other.readwrite.global.perl
+#  ^ punctuation.definition.variable.perl
+#                        ^- keyword.operator.comparison.perl
+  header_str => [
+# ^--------- constant.other.key.perl
+#            ^- keyword.operator.comparison.perl
+    From    => 'you@example.com',
+#<0- meta.leading-tabs
+#<0- meta.odd-tab
+#   ^--- constant.other.key.perl
+#           ^- keyword.operator.comparison.perl
+#              ^---------------- string.quoted.single.perl
+#              ^ punctuation.definition.string.begin.perl
+#                              ^ punctuation.definition.string.end.perl
+    To      => 'friend@example.com',
+#<0- meta.leading-tabs
+#<0- meta.odd-tab
+#   ^- constant.other.key.perl
+#           ^- keyword.operator.comparison.perl
+#              ^------------------- string.quoted.single.perl
+#              ^ punctuation.definition.string.begin.perl
+#                                 ^ punctuation.definition.string.end.perl
+    Subject => 'Happy birthday!',
+#<0- meta.leading-tabs
+#<0- meta.odd-tab
+#   ^------ constant.other.key.perl
+#           ^- keyword.operator.comparison.perl
+#              ^---------------- string.quoted.single.perl
+#              ^ punctuation.definition.string.begin.perl
+#                              ^ punctuation.definition.string.end.perl
+  ],
+  attributes => {
+# ^--------- constant.other.key.perl
+#            ^- keyword.operator.comparison.perl
+    encoding => 'quoted-printable',
+#<0- meta.leading-tabs
+#<0- meta.odd-tab
+#   ^------- constant.other.key.perl
+#            ^- keyword.operator.comparison.perl
+#               ^----------------- string.quoted.single.perl
+#               ^ punctuation.definition.string.begin.perl
+#                                ^ punctuation.definition.string.end.perl
+    charset  => 'ISO-8859-1',
+#<0- meta.leading-tabs
+#<0- meta.odd-tab
+#   ^------ constant.other.key.perl
+#            ^- keyword.operator.comparison.perl
+#               ^----------- string.quoted.single.perl
+#               ^ punctuation.definition.string.begin.perl
+#                          ^ punctuation.definition.string.end.perl
+  },
+  body_str => "Happy birthday to you!\n",
+# ^------- constant.other.key.perl
+#          ^- keyword.operator.comparison.perl
+#             ^------------------------- string.quoted.double.perl
+#             ^ punctuation.definition.string.begin.perl
+#                                    ^- constant.character.escape.perl
+#                                      ^ punctuation.definition.string.end.perl
+);
+
+# send the message
+#<0--------------- comment.line.number-sign.perl
+#<0 punctuation.definition.comment.perl
+use Email::Sender::Simple qw(sendmail);
+#<0 keyword.control.perl
+#                         ^----------- string.quoted.other.q-paren.perl
+#                         ^-- punctuation.definition.string.begin.perl
+#                                    ^ punctuation.definition.string.end.perl
+sendmail($message);
+#        ^------- variable.other.readwrite.global.perl
+#        ^ punctuation.definition.variable.perl
+
+# From https://learn.perl.org/examples/email.html
+#<0---------------------------------------------- comment.line.number-sign.perl
+#<0 punctuation.definition.comment.perl

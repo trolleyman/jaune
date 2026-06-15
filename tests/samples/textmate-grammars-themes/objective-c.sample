@@ -1,0 +1,99 @@
+// grammar: source.objc
+
+@interface classname : superclassname {
+//<0----------------------------------- meta.interface-or-protocol.objc
+//<0------ storage.type.objc
+//<0 punctuation.definition.storage.type.objc
+//         ^-------- entity.name.type.objc
+//                   ^ punctuation.definition.entity.other.inherited-class.objc
+//                     ^------------- entity.other.inherited-class.objc
+//                                   ^ meta.divider.objc
+//                                    ^ meta.scope.interface.objc
+//                                    ^ meta.block.objc
+//                                    ^ punctuation.section.block.begin.bracket.curly.objc
+  // instance variables
+//<0------------------- meta.interface-or-protocol.objc
+//<0------------------- meta.scope.interface.objc
+//<0------------------- meta.block.objc
+//<0 punctuation.whitespace.comment.leading.objc
+//^-------------------- comment.line.double-slash.objc
+//^- punctuation.definition.comment.objc
+}
+//<0 meta.interface-or-protocol.objc
+//<0 meta.scope.interface.objc
+//<0 meta.block.objc
+//<0 punctuation.section.block.end.bracket.curly.objc
++ classMethod1;
+//<0----------- meta.interface-or-protocol.objc
+//<0----------- meta.scope.interface.objc
+//<0----------- meta.function.objc
++ (return_type)classMethod2;
+//<0------------------------ meta.interface-or-protocol.objc
+//<0------------------------ meta.scope.interface.objc
+//<0------------------------ meta.function.objc
+//^------------------------ meta.return-type.objc
+//^ punctuation.definition.type.begin.objc
+//            ^ punctuation.definition.type.end.objc
+//             ^----------- entity.name.function.objc
++ (return_type)classMethod3:(param1_type)param1_varName;
+//<0---------------------------------------------------- meta.interface-or-protocol.objc
+//<0---------------------------------------------------- meta.scope.interface.objc
+//<0---------------------------------------------------- meta.function.objc
+//^------------------------ meta.return-type.objc
+//^ punctuation.definition.type.begin.objc
+//            ^ punctuation.definition.type.end.objc
+//             ^----------- entity.name.function.objc
+//                         ^--------------------------- meta.argument-type.objc
+//                         ^ entity.name.function.name-of-parameter.objc
+//                         ^ punctuation.separator.arguments.objc
+//                          ^ punctuation.definition.type.begin.objc
+//                                      ^ punctuation.definition.type.end.objc
+//                                       ^------------- variable.parameter.function.objc
+
+- (return_type)instanceMethod1With1Parameter:(param1_type)param1_varName;
+//<0--------------------------------------------------------------------- meta.interface-or-protocol.objc
+//<0--------------------------------------------------------------------- meta.scope.interface.objc
+//<0--------------------------------------------------------------------- meta.function.objc
+//^----------------------------------------- meta.return-type.objc
+//^ punctuation.definition.type.begin.objc
+//            ^ punctuation.definition.type.end.objc
+//             ^---------------------------- entity.name.function.objc
+//                                          ^--------------------------- meta.argument-type.objc
+//                                          ^ entity.name.function.name-of-parameter.objc
+//                                          ^ punctuation.separator.arguments.objc
+//                                           ^ punctuation.definition.type.begin.objc
+//                                                       ^ punctuation.definition.type.end.objc
+//                                                        ^------------- variable.parameter.function.objc
+- (return_type)instanceMethod2With2Parameters:(param1_type)param1_varName
+//<0--------------------------------------------------------------------- meta.interface-or-protocol.objc
+//<0--------------------------------------------------------------------- meta.scope.interface.objc
+//<0--------------------------------------------------------------------- meta.function.objc
+//^------------------------------------------ meta.return-type.objc
+//^ punctuation.definition.type.begin.objc
+//            ^ punctuation.definition.type.end.objc
+//             ^----------------------------- entity.name.function.objc
+//                                           ^--------------------------- meta.argument-type.objc
+//                                           ^ entity.name.function.name-of-parameter.objc
+//                                           ^ punctuation.separator.arguments.objc
+//                                            ^ punctuation.definition.type.begin.objc
+//                                                        ^ punctuation.definition.type.end.objc
+//                                                         ^------------- variable.parameter.function.objc
+                              param2_callName:(param2_type)param2_varName;
+//<0---------------------------------------------------------------------- meta.interface-or-protocol.objc
+//<0---------------------------------------------------------------------- meta.scope.interface.objc
+//<0---------------------------------------------------------------------- meta.function.objc
+//                            ^-------------- entity.name.function.name-of-parameter.objc
+//                                           ^--------------------------- meta.argument-type.objc
+//                                           ^ entity.name.function.name-of-parameter.objc
+//                                           ^ punctuation.separator.arguments.objc
+//                                            ^ punctuation.definition.type.begin.objc
+//                                                        ^ punctuation.definition.type.end.objc
+//                                                         ^------------- variable.parameter.function.objc
+@end
+//<0 meta.interface-or-protocol.objc
+//<0 storage.type.objc
+//<0 punctuation.definition.storage.type.objc
+
+// From https://en.wikipedia.org/wiki/Objective-C
+//<0--------------------------------------------- comment.line.double-slash.objc
+//<0 punctuation.definition.comment.objc

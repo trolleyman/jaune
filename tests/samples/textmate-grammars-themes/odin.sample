@@ -1,0 +1,742 @@
+// grammar: source.odin
+
+package main
+//<0--- keyword.control.odin
+//      ^--- entity.name.type.module.odin
+
+import "core:fmt"
+//<0------------- meta.import.odin
+//<0-- keyword.control.import.odin
+//     ^--------- string.quoted.double.odin
+//     ^ punctuation.definition.string.begin.odin
+//              ^ punctuation.definition.string.end.odin
+import "core:os"
+//<0------------ meta.import.odin
+//<0-- keyword.control.import.odin
+//     ^-------- string.quoted.double.odin
+//     ^ punctuation.definition.string.begin.odin
+//             ^ punctuation.definition.string.end.odin
+import "core:mem"
+//<0------------- meta.import.odin
+//<0-- keyword.control.import.odin
+//     ^--------- string.quoted.double.odin
+//     ^ punctuation.definition.string.begin.odin
+//              ^ punctuation.definition.string.end.odin
+
+// A struct with fields
+//<0------------------- comment.line.double-slash.odin
+//<0 punctuation.definition.comment.odin
+Vector3 :: struct {
+//<0--------------- meta.definition.variable.odin
+//<0--- entity.name.type.odin
+//      ^- keyword.operator.assignment.odin
+//         ^----- storage.type.odin
+//                ^ meta.object.type.odin
+//                ^ punctuation.definition.block.odin
+    x, y, z: f32,
+//<0------------- meta.definition.variable.odin
+//<0------------- meta.object.type.odin
+//  ^----------- meta.type.annotation.odin
+//  ^ variable.name.odin
+//   ^ punctuation.odin
+//     ^ variable.name.odin
+//      ^ punctuation.odin
+//        ^ variable.name.odin
+//         ^ keyword.operator.type.annotation.odin
+//           ^-- support.type.primitive.odin
+//              ^ punctuation.odin
+}
+//<0 meta.definition.variable.odin
+//<0 meta.object.type.odin
+//<0 punctuation.definition.block.odin
+
+// An enum
+//<0------ comment.line.double-slash.odin
+//<0 punctuation.definition.comment.odin
+Direction :: enum {
+//<0--------------- meta.definition.variable.odin
+//<0----- entity.name.type.odin
+//        ^- keyword.operator.assignment.odin
+//           ^--- storage.type.odin
+//                ^ meta.object.type.odin
+//                ^ punctuation.definition.block.odin
+    North,
+//<0------ meta.definition.variable.odin
+//<0------ meta.object.type.odin
+//  ^---- variable.name.odin
+//       ^ punctuation.odin
+    South,
+//<0------ meta.definition.variable.odin
+//<0------ meta.object.type.odin
+//  ^---- variable.name.odin
+//       ^ punctuation.odin
+    East,
+//<0----- meta.definition.variable.odin
+//<0----- meta.object.type.odin
+//  ^--- variable.name.odin
+//      ^ punctuation.odin
+    West,
+//<0----- meta.definition.variable.odin
+//<0----- meta.object.type.odin
+//  ^--- variable.name.odin
+//      ^ punctuation.odin
+}
+//<0 meta.definition.variable.odin
+//<0 meta.object.type.odin
+//<0 punctuation.definition.block.odin
+
+// A union type
+//<0----------- comment.line.double-slash.odin
+//<0 punctuation.definition.comment.odin
+Value :: union {
+//<0------------ meta.definition.variable.odin
+//<0- entity.name.type.odin
+//    ^- keyword.operator.assignment.odin
+//       ^---- storage.type.odin
+//             ^ meta.object.type.odin
+//             ^ punctuation.definition.block.odin
+    int,
+//<0---- meta.definition.variable.odin
+//<0---- meta.object.type.odin
+//  ^-- support.type.primitive.odin
+//     ^ punctuation.odin
+    f64,
+//<0---- meta.definition.variable.odin
+//<0---- meta.object.type.odin
+//  ^-- support.type.primitive.odin
+//     ^ punctuation.odin
+    string,
+//<0------- meta.definition.variable.odin
+//<0------- meta.object.type.odin
+//  ^----- support.type.primitive.odin
+//        ^ punctuation.odin
+}
+//<0 meta.definition.variable.odin
+//<0 meta.object.type.odin
+//<0 punctuation.definition.block.odin
+
+// Procedure with multiple return values
+//<0------------------------------------ comment.line.double-slash.odin
+//<0 punctuation.definition.comment.odin
+divide :: proc(a, b: int) -> (result: int, ok: bool) {
+//<0-------------------------------------------------- meta.definition.variable.odin
+//<0-- meta.definition.function.odin
+//<0-- entity.name.function.odin
+//     ^- keyword.operator.assignment.odin
+//        ^--- storage.type.odin
+//            ^---------- meta.parameters.odin
+//            ^ punctuation.definition.parameters.begin.odin
+//             ^-------- meta.type.annotation.odin
+//             ^ variable.name.odin
+//              ^ punctuation.odin
+//                ^ variable.name.odin
+//                 ^ keyword.operator.type.annotation.odin
+//                   ^-- support.type.primitive.odin
+//                      ^ punctuation.definition.parameters.end.odin
+//                        ^-------------------------- meta.return.type.odin
+//                        ^- storage.type.function.arrow.odin
+//                           ^---------------------- meta.parameters.odin
+//                           ^ punctuation.definition.parameters.begin.odin
+//                            ^---------- meta.type.annotation.odin
+//                            ^----- variable.name.odin
+//                                  ^ keyword.operator.type.annotation.odin
+//                                    ^-- support.type.primitive.odin
+//                                       ^ punctuation.odin
+//                                         ^------- meta.type.annotation.odin
+//                                         ^- variable.name.odin
+//                                           ^ keyword.operator.type.annotation.odin
+//                                             ^--- support.type.primitive.odin
+//                                                 ^ punctuation.definition.parameters.end.odin
+//                                                   ^ meta.object.type.odin
+//                                                   ^ punctuation.definition.block.odin
+    if b == 0 {
+//<0----------- meta.definition.variable.odin
+//<0----------- meta.object.type.odin
+//  ^- keyword.control.odin
+//     ^ variable.name.odin
+//       ^- keyword.operator.comparison.odin
+//          ^ constant.numeric.odin
+//            ^ meta.block.odin
+//            ^ punctuation.definition.block.odin
+        return 0, false
+//<0------------------- meta.definition.variable.odin
+//<0------------------- meta.object.type.odin
+//<0------------------- meta.block.odin
+//      ^----- keyword.control.odin
+//             ^ constant.numeric.odin
+//              ^ punctuation.odin
+//                ^---- constant.language.odin
+    }
+//<0- meta.definition.variable.odin
+//<0- meta.object.type.odin
+//<0- meta.block.odin
+//  ^ punctuation.definition.block.odin
+    return a / b, true
+//<0------------------ meta.definition.variable.odin
+//<0------------------ meta.object.type.odin
+//  ^----- keyword.control.odin
+//         ^ variable.name.odin
+//           ^ keyword.operator.odin
+//             ^ variable.name.odin
+//              ^ punctuation.odin
+//                ^--- constant.language.odin
+}
+//<0 meta.definition.variable.odin
+//<0 meta.object.type.odin
+//<0 punctuation.definition.block.odin
+
+// Generic procedure
+//<0---------------- comment.line.double-slash.odin
+//<0 punctuation.definition.comment.odin
+swap :: proc(a, b: ^$T) {
+//<0--------------------- meta.definition.variable.odin
+//<0 meta.definition.function.odin
+//<0 entity.name.function.odin
+//   ^- keyword.operator.assignment.odin
+//      ^--- storage.type.odin
+//          ^---------- meta.parameters.odin
+//          ^ punctuation.definition.parameters.begin.odin
+//           ^-------- meta.type.annotation.odin
+//           ^ variable.name.odin
+//            ^ punctuation.odin
+//              ^ variable.name.odin
+//               ^ keyword.operator.type.annotation.odin
+//                 ^ keyword.operator.address.odin
+//                  ^ keyword.operator.odin
+//                   ^ entity.name.type.odin
+//                    ^ punctuation.definition.parameters.end.odin
+//                      ^ meta.object.type.odin
+//                      ^ punctuation.definition.block.odin
+    a^, b^ = b^, a^
+//<0--------------- meta.definition.variable.odin
+//<0--------------- meta.object.type.odin
+//  ^ variable.name.odin
+//   ^ keyword.operator.address.odin
+//    ^ punctuation.odin
+//      ^ variable.name.odin
+//       ^ keyword.operator.address.odin
+//         ^ keyword.operator.assignment.odin
+//           ^ variable.name.odin
+//            ^ keyword.operator.address.odin
+//             ^ punctuation.odin
+//               ^ variable.name.odin
+//                ^ keyword.operator.address.odin
+}
+//<0 meta.definition.variable.odin
+//<0 meta.object.type.odin
+//<0 punctuation.definition.block.odin
+
+// Main entry point
+//<0--------------- comment.line.double-slash.odin
+//<0 punctuation.definition.comment.odin
+main :: proc() {
+//<0------------ meta.definition.variable.odin
+//<0 meta.definition.function.odin
+//<0 entity.name.function.odin
+//   ^- keyword.operator.assignment.odin
+//      ^--- storage.type.odin
+//          ^- meta.parameters.odin
+//          ^ punctuation.definition.parameters.begin.odin
+//           ^ punctuation.definition.parameters.end.odin
+//             ^ meta.object.type.odin
+//             ^ punctuation.definition.block.odin
+    // Variable declarations
+//<0------------------------ meta.definition.variable.odin
+//<0------------------------ meta.object.type.odin
+//  ^----------------------- comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    x: int = 42
+//<0----------- meta.definition.variable.odin
+//<0----------- meta.object.type.odin
+//  ^------ meta.type.annotation.odin
+//  ^ variable.name.odin
+//   ^ keyword.operator.type.annotation.odin
+//     ^-- support.type.primitive.odin
+//         ^ keyword.operator.assignment.odin
+//           ^- constant.numeric.odin
+    y := 3.14
+//<0--------- meta.definition.variable.odin
+//<0--------- meta.object.type.odin
+//  ^--- meta.definition.variable.odin
+//  ^ variable.name.odin
+//    ^- keyword.operator.assignment.odin
+//       ^--- constant.numeric.odin
+    name := "Odin"
+//<0-------------- meta.definition.variable.odin
+//<0-------------- meta.object.type.odin
+//  ^------ meta.definition.variable.odin
+//  ^--- variable.name.odin
+//       ^- keyword.operator.assignment.odin
+//          ^----- string.quoted.double.odin
+//          ^ punctuation.definition.string.begin.odin
+//               ^ punctuation.definition.string.end.odin
+
+    // String formatting
+//<0-------------------- meta.definition.variable.odin
+//<0-------------------- meta.object.type.odin
+//  ^------------------- comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    fmt.printf("Hello, %s! x = %d, y = %f\n", name, x, y)
+//<0----------------------------------------------------- meta.definition.variable.odin
+//<0----------------------------------------------------- meta.object.type.odin
+//  ^-- variable.other.object.odin
+//     ^ punctuation.accessor.odin
+//      ^------------------------------------------------ meta.function-call.odin
+//      ^----- entity.name.function.odin
+//            ^ meta.brace.round.odin
+//             ^---------------------------- string.quoted.double.odin
+//             ^ punctuation.definition.string.begin.odin
+//                     ^- constant.character.escape.placeholders.odin
+//                             ^- constant.character.escape.placeholders.odin
+//                                     ^- constant.character.escape.placeholders.odin
+//                                       ^- constant.character.escape.odin
+//                                         ^ punctuation.definition.string.end.odin
+//                                          ^ punctuation.odin
+//                                            ^--- variable.name.odin
+//                                                ^ punctuation.odin
+//                                                  ^ variable.name.odin
+//                                                   ^ punctuation.odin
+//                                                     ^ variable.name.odin
+//                                                      ^ meta.brace.round.odin
+
+    // Control flow
+//<0--------------- meta.definition.variable.odin
+//<0--------------- meta.object.type.odin
+//  ^-------------- comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    if x > 0 {
+//<0---------- meta.definition.variable.odin
+//<0---------- meta.object.type.odin
+//  ^- keyword.control.odin
+//     ^ variable.name.odin
+//       ^ keyword.operator.relational.odin
+//         ^ constant.numeric.odin
+//           ^ meta.block.odin
+//           ^ punctuation.definition.block.odin
+        fmt.println("x is positive")
+//<0-------------------------------- meta.definition.variable.odin
+//<0-------------------------------- meta.object.type.odin
+//<0-------------------------------- meta.block.odin
+//      ^-- variable.other.object.odin
+//         ^ punctuation.accessor.odin
+//          ^----------------------- meta.function-call.odin
+//          ^------ entity.name.function.odin
+//                 ^ meta.brace.round.odin
+//                  ^-------------- string.quoted.double.odin
+//                  ^ punctuation.definition.string.begin.odin
+//                                ^ punctuation.definition.string.end.odin
+//                                 ^ meta.brace.round.odin
+    } else {
+//<0-------- meta.definition.variable.odin
+//<0-------- meta.object.type.odin
+//<0- meta.block.odin
+//  ^ punctuation.definition.block.odin
+//    ^--- keyword.control.odin
+//         ^ meta.block.odin
+//         ^ punctuation.definition.block.odin
+        fmt.println("x is not positive")
+//<0------------------------------------ meta.definition.variable.odin
+//<0------------------------------------ meta.object.type.odin
+//<0------------------------------------ meta.block.odin
+//      ^-- variable.other.object.odin
+//         ^ punctuation.accessor.odin
+//          ^--------------------------- meta.function-call.odin
+//          ^------ entity.name.function.odin
+//                 ^ meta.brace.round.odin
+//                  ^------------------ string.quoted.double.odin
+//                  ^ punctuation.definition.string.begin.odin
+//                                    ^ punctuation.definition.string.end.odin
+//                                     ^ meta.brace.round.odin
+    }
+//<0- meta.definition.variable.odin
+//<0- meta.object.type.odin
+//<0- meta.block.odin
+//  ^ punctuation.definition.block.odin
+
+    // For loop
+//<0----------- meta.definition.variable.odin
+//<0----------- meta.object.type.odin
+//  ^---------- comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    for i := 0; i < 5; i += 1 {
+//<0--------------------------- meta.definition.variable.odin
+//<0--------------------------- meta.object.type.odin
+//  ^-- keyword.control.odin
+//      ^--- meta.definition.variable.odin
+//      ^ variable.name.odin
+//        ^- keyword.operator.assignment.odin
+//           ^ constant.numeric.odin
+//            ^ punctuation.odin
+//              ^ variable.name.odin
+//                ^ keyword.operator.relational.odin
+//                  ^ constant.numeric.odin
+//                   ^ punctuation.odin
+//                     ^ variable.name.odin
+//                       ^- keyword.operator.assignment.compound.odin
+//                          ^ constant.numeric.odin
+//                            ^ meta.block.odin
+//                            ^ punctuation.definition.block.odin
+        fmt.println(i)
+//<0------------------ meta.definition.variable.odin
+//<0------------------ meta.object.type.odin
+//<0------------------ meta.block.odin
+//      ^-- variable.other.object.odin
+//         ^ punctuation.accessor.odin
+//          ^--------- meta.function-call.odin
+//          ^------ entity.name.function.odin
+//                 ^ meta.brace.round.odin
+//                  ^ variable.name.odin
+//                   ^ meta.brace.round.odin
+    }
+//<0- meta.definition.variable.odin
+//<0- meta.object.type.odin
+//<0- meta.block.odin
+//  ^ punctuation.definition.block.odin
+
+    // Range-based loop
+//<0------------------- meta.definition.variable.odin
+//<0------------------- meta.object.type.odin
+//  ^------------------ comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    numbers := [5]int{1, 2, 3, 4, 5}
+//<0-------------------------------- meta.definition.variable.odin
+//<0-------------------------------- meta.object.type.odin
+//  ^--------- meta.definition.variable.odin
+//  ^------ variable.name.odin
+//          ^- keyword.operator.assignment.odin
+//             ^-- meta.slice.odin
+//             ^ meta.brace.square.odin
+//              ^ constant.numeric.odin
+//               ^ meta.brace.square.odin
+//                ^-- support.type.primitive.odin
+//                   ^-------------- meta.block.odin
+//                   ^ punctuation.definition.block.odin
+//                    ^ constant.numeric.odin
+//                     ^ punctuation.odin
+//                       ^ constant.numeric.odin
+//                        ^ punctuation.odin
+//                          ^ constant.numeric.odin
+//                           ^ punctuation.odin
+//                             ^ constant.numeric.odin
+//                              ^ punctuation.odin
+//                                ^ constant.numeric.odin
+//                                 ^ punctuation.definition.block.odin
+    for num in numbers {
+//<0-------------------- meta.definition.variable.odin
+//<0-------------------- meta.object.type.odin
+//  ^-- keyword.control.odin
+//      ^-- variable.name.odin
+//          ^- keyword.control.odin
+//             ^------ variable.name.odin
+//                     ^ meta.block.odin
+//                     ^ punctuation.definition.block.odin
+        fmt.println(num)
+//<0-------------------- meta.definition.variable.odin
+//<0-------------------- meta.object.type.odin
+//<0-------------------- meta.block.odin
+//      ^-- variable.other.object.odin
+//         ^ punctuation.accessor.odin
+//          ^----------- meta.function-call.odin
+//          ^------ entity.name.function.odin
+//                 ^ meta.brace.round.odin
+//                  ^-- variable.name.odin
+//                     ^ meta.brace.round.odin
+    }
+//<0- meta.definition.variable.odin
+//<0- meta.object.type.odin
+//<0- meta.block.odin
+//  ^ punctuation.definition.block.odin
+
+    // Switch statement
+//<0------------------- meta.definition.variable.odin
+//<0------------------- meta.object.type.odin
+//  ^------------------ comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    dir := Direction.North
+//<0---------------------- meta.definition.variable.odin
+//<0---------------------- meta.object.type.odin
+//  ^----- meta.definition.variable.odin
+//  ^-- variable.name.odin
+//      ^- keyword.operator.assignment.odin
+//         ^-------- variable.other.object.odin
+//                  ^ punctuation.accessor.odin
+//                   ^---- variable.name.odin
+    switch dir {
+//<0------------ meta.definition.variable.odin
+//<0------------ meta.object.type.odin
+//  ^----- keyword.control.odin
+//         ^-- variable.name.odin
+//             ^ meta.block.odin
+//             ^ punctuation.definition.block.odin
+    case .North:
+//<0------------ meta.definition.variable.odin
+//<0------------ meta.object.type.odin
+//<0------------ meta.block.odin
+//  ^----------- meta.case-clause.expr.odin
+//  ^--- keyword.control.case.odin
+//       ^ punctuation.odin
+//        ^---- variable.name.odin
+//             ^ punctuation.definition.section.case-statement.odin
+        fmt.println("Going north")
+//<0------------------------------ meta.definition.variable.odin
+//<0------------------------------ meta.object.type.odin
+//<0------------------------------ meta.block.odin
+//      ^-- variable.other.object.odin
+//         ^ punctuation.accessor.odin
+//          ^--------------------- meta.function-call.odin
+//          ^------ entity.name.function.odin
+//                 ^ meta.brace.round.odin
+//                  ^------------ string.quoted.double.odin
+//                  ^ punctuation.definition.string.begin.odin
+//                              ^ punctuation.definition.string.end.odin
+//                               ^ meta.brace.round.odin
+    case .South:
+//<0------------ meta.definition.variable.odin
+//<0------------ meta.object.type.odin
+//<0------------ meta.block.odin
+//  ^----------- meta.case-clause.expr.odin
+//  ^--- keyword.control.case.odin
+//       ^ punctuation.odin
+//        ^---- variable.name.odin
+//             ^ punctuation.definition.section.case-statement.odin
+        fmt.println("Going south")
+//<0------------------------------ meta.definition.variable.odin
+//<0------------------------------ meta.object.type.odin
+//<0------------------------------ meta.block.odin
+//      ^-- variable.other.object.odin
+//         ^ punctuation.accessor.odin
+//          ^--------------------- meta.function-call.odin
+//          ^------ entity.name.function.odin
+//                 ^ meta.brace.round.odin
+//                  ^------------ string.quoted.double.odin
+//                  ^ punctuation.definition.string.begin.odin
+//                              ^ punctuation.definition.string.end.odin
+//                               ^ meta.brace.round.odin
+    case:
+//<0----- meta.definition.variable.odin
+//<0----- meta.object.type.odin
+//<0----- meta.block.odin
+//  ^---- meta.case-clause.expr.odin
+//  ^--- keyword.control.case.odin
+//      ^ punctuation.definition.section.case-statement.odin
+        fmt.println("Other direction")
+//<0---------------------------------- meta.definition.variable.odin
+//<0---------------------------------- meta.object.type.odin
+//<0---------------------------------- meta.block.odin
+//      ^-- variable.other.object.odin
+//         ^ punctuation.accessor.odin
+//          ^------------------------- meta.function-call.odin
+//          ^------ entity.name.function.odin
+//                 ^ meta.brace.round.odin
+//                  ^---------------- string.quoted.double.odin
+//                  ^ punctuation.definition.string.begin.odin
+//                                  ^ punctuation.definition.string.end.odin
+//                                   ^ meta.brace.round.odin
+    }
+//<0- meta.definition.variable.odin
+//<0- meta.object.type.odin
+//<0- meta.block.odin
+//  ^ punctuation.definition.block.odin
+
+    // Using defer
+//<0-------------- meta.definition.variable.odin
+//<0-------------- meta.object.type.odin
+//  ^------------- comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    if file, ok := os.open("test.txt"); ok == nil {
+//<0----------------------------------------------- meta.definition.variable.odin
+//<0----------------------------------------------- meta.object.type.odin
+//  ^- keyword.control.odin
+//     ^---------- meta.definition.variable.odin
+//     ^--- variable.name.odin
+//         ^ punctuation.odin
+//           ^- variable.name.odin
+//              ^- keyword.operator.assignment.odin
+//                 ^- variable.other.object.odin
+//                   ^ punctuation.accessor.odin
+//                    ^--------------- meta.function-call.odin
+//                    ^--- entity.name.function.odin
+//                        ^ meta.brace.round.odin
+//                         ^--------- string.quoted.double.odin
+//                         ^ punctuation.definition.string.begin.odin
+//                                  ^ punctuation.definition.string.end.odin
+//                                   ^ meta.brace.round.odin
+//                                    ^ punctuation.odin
+//                                      ^- variable.name.odin
+//                                         ^- keyword.operator.comparison.odin
+//                                            ^-- constant.language.odin
+//                                                ^ meta.block.odin
+//                                                ^ punctuation.definition.block.odin
+        defer os.close(file)
+//<0------------------------ meta.definition.variable.odin
+//<0------------------------ meta.object.type.odin
+//<0------------------------ meta.block.odin
+//      ^---- keyword.control.odin
+//            ^- variable.other.object.odin
+//              ^ punctuation.accessor.odin
+//               ^---------- meta.function-call.odin
+//               ^---- entity.name.function.odin
+//                    ^ meta.brace.round.odin
+//                     ^--- variable.name.odin
+//                         ^ meta.brace.round.odin
+        // Work with file
+//<0--------------------- meta.definition.variable.odin
+//<0--------------------- meta.object.type.odin
+//<0--------------------- meta.block.odin
+//      ^---------------- comment.line.double-slash.odin
+//      ^- punctuation.definition.comment.odin
+    }
+//<0- meta.definition.variable.odin
+//<0- meta.object.type.odin
+//<0- meta.block.odin
+//  ^ punctuation.definition.block.odin
+
+    // Struct initialization
+//<0------------------------ meta.definition.variable.odin
+//<0------------------------ meta.object.type.odin
+//  ^----------------------- comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    v := Vector3{1.0, 2.0, 3.0}
+//<0--------------------------- meta.definition.variable.odin
+//<0--------------------------- meta.object.type.odin
+//  ^--- meta.definition.variable.odin
+//  ^ variable.name.odin
+//    ^- keyword.operator.assignment.odin
+//       ^------ variable.name.odin
+//              ^-------------- meta.block.odin
+//              ^ punctuation.definition.block.odin
+//               ^-- constant.numeric.odin
+//                  ^ punctuation.odin
+//                    ^-- constant.numeric.odin
+//                       ^ punctuation.odin
+//                         ^-- constant.numeric.odin
+//                            ^ punctuation.definition.block.odin
+    fmt.printf("Vector: (%f, %f, %f)\n", v.x, v.y, v.z)
+//<0--------------------------------------------------- meta.definition.variable.odin
+//<0--------------------------------------------------- meta.object.type.odin
+//  ^-- variable.other.object.odin
+//     ^ punctuation.accessor.odin
+//      ^---------------------------------------------- meta.function-call.odin
+//      ^----- entity.name.function.odin
+//            ^ meta.brace.round.odin
+//             ^----------------------- string.quoted.double.odin
+//             ^ punctuation.definition.string.begin.odin
+//                       ^- constant.character.escape.placeholders.odin
+//                           ^- constant.character.escape.placeholders.odin
+//                               ^- constant.character.escape.placeholders.odin
+//                                  ^- constant.character.escape.odin
+//                                    ^ punctuation.definition.string.end.odin
+//                                     ^ punctuation.odin
+//                                       ^ variable.other.object.odin
+//                                        ^ punctuation.accessor.odin
+//                                         ^ variable.name.odin
+//                                          ^ punctuation.odin
+//                                            ^ variable.other.object.odin
+//                                             ^ punctuation.accessor.odin
+//                                              ^ variable.name.odin
+//                                               ^ punctuation.odin
+//                                                 ^ variable.other.object.odin
+//                                                  ^ punctuation.accessor.odin
+//                                                   ^ variable.name.odin
+//                                                    ^ meta.brace.round.odin
+
+    // Pointer operations
+//<0--------------------- meta.definition.variable.odin
+//<0--------------------- meta.object.type.odin
+//  ^-------------------- comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    ptr := &x
+//<0--------- meta.definition.variable.odin
+//<0--------- meta.object.type.odin
+//  ^----- meta.definition.variable.odin
+//  ^-- variable.name.odin
+//      ^- keyword.operator.assignment.odin
+//         ^ keyword.operator.address.odin
+//          ^ variable.name.odin
+    ptr^ = 100
+//<0---------- meta.definition.variable.odin
+//<0---------- meta.object.type.odin
+//  ^-- variable.name.odin
+//     ^ keyword.operator.address.odin
+//       ^ keyword.operator.assignment.odin
+//         ^-- constant.numeric.odin
+
+    // Slice operations
+//<0------------------- meta.definition.variable.odin
+//<0------------------- meta.object.type.odin
+//  ^------------------ comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    slice := numbers[1:4]
+//<0--------------------- meta.definition.variable.odin
+//<0--------------------- meta.object.type.odin
+//  ^------- meta.definition.variable.odin
+//  ^---- variable.name.odin
+//        ^- keyword.operator.assignment.odin
+//           ^------ variable.name.odin
+//                  ^---- meta.slice.odin
+//                  ^ meta.brace.square.odin
+//                   ^ constant.numeric.odin
+//                    ^ keyword.operator.slice.odin
+//                     ^ constant.numeric.odin
+//                      ^ meta.brace.square.odin
+    fmt.println(slice)
+//<0------------------ meta.definition.variable.odin
+//<0------------------ meta.object.type.odin
+//  ^-- variable.other.object.odin
+//     ^ punctuation.accessor.odin
+//      ^------------- meta.function-call.odin
+//      ^------ entity.name.function.odin
+//             ^ meta.brace.round.odin
+//              ^---- variable.name.odin
+//                   ^ meta.brace.round.odin
+
+    // Using or_else
+//<0---------------- meta.definition.variable.odin
+//<0---------------- meta.object.type.odin
+//  ^--------------- comment.line.double-slash.odin
+//  ^- punctuation.definition.comment.odin
+    result, ok := divide(10, 0)
+//<0--------------------------- meta.definition.variable.odin
+//<0--------------------------- meta.object.type.odin
+//  ^------------ meta.definition.variable.odin
+//  ^----- variable.name.odin
+//        ^ punctuation.odin
+//          ^- variable.name.odin
+//             ^- keyword.operator.assignment.odin
+//                ^------------ meta.function-call.odin
+//                ^----- entity.name.function.odin
+//                      ^ meta.brace.round.odin
+//                       ^- constant.numeric.odin
+//                         ^ punctuation.odin
+//                           ^ constant.numeric.odin
+//                            ^ meta.brace.round.odin
+    value := result if ok else -1
+//<0----------------------------- meta.definition.variable.odin
+//<0----------------------------- meta.object.type.odin
+//  ^------- meta.definition.variable.odin
+//  ^---- variable.name.odin
+//        ^- keyword.operator.assignment.odin
+//           ^----- variable.name.odin
+//                  ^- keyword.control.odin
+//                     ^- variable.name.odin
+//                        ^--- keyword.control.odin
+//                             ^ keyword.operator.odin
+//                              ^ constant.numeric.odin
+    fmt.println(value)
+//<0------------------ meta.definition.variable.odin
+//<0------------------ meta.object.type.odin
+//  ^-- variable.other.object.odin
+//     ^ punctuation.accessor.odin
+//      ^------------- meta.function-call.odin
+//      ^------ entity.name.function.odin
+//             ^ meta.brace.round.odin
+//              ^---- variable.name.odin
+//                   ^ meta.brace.round.odin
+}
+//<0 meta.definition.variable.odin
+//<0 meta.object.type.odin
+//<0 punctuation.definition.block.odin
+
+// from https://odin-lang.org
+//<0------------------------- comment.line.double-slash.odin
+//<0 punctuation.definition.comment.odin

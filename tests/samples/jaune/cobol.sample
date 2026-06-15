@@ -1,0 +1,287 @@
+*> grammar: source.cobol
+
+      ******************************************************************
+*><0-- constant.numeric.cobol
+*>    ^----------------------------------------------------------------- comment.line.cobol.fixed
+      * Author: Bryan Flood
+*><0-- constant.numeric.cobol
+*>    ^-------------------- comment.line.cobol.fixed
+      * Date: 25/10/2018
+*><0-- constant.numeric.cobol
+*>    ^----------------- comment.line.cobol.fixed
+      * Purpose: Compute Fibonacci Numbers
+*><0-- constant.numeric.cobol
+*>    ^----------------------------------- comment.line.cobol.fixed
+      * Tectonics: cobc
+*><0-- constant.numeric.cobol
+*>    ^---------------- comment.line.cobol.fixed
+      ******************************************************************
+*><0-- constant.numeric.cobol
+*>    ^----------------------------------------------------------------- comment.line.cobol.fixed
+       IDENTIFICATION DIVISION.
+*>     ^---------------------- keyword.identifiers.cobol
+       PROGRAM-ID. FIB.
+*>     ^--------- keyword.verb.cobol
+*>                 ^-- entity.name.function.cobol
+       DATA DIVISION.
+*>     ^------------ keyword.identifiers.cobol
+       FILE SECTION.
+*>     ^----------- keyword.identifiers.cobol
+       WORKING-STORAGE SECTION.
+*>     ^---------------------- keyword.identifiers.cobol
+       01  N0             BINARY-C-LONG VALUE 0.
+*>     ^- constant.numeric.cobol
+*>         ^- meta.symbol.cobol
+*>                        ^------------ storage.type.cobol
+*>                                      ^---- keyword.identifers.cobol
+*>                                            ^ constant.numeric.cobol
+       01  N1             BINARY-C-LONG VALUE 1.
+*>     ^- constant.numeric.cobol
+*>         ^- meta.symbol.cobol
+*>                        ^------------ storage.type.cobol
+*>                                      ^---- keyword.identifers.cobol
+*>                                            ^ constant.numeric.cobol
+       01  SWAP           BINARY-C-LONG VALUE 1.
+*>     ^- constant.numeric.cobol
+*>         ^--- meta.symbol.cobol
+*>                        ^------------ storage.type.cobol
+*>                                      ^---- keyword.identifers.cobol
+*>                                            ^ constant.numeric.cobol
+       01  RESULT         PIC Z(20)9.
+*>     ^- constant.numeric.cobol
+*>         ^----- meta.symbol.cobol
+*>                        ^---- storage.type.picture8.cobol
+*>                              ^- constant.numeric.cobol
+*>                                 ^ constant.numeric.cobol
+       01  I              BINARY-C-LONG VALUE 0.
+*>     ^- constant.numeric.cobol
+*>         ^ meta.symbol.cobol
+*>                        ^------------ storage.type.cobol
+*>                                      ^---- keyword.identifers.cobol
+*>                                            ^ constant.numeric.cobol
+       01  I-MAX          BINARY-C-LONG VALUE 0.
+*>     ^- constant.numeric.cobol
+*>         ^---- meta.symbol.cobol
+*>                        ^------------ storage.type.cobol
+*>                                      ^---- keyword.identifers.cobol
+*>                                            ^ constant.numeric.cobol
+       01  LARGEST-N      BINARY-C-LONG VALUE 92.
+*>     ^- constant.numeric.cobol
+*>         ^-------- meta.symbol.cobol
+*>                        ^------------ storage.type.cobol
+*>                                      ^---- keyword.identifers.cobol
+*>                                            ^- constant.numeric.cobol
+
+       PROCEDURE DIVISION.
+*>     ^----------------- keyword.identifiers.cobol
+      *>  THIS IS WHERE THE LABELS GET CALLED
+*><0-- constant.numeric.cobol
+*>    ^-------------------------------------- comment.line.cobol.fixed
+           PERFORM MAIN
+*>         ^------ keyword.control.cobol
+*>                 ^--- meta.symbol.cobol
+           PERFORM ENDFIB
+*>         ^------ keyword.control.cobol
+*>                 ^----- meta.symbol.cobol
+           GOBACK.
+*>         ^----- keyword.control.cobol
+
+      *>  THIS ACCEPTS INPUT AND DETERMINES THE OUTPUT USING A EVAL STMT
+*><0-- constant.numeric.cobol
+*>    ^----------------------------------------------------------------- comment.line.cobol.fixed
+       MAIN.
+*>     ^--- meta.symbol.cobol
+            DISPLAY "ENTER N TO GENERATE THE FIBONACCI SEQUENCE"
+*>          ^------ keyword.verb.cobol
+*>                  ^------------------------------------------- string.quoted.double.cobol
+*>                  ^ punctuation.definition.string.begin.cobol
+*>                                                             ^ punctuation.definition.string.end.cobol
+            ACCEPT I-MAX.
+*>          ^----- keyword.verb.cobol
+*>                 ^---- meta.symbol.cobol
+
+            EVALUATE TRUE
+*>          ^------- keyword.control.cobol
+*>                   ^--- constant.language.cobol
+              WHEN I-MAX > LARGEST-N
+*>            ^--- keyword.control.cobol
+*>                 ^---- meta.symbol.cobol
+*>                       ^ keyword.operator.cobol
+*>                         ^-------- meta.symbol.cobol
+                 PERFORM INVALIDN
+*>               ^------ keyword.control.cobol
+*>                       ^------- meta.symbol.cobol
+
+              WHEN I-MAX > 2
+*>            ^--- keyword.control.cobol
+*>                 ^---- meta.symbol.cobol
+*>                       ^ keyword.operator.cobol
+*>                         ^ meta.symbol.cobol
+                 PERFORM CASEGREATERTHAN2
+*>               ^------ keyword.control.cobol
+*>                       ^--------------- meta.symbol.cobol
+
+              WHEN I-MAX = 2
+*>            ^--- keyword.control.cobol
+*>                 ^---- meta.symbol.cobol
+*>                       ^ keyword.operator.cobol
+*>                         ^ meta.symbol.cobol
+                 PERFORM CASE2
+*>               ^------ keyword.control.cobol
+*>                       ^---- meta.symbol.cobol
+
+              WHEN I-MAX = 1
+*>            ^--- keyword.control.cobol
+*>                 ^---- meta.symbol.cobol
+*>                       ^ keyword.operator.cobol
+*>                         ^ meta.symbol.cobol
+                 PERFORM CASE1
+*>               ^------ keyword.control.cobol
+*>                       ^---- meta.symbol.cobol
+
+              WHEN I-MAX = 0
+*>            ^--- keyword.control.cobol
+*>                 ^---- meta.symbol.cobol
+*>                       ^ keyword.operator.cobol
+*>                         ^ meta.symbol.cobol
+                 PERFORM CASE0
+*>               ^------ keyword.control.cobol
+*>                       ^---- meta.symbol.cobol
+
+              WHEN OTHER
+*>            ^--------- keyword.control.cobol
+                 PERFORM INVALIDN
+*>               ^------ keyword.control.cobol
+*>                       ^------- meta.symbol.cobol
+
+            END-EVALUATE.
+*>          ^----------- keyword.control.cobol
+
+            STOP RUN.
+*>          ^------- keyword.identifiers.cobol
+
+
+
+       *>  THE CASE FOR WHEN N = 0
+*>     ^-------------------------- comment.line.modern
+       CASE0.
+*>     ^---- meta.symbol.cobol
+           MOVE N0 TO RESULT.
+*>         ^--- keyword.verb.cobol
+*>              ^- meta.symbol.cobol
+*>                 ^- keyword.identifers.cobol
+*>                    ^----- meta.symbol.cobol
+           DISPLAY RESULT.
+*>         ^------ keyword.verb.cobol
+*>                 ^----- meta.symbol.cobol
+
+      *>  THE CASE FOR WHEN N = 1
+*><0-- constant.numeric.cobol
+*>    ^-------------------------- comment.line.cobol.fixed
+       CASE1.
+*>     ^---- meta.symbol.cobol
+           PERFORM CASE0
+*>         ^------ keyword.control.cobol
+*>                 ^---- meta.symbol.cobol
+           MOVE N1 TO RESULT.
+*>         ^--- keyword.verb.cobol
+*>              ^- meta.symbol.cobol
+*>                 ^- keyword.identifers.cobol
+*>                    ^----- meta.symbol.cobol
+           DISPLAY RESULT.
+*>         ^------ keyword.verb.cobol
+*>                 ^----- meta.symbol.cobol
+
+      *>  THE CASE FOR WHEN N = 2
+*><0-- constant.numeric.cobol
+*>    ^-------------------------- comment.line.cobol.fixed
+       CASE2.
+*>     ^---- meta.symbol.cobol
+           PERFORM CASE1
+*>         ^------ keyword.control.cobol
+*>                 ^---- meta.symbol.cobol
+           MOVE N1 TO RESULT.
+*>         ^--- keyword.verb.cobol
+*>              ^- meta.symbol.cobol
+*>                 ^- keyword.identifers.cobol
+*>                    ^----- meta.symbol.cobol
+           DISPLAY RESULT.
+*>         ^------ keyword.verb.cobol
+*>                 ^----- meta.symbol.cobol
+
+      *>  THE CASE FOR WHEN N > 2
+*><0-- constant.numeric.cobol
+*>    ^-------------------------- comment.line.cobol.fixed
+       CASEGREATERTHAN2.
+*>     ^--------------- meta.symbol.cobol
+           PERFORM CASE1
+*>         ^------ keyword.control.cobol
+*>                 ^---- meta.symbol.cobol
+           PERFORM VARYING I FROM 1 BY 1 UNTIL I = I-MAX
+*>         ^------ keyword.control.cobol
+*>                 ^------ keyword.otherverb.cobol
+*>                         ^ meta.symbol.cobol
+*>                           ^--- keyword.identifers.cobol
+*>                                ^ constant.numeric.cobol
+*>                                  ^- keyword.identifers.cobol
+*>                                     ^ constant.numeric.cobol
+*>                                       ^---- keyword.otherverb.cobol
+*>                                             ^ meta.symbol.cobol
+*>                                               ^ keyword.operator.cobol
+*>                                                 ^---- meta.symbol.cobol
+                   ADD N0 TO N1 GIVING SWAP
+*>                 ^-- keyword.verb.cobol
+*>                     ^- meta.symbol.cobol
+*>                        ^- keyword.identifers.cobol
+*>                           ^- meta.symbol.cobol
+*>                              ^----- keyword.otherverb.cobol
+*>                                     ^--- meta.symbol.cobol
+                   MOVE N1 TO N0
+*>                 ^--- keyword.verb.cobol
+*>                      ^- meta.symbol.cobol
+*>                         ^- keyword.identifers.cobol
+*>                            ^- meta.symbol.cobol
+                   MOVE SWAP TO N1
+*>                 ^--- keyword.verb.cobol
+*>                      ^--- meta.symbol.cobol
+*>                           ^- keyword.identifers.cobol
+*>                              ^- meta.symbol.cobol
+                   MOVE SWAP TO RESULT
+*>                 ^--- keyword.verb.cobol
+*>                      ^--- meta.symbol.cobol
+*>                           ^- keyword.identifers.cobol
+*>                              ^----- meta.symbol.cobol
+                   DISPLAY RESULT
+*>                 ^------ keyword.verb.cobol
+*>                         ^----- meta.symbol.cobol
+            END-PERFORM.
+*>          ^---------- keyword.control.cobol
+
+      *>  PROVIDE ERROR FOR INVALID INPUT
+*><0-- constant.numeric.cobol
+*>    ^---------------------------------- comment.line.cobol.fixed
+       INVALIDN.
+*>     ^------- meta.symbol.cobol
+           DISPLAY 'INVALID N VALUE. THE PROGRAM WILL NOW END'.
+*>         ^------ keyword.verb.cobol
+*>                 ^------------------------------------------ string.quoted.single.cobol
+*>                 ^ punctuation.definition.string.begin.cobol
+*>                                                           ^ punctuation.definition.string.end.cobol
+
+      *>  END THE PROGRAM WITH A MESSAGE
+*><0-- constant.numeric.cobol
+*>    ^--------------------------------- comment.line.cobol.fixed
+       ENDFIB.
+*>     ^----- meta.symbol.cobol
+           DISPLAY "THE PROGRAM HAS COMPLETED AND WILL NOW END".
+*>         ^------ keyword.verb.cobol
+*>                 ^------------------------------------------- string.quoted.double.cobol
+*>                 ^ punctuation.definition.string.begin.cobol
+*>                                                            ^ punctuation.definition.string.end.cobol
+
+       END PROGRAM FIB.
+*>     ^---------- keyword.verb.cobol
+*>                 ^-- entity.name.function.cobol
+
+*> From https://github.com/KnowledgePending/COBOL-Fibonacci-Sequence/blob/master/fib.cbl
+*><0------------------------------------------------------------------------------------ comment.line.cobol.fixed

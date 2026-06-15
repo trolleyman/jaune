@@ -1,0 +1,91 @@
+# grammar: source.tasl
+
+# This is a tasl schema!
+#<0--------------------- comment.line.number-sign.tasl
+#<0 punctuation.definition.comment.tasl
+namespace s http://schema.org/
+#<0------ keyword.control.tasl.namespace
+#         ^ entity.name
+#           ^----------------- markup.underline.link
+
+# classes are like tables, except they
+#<0----------------------------------- comment.line.number-sign.tasl
+#<0 punctuation.definition.comment.tasl
+# can be arbitrary algebraic data types,
+#<0------------------------------------- comment.line.number-sign.tasl
+#<0 punctuation.definition.comment.tasl
+# not just columns of primitives.
+#<0------------------------------ comment.line.number-sign.tasl
+#<0 punctuation.definition.comment.tasl
+class s:Person :: {
+#<0-- keyword.control.tasl.class
+#     ^------- markup.bold
+#     ^------- entity.name.class
+#              ^- keyword.operator.tasl.export
+#                 ^ punctuation.definition.block.tasl.product
+  s:name -> string
+# ^----- entity.other.tasl.key
+#        ^- punctuation.separator.tasl.component
+#           ^----- variable
+  s:email -> ? uri
+# ^------ entity.other.tasl.key
+#         ^- punctuation.separator.tasl.component
+#            ^ keyword.operator
+#              ^-- variable
+  s:spouse -> ? * s:Person
+# ^------- entity.other.tasl.key
+#          ^- punctuation.separator.tasl.component
+#             ^ keyword.operator
+#               ^ markup.bold
+#               ^ keyword.operator
+#                 ^------- markup.bold
+#                 ^------- entity.name.class
+  s:gender -> [
+# ^------- entity.other.tasl.key
+#          ^- punctuation.separator.tasl.component
+#             ^ punctuation.definition.block.tasl.coproduct
+    s:Male
+#   ^----- entity.other.tasl.key
+    s:Female
+#   ^------- entity.other.tasl.key
+    s:value <- string
+#   ^------ entity.other.tasl.key
+#           ^- punctuation.separator.tasl.option
+#              ^----- variable
+  ]
+# ^ punctuation.definition.block.tasl.coproduct
+}
+#<0 punctuation.definition.block.tasl.product
+
+# references are a primitive type that
+#<0----------------------------------- comment.line.number-sign.tasl
+#<0 punctuation.definition.comment.tasl
+# point to other classes in the schema,
+#<0------------------------------------ comment.line.number-sign.tasl
+#<0 punctuation.definition.comment.tasl
+# just like foreign keys.
+#<0---------------------- comment.line.number-sign.tasl
+#<0 punctuation.definition.comment.tasl
+class s:Book :: {
+#<0-- keyword.control.tasl.class
+#     ^----- markup.bold
+#     ^----- entity.name.class
+#            ^- keyword.operator.tasl.export
+#               ^ punctuation.definition.block.tasl.product
+  s:name -> string
+# ^----- entity.other.tasl.key
+#        ^- punctuation.separator.tasl.component
+#           ^----- variable
+  s:isbn -> uri
+# ^----- entity.other.tasl.key
+#        ^- punctuation.separator.tasl.component
+#           ^-- variable
+  s:author -> * s:Person
+# ^------- entity.other.tasl.key
+#          ^- punctuation.separator.tasl.component
+#             ^ markup.bold
+#             ^ keyword.operator
+#               ^------- markup.bold
+#               ^------- entity.name.class
+}
+#<0 punctuation.definition.block.tasl.product

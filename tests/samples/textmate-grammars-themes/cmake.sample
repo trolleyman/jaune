@@ -1,0 +1,65 @@
+# grammar: source.cmake
+
+# Almost all CMake files should start with this
+#<0-------------------------------------------- comment.source.cmake
+# You should always specify a range with the newest
+#<0------------------------------------------------ comment.source.cmake
+# and oldest tested versions of CMake. This will ensure
+#<0---------------------------------------------------- comment.source.cmake
+# you pick up the best policies.
+#<0----------------------------- comment.source.cmake
+cmake_minimum_required(VERSION 3.1...3.23)
+#<0------------------- keyword.cmake
+#                      ^------ entity.source.cmake
+
+# This is your project statement. You should always list languages;
+#<0---------------------------------------------------------------- comment.source.cmake
+# Listing the version is nice here since it sets lots of useful variables
+#<0---------------------------------------------------------------------- comment.source.cmake
+project(
+#<0---- keyword.cmake
+  ModernCMakeExample
+  VERSION 1.0
+# ^------ entity.source.cmake
+  LANGUAGES CXX)
+
+# If you set any CMAKE_ variables, that can go here.
+#<0------------------------------------------------- comment.source.cmake
+# (But usually don't do this, except maybe for C++ standard)
+#<0--------------------------------------------------------- comment.source.cmake
+
+# Find packages go here.
+#<0--------------------- comment.source.cmake
+
+# You should usually split this into folders, but this is a simple example
+#<0----------------------------------------------------------------------- comment.source.cmake
+
+# This is a "default" library, and will match the *** variable setting.
+#<0-------------------------------------------------------------------- comment.source.cmake
+# Other common choices are STATIC, SHARED, and MODULE
+#<0-------------------------------------------------- comment.source.cmake
+# Including header files here helps IDEs but is not required.
+#<0---------------------------------------------------------- comment.source.cmake
+# Output libname matches target name, with the usual extensions on your system
+#<0--------------------------------------------------------------------------- comment.source.cmake
+add_library(MyLibExample simple_lib.cpp simple_lib.hpp)
+#<0-------- keyword.cmake
+
+# Link each target with other targets or add options, etc.
+#<0------------------------------------------------------- comment.source.cmake
+
+# Adding something we can run - Output name matches target name
+#<0------------------------------------------------------------ comment.source.cmake
+add_executable(MyExample simple_example.cpp)
+#<0----------- keyword.cmake
+
+# Make sure you link your targets with this command. It can also link libraries and
+#<0-------------------------------------------------------------------------------- comment.source.cmake
+# even flags, so linking a target that does not exist will not give a configure-time error.
+#<0---------------------------------------------------------------------------------------- comment.source.cmake
+target_link_libraries(MyExample PRIVATE MyLibExample)
+#<0------------------ keyword.cmake
+#                               ^------ entity.source.cmake
+
+# From https://cliutils.gitlab.io/modern-cmake/chapters/basics/example.html
+#<0------------------------------------------------------------------------ comment.source.cmake

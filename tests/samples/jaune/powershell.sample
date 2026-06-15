@@ -1,0 +1,99 @@
+# grammar: source.powershell
+
+## Define the service name in a variable
+#<0------------------------------------- comment.line.powershell
+$ServiceName = 'EventLog'
+#<0--------- variable.other.readwrite.powershell
+#<0 punctuation.definition.variable.powershell
+#            ^ keyword.operator.assignment.powershell
+#              ^--------- string.quoted.single.powershell
+#              ^ punctuation.definition.string.begin.powershell
+#                       ^ punctuation.definition.string.end.powershell
+
+## Read the service from Windows to return a service object
+#<0-------------------------------------------------------- comment.line.powershell
+$ServiceInfo = Get-Service -Name $ServiceName
+#<0--------- variable.other.readwrite.powershell
+#<0 punctuation.definition.variable.powershell
+#            ^ keyword.operator.assignment.powershell
+#              ^---------- support.function.powershell
+#                          ^ keyword.operator.assignment.powershell
+#                                ^----------- variable.other.readwrite.powershell
+#                                ^ punctuation.definition.variable.powershell
+
+## If the server is not running (ne)
+#<0--------------------------------- comment.line.powershell
+if ($ServiceInfo.Status -ne 'Running') {
+#<0 keyword.control.powershell
+#  ^---------------------------------- meta.group.simple.subexpression.powershell
+#  ^ punctuation.section.group.begin.powershell
+#   ^------------------ variable.other.readwrite.powershell
+#   ^ punctuation.definition.variable.powershell
+#               ^------ variable.other.member.powershell
+#                       ^-- keyword.operator.comparison.powershell
+#                           ^-------- string.quoted.single.powershell
+#                           ^ punctuation.definition.string.begin.powershell
+#                                   ^ punctuation.definition.string.end.powershell
+#                                    ^ punctuation.section.group.end.powershell
+#                                      ^ meta.scriptblock.powershell
+#                                      ^ punctuation.section.braces.begin.powershell
+	## Write to the console that the service is not running
+#<0----------------------------------------------------- meta.scriptblock.powershell
+#^------------------------------------------------------ comment.line.powershell
+	Write-Host 'Service is not started, starting service'
+#<0--------------------------------------------------- meta.scriptblock.powershell
+#^--------- support.function.powershell
+#           ^----------------------------------------- string.quoted.single.powershell
+#           ^ punctuation.definition.string.begin.powershell
+#                                                    ^ punctuation.definition.string.end.powershell
+	## Start the service
+#<0------------------ meta.scriptblock.powershell
+#^------------------- comment.line.powershell
+	Start-Service -Name $ServiceName
+#<0------------------------------ meta.scriptblock.powershell
+#^------------ support.function.powershell
+#              ^ keyword.operator.assignment.powershell
+#                    ^----------- variable.other.readwrite.powershell
+#                    ^ punctuation.definition.variable.powershell
+	## Update the $ServiceInfo object to reflect the new state
+#<0-------------------------------------------------------- meta.scriptblock.powershell
+#^--------------------------------------------------------- comment.line.powershell
+	$ServiceInfo.Refresh()
+#<0-------------------- meta.scriptblock.powershell
+#^------------------- variable.other.readwrite.powershell
+#^ punctuation.definition.variable.powershell
+#            ^------- variable.other.member.powershell
+#                    ^- meta.group.simple.subexpression.powershell
+#                    ^ punctuation.section.group.begin.powershell
+#                     ^ punctuation.section.group.end.powershell
+	## Write to the console the Status property which indicates the state of the service
+#<0---------------------------------------------------------------------------------- meta.scriptblock.powershell
+#^----------------------------------------------------------------------------------- comment.line.powershell
+	Write-Host $ServiceInfo.Status
+#<0---------------------------- meta.scriptblock.powershell
+#^--------- support.function.powershell
+#           ^------------------ variable.other.readwrite.powershell
+#           ^ punctuation.definition.variable.powershell
+#                       ^------ variable.other.member.powershell
+} else { ## If the Status is anything but Running
+#<0 meta.scriptblock.powershell
+#<0 punctuation.section.braces.end.powershell
+# ^--- keyword.control.powershell
+#      ^----------------------------------------- meta.scriptblock.powershell
+#      ^ punctuation.section.braces.begin.powershell
+#        ^--------------------------------------- comment.line.powershell
+	## Write to the console the service is already running
+#<0---------------------------------------------------- meta.scriptblock.powershell
+#^----------------------------------------------------- comment.line.powershell
+	Write-Host 'The service is already running.'
+#<0------------------------------------------ meta.scriptblock.powershell
+#^--------- support.function.powershell
+#           ^-------------------------------- string.quoted.single.powershell
+#           ^ punctuation.definition.string.begin.powershell
+#                                           ^ punctuation.definition.string.end.powershell
+}
+#<0 meta.scriptblock.powershell
+#<0 punctuation.section.braces.end.powershell
+
+## From https://adamtheautomator.com/powershell-script-examples/
+#<0------------------------------------------------------------- comment.line.powershell

@@ -1,0 +1,139 @@
+-- grammar: source.cypher
+
+UNWIND [
+--<0-- keyword.control.clause.cypher
+    { title: "Cypher Basics I",
+--  ^-------------------------- source.cypher
+--  ^ keyword.control.properties_literal.cypher
+--    ^---- variable.other.identifier.cypher
+--         ^ keyword.control.properties_literal.seperator.cypher
+--           ^---------------- string.quoted.double.cypher
+--                            ^ keyword.control.properties_literal.seperator.cypher
+      created: datetime("2019-06-01T18:40:32.142+0100"),
+--<0---------------------------------------------------- source.cypher
+--    ^------ variable.other.identifier.cypher
+--           ^ keyword.control.properties_literal.seperator.cypher
+--             ^------- variable.other.identifier.cypher
+--                      ^----------------------------- string.quoted.double.cypher
+--                                                     ^ keyword.control.properties_literal.seperator.cypher
+      datePublished: date("2019-06-01"),
+--<0------------------------------------ source.cypher
+--    ^------------ variable.other.identifier.cypher
+--                 ^ keyword.control.properties_literal.seperator.cypher
+--                   ^--- variable.other.identifier.cypher
+--                        ^----------- string.quoted.double.cypher
+--                                     ^ keyword.control.properties_literal.seperator.cypher
+      readingTime: {minutes: 2, seconds: 15} },
+--<0---------------------------------------- source.cypher
+--    ^---------- variable.other.identifier.cypher
+--               ^ keyword.control.properties_literal.seperator.cypher
+--                  ^------ variable.other.identifier.cypher
+--                         ^ keyword.control.properties_literal.seperator.cypher
+--                           ^ constant.numeric.cypher
+--                            ^ keyword.control.properties_literal.seperator.cypher
+--                              ^------ variable.other.identifier.cypher
+--                                     ^ keyword.control.properties_literal.seperator.cypher
+--                                       ^- constant.numeric.cypher
+--                                         ^ keyword.control.properties_literal.cypher
+    { title: "Cypher Basics II",
+--  ^--------------------------- source.cypher
+--  ^ keyword.control.properties_literal.cypher
+--    ^---- variable.other.identifier.cypher
+--         ^ keyword.control.properties_literal.seperator.cypher
+--           ^----------------- string.quoted.double.cypher
+--                             ^ keyword.control.properties_literal.seperator.cypher
+      created: datetime("2019-06-02T10:23:32.122+0100"),
+--<0---------------------------------------------------- source.cypher
+--    ^------ variable.other.identifier.cypher
+--           ^ keyword.control.properties_literal.seperator.cypher
+--             ^------- variable.other.identifier.cypher
+--                      ^----------------------------- string.quoted.double.cypher
+--                                                     ^ keyword.control.properties_literal.seperator.cypher
+      datePublished: date("2019-06-02"),
+--<0------------------------------------ source.cypher
+--    ^------------ variable.other.identifier.cypher
+--                 ^ keyword.control.properties_literal.seperator.cypher
+--                   ^--- variable.other.identifier.cypher
+--                        ^----------- string.quoted.double.cypher
+--                                     ^ keyword.control.properties_literal.seperator.cypher
+      readingTime: {minutes: 2, seconds: 30} },
+--<0---------------------------------------- source.cypher
+--    ^---------- variable.other.identifier.cypher
+--               ^ keyword.control.properties_literal.seperator.cypher
+--                  ^------ variable.other.identifier.cypher
+--                         ^ keyword.control.properties_literal.seperator.cypher
+--                           ^ constant.numeric.cypher
+--                            ^ keyword.control.properties_literal.seperator.cypher
+--                              ^------ variable.other.identifier.cypher
+--                                     ^ keyword.control.properties_literal.seperator.cypher
+--                                       ^- constant.numeric.cypher
+--                                         ^ keyword.control.properties_literal.cypher
+    { title: "Dates, Datetimes, and Durations in Neo4j",
+--  ^--------------------------------------------------- source.cypher
+--  ^ keyword.control.properties_literal.cypher
+--    ^---- variable.other.identifier.cypher
+--         ^ keyword.control.properties_literal.seperator.cypher
+--           ^----------------------------------------- string.quoted.double.cypher
+--                                                     ^ keyword.control.properties_literal.seperator.cypher
+      created: datetime(),
+--<0---------------------- source.cypher
+--    ^------ variable.other.identifier.cypher
+--           ^ keyword.control.properties_literal.seperator.cypher
+--             ^------- variable.other.identifier.cypher
+--                       ^ keyword.control.properties_literal.seperator.cypher
+      datePublished: date(),
+--<0------------------------ source.cypher
+--    ^------------ variable.other.identifier.cypher
+--                 ^ keyword.control.properties_literal.seperator.cypher
+--                   ^--- variable.other.identifier.cypher
+--                         ^ keyword.control.properties_literal.seperator.cypher
+      readingTime: {minutes: 3, seconds: 30} }
+--<0---------------------------------------- source.cypher
+--    ^---------- variable.other.identifier.cypher
+--               ^ keyword.control.properties_literal.seperator.cypher
+--                  ^------ variable.other.identifier.cypher
+--                         ^ keyword.control.properties_literal.seperator.cypher
+--                           ^ constant.numeric.cypher
+--                            ^ keyword.control.properties_literal.seperator.cypher
+--                              ^------ variable.other.identifier.cypher
+--                                     ^ keyword.control.properties_literal.seperator.cypher
+--                                       ^- constant.numeric.cypher
+--                                         ^ keyword.control.properties_literal.cypher
+] AS articleProperties
+--^- keyword.control.clause.cypher
+--   ^---------------- variable.other.identifier.cypher
+
+CREATE (article:Article {title: articleProperties.title})
+--<0-- keyword.data.definition.cypher
+--      ^------ variable.other.identifier.cypher
+--              ^------ variable.other.identifier.cypher
+--                      ^------------------------------- source.cypher
+--                      ^ keyword.control.properties_literal.cypher
+--                       ^---- variable.other.identifier.cypher
+--                            ^ keyword.control.properties_literal.seperator.cypher
+--                              ^---------------- variable.other.identifier.cypher
+--                                                ^---- variable.other.identifier.cypher
+--                                                     ^ keyword.control.properties_literal.cypher
+SET article.created = articleProperties.created,
+--<0 keyword.data.definition.cypher
+--  ^------ variable.other.identifier.cypher
+--          ^------ variable.other.identifier.cypher
+--                  ^ keyword.operator.compare.cypher
+--                    ^---------------- variable.other.identifier.cypher
+--                                      ^------ variable.other.identifier.cypher
+    article.datePublished = articleProperties.datePublished,
+--  ^------ variable.other.identifier.cypher
+--          ^------------ variable.other.identifier.cypher
+--                        ^ keyword.operator.compare.cypher
+--                          ^---------------- variable.other.identifier.cypher
+--                                            ^------------ variable.other.identifier.cypher
+    article.readingTime = duration(articleProperties.readingTime)
+--  ^------ variable.other.identifier.cypher
+--          ^---------- variable.other.identifier.cypher
+--                      ^ keyword.operator.compare.cypher
+--                        ^------- variable.other.identifier.cypher
+--                                 ^---------------- variable.other.identifier.cypher
+--                                                   ^---------- variable.other.identifier.cypher
+
+// https://neo4j.com/developer/cypher/dates-datetimes-durations/
+--<0------------------------------------------------------------ comment.line.double-slash.cypher

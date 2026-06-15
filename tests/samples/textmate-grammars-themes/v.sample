@@ -1,0 +1,157 @@
+// grammar: source.v
+
+// This program displays the fibonacci sequence
+//<0------------------------------------------- comment.line.double-slash.v
+//<0 punctuation.definition.comment.begin.v
+import os
+//<0----- meta.import.v
+//<0-- keyword.import.v
+//     ^- entity.name.import.v
+
+fn main() {
+//<0--- meta.definition.function.v
+//<0 keyword.fn.v
+// ^--- entity.name.function.v
+//     ^ punctuation.definition.bracket.round.begin.v
+//      ^ punctuation.definition.bracket.round.end.v
+//        ^ punctuation.definition.bracket.curly.begin.v
+	// Check for user input
+//<1-------------------- comment.line.double-slash.v
+//<1 punctuation.definition.comment.begin.v
+	if os.args.len != 2 {
+//<1 keyword.control.v
+//    ^ punctuation.accessor.v
+//         ^ punctuation.accessor.v
+//              ^- keyword.operator.relation.v
+//                 ^ constant.numeric.integer.v
+//                   ^ punctuation.definition.bracket.curly.begin.v
+		println('usage: fibonacci [rank]')
+//^------ meta.support.function.v
+//^------ entity.name.function.v
+//       ^ punctuation.definition.bracket.round.begin.v
+//        ^------------------------ string.quoted.v
+//                                 ^ punctuation.definition.bracket.round.end.v
+
+		return
+//^----- keyword.control.v
+	}
+//<1 punctuation.definition.bracket.curly.end.v
+
+	// Parse first argument and cast it to int
+//<1--------------------------------------- comment.line.double-slash.v
+//<1 punctuation.definition.comment.begin.v
+
+	stop := os.args[1].int()
+//<1- variable.other.assignment.v
+//   ^--- meta.definition.variable.v
+//    ^- keyword.operator.assignment.v
+//         ^ punctuation.accessor.v
+//              ^ punctuation.definition.bracket.square.begin.v
+//               ^ constant.numeric.integer.v
+//                ^ punctuation.definition.bracket.square.end.v
+//                 ^ punctuation.accessor.v
+//                  ^-- meta.support.function.v
+//                  ^-- entity.name.function.v
+//                     ^ punctuation.definition.bracket.round.begin.v
+//                      ^ punctuation.definition.bracket.round.end.v
+	// Can only calculate correctly until rank 92
+//<1------------------------------------------ comment.line.double-slash.v
+//<1 punctuation.definition.comment.begin.v
+	if stop > 92 {
+//<1 keyword.control.v
+//       ^ keyword.operator.relation.v
+//         ^- constant.numeric.integer.v
+//            ^ punctuation.definition.bracket.curly.begin.v
+		println('rank must be 92 or less')
+//^------ meta.support.function.v
+//^------ entity.name.function.v
+//       ^ punctuation.definition.bracket.round.begin.v
+//        ^------------------------ string.quoted.v
+//                                 ^ punctuation.definition.bracket.round.end.v
+		return
+//^----- keyword.control.v
+	}
+//<1 punctuation.definition.bracket.curly.end.v
+
+	// Three consecutive terms of the sequence
+//<1--------------------------------------- comment.line.double-slash.v
+//<1 punctuation.definition.comment.begin.v
+	mut a := i64(0)
+//<1 storage.modifier.v
+//   ^ variable.other.assignment.v
+//    ^--- meta.definition.variable.v
+//     ^- keyword.operator.assignment.v
+//        ^-- meta.support.function.v
+//        ^-- entity.name.function.v
+//           ^ punctuation.definition.bracket.round.begin.v
+//            ^ constant.numeric.integer.v
+//             ^ punctuation.definition.bracket.round.end.v
+	mut b := i64(0)
+//<1 storage.modifier.v
+//   ^ variable.other.assignment.v
+//    ^--- meta.definition.variable.v
+//     ^- keyword.operator.assignment.v
+//        ^-- meta.support.function.v
+//        ^-- entity.name.function.v
+//           ^ punctuation.definition.bracket.round.begin.v
+//            ^ constant.numeric.integer.v
+//             ^ punctuation.definition.bracket.round.end.v
+	mut c := i64(1)
+//<1 storage.modifier.v
+//   ^ variable.other.assignment.v
+//    ^--- meta.definition.variable.v
+//     ^- keyword.operator.assignment.v
+//        ^-- meta.support.function.v
+//        ^-- entity.name.function.v
+//           ^ punctuation.definition.bracket.round.begin.v
+//            ^ constant.numeric.integer.v
+//             ^ punctuation.definition.bracket.round.end.v
+	println(a + b + c)
+//<1---- meta.support.function.v
+//<1---- entity.name.function.v
+//      ^ punctuation.definition.bracket.round.begin.v
+//         ^ keyword.operator.arithmetic.v
+//             ^ keyword.operator.arithmetic.v
+//                ^ punctuation.definition.bracket.round.end.v
+	for _ in 0 .. stop {
+//<1 keyword.control.v
+//     ^- keyword.control.v
+//        ^ constant.numeric.integer.v
+//          ^- punctuation.accessor.v
+//                  ^ punctuation.definition.bracket.curly.begin.v
+		// Set a and b to the next term
+//^------------------------------ comment.line.double-slash.v
+//^- punctuation.definition.comment.begin.v
+		a = b
+//^ variable.other.assignment.v
+// ^-- meta.definition.variable.v
+//  ^ keyword.operator.assignment.v
+		b = c
+//^ variable.other.assignment.v
+// ^-- meta.definition.variable.v
+//  ^ keyword.operator.assignment.v
+		// Compute the new term
+//^---------------------- comment.line.double-slash.v
+//^- punctuation.definition.comment.begin.v
+		c = a + b
+//^ variable.other.assignment.v
+// ^-- meta.definition.variable.v
+//  ^ keyword.operator.assignment.v
+//      ^ keyword.operator.arithmetic.v
+
+		// Print the new term
+//^-------------------- comment.line.double-slash.v
+//^- punctuation.definition.comment.begin.v
+		println(c)
+//^------ meta.support.function.v
+//^------ entity.name.function.v
+//       ^ punctuation.definition.bracket.round.begin.v
+//         ^ punctuation.definition.bracket.round.end.v
+	}
+//<1 punctuation.definition.bracket.curly.end.v
+}
+//<0 punctuation.definition.bracket.curly.end.v
+
+// From https://github.com/vlang/v/blob/master/examples/fibonacci.v
+//<0--------------------------------------------------------------- comment.line.double-slash.v
+//<0 punctuation.definition.comment.begin.v

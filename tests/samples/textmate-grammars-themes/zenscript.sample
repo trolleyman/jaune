@@ -1,0 +1,175 @@
+# grammar: source.zenscript
+
+import crafttweaker.api.BracketHandlers;
+#<0--- keyword.control.zenscript
+#      ^------------------------------- plain.text.zenscript
+#      ^----------- storage.type.zenscript
+#                  ^ keyword.control.zenscript
+#                      ^ keyword.control.zenscript
+
+val air = <item:minecraft:air>;
+#<0 storage.type
+#         ^------------------- keyword.other.zenscript
+#         ^ keyword.control.zenscript
+#          ^--- keyword.other.zenscript
+#              ^-------------- keyword.control.zenscript
+#               ^------------ variable.other.zenscript
+val diamond = <item:minecraft:diamond>;
+#<0 storage.type
+#             ^----------------------- keyword.other.zenscript
+#             ^ keyword.control.zenscript
+#              ^--- keyword.other.zenscript
+#                  ^------------------ keyword.control.zenscript
+#                   ^---------------- variable.other.zenscript
+var woodTypes = ["oak","spruce","birch","jungle","acacia","dark_oak"];
+#<0 storage.type
+#                ^---- string.quoted.double.zenscript
+#                ^ punctuation.definition.string.begin.zenscript
+#                    ^ punctuation.definition.string.end.zenscript
+#                      ^------- string.quoted.double.zenscript
+#                      ^ punctuation.definition.string.begin.zenscript
+#                             ^ punctuation.definition.string.end.zenscript
+#                               ^------ string.quoted.double.zenscript
+#                               ^ punctuation.definition.string.begin.zenscript
+#                                     ^ punctuation.definition.string.end.zenscript
+#                                       ^------- string.quoted.double.zenscript
+#                                       ^ punctuation.definition.string.begin.zenscript
+#                                              ^ punctuation.definition.string.end.zenscript
+#                                                ^------- string.quoted.double.zenscript
+#                                                ^ punctuation.definition.string.begin.zenscript
+#                                                       ^ punctuation.definition.string.end.zenscript
+#                                                         ^--------- string.quoted.double.zenscript
+#                                                         ^ punctuation.definition.string.begin.zenscript
+#                                                                  ^ punctuation.definition.string.end.zenscript
+
+for name in woodTypes {
+#<0 keyword.control.zenscript
+#        ^- keyword.control.zenscript
+    val thing = BracketHandlers.getItem("minecraft:" + name + "_planks");
+#   ^-- storage.type
+#               ^---------------------- plain.text.zenscript
+#               ^-------------- storage.type.zenscript
+#                              ^ keyword.control.zenscript
+#                                       ^----------- string.quoted.double.zenscript
+#                                       ^ punctuation.definition.string.begin.zenscript
+#                                                  ^ punctuation.definition.string.end.zenscript
+#                                                             ^-------- string.quoted.double.zenscript
+#                                                             ^ punctuation.definition.string.begin.zenscript
+#                                                                     ^ punctuation.definition.string.end.zenscript
+    craftingTable.addShaped(name + "_diamond", diamond, [[air, thing], [thing, air]]);
+#   ^---------------------- plain.text.zenscript
+#   ^------------ storage.type.zenscript
+#                ^ keyword.control.zenscript
+#                                  ^--------- string.quoted.double.zenscript
+#                                  ^ punctuation.definition.string.begin.zenscript
+#                                           ^ punctuation.definition.string.end.zenscript
+}
+
+function checkLeapYear(year as int) as bool {
+#<0------------------- meta.function.zenscript
+#<0------------------- storage.type.function.zenscript
+#        ^------------ entity.name.function.zenscript
+#                           ^- keyword.control.zenscript
+#                              ^-- storage.type.zenscript
+#                                   ^- keyword.control.zenscript
+#                                      ^--- storage.type.zenscript
+    if(year % 4 == 0) {
+#   ^- keyword.control.zenscript
+#             ^ constant.numeric.zenscript
+#                  ^ constant.numeric.zenscript
+        if(year % 100 == 0) {
+#       ^- keyword.control.zenscript
+#                 ^-- constant.numeric.zenscript
+#                        ^ constant.numeric.zenscript
+            if(year % 400 == 0) {
+#           ^- keyword.control.zenscript
+#                     ^-- constant.numeric.zenscript
+#                            ^ constant.numeric.zenscript
+                return true;
+#               ^----- keyword.control.zenscript
+#                      ^--- constant.language
+            } else {
+#             ^--- keyword.control.zenscript
+                return false;
+#               ^----- keyword.control.zenscript
+#                      ^---- constant.language
+            }
+        } else {
+#         ^--- keyword.control.zenscript
+            return true;
+#           ^----- keyword.control.zenscript
+#                  ^--- constant.language
+        }
+    } else {
+#     ^--- keyword.control.zenscript
+        return false;
+#       ^----- keyword.control.zenscript
+#              ^---- constant.language
+    }
+}
+
+print("Is 2000 a leap year: " ~ checkLeapYear(2000));
+#     ^---------------------- string.quoted.double.zenscript
+#     ^ punctuation.definition.string.begin.zenscript
+#                           ^ punctuation.definition.string.end.zenscript
+#                                             ^--- constant.numeric.zenscript
+print("Is 2004 a leap year: " ~ checkLeapYear(2004));
+#     ^---------------------- string.quoted.double.zenscript
+#     ^ punctuation.definition.string.begin.zenscript
+#                           ^ punctuation.definition.string.end.zenscript
+#                                             ^--- constant.numeric.zenscript
+print("Is 2100 a leap year: " ~ checkLeapYear(2100));
+#     ^---------------------- string.quoted.double.zenscript
+#     ^ punctuation.definition.string.begin.zenscript
+#                           ^ punctuation.definition.string.end.zenscript
+#                                             ^--- constant.numeric.zenscript
+print("Is 2012 a leap year: " ~ checkLeapYear(2012));
+#     ^---------------------- string.quoted.double.zenscript
+#     ^ punctuation.definition.string.begin.zenscript
+#                           ^ punctuation.definition.string.end.zenscript
+#                                             ^--- constant.numeric.zenscript
+
+
+//Note: this is a cleaner way
+#<0-------------------------- comment.line.double=slash
+function checkLeapYear2(year as int) as bool {
+#<0-------------------- meta.function.zenscript
+#<0-------------------- storage.type.function.zenscript
+#        ^------------- entity.name.function.zenscript
+#                            ^- keyword.control.zenscript
+#                               ^-- storage.type.zenscript
+#                                    ^- keyword.control.zenscript
+#                                       ^--- storage.type.zenscript
+    return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+#   ^----- keyword.control.zenscript
+#                 ^ constant.numeric.zenscript
+#                      ^ constant.numeric.zenscript
+#                                   ^-- constant.numeric.zenscript
+#                                          ^ constant.numeric.zenscript
+#                                                      ^-- constant.numeric.zenscript
+#                                                             ^ constant.numeric.zenscript
+}
+
+print("Is 2000 a leap year (2nd function): " ~ checkLeapYear2(2000));
+#     ^------------------------------------- string.quoted.double.zenscript
+#     ^ punctuation.definition.string.begin.zenscript
+#                                          ^ punctuation.definition.string.end.zenscript
+#                                                             ^--- constant.numeric.zenscript
+print("Is 2004 a leap year (2nd function): " ~ checkLeapYear2(2004));
+#     ^------------------------------------- string.quoted.double.zenscript
+#     ^ punctuation.definition.string.begin.zenscript
+#                                          ^ punctuation.definition.string.end.zenscript
+#                                                             ^--- constant.numeric.zenscript
+print("Is 2100 a leap year (2nd function): " ~ checkLeapYear2(2100));
+#     ^------------------------------------- string.quoted.double.zenscript
+#     ^ punctuation.definition.string.begin.zenscript
+#                                          ^ punctuation.definition.string.end.zenscript
+#                                                             ^--- constant.numeric.zenscript
+print("Is 2012 a leap year (2nd function): " ~ checkLeapYear2(2012));
+#     ^------------------------------------- string.quoted.double.zenscript
+#     ^ punctuation.definition.string.begin.zenscript
+#                                          ^ punctuation.definition.string.end.zenscript
+#                                                             ^--- constant.numeric.zenscript
+
+# From https://github.com/CraftTweaker/CraftTweaker-Examples
+#            ^---------------------------------------------- comment.line.double=slash

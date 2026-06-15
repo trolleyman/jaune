@@ -1,0 +1,59 @@
+// grammar: source.vyper
+
+storedData: public(int128)
+//        ^ punctuation.separator.colon.python
+//          ^------------- meta.function-call.python
+//          ^----- support.type.keywords.vyper
+//                ^ punctuation.definition.arguments.begin.python
+//                 ^----- support.type.basetype.vyper
+//                       ^ punctuation.definition.arguments.end.python
+
+@external
+//<0----- meta.function.decorator.python
+//<0 entity.name.function.decorator.python
+//<0 punctuation.definition.decorator.python
+//<1----- support.function.builtin.modifiers.unsafe.vyper
+def __init__(_x: int128):
+//<0--------------------- meta.function.python
+//<0 storage.type.function.python
+//  ^------- entity.name.function.constructor.vyper
+//          ^----------- meta.function.parameters.python
+//          ^ punctuation.definition.parameters.begin.python
+//           ^- variable.parameter.function.language.python
+//             ^ punctuation.separator.annotation.python
+//               ^----- support.type.basetype.vyper
+//                     ^ punctuation.definition.parameters.end.python
+//                      ^ punctuation.section.function.begin.python
+  self.storedData = _x
+//^--- variable.language.special.self.python
+//    ^---------- meta.member.access.python
+//    ^ punctuation.separator.period.python
+//     ^--------- meta.attribute.python
+//                ^ keyword.operator.assignment.python
+
+@external
+//<0----- meta.function.decorator.python
+//<0 entity.name.function.decorator.python
+//<0 punctuation.definition.decorator.python
+//<1----- support.function.builtin.modifiers.unsafe.vyper
+def set(_x: int128):
+//<0---------------- meta.function.python
+//<0 storage.type.function.python
+//  ^-- support.type.python
+//     ^----------- meta.function.parameters.python
+//     ^ punctuation.definition.parameters.begin.python
+//      ^- variable.parameter.function.language.python
+//        ^ punctuation.separator.annotation.python
+//          ^----- support.type.basetype.vyper
+//                ^ punctuation.definition.parameters.end.python
+//                 ^ punctuation.section.function.begin.python
+  self.storedData = _x
+//^--- variable.language.special.self.python
+//    ^---------- meta.member.access.python
+//    ^ punctuation.separator.period.python
+//     ^--------- meta.attribute.python
+//                ^ keyword.operator.assignment.python
+
+# https://github.com/vyperlang/vyper/blob/master/examples/storage/storage.vy
+//<0------------------------------------------------------------------------ comment.line.number-sign.python
+//<0 punctuation.definition.comment.python

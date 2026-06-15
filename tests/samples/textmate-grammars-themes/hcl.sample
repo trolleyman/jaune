@@ -1,0 +1,84 @@
+// grammar: source.hcl
+
+io_mode = "async"
+//<0------ variable.declaration.hcl
+//<0--- variable.other.readwrite.hcl
+//      ^ keyword.operator.assignment.hcl
+//        ^------ string.quoted.double.hcl
+//        ^ punctuation.definition.string.begin.hcl
+//              ^ punctuation.definition.string.end.hcl
+
+service "http" "web_proxy" {
+//<0------------------------ meta.block.hcl
+//<0--- entity.name.type.hcl
+//      ^----- variable.other.enummember.hcl
+//             ^---------- variable.other.enummember.hcl
+//                         ^ punctuation.section.block.begin.hcl
+  listen_addr = "127.0.0.1:8080"
+//<0---------------------------- meta.block.hcl
+//^------------- variable.declaration.hcl
+//^---------- variable.other.readwrite.hcl
+//            ^ keyword.operator.assignment.hcl
+//              ^--------------- string.quoted.double.hcl
+//              ^ punctuation.definition.string.begin.hcl
+//                             ^ punctuation.definition.string.end.hcl
+  
+//<0 meta.block.hcl
+  process "main" {
+//<0-------------- meta.block.hcl
+//^--------------- meta.block.hcl
+//^------ entity.name.type.hcl
+//        ^----- variable.other.enummember.hcl
+//               ^ punctuation.section.block.begin.hcl
+    command = ["/usr/local/bin/awesome-app", "server"]
+//<0-------------------------------------------------- meta.block.hcl
+//<0-------------------------------------------------- meta.block.hcl
+//  ^--------- variable.declaration.hcl
+//  ^------ variable.other.readwrite.hcl
+//          ^ keyword.operator.assignment.hcl
+//            ^ punctuation.section.brackets.begin.hcl
+//             ^--------------------------- string.quoted.double.hcl
+//             ^ punctuation.definition.string.begin.hcl
+//                                        ^ punctuation.definition.string.end.hcl
+//                                         ^ punctuation.separator.hcl
+//                                           ^------- string.quoted.double.hcl
+//                                           ^ punctuation.definition.string.begin.hcl
+//                                                  ^ punctuation.definition.string.end.hcl
+//                                                   ^ punctuation.section.brackets.end.hcl
+  }
+//<0 meta.block.hcl
+//<0 meta.block.hcl
+//^ punctuation.section.block.end.hcl
+
+  process "mgmt" {
+//<0-------------- meta.block.hcl
+//^--------------- meta.block.hcl
+//^------ entity.name.type.hcl
+//        ^----- variable.other.enummember.hcl
+//               ^ punctuation.section.block.begin.hcl
+    command = ["/usr/local/bin/awesome-app", "mgmt"]
+//<0------------------------------------------------ meta.block.hcl
+//<0------------------------------------------------ meta.block.hcl
+//  ^--------- variable.declaration.hcl
+//  ^------ variable.other.readwrite.hcl
+//          ^ keyword.operator.assignment.hcl
+//            ^ punctuation.section.brackets.begin.hcl
+//             ^--------------------------- string.quoted.double.hcl
+//             ^ punctuation.definition.string.begin.hcl
+//                                        ^ punctuation.definition.string.end.hcl
+//                                         ^ punctuation.separator.hcl
+//                                           ^----- string.quoted.double.hcl
+//                                           ^ punctuation.definition.string.begin.hcl
+//                                                ^ punctuation.definition.string.end.hcl
+//                                                 ^ punctuation.section.brackets.end.hcl
+  }
+//<0 meta.block.hcl
+//<0 meta.block.hcl
+//^ punctuation.section.block.end.hcl
+}
+//<0 meta.block.hcl
+//<0 punctuation.section.block.end.hcl
+
+# From: https://github.com/hashicorp/hcl/blob/main/README.md
+//<0-------------------------------------------------------- comment.line.number-sign.hcl
+//<0 punctuation.definition.comment.hcl

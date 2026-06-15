@@ -1,0 +1,549 @@
+// grammar: source.gdshader
+
+shader_type spatial;
+//<0---------------- meta.classifier.gdshader
+//<0------- keyword.language.classifier.gdshader
+//          ^------ entity.other.inherited-class.gdshader
+//                 ^ punctuation.terminator.statement.gdshader
+render_mode wireframe;
+//<0------------------ meta.classifier.gdshader
+//<0------- keyword.language.classifier.gdshader
+//          ^-------- entity.other.inherited-class.gdshader
+//                   ^ punctuation.terminator.statement.gdshader
+
+const lowp vec3 v[1] = lowp vec3[1] ( vec3(0, 0, 1) );
+//<0- storage.modifier.gdshader
+//    ^--- storage.type.built-in.primitive.precision.gdshader
+//         ^--- support.type.gdshader
+//              ^ variable.name.gdshader
+//                ^ constant.numeric.integer.gdshader
+//                   ^ keyword.operator.gdshader
+//                     ^--- storage.type.built-in.primitive.precision.gdshader
+//                          ^--- support.type.gdshader
+//                               ^ constant.numeric.integer.gdshader
+//                                  ^---------------- meta.parenthesis.gdshader
+//                                    ^--- support.type.gdshader
+//                                        ^-------- meta.parenthesis.gdshader
+//                                         ^ constant.numeric.integer.gdshader
+//                                          ^ punctuation.separator.comma.gdshader
+//                                            ^ constant.numeric.integer.gdshader
+//                                             ^ punctuation.separator.comma.gdshader
+//                                               ^ constant.numeric.integer.gdshader
+//                                                   ^ punctuation.terminator.statement.gdshader
+
+void fn() {
+//<0 support.type.gdshader
+//   ^- entity.name.function.gdshader
+//     ^- meta.parenthesis.gdshader
+  // The required amount of scalars
+//^-------------------------------- comment.line.double-slash.gdshader
+  vec4 a0 = vec4(0.0, 1.0, 2.0, 3.0);
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^--- support.type.gdshader
+//              ^------------------- meta.parenthesis.gdshader
+//               ^-- constant.numeric.float.gdshader
+//                  ^ punctuation.separator.comma.gdshader
+//                    ^-- constant.numeric.float.gdshader
+//                       ^ punctuation.separator.comma.gdshader
+//                         ^-- constant.numeric.float.gdshader
+//                            ^ punctuation.separator.comma.gdshader
+//                              ^-- constant.numeric.float.gdshader
+//                                  ^ punctuation.terminator.statement.gdshader
+  // Complementary vectors and/or scalars
+//^-------------------------------------- comment.line.double-slash.gdshader
+  vec4 a1 = vec4(vec2(0.0, 1.0), vec2(2.0, 3.0));
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^--- support.type.gdshader
+//              ^------------------------------- meta.parenthesis.gdshader
+//               ^--- support.type.gdshader
+//                   ^--------- meta.parenthesis.gdshader
+//                    ^-- constant.numeric.float.gdshader
+//                       ^ punctuation.separator.comma.gdshader
+//                         ^-- constant.numeric.float.gdshader
+//                             ^ punctuation.separator.comma.gdshader
+//                               ^--- support.type.gdshader
+//                                   ^--------- meta.parenthesis.gdshader
+//                                    ^-- constant.numeric.float.gdshader
+//                                       ^ punctuation.separator.comma.gdshader
+//                                         ^-- constant.numeric.float.gdshader
+//                                              ^ punctuation.terminator.statement.gdshader
+  vec4 a2 = vec4(vec3(0.0, 1.0, 2.0), 3.0);
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^--- support.type.gdshader
+//              ^------------------------- meta.parenthesis.gdshader
+//               ^--- support.type.gdshader
+//                   ^-------------- meta.parenthesis.gdshader
+//                    ^-- constant.numeric.float.gdshader
+//                       ^ punctuation.separator.comma.gdshader
+//                         ^-- constant.numeric.float.gdshader
+//                            ^ punctuation.separator.comma.gdshader
+//                              ^-- constant.numeric.float.gdshader
+//                                  ^ punctuation.separator.comma.gdshader
+//                                    ^-- constant.numeric.float.gdshader
+//                                        ^ punctuation.terminator.statement.gdshader
+  // A single scalar for the whole vector
+//^-------------------------------------- comment.line.double-slash.gdshader
+  vec4 a3 = vec4(0.0);
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^--- support.type.gdshader
+//              ^---- meta.parenthesis.gdshader
+//               ^-- constant.numeric.float.gdshader
+//                   ^ punctuation.terminator.statement.gdshader
+
+  mat2 m2 = mat2(vec2(1.0, 0.0), vec2(0.0, 1.0));
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^--- support.type.gdshader
+//              ^------------------------------- meta.parenthesis.gdshader
+//               ^--- support.type.gdshader
+//                   ^--------- meta.parenthesis.gdshader
+//                    ^-- constant.numeric.float.gdshader
+//                       ^ punctuation.separator.comma.gdshader
+//                         ^-- constant.numeric.float.gdshader
+//                             ^ punctuation.separator.comma.gdshader
+//                               ^--- support.type.gdshader
+//                                   ^--------- meta.parenthesis.gdshader
+//                                    ^-- constant.numeric.float.gdshader
+//                                       ^ punctuation.separator.comma.gdshader
+//                                         ^-- constant.numeric.float.gdshader
+//                                              ^ punctuation.terminator.statement.gdshader
+  mat3 m3 = mat3(vec3(1.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0), vec3(0.0, 0.0, 1.0));
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^--- support.type.gdshader
+//              ^-------------------------------------------------------------- meta.parenthesis.gdshader
+//               ^--- support.type.gdshader
+//                   ^-------------- meta.parenthesis.gdshader
+//                    ^-- constant.numeric.float.gdshader
+//                       ^ punctuation.separator.comma.gdshader
+//                         ^-- constant.numeric.float.gdshader
+//                            ^ punctuation.separator.comma.gdshader
+//                              ^-- constant.numeric.float.gdshader
+//                                  ^ punctuation.separator.comma.gdshader
+//                                    ^--- support.type.gdshader
+//                                        ^-------------- meta.parenthesis.gdshader
+//                                         ^-- constant.numeric.float.gdshader
+//                                            ^ punctuation.separator.comma.gdshader
+//                                              ^-- constant.numeric.float.gdshader
+//                                                 ^ punctuation.separator.comma.gdshader
+//                                                   ^-- constant.numeric.float.gdshader
+//                                                       ^ punctuation.separator.comma.gdshader
+//                                                         ^--- support.type.gdshader
+//                                                             ^-------------- meta.parenthesis.gdshader
+//                                                              ^-- constant.numeric.float.gdshader
+//                                                                 ^ punctuation.separator.comma.gdshader
+//                                                                   ^-- constant.numeric.float.gdshader
+//                                                                      ^ punctuation.separator.comma.gdshader
+//                                                                        ^-- constant.numeric.float.gdshader
+//                                                                             ^ punctuation.terminator.statement.gdshader
+  mat4 identity = mat4(1.0);
+//^--- support.type.gdshader
+//     ^------- variable.name.gdshader
+//              ^ keyword.operator.gdshader
+//                ^--- support.type.gdshader
+//                    ^---- meta.parenthesis.gdshader
+//                     ^-- constant.numeric.float.gdshader
+//                         ^ punctuation.terminator.statement.gdshader
+
+  mat3 basis = mat3(identity);
+//^--- support.type.gdshader
+//     ^---- variable.name.gdshader
+//           ^ keyword.operator.gdshader
+//             ^--- support.type.gdshader
+//                 ^--------- meta.parenthesis.gdshader
+//                  ^------- variable.name.gdshader
+//                           ^ punctuation.terminator.statement.gdshader
+  mat4 m4 = mat4(basis);
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^--- support.type.gdshader
+//              ^------ meta.parenthesis.gdshader
+//               ^---- variable.name.gdshader
+//                     ^ punctuation.terminator.statement.gdshader
+  mat2 m2a = mat2(m4);
+//^--- support.type.gdshader
+//     ^-- variable.name.gdshader
+//         ^ keyword.operator.gdshader
+//           ^--- support.type.gdshader
+//               ^--- meta.parenthesis.gdshader
+//                ^- variable.name.gdshader
+//                   ^ punctuation.terminator.statement.gdshader
+
+  vec4 a = vec4(0.0, 1.0, 2.0, 3.0);
+//^--- support.type.gdshader
+//     ^ variable.name.gdshader
+//       ^ keyword.operator.gdshader
+//         ^--- support.type.gdshader
+//             ^------------------- meta.parenthesis.gdshader
+//              ^-- constant.numeric.float.gdshader
+//                 ^ punctuation.separator.comma.gdshader
+//                   ^-- constant.numeric.float.gdshader
+//                      ^ punctuation.separator.comma.gdshader
+//                        ^-- constant.numeric.float.gdshader
+//                           ^ punctuation.separator.comma.gdshader
+//                             ^-- constant.numeric.float.gdshader
+//                                 ^ punctuation.terminator.statement.gdshader
+  vec3 b = a.rgb; // Creates a vec3 with vec4 components.
+//^--- support.type.gdshader
+//     ^ variable.name.gdshader
+//       ^ keyword.operator.gdshader
+//         ^ variable.name.gdshader
+//          ^ punctuation.accessor.gdshader
+//           ^-- variable.other.property.gdshader
+//              ^ punctuation.terminator.statement.gdshader
+//                ^-------------------------------------- comment.line.double-slash.gdshader
+  vec3 b1 = a.ggg; // Also valid; creates a vec3 and fills it with a single vec4 component.
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^ variable.name.gdshader
+//           ^ punctuation.accessor.gdshader
+//            ^-- variable.other.property.gdshader
+//               ^ punctuation.terminator.statement.gdshader
+//                 ^----------------------------------------------------------------------- comment.line.double-slash.gdshader
+  vec3 b2 = a.bgr; // "b" will be vec3(2.0, 1.0, 0.0).
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^ variable.name.gdshader
+//           ^ punctuation.accessor.gdshader
+//            ^-- variable.other.property.gdshader
+//               ^ punctuation.terminator.statement.gdshader
+//                 ^---------------------------------- comment.line.double-slash.gdshader
+  vec3 b3 = a.xyz; // Also rgba, xyzw are equivalent.
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^ variable.name.gdshader
+//           ^ punctuation.accessor.gdshader
+//            ^-- variable.other.property.gdshader
+//               ^ punctuation.terminator.statement.gdshader
+//                 ^--------------------------------- comment.line.double-slash.gdshader
+  vec3 b4 = a.stp; // And stpq (for texture coordinates).
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^ variable.name.gdshader
+//           ^ punctuation.accessor.gdshader
+//            ^-- variable.other.property.gdshader
+//               ^ punctuation.terminator.statement.gdshader
+//                 ^------------------------------------- comment.line.double-slash.gdshader
+  b.bgr = a.rgb; // Valid assignment. "b"'s "blue" component will be "a"'s "red" and vice versa.
+//^ variable.name.gdshader
+// ^ punctuation.accessor.gdshader
+//  ^-- variable.other.property.gdshader
+//      ^ keyword.operator.gdshader
+//        ^ variable.name.gdshader
+//         ^ punctuation.accessor.gdshader
+//          ^-- variable.other.property.gdshader
+//             ^ punctuation.terminator.statement.gdshader
+//               ^------------------------------------------------------------------------------ comment.line.double-slash.gdshader
+
+  lowp vec4 v0 = vec4(0.0, 1.0, 2.0, 3.0); // low precision, usually 8 bits per component mapped to 0-1
+//^--- storage.type.built-in.primitive.precision.gdshader
+//     ^--- support.type.gdshader
+//          ^- variable.name.gdshader
+//             ^ keyword.operator.gdshader
+//               ^--- support.type.gdshader
+//                   ^------------------- meta.parenthesis.gdshader
+//                    ^-- constant.numeric.float.gdshader
+//                       ^ punctuation.separator.comma.gdshader
+//                         ^-- constant.numeric.float.gdshader
+//                            ^ punctuation.separator.comma.gdshader
+//                              ^-- constant.numeric.float.gdshader
+//                                 ^ punctuation.separator.comma.gdshader
+//                                   ^-- constant.numeric.float.gdshader
+//                                       ^ punctuation.terminator.statement.gdshader
+//                                         ^----------------------------------------------------------- comment.line.double-slash.gdshader
+  mediump vec4 v1 = vec4(0.0, 1.0, 2.0, 3.0); // medium precision, usually 16 bits or half float
+//^------ storage.type.built-in.primitive.precision.gdshader
+//        ^--- support.type.gdshader
+//             ^- variable.name.gdshader
+//                ^ keyword.operator.gdshader
+//                  ^--- support.type.gdshader
+//                      ^------------------- meta.parenthesis.gdshader
+//                       ^-- constant.numeric.float.gdshader
+//                          ^ punctuation.separator.comma.gdshader
+//                            ^-- constant.numeric.float.gdshader
+//                               ^ punctuation.separator.comma.gdshader
+//                                 ^-- constant.numeric.float.gdshader
+//                                    ^ punctuation.separator.comma.gdshader
+//                                      ^-- constant.numeric.float.gdshader
+//                                          ^ punctuation.terminator.statement.gdshader
+//                                            ^------------------------------------------------- comment.line.double-slash.gdshader
+  highp vec4 v2 = vec4(0.0, 1.0, 2.0, 3.0); // high precision, uses full float or integer range (default)
+//^---- storage.type.built-in.primitive.precision.gdshader
+//      ^--- support.type.gdshader
+//           ^- variable.name.gdshader
+//              ^ keyword.operator.gdshader
+//                ^--- support.type.gdshader
+//                    ^------------------- meta.parenthesis.gdshader
+//                     ^-- constant.numeric.float.gdshader
+//                        ^ punctuation.separator.comma.gdshader
+//                          ^-- constant.numeric.float.gdshader
+//                             ^ punctuation.separator.comma.gdshader
+//                               ^-- constant.numeric.float.gdshader
+//                                  ^ punctuation.separator.comma.gdshader
+//                                    ^-- constant.numeric.float.gdshader
+//                                        ^ punctuation.terminator.statement.gdshader
+//                                          ^------------------------------------------------------------ comment.line.double-slash.gdshader
+
+  const vec2 aa = vec2(0.0, 1.0);
+//^---- storage.modifier.gdshader
+//      ^--- support.type.gdshader
+//           ^- variable.name.gdshader
+//              ^ keyword.operator.gdshader
+//                ^--- support.type.gdshader
+//                    ^--------- meta.parenthesis.gdshader
+//                     ^-- constant.numeric.float.gdshader
+//                        ^ punctuation.separator.comma.gdshader
+//                          ^-- constant.numeric.float.gdshader
+//                              ^ punctuation.terminator.statement.gdshader
+  vec2 bb;
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//       ^ punctuation.terminator.statement.gdshader
+  bb = aa; // valid
+//^- variable.name.gdshader
+//   ^ keyword.operator.gdshader
+//     ^- variable.name.gdshader
+//       ^ punctuation.terminator.statement.gdshader
+//         ^------- comment.line.double-slash.gdshader
+
+  const vec2 V1 = vec2(1, 1), V2 = vec2(2, 2);
+//^---- storage.modifier.gdshader
+//      ^--- support.type.gdshader
+//           ^- variable.language.gdshader
+//              ^ keyword.operator.gdshader
+//                ^--- support.type.gdshader
+//                    ^----- meta.parenthesis.gdshader
+//                     ^ constant.numeric.integer.gdshader
+//                      ^ punctuation.separator.comma.gdshader
+//                        ^ constant.numeric.integer.gdshader
+//                          ^ punctuation.separator.comma.gdshader
+//                            ^- variable.language.gdshader
+//                               ^ keyword.operator.gdshader
+//                                 ^--- support.type.gdshader
+//                                     ^----- meta.parenthesis.gdshader
+//                                      ^ constant.numeric.integer.gdshader
+//                                       ^ punctuation.separator.comma.gdshader
+//                                         ^ constant.numeric.integer.gdshader
+//                                           ^ punctuation.terminator.statement.gdshader
+
+  float fa = 1.0;
+//^---- support.type.gdshader
+//      ^- variable.name.gdshader
+//         ^ keyword.operator.gdshader
+//           ^-- constant.numeric.float.gdshader
+//              ^ punctuation.terminator.statement.gdshader
+  float fb = 1.0f;
+//^---- support.type.gdshader
+//      ^- variable.name.gdshader
+//         ^ keyword.operator.gdshader
+//           ^--- constant.numeric.float.gdshader
+//               ^ punctuation.terminator.statement.gdshader
+  float fc = 1e-1;
+//^---- support.type.gdshader
+//      ^- variable.name.gdshader
+//         ^ keyword.operator.gdshader
+//           ^--- constant.numeric.float.gdshader
+//               ^ punctuation.terminator.statement.gdshader
+
+  uint ua = 1u;
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^- constant.numeric.integer.gdshader
+//            ^ punctuation.terminator.statement.gdshader
+  uint ub = uint(1);
+//^--- support.type.gdshader
+//     ^- variable.name.gdshader
+//        ^ keyword.operator.gdshader
+//          ^--- support.type.gdshader
+//              ^-- meta.parenthesis.gdshader
+//               ^ constant.numeric.integer.gdshader
+//                 ^ punctuation.terminator.statement.gdshader
+  
+  bool cond = false;
+//^--- support.type.gdshader
+//     ^--- variable.name.gdshader
+//          ^ keyword.operator.gdshader
+//            ^---- constant.language.boolean.gdshader
+//                 ^ punctuation.terminator.statement.gdshader
+  // `if` and `else`.
+//^------------------ comment.line.double-slash.gdshader
+  if (cond) {
+//^- keyword.control.gdshader
+//   ^----- meta.parenthesis.gdshader
+//    ^--- variable.name.gdshader
+  } else {
+//  ^--- keyword.control.gdshader
+  }
+  // Ternary operator.
+//^------------------- comment.line.double-slash.gdshader
+  // This is an expression that behaves like `if`/`else` and returns the value.
+//^---------------------------------------------------------------------------- comment.line.double-slash.gdshader
+  // If `cond` evaluates to `true`, `result` will be `9`.
+//^------------------------------------------------------ comment.line.double-slash.gdshader
+  // Otherwise, `result` will be `5`.
+//^---------------------------------- comment.line.double-slash.gdshader
+  int i, result = cond ? 9 : 5;
+//^-- support.type.gdshader
+//    ^ variable.name.gdshader
+//     ^ punctuation.separator.comma.gdshader
+//       ^----- variable.name.gdshader
+//              ^ keyword.operator.gdshader
+//                ^--- variable.name.gdshader
+//                       ^ constant.numeric.integer.gdshader
+//                         ^ keyword.operator.type.annotation.gdshader
+//                           ^ constant.numeric.integer.gdshader
+//                            ^ punctuation.terminator.statement.gdshader
+  // `switch`.
+//^----------- comment.line.double-slash.gdshader
+  switch (i) { // `i` should be a signed integer expression.
+//^----- keyword.control.gdshader
+//       ^-- meta.parenthesis.gdshader
+//        ^ variable.name.gdshader
+//             ^-------------------------------------------- comment.line.double-slash.gdshader
+    case -1:
+//  ^--- keyword.control.gdshader
+//       ^ keyword.operator.gdshader
+//        ^ constant.numeric.integer.gdshader
+//         ^ keyword.operator.type.annotation.gdshader
+      break;
+//    ^---- keyword.control.gdshader
+//         ^ punctuation.terminator.statement.gdshader
+    case 0:
+//  ^--- keyword.control.gdshader
+//       ^ constant.numeric.integer.gdshader
+//        ^ keyword.operator.type.annotation.gdshader
+      return; // `break` or `return` to avoid running the next `case`.
+//    ^----- keyword.control.gdshader
+//          ^ punctuation.terminator.statement.gdshader
+//            ^------------------------------------------------------- comment.line.double-slash.gdshader
+    case 1: // Fallthrough (no `break` or `return`): will run the next `case`.
+//  ^--- keyword.control.gdshader
+//       ^ constant.numeric.integer.gdshader
+//        ^ keyword.operator.type.annotation.gdshader
+//          ^----------------------------------------------------------------- comment.line.double-slash.gdshader
+    case 2:
+//  ^--- keyword.control.gdshader
+//       ^ constant.numeric.integer.gdshader
+//        ^ keyword.operator.type.annotation.gdshader
+      break;
+//    ^---- keyword.control.gdshader
+//         ^ punctuation.terminator.statement.gdshader
+    //...
+//  ^---- comment.line.double-slash.gdshader
+    default: // Only run if no `case` above matches. Optional.
+//  ^------ keyword.control.gdshader
+//         ^ keyword.operator.type.annotation.gdshader
+//           ^------------------------------------------------ comment.line.double-slash.gdshader
+      break;
+//    ^---- keyword.control.gdshader
+//         ^ punctuation.terminator.statement.gdshader
+  }
+  // `for` loop. Best used when the number of elements to iterate on
+//^----------------------------------------------------------------- comment.line.double-slash.gdshader
+  // is known in advance.
+//^---------------------- comment.line.double-slash.gdshader
+  for (int i = 0; i < 10; i++) {
+//^-- keyword.control.gdshader
+//    ^----------------------- meta.parenthesis.gdshader
+//     ^-- support.type.gdshader
+//         ^ variable.name.gdshader
+//           ^ keyword.operator.gdshader
+//             ^ constant.numeric.integer.gdshader
+//              ^ punctuation.terminator.statement.gdshader
+//                ^ variable.name.gdshader
+//                  ^ keyword.operator.gdshader
+//                    ^- constant.numeric.integer.gdshader
+//                      ^ punctuation.terminator.statement.gdshader
+//                        ^ variable.name.gdshader
+//                         ^- keyword.operator.gdshader
+  }
+  // `while` loop. Best used when the number of elements to iterate on
+//^------------------------------------------------------------------- comment.line.double-slash.gdshader
+  // is not known in advance.
+//^-------------------------- comment.line.double-slash.gdshader
+  while (cond) {
+//^---- keyword.control.gdshader
+//      ^----- meta.parenthesis.gdshader
+//       ^--- variable.name.gdshader
+  }
+  // `do while`. Like `while`, but always runs at least once even if `cond`
+//^------------------------------------------------------------------------ comment.line.double-slash.gdshader
+  // never evaluates to `true`.
+//^---------------------------- comment.line.double-slash.gdshader
+  do {
+//^- keyword.control.gdshader
+  } while (cond);
+//  ^---- keyword.control.gdshader
+//        ^----- meta.parenthesis.gdshader
+//         ^--- variable.name.gdshader
+//              ^ punctuation.terminator.statement.gdshader
+}
+
+const float PI_ = 3.14159265358979323846;
+//<0- storage.modifier.gdshader
+//    ^---- support.type.gdshader
+//          ^-- variable.language.gdshader
+//              ^ keyword.operator.gdshader
+//                ^--------------------- constant.numeric.float.gdshader
+//                                      ^ punctuation.terminator.statement.gdshader
+
+struct PointLight {
+//<0-- keyword.other.struct.gdshader
+//     ^--------- entity.name.type.struct.gdshader
+//                ^ meta.definition.block.struct.gdshader
+  vec3 position;
+//<0------------ meta.definition.block.struct.gdshader
+//^------------- meta.definition.field.gdshader
+//^--- support.type.gdshader
+//     ^------- entity.name.variable.field.gdshader
+//             ^ punctuation.terminator.statement.gdshader
+  vec3 color;
+//<0--------- meta.definition.block.struct.gdshader
+//^---------- meta.definition.field.gdshader
+//^--- support.type.gdshader
+//     ^---- entity.name.variable.field.gdshader
+//          ^ punctuation.terminator.statement.gdshader
+  float intensity;
+//<0-------------- meta.definition.block.struct.gdshader
+//^--------------- meta.definition.field.gdshader
+//^---- support.type.gdshader
+//      ^-------- entity.name.variable.field.gdshader
+//               ^ punctuation.terminator.statement.gdshader
+};
+//<0 meta.definition.block.struct.gdshader
+//<1 punctuation.terminator.statement.gdshader
+
+struct Scene {
+//<0-- keyword.other.struct.gdshader
+//     ^---- entity.name.type.struct.gdshader
+//           ^ meta.definition.block.struct.gdshader
+  PointLight lights[2];
+//<0------------------- meta.definition.block.struct.gdshader
+//^-------------------- meta.definition.field.gdshader
+//^--------- entity.name.type.gdshader
+//           ^----- entity.name.variable.field.gdshader
+//                 ^-- meta.array-size.gdshader
+//                  ^ constant.numeric.integer.gdshader
+//                    ^ punctuation.terminator.statement.gdshader
+};
+//<0 meta.definition.block.struct.gdshader
+//<1 punctuation.terminator.statement.gdshader
+
+// from https://github.com/godotengine/godot-vscode-plugin/blob/cdc550a412dfffd26dfe7351e429b73c819d68d0/syntaxes/examples/example2.gdshader
+//<0---------------------------------------------------------------------------------------------------------------------------------------- comment.line.double-slash.gdshader

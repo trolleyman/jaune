@@ -1,0 +1,242 @@
+# grammar: source.narrat
+
+quest_demo:
+#<0------- entity.name.function.narrat
+  set_button shopButton true
+# ^--------- keyword.commands.screens.narrat
+#                       ^--- constant.language.true.narrat
+  set_button parkButton greyed
+# ^--------- keyword.commands.screens.narrat
+  jump bread_quest
+# ^--- keyword.commands.flow.narrat
+
+bread_quest:
+#<0-------- entity.name.function.narrat
+  choice:
+# ^----- keyword.control.narrat
+    talk helper idle "Can you get 2 pieces of bread for me?"
+#   ^--- keyword.commands.text.narrat
+#                    ^-------------------------------------- string.quoted.double.narrat
+    "Yes":
+#   ^---- string.quoted.double.narrat
+      talk helper idle "Thanks, that's very nice!"
+#     ^--- keyword.commands.text.narrat
+#                      ^-------------------------- string.quoted.double.narrat
+      talk helper idle "I'll be waiting for you at the park"
+#     ^--- keyword.commands.text.narrat
+#                      ^------------------------------------ string.quoted.double.narrat
+      jump bread_start
+#     ^--- keyword.commands.flow.narrat
+    "No":
+#   ^--- string.quoted.double.narrat
+      talk helper idle "Oh, okay"
+#     ^--- keyword.commands.text.narrat
+#                      ^--------- string.quoted.double.narrat
+      jump quest_demo
+#     ^--- keyword.commands.flow.narrat
+
+bread_start:
+#<0-------- entity.name.function.narrat
+  start_quest breadShopping
+# ^---------- keyword.commands.quests.narrat
+  talk inner idle "Time to go to the shop to buy some bread then."
+# ^--- keyword.commands.text.narrat
+#                 ^----------------------------------------------- string.quoted.double.narrat
+  set_screen map
+# ^--------- keyword.commands.screens.narrat
+  set_button shopButton true
+# ^--------- keyword.commands.screens.narrat
+#                       ^--- constant.language.true.narrat
+
+shopButton:
+#<0------- entity.name.function.narrat
+  // set_screen default
+# ^-------------------- comment.line.narrat
+  "You visit the bread shop"
+# ^------------------------- string.quoted.double.narrat
+  talk shopkeeper idle "Hello, I'm a little baker selling bread and drinks!"
+# ^--- keyword.commands.text.narrat
+#                      ^---------------------------------------------------- string.quoted.double.narrat
+  set data.breadPrice 5
+# ^-- keyword.commands.variables.narrat
+#                     ^ constant.numeric.narrat
+  jump shop_menu
+# ^--- keyword.commands.flow.narrat
+
+parkButton:
+#<0------- entity.name.function.narrat
+  choice:
+# ^----- keyword.control.narrat
+    talk helper idle "Ah, so do you have my bread?"
+#   ^--- keyword.commands.text.narrat
+#                    ^----------------------------- string.quoted.double.narrat
+    "Yes!" if (>= $items.bread.amount 2):
+#   ^----- string.quoted.double.narrat
+#          ^- keyword.control.narrat
+#             ^------------------------- expression.group
+#             ^ punctuation.paren.open
+#              ^-- keyword.operator.logic.narrat
+#                 ^------------------ variable.value.narrat
+#                                     ^ constant.numeric.narrat
+#                                      ^ punctuation.paren.close
+      talk helper idle "Thanks a lot!"
+#     ^--- keyword.commands.text.narrat
+#                      ^-------------- string.quoted.double.narrat
+      add_item bread -2
+#     ^------- keyword.commands.inventory.narrat
+#                     ^ constant.numeric.narrat
+      complete_objective breadShopping delivery
+#     ^----------------- keyword.commands.quests.narrat
+      complete_quest breadShopping
+#     ^------------- keyword.commands.quests.narrat
+      set_button parkButton false
+#     ^--------- keyword.commands.screens.narrat
+#                           ^---- constant.language.false.narrat
+      jump demo_end
+#     ^--- keyword.commands.flow.narrat
+    "No :(":
+#   ^------ string.quoted.double.narrat
+      talk helper idle "Oh okay"
+#     ^--- keyword.commands.text.narrat
+#                      ^-------- string.quoted.double.narrat
+
+shop_menu:
+#<0------ entity.name.function.narrat
+  choice:
+# ^----- keyword.control.narrat
+    talk shopkeeper idle "So, do you want some bread?"
+#   ^--- keyword.commands.text.narrat
+#                        ^---------------------------- string.quoted.double.narrat
+    "Buy bread (costs %{$$data.breadPrice})" if (>= $stats.money.value $data.breadPrice):
+#   ^--------------------------------------- string.quoted.double.narrat
+#                     ^------------------- expression.template
+#                     ^- punctuation.template.open
+#                        ^--------------- variable.value.narrat
+#                                        ^ punctuation.template.close.narrat
+#                                            ^- keyword.control.narrat
+#                                               ^--------------------------------------- expression.group
+#                                               ^ punctuation.paren.open
+#                                                ^-- keyword.operator.logic.narrat
+#                                                   ^----------------- variable.value.narrat
+#                                                                      ^--------------- variable.value.narrat
+#                                                                                      ^ punctuation.paren.close
+      add_item bread 1
+#     ^------- keyword.commands.inventory.narrat
+#                    ^ constant.numeric.narrat
+      if (== $data.breadPrice 5):
+#     ^- keyword.control.narrat
+#        ^---------------------- expression.group
+#        ^ punctuation.paren.open
+#         ^-- keyword.operator.logic.narrat
+#            ^--------------- variable.value.narrat
+#                             ^ constant.numeric.narrat
+#                              ^ punctuation.paren.close
+        add_stat money -5
+#       ^------- keyword.commands.stats.narrat
+#                       ^ constant.numeric.narrat
+      else:
+#     ^--- keyword.control.narrat
+        add_stat money -4
+#       ^------- keyword.commands.stats.narrat
+#                       ^ constant.numeric.narrat
+      jump map_update
+#     ^--- keyword.commands.flow.narrat
+    roll bread_haggle haggling 50 "Try to haggle for bread" hideAfterRoll:
+#   ^--- keyword.commands.skills.narrat
+#                              ^- constant.numeric.narrat
+#                                 ^------------------------ string.quoted.double.narrat
+      success "You explain that helper cat needs bread to feed his poor family":
+#             ^---------------------------------------------------------------- string.quoted.double.narrat
+        add_xp haggling 10
+#       ^----- keyword.commands.skills.narrat
+#                       ^- constant.numeric.narrat
+        set data.breadPrice 4
+#       ^-- keyword.commands.variables.narrat
+#                           ^ constant.numeric.narrat
+        talk shopkeeper idle "I guess I can sell you bread for 4 coins"
+#       ^--- keyword.commands.text.narrat
+#                            ^----------------------------------------- string.quoted.double.narrat
+        jump shop_menu
+#       ^--- keyword.commands.flow.narrat
+      failure "You try to pity trip the shopkeeper but he won't bulge":
+#             ^------------------------------------------------------- string.quoted.double.narrat
+        add_xp haggling 5
+#       ^----- keyword.commands.skills.narrat
+#                       ^ constant.numeric.narrat
+        talk shopkeeper idle "The price is 5 coins, nothing less, nothing more."
+#       ^--- keyword.commands.text.narrat
+#                            ^-------------------------------------------------- string.quoted.double.narrat
+        jump shop_menu
+#       ^--- keyword.commands.flow.narrat
+    "Exit":
+#   ^----- string.quoted.double.narrat
+      jump map_update
+#     ^--- keyword.commands.flow.narrat
+
+show_map:
+#<0----- entity.name.function.narrat
+  set_button parkButton false
+# ^--------- keyword.commands.screens.narrat
+#                       ^---- constant.language.false.narrat
+  set_button shopButton true
+# ^--------- keyword.commands.screens.narrat
+#                       ^--- constant.language.true.narrat
+  set_screen map
+# ^--------- keyword.commands.screens.narrat
+
+map_update:
+#<0------- entity.name.function.narrat
+  set_button parkButton false
+# ^--------- keyword.commands.screens.narrat
+#                       ^---- constant.language.false.narrat
+  set_button shopButton true
+# ^--------- keyword.commands.screens.narrat
+#                       ^--- constant.language.true.narrat
+  log $items.bread
+# ^-- keyword.commands.helpers.narrat
+#     ^----------- variable.value.narrat
+  if (>= $items.bread.amount 2):
+# ^- keyword.control.narrat
+#    ^------------------------- expression.group
+#    ^ punctuation.paren.open
+#     ^-- keyword.operator.logic.narrat
+#        ^------------------ variable.value.narrat
+#                            ^ constant.numeric.narrat
+#                             ^ punctuation.paren.close
+    complete_objective breadShopping bread
+#   ^----------------- keyword.commands.quests.narrat
+    talk inner idle "I've got enough bread now, I'm going to go to the park."
+#   ^--- keyword.commands.text.narrat
+#                   ^-------------------------------------------------------- string.quoted.double.narrat
+    start_objective breadShopping delivery
+#   ^-------------- keyword.commands.quests.narrat
+    set_screen map
+#   ^--------- keyword.commands.screens.narrat
+    set_button parkButton true
+#   ^--------- keyword.commands.screens.narrat
+#                         ^--- constant.language.true.narrat
+    set_button shopButton false
+#   ^--------- keyword.commands.screens.narrat
+#                         ^---- constant.language.false.narrat
+  else:
+# ^--- keyword.control.narrat
+    talk inner idle "Hmm, I still need to buy more bread for helper cat."
+#   ^--- keyword.commands.text.narrat
+#                   ^---------------------------------------------------- string.quoted.double.narrat
+    set_screen map
+#   ^--------- keyword.commands.screens.narrat
+
+eat_bread:
+#<0------ entity.name.function.narrat
+  talk player idle "hmm, bread"
+# ^--- keyword.commands.text.narrat
+#                  ^----------- string.quoted.double.narrat
+
+read_book:
+#<0------ entity.name.function.narrat
+  talk inner idle "It's full of ocult rituals. I'm not sure what they are, but I'm sure they are useful."
+# ^--- keyword.commands.text.narrat
+#                 ^-------------------------------------------------------------------------------------- string.quoted.double.narrat
+
+// From: https://github.com/liana-p/narrat-engine/blob/main/packages/narrat/examples/games/demo/data/quest.narrat
+#<0-------------------------------------------------------------------------------------------------------------- comment.line.narrat

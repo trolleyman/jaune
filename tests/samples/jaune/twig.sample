@@ -1,0 +1,121 @@
+<!-- grammar: text.html.twig -->
+
+<!DOCTYPE html>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.logical.ts -->
+<!--<2--- constant.character.other -->
+<!--      ^--- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.relational.ts -->
+<html>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+    <head>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+        <title>My Webpage</title>
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^---- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.relational.ts -->
+<!--           ^- variable.other.readwrite.ts -->
+<!--              ^------ variable.other.readwrite.ts -->
+<!--                     ^ keyword.operator.relational.ts -->
+<!--                      ^ keyword.operator.arithmetic.ts -->
+<!--                       ^---- variable.other.readwrite.ts -->
+<!--                            ^ keyword.operator.relational.ts -->
+    </head>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^--- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+    <body>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+        <ul id="navigation">
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^- variable.other.readwrite.ts -->
+<!--        ^- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.assignment.ts -->
+<!--           ^----------- string.quoted.double.ts -->
+<!--           ^ punctuation.definition.string.begin.ts -->
+<!--            ^--------- variable.other.readwrite.ts -->
+<!--                      ^ punctuation.definition.string.end.ts -->
+<!--                       ^ keyword.operator.relational.ts -->
+        {% for item in navigation %}
+<!--    ^--------------------------- meta.tag.template.block.twig -->
+<!--    ^- punctuation.section.tag.twig -->
+<!--       ^-- variable.other.readwrite.ts -->
+<!--           ^--- variable.other.readwrite.ts -->
+<!--                ^- keyword.operator.expression.in.ts -->
+<!--                   ^--------- variable.other.readwrite.ts -->
+<!--                              ^- punctuation.section.tag.twig -->
+            <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+<!--        ^ keyword.operator.relational.ts -->
+<!--         ^- variable.other.readwrite.ts -->
+<!--           ^- keyword.operator.relational.ts -->
+<!--             ^ variable.other.readwrite.ts -->
+<!--               ^--- variable.other.readwrite.ts -->
+<!--                   ^ keyword.operator.assignment.ts -->
+<!--                    ^---------------- string.quoted.double.ts -->
+<!--                    ^ punctuation.definition.string.begin.ts -->
+<!--                     ^- punctuation.definition.block.ts -->
+<!--                        ^--- variable.other.object.ts -->
+<!--                            ^ punctuation.accessor.ts -->
+<!--                             ^--- variable.other.property.ts -->
+<!--                                  ^- punctuation.definition.block.ts -->
+<!--                                    ^ punctuation.definition.string.end.ts -->
+<!--                                     ^ keyword.operator.relational.ts -->
+<!--                                      ^- punctuation.definition.block.ts -->
+<!--                                         ^--- variable.other.object.ts -->
+<!--                                             ^ punctuation.accessor.ts -->
+<!--                                              ^------ variable.other.property.ts -->
+<!--                                                      ^- punctuation.definition.block.ts -->
+<!--                                                        ^ keyword.operator.relational.ts -->
+<!--                                                         ^ keyword.operator.arithmetic.ts -->
+<!--                                                          ^ variable.other.readwrite.ts -->
+<!--                                                           ^- keyword.operator.relational.ts -->
+<!--                                                             ^ keyword.operator.arithmetic.ts -->
+<!--                                                              ^- variable.other.readwrite.ts -->
+<!--                                                                ^ keyword.operator.relational.ts -->
+        {% endfor %}
+<!--    ^----------- meta.tag.template.block.twig -->
+<!--    ^- punctuation.section.tag.twig -->
+<!--       ^----- variable.other.readwrite.ts -->
+<!--              ^- punctuation.section.tag.twig -->
+        </ul>
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^ keyword.operator.arithmetic.ts -->
+<!--      ^- variable.other.readwrite.ts -->
+<!--        ^ keyword.operator.relational.ts -->
+
+        <h1>My Webpage</h1>
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^- variable.other.readwrite.ts -->
+<!--       ^ keyword.operator.relational.ts -->
+<!--        ^- variable.other.readwrite.ts -->
+<!--           ^------ variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.relational.ts -->
+<!--                   ^ keyword.operator.arithmetic.ts -->
+<!--                    ^- variable.other.readwrite.ts -->
+<!--                      ^ keyword.operator.relational.ts -->
+        {{ a_variable }}
+<!--    ^- punctuation.definition.block.ts -->
+<!--       ^--------- variable.other.readwrite.ts -->
+<!--                  ^- punctuation.definition.block.ts -->
+    </body>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^--- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+</html>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+
+{# From https://twig.symfony.com/doc/3.x/templates.html #}
+<!--<0---------------------------------------------------- comment.block.twig -->
+<!--<0 punctuation.definition.comment.begin.twig -->
+<!--                                                    ^- punctuation.definition.comment.end.twig -->

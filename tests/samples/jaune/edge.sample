@@ -1,0 +1,223 @@
+<!-- grammar: text.html.edge -->
+
+<!DOCTYPE html>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.logical.ts -->
+<!--<2--- constant.character.other -->
+<!--      ^--- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.relational.ts -->
+<html lang="en">
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--  ^--- variable.other.readwrite.ts -->
+<!--      ^ keyword.operator.assignment.ts -->
+<!--       ^--- string.quoted.double.ts -->
+<!--       ^ punctuation.definition.string.begin.ts -->
+<!--        ^- variable.other.readwrite.ts -->
+<!--          ^ punctuation.definition.string.end.ts -->
+<!--           ^ keyword.operator.relational.ts -->
+<head>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+	<meta charset="UTF-8">
+<!--<1 keyword.operator.relational.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--   ^------ variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.assignment.ts -->
+<!--           ^------ string.quoted.double.ts -->
+<!--           ^ punctuation.definition.string.begin.ts -->
+<!--            ^-- constant.character.other -->
+<!--               ^ keyword.operator.arithmetic.ts -->
+<!--                ^ constant.numeric.decimal.ts -->
+<!--                 ^ punctuation.definition.string.end.ts -->
+<!--                  ^ keyword.operator.relational.ts -->
+	<title></title>
+<!--<1 keyword.operator.relational.ts -->
+<!--<2- variable.other.readwrite.ts -->
+<!--   ^- keyword.operator.relational.ts -->
+<!--     ^ keyword.operator.arithmetic.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--           ^ keyword.operator.relational.ts -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!--<0 punctuation.whitespace.embedded.leading.html -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3--- variable.other.readwrite.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--            ^-- variable.other.readwrite.ts -->
+<!--               ^ keyword.operator.assignment.ts -->
+<!--                ^------------------------------------------------------------ string.quoted.double.ts -->
+<!--                ^ punctuation.definition.string.begin.ts -->
+<!--                 ^---- variable.other.readwrite.ts -->
+<!--                       ^- keyword.operator.arithmetic.ts -->
+<!--                         ^-- variable.other.object.ts -->
+<!--                            ^ punctuation.accessor.ts -->
+<!--                             ^------- variable.other.object.property.ts -->
+<!--                                     ^ punctuation.accessor.ts -->
+<!--                                      ^-- variable.other.property.ts -->
+<!--                                         ^ keyword.operator.arithmetic.ts -->
+<!--                                          ^-- variable.other.readwrite.ts -->
+<!--                                             ^ keyword.operator.arithmetic.ts -->
+<!--                                              ^------- variable.other.readwrite.ts -->
+<!--                                                        ^ punctuation.accessor.ts -->
+<!--                                                         ^ variable.other.object.property.ts -->
+<!--                                                          ^ punctuation.accessor.ts -->
+<!--                                                           ^ variable.other.property.ts -->
+<!--                                                            ^ keyword.operator.arithmetic.ts -->
+<!--                                                             ^--- variable.other.readwrite.ts -->
+<!--                                                                 ^ keyword.operator.arithmetic.ts -->
+<!--                                                                  ^-- variable.other.object.ts -->
+<!--                                                                     ^ punctuation.accessor.ts -->
+<!--                                                                      ^-- variable.other.object.property.ts -->
+<!--                                                                         ^ punctuation.accessor.ts -->
+<!--                                                                          ^- variable.other.property.ts -->
+<!--                                                                            ^ punctuation.definition.string.end.ts -->
+<!--                                                                             ^- keyword.operator.relational.ts -->
+<!--                                                                               ^ keyword.operator.arithmetic.ts -->
+<!--                                                                                ^----- variable.other.readwrite.ts -->
+<!--                                                                                      ^ keyword.operator.relational.ts -->
+</head>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+<body>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+  {{ inspect(state.user) }}
+<!--<2 punctuation.definition.block.ts -->
+<!-- ^------ variable.other.readwrite.ts -->
+<!--        ^ meta.brace.round.ts -->
+<!--         ^---- variable.other.object.ts -->
+<!--              ^ punctuation.accessor.ts -->
+<!--               ^--- variable.other.property.ts -->
+<!--                   ^ meta.brace.round.ts -->
+<!--                     ^- punctuation.definition.block.ts -->
+	@set('time', 'afternoon')
+<!--<0-------------------- meta.embedded.block.javascript -->
+<!--<1 support.function.edge -->
+<!-- ^ punctuation.paren.open -->
+<!--  ^----- string.quoted.single.ts -->
+<!--  ^ punctuation.definition.string.begin.ts -->
+<!--   ^--- variable.other.readwrite.ts -->
+<!--       ^ punctuation.definition.string.end.ts -->
+<!--        ^ punctuation.separator.comma.ts -->
+<!--          ^---------- string.quoted.single.ts -->
+<!--          ^ punctuation.definition.string.begin.ts -->
+<!--           ^-------- variable.other.readwrite.ts -->
+<!--                    ^ punctuation.definition.string.end.ts -->
+<!--                     ^ punctuation.paren.close -->
+
+	@component('components/modal', title = 'foo', title = 'bar')
+<!--<0------------------------------------------------------- meta.embedded.block.javascript -->
+<!--<1----- support.function.edge -->
+<!--       ^ punctuation.paren.open -->
+<!--        ^----------------- string.quoted.single.ts -->
+<!--        ^ punctuation.definition.string.begin.ts -->
+<!--         ^--------- variable.other.readwrite.ts -->
+<!--                   ^ keyword.operator.arithmetic.ts -->
+<!--                    ^---- variable.other.readwrite.ts -->
+<!--                         ^ punctuation.definition.string.end.ts -->
+<!--                          ^ punctuation.separator.comma.ts -->
+<!--                            ^---- variable.other.readwrite.ts -->
+<!--                                  ^ keyword.operator.assignment.ts -->
+<!--                                    ^---- string.quoted.single.ts -->
+<!--                                    ^ punctuation.definition.string.begin.ts -->
+<!--                                     ^-- variable.other.readwrite.ts -->
+<!--                                        ^ punctuation.definition.string.end.ts -->
+<!--                                         ^ punctuation.separator.comma.ts -->
+<!--                                           ^---- variable.other.readwrite.ts -->
+<!--                                                 ^ keyword.operator.assignment.ts -->
+<!--                                                   ^---- string.quoted.single.ts -->
+<!--                                                   ^ punctuation.definition.string.begin.ts -->
+<!--                                                    ^-- variable.other.readwrite.ts -->
+<!--                                                       ^ punctuation.definition.string.end.ts -->
+<!--                                                        ^ punctuation.paren.close -->
+		@slot('body')
+<!--<0--------- meta.embedded.block.javascript -->
+<!--<2- support.function.edge -->
+<!--   ^ punctuation.paren.open -->
+<!--    ^----- string.quoted.single.ts -->
+<!--    ^ punctuation.definition.string.begin.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--         ^ punctuation.definition.string.end.ts -->
+<!--          ^ punctuation.paren.close -->
+			<p>hello</p>
+<!--<3 keyword.operator.relational.ts -->
+<!--^ variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+<!--  ^---- variable.other.readwrite.ts -->
+<!--       ^ keyword.operator.relational.ts -->
+<!--        ^ keyword.operator.arithmetic.ts -->
+<!--         ^ variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.relational.ts -->
+		@endslot
+<!--<0---- meta.embedded.block.javascript -->
+<!--<2---- support.function.edge -->
+
+		@slot('actions')
+<!--<0------------ meta.embedded.block.javascript -->
+<!--<2- support.function.edge -->
+<!--   ^ punctuation.paren.open -->
+<!--    ^-------- string.quoted.single.ts -->
+<!--    ^ punctuation.definition.string.begin.ts -->
+<!--     ^------ variable.other.readwrite.ts -->
+<!--            ^ punctuation.definition.string.end.ts -->
+<!--             ^ punctuation.paren.close -->
+			@include('partials/button')
+<!--<0------------------------ meta.embedded.block.javascript -->
+<!--<3----- support.function.edge -->
+<!--       ^ punctuation.paren.open -->
+<!--        ^---------------- string.quoted.single.ts -->
+<!--        ^ punctuation.definition.string.begin.ts -->
+<!--         ^------- variable.other.readwrite.ts -->
+<!--                 ^ keyword.operator.arithmetic.ts -->
+<!--                  ^----- variable.other.readwrite.ts -->
+<!--                        ^ punctuation.definition.string.end.ts -->
+<!--                         ^ punctuation.paren.close -->
+		@endslot
+<!--<0---- meta.embedded.block.javascript -->
+<!--<2---- support.function.edge -->
+	@endcomponent
+<!--<0-------- meta.embedded.block.javascript -->
+<!--<1-------- support.function.edge -->
+</body>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+</html>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+
+{{-- From https://github.com/edge-js/edge/blob/develop/examples/views/welcome.edge --}
+<!--<0 punctuation.definition.block.ts -->
+<!--<2 keyword.operator.decrement.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--            ^- keyword.operator.arithmetic.ts -->
+<!--              ^----- variable.other.object.ts -->
+<!--                    ^ punctuation.accessor.ts -->
+<!--                     ^-- variable.other.property.ts -->
+<!--                        ^ keyword.operator.arithmetic.ts -->
+<!--                         ^--- variable.other.readwrite.ts -->
+<!--                             ^ keyword.operator.arithmetic.ts -->
+<!--                              ^- variable.other.readwrite.ts -->
+<!--                                ^ keyword.operator.arithmetic.ts -->
+<!--                                 ^--- variable.other.readwrite.ts -->
+<!--                                     ^ keyword.operator.arithmetic.ts -->
+<!--                                      ^--- variable.other.readwrite.ts -->
+<!--                                          ^ keyword.operator.arithmetic.ts -->
+<!--                                           ^------ variable.other.readwrite.ts -->
+<!--                                                  ^ keyword.operator.arithmetic.ts -->
+<!--                                                   ^------- variable.other.readwrite.ts -->
+<!--                                                           ^ keyword.operator.arithmetic.ts -->
+<!--                                                            ^---- variable.other.readwrite.ts -->
+<!--                                                                 ^ keyword.operator.arithmetic.ts -->
+<!--                                                                  ^------ variable.other.object.ts -->
+<!--                                                                         ^ punctuation.accessor.ts -->
+<!--                                                                          ^--- variable.other.property.ts -->
+<!--                                                                               ^- keyword.operator.decrement.ts -->

@@ -1,0 +1,144 @@
+# grammar: text.haml
+
+!!! 5
+#<0-- meta.prolog.haml
+#<0 punctuation.definition.prolog.haml
+%html
+#<0-- meta.tag.haml
+#<0 punctuation.definition.tag.haml
+#^--- entity.name.tag.haml
+	%head
+#^---- meta.tag.haml
+#^ punctuation.definition.tag.haml
+# ^--- entity.name.tag.haml
+		%title Example HAML
+# ^----- meta.tag.haml
+# ^ punctuation.definition.tag.haml
+#  ^---- entity.name.tag.haml
+		/[if IE]
+#<0------- comment.line.slash.haml
+#<0 punctuation.section.comment.haml
+			%link{ :rel => "stylesheet", :href => "/css/ie.css" }
+#  ^---- meta.tag.haml
+#  ^ punctuation.definition.tag.haml
+#   ^--- entity.name.tag.haml
+#       ^----------------------------------------------- meta.section.attributes.haml
+#        ^ meta.syntax.ruby.start-block
+#         ^--- constant.language.symbol.hashkey.ruby
+#         ^ punctuation.definition.constant.ruby
+#              ^- punctuation.separator.key-value
+#                 ^----------- string.quoted.double.interpolated.ruby
+#                 ^ punctuation.definition.string.begin.ruby
+#                            ^ punctuation.definition.string.end.ruby
+#                             ^ punctuation.separator.object.ruby
+#                               ^---- constant.language.symbol.hashkey.ruby
+#                               ^ punctuation.definition.constant.ruby
+#                                     ^- punctuation.separator.key-value
+#                                        ^------------ string.quoted.double.interpolated.ruby
+#                                        ^ punctuation.definition.string.begin.ruby
+#                                                    ^ punctuation.definition.string.end.ruby
+	%body
+#^---- meta.tag.haml
+#^ punctuation.definition.tag.haml
+# ^--- entity.name.tag.haml
+		#container
+# ^--------- meta.selector.css
+# ^--------- entity.other.attribute-name.id
+			%header
+#  ^------ meta.tag.haml
+#  ^ punctuation.definition.tag.haml
+#   ^----- entity.name.tag.haml
+				%h1 Our Awesome HTML5 Template
+#   ^-- meta.tag.haml
+#   ^ punctuation.definition.tag.haml
+#    ^- entity.name.tag.haml
+			#main
+#  ^---- meta.selector.css
+#  ^---- entity.other.attribute-name.id
+				Did we mention this was awesome?
+
+				/ Only this line will be wrapped in a comment
+#<0---------------------------------------------- comment.block.haml
+#   ^ punctuation.section.comment.haml
+				%blockquote
+#   ^---------- meta.tag.haml
+#   ^ punctuation.definition.tag.haml
+#    ^--------- entity.name.tag.haml
+					%p Roads? Where we're going we don't need roads
+#    ^- meta.tag.haml
+#    ^ punctuation.definition.tag.haml
+#     ^ entity.name.tag.haml
+
+				/
+#<0-- comment.block.haml
+#   ^ punctuation.section.comment.haml
+					Now the whole block will be commented out
+#<0------------------------------------------- comment.block.haml
+					%blockquote
+#<0------------- comment.block.haml
+#    ^---------- meta.tag.haml
+#    ^ punctuation.definition.tag.haml
+#     ^--------- entity.name.tag.haml
+						%p Roads? Where we're going we don't need roads
+#<0-------------------------------------------------- comment.block.haml
+#     ^- meta.tag.haml
+#     ^ punctuation.definition.tag.haml
+#      ^ entity.name.tag.haml
+
+				%p The line below won't appear in the HTML
+#   ^- meta.tag.haml
+#   ^ punctuation.definition.tag.haml
+#    ^ entity.name.tag.haml
+				-# The rest of this line is a comment
+#<0-------------------------------------- comment.block.haml
+#   ^- punctuation.section.comment.haml
+				%p The line above won't appear in the HTML, nor will the lines underneath
+#   ^- meta.tag.haml
+#   ^ punctuation.definition.tag.haml
+#    ^ entity.name.tag.haml
+				-#
+#<0--- comment.block.haml
+#   ^- punctuation.section.comment.haml
+					None of this text will appear in our
+#<0-------------------------------------- comment.block.haml
+					rendered output
+#<0----------------- comment.block.haml
+
+				%p= Time.now
+#   ^- meta.tag.haml
+#   ^ punctuation.definition.tag.haml
+#    ^ entity.name.tag.haml
+#     ^--------- meta.line.ruby.haml
+#      ^-------- source.ruby.embedded.haml
+#       ^--- support.class.ruby
+#           ^ punctuation.separator.method.ruby
+#            ^-- meta.function-call.ruby
+#            ^-- entity.name.function.ruby
+
+			%footer
+#  ^------ meta.tag.haml
+#  ^ punctuation.definition.tag.haml
+#   ^----- entity.name.tag.haml
+				%address
+#   ^------- meta.tag.haml
+#   ^ punctuation.definition.tag.haml
+#    ^------ entity.name.tag.haml
+					.hcard
+#    ^----- meta.selector.css
+#    ^----- entity.other.attribute-name.class
+						.fn Ian Oxley
+#     ^-- meta.selector.css
+#     ^-- entity.other.attribute-name.class
+						.adr
+#     ^--- meta.selector.css
+#     ^--- entity.other.attribute-name.class
+							.locality Newcastle-upon-Tyne
+#      ^-------- meta.selector.css
+#      ^-------- entity.other.attribute-name.class
+							.country-name England
+#      ^------------ meta.selector.css
+#      ^------------ entity.other.attribute-name.class
+
+/ From https://gist.github.com/ianoxley/1147666
+#<0-------------------------------------------- comment.block.haml
+#<0 punctuation.section.comment.haml

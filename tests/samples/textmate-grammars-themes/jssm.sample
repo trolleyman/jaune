@@ -1,0 +1,71 @@
+// grammar: source.jssm
+
+
+machine_name      : "BGP";
+//<0--------------- constant.language.jssmLanguage
+//                  ^---- entity.name.tag.jssmLabel.doublequoted
+machine_reference : "http://www.inetdaemon.com/tutorials/internet/ip/routing/bgp/operation/finite_state_model.shtml";
+//<0------------- entity.name.tag.jssmLabel.atom
+//                  ^----------------------------------------------------------------------------------------------- entity.name.tag.jssmLabel.doublequoted
+machine_version   : 1.0.0;
+//<0--------------- constant.language.jssmLanguage
+//                  ^---- constant.numeric
+
+machine_author    : "John Haugeland <stonecypher@gmail.com>";
+//<0---------- entity.name.tag.jssmLabel.atom
+//                  ^--------------------------------------- entity.name.tag.jssmLabel.doublequoted
+machine_license   : MIT;
+//<0----------- entity.name.tag.jssmLabel.atom
+//                  ^-- entity.name.tag.jssmLabel.atom
+
+jssm_version      : >= 5.0.0;
+//<0--------------- constant.language.jssmLanguage
+//                     ^---- constant.numeric
+
+
+
+       Idle -> [Idle Connect];
+//     ^--- entity.name.tag.jssmLabel.atom
+//          ^- keyword.control.transition.jssmArrow.none_legal
+//              ^--- entity.name.tag.jssmLabel.atom
+//                   ^------ entity.name.tag.jssmLabel.atom
+    Connect -> [Idle Connect OpenSent Active];
+//  ^------ entity.name.tag.jssmLabel.atom
+//          ^- keyword.control.transition.jssmArrow.none_legal
+//              ^--- entity.name.tag.jssmLabel.atom
+//                   ^------ entity.name.tag.jssmLabel.atom
+//                           ^------- entity.name.tag.jssmLabel.atom
+//                                    ^----- entity.name.tag.jssmLabel.atom
+     Active -> [Idle Connect OpenSent Active];
+//   ^----- entity.name.tag.jssmLabel.atom
+//          ^- keyword.control.transition.jssmArrow.none_legal
+//              ^--- entity.name.tag.jssmLabel.atom
+//                   ^------ entity.name.tag.jssmLabel.atom
+//                           ^------- entity.name.tag.jssmLabel.atom
+//                                    ^----- entity.name.tag.jssmLabel.atom
+   OpenSent -> [Idle Active OpenConfirm];
+// ^------- entity.name.tag.jssmLabel.atom
+//          ^- keyword.control.transition.jssmArrow.none_legal
+//              ^--- entity.name.tag.jssmLabel.atom
+//                   ^----- entity.name.tag.jssmLabel.atom
+//                          ^---------- entity.name.tag.jssmLabel.atom
+OpenConfirm -> [Idle OpenSent OpenConfirm Established];
+//<0------- entity.name.tag.jssmLabel.atom
+//          ^- keyword.control.transition.jssmArrow.none_legal
+//              ^--- entity.name.tag.jssmLabel.atom
+//                   ^------- entity.name.tag.jssmLabel.atom
+//                            ^---------- entity.name.tag.jssmLabel.atom
+//                                        ^---------- entity.name.tag.jssmLabel.atom
+Established -> [Idle Established];
+//<0------- entity.name.tag.jssmLabel.atom
+//          ^- keyword.control.transition.jssmArrow.none_legal
+//              ^--- entity.name.tag.jssmLabel.atom
+//                   ^---------- entity.name.tag.jssmLabel.atom
+
+
+
+# from https://github.com/StoneCypher/jssm/blob/main/src/machines/linguist/bgp.fsl
+//<0 entity.name.tag.jssmLabel.atom
+//^--- entity.name.tag.jssmLabel.atom
+//     ^---- entity.name.tag.jssmLabel.atom
+//           ^-------------------------------------------------------------------- comment.line.jssm

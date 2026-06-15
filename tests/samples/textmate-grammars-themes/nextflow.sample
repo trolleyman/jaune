@@ -1,0 +1,251 @@
+// grammar: source.nextflow
+
+/*
+//<0 comment.block.groovy
+//<0 punctuation.definition.comment.groovy
+ * The following pipeline parameters specify the reference genomes
+//<0-------------------------------------------------------------- comment.block.groovy
+ * and read pairs and can be provided as command line options
+//<0--------------------------------------------------------- comment.block.groovy
+ */
+//<0 comment.block.groovy
+//<1 punctuation.definition.comment.groovy
+params.reads = "$baseDir/data/ggal/ggal_gut_{1,2}.fq"
+//    ^ keyword.operator.navigation.groovy
+//           ^ keyword.operator.assignment.groovy
+//             ^------------------------------------- string.quoted.double.groovy
+//             ^ punctuation.definition.string.begin.groovy
+//              ^------- variable.other.interpolated.groovy
+//                ^----- variable.other.interpolated.groovy
+//                                                  ^ punctuation.definition.string.end.groovy
+params.transcriptome = "$baseDir/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa"
+//    ^ keyword.operator.navigation.groovy
+//                   ^ keyword.operator.assignment.groovy
+//                     ^----------------------------------------------------------------- string.quoted.double.groovy
+//                     ^ punctuation.definition.string.begin.groovy
+//                      ^------- variable.other.interpolated.groovy
+//                        ^----- variable.other.interpolated.groovy
+//                                                                                      ^ punctuation.definition.string.end.groovy
+params.outdir = "results"
+//    ^ keyword.operator.navigation.groovy
+//            ^ keyword.operator.assignment.groovy
+//              ^-------- string.quoted.double.groovy
+//              ^ punctuation.definition.string.begin.groovy
+//                      ^ punctuation.definition.string.end.groovy
+ 
+workflow {
+//<0------ workflow.nextflow
+//<0---- keyword.nextflow
+    read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true )
+//<0-------------------------------------------------------------------------- workflow.nextflow
+//                ^ keyword.operator.assignment.groovy
+//                         ^ keyword.operator.navigation.groovy
+//                          ^------------------------------------------------- meta.method-call.groovy
+//                          ^------------ meta.method.groovy
+//                                       ^ punctuation.definition.method-parameters.begin.groovy
+//                                               ^ keyword.operator.navigation.groovy
+//                                                     ^ punctuation.definition.seperator.parameter.groovy
+//                                                       ^------------ constant.other.key.groovy
+//                                                                    ^ punctuation.definition.seperator.key-value.groovy
+//                                                                      ^--- constant.language.groovy
+//                                                                           ^ punctuation.definition.method-parameters.end.groovy
+ 
+//<0 workflow.nextflow
+    INDEX(params.transcriptome)
+//<0--------------------------- workflow.nextflow
+//  ^---- constant.other.groovy
+//              ^ keyword.operator.navigation.groovy
+    FASTQC(read_pairs_ch)
+//<0--------------------- workflow.nextflow
+//  ^----- constant.other.groovy
+    QUANT(INDEX.out, read_pairs_ch)
+//<0------------------------------- workflow.nextflow
+//  ^---- constant.other.groovy
+//        ^---- constant.other.groovy
+//             ^ keyword.operator.navigation.groovy
+}
+//<0 workflow.nextflow
+ 
+process INDEX {
+//<0----------- process.nextflow
+//<0--- keyword.nextflow
+//      ^---- entity.name.function.nextflow
+    tag "$transcriptome.simpleName"
+//<0------------------------------- process.nextflow
+//      ^-------------------------- string.quoted.double.groovy
+//      ^ punctuation.definition.string.begin.groovy
+//       ^------------------------ variable.other.interpolated.groovy
+//         ^----------- variable.other.interpolated.groovy
+//                     ^ keyword.other.dereference.groovy
+//                      ^--------- variable.other.interpolated.groovy
+//                                ^ punctuation.definition.string.end.groovy
+ 
+//<0 process.nextflow
+    input:
+//<0------ process.nextflow
+//  ^----- constant.block.nextflow
+    path transcriptome
+//<0------------------ process.nextflow
+//  ^---- entity.name.function.nextflow
+ 
+//<0 process.nextflow
+    output:
+//<0------- process.nextflow
+//  ^------ constant.block.nextflow
+    path 'index'
+//<0------------ process.nextflow
+//  ^---- entity.name.function.nextflow
+//       ^------ string.quoted.single.groovy
+//       ^ punctuation.definition.string.begin.groovy
+//             ^ punctuation.definition.string.end.groovy
+ 
+//<0 process.nextflow
+    script:
+//<0------- process.nextflow
+//  ^------ constant.block.nextflow
+    """
+//<0--- process.nextflow
+//  ^-- string.quoted.double.multiline.groovy
+//  ^-- punctuation.definition.string.begin.groovy
+    salmon index --threads $task.cpus -t $transcriptome -i index
+//<0------------------------------------------------------------ process.nextflow
+//<0------------------------------------------------------------ string.quoted.double.multiline.groovy
+//                         ^--------- variable.other.interpolated.groovy
+//                           ^-- variable.other.interpolated.groovy
+//                              ^ keyword.other.dereference.groovy
+//                               ^--- variable.other.interpolated.groovy
+//                                       ^------------- variable.other.interpolated.groovy
+//                                         ^----------- variable.other.interpolated.groovy
+    """
+//<0--- process.nextflow
+//<0--- string.quoted.double.multiline.groovy
+//  ^-- punctuation.definition.string.end.groovy
+}
+//<0 process.nextflow
+ 
+process FASTQC {
+//<0------------ process.nextflow
+//<0--- keyword.nextflow
+//      ^----- entity.name.function.nextflow
+    tag "FASTQC on $sample_id"
+//<0-------------------------- process.nextflow
+//      ^--------------------- string.quoted.double.groovy
+//      ^ punctuation.definition.string.begin.groovy
+//                 ^--------- variable.other.interpolated.groovy
+//                   ^------- variable.other.interpolated.groovy
+//                           ^ punctuation.definition.string.end.groovy
+    publishDir params.outdir
+//<0------------------------ process.nextflow
+//                   ^ keyword.operator.navigation.groovy
+ 
+//<0 process.nextflow
+    input:
+//<0------ process.nextflow
+//  ^----- constant.block.nextflow
+    tuple val(sample_id), path(reads)
+//<0--------------------------------- process.nextflow
+//  ^--------- entity.name.function.nextflow
+//                        ^---- entity.name.function.nextflow
+ 
+//<0 process.nextflow
+    output:
+//<0------- process.nextflow
+//  ^------ constant.block.nextflow
+    path "fastqc_${sample_id}_logs"
+//<0------------------------------- process.nextflow
+//  ^---- entity.name.function.nextflow
+//       ^------------------------- string.quoted.double.groovy
+//       ^ punctuation.definition.string.begin.groovy
+//               ^----------- source.groovy.embedded.source
+//               ^- punctuation.section.embedded.groovy
+//                          ^ punctuation.section.embedded.groovy
+//                                ^ punctuation.definition.string.end.groovy
+ 
+//<0 process.nextflow
+    script:
+//<0------- process.nextflow
+//  ^------ constant.block.nextflow
+    """
+//<0--- process.nextflow
+//  ^-- string.quoted.double.multiline.groovy
+//  ^-- punctuation.definition.string.begin.groovy
+    fastqc.sh "$sample_id" "$reads"
+//<0------------------------------- process.nextflow
+//<0------------------------------- string.quoted.double.multiline.groovy
+//             ^--------- variable.other.interpolated.groovy
+//               ^------- variable.other.interpolated.groovy
+//                          ^----- variable.other.interpolated.groovy
+//                            ^--- variable.other.interpolated.groovy
+    """
+//<0--- process.nextflow
+//<0--- string.quoted.double.multiline.groovy
+//  ^-- punctuation.definition.string.end.groovy
+}
+//<0 process.nextflow
+ 
+process QUANT {
+//<0----------- process.nextflow
+//<0--- keyword.nextflow
+//      ^---- entity.name.function.nextflow
+    tag "$pair_id"
+//<0-------------- process.nextflow
+//      ^--------- string.quoted.double.groovy
+//      ^ punctuation.definition.string.begin.groovy
+//       ^------- variable.other.interpolated.groovy
+//         ^----- variable.other.interpolated.groovy
+//               ^ punctuation.definition.string.end.groovy
+    publishDir params.outdir
+//<0------------------------ process.nextflow
+//                   ^ keyword.operator.navigation.groovy
+ 
+//<0 process.nextflow
+    input:
+//<0------ process.nextflow
+//  ^----- constant.block.nextflow
+    path index
+//<0---------- process.nextflow
+//  ^---- entity.name.function.nextflow
+    tuple val(pair_id), path(reads)
+//<0------------------------------- process.nextflow
+//  ^--------- entity.name.function.nextflow
+//                      ^---- entity.name.function.nextflow
+ 
+//<0 process.nextflow
+    output:
+//<0------- process.nextflow
+//  ^------ constant.block.nextflow
+    path pair_id
+//<0------------ process.nextflow
+//  ^---- entity.name.function.nextflow
+ 
+//<0 process.nextflow
+    script:
+//<0------- process.nextflow
+//  ^------ constant.block.nextflow
+    """
+//<0--- process.nextflow
+//  ^-- string.quoted.double.multiline.groovy
+//  ^-- punctuation.definition.string.begin.groovy
+    salmon quant --threads $task.cpus --libType=U -i $index -1 ${reads[0]} -2 ${reads[1]} -o $pair_id
+//<0------------------------------------------------------------------------------------------------- process.nextflow
+//<0------------------------------------------------------------------------------------------------- string.quoted.double.multiline.groovy
+//                         ^--------- variable.other.interpolated.groovy
+//                           ^-- variable.other.interpolated.groovy
+//                              ^ keyword.other.dereference.groovy
+//                               ^--- variable.other.interpolated.groovy
+//                                                   ^----- variable.other.interpolated.groovy
+//                                                     ^--- variable.other.interpolated.groovy
+//                                                             ^---------- source.groovy.embedded.source
+//                                                             ^- punctuation.section.embedded.groovy
+//                                                                       ^ punctuation.section.embedded.groovy
+//                                                                            ^---------- source.groovy.embedded.source
+//                                                                            ^- punctuation.section.embedded.groovy
+//                                                                                      ^ punctuation.section.embedded.groovy
+//                                                                                           ^------- variable.other.interpolated.groovy
+//                                                                                             ^----- variable.other.interpolated.groovy
+    """
+//<0--- process.nextflow
+//<0--- string.quoted.double.multiline.groovy
+//  ^-- punctuation.definition.string.end.groovy
+}
+//<0 process.nextflow

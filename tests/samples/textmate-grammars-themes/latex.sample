@@ -1,0 +1,164 @@
+% grammar: text.tex.latex
+
+% This is a simple sample document.  For more complicated documents take a look in the exercise tab. Note that everything that comes after a % symbol is treated as comment and ignored when the code is compiled.
+%<0--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- comment.line.percentage.tex
+%<0 punctuation.definition.comment.tex
+
+\documentclass{article} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
+%<0-------------------- meta.preamble.latex
+%<0----------- keyword.control.preamble.latex
+%<0 punctuation.definition.function.latex
+%             ^ punctuation.definition.arguments.begin.latex
+%              ^------ support.class.latex
+%                     ^ punctuation.definition.arguments.end.latex
+%                       ^------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- comment.line.percentage.tex
+%                       ^ punctuation.definition.comment.tex
+
+\usepackage{amsmath} % \usepackage is a command that allows you to add functionality to your LaTeX code
+%<0----------------- meta.preamble.latex
+%<0-------- keyword.control.preamble.latex
+%<0 punctuation.definition.function.latex
+%          ^ punctuation.definition.arguments.begin.latex
+%           ^------ support.class.latex
+%                  ^ punctuation.definition.arguments.end.latex
+%                    ^--------------------------------------------------------------------------------- comment.line.percentage.tex
+%                    ^ punctuation.definition.comment.tex
+
+\title{Simple Sample} % Sets article title
+%<0--- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%                     ^------------------- comment.line.percentage.tex
+%                     ^ punctuation.definition.comment.tex
+\author{My Name} % Sets authors name
+%<0---- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%                ^------------------ comment.line.percentage.tex
+%                ^ punctuation.definition.comment.tex
+\date{\today} % Sets date for date compiled
+%<0-- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%     ^----- support.function.general.tex
+%     ^ punctuation.definition.function.tex
+%             ^---------------------------- comment.line.percentage.tex
+%             ^ punctuation.definition.comment.tex
+
+% The preamble ends with the command \begin{document}
+%<0-------------------------------------------------- comment.line.percentage.tex
+%<0 punctuation.definition.comment.tex
+\begin{document} % All begin commands must be paired with an end command somewhere
+%<0------------- meta.function.begin-document.latex
+%<0--- support.function.be.latex
+%<0 punctuation.definition.function.latex
+%     ^ punctuation.definition.arguments.begin.latex
+%      ^------- variable.parameter.function.latex
+%              ^ punctuation.definition.arguments.end.latex
+%                ^---------------------------------------------------------------- comment.line.percentage.tex
+%                ^ punctuation.definition.comment.tex
+    \maketitle % creates title using information in preamble (title, author, date)
+%   ^--------- support.function.general.tex
+%   ^ punctuation.definition.function.tex
+%              ^------------------------------------------------------------------ comment.line.percentage.tex
+%              ^ punctuation.definition.comment.tex
+
+    \section{Hello World!} % creates a section
+%   ^--------------------- meta.function.section.section.latex
+%   ^------- support.function.section.latex
+%   ^ punctuation.definition.function.latex
+%           ^ punctuation.definition.arguments.begin.latex
+%            ^----------- entity.name.section.latex
+%                        ^ punctuation.definition.arguments.end.latex
+%                          ^------------------ comment.line.percentage.tex
+%                          ^ punctuation.definition.comment.tex
+
+    \textbf{Hello World!} Today I am learning \LaTeX. %notice how the command will end at the first non-alphabet charecter such as the . after \LaTeX
+%   ^-------------------- meta.function.textbf.latex
+%   ^------ support.function.textbf.latex
+%   ^ punctuation.definition.function.latex
+%          ^ punctuation.definition.textbf.begin.latex
+%           ^----------- markup.bold.textbf.latex
+%                       ^ punctuation.definition.textbf.end.latex
+%                                             ^----- support.function.general.tex
+%                                             ^ punctuation.definition.function.tex
+%                                                     ^---------------------------------------------------------------------------------------------- comment.line.percentage.tex
+%                                                     ^ punctuation.definition.comment.tex
+     \LaTeX{} is a great program for writing math. I can write in line math such as $a^2+b^2=c^2$ %$ tells LaTexX to compile as math
+%    ^----- support.function.general.tex
+%    ^ punctuation.definition.function.tex
+%                                                                                   ^------------ meta.math.block.tex
+%                                                                                   ^------------ support.class.math.block.tex
+%                                                                                   ^ punctuation.definition.string.begin.tex
+%                                                                                     ^ punctuation.math.operator.tex
+%                                                                                      ^ constant.numeric.math.tex
+%                                                                                       ^ punctuation.math.operator.tex
+%                                                                                         ^ punctuation.math.operator.tex
+%                                                                                          ^ constant.numeric.math.tex
+%                                                                                             ^ punctuation.math.operator.tex
+%                                                                                              ^ constant.numeric.math.tex
+%                                                                                               ^ punctuation.definition.string.end.tex
+%                                                                                                 ^--------------------------------- comment.line.percentage.tex
+%                                                                                                 ^ punctuation.definition.comment.tex
+     . I can also give equations their own space:
+    \begin{equation} % Creates an equation environment and is compiled as math
+%<0--------------------------------------------------------------------------- meta.function.environment.math.latex
+%   ^----- support.function.be.latex
+%   ^ punctuation.definition.function.latex
+%         ^ punctuation.definition.arguments.begin.latex
+%          ^------- variable.parameter.function.latex
+%                  ^ punctuation.definition.arguments.end.latex
+%                   ^--------------------------------------------------------- meta.math.block.latex
+%                   ^--------------------------------------------------------- support.class.math.block.environment.latex
+%                    ^-------------------------------------------------------- comment.line.percentage.tex
+%                    ^ punctuation.definition.comment.tex
+    \gamma^2+\theta^2=\omega^2
+%<0--------------------------- meta.function.environment.math.latex
+%<0--------------------------- meta.math.block.latex
+%<0--------------------------- support.class.math.block.environment.latex
+%   ^----- constant.character.math.tex
+%   ^ punctuation.definition.constant.math.tex
+%         ^ punctuation.math.operator.tex
+%          ^ constant.numeric.math.tex
+%           ^ punctuation.math.operator.tex
+%            ^----- constant.character.math.tex
+%            ^ punctuation.definition.constant.math.tex
+%                  ^ punctuation.math.operator.tex
+%                   ^ constant.numeric.math.tex
+%                     ^----- constant.character.math.tex
+%                     ^ punctuation.definition.constant.math.tex
+%                           ^ punctuation.math.operator.tex
+%                            ^ constant.numeric.math.tex
+    \end{equation}
+%<0--------------- meta.function.environment.math.latex
+%   ^--- support.function.be.latex
+%   ^ punctuation.definition.function.latex
+%       ^ punctuation.definition.arguments.begin.latex
+%        ^------- variable.parameter.function.latex
+%                ^ punctuation.definition.arguments.end.latex
+    If I do not leave any blank lines \LaTeX{} will continue  this text without making it into a new paragraph.  Notice how there was no indentation in the text after equation (1).
+%                                     ^----- support.function.general.tex
+%                                     ^ punctuation.definition.function.tex
+    Also notice how even though I hit enter after that sentence and here $\downarrow$
+%                                                                        ^----------- meta.math.block.tex
+%                                                                        ^----------- support.class.math.block.tex
+%                                                                        ^ punctuation.definition.string.begin.tex
+%                                                                         ^--------- constant.character.math.tex
+%                                                                         ^ punctuation.definition.constant.math.tex
+%                                                                                   ^ punctuation.definition.string.end.tex
+     \LaTeX{} formats the sentence without any break.  Also   look  how      it   doesn't     matter          how    many  spaces     I put     between       my    words.
+%    ^----- support.function.general.tex
+%    ^ punctuation.definition.function.tex
+
+    For a new paragraph I can leave a blank space in my code.
+
+\end{document} % This is the end of the document
+%<0----------- meta.function.end-document.latex
+%<0- support.function.be.latex
+%<0 punctuation.definition.function.latex
+%   ^ punctuation.definition.arguments.begin.latex
+%    ^------- variable.parameter.function.latex
+%            ^ punctuation.definition.arguments.end.latex
+%              ^-------------------------------- comment.line.percentage.tex
+%              ^ punctuation.definition.comment.tex
+
+% From https://guides.nyu.edu/LaTeX/sample-document
+%<0------------------------------------------------ comment.line.percentage.tex
+%<0 punctuation.definition.comment.tex

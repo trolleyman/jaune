@@ -1,0 +1,138 @@
+# grammar: source.coffee
+
+# Assignment:
+#<0---------- comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee
+number   = 42
+#<0--- variable.assignment.coffee
+#        ^ keyword.operator.assignment.coffee
+#          ^- constant.numeric.decimal.coffee
+opposite = true
+#<0----- variable.assignment.coffee
+#        ^ keyword.operator.assignment.coffee
+#          ^--- constant.language.boolean.true.coffee
+
+# Conditions:
+#<0---------- comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee
+number = -42 if opposite
+#<0--- variable.assignment.coffee
+#      ^ keyword.operator.assignment.coffee
+#        ^ keyword.operator.coffee
+#         ^- constant.numeric.decimal.coffee
+#            ^- keyword.control.coffee
+
+# Functions:
+#<0--------- comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee
+square = (x) -> x * x
+#<0------------ meta.function.coffee
+#<0--- entity.name.function.coffee
+#      ^ keyword.operator.assignment.coffee
+#        ^-- meta.parameters.coffee
+#        ^ punctuation.definition.parameters.begin.bracket.round.coffee
+#         ^ variable.parameter.function.coffee
+#          ^ punctuation.definition.parameters.end.bracket.round.coffee
+#            ^- storage.type.function.coffee
+#                 ^ keyword.operator.coffee
+
+# Arrays:
+#<0------ comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee
+list = [1, 2, 3, 4, 5]
+#<0- variable.assignment.coffee
+#    ^ keyword.operator.assignment.coffee
+#      ^ punctuation.definition.array.begin.bracket.square.coffee
+#       ^ constant.numeric.decimal.coffee
+#        ^ punctuation.separator.delimiter.coffee
+#          ^ constant.numeric.decimal.coffee
+#           ^ punctuation.separator.delimiter.coffee
+#             ^ constant.numeric.decimal.coffee
+#              ^ punctuation.separator.delimiter.coffee
+#                ^ constant.numeric.decimal.coffee
+#                 ^ punctuation.separator.delimiter.coffee
+#                   ^ constant.numeric.decimal.coffee
+#                    ^ punctuation.definition.array.end.bracket.square.coffee
+
+# Objects:
+#<0------- comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee
+math =
+#<0- variable.assignment.coffee
+#    ^ keyword.operator.assignment.coffee
+  root:   Math.sqrt
+# ^--- variable.assignment.coffee
+#     ^ keyword.operator.assignment.coffee
+#         ^--- support.class.coffee
+#             ^ punctuation.separator.property.period.coffee
+#              ^--- variable.other.property.coffee
+  square: square
+# ^----- variable.assignment.coffee
+#       ^ keyword.operator.assignment.coffee
+  cube:   (x) -> x * square x
+# ^------------- meta.function.coffee
+# ^--- entity.name.function.coffee
+#     ^ keyword.operator.assignment.coffee
+#         ^-- meta.parameters.coffee
+#         ^ punctuation.definition.parameters.begin.bracket.round.coffee
+#          ^ variable.parameter.function.coffee
+#           ^ punctuation.definition.parameters.end.bracket.round.coffee
+#             ^- storage.type.function.coffee
+#                  ^ keyword.operator.coffee
+#                    ^------- meta.function-call.coffee
+#                    ^----- entity.name.function.coffee
+#                           ^ meta.arguments.coffee
+
+# Splats:
+#<0------ comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee
+race = (winner, runners...) ->
+#<0--------------------------- meta.function.coffee
+#<0- entity.name.function.coffee
+#    ^ keyword.operator.assignment.coffee
+#      ^------------------- meta.parameters.coffee
+#      ^ punctuation.definition.parameters.begin.bracket.round.coffee
+#       ^----- variable.parameter.function.coffee
+#             ^ punctuation.separator.delimiter.coffee
+#               ^------ variable.parameter.function.coffee
+#                      ^-- keyword.operator.splat.coffee
+#                         ^ punctuation.definition.parameters.end.bracket.round.coffee
+#                           ^- storage.type.function.coffee
+  print winner, runners
+# ^-------------------- meta.function-call.coffee
+# ^---- entity.name.function.coffee
+#       ^-------------- meta.arguments.coffee
+#             ^ punctuation.separator.delimiter.coffee
+
+# Existence:
+#<0--------- comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee
+alert "I knew it!" if elvis?
+#<0--------------- meta.function-call.coffee
+#<0-- entity.name.function.coffee
+#     ^----------- meta.arguments.coffee
+#     ^----------- string.quoted.double.coffee
+#     ^ punctuation.definition.string.begin.coffee
+#                ^ punctuation.definition.string.end.coffee
+#                  ^- keyword.control.coffee
+#                          ^ keyword.operator.existential.coffee
+
+# Array comprehensions:
+#<0-------------------- comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee
+cubes = (math.cube num for num in list)
+#<0-- variable.assignment.coffee
+#     ^ keyword.operator.assignment.coffee
+#       ^ meta.brace.round.coffee
+#        ^--- variable.other.object.coffee
+#            ^-------- meta.method-call.coffee
+#            ^ punctuation.separator.method.period.coffee
+#             ^--- entity.name.function.coffee
+#                  ^-- meta.arguments.coffee
+#                      ^-- keyword.control.coffee
+#                              ^- keyword.control.coffee
+#                                     ^ meta.brace.round.coffee
+
+# From https://coffeescript.org/#overview
+#<0-------------------------------------- comment.line.number-sign.coffee
+#<0 punctuation.definition.comment.coffee

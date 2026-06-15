@@ -1,0 +1,100 @@
+// grammar: source.cpp
+
+// Working of implicit type-conversion
+//<0---------------------------------- comment.line.double-slash.cpp
+//<0 punctuation.definition.comment.cpp
+
+#include <iostream>
+//<0--------------- meta.preprocessor.include.cpp
+//<0---- keyword.control.directive.include.cpp
+//<0 punctuation.definition.directive.cpp
+//       ^--------- string.quoted.other.lt-gt.include.cpp
+//       ^ punctuation.definition.string.begin.cpp
+//                ^ punctuation.definition.string.end.cpp
+using namespace std;
+//<0---------------- meta.using-namespace.cpp
+//<0- keyword.other.using.directive.cpp
+//    ^-------- keyword.other.namespace.directive.cpp
+//    ^-------- storage.type.namespace.directive.cpp
+//              ^-- entity.name.namespace.cpp
+//                 ^ punctuation.terminator.statement.cpp
+
+int main() {
+//<0-------- meta.function.definition.cpp
+//<0 meta.qualified_type.cpp
+//<0 storage.type.primitive.cpp
+//<0 storage.type.built-in.primitive.cpp
+//  ^------- meta.head.function.definition.cpp
+//  ^--- entity.name.function.definition.cpp
+//      ^ punctuation.section.parameters.begin.bracket.round.cpp
+//       ^ punctuation.section.parameters.end.bracket.round.cpp
+//         ^ punctuation.section.block.begin.bracket.curly.function.definition.cpp
+
+   int num_int;
+//<0----------- meta.function.definition.cpp
+//<0----------- meta.body.function.definition.cpp
+// ^-- storage.type.primitive.cpp
+// ^-- storage.type.built-in.primitive.cpp
+//            ^ punctuation.terminator.statement.cpp
+   double num_double = 9.99;
+//<0------------------------ meta.function.definition.cpp
+//<0------------------------ meta.body.function.definition.cpp
+// ^----- storage.type.primitive.cpp
+// ^----- storage.type.built-in.primitive.cpp
+//                   ^ keyword.operator.assignment.cpp
+//                     ^ constant.numeric.decimal.cpp
+//                      ^ constant.numeric.decimal.point.cpp
+//                       ^- constant.numeric.decimal.cpp
+//                         ^ punctuation.terminator.statement.cpp
+
+   // implicit conversion
+//<0--------------------- meta.function.definition.cpp
+//<0--------------------- meta.body.function.definition.cpp
+//<0--------------------- comment.line.double-slash.cpp
+// ^- punctuation.definition.comment.cpp
+   // assigning a double value to an int variable
+//<0--------------------------------------------- meta.function.definition.cpp
+//<0--------------------------------------------- meta.body.function.definition.cpp
+//<0--------------------------------------------- comment.line.double-slash.cpp
+// ^- punctuation.definition.comment.cpp
+   num_int = num_double;
+//<0-------------------- meta.function.definition.cpp
+//<0-------------------- meta.body.function.definition.cpp
+//         ^ keyword.operator.assignment.cpp
+//                     ^ punctuation.terminator.statement.cpp
+
+   cout << "num_int = " << num_int << endl;
+//<0--------------------------------------- meta.function.definition.cpp
+//<0--------------------------------------- meta.body.function.definition.cpp
+//      ^- keyword.operator.bitwise.shift.cpp
+//         ^----------- string.quoted.double.cpp
+//         ^ punctuation.definition.string.begin.cpp
+//                    ^ punctuation.definition.string.end.cpp
+//                      ^- keyword.operator.bitwise.shift.cpp
+//                                 ^- keyword.operator.bitwise.shift.cpp
+//                                        ^ punctuation.terminator.statement.cpp
+   cout << "num_double = " << num_double << endl;
+//<0--------------------------------------------- meta.function.definition.cpp
+//<0--------------------------------------------- meta.body.function.definition.cpp
+//      ^- keyword.operator.bitwise.shift.cpp
+//         ^-------------- string.quoted.double.cpp
+//         ^ punctuation.definition.string.begin.cpp
+//                       ^ punctuation.definition.string.end.cpp
+//                         ^- keyword.operator.bitwise.shift.cpp
+//                                       ^- keyword.operator.bitwise.shift.cpp
+//                                              ^ punctuation.terminator.statement.cpp
+
+   return 0;
+//<0-------- meta.function.definition.cpp
+//<0-------- meta.body.function.definition.cpp
+// ^----- keyword.control.return.cpp
+//        ^ constant.numeric.decimal.cpp
+//         ^ punctuation.terminator.statement.cpp
+}
+//<0 meta.function.definition.cpp
+//<0 meta.body.function.definition.cpp
+//<0 punctuation.section.block.end.bracket.curly.function.definition.cpp
+
+// From https://www.programiz.com/cpp-programming/type-conversion
+//<0------------------------------------------------------------- comment.line.double-slash.cpp
+//<0 punctuation.definition.comment.cpp

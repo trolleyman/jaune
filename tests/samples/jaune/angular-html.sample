@@ -1,0 +1,192 @@
+<!-- grammar: text.html.derivative.ng -->
+
+<h2>Hero List</h2>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--<3 keyword.operator.relational.ts -->
+<!--^--- variable.other.readwrite.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--         ^ keyword.operator.relational.ts -->
+<!--          ^ keyword.operator.arithmetic.ts -->
+<!--           ^- variable.other.readwrite.ts -->
+<!--             ^ keyword.operator.relational.ts -->
+
+<p><em>Select a hero from the list to see details.</em></p>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--<2 keyword.operator.relational.ts -->
+<!--^- variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^----- variable.other.readwrite.ts -->
+<!--          ^ variable.other.readwrite.ts -->
+<!--            ^--- variable.other.readwrite.ts -->
+<!--                 ^--- variable.other.readwrite.ts -->
+<!--                      ^-- variable.other.readwrite.ts -->
+<!--                          ^--- variable.other.readwrite.ts -->
+<!--                               ^- variable.other.readwrite.ts -->
+<!--                                  ^-- variable.other.readwrite.ts -->
+<!--                                      ^------ variable.other.readwrite.ts -->
+<!--                                             ^ punctuation.accessor.ts -->
+<!--                                              ^ keyword.operator.relational.ts -->
+<!--                                               ^ keyword.operator.arithmetic.ts -->
+<!--                                                ^- variable.other.readwrite.ts -->
+<!--                                                  ^- keyword.operator.relational.ts -->
+<!--                                                    ^ keyword.operator.arithmetic.ts -->
+<!--                                                     ^ variable.other.readwrite.ts -->
+<!--                                                      ^ keyword.operator.relational.ts -->
+
+@if (heroes.length > 0) {
+<!--<0------------------- control.block.ng -->
+<!--<0 keyword.control.block.transition.ng -->
+<!--<1 keyword.control.block.kind.ng -->
+<!--^ meta.brace.round.ts -->
+<!-- ^----- variable.other.object.ts -->
+<!--       ^ punctuation.accessor.ts -->
+<!--        ^----- variable.other.property.ts -->
+<!--               ^ keyword.operator.relational.ts -->
+<!--                 ^ constant.numeric.decimal.ts -->
+<!--                  ^ meta.brace.round.ts -->
+<!--                    ^ punctuation.definition.block.ts -->
+  <ul>
+<!--<0 control.block.ng -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 variable.other.readwrite.ts -->
+<!-- ^ keyword.operator.relational.ts -->
+    <li *ngFor="let hero of heroes">
+<!--<0------------------------------ control.block.ng -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.arithmetic.ts -->
+<!--     ^---- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.assignment.ts -->
+<!--           ^------------------- string.quoted.double.ts -->
+<!--           ^ punctuation.definition.string.begin.ts -->
+<!--            ^-- storage.type.ts -->
+<!--                ^--- variable.other.readwrite.ts -->
+<!--                     ^- keyword.operator.expression.of.ts -->
+<!--                        ^----- variable.other.readwrite.ts -->
+<!--                              ^ punctuation.definition.string.end.ts -->
+<!--                               ^ keyword.operator.relational.ts -->
+      @let isSelected = hero === selectedHero;
+<!--<0---------------------------------------- control.block.ng -->
+<!--  ^--------------------------------------- meta.definition.variable.ng -->
+<!--  ^--- storage.type.ng -->
+<!--       ^--------- variable.other.constant.ng -->
+<!--                  ^- keyword.operator.assignment.ng -->
+<!--                    ^--- variable.other.readwrite.ts -->
+<!--                         ^-- keyword.operator.comparison.ts -->
+<!--                             ^----------- variable.other.readwrite.ts -->
+<!--                                         ^ punctuation.terminator.statement.ng -->
+      <button type="button" (click)="selectHero(hero)" [class.selected]="isSelected">
+<!--<0------------------------------------------------------------------------------- control.block.ng -->
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^----- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^----- variable.other.readwrite.ts -->
+<!--                      ^ punctuation.definition.string.end.ts -->
+<!--                        ^ meta.brace.round.ts -->
+<!--                         ^---- variable.other.readwrite.ts -->
+<!--                              ^ meta.brace.round.ts -->
+<!--                               ^ keyword.operator.assignment.ts -->
+<!--                                ^----------------- string.quoted.double.ts -->
+<!--                                ^ punctuation.definition.string.begin.ts -->
+<!--                                 ^--------- variable.other.readwrite.ts -->
+<!--                                           ^ meta.brace.round.ts -->
+<!--                                            ^--- variable.other.readwrite.ts -->
+<!--                                                ^ meta.brace.round.ts -->
+<!--                                                 ^ punctuation.definition.string.end.ts -->
+<!--                                                   ^--------------- meta.array.literal.ts -->
+<!--                                                   ^ meta.brace.square.ts -->
+<!--                                                    ^---- variable.other.object.ts -->
+<!--                                                         ^ punctuation.accessor.ts -->
+<!--                                                          ^------- variable.other.property.ts -->
+<!--                                                                  ^ meta.brace.square.ts -->
+<!--                                                                   ^ keyword.operator.assignment.ts -->
+<!--                                                                    ^----------- string.quoted.double.ts -->
+<!--                                                                    ^ punctuation.definition.string.begin.ts -->
+<!--                                                                     ^--------- variable.other.readwrite.ts -->
+<!--                                                                               ^ punctuation.definition.string.end.ts -->
+<!--                                                                                ^ keyword.operator.relational.ts -->
+        {{hero.name}}
+<!--<0--------------- control.block.ng -->
+<!--    ^------------ expression.embedded.vue -->
+<!--    ^- punctuation.definition.interpolation.begin.html.vue -->
+<!--      ^--- variable.other.object.ts -->
+<!--          ^ punctuation.accessor.ts -->
+<!--           ^--- variable.other.property.ts -->
+<!--               ^- punctuation.definition.interpolation.end.html.vue -->
+      </button>
+<!--<0--------- control.block.ng -->
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^ keyword.operator.arithmetic.ts -->
+<!--    ^----- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.relational.ts -->
+    </li>
+<!--<0--- control.block.ng -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.relational.ts -->
+  </ul>
+<!--<0- control.block.ng -->
+<!--<2 keyword.operator.relational.ts -->
+<!--<3 keyword.operator.arithmetic.ts -->
+<!--^- variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+}
+<!--<0 control.block.ng -->
+<!--<0 punctuation.definition.block.ts -->
+
+<app-hero-detail *ngIf="selectedHero" [hero]="selectedHero"></app-hero-detail>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--^ keyword.operator.arithmetic.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.arithmetic.ts -->
+<!--      ^----- variable.other.readwrite.ts -->
+<!--             ^ keyword.operator.arithmetic.ts -->
+<!--              ^--- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.assignment.ts -->
+<!--                   ^------------- string.quoted.double.ts -->
+<!--                   ^ punctuation.definition.string.begin.ts -->
+<!--                    ^----------- variable.other.readwrite.ts -->
+<!--                                ^ punctuation.definition.string.end.ts -->
+<!--                                  ^----- meta.array.literal.ts -->
+<!--                                  ^ meta.brace.square.ts -->
+<!--                                   ^--- variable.other.readwrite.ts -->
+<!--                                       ^ meta.brace.square.ts -->
+<!--                                        ^ keyword.operator.assignment.ts -->
+<!--                                         ^------------- string.quoted.double.ts -->
+<!--                                         ^ punctuation.definition.string.begin.ts -->
+<!--                                          ^----------- variable.other.readwrite.ts -->
+<!--                                                      ^ punctuation.definition.string.end.ts -->
+<!--                                                       ^- keyword.operator.relational.ts -->
+<!--                                                         ^ keyword.operator.arithmetic.ts -->
+<!--                                                          ^-- variable.other.readwrite.ts -->
+<!--                                                             ^ keyword.operator.arithmetic.ts -->
+<!--                                                              ^--- variable.other.readwrite.ts -->
+<!--                                                                  ^ keyword.operator.arithmetic.ts -->
+<!--                                                                   ^----- variable.other.readwrite.ts -->
+<!--                                                                         ^ keyword.operator.relational.ts -->
+
+<!-- from https://angular.io/guide/architecture-components -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.logical.ts -->
+<!--<2 keyword.operator.decrement.ts -->
+<!-- ^--- variable.other.readwrite.ts -->
+<!--      ^---- variable.other.readwrite.ts -->
+<!--            ^- keyword.operator.arithmetic.ts -->
+<!--              ^------ variable.other.object.ts -->
+<!--                     ^ punctuation.accessor.ts -->
+<!--                      ^- variable.other.property.ts -->
+<!--                        ^ keyword.operator.arithmetic.ts -->
+<!--                         ^---- variable.other.readwrite.ts -->
+<!--                              ^ keyword.operator.arithmetic.ts -->
+<!--                               ^----------- variable.other.readwrite.ts -->
+<!--                                           ^ keyword.operator.arithmetic.ts -->
+<!--                                            ^--------- variable.other.readwrite.ts -->
+<!--                                                       ^- keyword.operator.decrement.ts -->
+<!--                                                         ^ keyword.operator.relational.ts -->

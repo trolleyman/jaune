@@ -1,0 +1,118 @@
+<!-- grammar: text.markdown.mdc.standalone -->
+
+---
+<!--<0 punctuation.definition.end.frontmatter -->
+title: Introduction
+<!--<0------------- meta.paragraph.markdown -->
+---
+<!--<0 meta.paragraph.markdown -->
+<!--<0 markup.heading.setext.2.markdown -->
+
+::card
+<!--<0 block.component.mdc -->
+<!--<0 punctuation.definition.tag.start.mdc -->
+<!--<2 entity.name.tag.mdc -->
+---
+<!--<0 block.component.mdc -->
+icon: Icon
+<!--<0---- block.component.mdc -->
+<!--<0 string.unquoted.plain.out.yaml -->
+<!--<0 entity.name.tag.yaml -->
+<!--^ punctuation.separator.key-value.mapping.yaml -->
+<!--  ^--- string.unquoted.plain.out.yaml -->
+title: A complex card.
+<!--<0---------------- block.component.mdc -->
+<!--<0 string.unquoted.plain.out.yaml -->
+<!--<0 entity.name.tag.yaml -->
+<!-- ^ punctuation.separator.key-value.mapping.yaml -->
+<!--   ^-------------- string.unquoted.plain.out.yaml -->
+---
+<!--<0 block.component.mdc -->
+
+Default slot
+<!--<0------ block.component.mdc -->
+<!--<0------ meta.paragraph.markdown -->
+
+#description
+<!--<0------ block.component.mdc -->
+<!--<0------ entity.other.attribute-name.html -->
+  ::alert
+<!--<0--- block.component.mdc -->
+<!--<0--- block.component.mdc -->
+<!--<2 punctuation.definition.tag.start.mdc -->
+<!--^---- entity.name.tag.mdc -->
+    Description slot
+<!--<0-------------- block.component.mdc -->
+<!--<0-------------- block.component.mdc -->
+<!--<0-------------- meta.paragraph.markdown -->
+  ::
+<!--<0 block.component.mdc -->
+<!--<0 block.component.mdc -->
+<!--<2 punctuation.definition.tag.end.mdc -->
+::
+<!--<0 block.component.mdc -->
+<!--<0 punctuation.definition.tag.end.mdc -->
+
+::alert{type="warning" icon="exclamation-circle"}
+<!--<0------------------------------------------- block.component.mdc -->
+<!--<0 punctuation.definition.tag.start.mdc -->
+<!--<2- entity.name.tag.mdc -->
+<!--   ^----------------------------------------- attributes.mdc -->
+<!--   ^----------------------------------------- punctuation.definition.tag.start.component -->
+<!--    ^--- entity.other.attribute-name.html -->
+<!--        ^ punctuation.separator.key-value.html -->
+<!--         ^-------- string.quoted.double.html -->
+<!--         ^ punctuation.definition.string.begin.html -->
+<!--                 ^ punctuation.definition.string.end.html -->
+<!--                   ^--- entity.other.attribute-name.html -->
+<!--                       ^ punctuation.separator.key-value.html -->
+<!--                        ^------------------- string.quoted.double.html -->
+<!--                        ^ punctuation.definition.string.begin.html -->
+<!--                                           ^ punctuation.definition.string.end.html -->
+<!--                                            ^ punctuation.definition.tag.end.component -->
+Oops! An error occurred
+<!--<0----------------- block.component.mdc -->
+<!--<0----------------- meta.paragraph.markdown -->
+::
+<!--<0 block.component.mdc -->
+<!--<0 punctuation.definition.tag.end.mdc -->
+
+Hello [World]{style="background-color: var(--color-primary-500)"}!
+<!--<0------------------------------------------------------------ meta.paragraph.markdown -->
+<!--  ^------ meta.link.reference.markdown -->
+<!--  ^ punctuation.definition.link.title.begin.markdown -->
+<!--   ^---- string.other.link.title.markdown -->
+<!--        ^ punctuation.definition.link.title.end.markdown -->
+
+Hello [World]{style="color: green;" .custom-class #custom-id}!
+<!--<0-------------------------------------------------------- meta.paragraph.markdown -->
+<!--  ^------ meta.link.reference.markdown -->
+<!--  ^ punctuation.definition.link.title.begin.markdown -->
+<!--   ^---- string.other.link.title.markdown -->
+<!--        ^ punctuation.definition.link.title.end.markdown -->
+
+Attributes work on:
+<!--<0------------- meta.paragraph.markdown -->
+
+- ![](/favicon.ico){style="display: inline; margin: 0;"} image,
+<!--<0--------------------------------------------------------- markup.list.unnumbered.markdown -->
+<!--<0 punctuation.definition.list.begin.markdown -->
+<!--<2--------------------------------------------------------- meta.paragraph.markdown -->
+- [link](#attributes){style="background-color: pink;"}, `code`{style="color: cyan;"},
+<!--<0------------------------------------------------------------------------------- markup.list.unnumbered.markdown -->
+<!--<0 punctuation.definition.list.begin.markdown -->
+<!--<2------------------------------------------------------------------------------- meta.paragraph.markdown -->
+<!--<2-- meta.link.reference.markdown -->
+<!--<2 punctuation.definition.link.title.begin.markdown -->
+<!--<3- string.other.link.title.markdown -->
+<!--   ^ punctuation.definition.link.title.end.markdown -->
+<!--                                                    ^----- markup.inline.raw.string.markdown -->
+<!--                                                    ^ punctuation.definition.raw.markdown -->
+<!--                                                         ^ punctuation.definition.raw.markdown -->
+- _italic_{style="background-color: yellow; color:black;"} and **bold**{style="background-color: lightgreen;"} texts.
+<!--<0--------------------------------------------------------------------------------------------------------------- markup.list.unnumbered.markdown -->
+<!--<0 punctuation.definition.list.begin.markdown -->
+<!--<2--------------------------------------------------------------------------------------------------------------- meta.paragraph.markdown -->
+
+<!-- from: https://content.nuxt.com/usage/markdown -->
+<!--<0------------------------------------------------ comment.block.html -->

@@ -1,0 +1,153 @@
+// grammar: source.move
+
+module 0xCAFE::BasicCoin {
+//<0---------------------- meta.module.move
+//<0-- storage.modifier.type.move
+//    ^------ constant.other.move
+//             ^-------- entity.name.type.move
+//                       ^ meta.module_scope.move
+     // Only included in compilation for testing. Similar to #[cfg(testing)]
+//<0------------------------------------------------------------------------ meta.module.move
+//<0------------------------------------------------------------------------ meta.module_scope.move
+//   ^---------------------------------------------------------------------- comment.line.double-slash.move
+    // in Rust. Imports the `Signer` module from the MoveStdlib package.
+//<0-------------------------------------------------------------------- meta.module.move
+//<0-------------------------------------------------------------------- meta.module_scope.move
+//  ^------------------------------------------------------------------- comment.line.double-slash.move
+    #[test_only]
+//<0------------ meta.module.move
+//<0------------ meta.module_scope.move
+//  ^----------- support.constant.annotation.move
+    use std::signer;
+//<0---------------- meta.module.move
+//<0---------------- meta.module_scope.move
+//  ^--------------- meta.import.move
+//  ^-- storage.modifier.type.move
+//      ^-- meta.entity.name.type.module.move
+//           ^----- meta.entity.name.type.module.move
+
+    struct Coin has key {
+//<0--------------------- meta.module.move
+//<0--------------------- meta.module_scope.move
+//  ^-------------------- meta.struct.move
+//  ^----- storage.modifier.type.move
+//         ^--- entity.name.type.struct.move
+//              ^-- keyword.control.ability.has.move
+//                  ^-- support.type.ability.move
+//                      ^ meta.struct.body.move
+        value: u64,
+//<0--------------- meta.module.move
+//<0--------------- meta.module_scope.move
+//<0--------------- meta.struct.move
+//<0--------------- meta.struct.body.move
+//             ^-- support.type.primitives.move
+    }
+//<0- meta.module.move
+//<0- meta.module_scope.move
+//<0- meta.struct.move
+//<0- meta.struct.body.move
+
+    public fun mint(account: signer, value: u64) {
+//<0---------------------------------------------- meta.module.move
+//<0---------------------------------------------- meta.module_scope.move
+//  ^----- storage.modifier.visibility.public.move
+//         ^------------------------------------- meta.fun_signature.move
+//         ^-- storage.modifier.fun.move
+//            ^---- meta.function_name.move
+//             ^--- entity.name.function.move
+//                 ^---------------------------- meta.parentheses.move
+//                           ^----- support.type.primitives.move
+//                                          ^-- support.type.primitives.move
+//                                               ^ meta.block.move
+        move_to(&account, Coin { value })
+//<0------------------------------------- meta.module.move
+//<0------------------------------------- meta.module_scope.move
+//<0------------------------------------- meta.block.move
+//      ^------ support.function.typed.move
+//             ^------------------------- meta.paren.move
+//                        ^--- entity.name.type.move
+//                             ^-------- meta.block.move
+    }
+//<0- meta.module.move
+//<0- meta.module_scope.move
+//<0- meta.block.move
+
+    // Declare a unit test. It takes a signer called `account` with an
+//<0------------------------------------------------------------------ meta.module.move
+//<0------------------------------------------------------------------ meta.module_scope.move
+//  ^----------------------------------------------------------------- comment.line.double-slash.move
+    // address value of `0xC0FFEE`.
+//<0------------------------------- meta.module.move
+//<0------------------------------- meta.module_scope.move
+//  ^------------------------------ comment.line.double-slash.move
+    #[test(account = @0xC0FFEE)]
+//<0---------------------------- meta.module.move
+//<0---------------------------- meta.module_scope.move
+//  ^--------------------------- support.constant.annotation.move
+//         ^------- meta.annotation.name.move
+//                 ^----------- meta.annotation.value.move
+//                   ^-------- support.constant.address.base16.move
+    fun test_mint_10(account: signer) acquires Coin {
+//<0------------------------------------------------- meta.module.move
+//<0------------------------------------------------- meta.module_scope.move
+//  ^----------------------------------------------- meta.fun_signature.move
+//  ^-- storage.modifier.fun.move
+//     ^------------ meta.function_name.move
+//      ^----------- entity.name.function.move
+//                  ^---------------- meta.parentheses.move
+//                            ^----- support.type.primitives.move
+//                                    ^------- storage.modifier
+//                                             ^--- entity.name.type.use.move
+//                                                  ^ meta.block.move
+        let addr = signer::address_of(&account);
+//<0-------------------------------------------- meta.module.move
+//<0-------------------------------------------- meta.module_scope.move
+//<0-------------------------------------------- meta.block.move
+//      ^-- keyword.control.move
+//                 ^----- support.type.primitives.move
+//                         ^--------- entity.name.function.call.local.move
+//                                   ^--------- meta.paren.move
+        mint(account, 10);
+//<0---------------------- meta.module.move
+//<0---------------------- meta.module_scope.move
+//<0---------------------- meta.block.move
+//      ^--- entity.name.function.call.local.move
+//          ^------------ meta.paren.move
+//                    ^- constant.numeric.move
+        // Make sure there is a `Coin` resource under `addr` with a value of `10`.
+//<0------------------------------------------------------------------------------ meta.module.move
+//<0------------------------------------------------------------------------------ meta.module_scope.move
+//<0------------------------------------------------------------------------------ meta.block.move
+//      ^------------------------------------------------------------------------- comment.line.double-slash.move
+        // We can access this resource and its value since we are in the
+//<0-------------------------------------------------------------------- meta.module.move
+//<0-------------------------------------------------------------------- meta.module_scope.move
+//<0-------------------------------------------------------------------- meta.block.move
+//      ^--------------------------------------------------------------- comment.line.double-slash.move
+        // same module that defined the `Coin` resource.
+//<0---------------------------------------------------- meta.module.move
+//<0---------------------------------------------------- meta.module_scope.move
+//<0---------------------------------------------------- meta.block.move
+//      ^----------------------------------------------- comment.line.double-slash.move
+        assert!(borrow_global<Coin>(addr).value == 10, 0);
+//<0------------------------------------------------------ meta.module.move
+//<0------------------------------------------------------ meta.module_scope.move
+//<0------------------------------------------------------ meta.block.move
+//      ^------ meta.macro.call
+//      ^----- support.function.macro.move
+//            ^ support.function.operator.macro.move
+//             ^----------------------------------------- meta.paren.move
+//              ^------------ support.function.typed.move
+//                           ^----- meta.expression.generic.type.move
+//                            ^--- entity.name.type.use.move
+//                                 ^----- meta.paren.move
+//                                       ^----- meta.path.access.move
+//                                                 ^- constant.numeric.move
+//                                                     ^ constant.numeric.move
+    }
+//<0- meta.module.move
+//<0- meta.module_scope.move
+//<0- meta.block.move
+}
+//<0 meta.module.move
+//<0 meta.module_scope.move

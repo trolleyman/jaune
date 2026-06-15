@@ -1,0 +1,93 @@
+// grammar: source.jsonnet
+
+/* A C-style comment. */
+//<0-------------------- comment.block.jsonnet
+# A Python-style comment.
+//<0--------------------- comment.block.jsonnet
+{
+  cocktails: {
+//^--------- variable.parameter.jsonnet
+    // Ingredient quantities are in fl oz.
+//  ^------------------------------------- comment.line.jsonnet
+    'Tom Collins': {
+//  ^------------ string.quoted.double.jsonnet
+//               ^ keyword.operator.jsonnet
+      ingredients: [
+//    ^----------- variable.parameter.jsonnet
+        { kind: "Farmer's Gin", qty: 1.5 },
+//        ^---- variable.parameter.jsonnet
+//              ^------------- string.quoted.double.jsonnet
+//                              ^--- variable.parameter.jsonnet
+//                                   ^-- constant.numeric.jsonnet
+        { kind: 'Lemon', qty: 1 },
+//        ^---- variable.parameter.jsonnet
+//              ^------ string.quoted.double.jsonnet
+//                       ^--- variable.parameter.jsonnet
+//                            ^ constant.numeric.jsonnet
+        { kind: 'Simple Syrup', qty: 0.5 },
+//        ^---- variable.parameter.jsonnet
+//              ^------------- string.quoted.double.jsonnet
+//                              ^--- variable.parameter.jsonnet
+//                                   ^-- constant.numeric.jsonnet
+        { kind: 'Soda', qty: 2 },
+//        ^---- variable.parameter.jsonnet
+//              ^----- string.quoted.double.jsonnet
+//                      ^--- variable.parameter.jsonnet
+//                           ^ constant.numeric.jsonnet
+        { kind: 'Angostura', qty: 'dash' },
+//        ^---- variable.parameter.jsonnet
+//              ^---------- string.quoted.double.jsonnet
+//                           ^--- variable.parameter.jsonnet
+//                                ^----- string.quoted.double.jsonnet
+      ],
+      garnish: 'Maraschino Cherry',
+//    ^------- variable.parameter.jsonnet
+//             ^------------------ string.quoted.double.jsonnet
+      served: 'Tall',
+//    ^------ variable.parameter.jsonnet
+//            ^----- string.quoted.double.jsonnet
+      description: |||
+//    ^----------- variable.parameter.jsonnet
+//                 ^-- string.quoted.triple.jsonnet
+        The Tom Collins is essentially gin and
+//<0------------------------------------------ string.quoted.triple.jsonnet
+        lemonade.  The bitters add complexity.
+//<0------------------------------------------ string.quoted.triple.jsonnet
+      |||,
+//<0----- string.quoted.triple.jsonnet
+    },
+    Manhattan: {
+//  ^--------- variable.parameter.jsonnet
+      ingredients: [
+//    ^----------- variable.parameter.jsonnet
+        { kind: 'Rye', qty: 2.5 },
+//        ^---- variable.parameter.jsonnet
+//              ^---- string.quoted.double.jsonnet
+//                     ^--- variable.parameter.jsonnet
+//                          ^-- constant.numeric.jsonnet
+        { kind: 'Sweet Red Vermouth', qty: 1 },
+//        ^---- variable.parameter.jsonnet
+//              ^------------------- string.quoted.double.jsonnet
+//                                    ^--- variable.parameter.jsonnet
+//                                         ^ constant.numeric.jsonnet
+        { kind: 'Angostura', qty: 'dash' },
+//        ^---- variable.parameter.jsonnet
+//              ^---------- string.quoted.double.jsonnet
+//                           ^--- variable.parameter.jsonnet
+//                                ^----- string.quoted.double.jsonnet
+      ],
+      garnish: 'Maraschino Cherry',
+//    ^------- variable.parameter.jsonnet
+//             ^------------------ string.quoted.double.jsonnet
+      served: 'Straight Up',
+//    ^------ variable.parameter.jsonnet
+//            ^------------ string.quoted.double.jsonnet
+      description: @'A clear \ red drink.',
+//    ^----------- variable.parameter.jsonnet
+//                  ^--------------------- string.quoted.double.jsonnet
+//                           ^- invalid.illegal.jsonnet
+    },
+  },
+}
+# From https://jsonnet.org/learning/tutorial.html
+//<0--------------------------------------------- comment.block.jsonnet

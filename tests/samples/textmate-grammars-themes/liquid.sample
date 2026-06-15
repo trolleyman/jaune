@@ -1,0 +1,214 @@
+<!-- grammar: text.html.liquid -->
+
+<h3>Recommended Products</h3>
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--<3 keyword.operator.relational.ts -->
+<!--^---------- variable.other.readwrite.ts -->
+<!--            ^------- variable.other.readwrite.ts -->
+<!--                    ^ keyword.operator.relational.ts -->
+<!--                     ^ keyword.operator.arithmetic.ts -->
+<!--                      ^- variable.other.readwrite.ts -->
+<!--                        ^ keyword.operator.relational.ts -->
+<ul class="recommended_products">
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--^---- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.assignment.ts -->
+<!--      ^---------------------- string.quoted.double.ts -->
+<!--      ^ punctuation.definition.string.begin.ts -->
+<!--       ^------------------- variable.other.readwrite.ts -->
+<!--                           ^- string.quoted.double.ts -->
+<!--                           ^ punctuation.definition.string.begin.ts -->
+<!--                            ^ keyword.operator.relational.ts -->
+  {% assign recommended_products =  product.metafields.my_fields.rec_products.value %}
+<!--<0-------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<2-------------------------------------------------------------------------------- meta.tag.liquid -->
+<!--<2 punctuation.definition.tag.end.liquid -->
+<!--^--------------------------------------------------------------------------------- meta.entity.tag.liquid -->
+<!-- ^----- entity.name.tag.liquid -->
+<!--        ^------------------- variable.other.readwrite.ts -->
+<!--                             ^ keyword.operator.assignment.ts -->
+<!--                                ^------ variable.other.object.ts -->
+<!--                                       ^ punctuation.accessor.ts -->
+<!--                                        ^--------- variable.other.object.property.ts -->
+<!--                                                  ^ punctuation.accessor.ts -->
+<!--                                                   ^-------- variable.other.object.property.ts -->
+<!--                                                            ^ punctuation.accessor.ts -->
+<!--                                                             ^----------- variable.other.object.property.ts -->
+<!--                                                                         ^ punctuation.accessor.ts -->
+<!--                                                                          ^---- variable.other.property.ts -->
+<!--                                                                                ^ keyword.operator.arithmetic.ts -->
+  {% for product in recommended_products  %}
+<!--<0-------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------- string.quoted.double.ts -->
+<!--<0-------------------------------------- meta.tag.liquid -->
+<!--<0-------------------------------------- meta.entity.tag.liquid -->
+<!--<2-------------------------------------- meta.tag.liquid -->
+<!--<2 punctuation.definition.tag.end.liquid -->
+<!--^--------------------------------------- meta.entity.tag.for.liquid -->
+<!-- ^-- keyword.control.for.liquid -->
+<!--     ^------ variable.other.readwrite.ts -->
+<!--             ^- keyword.operator.expression.in.ts -->
+<!--                ^------------------- variable.other.readwrite.ts -->
+<!--                                      ^ keyword.operator.arithmetic.ts -->
+    <li>
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- string.quoted.double.ts -->
+<!--<0-- meta.tag.liquid -->
+<!--<0-- meta.entity.tag.liquid -->
+<!--<0-- meta.tag.liquid -->
+<!--<0-- meta.entity.tag.for.liquid -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.relational.ts -->
+      <a href="{{ product.url }}">
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- string.quoted.double.ts -->
+<!--<0---------------------------- meta.tag.liquid -->
+<!--<0---------------------------- meta.entity.tag.liquid -->
+<!--<0---------------------------- meta.tag.liquid -->
+<!--<0---------------------------- meta.entity.tag.for.liquid -->
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^ variable.other.readwrite.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--         ^ keyword.operator.assignment.ts -->
+<!--          ^------------------- string.quoted.double.ts -->
+<!--          ^ punctuation.definition.string.begin.ts -->
+<!--           ^---------------- meta.object.liquid -->
+<!--           ^- punctuation.definition.tag.begin.liquid -->
+<!--              ^------ variable.other.object.ts -->
+<!--                     ^ punctuation.accessor.ts -->
+<!--                      ^-- variable.other.property.ts -->
+<!--                          ^- punctuation.definition.tag.end.liquid -->
+<!--                            ^- string.quoted.double.ts -->
+<!--                            ^ punctuation.definition.string.begin.ts -->
+<!--                             ^ keyword.operator.relational.ts -->
+        {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+<!--<0----------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0----------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0----------------------------------------------------------------------------------- meta.tag.liquid -->
+<!--<0----------------------------------------------------------------------------------- meta.entity.tag.liquid -->
+<!--<0----------------------------------------------------------------------------------- meta.tag.liquid -->
+<!--<0----------------------------------------------------------------------------------- meta.entity.tag.for.liquid -->
+<!--<0----------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0----------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--    ^-------------------------------------------------------------------------------- meta.object.liquid -->
+<!--    ^- punctuation.definition.tag.begin.liquid -->
+<!--       ^------ variable.other.object.ts -->
+<!--              ^ punctuation.accessor.ts -->
+<!--               ^------------- variable.other.property.ts -->
+<!--                              ^ keyword.operator.logical.ts -->
+<!--                                ^-------- entity.name.function.pipe.ng -->
+<!--                                         ^ meta.attribute.directive.vue -->
+<!--                                         ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                           ^---- variable.other.readwrite.ts -->
+<!--                                                ^ meta.attribute.directive.vue -->
+<!--                                                ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                                  ^-- constant.numeric.decimal.ts -->
+<!--                                                      ^ keyword.operator.logical.ts -->
+<!--                                                        ^-------- entity.name.function.pipe.ng -->
+<!--                                                                 ^ meta.attribute.directive.vue -->
+<!--                                                                 ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                                                   ^------ variable.other.readwrite.ts -->
+<!--                                                                          ^ meta.attribute.directive.vue -->
+<!--                                                                          ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                                                            ^-------- string.quoted.single.ts -->
+<!--                                                                            ^ punctuation.definition.string.begin.ts -->
+<!--                                                                             ^--- variable.other.readwrite.ts -->
+<!--                                                                                 ^--- string.quoted.single.ts -->
+<!--                                                                                 ^ punctuation.definition.string.begin.ts -->
+<!--                                                                                    ^ invalid.illegal.newline.ts -->
+        {{product.title}}
+<!--<0------------------- string.quoted.double.ts -->
+<!--<0------------------- string.quoted.double.ts -->
+<!--<0------------------- meta.tag.liquid -->
+<!--<0------------------- meta.entity.tag.liquid -->
+<!--<0------------------- meta.tag.liquid -->
+<!--<0------------------- meta.entity.tag.for.liquid -->
+<!--<0------------------- string.quoted.double.ts -->
+<!--<0------------------- string.quoted.double.ts -->
+<!--<0------------------- meta.object.liquid -->
+<!--<0------------------- string.quoted.single.ts -->
+<!--    ^---------------- meta.object.liquid -->
+<!--    ^- punctuation.definition.tag.begin.liquid -->
+<!--      ^------ variable.other.object.ts -->
+<!--             ^ punctuation.accessor.ts -->
+<!--              ^---- variable.other.property.ts -->
+<!--                   ^- punctuation.definition.tag.end.liquid -->
+      </a>
+<!--<0---- string.quoted.double.ts -->
+<!--<0---- string.quoted.double.ts -->
+<!--<0---- meta.tag.liquid -->
+<!--<0---- meta.entity.tag.liquid -->
+<!--<0---- meta.tag.liquid -->
+<!--<0---- meta.entity.tag.for.liquid -->
+<!--<0---- string.quoted.double.ts -->
+<!--<0---- string.quoted.double.ts -->
+<!--<0---- meta.object.liquid -->
+<!--<0---- string.quoted.single.ts -->
+<!--  ^ keyword.operator.relational.ts -->
+<!--   ^ keyword.operator.arithmetic.ts -->
+<!--    ^ variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+    </li>
+<!--<0--- string.quoted.double.ts -->
+<!--<0--- string.quoted.double.ts -->
+<!--<0--- meta.tag.liquid -->
+<!--<0--- meta.entity.tag.liquid -->
+<!--<0--- meta.tag.liquid -->
+<!--<0--- meta.entity.tag.for.liquid -->
+<!--<0--- string.quoted.double.ts -->
+<!--<0--- string.quoted.double.ts -->
+<!--<0--- meta.object.liquid -->
+<!--<0--- string.quoted.single.ts -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^- variable.other.readwrite.ts -->
+<!--    ^ keyword.operator.relational.ts -->
+  {% endfor %}
+<!--<0-------- string.quoted.double.ts -->
+<!--<0-------- string.quoted.double.ts -->
+<!--<0-------- meta.tag.liquid -->
+<!--<0-------- meta.entity.tag.liquid -->
+<!--<0-------- meta.tag.liquid -->
+<!--<0-------- meta.entity.tag.for.liquid -->
+<!--<0-------- string.quoted.double.ts -->
+<!--<0-------- string.quoted.double.ts -->
+<!--<0-------- meta.object.liquid -->
+<!--<0-------- string.quoted.single.ts -->
+<!--<2-------- meta.tag.liquid -->
+<!--<2 punctuation.definition.tag.end.liquid -->
+<!-- ^----- keyword.control.loop.liquid -->
+<!--        ^ keyword.operator.arithmetic.ts -->
+</ul>
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 meta.tag.liquid -->
+<!--<0 meta.entity.tag.liquid -->
+<!--<0 meta.tag.liquid -->
+<!--<0 meta.entity.tag.for.liquid -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 string.quoted.double.ts -->
+<!--<0 meta.object.liquid -->
+<!--<0 string.quoted.single.ts -->
+<!--<0 meta.tag.liquid -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--^ keyword.operator.relational.ts -->
+
+{%- comment -%} From https://www.codeshopify.com/blog_posts/related-products-with-product_list-sections-metafields {%- endcomment -%}
+<!--<0------------------------------------------------------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- meta.tag.liquid -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- meta.entity.tag.liquid -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- meta.tag.liquid -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- meta.entity.tag.for.liquid -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- string.quoted.double.ts -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- meta.object.liquid -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- string.quoted.single.ts -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- meta.tag.liquid -->
+<!--<0------------------------------------------------------------------------------------------------------------------------------- comment.block.liquid -->

@@ -1,0 +1,169 @@
+// grammar: source.css.less
+
+.button {
+//<0--- entity.other.attribute-name.class.less
+//<0 punctuation.definition.entity.less
+//      ^ meta.property-list.less
+//      ^ punctuation.definition.block.begin.less
+  &-ok {
+//<0---- meta.property-list.less
+//^--- entity.other.attribute-name.parent.less
+//^ punctuation.definition.entity.less
+//     ^ meta.property-list.less
+//     ^ punctuation.definition.block.begin.less
+    background-image: url("ok.png");
+//<0-------------------------------- meta.property-list.less
+//<0-------------------------------- meta.property-list.less
+//  ^--------------- support.type.property-name.less
+//                  ^ punctuation.separator.key-value.less
+//                   ^ meta.property-value.less
+//                    ^------------ meta.function-call.less
+//                    ^-- support.function.url.less
+//                       ^ punctuation.definition.group.begin.less
+//                        ^------- string.quoted.double.less
+//                        ^ punctuation.definition.string.begin.less
+//                               ^ punctuation.definition.string.end.less
+//                                ^ punctuation.definition.group.end.less
+//                                 ^ punctuation.terminator.rule.less
+  }
+//<0 meta.property-list.less
+//^ punctuation.definition.block.end.less
+  &-cancel {
+//<0-------- meta.property-list.less
+//^------- entity.other.attribute-name.parent.less
+//^ punctuation.definition.entity.less
+//         ^ meta.property-list.less
+//         ^ punctuation.definition.block.begin.less
+    background-image: url("cancel.png");
+//<0------------------------------------ meta.property-list.less
+//<0------------------------------------ meta.property-list.less
+//  ^--------------- support.type.property-name.less
+//                  ^ punctuation.separator.key-value.less
+//                   ^ meta.property-value.less
+//                    ^---------------- meta.function-call.less
+//                    ^-- support.function.url.less
+//                       ^ punctuation.definition.group.begin.less
+//                        ^----------- string.quoted.double.less
+//                        ^ punctuation.definition.string.begin.less
+//                                   ^ punctuation.definition.string.end.less
+//                                    ^ punctuation.definition.group.end.less
+//                                     ^ punctuation.terminator.rule.less
+  }
+//<0 meta.property-list.less
+//^ punctuation.definition.block.end.less
+
+  &-custom {
+//<0-------- meta.property-list.less
+//^------- entity.other.attribute-name.parent.less
+//^ punctuation.definition.entity.less
+//         ^ meta.property-list.less
+//         ^ punctuation.definition.block.begin.less
+    background-image: url("custom.png");
+//<0------------------------------------ meta.property-list.less
+//<0------------------------------------ meta.property-list.less
+//  ^--------------- support.type.property-name.less
+//                  ^ punctuation.separator.key-value.less
+//                   ^ meta.property-value.less
+//                    ^---------------- meta.function-call.less
+//                    ^-- support.function.url.less
+//                       ^ punctuation.definition.group.begin.less
+//                        ^----------- string.quoted.double.less
+//                        ^ punctuation.definition.string.begin.less
+//                                   ^ punctuation.definition.string.end.less
+//                                    ^ punctuation.definition.group.end.less
+//                                     ^ punctuation.terminator.rule.less
+  }
+//<0 meta.property-list.less
+//^ punctuation.definition.block.end.less
+}
+//<0 punctuation.definition.block.end.less
+.link {
+//<0- entity.other.attribute-name.class.less
+//<0 punctuation.definition.entity.less
+//    ^ meta.property-list.less
+//    ^ punctuation.definition.block.begin.less
+  & + & {
+//<0----- meta.property-list.less
+//^ entity.other.attribute-name.parent.less
+//^ punctuation.definition.entity.less
+//  ^ punctuation.separator.combinator.less
+//    ^ entity.other.attribute-name.parent.less
+//    ^ punctuation.definition.entity.less
+//      ^ meta.property-list.less
+//      ^ punctuation.definition.block.begin.less
+    color: red;
+//<0----------- meta.property-list.less
+//<0----------- meta.property-list.less
+//  ^---- support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^ meta.property-value.less
+//         ^-- support.constant.color.w3c-standard-color-name.less
+//            ^ punctuation.terminator.rule.less
+  }
+//<0 meta.property-list.less
+//^ punctuation.definition.block.end.less
+
+  & & {
+//<0--- meta.property-list.less
+//^ entity.other.attribute-name.parent.less
+//^ punctuation.definition.entity.less
+//  ^ entity.other.attribute-name.parent.less
+//  ^ punctuation.definition.entity.less
+//    ^ meta.property-list.less
+//    ^ punctuation.definition.block.begin.less
+    color: green;
+//<0------------- meta.property-list.less
+//<0------------- meta.property-list.less
+//  ^---- support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^ meta.property-value.less
+//         ^---- support.constant.color.w3c-standard-color-name.less
+//              ^ punctuation.terminator.rule.less
+  }
+//<0 meta.property-list.less
+//^ punctuation.definition.block.end.less
+
+  && {
+//<0-- meta.property-list.less
+//^- entity.other.attribute-name.parent.less
+//^- punctuation.definition.entity.less
+//   ^ meta.property-list.less
+//   ^ punctuation.definition.block.begin.less
+    color: blue;
+//<0------------ meta.property-list.less
+//<0------------ meta.property-list.less
+//  ^---- support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^ meta.property-value.less
+//         ^--- support.constant.color.w3c-standard-color-name.less
+//             ^ punctuation.terminator.rule.less
+  }
+//<0 meta.property-list.less
+//^ punctuation.definition.block.end.less
+
+  &, &ish {
+//<0------- meta.property-list.less
+//^ entity.other.attribute-name.parent.less
+//^ punctuation.definition.entity.less
+// ^ punctuation.definition.arbitrary-repetition.less
+//   ^--- entity.other.attribute-name.parent.less
+//   ^ punctuation.definition.entity.less
+//        ^ meta.property-list.less
+//        ^ punctuation.definition.block.begin.less
+    color: cyan;
+//<0------------ meta.property-list.less
+//<0------------ meta.property-list.less
+//  ^---- support.type.property-name.less
+//       ^ punctuation.separator.key-value.less
+//        ^ meta.property-value.less
+//         ^--- support.constant.color.w3c-extended-color-keywords.less
+//             ^ punctuation.terminator.rule.less
+  }
+//<0 meta.property-list.less
+//^ punctuation.definition.block.end.less
+}
+//<0 punctuation.definition.block.end.less
+
+// From https://lesscss.org/features/#parent-selectors-feature
+//<0---------------------------------------------------------- comment.line.double-slash.less
+//<0 punctuation.definition.comment.less

@@ -1,0 +1,650 @@
+<!-- grammar: text.html.php.blade -->
+
+<x-app-layout :title="$post->title">
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 variable.other.readwrite.ts -->
+<!--<2 keyword.operator.arithmetic.ts -->
+<!--<3 variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.arithmetic.ts -->
+<!--   ^----- variable.other.readwrite.ts -->
+<!--          ^------- meta.attribute.unrecognized.:title.html -->
+<!--          ^----- entity.other.attribute-name.html -->
+<!--                ^ punctuation.separator.key-value.html -->
+<!--                 ^ string.quoted.double.html -->
+<!--                  ^---- variable.other.readwrite.ts -->
+<!--                       ^ keyword.operator.arithmetic.ts -->
+<!--                        ^ keyword.operator.relational.ts -->
+<!--                         ^---- variable.other.readwrite.ts -->
+<!--                              ^ string.quoted.double.html -->
+<!--                              ^ punctuation.definition.string.end.html -->
+<!--                               ^ keyword.operator.relational.ts -->
+    <x-ad/>
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.arithmetic.ts -->
+<!--   ^- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.arithmetic.ts -->
+<!--      ^ keyword.operator.relational.ts -->
+
+    <x-post-header :post="$post" class="mb-8">
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.arithmetic.ts -->
+<!--   ^--- variable.other.readwrite.ts -->
+<!--       ^ keyword.operator.arithmetic.ts -->
+<!--        ^----- variable.other.readwrite.ts -->
+<!--               ^------ meta.attribute.unrecognized.:post.html -->
+<!--               ^---- entity.other.attribute-name.html -->
+<!--                    ^ punctuation.separator.key-value.html -->
+<!--                     ^ string.quoted.double.html -->
+<!--                      ^---- variable.other.readwrite.ts -->
+<!--                           ^ string.quoted.double.html -->
+<!--                           ^ punctuation.definition.string.end.html -->
+<!--                             ^---- variable.other.readwrite.ts -->
+<!--                                  ^ keyword.operator.assignment.ts -->
+<!--                                   ^----- string.quoted.double.ts -->
+<!--                                   ^ punctuation.definition.string.begin.ts -->
+<!--                                    ^- variable.other.readwrite.ts -->
+<!--                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                       ^ constant.numeric.decimal.ts -->
+<!--                                        ^ punctuation.definition.string.end.ts -->
+<!--                                         ^ keyword.operator.relational.ts -->
+
+        {!! $post->html !!}
+<!--    ^------------------ meta.function.echo.blade -->
+<!--    ^-- support.function.construct.begin.blade -->
+<!--        ^---- variable.other.readwrite.ts -->
+<!--             ^ keyword.operator.arithmetic.ts -->
+<!--              ^ keyword.operator.relational.ts -->
+<!--               ^--- variable.other.readwrite.ts -->
+<!--                    ^-- support.function.construct.end.blade -->
+
+        @unless($post->isTweet())
+<!--    ^------------------------ meta.directive.blade -->
+<!--    ^------ keyword.blade -->
+<!--           ^ begin.bracket.round.blade.php -->
+<!--            ^---- variable.other.readwrite.ts -->
+<!--                 ^ keyword.operator.arithmetic.ts -->
+<!--                  ^ keyword.operator.relational.ts -->
+<!--                   ^------ variable.other.readwrite.ts -->
+<!--                          ^- meta.brace.round.ts -->
+<!--                            ^ end.bracket.round.blade.php -->
+            @if($post->external_url)
+<!--        ^----------------------- control.block.ng -->
+<!--        ^ keyword.control.block.transition.ng -->
+<!--         ^- keyword.control.block.kind.ng -->
+<!--           ^ meta.brace.round.ts -->
+<!--            ^---- variable.other.readwrite.ts -->
+<!--                 ^ keyword.operator.arithmetic.ts -->
+<!--                  ^ keyword.operator.relational.ts -->
+<!--                   ^----------- variable.other.readwrite.ts -->
+<!--                               ^ meta.brace.round.ts -->
+                <p class="mt-6">
+<!--<0-------------------------- control.block.ng -->
+<!--            ^ keyword.operator.relational.ts -->
+<!--             ^ variable.other.readwrite.ts -->
+<!--               ^---- variable.other.readwrite.ts -->
+<!--                    ^ keyword.operator.assignment.ts -->
+<!--                     ^----- string.quoted.double.ts -->
+<!--                     ^ punctuation.definition.string.begin.ts -->
+<!--                      ^- variable.other.readwrite.ts -->
+<!--                        ^ keyword.operator.arithmetic.ts -->
+<!--                         ^ constant.numeric.decimal.ts -->
+<!--                          ^ punctuation.definition.string.end.ts -->
+<!--                           ^ keyword.operator.relational.ts -->
+                    <a href="{{ $post->external_url }}">
+<!--<0-------------------------------------------------- control.block.ng -->
+<!--                ^ keyword.operator.relational.ts -->
+<!--                 ^ variable.other.readwrite.ts -->
+<!--                   ^--- variable.other.readwrite.ts -->
+<!--                       ^ keyword.operator.assignment.ts -->
+<!--                        ^-------------------------- string.quoted.double.ts -->
+<!--                        ^ punctuation.definition.string.begin.ts -->
+<!--                         ^- punctuation.definition.block.ts -->
+<!--                            ^---- variable.other.readwrite.ts -->
+<!--                                 ^ keyword.operator.arithmetic.ts -->
+<!--                                  ^ keyword.operator.relational.ts -->
+<!--                                   ^----------- variable.other.readwrite.ts -->
+<!--                                                ^- punctuation.definition.block.ts -->
+<!--                                                  ^ punctuation.definition.string.end.ts -->
+<!--                                                   ^ keyword.operator.relational.ts -->
+                        Read more</a>
+<!--<0------------------------------- control.block.ng -->
+<!--                    ^--- variable.other.readwrite.ts -->
+<!--                         ^--- variable.other.readwrite.ts -->
+<!--                             ^ keyword.operator.relational.ts -->
+<!--                              ^ keyword.operator.arithmetic.ts -->
+<!--                               ^ variable.other.readwrite.ts -->
+<!--                                ^ keyword.operator.relational.ts -->
+                    <span class="text-xs text-gray-700">[{{ $post->external_url_host }}]</span>
+<!--<0----------------------------------------------------------------------------------------- control.block.ng -->
+<!--                ^ keyword.operator.relational.ts -->
+<!--                 ^--- variable.other.readwrite.ts -->
+<!--                      ^---- variable.other.readwrite.ts -->
+<!--                           ^ keyword.operator.assignment.ts -->
+<!--                            ^---------------------- string.quoted.double.ts -->
+<!--                            ^ punctuation.definition.string.begin.ts -->
+<!--                             ^--- variable.other.readwrite.ts -->
+<!--                                 ^ keyword.operator.arithmetic.ts -->
+<!--                                  ^- variable.other.readwrite.ts -->
+<!--                                     ^--- variable.other.readwrite.ts -->
+<!--                                         ^ keyword.operator.arithmetic.ts -->
+<!--                                          ^--- variable.other.readwrite.ts -->
+<!--                                              ^ keyword.operator.arithmetic.ts -->
+<!--                                               ^-- constant.numeric.decimal.ts -->
+<!--                                                  ^ punctuation.definition.string.end.ts -->
+<!--                                                   ^ keyword.operator.relational.ts -->
+<!--                                                    ^------------------------------- meta.array.literal.ts -->
+<!--                                                    ^ meta.brace.square.ts -->
+<!--                                                     ^- punctuation.definition.block.ts -->
+<!--                                                        ^---- variable.other.readwrite.ts -->
+<!--                                                             ^ keyword.operator.arithmetic.ts -->
+<!--                                                              ^ keyword.operator.relational.ts -->
+<!--                                                               ^---------------- variable.other.readwrite.ts -->
+<!--                                                                                 ^- punctuation.definition.block.ts -->
+<!--                                                                                   ^ meta.brace.square.ts -->
+<!--                                                                                    ^ keyword.operator.relational.ts -->
+<!--                                                                                     ^ keyword.operator.arithmetic.ts -->
+<!--                                                                                      ^--- variable.other.readwrite.ts -->
+<!--                                                                                          ^ keyword.operator.relational.ts -->
+                </p>
+<!--<0-------------- control.block.ng -->
+<!--            ^ keyword.operator.relational.ts -->
+<!--             ^ keyword.operator.arithmetic.ts -->
+<!--              ^ variable.other.readwrite.ts -->
+<!--               ^ keyword.operator.relational.ts -->
+            @endif
+<!--<0------------ control.block.ng -->
+<!--        ^----- keyword.blade -->
+        @endunless
+<!--<0------------ control.block.ng -->
+<!--    ^--------- keyword.blade -->
+    </x-post-header>
+<!--<0-------------- control.block.ng -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^ variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.arithmetic.ts -->
+<!--    ^--- variable.other.readwrite.ts -->
+<!--        ^ keyword.operator.arithmetic.ts -->
+<!--         ^----- variable.other.readwrite.ts -->
+<!--               ^ keyword.operator.relational.ts -->
+
+    @include('front.newsletter.partials.block', [
+<!--<0------------------------------------------- control.block.ng -->
+<!--^-------------------------------------------- meta.directive.blade -->
+<!--^------- keyword.blade -->
+<!--        ^ begin.bracket.round.blade.php -->
+<!--         ^-------------------------------- string.quoted.single.ts -->
+<!--         ^ punctuation.definition.string.begin.ts -->
+<!--          ^---- variable.other.object.ts -->
+<!--               ^ punctuation.accessor.ts -->
+<!--                ^--------- variable.other.object.property.ts -->
+<!--                          ^ punctuation.accessor.ts -->
+<!--                           ^------- variable.other.object.property.ts -->
+<!--                                   ^ punctuation.accessor.ts -->
+<!--                                    ^---- variable.other.property.ts -->
+<!--                                         ^ punctuation.definition.string.end.ts -->
+<!--                                          ^ punctuation.separator.comma.ts -->
+<!--                                            ^ meta.array.literal.ts -->
+<!--                                            ^ meta.brace.square.ts -->
+        'class' => 'mb-8',
+<!--<0-------------------- control.block.ng -->
+<!--<0-------------------- meta.directive.blade -->
+<!--<0-------------------- meta.array.literal.ts -->
+<!--    ^------ string.quoted.single.ts -->
+<!--    ^ punctuation.definition.string.begin.ts -->
+<!--     ^---- variable.other.readwrite.ts -->
+<!--          ^ punctuation.definition.string.end.ts -->
+<!--            ^ keyword.operator.assignment.ts -->
+<!--             ^ keyword.operator.relational.ts -->
+<!--               ^----- string.quoted.single.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.arithmetic.ts -->
+<!--                   ^ constant.numeric.decimal.ts -->
+<!--                    ^ punctuation.definition.string.end.ts -->
+<!--                     ^ punctuation.separator.comma.ts -->
+    ])
+<!--<0 control.block.ng -->
+<!--<0 meta.directive.blade -->
+<!--<0 meta.array.literal.ts -->
+<!--^ meta.brace.square.ts -->
+<!-- ^ end.bracket.round.blade.php -->
+
+    <div class="mb-8">
+<!--<0---------------- control.block.ng -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^-- variable.other.readwrite.ts -->
+<!--     ^---- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.assignment.ts -->
+<!--           ^----- string.quoted.double.ts -->
+<!--           ^ punctuation.definition.string.begin.ts -->
+<!--            ^- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.arithmetic.ts -->
+<!--               ^ constant.numeric.decimal.ts -->
+<!--                ^ punctuation.definition.string.end.ts -->
+<!--                 ^ keyword.operator.relational.ts -->
+        @include('front.posts.partials.comments')
+<!--<0------------------------------------------- control.block.ng -->
+<!--    ^---------------------------------------- meta.directive.blade -->
+<!--    ^------- keyword.blade -->
+<!--            ^ begin.bracket.round.blade.php -->
+<!--             ^------------------------------ string.quoted.single.ts -->
+<!--             ^ punctuation.definition.string.begin.ts -->
+<!--              ^---- variable.other.object.ts -->
+<!--                   ^ punctuation.accessor.ts -->
+<!--                    ^---- variable.other.object.property.ts -->
+<!--                         ^ punctuation.accessor.ts -->
+<!--                          ^------- variable.other.object.property.ts -->
+<!--                                  ^ punctuation.accessor.ts -->
+<!--                                   ^------- variable.other.property.ts -->
+<!--                                           ^ punctuation.definition.string.end.ts -->
+<!--                                            ^ end.bracket.round.blade.php -->
+    </div>
+<!--<0---- control.block.ng -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^-- variable.other.readwrite.ts -->
+<!--     ^ keyword.operator.relational.ts -->
+
+    <x-slot name="seo">
+<!--<0----------------- control.block.ng -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ variable.other.readwrite.ts -->
+<!--  ^ keyword.operator.arithmetic.ts -->
+<!--   ^--- variable.other.readwrite.ts -->
+<!--        ^--- variable.other.readwrite.ts -->
+<!--            ^ keyword.operator.assignment.ts -->
+<!--             ^---- string.quoted.double.ts -->
+<!--             ^ punctuation.definition.string.begin.ts -->
+<!--              ^-- variable.other.readwrite.ts -->
+<!--                 ^ punctuation.definition.string.end.ts -->
+<!--                  ^ keyword.operator.relational.ts -->
+        <meta property="og:title" content="{{ $post->title }} | freek.dev"/>
+<!--<0---------------------------------------------------------------------- control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^------- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.assignment.ts -->
+<!--                   ^--------- string.quoted.double.ts -->
+<!--                   ^ punctuation.definition.string.begin.ts -->
+<!--                    ^- variable.other.readwrite.ts -->
+<!--                       ^---- variable.other.readwrite.ts -->
+<!--                            ^ punctuation.definition.string.end.ts -->
+<!--                              ^------ variable.other.readwrite.ts -->
+<!--                                     ^ keyword.operator.assignment.ts -->
+<!--                                      ^------------------------------- string.quoted.double.ts -->
+<!--                                      ^ punctuation.definition.string.begin.ts -->
+<!--                                       ^- punctuation.definition.block.ts -->
+<!--                                          ^---- variable.other.readwrite.ts -->
+<!--                                               ^ keyword.operator.arithmetic.ts -->
+<!--                                                ^ keyword.operator.relational.ts -->
+<!--                                                 ^---- variable.other.readwrite.ts -->
+<!--                                                       ^- punctuation.definition.block.ts -->
+<!--                                                          ^ keyword.operator.logical.ts -->
+<!--                                                            ^---- entity.name.function.pipe.ng -->
+<!--                                                                 ^ punctuation.accessor.ts -->
+<!--                                                                  ^-- variable.other.property.ts -->
+<!--                                                                     ^ punctuation.definition.string.end.ts -->
+<!--                                                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                                                       ^ keyword.operator.relational.ts -->
+        <meta property="og:description" content="{{ $post->plain_text_excerpt }}"/>
+<!--<0----------------------------------------------------------------------------- control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^------- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.assignment.ts -->
+<!--                   ^--------------- string.quoted.double.ts -->
+<!--                   ^ punctuation.definition.string.begin.ts -->
+<!--                    ^- variable.other.readwrite.ts -->
+<!--                       ^---------- variable.other.readwrite.ts -->
+<!--                                  ^ punctuation.definition.string.end.ts -->
+<!--                                    ^------ variable.other.readwrite.ts -->
+<!--                                           ^ keyword.operator.assignment.ts -->
+<!--                                            ^-------------------------------- string.quoted.double.ts -->
+<!--                                            ^ punctuation.definition.string.begin.ts -->
+<!--                                             ^- punctuation.definition.block.ts -->
+<!--                                                ^---- variable.other.readwrite.ts -->
+<!--                                                     ^ keyword.operator.arithmetic.ts -->
+<!--                                                      ^ keyword.operator.relational.ts -->
+<!--                                                       ^----------------- variable.other.readwrite.ts -->
+<!--                                                                          ^- punctuation.definition.block.ts -->
+<!--                                                                            ^ punctuation.definition.string.end.ts -->
+<!--                                                                             ^ keyword.operator.arithmetic.ts -->
+<!--                                                                              ^ keyword.operator.relational.ts -->
+        <meta name="og:image" content="{{ url($post->getFirstMediaUrl('ogImage')) }}"/>
+<!--<0--------------------------------------------------------------------------------- control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^--------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^- variable.other.readwrite.ts -->
+<!--                   ^---- variable.other.readwrite.ts -->
+<!--                        ^ punctuation.definition.string.end.ts -->
+<!--                          ^------ variable.other.readwrite.ts -->
+<!--                                 ^ keyword.operator.assignment.ts -->
+<!--                                  ^---------------------------------------------- string.quoted.double.ts -->
+<!--                                  ^ punctuation.definition.string.begin.ts -->
+<!--                                   ^- punctuation.definition.block.ts -->
+<!--                                      ^-- variable.other.readwrite.ts -->
+<!--                                         ^ meta.brace.round.ts -->
+<!--                                          ^---- variable.other.readwrite.ts -->
+<!--                                               ^ keyword.operator.arithmetic.ts -->
+<!--                                                ^ keyword.operator.relational.ts -->
+<!--                                                 ^--------------- variable.other.readwrite.ts -->
+<!--                                                                 ^ meta.brace.round.ts -->
+<!--                                                                  ^-------- string.quoted.single.ts -->
+<!--                                                                  ^ punctuation.definition.string.begin.ts -->
+<!--                                                                   ^------ variable.other.readwrite.ts -->
+<!--                                                                          ^ punctuation.definition.string.end.ts -->
+<!--                                                                           ^- meta.brace.round.ts -->
+<!--                                                                              ^- punctuation.definition.block.ts -->
+<!--                                                                                ^ punctuation.definition.string.end.ts -->
+<!--                                                                                 ^ keyword.operator.arithmetic.ts -->
+<!--                                                                                  ^ keyword.operator.relational.ts -->
+
+        @foreach($post->tags as $tag)
+<!--<0------------------------------- control.block.ng -->
+<!--    ^---------------------------- control.block.ng -->
+<!--    ^ keyword.control.block.transition.ng -->
+<!--     ^-- keyword.control.block.kind.ng -->
+<!--        ^--- variable.other.readwrite.ts -->
+<!--            ^ meta.brace.round.ts -->
+<!--             ^---- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.arithmetic.ts -->
+<!--                   ^ keyword.operator.relational.ts -->
+<!--                    ^--- variable.other.readwrite.ts -->
+<!--                         ^- storage.type.as.ts -->
+<!--                            ^--- variable.other.readwrite.ts -->
+<!--                                ^ meta.brace.round.ts -->
+            <meta property="article:tag" content="{{ $tag->name }}"/>
+<!--<0--------------------------------------------------------------- control.block.ng -->
+<!--<0--------------------------------------------------------------- control.block.ng -->
+<!--        ^ keyword.operator.relational.ts -->
+<!--         ^--- variable.other.readwrite.ts -->
+<!--              ^------- variable.other.readwrite.ts -->
+<!--                      ^ keyword.operator.assignment.ts -->
+<!--                       ^------------ string.quoted.double.ts -->
+<!--                       ^ punctuation.definition.string.begin.ts -->
+<!--                        ^------ variable.other.readwrite.ts -->
+<!--                                ^-- variable.other.readwrite.ts -->
+<!--                                   ^ punctuation.definition.string.end.ts -->
+<!--                                     ^------ variable.other.readwrite.ts -->
+<!--                                            ^ keyword.operator.assignment.ts -->
+<!--                                             ^----------------- string.quoted.double.ts -->
+<!--                                             ^ punctuation.definition.string.begin.ts -->
+<!--                                              ^- punctuation.definition.block.ts -->
+<!--                                                 ^--- variable.other.readwrite.ts -->
+<!--                                                     ^ keyword.operator.arithmetic.ts -->
+<!--                                                      ^ keyword.operator.relational.ts -->
+<!--                                                       ^--- variable.other.readwrite.ts -->
+<!--                                                            ^- punctuation.definition.block.ts -->
+<!--                                                              ^ punctuation.definition.string.end.ts -->
+<!--                                                               ^ keyword.operator.arithmetic.ts -->
+<!--                                                                ^ keyword.operator.relational.ts -->
+        @endforeach
+<!--<0------------- control.block.ng -->
+<!--<0------------- control.block.ng -->
+<!--    ^---------- keyword.blade -->
+
+        <meta property="article:published_time" content="{{ optional($post->publish_date)->toIso8601String() }}"/>
+<!--<0------------------------------------------------------------------------------------------------------------ control.block.ng -->
+<!--<0------------------------------------------------------------------------------------------------------------ control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^------- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.assignment.ts -->
+<!--                   ^----------------------- string.quoted.double.ts -->
+<!--                   ^ punctuation.definition.string.begin.ts -->
+<!--                    ^------ variable.other.readwrite.ts -->
+<!--                            ^------------- variable.other.readwrite.ts -->
+<!--                                          ^ punctuation.definition.string.end.ts -->
+<!--                                            ^------ variable.other.readwrite.ts -->
+<!--                                                   ^ keyword.operator.assignment.ts -->
+<!--                                                    ^------------------------------------------------------- string.quoted.double.ts -->
+<!--                                                    ^ punctuation.definition.string.begin.ts -->
+<!--                                                     ^- punctuation.definition.block.ts -->
+<!--                                                        ^------- variable.other.readwrite.ts -->
+<!--                                                                ^ meta.brace.round.ts -->
+<!--                                                                 ^---- variable.other.readwrite.ts -->
+<!--                                                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                                                       ^ keyword.operator.relational.ts -->
+<!--                                                                        ^----------- variable.other.readwrite.ts -->
+<!--                                                                                    ^ meta.brace.round.ts -->
+<!--                                                                                     ^ keyword.operator.arithmetic.ts -->
+<!--                                                                                      ^ keyword.operator.relational.ts -->
+<!--                                                                                       ^-------------- variable.other.readwrite.ts -->
+<!--                                                                                                      ^- meta.brace.round.ts -->
+<!--                                                                                                         ^- punctuation.definition.block.ts -->
+<!--                                                                                                           ^ punctuation.definition.string.end.ts -->
+<!--                                                                                                            ^ keyword.operator.arithmetic.ts -->
+<!--                                                                                                             ^ keyword.operator.relational.ts -->
+        <meta property="og:updated_time" content="{{ $post->updated_at->toIso8601String() }}"/>
+<!--<0----------------------------------------------------------------------------------------- control.block.ng -->
+<!--<0----------------------------------------------------------------------------------------- control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^------- variable.other.readwrite.ts -->
+<!--                  ^ keyword.operator.assignment.ts -->
+<!--                   ^---------------- string.quoted.double.ts -->
+<!--                   ^ punctuation.definition.string.begin.ts -->
+<!--                    ^- variable.other.readwrite.ts -->
+<!--                       ^----------- variable.other.readwrite.ts -->
+<!--                                   ^ punctuation.definition.string.end.ts -->
+<!--                                     ^------ variable.other.readwrite.ts -->
+<!--                                            ^ keyword.operator.assignment.ts -->
+<!--                                             ^------------------------------------------- string.quoted.double.ts -->
+<!--                                             ^ punctuation.definition.string.begin.ts -->
+<!--                                              ^- punctuation.definition.block.ts -->
+<!--                                                 ^---- variable.other.readwrite.ts -->
+<!--                                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                                       ^ keyword.operator.relational.ts -->
+<!--                                                        ^--------- variable.other.readwrite.ts -->
+<!--                                                                  ^ keyword.operator.arithmetic.ts -->
+<!--                                                                   ^ keyword.operator.relational.ts -->
+<!--                                                                    ^-------------- variable.other.readwrite.ts -->
+<!--                                                                                   ^- meta.brace.round.ts -->
+<!--                                                                                      ^- punctuation.definition.block.ts -->
+<!--                                                                                        ^ punctuation.definition.string.end.ts -->
+<!--                                                                                         ^ keyword.operator.arithmetic.ts -->
+<!--                                                                                          ^ keyword.operator.relational.ts -->
+        <meta name="twitter:card" content="summary_large_image"/>
+<!--<0----------------------------------------------------------- control.block.ng -->
+<!--<0----------------------------------------------------------- control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^------------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                        ^--- variable.other.readwrite.ts -->
+<!--                            ^ punctuation.definition.string.end.ts -->
+<!--                              ^------ variable.other.readwrite.ts -->
+<!--                                     ^ keyword.operator.assignment.ts -->
+<!--                                      ^-------------------- string.quoted.double.ts -->
+<!--                                      ^ punctuation.definition.string.begin.ts -->
+<!--                                       ^------------------ variable.other.readwrite.ts -->
+<!--                                                          ^ punctuation.definition.string.end.ts -->
+<!--                                                           ^ keyword.operator.arithmetic.ts -->
+<!--                                                            ^ keyword.operator.relational.ts -->
+        <meta name="twitter:description" content="{{ $post->plain_text_excerpt }}"/>
+<!--<0------------------------------------------------------------------------------ control.block.ng -->
+<!--<0------------------------------------------------------------------------------ control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^-------------------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                        ^---------- variable.other.readwrite.ts -->
+<!--                                   ^ punctuation.definition.string.end.ts -->
+<!--                                     ^------ variable.other.readwrite.ts -->
+<!--                                            ^ keyword.operator.assignment.ts -->
+<!--                                             ^-------------------------------- string.quoted.double.ts -->
+<!--                                             ^ punctuation.definition.string.begin.ts -->
+<!--                                              ^- punctuation.definition.block.ts -->
+<!--                                                 ^---- variable.other.readwrite.ts -->
+<!--                                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                                       ^ keyword.operator.relational.ts -->
+<!--                                                        ^----------------- variable.other.readwrite.ts -->
+<!--                                                                           ^- punctuation.definition.block.ts -->
+<!--                                                                             ^ punctuation.definition.string.end.ts -->
+<!--                                                                              ^ keyword.operator.arithmetic.ts -->
+<!--                                                                               ^ keyword.operator.relational.ts -->
+        <meta name="twitter:title" content="{{ $post->title }} | freek.dev"/>
+<!--<0----------------------------------------------------------------------- control.block.ng -->
+<!--<0----------------------------------------------------------------------- control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^-------------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                        ^---- variable.other.readwrite.ts -->
+<!--                             ^ punctuation.definition.string.end.ts -->
+<!--                               ^------ variable.other.readwrite.ts -->
+<!--                                      ^ keyword.operator.assignment.ts -->
+<!--                                       ^------------------------------- string.quoted.double.ts -->
+<!--                                       ^ punctuation.definition.string.begin.ts -->
+<!--                                        ^- punctuation.definition.block.ts -->
+<!--                                           ^---- variable.other.readwrite.ts -->
+<!--                                                ^ keyword.operator.arithmetic.ts -->
+<!--                                                 ^ keyword.operator.relational.ts -->
+<!--                                                  ^---- variable.other.readwrite.ts -->
+<!--                                                        ^- punctuation.definition.block.ts -->
+<!--                                                           ^ keyword.operator.logical.ts -->
+<!--                                                             ^---- entity.name.function.pipe.ng -->
+<!--                                                                  ^ punctuation.accessor.ts -->
+<!--                                                                   ^-- variable.other.property.ts -->
+<!--                                                                      ^ punctuation.definition.string.end.ts -->
+<!--                                                                       ^ keyword.operator.arithmetic.ts -->
+<!--                                                                        ^ keyword.operator.relational.ts -->
+        <meta name="twitter:site" content="@freekmurze"/>
+<!--<0--------------------------------------------------- control.block.ng -->
+<!--<0--------------------------------------------------- control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^------------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                        ^--- variable.other.readwrite.ts -->
+<!--                            ^ punctuation.definition.string.end.ts -->
+<!--                              ^------ variable.other.readwrite.ts -->
+<!--                                     ^ keyword.operator.assignment.ts -->
+<!--                                      ^------------ string.quoted.double.ts -->
+<!--                                      ^ punctuation.definition.string.begin.ts -->
+<!--                                       ^---------- entity.name.function.blade -->
+<!--                                                  ^ punctuation.definition.string.end.ts -->
+<!--                                                   ^ keyword.operator.arithmetic.ts -->
+<!--                                                    ^ keyword.operator.relational.ts -->
+        <meta name="twitter:image" content="{{ url($post->getFirstMediaUrl('ogImage')) }}"/>
+<!--<0-------------------------------------------------------------------------------------- control.block.ng -->
+<!--<0-------------------------------------------------------------------------------------- control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^-------------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                        ^---- variable.other.readwrite.ts -->
+<!--                             ^ punctuation.definition.string.end.ts -->
+<!--                               ^------ variable.other.readwrite.ts -->
+<!--                                      ^ keyword.operator.assignment.ts -->
+<!--                                       ^---------------------------------------------- string.quoted.double.ts -->
+<!--                                       ^ punctuation.definition.string.begin.ts -->
+<!--                                        ^- punctuation.definition.block.ts -->
+<!--                                           ^-- variable.other.readwrite.ts -->
+<!--                                              ^ meta.brace.round.ts -->
+<!--                                               ^---- variable.other.readwrite.ts -->
+<!--                                                    ^ keyword.operator.arithmetic.ts -->
+<!--                                                     ^ keyword.operator.relational.ts -->
+<!--                                                      ^--------------- variable.other.readwrite.ts -->
+<!--                                                                      ^ meta.brace.round.ts -->
+<!--                                                                       ^-------- string.quoted.single.ts -->
+<!--                                                                       ^ punctuation.definition.string.begin.ts -->
+<!--                                                                        ^------ variable.other.readwrite.ts -->
+<!--                                                                               ^ punctuation.definition.string.end.ts -->
+<!--                                                                                ^- meta.brace.round.ts -->
+<!--                                                                                   ^- punctuation.definition.block.ts -->
+<!--                                                                                     ^ punctuation.definition.string.end.ts -->
+<!--                                                                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                                                                       ^ keyword.operator.relational.ts -->
+        <meta name="twitter:creator" content="@freekmurze"/>
+<!--<0------------------------------------------------------ control.block.ng -->
+<!--<0------------------------------------------------------ control.block.ng -->
+<!--    ^ keyword.operator.relational.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+<!--          ^--- variable.other.readwrite.ts -->
+<!--              ^ keyword.operator.assignment.ts -->
+<!--               ^---------------- string.quoted.double.ts -->
+<!--               ^ punctuation.definition.string.begin.ts -->
+<!--                ^------ variable.other.readwrite.ts -->
+<!--                        ^------ variable.other.readwrite.ts -->
+<!--                               ^ punctuation.definition.string.end.ts -->
+<!--                                 ^------ variable.other.readwrite.ts -->
+<!--                                        ^ keyword.operator.assignment.ts -->
+<!--                                         ^------------ string.quoted.double.ts -->
+<!--                                         ^ punctuation.definition.string.begin.ts -->
+<!--                                          ^---------- entity.name.function.blade -->
+<!--                                                     ^ punctuation.definition.string.end.ts -->
+<!--                                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                                       ^ keyword.operator.relational.ts -->
+    </x-slot>
+<!--<0------- control.block.ng -->
+<!--<0------- control.block.ng -->
+<!--^ keyword.operator.relational.ts -->
+<!-- ^ keyword.operator.arithmetic.ts -->
+<!--  ^ variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.arithmetic.ts -->
+<!--    ^--- variable.other.readwrite.ts -->
+<!--        ^ keyword.operator.relational.ts -->
+</x-app-layout>
+<!--<0--------- control.block.ng -->
+<!--<0--------- control.block.ng -->
+<!--<0 keyword.operator.relational.ts -->
+<!--<1 keyword.operator.arithmetic.ts -->
+<!--<2 variable.other.readwrite.ts -->
+<!--<3 keyword.operator.arithmetic.ts -->
+<!--^-- variable.other.readwrite.ts -->
+<!--   ^ keyword.operator.arithmetic.ts -->
+<!--    ^----- variable.other.readwrite.ts -->
+<!--          ^ keyword.operator.relational.ts -->
+
+#From https://freek.dev/2024-how-to-render-markdown-with-perfectly-highlighted-code-snippets
+<!--<0-------------------------------------------------------------------------------------- control.block.ng -->
+<!--<0-------------------------------------------------------------------------------------- control.block.ng -->
+<!--<1 variable.other.readwrite.ts -->
+<!--  ^---- variable.other.readwrite.ts -->
+<!--        ^- keyword.operator.arithmetic.ts -->
+<!--          ^---- variable.other.object.ts -->
+<!--               ^ punctuation.accessor.ts -->
+<!--                ^-- variable.other.property.ts -->
+<!--                   ^ keyword.operator.arithmetic.ts -->
+<!--                    ^--- constant.numeric.decimal.ts -->
+<!--                        ^ keyword.operator.arithmetic.ts -->
+<!--                         ^-- variable.other.readwrite.ts -->
+<!--                            ^ keyword.operator.arithmetic.ts -->
+<!--                             ^- variable.other.readwrite.ts -->
+<!--                               ^ keyword.operator.arithmetic.ts -->
+<!--                                ^----- variable.other.readwrite.ts -->
+<!--                                      ^ keyword.operator.arithmetic.ts -->
+<!--                                       ^------- variable.other.readwrite.ts -->
+<!--                                               ^ keyword.operator.arithmetic.ts -->
+<!--                                                ^--- variable.other.readwrite.ts -->
+<!--                                                    ^ keyword.operator.arithmetic.ts -->
+<!--                                                     ^-------- variable.other.readwrite.ts -->
+<!--                                                              ^ keyword.operator.arithmetic.ts -->
+<!--                                                               ^---------- variable.other.readwrite.ts -->
+<!--                                                                          ^ keyword.operator.arithmetic.ts -->
+<!--                                                                           ^--- variable.other.readwrite.ts -->
+<!--                                                                               ^ keyword.operator.arithmetic.ts -->
+<!--                                                                                ^------- variable.other.readwrite.ts -->

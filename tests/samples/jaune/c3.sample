@@ -1,0 +1,652 @@
+// grammar: source.c3
+
+import std::io, std::math::random;
+//<0------------------------------ meta.import.c3
+//<0-- keyword.declaration.import.c3
+//     ^------ meta.path.c3
+//     ^-- entity.name.scope-resolution.c3
+//        ^- punctuation.separator.scope-resolution.c3
+//          ^- entity.name.scope-resolution.c3
+//            ^ punctuation.separator.c3
+//              ^---------------- meta.path.c3
+//              ^-- entity.name.scope-resolution.c3
+//                 ^- punctuation.separator.scope-resolution.c3
+//                   ^--- entity.name.scope-resolution.c3
+//                       ^- punctuation.separator.scope-resolution.c3
+//                         ^----- entity.name.scope-resolution.c3
+//                               ^ punctuation.terminator.c3
+
+enum Action : (String abbrev, String full)
+//<0-------------------------------------- meta.enum.c3
+//<0 keyword.declaration.enum.c3
+//   ^----- entity.name.type.enum.c3
+//          ^ punctuation.separator.c3
+//            ^ punctuation.section.group.begin.c3
+//             ^----- support.type.c3
+//                    ^----- variable.parameter.c3
+//                          ^ punctuation.separator.c3
+//                            ^----- support.type.c3
+//                                   ^--- variable.parameter.c3
+//                                       ^ punctuation.section.group.end.c3
+{
+//<0 meta.enum.body.c3
+//<0 punctuation.section.block.begin.c3
+    ROCK = { "r", "Rock" },
+//<0----------------------- meta.enum.body.c3
+//  ^--- variable.other.constant.c3
+//       ^ keyword.operator.assignment.c3
+//         ^-------------- meta.block.c3
+//         ^ punctuation.section.block.begin.c3
+//           ^-- string.quoted.double.c3
+//           ^ punctuation.definition.string.begin.c3
+//             ^ punctuation.definition.string.end.c3
+//              ^ punctuation.separator.c3
+//                ^----- string.quoted.double.c3
+//                ^ punctuation.definition.string.begin.c3
+//                     ^ punctuation.definition.string.end.c3
+//                       ^ punctuation.section.block.end.c3
+//                        ^ punctuation.separator.c3
+    PAPER = { "p", "Paper" },
+//<0------------------------- meta.enum.body.c3
+//  ^---- variable.other.constant.c3
+//        ^ keyword.operator.assignment.c3
+//          ^--------------- meta.block.c3
+//          ^ punctuation.section.block.begin.c3
+//            ^-- string.quoted.double.c3
+//            ^ punctuation.definition.string.begin.c3
+//              ^ punctuation.definition.string.end.c3
+//               ^ punctuation.separator.c3
+//                 ^------ string.quoted.double.c3
+//                 ^ punctuation.definition.string.begin.c3
+//                       ^ punctuation.definition.string.end.c3
+//                         ^ punctuation.section.block.end.c3
+//                          ^ punctuation.separator.c3
+    SCISSORS = { "s", "Scissors" },
+//<0------------------------------- meta.enum.body.c3
+//  ^------- variable.other.constant.c3
+//           ^ keyword.operator.assignment.c3
+//             ^------------------ meta.block.c3
+//             ^ punctuation.section.block.begin.c3
+//               ^-- string.quoted.double.c3
+//               ^ punctuation.definition.string.begin.c3
+//                 ^ punctuation.definition.string.end.c3
+//                  ^ punctuation.separator.c3
+//                    ^--------- string.quoted.double.c3
+//                    ^ punctuation.definition.string.begin.c3
+//                             ^ punctuation.definition.string.end.c3
+//                               ^ punctuation.section.block.end.c3
+//                                ^ punctuation.separator.c3
+}
+//<0 meta.enum.body.c3
+//<0 punctuation.section.block.end.c3
+
+const ROUNDS = 3;
+//<0- storage.modifier.c3
+//    ^----- variable.other.constant.c3
+//           ^ keyword.operator.assignment.c3
+//             ^ constant.numeric.integer.c3
+//              ^ punctuation.terminator.c3
+
+fn int main()
+//<0------- meta.function.c3
+//<0 keyword.declaration.function.c3
+// ^-- storage.type.built-in.primitive.c3
+//     ^--- entity.name.function.c3
+//         ^- meta.function.parameters.c3
+//         ^ punctuation.section.group.begin.c3
+//          ^ punctuation.section.group.end.c3
+{
+//<0 meta.block.c3
+//<0 punctuation.section.block.begin.c3
+    int p_score;
+//<0------------ meta.block.c3
+//  ^-- storage.type.built-in.primitive.c3
+//      ^------ variable.other.c3
+//             ^ punctuation.terminator.c3
+    int c_score;
+//<0------------ meta.block.c3
+//  ^-- storage.type.built-in.primitive.c3
+//      ^------ variable.other.c3
+//             ^ punctuation.terminator.c3
+    int rounds = ROUNDS;
+//<0-------------------- meta.block.c3
+//  ^-- storage.type.built-in.primitive.c3
+//      ^----- variable.other.c3
+//             ^ keyword.operator.assignment.c3
+//               ^----- variable.other.constant.c3
+//                     ^ punctuation.terminator.c3
+
+    io::printfn("Let's play Rock-Paper-Scissors!");
+//<0----------------------------------------------- meta.block.c3
+//  ^--- meta.path.c3
+//  ^- entity.name.scope-resolution.c3
+//    ^- punctuation.separator.scope-resolution.c3
+//      ^----------------------------------------- meta.function_call.c3
+//      ^------ entity.name.function.c3
+//             ^---------------------------------- meta.group.c3
+//             ^ punctuation.section.group.begin.c3
+//              ^-------------------------------- string.quoted.double.c3
+//              ^ punctuation.definition.string.begin.c3
+//                                              ^ punctuation.definition.string.end.c3
+//                                               ^ punctuation.section.group.end.c3
+//                                                ^ punctuation.terminator.c3
+    while (rounds > 0)
+//<0------------------ meta.block.c3
+//  ^---- keyword.control.c3
+//        ^----------- meta.group.c3
+//        ^ punctuation.section.group.begin.c3
+//         ^----- variable.other.c3
+//                ^ keyword.operator.comparison.c3
+//                  ^ constant.numeric.integer.c3
+//                   ^ punctuation.section.group.end.c3
+    {
+//<0- meta.block.c3
+//  ^ meta.block.c3
+//  ^ punctuation.section.block.begin.c3
+        io::printfn("Best out of %d, %d rounds remaining. ", ROUNDS, rounds);
+//<0------------------------------------------------------------------------- meta.block.c3
+//<0------------------------------------------------------------------------- meta.block.c3
+//      ^--- meta.path.c3
+//      ^- entity.name.scope-resolution.c3
+//        ^- punctuation.separator.scope-resolution.c3
+//          ^--------------------------------------------------------------- meta.function_call.c3
+//          ^------ entity.name.function.c3
+//                 ^-------------------------------------------------------- meta.group.c3
+//                 ^ punctuation.section.group.begin.c3
+//                  ^-------------------------------------- string.quoted.double.c3
+//                  ^ punctuation.definition.string.begin.c3
+//                                                        ^ punctuation.definition.string.end.c3
+//                                                         ^ punctuation.separator.c3
+//                                                           ^----- variable.other.constant.c3
+//                                                                 ^ punctuation.separator.c3
+//                                                                   ^----- variable.other.c3
+//                                                                         ^ punctuation.section.group.end.c3
+//                                                                          ^ punctuation.terminator.c3
+        io::printn("What is your guess? [r]ock, [p]aper, or [s]cissors?");
+//<0---------------------------------------------------------------------- meta.block.c3
+//<0---------------------------------------------------------------------- meta.block.c3
+//      ^--- meta.path.c3
+//      ^- entity.name.scope-resolution.c3
+//        ^- punctuation.separator.scope-resolution.c3
+//          ^------------------------------------------------------------ meta.function_call.c3
+//          ^----- entity.name.function.c3
+//                ^------------------------------------------------------ meta.group.c3
+//                ^ punctuation.section.group.begin.c3
+//                 ^---------------------------------------------------- string.quoted.double.c3
+//                 ^ punctuation.definition.string.begin.c3
+//                                                                     ^ punctuation.definition.string.end.c3
+//                                                                      ^ punctuation.section.group.end.c3
+//                                                                       ^ punctuation.terminator.c3
+
+        Action guess;
+//<0----------------- meta.block.c3
+//<0----------------- meta.block.c3
+//      ^----- support.type.c3
+//             ^---- variable.other.c3
+//                  ^ punctuation.terminator.c3
+        while (true)
+//<0---------------- meta.block.c3
+//<0---------------- meta.block.c3
+//      ^---- keyword.control.c3
+//            ^----- meta.group.c3
+//            ^ punctuation.section.group.begin.c3
+//             ^--- constant.language.c3
+//                 ^ punctuation.section.group.end.c3
+        {
+//<0----- meta.block.c3
+//<0----- meta.block.c3
+//      ^ meta.block.c3
+//      ^ punctuation.section.block.begin.c3
+            String? s = io::treadline();
+//<0------------------------------------ meta.block.c3
+//<0------------------------------------ meta.block.c3
+//<0------------------------------------ meta.block.c3
+//          ^----- support.type.c3
+//                ^ keyword.operator.c3
+//                  ^ variable.other.c3
+//                    ^ keyword.operator.assignment.c3
+//                      ^--- meta.path.c3
+//                      ^- entity.name.scope-resolution.c3
+//                        ^- punctuation.separator.scope-resolution.c3
+//                          ^---------- meta.function_call.c3
+//                          ^-------- entity.name.function.c3
+//                                   ^- meta.group.c3
+//                                   ^ punctuation.section.group.begin.c3
+//                                    ^ punctuation.section.group.end.c3
+//                                     ^ punctuation.terminator.c3
+            if (catch s) return 1;
+//<0------------------------------ meta.block.c3
+//<0------------------------------ meta.block.c3
+//<0------------------------------ meta.block.c3
+//          ^- keyword.control.c3
+//             ^-------- meta.group.c3
+//             ^ punctuation.section.group.begin.c3
+//              ^---- keyword.other.c3
+//                    ^ variable.other.c3
+//                     ^ punctuation.section.group.end.c3
+//                       ^----- keyword.control.c3
+//                              ^ constant.numeric.integer.c3
+//                               ^ punctuation.terminator.c3
+
+            if (try current_guess = Action.lookup_field(abbrev, s))
+//<0--------------------------------------------------------------- meta.block.c3
+//<0--------------------------------------------------------------- meta.block.c3
+//<0--------------------------------------------------------------- meta.block.c3
+//          ^- keyword.control.c3
+//             ^--------------------------------------------------- meta.group.c3
+//             ^ punctuation.section.group.begin.c3
+//              ^-- keyword.other.c3
+//                  ^------------ variable.other.c3
+//                                ^ keyword.operator.assignment.c3
+//                                  ^----- support.type.c3
+//                                        ^ punctuation.accessor.c3
+//                                         ^---------------------- meta.function_call.c3
+//                                         ^----------- entity.name.function.c3
+//                                                     ^---------- meta.group.c3
+//                                                     ^ punctuation.section.group.begin.c3
+//                                                      ^----- variable.other.c3
+//                                                            ^ punctuation.separator.c3
+//                                                              ^ variable.other.c3
+//                                                               ^ punctuation.section.group.end.c3
+//                                                                ^ punctuation.section.group.end.c3
+            {
+//<0--------- meta.block.c3
+//<0--------- meta.block.c3
+//<0--------- meta.block.c3
+//          ^ meta.block.c3
+//          ^ punctuation.section.block.begin.c3
+                guess = current_guess;
+//<0---------------------------------- meta.block.c3
+//<0---------------------------------- meta.block.c3
+//<0---------------------------------- meta.block.c3
+//<0---------------------------------- meta.block.c3
+//              ^---- variable.other.c3
+//                    ^ keyword.operator.assignment.c3
+//                      ^------------ variable.other.c3
+//                                   ^ punctuation.terminator.c3
+                break;
+//<0------------------ meta.block.c3
+//<0------------------ meta.block.c3
+//<0------------------ meta.block.c3
+//<0------------------ meta.block.c3
+//              ^---- keyword.control.c3
+//                   ^ punctuation.terminator.c3
+            }
+//<0--------- meta.block.c3
+//<0--------- meta.block.c3
+//<0--------- meta.block.c3
+//<0--------- meta.block.c3
+//          ^ punctuation.section.block.end.c3
+            io::printn("input invalid.");
+//<0------------------------------------- meta.block.c3
+//<0------------------------------------- meta.block.c3
+//<0------------------------------------- meta.block.c3
+//          ^--- meta.path.c3
+//          ^- entity.name.scope-resolution.c3
+//            ^- punctuation.separator.scope-resolution.c3
+//              ^----------------------- meta.function_call.c3
+//              ^----- entity.name.function.c3
+//                    ^----------------- meta.group.c3
+//                    ^ punctuation.section.group.begin.c3
+//                     ^--------------- string.quoted.double.c3
+//                     ^ punctuation.definition.string.begin.c3
+//                                    ^ punctuation.definition.string.end.c3
+//                                     ^ punctuation.section.group.end.c3
+//                                      ^ punctuation.terminator.c3
+        }
+//<0----- meta.block.c3
+//<0----- meta.block.c3
+//<0----- meta.block.c3
+//      ^ punctuation.section.block.end.c3
+
+        io::printfn("Player: %s", guess.full);
+//<0------------------------------------------ meta.block.c3
+//<0------------------------------------------ meta.block.c3
+//      ^--- meta.path.c3
+//      ^- entity.name.scope-resolution.c3
+//        ^- punctuation.separator.scope-resolution.c3
+//          ^-------------------------------- meta.function_call.c3
+//          ^------ entity.name.function.c3
+//                 ^------------------------- meta.group.c3
+//                 ^ punctuation.section.group.begin.c3
+//                  ^----------- string.quoted.double.c3
+//                  ^ punctuation.definition.string.begin.c3
+//                             ^ punctuation.definition.string.end.c3
+//                              ^ punctuation.separator.c3
+//                                ^---- variable.other.c3
+//                                     ^ punctuation.accessor.c3
+//                                      ^--- variable.other.c3
+//                                          ^ punctuation.section.group.end.c3
+//                                           ^ punctuation.terminator.c3
+
+        Action comp = Action.from_ordinal(rand(3));
+//<0----------------------------------------------- meta.block.c3
+//<0----------------------------------------------- meta.block.c3
+//      ^----- support.type.c3
+//             ^--- variable.other.c3
+//                  ^ keyword.operator.assignment.c3
+//                    ^----- support.type.c3
+//                          ^ punctuation.accessor.c3
+//                           ^-------------------- meta.function_call.c3
+//                           ^----------- entity.name.function.c3
+//                                       ^-------- meta.group.c3
+//                                       ^ punctuation.section.group.begin.c3
+//                                        ^------ meta.function_call.c3
+//                                        ^--- entity.name.function.c3
+//                                            ^-- meta.group.c3
+//                                            ^ punctuation.section.group.begin.c3
+//                                             ^ constant.numeric.integer.c3
+//                                              ^ punctuation.section.group.end.c3
+//                                               ^ punctuation.section.group.end.c3
+//                                                ^ punctuation.terminator.c3
+        io::printfn("Computer: %s", comp.full);
+//<0------------------------------------------- meta.block.c3
+//<0------------------------------------------- meta.block.c3
+//      ^--- meta.path.c3
+//      ^- entity.name.scope-resolution.c3
+//        ^- punctuation.separator.scope-resolution.c3
+//          ^--------------------------------- meta.function_call.c3
+//          ^------ entity.name.function.c3
+//                 ^-------------------------- meta.group.c3
+//                 ^ punctuation.section.group.begin.c3
+//                  ^------------- string.quoted.double.c3
+//                  ^ punctuation.definition.string.begin.c3
+//                               ^ punctuation.definition.string.end.c3
+//                                ^ punctuation.separator.c3
+//                                  ^--- variable.other.c3
+//                                      ^ punctuation.accessor.c3
+//                                       ^--- variable.other.c3
+//                                           ^ punctuation.section.group.end.c3
+//                                            ^ punctuation.terminator.c3
+
+        switch
+//<0---------- meta.block.c3
+//<0---------- meta.block.c3
+//      ^----- keyword.control.c3
+        {
+//<0----- meta.block.c3
+//<0----- meta.block.c3
+//      ^ meta.block.c3
+//      ^ punctuation.section.block.begin.c3
+            case comp == ROCK && guess == SCISSORS:
+//<0----------------------------------------------- meta.block.c3
+//<0----------------------------------------------- meta.block.c3
+//<0----------------------------------------------- meta.block.c3
+//          ^--- keyword.control.c3
+//               ^--- variable.other.c3
+//                    ^- keyword.operator.comparison.c3
+//                       ^--- variable.other.constant.c3
+//                            ^- keyword.operator.arithmetic.c3
+//                               ^---- variable.other.c3
+//                                     ^- keyword.operator.comparison.c3
+//                                        ^------- variable.other.constant.c3
+//                                                ^ punctuation.separator.c3
+            case comp == SCISSORS && guess == PAPER:
+//<0------------------------------------------------ meta.block.c3
+//<0------------------------------------------------ meta.block.c3
+//<0------------------------------------------------ meta.block.c3
+//          ^--- keyword.control.c3
+//               ^--- variable.other.c3
+//                    ^- keyword.operator.comparison.c3
+//                       ^------- variable.other.constant.c3
+//                                ^- keyword.operator.arithmetic.c3
+//                                   ^---- variable.other.c3
+//                                         ^- keyword.operator.comparison.c3
+//                                            ^---- variable.other.constant.c3
+//                                                 ^ punctuation.separator.c3
+            case comp == PAPER && guess == ROCK:
+//<0-------------------------------------------- meta.block.c3
+//<0-------------------------------------------- meta.block.c3
+//<0-------------------------------------------- meta.block.c3
+//          ^--- keyword.control.c3
+//               ^--- variable.other.c3
+//                    ^- keyword.operator.comparison.c3
+//                       ^---- variable.other.constant.c3
+//                             ^- keyword.operator.arithmetic.c3
+//                                ^---- variable.other.c3
+//                                      ^- keyword.operator.comparison.c3
+//                                         ^--- variable.other.constant.c3
+//                                             ^ punctuation.separator.c3
+                 io::printn("Computer Score!");
+//<0------------------------------------------- meta.block.c3
+//<0------------------------------------------- meta.block.c3
+//<0------------------------------------------- meta.block.c3
+//               ^--- meta.path.c3
+//               ^- entity.name.scope-resolution.c3
+//                 ^- punctuation.separator.scope-resolution.c3
+//                   ^------------------------ meta.function_call.c3
+//                   ^----- entity.name.function.c3
+//                         ^------------------ meta.group.c3
+//                         ^ punctuation.section.group.begin.c3
+//                          ^---------------- string.quoted.double.c3
+//                          ^ punctuation.definition.string.begin.c3
+//                                          ^ punctuation.definition.string.end.c3
+//                                           ^ punctuation.section.group.end.c3
+//                                            ^ punctuation.terminator.c3
+                 c_score++;
+//<0----------------------- meta.block.c3
+//<0----------------------- meta.block.c3
+//<0----------------------- meta.block.c3
+//               ^------ variable.other.c3
+//                      ^- keyword.operator.arithmetic.c3
+//                        ^ punctuation.terminator.c3
+                 rounds--;
+//<0---------------------- meta.block.c3
+//<0---------------------- meta.block.c3
+//<0---------------------- meta.block.c3
+//               ^----- variable.other.c3
+//                     ^- keyword.operator.arithmetic.c3
+//                       ^ punctuation.terminator.c3
+            case guess == ROCK && comp == SCISSORS:
+//<0----------------------------------------------- meta.block.c3
+//<0----------------------------------------------- meta.block.c3
+//<0----------------------------------------------- meta.block.c3
+//          ^--- keyword.control.c3
+//               ^---- variable.other.c3
+//                     ^- keyword.operator.comparison.c3
+//                        ^--- variable.other.constant.c3
+//                             ^- keyword.operator.arithmetic.c3
+//                                ^--- variable.other.c3
+//                                     ^- keyword.operator.comparison.c3
+//                                        ^------- variable.other.constant.c3
+//                                                ^ punctuation.separator.c3
+            case guess == SCISSORS && comp == PAPER:
+//<0------------------------------------------------ meta.block.c3
+//<0------------------------------------------------ meta.block.c3
+//<0------------------------------------------------ meta.block.c3
+//          ^--- keyword.control.c3
+//               ^---- variable.other.c3
+//                     ^- keyword.operator.comparison.c3
+//                        ^------- variable.other.constant.c3
+//                                 ^- keyword.operator.arithmetic.c3
+//                                    ^--- variable.other.c3
+//                                         ^- keyword.operator.comparison.c3
+//                                            ^---- variable.other.constant.c3
+//                                                 ^ punctuation.separator.c3
+            case guess == PAPER && comp == ROCK:
+//<0-------------------------------------------- meta.block.c3
+//<0-------------------------------------------- meta.block.c3
+//<0-------------------------------------------- meta.block.c3
+//          ^--- keyword.control.c3
+//               ^---- variable.other.c3
+//                     ^- keyword.operator.comparison.c3
+//                        ^---- variable.other.constant.c3
+//                              ^- keyword.operator.arithmetic.c3
+//                                 ^--- variable.other.c3
+//                                      ^- keyword.operator.comparison.c3
+//                                         ^--- variable.other.constant.c3
+//                                             ^ punctuation.separator.c3
+                io::printn("Player Score!");
+//<0---------------------------------------- meta.block.c3
+//<0---------------------------------------- meta.block.c3
+//<0---------------------------------------- meta.block.c3
+//              ^--- meta.path.c3
+//              ^- entity.name.scope-resolution.c3
+//                ^- punctuation.separator.scope-resolution.c3
+//                  ^---------------------- meta.function_call.c3
+//                  ^----- entity.name.function.c3
+//                        ^---------------- meta.group.c3
+//                        ^ punctuation.section.group.begin.c3
+//                         ^-------------- string.quoted.double.c3
+//                         ^ punctuation.definition.string.begin.c3
+//                                       ^ punctuation.definition.string.end.c3
+//                                        ^ punctuation.section.group.end.c3
+//                                         ^ punctuation.terminator.c3
+                p_score++;
+//<0---------------------- meta.block.c3
+//<0---------------------- meta.block.c3
+//<0---------------------- meta.block.c3
+//              ^------ variable.other.c3
+//                     ^- keyword.operator.arithmetic.c3
+//                       ^ punctuation.terminator.c3
+                rounds--;
+//<0--------------------- meta.block.c3
+//<0--------------------- meta.block.c3
+//<0--------------------- meta.block.c3
+//              ^----- variable.other.c3
+//                    ^- keyword.operator.arithmetic.c3
+//                      ^ punctuation.terminator.c3
+            default:
+//<0---------------- meta.block.c3
+//<0---------------- meta.block.c3
+//<0---------------- meta.block.c3
+//          ^------ keyword.control.c3
+//                 ^ punctuation.separator.c3
+                io::printn("Tie!");
+//<0------------------------------- meta.block.c3
+//<0------------------------------- meta.block.c3
+//<0------------------------------- meta.block.c3
+//              ^--- meta.path.c3
+//              ^- entity.name.scope-resolution.c3
+//                ^- punctuation.separator.scope-resolution.c3
+//                  ^------------- meta.function_call.c3
+//                  ^----- entity.name.function.c3
+//                        ^------- meta.group.c3
+//                        ^ punctuation.section.group.begin.c3
+//                         ^----- string.quoted.double.c3
+//                         ^ punctuation.definition.string.begin.c3
+//                              ^ punctuation.definition.string.end.c3
+//                               ^ punctuation.section.group.end.c3
+//                                ^ punctuation.terminator.c3
+        }
+//<0----- meta.block.c3
+//<0----- meta.block.c3
+//<0----- meta.block.c3
+//      ^ punctuation.section.block.end.c3
+        io::printfn("Score: Player: %d, Computer: %d", p_score, c_score);
+//<0--------------------------------------------------------------------- meta.block.c3
+//<0--------------------------------------------------------------------- meta.block.c3
+//      ^--- meta.path.c3
+//      ^- entity.name.scope-resolution.c3
+//        ^- punctuation.separator.scope-resolution.c3
+//          ^----------------------------------------------------------- meta.function_call.c3
+//          ^------ entity.name.function.c3
+//                 ^---------------------------------------------------- meta.group.c3
+//                 ^ punctuation.section.group.begin.c3
+//                  ^-------------------------------- string.quoted.double.c3
+//                  ^ punctuation.definition.string.begin.c3
+//                                                  ^ punctuation.definition.string.end.c3
+//                                                   ^ punctuation.separator.c3
+//                                                     ^------ variable.other.c3
+//                                                            ^ punctuation.separator.c3
+//                                                              ^------ variable.other.c3
+//                                                                     ^ punctuation.section.group.end.c3
+//                                                                      ^ punctuation.terminator.c3
+    }
+//<0- meta.block.c3
+//<0- meta.block.c3
+//  ^ punctuation.section.block.end.c3
+
+    switch
+//<0------ meta.block.c3
+//  ^----- keyword.control.c3
+    {
+//<0- meta.block.c3
+//  ^ meta.block.c3
+//  ^ punctuation.section.block.begin.c3
+        case p_score < c_score: io::printn("COMPUTER WINS GAME!");
+//<0-------------------------------------------------------------- meta.block.c3
+//<0-------------------------------------------------------------- meta.block.c3
+//      ^--- keyword.control.c3
+//           ^------ variable.other.c3
+//                   ^ keyword.operator.comparison.c3
+//                     ^------ variable.other.c3
+//                            ^ punctuation.separator.c3
+//                              ^--- meta.path.c3
+//                              ^- entity.name.scope-resolution.c3
+//                                ^- punctuation.separator.scope-resolution.c3
+//                                  ^---------------------------- meta.function_call.c3
+//                                  ^----- entity.name.function.c3
+//                                        ^---------------------- meta.group.c3
+//                                        ^ punctuation.section.group.begin.c3
+//                                         ^-------------------- string.quoted.double.c3
+//                                         ^ punctuation.definition.string.begin.c3
+//                                                             ^ punctuation.definition.string.end.c3
+//                                                              ^ punctuation.section.group.end.c3
+//                                                               ^ punctuation.terminator.c3
+        case p_score > c_score: io::printn("PLAYER WINS GAME!");
+//<0------------------------------------------------------------ meta.block.c3
+//<0------------------------------------------------------------ meta.block.c3
+//      ^--- keyword.control.c3
+//           ^------ variable.other.c3
+//                   ^ keyword.operator.comparison.c3
+//                     ^------ variable.other.c3
+//                            ^ punctuation.separator.c3
+//                              ^--- meta.path.c3
+//                              ^- entity.name.scope-resolution.c3
+//                                ^- punctuation.separator.scope-resolution.c3
+//                                  ^-------------------------- meta.function_call.c3
+//                                  ^----- entity.name.function.c3
+//                                        ^-------------------- meta.group.c3
+//                                        ^ punctuation.section.group.begin.c3
+//                                         ^------------------ string.quoted.double.c3
+//                                         ^ punctuation.definition.string.begin.c3
+//                                                           ^ punctuation.definition.string.end.c3
+//                                                            ^ punctuation.section.group.end.c3
+//                                                             ^ punctuation.terminator.c3
+        default:                io::printn("GAME TIED!");
+//<0----------------------------------------------------- meta.block.c3
+//<0----------------------------------------------------- meta.block.c3
+//      ^------ keyword.control.c3
+//             ^ punctuation.separator.c3
+//                              ^--- meta.path.c3
+//                              ^- entity.name.scope-resolution.c3
+//                                ^- punctuation.separator.scope-resolution.c3
+//                                  ^------------------- meta.function_call.c3
+//                                  ^----- entity.name.function.c3
+//                                        ^------------- meta.group.c3
+//                                        ^ punctuation.section.group.begin.c3
+//                                         ^----------- string.quoted.double.c3
+//                                         ^ punctuation.definition.string.begin.c3
+//                                                    ^ punctuation.definition.string.end.c3
+//                                                     ^ punctuation.section.group.end.c3
+//                                                      ^ punctuation.terminator.c3
+    }
+//<0- meta.block.c3
+//<0- meta.block.c3
+//  ^ punctuation.section.block.end.c3
+    io::printn("Thank you for playing.");
+//<0------------------------------------- meta.block.c3
+//  ^--- meta.path.c3
+//  ^- entity.name.scope-resolution.c3
+//    ^- punctuation.separator.scope-resolution.c3
+//      ^------------------------------- meta.function_call.c3
+//      ^----- entity.name.function.c3
+//            ^------------------------- meta.group.c3
+//            ^ punctuation.section.group.begin.c3
+//             ^----------------------- string.quoted.double.c3
+//             ^ punctuation.definition.string.begin.c3
+//                                    ^ punctuation.definition.string.end.c3
+//                                     ^ punctuation.section.group.end.c3
+//                                      ^ punctuation.terminator.c3
+    return 0;
+//<0--------- meta.block.c3
+//  ^----- keyword.control.c3
+//         ^ constant.numeric.integer.c3
+//          ^ punctuation.terminator.c3
+}
+//<0 meta.block.c3
+//<0 punctuation.section.block.end.c3
+
+// From https://c3-lang.org/language-overview/examples/#rock-paper-scissors
+//<0----------------------------------------------------------------------- comment.line.double-slash.c3

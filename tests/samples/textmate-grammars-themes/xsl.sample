@@ -1,0 +1,489 @@
+<!-- grammar: text.xml.xsl -->
+
+<?xml version="1.0"?>
+<!--<0--------------- meta.tag.preprocessor.xml -->
+<!--<0 punctuation.definition.tag.xml -->
+<!--<2 entity.name.tag.xml -->
+<!-- ^------- entity.other.attribute-name.xml -->
+<!--          ^---- string.quoted.double.xml -->
+<!--          ^ punctuation.definition.string.begin.xml -->
+<!--            ^- meta.attribute.directive.vue -->
+<!--            ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--             ^ entity.other.attribute-name.html.vue -->
+<!--              ^ punctuation.definition.string.end.xml -->
+<!--               ^- punctuation.definition.tag.xml -->
+<xsl:stylesheet version="1.0"
+<!--<0----------------------- meta.tag.xml -->
+<!--<0 punctuation.definition.tag.xml -->
+<!--<1 entity.name.tag.namespace.xml -->
+<!--^ entity.name.tag.xml -->
+<!--^ punctuation.separator.namespace.xml -->
+<!-- ^--------- entity.name.tag.localname.xml -->
+<!--            ^------ entity.other.attribute-name.localname.xml -->
+<!--                    ^---- string.quoted.double.xml -->
+<!--                    ^ punctuation.definition.string.begin.xml -->
+<!--                      ^- meta.attribute.directive.vue -->
+<!--                      ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                       ^ entity.other.attribute-name.html.vue -->
+<!--                        ^ punctuation.definition.string.end.xml -->
+                   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<!--<0------------------------------------------------------------- meta.tag.xml -->
+<!--               ^---- entity.other.attribute-name.namespace.xml -->
+<!--                    ^ entity.other.attribute-name.xml -->
+<!--                    ^ punctuation.separator.namespace.xml -->
+<!--                     ^-- entity.other.attribute-name.localname.xml -->
+<!--                         ^------------------------------------- string.quoted.double.xml -->
+<!--                         ^ punctuation.definition.string.begin.xml -->
+<!--                              ^ meta.attribute.directive.vue -->
+<!--                              ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                    ^------ meta.attribute.directive.vue -->
+<!--                                    ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                     ^- entity.other.attribute-name.html.vue -->
+<!--                                       ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                        ^-- entity.other.attribute-name.html.vue -->
+<!--                                                              ^ punctuation.definition.string.end.xml -->
+                   xmlns:myNS="http://devedge.netscape.com/2002/de">
+<!--<0-------------------------------------------------------------- meta.tag.xml -->
+<!--               ^---- entity.other.attribute-name.namespace.xml -->
+<!--                    ^ entity.other.attribute-name.xml -->
+<!--                    ^ punctuation.separator.namespace.xml -->
+<!--                     ^--- entity.other.attribute-name.localname.xml -->
+<!--                          ^------------------------------------ string.quoted.double.xml -->
+<!--                          ^ punctuation.definition.string.begin.xml -->
+<!--                               ^ meta.attribute.directive.vue -->
+<!--                               ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                         ^------------ meta.attribute.directive.vue -->
+<!--                                         ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                          ^------- entity.other.attribute-name.html.vue -->
+<!--                                                  ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                                   ^-- entity.other.attribute-name.html.vue -->
+<!--                                                              ^ punctuation.definition.string.end.xml -->
+<!--                                                               ^ punctuation.definition.tag.xml -->
+
+  <xsl:output method="html" />
+<!--<2------------------------ meta.tag.xml -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--<3 entity.name.tag.namespace.xml -->
+<!--  ^ entity.name.tag.xml -->
+<!--  ^ punctuation.separator.namespace.xml -->
+<!--   ^----- entity.name.tag.localname.xml -->
+<!--          ^----- entity.other.attribute-name.localname.xml -->
+<!--                 ^----- string.quoted.double.xml -->
+<!--                 ^ punctuation.definition.string.begin.xml -->
+<!--                      ^ punctuation.definition.string.end.xml -->
+<!--                        ^- punctuation.definition.tag.xml -->
+
+  <xsl:template match="/">
+<!--<2-------------------- meta.tag.xml.template -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--<3 entity.name.tag.namespace.xml -->
+<!--  ^ entity.name.tag.xml -->
+<!--  ^ punctuation.separator.namespace.xml -->
+<!--   ^------- entity.name.tag.localname.xml -->
+<!--            ^---- entity.other.attribute-name.localname.xml -->
+<!--                  ^-- string.quoted.double.xml -->
+<!--                  ^ punctuation.definition.string.begin.xml -->
+<!--                    ^ punctuation.definition.string.end.xml -->
+<!--                     ^ punctuation.definition.tag.xml -->
+    <html>
+<!--^----- meta.tag.xml -->
+<!--^ punctuation.definition.tag.xml -->
+<!-- ^--- entity.name.tag.localname.xml -->
+<!--     ^ punctuation.definition.tag.xml -->
+
+      <head>
+<!--  ^----- meta.tag.xml -->
+<!--  ^ punctuation.definition.tag.xml -->
+<!--   ^--- entity.name.tag.localname.xml -->
+<!--       ^ punctuation.definition.tag.xml -->
+
+        <title>
+<!--    ^------ meta.tag.xml -->
+<!--    ^ punctuation.definition.tag.xml -->
+<!--     ^---- entity.name.tag.localname.xml -->
+<!--          ^ punctuation.definition.tag.xml -->
+          <xsl:value-of select="/myNS:Article/myNS:Title"/>
+<!--      ^------------------------------------------------ meta.tag.xml -->
+<!--      ^ punctuation.definition.tag.xml -->
+<!--       ^-- entity.name.tag.namespace.xml -->
+<!--          ^ entity.name.tag.xml -->
+<!--          ^ punctuation.separator.namespace.xml -->
+<!--           ^------- entity.name.tag.localname.xml -->
+<!--                    ^----- entity.other.attribute-name.localname.xml -->
+<!--                           ^------------------------- string.quoted.double.xml -->
+<!--                           ^ punctuation.definition.string.begin.xml -->
+<!--                                 ^------- meta.attribute.directive.vue -->
+<!--                                 ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                  ^------ entity.other.attribute-name.html.vue -->
+<!--                                              ^----- meta.attribute.directive.vue -->
+<!--                                              ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                               ^---- entity.other.attribute-name.html.vue -->
+<!--                                                    ^ punctuation.definition.string.end.xml -->
+<!--                                                     ^- punctuation.definition.tag.xml -->
+        </title>
+<!--    ^------- meta.tag.xml -->
+<!--    ^- punctuation.definition.tag.xml -->
+<!--      ^---- entity.name.tag.localname.xml -->
+<!--           ^ punctuation.definition.tag.xml -->
+
+        <style>
+<!--    ^------ meta.tag.xml -->
+<!--    ^ punctuation.definition.tag.xml -->
+<!--     ^---- entity.name.tag.localname.xml -->
+<!--          ^ punctuation.definition.tag.xml -->
+          .myBox {margin:10px 155px 0 50px; border: 1px dotted #639ACE; padding:0 5px 0 5px;}
+        </style>
+<!--    ^------- meta.tag.xml -->
+<!--    ^- punctuation.definition.tag.xml -->
+<!--      ^---- entity.name.tag.localname.xml -->
+<!--           ^ punctuation.definition.tag.xml -->
+
+      </head>
+<!--  ^------ meta.tag.xml -->
+<!--  ^- punctuation.definition.tag.xml -->
+<!--    ^--- entity.name.tag.localname.xml -->
+<!--        ^ punctuation.definition.tag.xml -->
+
+      <body>
+<!--  ^----- meta.tag.xml -->
+<!--  ^ punctuation.definition.tag.xml -->
+<!--   ^--- entity.name.tag.localname.xml -->
+<!--       ^ punctuation.definition.tag.xml -->
+        <p class="myBox">
+<!--    ^---------------- meta.tag.xml -->
+<!--    ^ punctuation.definition.tag.xml -->
+<!--     ^ entity.name.tag.localname.xml -->
+<!--       ^---- entity.other.attribute-name.localname.xml -->
+<!--             ^------ string.quoted.double.xml -->
+<!--             ^ punctuation.definition.string.begin.xml -->
+<!--                   ^ punctuation.definition.string.end.xml -->
+<!--                    ^ punctuation.definition.tag.xml -->
+          <span class="title">
+<!--      ^------------------- meta.tag.xml -->
+<!--      ^ punctuation.definition.tag.xml -->
+<!--       ^--- entity.name.tag.localname.xml -->
+<!--            ^---- entity.other.attribute-name.localname.xml -->
+<!--                  ^------ string.quoted.double.xml -->
+<!--                  ^ punctuation.definition.string.begin.xml -->
+<!--                        ^ punctuation.definition.string.end.xml -->
+<!--                         ^ punctuation.definition.tag.xml -->
+            <xsl:value-of select="/myNS:Article/myNS:Title"/>
+<!--        ^------------------------------------------------ meta.tag.xml -->
+<!--        ^ punctuation.definition.tag.xml -->
+<!--         ^-- entity.name.tag.namespace.xml -->
+<!--            ^ entity.name.tag.xml -->
+<!--            ^ punctuation.separator.namespace.xml -->
+<!--             ^------- entity.name.tag.localname.xml -->
+<!--                      ^----- entity.other.attribute-name.localname.xml -->
+<!--                             ^------------------------- string.quoted.double.xml -->
+<!--                             ^ punctuation.definition.string.begin.xml -->
+<!--                                   ^------- meta.attribute.directive.vue -->
+<!--                                   ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                    ^------ entity.other.attribute-name.html.vue -->
+<!--                                                ^----- meta.attribute.directive.vue -->
+<!--                                                ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                                 ^---- entity.other.attribute-name.html.vue -->
+<!--                                                      ^ punctuation.definition.string.end.xml -->
+<!--                                                       ^- punctuation.definition.tag.xml -->
+          </span> <br />
+<!--      ^------ meta.tag.xml -->
+<!--      ^- punctuation.definition.tag.xml -->
+<!--        ^--- entity.name.tag.localname.xml -->
+<!--            ^ punctuation.definition.tag.xml -->
+<!--              ^----- meta.tag.xml -->
+<!--              ^ punctuation.definition.tag.xml -->
+<!--               ^- entity.name.tag.localname.xml -->
+<!--                  ^- punctuation.definition.tag.xml -->
+
+          Authors:   <br />
+<!--                 ^----- meta.tag.xml -->
+<!--                 ^ punctuation.definition.tag.xml -->
+<!--                  ^- entity.name.tag.localname.xml -->
+<!--                     ^- punctuation.definition.tag.xml -->
+            <xsl:apply-templates select="/myNS:Article/myNS:Authors/myNS:Author"/>
+<!--        ^--------------------------------------------------------------------- meta.tag.xml -->
+<!--        ^ punctuation.definition.tag.xml -->
+<!--         ^-- entity.name.tag.namespace.xml -->
+<!--            ^ entity.name.tag.xml -->
+<!--            ^ punctuation.separator.namespace.xml -->
+<!--             ^-------------- entity.name.tag.localname.xml -->
+<!--                             ^----- entity.other.attribute-name.localname.xml -->
+<!--                                    ^--------------------------------------- string.quoted.double.xml -->
+<!--                                    ^ punctuation.definition.string.begin.xml -->
+<!--                                          ^------- meta.attribute.directive.vue -->
+<!--                                          ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                           ^------ entity.other.attribute-name.html.vue -->
+<!--                                                       ^------- meta.attribute.directive.vue -->
+<!--                                                       ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                                        ^------ entity.other.attribute-name.html.vue -->
+<!--                                                                    ^------ meta.attribute.directive.vue -->
+<!--                                                                    ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                                                     ^----- entity.other.attribute-name.html.vue -->
+<!--                                                                           ^ punctuation.definition.string.end.xml -->
+<!--                                                                            ^- punctuation.definition.tag.xml -->
+          </p>
+<!--      ^--- meta.tag.xml -->
+<!--      ^- punctuation.definition.tag.xml -->
+<!--        ^ entity.name.tag.localname.xml -->
+<!--         ^ punctuation.definition.tag.xml -->
+
+        <p class="myBox">
+<!--    ^---------------- meta.tag.xml -->
+<!--    ^ punctuation.definition.tag.xml -->
+<!--     ^ entity.name.tag.localname.xml -->
+<!--       ^---- entity.other.attribute-name.localname.xml -->
+<!--             ^------ string.quoted.double.xml -->
+<!--             ^ punctuation.definition.string.begin.xml -->
+<!--                   ^ punctuation.definition.string.end.xml -->
+<!--                    ^ punctuation.definition.tag.xml -->
+          <xsl:apply-templates select="//myNS:Body"/>
+<!--      ^------------------------------------------ meta.tag.xml -->
+<!--      ^ punctuation.definition.tag.xml -->
+<!--       ^-- entity.name.tag.namespace.xml -->
+<!--          ^ entity.name.tag.xml -->
+<!--          ^ punctuation.separator.namespace.xml -->
+<!--           ^-------------- entity.name.tag.localname.xml -->
+<!--                           ^----- entity.other.attribute-name.localname.xml -->
+<!--                                  ^------------ string.quoted.double.xml -->
+<!--                                  ^ punctuation.definition.string.begin.xml -->
+<!--                                         ^---- meta.attribute.directive.vue -->
+<!--                                         ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                                          ^--- entity.other.attribute-name.html.vue -->
+<!--                                              ^ punctuation.definition.string.end.xml -->
+<!--                                               ^- punctuation.definition.tag.xml -->
+        </p>
+<!--    ^--- meta.tag.xml -->
+<!--    ^- punctuation.definition.tag.xml -->
+<!--      ^ entity.name.tag.localname.xml -->
+<!--       ^ punctuation.definition.tag.xml -->
+
+      </body>
+<!--  ^------ meta.tag.xml -->
+<!--  ^- punctuation.definition.tag.xml -->
+<!--    ^--- entity.name.tag.localname.xml -->
+<!--        ^ punctuation.definition.tag.xml -->
+
+    </html>
+<!--^------ meta.tag.xml -->
+<!--^- punctuation.definition.tag.xml -->
+<!--  ^--- entity.name.tag.localname.xml -->
+<!--      ^ punctuation.definition.tag.xml -->
+  </xsl:template>
+<!--<2----------- meta.tag.xml -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--^-- entity.name.tag.namespace.xml -->
+<!--   ^ entity.name.tag.xml -->
+<!--   ^ punctuation.separator.namespace.xml -->
+<!--    ^------- entity.name.tag.localname.xml -->
+<!--            ^ punctuation.definition.tag.xml -->
+
+  <xsl:template match="myNS:Author">
+<!--<2------------------------------ meta.tag.xml.template -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--<3 entity.name.tag.namespace.xml -->
+<!--  ^ entity.name.tag.xml -->
+<!--  ^ punctuation.separator.namespace.xml -->
+<!--   ^------- entity.name.tag.localname.xml -->
+<!--            ^---- entity.other.attribute-name.localname.xml -->
+<!--                  ^------------ string.quoted.double.xml -->
+<!--                  ^ punctuation.definition.string.begin.xml -->
+<!--                       ^------ meta.attribute.directive.vue -->
+<!--                       ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                        ^----- entity.other.attribute-name.html.vue -->
+<!--                              ^ punctuation.definition.string.end.xml -->
+<!--                               ^ punctuation.definition.tag.xml -->
+     --   <xsl:value-of select="." />
+<!--      ^-------------------------- meta.tag.xml -->
+<!--      ^ punctuation.definition.tag.xml -->
+<!--       ^-- entity.name.tag.namespace.xml -->
+<!--          ^ entity.name.tag.xml -->
+<!--          ^ punctuation.separator.namespace.xml -->
+<!--           ^------- entity.name.tag.localname.xml -->
+<!--                    ^----- entity.other.attribute-name.localname.xml -->
+<!--                           ^-- string.quoted.double.xml -->
+<!--                           ^ punctuation.definition.string.begin.xml -->
+<!--                            ^ meta.attribute.directive.vue -->
+<!--                            ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                             ^ punctuation.definition.string.end.xml -->
+<!--                               ^- punctuation.definition.tag.xml -->
+
+    <xsl:if test="@company">
+<!--^----------------------- meta.tag.xml -->
+<!--^ punctuation.definition.tag.xml -->
+<!-- ^-- entity.name.tag.namespace.xml -->
+<!--    ^ entity.name.tag.xml -->
+<!--    ^ punctuation.separator.namespace.xml -->
+<!--     ^- entity.name.tag.localname.xml -->
+<!--        ^--- entity.other.attribute-name.localname.xml -->
+<!--             ^--------- string.quoted.double.xml -->
+<!--             ^ punctuation.definition.string.begin.xml -->
+<!--              ^------- meta.attribute.directive.vue -->
+<!--              ^ punctuation.attribute-shorthand.event.html.vue -->
+<!--               ^------ entity.other.attribute-name.html.vue -->
+<!--                      ^ punctuation.definition.string.end.xml -->
+<!--                       ^ punctuation.definition.tag.xml -->
+     ::   <b>  <xsl:value-of select="@company" />  </b>
+<!--      ^-- meta.tag.xml -->
+<!--      ^ punctuation.definition.tag.xml -->
+<!--       ^ entity.name.tag.localname.xml -->
+<!--        ^ punctuation.definition.tag.xml -->
+<!--           ^--------------------------------- meta.tag.xml -->
+<!--           ^ punctuation.definition.tag.xml -->
+<!--            ^-- entity.name.tag.namespace.xml -->
+<!--               ^ entity.name.tag.xml -->
+<!--               ^ punctuation.separator.namespace.xml -->
+<!--                ^------- entity.name.tag.localname.xml -->
+<!--                         ^----- entity.other.attribute-name.localname.xml -->
+<!--                                ^--------- string.quoted.double.xml -->
+<!--                                ^ punctuation.definition.string.begin.xml -->
+<!--                                 ^------- meta.attribute.directive.vue -->
+<!--                                 ^ punctuation.attribute-shorthand.event.html.vue -->
+<!--                                  ^------ entity.other.attribute-name.html.vue -->
+<!--                                         ^ punctuation.definition.string.end.xml -->
+<!--                                           ^- punctuation.definition.tag.xml -->
+<!--                                               ^--- meta.tag.xml -->
+<!--                                               ^- punctuation.definition.tag.xml -->
+<!--                                                 ^ entity.name.tag.localname.xml -->
+<!--                                                  ^ punctuation.definition.tag.xml -->
+    </xsl:if>
+<!--^-------- meta.tag.xml -->
+<!--^- punctuation.definition.tag.xml -->
+<!--  ^-- entity.name.tag.namespace.xml -->
+<!--     ^ entity.name.tag.xml -->
+<!--     ^ punctuation.separator.namespace.xml -->
+<!--      ^- entity.name.tag.localname.xml -->
+<!--        ^ punctuation.definition.tag.xml -->
+
+    <br />
+<!--^----- meta.tag.xml -->
+<!--^ punctuation.definition.tag.xml -->
+<!-- ^- entity.name.tag.localname.xml -->
+<!--    ^- punctuation.definition.tag.xml -->
+  </xsl:template>
+<!--<2----------- meta.tag.xml -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--^-- entity.name.tag.namespace.xml -->
+<!--   ^ entity.name.tag.xml -->
+<!--   ^ punctuation.separator.namespace.xml -->
+<!--    ^------- entity.name.tag.localname.xml -->
+<!--            ^ punctuation.definition.tag.xml -->
+
+  <xsl:template match="myNS:Body">
+<!--<2---------------------------- meta.tag.xml.template -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--<3 entity.name.tag.namespace.xml -->
+<!--  ^ entity.name.tag.xml -->
+<!--  ^ punctuation.separator.namespace.xml -->
+<!--   ^------- entity.name.tag.localname.xml -->
+<!--            ^---- entity.other.attribute-name.localname.xml -->
+<!--                  ^---------- string.quoted.double.xml -->
+<!--                  ^ punctuation.definition.string.begin.xml -->
+<!--                       ^---- meta.attribute.directive.vue -->
+<!--                       ^ punctuation.attribute-shorthand.bind.html.vue -->
+<!--                        ^--- entity.other.attribute-name.html.vue -->
+<!--                            ^ punctuation.definition.string.end.xml -->
+<!--                             ^ punctuation.definition.tag.xml -->
+    <xsl:copy>
+<!--^--------- meta.tag.xml -->
+<!--^ punctuation.definition.tag.xml -->
+<!-- ^-- entity.name.tag.namespace.xml -->
+<!--    ^ entity.name.tag.xml -->
+<!--    ^ punctuation.separator.namespace.xml -->
+<!--     ^--- entity.name.tag.localname.xml -->
+<!--         ^ punctuation.definition.tag.xml -->
+      <xsl:apply-templates select="@*|node()"/>
+<!--  ^---------------------------------------- meta.tag.xml -->
+<!--  ^ punctuation.definition.tag.xml -->
+<!--   ^-- entity.name.tag.namespace.xml -->
+<!--      ^ entity.name.tag.xml -->
+<!--      ^ punctuation.separator.namespace.xml -->
+<!--       ^-------------- entity.name.tag.localname.xml -->
+<!--                       ^----- entity.other.attribute-name.localname.xml -->
+<!--                              ^---------- string.quoted.double.xml -->
+<!--                              ^ punctuation.definition.string.begin.xml -->
+<!--                               ^ meta.attribute.directive.vue -->
+<!--                               ^ punctuation.attribute-shorthand.event.html.vue -->
+<!--                                        ^ punctuation.definition.string.end.xml -->
+<!--                                         ^- punctuation.definition.tag.xml -->
+    </xsl:copy>
+<!--^---------- meta.tag.xml -->
+<!--^- punctuation.definition.tag.xml -->
+<!--  ^-- entity.name.tag.namespace.xml -->
+<!--     ^ entity.name.tag.xml -->
+<!--     ^ punctuation.separator.namespace.xml -->
+<!--      ^--- entity.name.tag.localname.xml -->
+<!--          ^ punctuation.definition.tag.xml -->
+  </xsl:template>
+<!--<2----------- meta.tag.xml -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--^-- entity.name.tag.namespace.xml -->
+<!--   ^ entity.name.tag.xml -->
+<!--   ^ punctuation.separator.namespace.xml -->
+<!--    ^------- entity.name.tag.localname.xml -->
+<!--            ^ punctuation.definition.tag.xml -->
+
+  <xsl:template match="@*|node()">
+<!--<2---------------------------- meta.tag.xml.template -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--<3 entity.name.tag.namespace.xml -->
+<!--  ^ entity.name.tag.xml -->
+<!--  ^ punctuation.separator.namespace.xml -->
+<!--   ^------- entity.name.tag.localname.xml -->
+<!--            ^---- entity.other.attribute-name.localname.xml -->
+<!--                  ^---------- string.quoted.double.xml -->
+<!--                  ^ punctuation.definition.string.begin.xml -->
+<!--                   ^ meta.attribute.directive.vue -->
+<!--                   ^ punctuation.attribute-shorthand.event.html.vue -->
+<!--                            ^ punctuation.definition.string.end.xml -->
+<!--                             ^ punctuation.definition.tag.xml -->
+      <xsl:copy>
+<!--  ^--------- meta.tag.xml -->
+<!--  ^ punctuation.definition.tag.xml -->
+<!--   ^-- entity.name.tag.namespace.xml -->
+<!--      ^ entity.name.tag.xml -->
+<!--      ^ punctuation.separator.namespace.xml -->
+<!--       ^--- entity.name.tag.localname.xml -->
+<!--           ^ punctuation.definition.tag.xml -->
+        <xsl:apply-templates select="@*|node()"/>
+<!--    ^---------------------------------------- meta.tag.xml -->
+<!--    ^ punctuation.definition.tag.xml -->
+<!--     ^-- entity.name.tag.namespace.xml -->
+<!--        ^ entity.name.tag.xml -->
+<!--        ^ punctuation.separator.namespace.xml -->
+<!--         ^-------------- entity.name.tag.localname.xml -->
+<!--                         ^----- entity.other.attribute-name.localname.xml -->
+<!--                                ^---------- string.quoted.double.xml -->
+<!--                                ^ punctuation.definition.string.begin.xml -->
+<!--                                 ^ meta.attribute.directive.vue -->
+<!--                                 ^ punctuation.attribute-shorthand.event.html.vue -->
+<!--                                          ^ punctuation.definition.string.end.xml -->
+<!--                                           ^- punctuation.definition.tag.xml -->
+      </xsl:copy>
+<!--  ^---------- meta.tag.xml -->
+<!--  ^- punctuation.definition.tag.xml -->
+<!--    ^-- entity.name.tag.namespace.xml -->
+<!--       ^ entity.name.tag.xml -->
+<!--       ^ punctuation.separator.namespace.xml -->
+<!--        ^--- entity.name.tag.localname.xml -->
+<!--            ^ punctuation.definition.tag.xml -->
+  </xsl:template>
+<!--<2----------- meta.tag.xml -->
+<!--<2 punctuation.definition.tag.xml -->
+<!--^-- entity.name.tag.namespace.xml -->
+<!--   ^ entity.name.tag.xml -->
+<!--   ^ punctuation.separator.namespace.xml -->
+<!--    ^------- entity.name.tag.localname.xml -->
+<!--            ^ punctuation.definition.tag.xml -->
+</xsl:stylesheet>
+<!--<0----------- meta.tag.xml -->
+<!--<0 punctuation.definition.tag.xml -->
+<!--<2 entity.name.tag.namespace.xml -->
+<!-- ^ entity.name.tag.xml -->
+<!-- ^ punctuation.separator.namespace.xml -->
+<!--  ^--------- entity.name.tag.localname.xml -->
+<!--            ^ punctuation.definition.tag.xml -->
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/XSLT/XSLT_JS_interface_in_Gecko/Basic_Example -->
+<!--<0--------------------------------------------------------------------------------------------- comment.block.xml -->
+<!--<0 punctuation.definition.comment.xml -->
+<!--                                                                                            ^-- punctuation.definition.comment.xml -->

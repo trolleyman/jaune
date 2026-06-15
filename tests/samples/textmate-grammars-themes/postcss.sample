@@ -1,0 +1,44 @@
+// grammar: source.css.postcss
+
+{
+  "plugins": [
+//^-------- string.quoted.double.css.postcss
+//         ^-- meta.property-list.css.postcss
+    "postcss-flexbugs-fixes",
+//  ^----------------------- string.quoted.double.css.postcss
+    [
+//  ^ entity.other.attribute-selector.postcss
+      "postcss-preset-env",
+//<0----------------------- entity.other.attribute-selector.postcss
+//    ^------------------- string.quoted.double.css.postcss
+      {
+//<0--- entity.other.attribute-selector.postcss
+        "autoprefixer": {
+//<0--------------------- entity.other.attribute-selector.postcss
+//      ^------------- string.quoted.double.css.postcss
+          "flexbox": "no-2009"
+//<0-------------------------- entity.other.attribute-selector.postcss
+//        ^-------- string.quoted.double.css.postcss
+//                   ^-------- string.quoted.double.css.postcss
+        },
+//<0------ entity.other.attribute-selector.postcss
+        "stage": 3,
+//<0--------------- entity.other.attribute-selector.postcss
+//      ^------ string.quoted.double.css.postcss
+        "features": {
+//<0----------------- entity.other.attribute-selector.postcss
+//      ^--------- string.quoted.double.css.postcss
+          "custom-properties": false
+//<0-------------------------------- entity.other.attribute-selector.postcss
+//        ^------------------ string.quoted.double.css.postcss
+        }
+//<0----- entity.other.attribute-selector.postcss
+      }
+//<0--- entity.other.attribute-selector.postcss
+    ]
+//<0- entity.other.attribute-selector.postcss
+  ]
+}
+
+// From https://nextjs.org/docs/pages/building-your-application/configuring/post-css
+//<0-------------------------------------------------------------------------------- comment.line.postcss

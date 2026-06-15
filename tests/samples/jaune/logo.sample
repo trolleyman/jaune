@@ -1,0 +1,62 @@
+; grammar: source.logo
+
+print word "apple "sauce
+;<0-- keyword.other.logo
+;     ^--- keyword.other.logo
+;          ^----- string.other.word.logo
+;                 ^----- string.other.word.logo
+; applesauce
+;<0--------- comment.line.semicolon.logo
+;<0 punctuation.definition.comment.logo
+
+print word "3 "4
+;<0-- keyword.other.logo
+;     ^--- keyword.other.logo
+;          ^- string.other.word.logo
+;             ^- string.other.word.logo
+; 34
+;<0- comment.line.semicolon.logo
+;<0 punctuation.definition.comment.logo
+
+print 12 + word "3 "4
+;<0-- keyword.other.logo
+;          ^--- keyword.other.logo
+;               ^- string.other.word.logo
+;                  ^- string.other.word.logo
+; 46
+;<0- comment.line.semicolon.logo
+;<0 punctuation.definition.comment.logo
+
+to factorial :number
+;<0--------- entity.name.function.logo
+;            ^------ variable.parameter.logo
+;            ^ punctuation.definition.variable.logo
+if :number = 1 [output 1]
+;<0 keyword.control.logo
+;  ^------ variable.parameter.logo
+;  ^ punctuation.definition.variable.logo
+;               ^----- keyword.other.logo
+output :number * factorial :number - 1
+;<0--- keyword.other.logo
+;      ^------ variable.parameter.logo
+;      ^ punctuation.definition.variable.logo
+;                          ^------ variable.parameter.logo
+;                          ^ punctuation.definition.variable.logo
+end
+;<0 keyword.control.logo
+
+print factorial 3
+;<0-- keyword.other.logo
+; 6
+;<0 comment.line.semicolon.logo
+;<0 punctuation.definition.comment.logo
+
+print factorial 5
+;<0-- keyword.other.logo
+; 120
+;<0-- comment.line.semicolon.logo
+;<0 punctuation.definition.comment.logo
+
+; From https://el.media.mit.edu/logo-foundation/what_is_logo/logo_programming.html
+;<0------------------------------------------------------------------------------- comment.line.semicolon.logo
+;<0 punctuation.definition.comment.logo

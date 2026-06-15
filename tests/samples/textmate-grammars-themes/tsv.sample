@@ -1,0 +1,37 @@
+# grammar: text.tsv
+
+Country	Region	Population	Area square miles	GDP per capita
+#<0------------------------------------------------------- rainbowgroup
+#<0----- rainbow1
+#       ^------ keyword.rainbow2
+#              ^---------- entity.name.function.rainbow3
+#                         ^----------------- comment.rainbow4
+#                                           ^------------- string.rainbow5
+Afghanistan	ASIA (EX. NEAR EAST)	31056997	647500	700
+#<0------------------------------------------------- rainbowgroup
+#<0--------- rainbow1
+#           ^-------------------- keyword.rainbow2
+#                                ^-------- entity.name.function.rainbow3
+#                                         ^------ comment.rainbow4
+#                                                ^-- string.rainbow5
+Albania	EASTERN EUROPE	3581655	28748	4500
+#<0-------------------------------------- rainbowgroup
+#<0----- rainbow1
+#       ^-------------- keyword.rainbow2
+#                      ^------- entity.name.function.rainbow3
+#                              ^----- comment.rainbow4
+#                                    ^--- string.rainbow5
+Algeria	NORTHERN AFRICA	32930091	2381740	6000
+#<0------------------------------------------ rainbowgroup
+#<0----- rainbow1
+#       ^--------------- keyword.rainbow2
+#                       ^-------- entity.name.function.rainbow3
+#                                ^------- comment.rainbow4
+#                                        ^--- string.rainbow5
+American Samoa	OCEANIA	57794	199	8000
+#<0---------------------------------- rainbowgroup
+#<0------------ rainbow1
+#              ^------- keyword.rainbow2
+#                      ^----- entity.name.function.rainbow3
+#                            ^--- comment.rainbow4
+#                                ^--- string.rainbow5

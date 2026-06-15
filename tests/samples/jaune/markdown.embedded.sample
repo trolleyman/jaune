@@ -1,0 +1,69 @@
+<!-- grammar: text.html.markdown -->
+
+# Title
+<!--<0- markup.heading.markdown -->
+<!--<0- heading.1.markdown -->
+<!--<0 punctuation.definition.heading.markdown -->
+<!--<2- entity.name.section.markdown -->
+
+Some **bold** and `code` text.
+<!--<0------------------------ meta.paragraph.markdown -->
+<!--<1 variable.other.readwrite.ts -->
+<!-- ^- keyword.operator.arithmetic.ts -->
+<!--   ^--- variable.other.readwrite.ts -->
+<!--       ^- keyword.operator.arithmetic.ts -->
+<!--          ^-- variable.other.readwrite.ts -->
+<!--              ^ string.template.ts punctuation.definition.string.template.begin.ts -->
+<!--               ^---------- meta.paragraph.markdown -->
+<!--               ^--- entity.name.function.tagged-template.ts -->
+<!--                   ^ string.template.ts punctuation.definition.string.template.begin.ts -->
+<!--                    ^----- meta.paragraph.markdown -->
+<!--                     ^---- meta.paragraph.markdown -->
+<!--                     ^--- variable.other.readwrite.ts -->
+<!--                         ^ punctuation.accessor.ts -->
+
+```js
+//<0- markup.fenced_code.block.markdown
+//<0 punctuation.definition.markdown
+// ^- fenced_code.block.language.markdown
+const x = 42;
+//<0--------- markup.fenced_code.block.markdown
+//<0--------- meta.paragraph.markdown
+//<1- variable.other.readwrite.ts
+//    ^ variable.other.readwrite.ts
+//      ^ keyword.operator.assignment.ts
+//        ^- constant.numeric.decimal.ts
+//          ^ punctuation.terminator.statement.ts
+```
+<!--<0 markup.fenced_code.block.markdown -->
+<!--<0 punctuation.definition.markdown -->
+
+```python
+#<0------ markup.fenced_code.block.markdown
+#<0 punctuation.definition.markdown
+#  ^----- fenced_code.block.language.markdown
+def f(): return 1
+#<0-------------- markup.fenced_code.block.markdown
+#<0-------------- meta.paragraph.markdown
+#^- variable.other.readwrite.ts
+#   ^------------ meta.paragraph.markdown
+#   ^ variable.other.readwrite.ts
+#    ^- meta.brace.round.ts
+#        ^----- variable.other.readwrite.ts
+#               ^ constant.numeric.decimal.ts
+```
+<!--<0 markup.fenced_code.block.markdown -->
+<!--<0 punctuation.definition.markdown -->
+
+- a list item
+<!--<0------- markup.list.unnumbered.markdown -->
+<!--<0 punctuation.definition.list.begin.markdown -->
+<!--<2------- meta.paragraph.markdown -->
+<!--<2 variable.other.readwrite.ts -->
+<!--^--- variable.other.readwrite.ts -->
+<!--     ^--- variable.other.readwrite.ts -->
+> a quote
+<!--<0--- markup.quote.markdown -->
+<!--<2--- meta.paragraph.markdown -->
+<!--<2 variable.other.readwrite.ts -->
+<!--^---- variable.other.readwrite.ts -->

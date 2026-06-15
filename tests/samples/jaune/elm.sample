@@ -1,0 +1,248 @@
+-- grammar: source.elm
+
+module Main exposing (..)
+--<0--------------------- meta.declaration.module.elm
+--<0-- keyword.other.elm
+--     ^--- support.module.elm
+--         ^ punctuation.spaces.elm
+--          ^------- keyword.other.elm
+--                  ^ punctuation.spaces.elm
+--                   ^--- meta.declaration.exports.elm
+--                   ^ punctuation.parens.module-export.elm
+--                    ^- punctuation.parens.ellipses.elm
+--                      ^ punctuation.parens.module-export.elm
+
+-- Press buttons to increment and decrement a counter.
+--<0-------------------------------------------------- comment.line.double-dash.elm
+--
+--<0 comment.line.double-dash.elm
+-- Read how it works:
+--<0----------------- comment.line.double-dash.elm
+--   https://guide.elm-lang.org/architecture/buttons.html
+--<0----------------------------------------------------- comment.line.double-dash.elm
+--
+--<0 comment.line.double-dash.elm
+
+
+import Browser
+--<0---------- meta.import.elm
+--<0-- keyword.control.import.elm
+--     ^------ support.module.elm
+import Html exposing (Html, button, div, text)
+--<0------------------------------------------ meta.import.elm
+--<0-- keyword.control.import.elm
+--     ^--- support.module.elm
+--         ^ punctuation.spaces.elm
+--          ^------- keyword.control.elm
+--                  ^ punctuation.spaces.elm
+--                   ^------------------------ meta.declaration.exports.elm
+--                   ^ punctuation.parens.module-export.elm
+--                    ^--- storage.type.elm
+--                        ^ punctuation.separator.comma.elm
+--                         ^ punctuation.spaces.elm
+--                          ^----- entity.name.function.elm
+--                                ^ punctuation.separator.comma.elm
+--                                 ^ punctuation.spaces.elm
+--                                  ^-- entity.name.function.elm
+--                                     ^ punctuation.separator.comma.elm
+--                                      ^ punctuation.spaces.elm
+--                                       ^--- entity.name.function.elm
+--                                           ^ punctuation.parens.module-export.elm
+import Html.Events exposing (onClick)
+--<0--------------------------------- meta.import.elm
+--<0-- keyword.control.import.elm
+--     ^--- support.module.elm
+--         ^ keyword.other.period.elm
+--          ^----- support.module.elm
+--                ^ punctuation.spaces.elm
+--                 ^------- keyword.control.elm
+--                         ^ punctuation.spaces.elm
+--                          ^-------- meta.declaration.exports.elm
+--                          ^ punctuation.parens.module-export.elm
+--                           ^------ entity.name.function.elm
+--                                  ^ punctuation.parens.module-export.elm
+
+
+
+-- MAIN
+--<0--- comment.line.double-dash.elm
+
+
+main =
+--<0 entity.name.function.top_level.elm
+--   ^ keyword.other.elm
+  Browser.sandbox { init = init, update = update, view = view }
+--^------- meta.module.name.elm
+--^------ support.module.elm
+--       ^ keyword.other.period.elm
+--        ^------ meta.value.elm
+--                ^------- meta.record.field.elm
+--                ^ punctuation.bracket.elm
+--                  ^--- entity.name.record.field.elm
+--                       ^ keyword.operator.assignment.elm
+--                         ^--- meta.value.elm
+--                             ^--------- meta.record.field.elm
+--                             ^ punctuation.separator.comma.elm
+--                               ^----- entity.name.record.field.elm
+--                                      ^ keyword.operator.assignment.elm
+--                                        ^----- meta.value.elm
+--                                              ^------- meta.record.field.elm
+--                                              ^ punctuation.separator.comma.elm
+--                                                ^--- entity.name.record.field.elm
+--                                                     ^ keyword.operator.assignment.elm
+--                                                       ^--- meta.value.elm
+--                                                            ^ punctuation.bracket.elm
+
+
+
+-- MODEL
+--<0---- comment.line.double-dash.elm
+
+
+type alias Model = Int
+--<0------------------ meta.function.type-declaration.elm
+--<0- keyword.type.elm
+--   ^----- keyword.type-alias.elm
+--         ^---- storage.type.elm
+--               ^ keyword.operator.assignment.elm
+--                 ^-- storage.type.elm
+
+
+init : Model
+--<0-------- meta.function.type-declaration.elm
+--<0 entity.name.function.elm
+--   ^ keyword.other.colon.elm
+--    ^ punctuation.spaces.elm
+--     ^---- storage.type.elm
+init =
+--<0 entity.name.function.top_level.elm
+--   ^ keyword.other.elm
+  0
+--^ constant.numeric.elm
+
+
+
+-- UPDATE
+--<0----- comment.line.double-dash.elm
+
+
+type Msg
+--<0- keyword.other.elm
+--   ^-- constant.type-constructor.elm
+  = Increment
+--^ keyword.other.elm
+--  ^-------- constant.type-constructor.elm
+  | Decrement
+--^ keyword.other.elm
+--  ^-------- constant.type-constructor.elm
+
+
+update : Msg -> Model -> Model
+--<0-------------------------- meta.function.type-declaration.elm
+--<0-- entity.name.function.elm
+--     ^ keyword.other.colon.elm
+--      ^ punctuation.spaces.elm
+--       ^-- storage.type.elm
+--          ^ punctuation.spaces.elm
+--           ^- keyword.operator.arrow.elm
+--             ^ punctuation.spaces.elm
+--              ^---- storage.type.elm
+--                   ^ punctuation.spaces.elm
+--                    ^- keyword.operator.arrow.elm
+--                      ^ punctuation.spaces.elm
+--                       ^---- storage.type.elm
+update msg model =
+--<0-- entity.name.function.top_level.elm
+--     ^-- meta.value.elm
+--         ^---- meta.value.elm
+--               ^ keyword.other.elm
+  case msg of
+--^---- keyword.control.elm
+--     ^-- meta.value.elm
+--         ^- meta.value.elm
+    Increment ->
+--  ^-------- constant.type-constructor.elm
+--            ^- keyword.operator.arrow.elm
+      model + 1
+--    ^---- meta.value.elm
+--          ^ keyword.operator.elm
+--            ^ constant.numeric.elm
+
+    Decrement ->
+--  ^-------- constant.type-constructor.elm
+--            ^- keyword.operator.arrow.elm
+      model - 1
+--    ^---- meta.value.elm
+--          ^ keyword.operator.elm
+--            ^ constant.numeric.elm
+
+
+
+-- VIEW
+--<0--- comment.line.double-dash.elm
+
+
+view : Model -> Html Msg
+--<0-------------------- meta.function.type-declaration.elm
+--<0 entity.name.function.elm
+--   ^ keyword.other.colon.elm
+--    ^ punctuation.spaces.elm
+--     ^---- storage.type.elm
+--          ^ punctuation.spaces.elm
+--           ^- keyword.operator.arrow.elm
+--             ^ punctuation.spaces.elm
+--              ^--- storage.type.elm
+--                  ^ punctuation.spaces.elm
+--                   ^-- storage.type.elm
+view model =
+--<0 entity.name.function.top_level.elm
+--   ^---- meta.value.elm
+--         ^ keyword.other.elm
+  div []
+--^-- meta.value.elm
+--    ^- punctuation.definition.list.elm
+    [ button [ onClick Decrement ] [ text "-" ]
+--  ^ punctuation.definition.list.elm
+--    ^----- meta.value.elm
+--           ^ punctuation.definition.list.elm
+--             ^------ meta.value.elm
+--                     ^-------- constant.type-constructor.elm
+--                               ^ punctuation.definition.list.elm
+--                                 ^ punctuation.definition.list.elm
+--                                   ^--- meta.value.elm
+--                                        ^-- string.quoted.double.elm
+--                                        ^ punctuation.definition.string.begin.elm
+--                                          ^ punctuation.definition.string.end.elm
+--                                            ^ punctuation.definition.list.elm
+    , div [] [ text (String.fromInt model) ]
+--  ^ punctuation.separator.comma.elm
+--    ^-- meta.value.elm
+--        ^- punctuation.definition.list.elm
+--           ^ punctuation.definition.list.elm
+--             ^--- meta.value.elm
+--                  ^ punctuation.parens.elm
+--                   ^------ meta.module.name.elm
+--                   ^----- support.module.elm
+--                         ^ keyword.other.period.elm
+--                          ^------ meta.value.elm
+--                                  ^---- meta.value.elm
+--                                       ^ punctuation.parens.elm
+--                                         ^ punctuation.definition.list.elm
+    , button [ onClick Increment ] [ text "+" ]
+--  ^ punctuation.separator.comma.elm
+--    ^----- meta.value.elm
+--           ^ punctuation.definition.list.elm
+--             ^------ meta.value.elm
+--                     ^-------- constant.type-constructor.elm
+--                               ^ punctuation.definition.list.elm
+--                                 ^ punctuation.definition.list.elm
+--                                   ^--- meta.value.elm
+--                                        ^-- string.quoted.double.elm
+--                                        ^ punctuation.definition.string.begin.elm
+--                                          ^ punctuation.definition.string.end.elm
+--                                            ^ punctuation.definition.list.elm
+    ]
+--  ^ punctuation.definition.list.elm
+
+-- From https://elm-lang.org/examples/buttons
+--<0----------------------------------------- comment.line.double-dash.elm

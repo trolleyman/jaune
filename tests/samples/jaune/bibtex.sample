@@ -1,0 +1,123 @@
+% grammar: text.bibtex
+
+% This file was created with JabRef 2.10.
+%<0-------------------------------------- comment.block.bibtex
+% Encoding: UTF8
+%<0------------- comment.block.bibtex
+
+@Inproceedings{NN2006-Supporting,
+%<0------------------------------ meta.entry.braces.bibtex
+%<0----------- keyword.other.entry-type.bibtex
+%<0 punctuation.definition.keyword.bibtex
+%             ^ punctuation.section.entry.begin.bibtex
+%              ^---------------- entity.name.type.entry-key.bibtex
+  Title                    = {{Supporting...}},
+%<0-------------------------------------------- meta.entry.braces.bibtex
+% ^------------------------------------------- meta.key-assignment.bibtex
+% ^---- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                             ^ punctuation.definition.group.begin.bibtex
+%                                           ^ punctuation.definition.group.end.bibtex
+%                                            ^ punctuation.definition.string.end.bibtex
+  Author                   = {N. N. and X. X.},
+%<0-------------------------------------------- meta.entry.braces.bibtex
+% ^------------------------------------------- meta.key-assignment.bibtex
+% ^----- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                                            ^ punctuation.definition.string.end.bibtex
+  Year                     = {2006},
+%<0--------------------------------- meta.entry.braces.bibtex
+% ^-------------------------------- meta.key-assignment.bibtex
+% ^--- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                                 ^ punctuation.definition.string.end.bibtex
+  Month                    = {8,},
+%<0------------------------------- meta.entry.braces.bibtex
+% ^------------------------------ meta.key-assignment.bibtex
+% ^---- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                               ^ punctuation.definition.string.end.bibtex
+
+  Owner                    = {xxx},
+%<0-------------------------------- meta.entry.braces.bibtex
+% ^------------------------------- meta.key-assignment.bibtex
+% ^---- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                                ^ punctuation.definition.string.end.bibtex
+  Timestamp                = {2010.01.01}
+%<0-------------------------------------- meta.entry.braces.bibtex
+% ^-------------------------------------- meta.key-assignment.bibtex
+% ^-------- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                                       ^ punctuation.definition.string.end.bibtex
+}
+%<0 meta.entry.braces.bibtex
+%<0 punctuation.section.entry.end.bibtex
+
+
+@Book{NN1997-Entwurf,
+%<0------------------ meta.entry.braces.bibtex
+%<0-- keyword.other.entry-type.bibtex
+%<0 punctuation.definition.keyword.bibtex
+%    ^ punctuation.section.entry.begin.bibtex
+%     ^------------- entity.name.type.entry-key.bibtex
+  Title                    = {Entwurf...},
+%<0--------------------------------------- meta.entry.braces.bibtex
+% ^-------------------------------------- meta.key-assignment.bibtex
+% ^---- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                                       ^ punctuation.definition.string.end.bibtex
+  Publisher                = {Org},
+%<0-------------------------------- meta.entry.braces.bibtex
+% ^------------------------------- meta.key-assignment.bibtex
+% ^-------- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                                ^ punctuation.definition.string.end.bibtex
+  Year                     = {1997},
+%<0--------------------------------- meta.entry.braces.bibtex
+% ^-------------------------------- meta.key-assignment.bibtex
+% ^--- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                                 ^ punctuation.definition.string.end.bibtex
+  Month                    = oct,
+%<0------------------------------ meta.entry.braces.bibtex
+% ^----------------------------- meta.key-assignment.bibtex
+% ^---- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^-- support.variable.bibtex
+
+  Owner                    = {xx},
+%<0------------------------------- meta.entry.braces.bibtex
+% ^------------------------------ meta.key-assignment.bibtex
+% ^---- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                               ^ punctuation.definition.string.end.bibtex
+  Timestamp                = {2006.06.12},
+%<0--------------------------------------- meta.entry.braces.bibtex
+% ^-------------------------------------- meta.key-assignment.bibtex
+% ^-------- support.function.key.bibtex
+%                          ^ punctuation.separator.key-value.bibtex
+%                            ^ punctuation.definition.string.begin.bibtex
+%                                       ^ punctuation.definition.string.end.bibtex
+}
+%<0 meta.entry.braces.bibtex
+%<0 punctuation.section.entry.end.bibtex
+
+
+@comment{jabref-meta: fileDirectory:Folder;}
+%<0----- comment.block.at-sign.bibtex
+%<0----- punctuation.definition.comment.bibtex
+%       ^----------------------------------- comment.block.bibtex
+
+% From https://github.com/JabRef/jabref/blob/main/src/test/resources/testbib/bug1283.bib
+%<0------------------------------------------------------------------------------------- comment.block.bibtex

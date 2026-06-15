@@ -1,0 +1,90 @@
+-- grammar: source.applescript
+
+tell application "Address Book"
+--<0--------------------------- meta.block.tell.application.generic.applescript
+--<0 keyword.control.tell.applescript
+--   ^---------- support.class.built-in.applescript
+--               ^------------- string.quoted.double.application-name.applescript
+--               ^ punctuation.definition.string.applescript
+--                            ^ punctuation.definition.string.applescript
+
+    set bDayList to name of every person whose birth date is not missing value
+--<0-------------------------------------------------------------------------- meta.block.tell.application.generic.applescript
+--  ^------------------------------------------------------------------------- meta.statement.set.applescript
+--  ^-- keyword.control.def.set.applescript
+--      ^------- variable.other.readwrite.set.applescript
+--               ^- keyword.control.def.set.applescript
+--                  ^--- support.function.built-in.property.applescript
+--                       ^- keyword.other.applescript
+--                          ^---- keyword.operator.reference.applescript
+--                                       ^---- keyword.operator.reference.applescript
+--                                                   ^--- support.class.built-in.applescript
+--                                                        ^----- keyword.operator.word.applescript
+--                                                               ^------------ constant.language.null.applescript
+
+    choose from list bDayList with prompt "Whose birthday would you like?"
+--<0---------------------------------------------------------------------- meta.block.tell.application.generic.applescript
+--  ^--------------- support.function.built-in.command.applescript
+--                            ^--- keyword.other.applescript
+--                                        ^------------------------------- string.quoted.double.applescript
+--                                        ^ punctuation.definition.string.applescript
+--                                                                       ^ punctuation.definition.string.applescript
+
+    if the result is not false then
+--<0------------------------------- meta.block.tell.application.generic.applescript
+--<0------------------------------- meta.block.if.applescript
+--  ^- keyword.control.if.applescript
+--     ^-- keyword.other.applescript
+--         ^----- constant.other.miscellaneous.applescript
+--                ^----- keyword.operator.word.applescript
+--                       ^---- constant.language.boolean.applescript
+--                             ^--- keyword.control.then.applescript
+
+        set aName to item 1 of the result
+--<0------------------------------------- meta.block.tell.application.generic.applescript
+--<0------------------------------------- meta.block.if.applescript
+--      ^-------------------------------- meta.statement.set.applescript
+--      ^-- keyword.control.def.set.applescript
+--          ^---- variable.other.readwrite.set.applescript
+--                ^- keyword.control.def.set.applescript
+--                   ^--- support.function.built-in.property.applescript
+--                        ^ constant.numeric.applescript
+--                          ^- keyword.other.applescript
+--                             ^-- keyword.other.applescript
+--                                 ^----- constant.other.miscellaneous.applescript
+
+        set theBirthday to birth date of person named aName
+--<0------------------------------------------------------- meta.block.tell.application.generic.applescript
+--<0------------------------------------------------------- meta.block.if.applescript
+--      ^-------------------------------------------------- meta.statement.set.applescript
+--      ^-- keyword.control.def.set.applescript
+--          ^---------- variable.other.readwrite.set.applescript
+--                      ^- keyword.control.def.set.applescript
+--                               ^--- support.class.built-in.applescript
+--                                    ^- keyword.other.applescript
+--                                              ^---- keyword.operator.reference.applescript
+
+        display dialog aName & "'s birthday is " & date string of theBirthday
+--<0------------------------------------------------------------------------- meta.block.tell.application.generic.applescript
+--<0------------------------------------------------------------------------- meta.block.if.applescript
+--      ^------------- support.function.built-in.command.applescript
+--                           ^ keyword.operator.arithmetic.applescript
+--                             ^---------------- string.quoted.double.applescript
+--                             ^ punctuation.definition.string.applescript
+--                                             ^ punctuation.definition.string.applescript
+--                                               ^ keyword.operator.arithmetic.applescript
+--                                                 ^---------- support.function.built-in.property.applescript
+--                                                             ^- keyword.other.applescript
+
+    end if
+--<0------ meta.block.tell.application.generic.applescript
+--<0------ meta.block.if.applescript
+--  ^----- keyword.control.end.applescript
+
+end tell
+--<0---- meta.block.tell.application.generic.applescript
+--<0---- keyword.control.tell.applescript
+
+-- From https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_cmds.html
+--<0---------------------------------------------------------------------------------------------------------------------------------- comment.line.double-dash.applescript
+--<0 punctuation.definition.comment.applescript

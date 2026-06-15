@@ -1,0 +1,55 @@
+# grammar: text.beancount
+
+2012-11-03 * "Transfer to pay credit card"
+#<0--------------------------------------- meta.directive.transaction.beancount
+#<0- constant.numeric.date.year.beancount
+#   ^ punctuation.separator.beancount
+#    ^- constant.numeric.date.month.beancount
+#      ^ punctuation.separator.beancount
+#       ^- constant.numeric.date.day.beancount
+#          ^ support.function.directive.beancount
+#          ^ support.function.directive.txn.completed.beancount
+#            ^---------------------------- string.quoted.tiers.beancount
+  Assets:MyBank:Checking            -400.00 USD
+#<0-------------------------------------------- meta.directive.transaction.beancount
+#<0-------------------------------------------- meta.posting.beancount
+# ^---------------------- meta.account.beancount
+# ^----- variable.language.beancount
+#       ^ punctuation.separator.beancount
+#        ^-------------- variable.other.account.beancount
+#                                   ^---------- meta.amount.beancount
+#                                   ^ keyword.operator.modifier.beancount
+#                                    ^----- constant.numeric.currency.beancount
+#                                           ^-- entity.name.type.commodity.beancount
+  Liabilities:CreditCard             400.00 USD
+
+2012-11-03 * "Transfer to account in Canada"
+#<0----------------------------------------- meta.directive.transaction.beancount
+#<0- constant.numeric.date.year.beancount
+#   ^ punctuation.separator.beancount
+#    ^- constant.numeric.date.month.beancount
+#      ^ punctuation.separator.beancount
+#       ^- constant.numeric.date.day.beancount
+#          ^ support.function.directive.beancount
+#          ^ support.function.directive.txn.completed.beancount
+#            ^------------------------------ string.quoted.tiers.beancount
+  Assets:MyBank:Checking            -400.00 USD @ 1.09 CAD
+#<0------------------------------------------------------- meta.directive.transaction.beancount
+#<0------------------------------------------------------- meta.posting.beancount
+# ^---------------------- meta.account.beancount
+# ^----- variable.language.beancount
+#       ^ punctuation.separator.beancount
+#        ^-------------- variable.other.account.beancount
+#                                   ^---------- meta.amount.beancount
+#                                   ^ keyword.operator.modifier.beancount
+#                                    ^----- constant.numeric.currency.beancount
+#                                           ^-- entity.name.type.commodity.beancount
+#                                               ^--------- meta.price.beancount
+#                                               ^ keyword.operator.assignment.beancount
+#                                                 ^------- meta.amount.beancount
+#                                                 ^--- constant.numeric.currency.beancount
+#                                                      ^-- entity.name.type.commodity.beancount
+  Assets:FR:SocGen:Checking          436.01 CAD
+
+; https://beancount.github.io/docs/beancount_language_syntax.html#costs-and-prices
+#<0------------------------------------------------------------------------------- comment.line.beancount

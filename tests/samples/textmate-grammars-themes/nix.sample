@@ -1,0 +1,182 @@
+# grammar: source.nix
+
+{
+#<0 punctuation.definition.attrset-or-function.nix
+  # dependencies
+# ^------------- comment.line.number-sign.nix
+  stdenv, fetchurl, nix-gitignore, buildGoModule,
+# ^----- variable.parameter.function.1.nix
+#       ^ keyword.operator.nix
+#         ^------- variable.parameter.function.1.nix
+#                 ^ keyword.operator.nix
+#                   ^------------ variable.parameter.function.1.nix
+#                                ^ keyword.operator.nix
+#                                  ^------------ variable.parameter.function.1.nix
+#                                               ^ keyword.operator.nix
+
+  # args
+# ^----- comment.line.number-sign.nix
+  localFiles ? false
+# ^--------- variable.parameter.function.1.nix
+#            ^ keyword.operator.nix
+#              ^---- constant.language.nix
+}:
+#<0 punctuation.definition.entity.function.nix
+#^ punctuation.definition.function.nix
+
+buildGoModule rec {
+#<0---------- variable.parameter.name.nix
+#             ^-- keyword.other.nix
+#                 ^ punctuation.definition.attrset.nix
+
+  pname = "hello";
+# ^---- entity.other.attribute-name.multipart.nix
+#       ^ keyword.operator.bind.nix
+#         ^------ string.quoted.double.nix
+#         ^ punctuation.definition.string.double.start.nix
+#               ^ punctuation.definition.string.double.end.nix
+#                ^ punctuation.terminator.bind.nix
+  version = "1.0";
+# ^------ entity.other.attribute-name.multipart.nix
+#         ^ keyword.operator.bind.nix
+#           ^---- string.quoted.double.nix
+#           ^ punctuation.definition.string.double.start.nix
+#               ^ punctuation.definition.string.double.end.nix
+#                ^ punctuation.terminator.bind.nix
+
+  src = (
+# ^-- entity.other.attribute-name.multipart.nix
+#     ^ keyword.operator.bind.nix
+#       ^ punctuation.definition.expression.nix
+    if localFiles then
+#   ^- keyword.other.nix
+#      ^--------- variable.parameter.name.nix
+#                 ^--- keyword.other.nix
+      nix-gitignore.gitignoreSource [ "result" ] ./.
+#     ^------------ variable.parameter.name.nix
+#                  ^ keyword.operator.nix
+#                   ^-------------- variable.parameter.name.nix
+#                                   ^ punctuation.definition.list.nix
+#                                     ^------- string.quoted.double.nix
+#                                     ^ punctuation.definition.string.double.start.nix
+#                                            ^ punctuation.definition.string.double.end.nix
+#                                              ^ punctuation.definition.list.nix
+#                                                ^-- string.unquoted.path.nix
+    else
+#   ^--- keyword.other.nix
+      fetchurl {
+#     ^------- variable.parameter.name.nix
+#              ^ punctuation.definition.attrset-or-function.nix
+        url = "https://example.com";
+#       ^-- entity.other.attribute-name.multipart.nix
+#           ^ keyword.operator.bind.nix
+#             ^-------------------- string.quoted.double.nix
+#             ^ punctuation.definition.string.double.start.nix
+#                                 ^ punctuation.definition.string.double.end.nix
+#                                  ^ punctuation.terminator.bind.nix
+        sha256 = stdenv.lib.fakeSha256;
+#       ^----- entity.other.attribute-name.multipart.nix
+#              ^ keyword.operator.bind.nix
+#                ^----- variable.parameter.name.nix
+#                      ^ keyword.operator.nix
+#                       ^-- variable.parameter.name.nix
+#                          ^ keyword.operator.nix
+#                           ^--------- variable.parameter.name.nix
+#                                     ^ punctuation.terminator.bind.nix
+      }
+#     ^ punctuation.definition.attrset.nix
+  );
+# ^ punctuation.definition.expression.nix
+#  ^ punctuation.terminator.bind.nix
+
+  modSha256 = "1ggp6xhhlixihjx37v5j9gd3sa1gymqrglf9c3j1pwfnym1k99y3";
+# ^-------- entity.other.attribute-name.multipart.nix
+#           ^ keyword.operator.bind.nix
+#             ^----------------------------------------------------- string.quoted.double.nix
+#             ^ punctuation.definition.string.double.start.nix
+#                                                                  ^ punctuation.definition.string.double.end.nix
+#                                                                   ^ punctuation.terminator.bind.nix
+
+  subPackages = [ "." ];
+# ^---------- entity.other.attribute-name.multipart.nix
+#             ^ keyword.operator.bind.nix
+#               ^ punctuation.definition.list.nix
+#                 ^-- string.quoted.double.nix
+#                 ^ punctuation.definition.string.double.start.nix
+#                   ^ punctuation.definition.string.double.end.nix
+#                     ^ punctuation.definition.list.nix
+#                      ^ punctuation.terminator.bind.nix
+
+  passthru = {
+# ^------- entity.other.attribute-name.multipart.nix
+#          ^ keyword.operator.bind.nix
+#            ^ punctuation.definition.attrset-or-function.nix
+    executable = "main";
+#   ^--------- entity.other.attribute-name.multipart.nix
+#              ^ keyword.operator.bind.nix
+#                ^----- string.quoted.double.nix
+#                ^ punctuation.definition.string.double.start.nix
+#                     ^ punctuation.definition.string.double.end.nix
+#                      ^ punctuation.terminator.bind.nix
+  };
+# ^ punctuation.definition.attrset.nix
+#  ^ punctuation.terminator.bind.nix
+
+  meta = with stdenv.lib; {
+# ^--- entity.other.attribute-name.multipart.nix
+#      ^ keyword.operator.bind.nix
+#        ^--- keyword.other.nix
+#             ^----- variable.parameter.name.nix
+#                   ^ keyword.operator.nix
+#                    ^-- variable.parameter.name.nix
+#                         ^ punctuation.definition.attrset-or-function.nix
+    description = "Hello world example in Go";
+#   ^---------- entity.other.attribute-name.multipart.nix
+#               ^ keyword.operator.bind.nix
+#                 ^-------------------------- string.quoted.double.nix
+#                 ^ punctuation.definition.string.double.start.nix
+#                                           ^ punctuation.definition.string.double.end.nix
+#                                            ^ punctuation.terminator.bind.nix
+    longDescription = ''
+#   ^-------------- entity.other.attribute-name.multipart.nix
+#                   ^ keyword.operator.bind.nix
+#                     ^- string.quoted.other.nix
+#                     ^- punctuation.definition.string.other.start.nix
+      Long description for Hello world example in Go.
+#<0-------------------------------------------------- string.quoted.other.nix
+    '';
+#<0--- string.quoted.other.nix
+#   ^- punctuation.definition.string.other.end.nix
+#     ^ punctuation.terminator.bind.nix
+    homepage = https://blog.golang.org/using-go-modules;
+#   ^------- entity.other.attribute-name.multipart.nix
+#            ^ keyword.operator.bind.nix
+#              ^--------------------------------------- string.unquoted.url.nix
+#                                                      ^ punctuation.terminator.bind.nix
+    license = licenses.asl20;
+#   ^------ entity.other.attribute-name.multipart.nix
+#           ^ keyword.operator.bind.nix
+#             ^------- variable.parameter.name.nix
+#                     ^ keyword.operator.nix
+#                      ^---- variable.parameter.name.nix
+#                           ^ punctuation.terminator.bind.nix
+    maintainers = [];
+#   ^---------- entity.other.attribute-name.multipart.nix
+#               ^ keyword.operator.bind.nix
+#                 ^- punctuation.definition.list.nix
+#                   ^ punctuation.terminator.bind.nix
+    platforms = platforms.all;
+#   ^-------- entity.other.attribute-name.multipart.nix
+#             ^ keyword.operator.bind.nix
+#               ^-------- variable.parameter.name.nix
+#                        ^ keyword.operator.nix
+#                         ^-- variable.parameter.name.nix
+#                            ^ punctuation.terminator.bind.nix
+  };
+# ^ punctuation.definition.attrset.nix
+#  ^ punctuation.terminator.bind.nix
+}
+#<0 punctuation.definition.attrset.nix
+
+# From https://github.com/vlktomas/nix-examples/tree/master/desktop/Go/hello
+#<0------------------------------------------------------------------------- comment.line.number-sign.nix

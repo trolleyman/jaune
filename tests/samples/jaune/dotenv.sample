@@ -1,0 +1,46 @@
+# grammar: source.dotenv
+
+# This is a super secret env var
+MY_SECRET="superSecret"
+#<0------ variable.key.dotenv
+#        ^ keyword.operator.assignment.dotenv
+#         ^------------ property.value.dotenv
+#         ^------------ string.quoted.double.dotenv
+MY_EXTENDED_SECRET=${MY_SECRET}
+#<0--------------- variable.key.dotenv
+#                 ^ keyword.operator.assignment.dotenv
+#                  ^----------- property.value.dotenv
+#                  ^- keyword.interpolation.begin.dotenv
+#                    ^-------- variable.interpolation.dotenv
+#                             ^ keyword.interpolation.end.dotenv
+MY_NOT_EXTENDED_SECRET=$MY_SECRET
+#<0------------------- variable.key.dotenv
+#                     ^ keyword.operator.assignment.dotenv
+#                      ^--------- property.value.dotenv
+MY_STRING_WITHOUT_QUOTES=helloWorld
+#<0--------------------- variable.key.dotenv
+#                       ^ keyword.operator.assignment.dotenv
+#                        ^--------- property.value.dotenv
+MY_NUMER=1
+#<0----- variable.key.dotenv
+#       ^ keyword.operator.assignment.dotenv
+#        ^ property.value.dotenv
+
+EMPTY=
+#<0-- variable.key.dotenv
+#    ^ keyword.operator.assignment.dotenv
+
+IS_BOOLEAN=true
+#<0------- variable.key.dotenv
+#         ^ keyword.operator.assignment.dotenv
+#          ^--- property.value.dotenv
+IS_PYTHON_BOOLEAN=True
+#<0-------------- variable.key.dotenv
+#                ^ keyword.operator.assignment.dotenv
+#                 ^--- property.value.dotenv
+
+COMMENT_INLINE= # kinda cool
+#<0----------- variable.key.dotenv
+#             ^ keyword.operator.assignment.dotenv
+#              ^------------ property.value.dotenv
+#               ^----------- comment.line.dotenv

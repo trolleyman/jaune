@@ -1,0 +1,890 @@
+# grammar: source.ql
+
+/**
+#<0 comment.block.documentation.ql
+ * @name LDAP query built from user-controlled sources
+#<0--------------------------------------------------- comment.block.documentation.ql
+# ^----- keyword.tag.ql
+ * @description Building an LDAP query from user-controlled sources is vulnerable to insertion of
+#<0---------------------------------------------------------------------------------------------- comment.block.documentation.ql
+# ^------------ keyword.tag.ql
+ *              malicious LDAP code by the user.
+#<0--------------------------------------------- comment.block.documentation.ql
+ * @kind path-problem
+#<0------------------ comment.block.documentation.ql
+# ^----- keyword.tag.ql
+ * @problem.severity error
+#<0----------------------- comment.block.documentation.ql
+# ^----------------- keyword.tag.ql
+ * @id py/ldap-injection
+#<0--------------------- comment.block.documentation.ql
+# ^--- keyword.tag.ql
+ * @tags experimental
+#<0------------------ comment.block.documentation.ql
+# ^----- keyword.tag.ql
+ *       security
+#<0-------------- comment.block.documentation.ql
+ *       external/cwe/cwe-090
+#<0-------------------------- comment.block.documentation.ql
+ */
+#<0 comment.block.documentation.ql
+
+import python
+#<0---------- meta.block.import-directive.ql
+#<0--- keyword.other.import.ql
+#      ^----- entity.name.type.namespace.ql
+import experimental.semmle.python.security.injection.LDAP
+#<0------------------------------------------------------ meta.block.import-directive.ql
+#<0--- keyword.other.import.ql
+#      ^----------- entity.name.type.namespace.ql
+#                  ^ punctuation.accessor.ql
+#                   ^----- entity.name.type.namespace.ql
+#                         ^ punctuation.accessor.ql
+#                          ^----- entity.name.type.namespace.ql
+#                                ^ punctuation.accessor.ql
+#                                 ^------- entity.name.type.namespace.ql
+#                                         ^ punctuation.accessor.ql
+#                                          ^-------- entity.name.type.namespace.ql
+#                                                   ^ punctuation.accessor.ql
+#                                                    ^--- entity.name.type.namespace.ql
+import DataFlow::PathGraph
+#<0----------------------- meta.block.import-directive.ql
+#<0--- keyword.other.import.ql
+#      ^------- entity.name.type.namespace.ql
+#                ^-------- entity.name.type.namespace.ql
+
+from LDAPInjectionFlowConfig config, DataFlow::PathNode source, DataFlow::PathNode sink
+#<0------------------------------------------------------------------------------------ meta.block.select-clause.ql
+#<0------------------------------------------------------------------------------------ meta.block.from-section.ql
+#<0- keyword.other.from.ql
+#    ^---------------------- entity.name.type.ql
+#                            ^----- variable.parameter.ql
+#                                  ^ punctuation.separator.comma.ql
+#                                    ^------- entity.name.type.namespace.ql
+#                                              ^------- entity.name.type.ql
+#                                                       ^----- variable.parameter.ql
+#                                                             ^ punctuation.separator.comma.ql
+#                                                               ^------- entity.name.type.namespace.ql
+#                                                                         ^------- entity.name.type.ql
+#                                                                                  ^--- variable.parameter.ql
+where config.hasFlowPath(source, sink)
+#<0----------------------------------- meta.block.select-clause.ql
+#<0----------------------------------- meta.block.where-section.ql
+#<0-- keyword.query.where.ql
+#     ^----- variable.other.ql
+#           ^ punctuation.accessor.ql
+#            ^---------- entity.name.function.ql
+#                       ^ punctuation.parenthesis.open.ql
+#                        ^----- variable.other.ql
+#                              ^ punctuation.separator.comma.ql
+#                                ^--- variable.other.ql
+#                                    ^ punctuation.parenthesis.close.ql
+select sink.getNode(), source, sink, "$@ LDAP query parameter comes from $@.", sink.getNode(),
+#<0------------------------------------------------------------------------------------------- meta.block.select-clause.ql
+#<0------------------------------------------------------------------------------------------- meta.block.select-section.ql
+#<0--- keyword.query.select.ql
+#      ^--- variable.other.ql
+#          ^ punctuation.accessor.ql
+#           ^------ entity.name.function.ql
+#                  ^ punctuation.parenthesis.open.ql
+#                   ^ punctuation.parenthesis.close.ql
+#                    ^ punctuation.separator.comma.ql
+#                      ^----- variable.other.ql
+#                            ^ punctuation.separator.comma.ql
+#                              ^--- variable.other.ql
+#                                  ^ punctuation.separator.comma.ql
+#                                    ^--------------------------------------- string.quoted.double.ql
+#                                    ^ punctuation.definition.string.begin.ql
+#                                                                           ^ punctuation.definition.string.end.ql
+#                                                                            ^ punctuation.separator.comma.ql
+#                                                                              ^--- variable.other.ql
+#                                                                                  ^ punctuation.accessor.ql
+#                                                                                   ^------ entity.name.function.ql
+#                                                                                          ^ punctuation.parenthesis.open.ql
+#                                                                                           ^ punctuation.parenthesis.close.ql
+#                                                                                            ^ punctuation.separator.comma.ql
+  "This", source.getNode(), "a user-provided value"
+# ^----- string.quoted.double.ql
+# ^ punctuation.definition.string.begin.ql
+#      ^ punctuation.definition.string.end.ql
+#       ^ punctuation.separator.comma.ql
+#         ^---------------------------------------- meta.block.predicate-or-field-declaration.ql
+#         ^----- entity.name.function.ql
+#               ^ punctuation.accessor.ql
+#                ^------ entity.name.function.ql
+#                       ^- meta.block.predicate-parameter-list.ql
+#                       ^ punctuation.parenthesis.open.ql
+#                        ^ punctuation.parenthesis.close.ql
+#                         ^ punctuation.separator.comma.ql
+#                           ^---------------------- string.quoted.double.ql
+#                           ^ punctuation.definition.string.begin.ql
+#                                                 ^ punctuation.definition.string.end.ql
+
+// a concept
+#<0--------- meta.block.predicate-or-field-declaration.ql
+#<0--------- comment.line.double-slash.ql
+
+module LDAPEscape {
+#<0---------------- meta.block.predicate-or-field-declaration.ql
+#<0--- keyword.other.module.ql
+#      ^--------- entity.name.type.ql
+#                 ^ meta.block.predicate-body.ql
+#                 ^ punctuation.curlybrace.open.ql
+  abstract class Range extends DataFlow::Node {
+#<0-------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0-------------------------------------------- meta.block.predicate-body.ql
+# ^------- variable.other.ql
+#          ^---- keyword.other.class.ql
+#                ^---- entity.name.type.ql
+#                      ^------ keyword.other.extends.ql
+#                              ^------- entity.name.type.namespace.ql
+#                                        ^--- entity.name.type.ql
+#                                             ^ punctuation.curlybrace.open.ql
+    abstract DataFlow::Node getAnInput();
+#<0-------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0-------------------------------------- meta.block.predicate-body.ql
+#   ^------- variable.other.ql
+#            ^------- entity.name.type.namespace.ql
+#                      ^--- entity.name.type.ql
+#                           ^--------- entity.name.function.ql
+#                                     ^ punctuation.parenthesis.open.ql
+#                                      ^ punctuation.parenthesis.close.ql
+#                                       ^ punctuation.separator.statement.ql
+  }
+#<0 meta.block.predicate-or-field-declaration.ql
+#<0 meta.block.predicate-body.ql
+# ^ punctuation.curlybrace.close.ql
+}
+#<0 punctuation.curlybrace.close.ql
+
+class LDAPEscape extends DataFlow::Node {
+#<0-------------------------------------- meta.block.class-declaration.ql
+#<0-- keyword.other.class.ql
+#     ^--------- entity.name.type.class.ql
+#                ^---------------------- meta.block.extends-clause.ql
+#                ^------ keyword.other.extends.ql
+#                        ^------- entity.name.type.ql
+#                                  ^--- entity.name.type.ql
+#                                       ^ meta.block.class-body.ql
+#                                       ^ punctuation.curlybrace.open.ql
+  LDAPEscape::Range range;
+#<0----------------------- meta.block.class-declaration.ql
+#<0----------------------- meta.block.class-body.ql
+# ^----------------------- meta.block.predicate-or-field-declaration.ql
+# ^--------- entity.name.type.namespace.ql
+#             ^---- entity.name.type.ql
+#                   ^---- variable.field.ql
+#                        ^ punctuation.separator.statement.ql
+
+  LDAPEscape() { this = range }
+#<0---------------------------- meta.block.class-declaration.ql
+#<0---------------------------- meta.block.class-body.ql
+# ^---------------------------- meta.block.predicate-or-field-declaration.ql
+# ^--------- entity.name.type.ql
+#           ^- meta.block.predicate-parameter-list.ql
+#           ^ punctuation.parenthesis.open.ql
+#            ^ punctuation.parenthesis.close.ql
+#              ^--------------- meta.block.predicate-body.ql
+#              ^ punctuation.curlybrace.open.ql
+#                ^--- variable.language.this.ql
+#                     ^ keyword.operator.comparison.ql
+#                       ^---- variable.other.ql
+#                             ^ punctuation.curlybrace.close.ql
+
+  DataFlow::Node getAnInput() { result = range.getAnInput() }
+#<0---------------------------------------------------------- meta.block.class-declaration.ql
+#<0---------------------------------------------------------- meta.block.class-body.ql
+# ^---------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+# ^------- entity.name.type.namespace.ql
+#           ^--- entity.name.type.ql
+#                ^--------- entity.name.function.ql
+#                          ^- meta.block.predicate-parameter-list.ql
+#                          ^ punctuation.parenthesis.open.ql
+#                           ^ punctuation.parenthesis.close.ql
+#                             ^------------------------------ meta.block.predicate-body.ql
+#                             ^ punctuation.curlybrace.open.ql
+#                               ^----- variable.language.result.ql
+#                                      ^ keyword.operator.comparison.ql
+#                                        ^---- variable.other.ql
+#                                             ^ punctuation.accessor.ql
+#                                              ^--------- entity.name.function.ql
+#                                                        ^ punctuation.parenthesis.open.ql
+#                                                         ^ punctuation.parenthesis.close.ql
+#                                                           ^ punctuation.curlybrace.close.ql
+}
+#<0 meta.block.class-declaration.ql
+#<0 meta.block.class-body.ql
+#<0 punctuation.curlybrace.close.ql
+
+// a library modeling
+#<0------------------ comment.line.double-slash.ql
+
+private module LDAP2 {
+#<0---- storage.modifier.private.ql
+#       ^------------- meta.block.module-declaration.ql
+#       ^----- keyword.other.module.ql
+#              ^---- entity.name.type.namespace.ql
+#                    ^ meta.block.module-body.ql
+#                    ^ punctuation.curlybrace.open.ql
+  private class LDAP2QueryMethods extends string {
+#<0----------------------------------------------- meta.block.module-declaration.ql
+#<0----------------------------------------------- meta.block.module-body.ql
+# ^------ storage.modifier.private.ql
+#         ^--------------------------------------- meta.block.class-declaration.ql
+#         ^---- keyword.other.class.ql
+#               ^---------------- entity.name.type.class.ql
+#                                 ^-------------- meta.block.extends-clause.ql
+#                                 ^------ keyword.other.extends.ql
+#                                         ^----- keyword.type.string.ql
+#                                                ^ meta.block.class-body.ql
+#                                                ^ punctuation.curlybrace.open.ql
+    LDAP2QueryMethods() {
+#<0---------------------- meta.block.module-declaration.ql
+#<0---------------------- meta.block.module-body.ql
+#<0---------------------- meta.block.class-declaration.ql
+#<0---------------------- meta.block.class-body.ql
+#   ^-------------------- meta.block.predicate-or-field-declaration.ql
+#   ^---------------- entity.name.type.ql
+#                    ^- meta.block.predicate-parameter-list.ql
+#                    ^ punctuation.parenthesis.open.ql
+#                     ^ punctuation.parenthesis.close.ql
+#                       ^ meta.block.predicate-body.ql
+#                       ^ punctuation.curlybrace.open.ql
+      this in ["search", "search_s", "search_st", "search_ext", "search_ext_s"]
+#<0---------------------------------------------------------------------------- meta.block.module-declaration.ql
+#<0---------------------------------------------------------------------------- meta.block.module-body.ql
+#<0---------------------------------------------------------------------------- meta.block.class-declaration.ql
+#<0---------------------------------------------------------------------------- meta.block.class-body.ql
+#<0---------------------------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0---------------------------------------------------------------------------- meta.block.predicate-body.ql
+#     ^--- variable.language.this.ql
+#          ^- keyword.other.in.ql
+#             ^ punctuation.squarebracket.open.ql
+#              ^------- string.quoted.double.ql
+#              ^ punctuation.definition.string.begin.ql
+#                     ^ punctuation.definition.string.end.ql
+#                      ^ punctuation.separator.comma.ql
+#                        ^--------- string.quoted.double.ql
+#                        ^ punctuation.definition.string.begin.ql
+#                                 ^ punctuation.definition.string.end.ql
+#                                  ^ punctuation.separator.comma.ql
+#                                    ^---------- string.quoted.double.ql
+#                                    ^ punctuation.definition.string.begin.ql
+#                                              ^ punctuation.definition.string.end.ql
+#                                               ^ punctuation.separator.comma.ql
+#                                                 ^----------- string.quoted.double.ql
+#                                                 ^ punctuation.definition.string.begin.ql
+#                                                            ^ punctuation.definition.string.end.ql
+#                                                             ^ punctuation.separator.comma.ql
+#                                                               ^------------- string.quoted.double.ql
+#                                                               ^ punctuation.definition.string.begin.ql
+#                                                                            ^ punctuation.definition.string.end.ql
+#                                                                             ^ punctuation.squarebracket.close.ql
+    }
+#<0-- meta.block.module-declaration.ql
+#<0-- meta.block.module-body.ql
+#<0-- meta.block.class-declaration.ql
+#<0-- meta.block.class-body.ql
+#<0-- meta.block.predicate-or-field-declaration.ql
+#<0-- meta.block.predicate-body.ql
+#   ^ punctuation.curlybrace.close.ql
+  }
+#<0 meta.block.module-declaration.ql
+#<0 meta.block.module-body.ql
+#<0 meta.block.class-declaration.ql
+#<0 meta.block.class-body.ql
+# ^ punctuation.curlybrace.close.ql
+
+  private class LDAP2Query extends DataFlow::CallCfgNode, LDAPQuery::Range {
+#<0------------------------------------------------------------------------- meta.block.module-declaration.ql
+#<0------------------------------------------------------------------------- meta.block.module-body.ql
+# ^------ storage.modifier.private.ql
+#         ^----------------------------------------------------------------- meta.block.class-declaration.ql
+#         ^---- keyword.other.class.ql
+#               ^--------- entity.name.type.class.ql
+#                          ^----------------------------------------------- meta.block.extends-clause.ql
+#                          ^------ keyword.other.extends.ql
+#                                  ^------- entity.name.type.ql
+#                                            ^---------- entity.name.type.ql
+#                                                       ^ punctuation.separator.comma.ql
+#                                                         ^-------- entity.name.type.ql
+#                                                                    ^---- entity.name.type.ql
+#                                                                          ^ meta.block.class-body.ql
+#                                                                          ^ punctuation.curlybrace.open.ql
+    DataFlow::Node ldapQuery;
+#<0-------------------------- meta.block.module-declaration.ql
+#<0-------------------------- meta.block.module-body.ql
+#<0-------------------------- meta.block.class-declaration.ql
+#<0-------------------------- meta.block.class-body.ql
+#   ^------------------------ meta.block.predicate-or-field-declaration.ql
+#   ^------- entity.name.type.namespace.ql
+#             ^--- entity.name.type.ql
+#                  ^-------- variable.field.ql
+#                           ^ punctuation.separator.statement.ql
+
+    LDAP2Query() {
+#<0--------------- meta.block.module-declaration.ql
+#<0--------------- meta.block.module-body.ql
+#<0--------------- meta.block.class-declaration.ql
+#<0--------------- meta.block.class-body.ql
+#   ^------------- meta.block.predicate-or-field-declaration.ql
+#   ^--------- entity.name.type.ql
+#             ^- meta.block.predicate-parameter-list.ql
+#             ^ punctuation.parenthesis.open.ql
+#              ^ punctuation.parenthesis.close.ql
+#                ^ meta.block.predicate-body.ql
+#                ^ punctuation.curlybrace.open.ql
+      exists(DataFlow::AttrRead searchMethod |
+#<0------------------------------------------- meta.block.module-declaration.ql
+#<0------------------------------------------- meta.block.module-body.ql
+#<0------------------------------------------- meta.block.class-declaration.ql
+#<0------------------------------------------- meta.block.class-body.ql
+#<0------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0------------------------------------------- meta.block.predicate-body.ql
+#     ^----- keyword.quantifier.exists.ql
+#           ^ punctuation.parenthesis.open.ql
+#            ^------- entity.name.type.namespace.ql
+#                      ^------- entity.name.type.ql
+#                               ^----------- variable.other.ql
+#                                            ^ punctuation.separator.pipe.ql
+        this.getFunction() = searchMethod and
+#<0------------------------------------------ meta.block.module-declaration.ql
+#<0------------------------------------------ meta.block.module-body.ql
+#<0------------------------------------------ meta.block.class-declaration.ql
+#<0------------------------------------------ meta.block.class-body.ql
+#<0------------------------------------------ meta.block.predicate-or-field-declaration.ql
+#<0------------------------------------------ meta.block.predicate-body.ql
+#       ^--- variable.language.this.ql
+#           ^ punctuation.accessor.ql
+#            ^---------- entity.name.function.ql
+#                       ^ punctuation.parenthesis.open.ql
+#                        ^ punctuation.parenthesis.close.ql
+#                          ^ keyword.operator.comparison.ql
+#                            ^----------- variable.other.ql
+#                                         ^-- keyword.other.and.ql
+        API::moduleImport("ldap").getMember("initialize").getACall() =
+#<0------------------------------------------------------------------- meta.block.module-declaration.ql
+#<0------------------------------------------------------------------- meta.block.module-body.ql
+#<0------------------------------------------------------------------- meta.block.class-declaration.ql
+#<0------------------------------------------------------------------- meta.block.class-body.ql
+#<0------------------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0------------------------------------------------------------------- meta.block.predicate-body.ql
+#       ^-- entity.name.type.namespace.ql
+#            ^----------- entity.name.function.ql
+#                        ^ punctuation.parenthesis.open.ql
+#                         ^----- string.quoted.double.ql
+#                         ^ punctuation.definition.string.begin.ql
+#                              ^ punctuation.definition.string.end.ql
+#                               ^ punctuation.parenthesis.close.ql
+#                                ^ punctuation.accessor.ql
+#                                 ^-------- entity.name.function.ql
+#                                          ^ punctuation.parenthesis.open.ql
+#                                           ^----------- string.quoted.double.ql
+#                                           ^ punctuation.definition.string.begin.ql
+#                                                      ^ punctuation.definition.string.end.ql
+#                                                       ^ punctuation.parenthesis.close.ql
+#                                                        ^ punctuation.accessor.ql
+#                                                         ^------- entity.name.function.ql
+#                                                                 ^ punctuation.parenthesis.open.ql
+#                                                                  ^ punctuation.parenthesis.close.ql
+#                                                                    ^ keyword.operator.comparison.ql
+          searchMethod.getObject().getALocalSource() and
+#<0----------------------------------------------------- meta.block.module-declaration.ql
+#<0----------------------------------------------------- meta.block.module-body.ql
+#<0----------------------------------------------------- meta.block.class-declaration.ql
+#<0----------------------------------------------------- meta.block.class-body.ql
+#<0----------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0----------------------------------------------------- meta.block.predicate-body.ql
+#         ^----------- variable.other.ql
+#                     ^ punctuation.accessor.ql
+#                      ^-------- entity.name.function.ql
+#                               ^ punctuation.parenthesis.open.ql
+#                                ^ punctuation.parenthesis.close.ql
+#                                 ^ punctuation.accessor.ql
+#                                  ^-------------- entity.name.function.ql
+#                                                 ^ punctuation.parenthesis.open.ql
+#                                                  ^ punctuation.parenthesis.close.ql
+#                                                    ^-- keyword.other.and.ql
+        searchMethod.getAttributeName() instanceof LDAP2QueryMethods and
+#<0--------------------------------------------------------------------- meta.block.module-declaration.ql
+#<0--------------------------------------------------------------------- meta.block.module-body.ql
+#<0--------------------------------------------------------------------- meta.block.class-declaration.ql
+#<0--------------------------------------------------------------------- meta.block.class-body.ql
+#<0--------------------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0--------------------------------------------------------------------- meta.block.predicate-body.ql
+#       ^----------- variable.other.ql
+#                   ^ punctuation.accessor.ql
+#                    ^--------------- entity.name.function.ql
+#                                    ^ punctuation.parenthesis.open.ql
+#                                     ^ punctuation.parenthesis.close.ql
+#                                       ^--------- keyword.other.instanceof.ql
+#                                                  ^---------------- entity.name.type.ql
+#                                                                    ^-- keyword.other.and.ql
+        (
+#<0------ meta.block.module-declaration.ql
+#<0------ meta.block.module-body.ql
+#<0------ meta.block.class-declaration.ql
+#<0------ meta.block.class-body.ql
+#<0------ meta.block.predicate-or-field-declaration.ql
+#<0------ meta.block.predicate-body.ql
+#       ^ punctuation.parenthesis.open.ql
+          ldapQuery = this.getArg(0)
+#<0--------------------------------- meta.block.module-declaration.ql
+#<0--------------------------------- meta.block.module-body.ql
+#<0--------------------------------- meta.block.class-declaration.ql
+#<0--------------------------------- meta.block.class-body.ql
+#<0--------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0--------------------------------- meta.block.predicate-body.ql
+#         ^-------- variable.other.ql
+#                   ^ keyword.operator.comparison.ql
+#                     ^--- variable.language.this.ql
+#                         ^ punctuation.accessor.ql
+#                          ^----- entity.name.function.ql
+#                                ^ punctuation.parenthesis.open.ql
+#                                 ^ constant.numeric.decimal.ql
+#                                  ^ punctuation.parenthesis.close.ql
+          or
+#<0--------- meta.block.module-declaration.ql
+#<0--------- meta.block.module-body.ql
+#<0--------- meta.block.class-declaration.ql
+#<0--------- meta.block.class-body.ql
+#<0--------- meta.block.predicate-or-field-declaration.ql
+#<0--------- meta.block.predicate-body.ql
+#         ^- keyword.other.or.ql
+          (
+#<0-------- meta.block.module-declaration.ql
+#<0-------- meta.block.module-body.ql
+#<0-------- meta.block.class-declaration.ql
+#<0-------- meta.block.class-body.ql
+#<0-------- meta.block.predicate-or-field-declaration.ql
+#<0-------- meta.block.predicate-body.ql
+#         ^ punctuation.parenthesis.open.ql
+            ldapQuery = this.getArg(2) or
+#<0-------------------------------------- meta.block.module-declaration.ql
+#<0-------------------------------------- meta.block.module-body.ql
+#<0-------------------------------------- meta.block.class-declaration.ql
+#<0-------------------------------------- meta.block.class-body.ql
+#<0-------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0-------------------------------------- meta.block.predicate-body.ql
+#           ^-------- variable.other.ql
+#                     ^ keyword.operator.comparison.ql
+#                       ^--- variable.language.this.ql
+#                           ^ punctuation.accessor.ql
+#                            ^----- entity.name.function.ql
+#                                  ^ punctuation.parenthesis.open.ql
+#                                   ^ constant.numeric.decimal.ql
+#                                    ^ punctuation.parenthesis.close.ql
+#                                      ^- keyword.other.or.ql
+            ldapQuery = this.getArgByName("filterstr")
+#<0--------------------------------------------------- meta.block.module-declaration.ql
+#<0--------------------------------------------------- meta.block.module-body.ql
+#<0--------------------------------------------------- meta.block.class-declaration.ql
+#<0--------------------------------------------------- meta.block.class-body.ql
+#<0--------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0--------------------------------------------------- meta.block.predicate-body.ql
+#           ^-------- variable.other.ql
+#                     ^ keyword.operator.comparison.ql
+#                       ^--- variable.language.this.ql
+#                           ^ punctuation.accessor.ql
+#                            ^----------- entity.name.function.ql
+#                                        ^ punctuation.parenthesis.open.ql
+#                                         ^---------- string.quoted.double.ql
+#                                         ^ punctuation.definition.string.begin.ql
+#                                                   ^ punctuation.definition.string.end.ql
+#                                                    ^ punctuation.parenthesis.close.ql
+          )
+#<0-------- meta.block.module-declaration.ql
+#<0-------- meta.block.module-body.ql
+#<0-------- meta.block.class-declaration.ql
+#<0-------- meta.block.class-body.ql
+#<0-------- meta.block.predicate-or-field-declaration.ql
+#<0-------- meta.block.predicate-body.ql
+#         ^ punctuation.parenthesis.close.ql
+        )
+#<0------ meta.block.module-declaration.ql
+#<0------ meta.block.module-body.ql
+#<0------ meta.block.class-declaration.ql
+#<0------ meta.block.class-body.ql
+#<0------ meta.block.predicate-or-field-declaration.ql
+#<0------ meta.block.predicate-body.ql
+#       ^ punctuation.parenthesis.close.ql
+      )
+#<0---- meta.block.module-declaration.ql
+#<0---- meta.block.module-body.ql
+#<0---- meta.block.class-declaration.ql
+#<0---- meta.block.class-body.ql
+#<0---- meta.block.predicate-or-field-declaration.ql
+#<0---- meta.block.predicate-body.ql
+#     ^ punctuation.parenthesis.close.ql
+    }
+#<0-- meta.block.module-declaration.ql
+#<0-- meta.block.module-body.ql
+#<0-- meta.block.class-declaration.ql
+#<0-- meta.block.class-body.ql
+#<0-- meta.block.predicate-or-field-declaration.ql
+#<0-- meta.block.predicate-body.ql
+#   ^ punctuation.curlybrace.close.ql
+
+    override DataFlow::Node getQuery() { result = ldapQuery }
+#<0---------------------------------------------------------- meta.block.module-declaration.ql
+#<0---------------------------------------------------------- meta.block.module-body.ql
+#<0---------------------------------------------------------- meta.block.class-declaration.ql
+#<0---------------------------------------------------------- meta.block.class-body.ql
+#   ^------- storage.modifier.override.ql
+#            ^----------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#            ^------- entity.name.type.namespace.ql
+#                      ^--- entity.name.type.ql
+#                           ^------- entity.name.function.ql
+#                                   ^- meta.block.predicate-parameter-list.ql
+#                                   ^ punctuation.parenthesis.open.ql
+#                                    ^ punctuation.parenthesis.close.ql
+#                                      ^--------------------- meta.block.predicate-body.ql
+#                                      ^ punctuation.curlybrace.open.ql
+#                                        ^----- variable.language.result.ql
+#                                               ^ keyword.operator.comparison.ql
+#                                                 ^-------- variable.other.ql
+#                                                           ^ punctuation.curlybrace.close.ql
+  }
+#<0 meta.block.module-declaration.ql
+#<0 meta.block.module-body.ql
+#<0 meta.block.class-declaration.ql
+#<0 meta.block.class-body.ql
+# ^ punctuation.curlybrace.close.ql
+
+  private class LDAP2EscapeDNCall extends DataFlow::CallCfgNode, LDAPEscape::Range {
+#<0--------------------------------------------------------------------------------- meta.block.module-declaration.ql
+#<0--------------------------------------------------------------------------------- meta.block.module-body.ql
+# ^------ storage.modifier.private.ql
+#         ^------------------------------------------------------------------------- meta.block.class-declaration.ql
+#         ^---- keyword.other.class.ql
+#               ^---------------- entity.name.type.class.ql
+#                                 ^------------------------------------------------ meta.block.extends-clause.ql
+#                                 ^------ keyword.other.extends.ql
+#                                         ^------- entity.name.type.ql
+#                                                   ^---------- entity.name.type.ql
+#                                                              ^ punctuation.separator.comma.ql
+#                                                                ^--------- entity.name.type.ql
+#                                                                            ^---- entity.name.type.ql
+#                                                                                  ^ meta.block.class-body.ql
+#                                                                                  ^ punctuation.curlybrace.open.ql
+    LDAP2EscapeDNCall() {
+#<0---------------------- meta.block.module-declaration.ql
+#<0---------------------- meta.block.module-body.ql
+#<0---------------------- meta.block.class-declaration.ql
+#<0---------------------- meta.block.class-body.ql
+#   ^-------------------- meta.block.predicate-or-field-declaration.ql
+#   ^---------------- entity.name.type.ql
+#                    ^- meta.block.predicate-parameter-list.ql
+#                    ^ punctuation.parenthesis.open.ql
+#                     ^ punctuation.parenthesis.close.ql
+#                       ^ meta.block.predicate-body.ql
+#                       ^ punctuation.curlybrace.open.ql
+      this = API::moduleImport("ldap").getMember("dn").getMember("escape_dn_chars").getACall()
+#<0------------------------------------------------------------------------------------------- meta.block.module-declaration.ql
+#<0------------------------------------------------------------------------------------------- meta.block.module-body.ql
+#<0------------------------------------------------------------------------------------------- meta.block.class-declaration.ql
+#<0------------------------------------------------------------------------------------------- meta.block.class-body.ql
+#<0------------------------------------------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0------------------------------------------------------------------------------------------- meta.block.predicate-body.ql
+#     ^--- variable.language.this.ql
+#          ^ keyword.operator.comparison.ql
+#            ^-- entity.name.type.namespace.ql
+#                 ^----------- entity.name.function.ql
+#                             ^ punctuation.parenthesis.open.ql
+#                              ^----- string.quoted.double.ql
+#                              ^ punctuation.definition.string.begin.ql
+#                                   ^ punctuation.definition.string.end.ql
+#                                    ^ punctuation.parenthesis.close.ql
+#                                     ^ punctuation.accessor.ql
+#                                      ^-------- entity.name.function.ql
+#                                               ^ punctuation.parenthesis.open.ql
+#                                                ^--- string.quoted.double.ql
+#                                                ^ punctuation.definition.string.begin.ql
+#                                                   ^ punctuation.definition.string.end.ql
+#                                                    ^ punctuation.parenthesis.close.ql
+#                                                     ^ punctuation.accessor.ql
+#                                                      ^-------- entity.name.function.ql
+#                                                               ^ punctuation.parenthesis.open.ql
+#                                                                ^---------------- string.quoted.double.ql
+#                                                                ^ punctuation.definition.string.begin.ql
+#                                                                                ^ punctuation.definition.string.end.ql
+#                                                                                 ^ punctuation.parenthesis.close.ql
+#                                                                                  ^ punctuation.accessor.ql
+#                                                                                   ^------- entity.name.function.ql
+#                                                                                           ^ punctuation.parenthesis.open.ql
+#                                                                                            ^ punctuation.parenthesis.close.ql
+    }
+#<0-- meta.block.module-declaration.ql
+#<0-- meta.block.module-body.ql
+#<0-- meta.block.class-declaration.ql
+#<0-- meta.block.class-body.ql
+#<0-- meta.block.predicate-or-field-declaration.ql
+#<0-- meta.block.predicate-body.ql
+#   ^ punctuation.curlybrace.close.ql
+
+    override DataFlow::Node getAnInput() { result = this.getArg(0) }
+#<0----------------------------------------------------------------- meta.block.module-declaration.ql
+#<0----------------------------------------------------------------- meta.block.module-body.ql
+#<0----------------------------------------------------------------- meta.block.class-declaration.ql
+#<0----------------------------------------------------------------- meta.block.class-body.ql
+#   ^------- storage.modifier.override.ql
+#            ^------------------------------------------------------ meta.block.predicate-or-field-declaration.ql
+#            ^------- entity.name.type.namespace.ql
+#                      ^--- entity.name.type.ql
+#                           ^--------- entity.name.function.ql
+#                                     ^- meta.block.predicate-parameter-list.ql
+#                                     ^ punctuation.parenthesis.open.ql
+#                                      ^ punctuation.parenthesis.close.ql
+#                                        ^-------------------------- meta.block.predicate-body.ql
+#                                        ^ punctuation.curlybrace.open.ql
+#                                          ^----- variable.language.result.ql
+#                                                 ^ keyword.operator.comparison.ql
+#                                                   ^--- variable.language.this.ql
+#                                                       ^ punctuation.accessor.ql
+#                                                        ^----- entity.name.function.ql
+#                                                              ^ punctuation.parenthesis.open.ql
+#                                                               ^ constant.numeric.decimal.ql
+#                                                                ^ punctuation.parenthesis.close.ql
+#                                                                  ^ punctuation.curlybrace.close.ql
+  }
+#<0 meta.block.module-declaration.ql
+#<0 meta.block.module-body.ql
+#<0 meta.block.class-declaration.ql
+#<0 meta.block.class-body.ql
+# ^ punctuation.curlybrace.close.ql
+
+  private class LDAP2EscapeFilterCall extends DataFlow::CallCfgNode, LDAPEscape::Range {
+#<0------------------------------------------------------------------------------------- meta.block.module-declaration.ql
+#<0------------------------------------------------------------------------------------- meta.block.module-body.ql
+# ^------ storage.modifier.private.ql
+#         ^----------------------------------------------------------------------------- meta.block.class-declaration.ql
+#         ^---- keyword.other.class.ql
+#               ^-------------------- entity.name.type.class.ql
+#                                     ^------------------------------------------------ meta.block.extends-clause.ql
+#                                     ^------ keyword.other.extends.ql
+#                                             ^------- entity.name.type.ql
+#                                                       ^---------- entity.name.type.ql
+#                                                                  ^ punctuation.separator.comma.ql
+#                                                                    ^--------- entity.name.type.ql
+#                                                                                ^---- entity.name.type.ql
+#                                                                                      ^ meta.block.class-body.ql
+#                                                                                      ^ punctuation.curlybrace.open.ql
+    LDAP2EscapeFilterCall() {
+#<0-------------------------- meta.block.module-declaration.ql
+#<0-------------------------- meta.block.module-body.ql
+#<0-------------------------- meta.block.class-declaration.ql
+#<0-------------------------- meta.block.class-body.ql
+#   ^------------------------ meta.block.predicate-or-field-declaration.ql
+#   ^-------------------- entity.name.type.ql
+#                        ^- meta.block.predicate-parameter-list.ql
+#                        ^ punctuation.parenthesis.open.ql
+#                         ^ punctuation.parenthesis.close.ql
+#                           ^ meta.block.predicate-body.ql
+#                           ^ punctuation.curlybrace.open.ql
+      this =
+#<0--------- meta.block.module-declaration.ql
+#<0--------- meta.block.module-body.ql
+#<0--------- meta.block.class-declaration.ql
+#<0--------- meta.block.class-body.ql
+#<0--------- meta.block.predicate-or-field-declaration.ql
+#<0--------- meta.block.predicate-body.ql
+#     ^--- variable.language.this.ql
+#          ^ keyword.operator.comparison.ql
+        API::moduleImport("ldap").getMember("filter").getMember("escape_filter_chars").getACall()
+#<0---------------------------------------------------------------------------------------------- meta.block.module-declaration.ql
+#<0---------------------------------------------------------------------------------------------- meta.block.module-body.ql
+#<0---------------------------------------------------------------------------------------------- meta.block.class-declaration.ql
+#<0---------------------------------------------------------------------------------------------- meta.block.class-body.ql
+#<0---------------------------------------------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0---------------------------------------------------------------------------------------------- meta.block.predicate-body.ql
+#       ^-- entity.name.type.namespace.ql
+#            ^----------- entity.name.function.ql
+#                        ^ punctuation.parenthesis.open.ql
+#                         ^----- string.quoted.double.ql
+#                         ^ punctuation.definition.string.begin.ql
+#                              ^ punctuation.definition.string.end.ql
+#                               ^ punctuation.parenthesis.close.ql
+#                                ^ punctuation.accessor.ql
+#                                 ^-------- entity.name.function.ql
+#                                          ^ punctuation.parenthesis.open.ql
+#                                           ^------- string.quoted.double.ql
+#                                           ^ punctuation.definition.string.begin.ql
+#                                                  ^ punctuation.definition.string.end.ql
+#                                                   ^ punctuation.parenthesis.close.ql
+#                                                    ^ punctuation.accessor.ql
+#                                                     ^-------- entity.name.function.ql
+#                                                              ^ punctuation.parenthesis.open.ql
+#                                                               ^-------------------- string.quoted.double.ql
+#                                                               ^ punctuation.definition.string.begin.ql
+#                                                                                   ^ punctuation.definition.string.end.ql
+#                                                                                    ^ punctuation.parenthesis.close.ql
+#                                                                                     ^ punctuation.accessor.ql
+#                                                                                      ^------- entity.name.function.ql
+#                                                                                              ^ punctuation.parenthesis.open.ql
+#                                                                                               ^ punctuation.parenthesis.close.ql
+    }
+#<0-- meta.block.module-declaration.ql
+#<0-- meta.block.module-body.ql
+#<0-- meta.block.class-declaration.ql
+#<0-- meta.block.class-body.ql
+#<0-- meta.block.predicate-or-field-declaration.ql
+#<0-- meta.block.predicate-body.ql
+#   ^ punctuation.curlybrace.close.ql
+
+    override DataFlow::Node getAnInput() { result = this.getArg(0) }
+#<0----------------------------------------------------------------- meta.block.module-declaration.ql
+#<0----------------------------------------------------------------- meta.block.module-body.ql
+#<0----------------------------------------------------------------- meta.block.class-declaration.ql
+#<0----------------------------------------------------------------- meta.block.class-body.ql
+#   ^------- storage.modifier.override.ql
+#            ^------------------------------------------------------ meta.block.predicate-or-field-declaration.ql
+#            ^------- entity.name.type.namespace.ql
+#                      ^--- entity.name.type.ql
+#                           ^--------- entity.name.function.ql
+#                                     ^- meta.block.predicate-parameter-list.ql
+#                                     ^ punctuation.parenthesis.open.ql
+#                                      ^ punctuation.parenthesis.close.ql
+#                                        ^-------------------------- meta.block.predicate-body.ql
+#                                        ^ punctuation.curlybrace.open.ql
+#                                          ^----- variable.language.result.ql
+#                                                 ^ keyword.operator.comparison.ql
+#                                                   ^--- variable.language.this.ql
+#                                                       ^ punctuation.accessor.ql
+#                                                        ^----- entity.name.function.ql
+#                                                              ^ punctuation.parenthesis.open.ql
+#                                                               ^ constant.numeric.decimal.ql
+#                                                                ^ punctuation.parenthesis.close.ql
+#                                                                  ^ punctuation.curlybrace.close.ql
+  }
+#<0 meta.block.module-declaration.ql
+#<0 meta.block.module-body.ql
+#<0 meta.block.class-declaration.ql
+#<0 meta.block.class-body.ql
+# ^ punctuation.curlybrace.close.ql
+}
+#<0 meta.block.module-declaration.ql
+#<0 meta.block.module-body.ql
+#<0 punctuation.curlybrace.close.ql
+
+// a taint flow config
+#<0------------------- comment.line.double-slash.ql
+
+class LDAPInjectionFlowConfig extends TaintTracking::Configuration {
+#<0----------------------------------------------------------------- meta.block.class-declaration.ql
+#<0-- keyword.other.class.ql
+#     ^---------------------- entity.name.type.class.ql
+#                             ^------------------------------------ meta.block.extends-clause.ql
+#                             ^------ keyword.other.extends.ql
+#                                     ^------------ entity.name.type.ql
+#                                                    ^------------ entity.name.type.ql
+#                                                                  ^ meta.block.class-body.ql
+#                                                                  ^ punctuation.curlybrace.open.ql
+  LDAPInjectionFlowConfig() { this = "LDAPInjectionFlowConfig" }
+#<0------------------------------------------------------------- meta.block.class-declaration.ql
+#<0------------------------------------------------------------- meta.block.class-body.ql
+# ^------------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+# ^---------------------- entity.name.type.ql
+#                        ^- meta.block.predicate-parameter-list.ql
+#                        ^ punctuation.parenthesis.open.ql
+#                         ^ punctuation.parenthesis.close.ql
+#                           ^----------------------------------- meta.block.predicate-body.ql
+#                           ^ punctuation.curlybrace.open.ql
+#                             ^--- variable.language.this.ql
+#                                  ^ keyword.operator.comparison.ql
+#                                    ^------------------------ string.quoted.double.ql
+#                                    ^ punctuation.definition.string.begin.ql
+#                                                            ^ punctuation.definition.string.end.ql
+#                                                              ^ punctuation.curlybrace.close.ql
+
+  override predicate isSource(DataFlow::Node source) { source instanceof RemoteFlowSource }
+#<0---------------------------------------------------------------------------------------- meta.block.class-declaration.ql
+#<0---------------------------------------------------------------------------------------- meta.block.class-body.ql
+# ^------- storage.modifier.override.ql
+#          ^------------------------------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#          ^-------- keyword.other.predicate.ql
+#                    ^------- entity.name.function.ql
+#                            ^---------------------- meta.block.predicate-parameter-list.ql
+#                            ^ punctuation.parenthesis.open.ql
+#                             ^------- entity.name.type.namespace.ql
+#                                       ^--- entity.name.type.ql
+#                                            ^----- variable.parameter.ql
+#                                                  ^ punctuation.parenthesis.close.ql
+#                                                    ^------------------------------------- meta.block.predicate-body.ql
+#                                                    ^ punctuation.curlybrace.open.ql
+#                                                      ^----- variable.other.ql
+#                                                             ^--------- keyword.other.instanceof.ql
+#                                                                        ^--------------- entity.name.type.ql
+#                                                                                         ^ punctuation.curlybrace.close.ql
+
+  override predicate isSink(DataFlow::Node sink) { sink = any(LDAPQuery ldapQuery).getQuery() }
+#<0-------------------------------------------------------------------------------------------- meta.block.class-declaration.ql
+#<0-------------------------------------------------------------------------------------------- meta.block.class-body.ql
+# ^------- storage.modifier.override.ql
+#          ^----------------------------------------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#          ^-------- keyword.other.predicate.ql
+#                    ^----- entity.name.function.ql
+#                          ^-------------------- meta.block.predicate-parameter-list.ql
+#                          ^ punctuation.parenthesis.open.ql
+#                           ^------- entity.name.type.namespace.ql
+#                                     ^--- entity.name.type.ql
+#                                          ^--- variable.parameter.ql
+#                                              ^ punctuation.parenthesis.close.ql
+#                                                ^--------------------------------------------- meta.block.predicate-body.ql
+#                                                ^ punctuation.curlybrace.open.ql
+#                                                  ^--- variable.other.ql
+#                                                       ^ keyword.operator.comparison.ql
+#                                                         ^-- keyword.quantifier.any.ql
+#                                                            ^ punctuation.parenthesis.open.ql
+#                                                             ^-------- entity.name.type.ql
+#                                                                       ^-------- variable.other.ql
+#                                                                                ^ punctuation.parenthesis.close.ql
+#                                                                                 ^ punctuation.accessor.ql
+#                                                                                  ^------- entity.name.function.ql
+#                                                                                          ^ punctuation.parenthesis.open.ql
+#                                                                                           ^ punctuation.parenthesis.close.ql
+#                                                                                             ^ punctuation.curlybrace.close.ql
+
+  override predicate isSanitizer(DataFlow::Node sanitizer) {
+#<0--------------------------------------------------------- meta.block.class-declaration.ql
+#<0--------------------------------------------------------- meta.block.class-body.ql
+# ^------- storage.modifier.override.ql
+#          ^------------------------------------------------ meta.block.predicate-or-field-declaration.ql
+#          ^-------- keyword.other.predicate.ql
+#                    ^---------- entity.name.function.ql
+#                               ^------------------------- meta.block.predicate-parameter-list.ql
+#                               ^ punctuation.parenthesis.open.ql
+#                                ^------- entity.name.type.namespace.ql
+#                                          ^--- entity.name.type.ql
+#                                               ^-------- variable.parameter.ql
+#                                                        ^ punctuation.parenthesis.close.ql
+#                                                          ^ meta.block.predicate-body.ql
+#                                                          ^ punctuation.curlybrace.open.ql
+    sanitizer = any(LDAPEscape ldapEsc).getAnInput()
+#<0------------------------------------------------- meta.block.class-declaration.ql
+#<0------------------------------------------------- meta.block.class-body.ql
+#<0------------------------------------------------- meta.block.predicate-or-field-declaration.ql
+#<0------------------------------------------------- meta.block.predicate-body.ql
+#   ^-------- variable.other.ql
+#             ^ keyword.operator.comparison.ql
+#               ^-- keyword.quantifier.any.ql
+#                  ^ punctuation.parenthesis.open.ql
+#                   ^--------- entity.name.type.ql
+#                              ^------ variable.other.ql
+#                                     ^ punctuation.parenthesis.close.ql
+#                                      ^ punctuation.accessor.ql
+#                                       ^--------- entity.name.function.ql
+#                                                 ^ punctuation.parenthesis.open.ql
+#                                                  ^ punctuation.parenthesis.close.ql
+  }
+#<0 meta.block.class-declaration.ql
+#<0 meta.block.class-body.ql
+#<0 meta.block.predicate-or-field-declaration.ql
+#<0 meta.block.predicate-body.ql
+# ^ punctuation.curlybrace.close.ql
+}
+#<0 meta.block.class-declaration.ql
+#<0 meta.block.class-body.ql
+#<0 punctuation.curlybrace.close.ql
+
+// From https://github.com/github/codeql/pull/5443/files
+#<0----------------------------------------------------- comment.line.double-slash.ql

@@ -1,0 +1,177 @@
+// grammar: source.stylus
+
+vendor(prop, args)
+//<0------------- meta.function.stylus
+//<0-- entity.name.function.stylus
+//    ^ punctuation.section.function.css
+//         ^- punctuation.separator.parameter.css
+//               ^ punctuation.section.function.css
+  -webkit-{prop} args
+//<0----------------- meta.property-list.css
+//        ^----- meta.interpolation.stylus
+//        ^ meta.brace.curly
+//             ^ meta.brace.curly
+  -moz-{prop} args
+//<0-------------- meta.property-list.css
+//     ^----- meta.interpolation.stylus
+//     ^ meta.brace.curly
+//          ^ meta.brace.curly
+  {prop} args
+//<0--------- meta.property-list.css
+//^----- meta.interpolation.stylus
+//^ meta.brace.curly
+//     ^ meta.brace.curly
+
+border-radius()
+//<0---------- meta.function.stylus
+//<0--------- entity.name.function.stylus
+//           ^ punctuation.section.function.css
+//            ^ punctuation.section.function.css
+  vendor('border-radius', arguments)
+//<0-------------------------------- meta.property-list.css
+//^-------------------------------- meta.function.stylus
+//^----- entity.name.function.stylus
+//      ^ punctuation.section.function.css
+//       ^-------------- string.quoted.single.css
+//       ^ punctuation.definition.string.begin.css
+//                     ^ punctuation.definition.string.end.css
+//                      ^- punctuation.separator.parameter.css
+//                        ^-------- variable.language.stylus
+//                                 ^ punctuation.section.function.css
+
+box-shadow()
+//<0------- meta.function.stylus
+//<0------ entity.name.function.stylus
+//        ^ punctuation.section.function.css
+//         ^ punctuation.section.function.css
+  vendor('box-shadow', arguments)
+//<0----------------------------- meta.property-list.css
+//^----------------------------- meta.function.stylus
+//^----- entity.name.function.stylus
+//      ^ punctuation.section.function.css
+//       ^----------- string.quoted.single.css
+//       ^ punctuation.definition.string.begin.css
+//                  ^ punctuation.definition.string.end.css
+//                   ^- punctuation.separator.parameter.css
+//                     ^-------- variable.language.stylus
+//                              ^ punctuation.section.function.css
+
+button
+//<0-- entity.name.tag.css
+  border-radius 1px 2px / 3px 4px
+//<0----------------------------- meta.property-list.css
+//^------------ support.type.property-name.css
+//             ^----------------- meta.property-value.css
+//             ^ punctuation.separator.key-value.css
+//              ^-- constant.numeric.css
+//               ^- keyword.other.unit.css
+//                  ^-- constant.numeric.css
+//                   ^- keyword.other.unit.css
+//                      ^ keyword.operator.stylus
+//                        ^-- constant.numeric.css
+//                         ^- keyword.other.unit.css
+//                            ^-- constant.numeric.css
+//                             ^- keyword.other.unit.css
+
+border-radius() {
+//<0---------- meta.function.stylus
+//<0--------- entity.name.function.stylus
+//           ^ punctuation.section.function.css
+//            ^ punctuation.section.function.css
+//              ^ meta.brace.curly.css
+  -webkit-border-radius: arguments;
+//<0------------------------------- meta.property-list.css
+//^-------------------- support.type.property-name.css
+//                     ^---------- meta.property-value.css
+//                     ^ punctuation.separator.key-value.css
+//                       ^-------- variable.language.stylus
+//                                ^ punctuation.terminator.rule.css
+  -moz-border-radius: arguments;
+//<0---------------------------- meta.property-list.css
+//^----------------- support.type.property-name.css
+//                  ^---------- meta.property-value.css
+//                  ^ punctuation.separator.key-value.css
+//                    ^-------- variable.language.stylus
+//                             ^ punctuation.terminator.rule.css
+  border-radius: arguments;
+//<0----------------------- meta.property-list.css
+//^------------ support.type.property-name.css
+//             ^---------- meta.property-value.css
+//             ^ punctuation.separator.key-value.css
+//               ^-------- variable.language.stylus
+//                        ^ punctuation.terminator.rule.css
+}
+//<0 meta.brace.curly.css
+
+body a {
+//<0 entity.name.tag.css
+//   ^ entity.name.tag.css
+//     ^ meta.brace.curly.css
+  font: 12px/1.4 "Lucida Grande", Arial, sans-serif;
+//<0------------------------------------------------ meta.property-list.css
+//^--- support.type.property-name.css
+//    ^-------------------------------------------- meta.property-value.css
+//    ^ punctuation.separator.key-value.css
+//      ^--- constant.numeric.css
+//        ^- keyword.other.unit.css
+//          ^ keyword.operator.stylus
+//           ^-- constant.numeric.css
+//               ^-------------- string.quoted.double.css
+//               ^ punctuation.definition.string.begin.css
+//                             ^ punctuation.definition.string.end.css
+//                                ^---- support.constant.font-name.css
+//                                       ^--------- support.constant.font-name.css
+//                                                 ^ punctuation.terminator.rule.css
+  background: black;
+//<0---------------- meta.property-list.css
+//^--------- support.type.property-name.css
+//          ^------ meta.property-value.css
+//          ^ punctuation.separator.key-value.css
+//            ^---- support.constant.color.w3c-standard-color-name.css
+//                 ^ punctuation.terminator.rule.css
+  color: #ccc;
+//<0---------- meta.property-list.css
+//^---- support.type.property-name.css
+//     ^----- meta.property-value.css
+//     ^ punctuation.separator.key-value.css
+//       ^--- constant.other.color.rgb-value.css
+//       ^ punctuation.definition.constant.css
+//           ^ punctuation.terminator.rule.css
+}
+//<0 meta.brace.curly.css
+
+form input {
+//<0 entity.name.tag.css
+//   ^---- entity.name.tag.css
+//         ^ meta.brace.curly.css
+  padding: 5px;
+//<0----------- meta.property-list.css
+//^------ support.type.property-name.css
+//       ^---- meta.property-value.css
+//       ^ punctuation.separator.key-value.css
+//         ^-- constant.numeric.css
+//          ^- keyword.other.unit.css
+//            ^ punctuation.terminator.rule.css
+  border: 1px solid;
+//<0---------------- meta.property-list.css
+//^----- support.type.property-name.css
+//      ^---------- meta.property-value.css
+//      ^ punctuation.separator.key-value.css
+//        ^-- constant.numeric.css
+//         ^- keyword.other.unit.css
+//            ^---- support.constant.property-value.css
+//                 ^ punctuation.terminator.rule.css
+  border-radius: 5px;
+//<0----------------- meta.property-list.css
+//^------------ support.type.property-name.css
+//             ^---- meta.property-value.css
+//             ^ punctuation.separator.key-value.css
+//               ^-- constant.numeric.css
+//                ^- keyword.other.unit.css
+//                  ^ punctuation.terminator.rule.css
+}
+//<0 meta.brace.curly.css
+
+// From https://stylus-lang.com/docs/css-style.html#example
+//<0------------------------------------------------------- comment.line.double-slash.stylus
+//<0 punctuation.definition.comment.stylus

@@ -1,0 +1,77 @@
+# grammar: source.desktop
+
+[Desktop Entry]
+#<0------------ markup.heading
+Name=Discover
+#<0- keyword
+#   ^ keyword.operator
+MimeType=application/vnd.flatpak;application/vnd.flatpak.repo;application/vnd.flatpak.ref;
+#<0----- keyword
+#       ^ keyword.operator
+#                               ^ strong
+#                                                            ^ strong
+#                                                                                        ^ strong
+Exec=plasma-discover %F
+#<0- keyword
+#   ^ keyword.operator
+Icon=plasmadiscover
+#<0- keyword
+#   ^ keyword.operator
+Type=Application
+#<0- keyword
+#   ^ keyword.operator
+X-DocPath=plasma-discover/index.html
+#<0------ keyword.other
+#        ^ keyword.operator
+InitialPreference=5
+#                ^ keyword.operator
+NoDisplay=false
+#<0------ keyword
+#        ^ keyword.operator
+#         ^---- variable.other
+Actions=Updates;
+#<0---- keyword
+#      ^ keyword.operator
+#              ^ strong
+SingleMainWindow=true
+#               ^ keyword.operator
+#                ^--- variable.other
+GenericName=Software Center
+#<0-------- keyword
+#          ^ keyword.operator
+Categories=Qt;KDE;System;
+#<0------- keyword
+#         ^ keyword.operator
+#            ^ strong
+#                ^ strong
+#                 ^----- markup.bold
+#                       ^ strong
+Keywords=program;software;add;install;uninstall;remove;update;apps;applications;games;
+#<0----- keyword
+#       ^ keyword.operator
+#               ^ strong
+#                        ^ strong
+#                            ^ strong
+#                                    ^ strong
+#                                              ^ strong
+#                                                     ^ strong
+#                                                            ^ strong
+#                                                                 ^ strong
+#                                                                              ^ strong
+#                                                                                    ^ strong
+
+[Desktop Action Updates]
+#<0--------------------- markup.heading
+Name=See Available Updates
+#<0- keyword
+#   ^ keyword.operator
+Icon=update-low
+#<0- keyword
+#   ^ keyword.operator
+Exec=plasma-discover --mode update
+#<0- keyword
+#   ^ keyword.operator
+#                    ^----- variable.parameter
+
+# From https://invent.kde.org/plasma/discover/-/blob/master/discover/org.kde.discover.desktop.cmake
+#<0------------------------------------------------------------------------------------------------ comment

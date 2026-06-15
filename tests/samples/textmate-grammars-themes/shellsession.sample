@@ -1,0 +1,47 @@
+# grammar: text.shell-session
+
+$ echo $EDITOR
+#<0 punctuation.separator.prompt.shell-session
+# ^----------- source.shell
+#      ^ punctuation.definition.variable.shell
+#      ^ variable.other.normal.shell
+#       ^----- variable.other.normal.shell
+vim
+#<0 meta.output.shell-session
+$ git checkout main
+#<0 punctuation.separator.prompt.shell-session
+# ^---------------- source.shell
+Switched to branch 'main'
+#<0---------------------- meta.output.shell-session
+Your branch is up-to-date with 'origin/main'.
+#<0------------------------------------------ meta.output.shell-session
+$ git push
+#<0 punctuation.separator.prompt.shell-session
+# ^------- source.shell
+Everything up-to-date
+#<0------------------ meta.output.shell-session
+$ echo 'All
+#<0 punctuation.separator.prompt.shell-session
+# ^-------- source.shell
+#      ^--- string.quoted.single.shell
+#      ^ punctuation.definition.string.begin.shell
+> done!'
+#<0 punctuation.separator.prompt.shell-session
+# ^----- source.shell
+#     ^ keyword.operator.pipe.shell
+#      ^ meta.statement.shell
+#      ^ meta.statement.command.shell
+#      ^ meta.statement.command.name.shell
+#      ^ meta.statement.command.name.quoted.shell
+#      ^ string.quoted.single.shell
+#      ^ punctuation.definition.string.begin.shell
+#      ^ entity.name.function.call.shell
+#      ^ entity.name.command.shell
+All
+#<0 meta.output.shell-session
+done!
+#<0-- meta.output.shell-session
+
+# From https://github.com/highlightjs/highlight.js/blob/fcefad4a6bf99b88c54b2b724ca77466e94c374d/test/detect/shell/default.txt#L4
+#<0 punctuation.separator.prompt.shell-session
+# ^------------------------------------------------------------------------------------------------------------------------------ source.shell

@@ -1,0 +1,202 @@
+; grammar: source.emacs.lisp
+
+;;; cdl.el --- Common Data Language (CDL) utility functions for GNU Emacs -*- lexical-binding: t -*-
+;<0------------------------------------------------------------------------------------------------- comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp
+;                                                                         ^------------------------- meta.modeline.emacs.lisp
+;                                                                         ^-- punctuation.definition.modeline.begin.emacs.lisp
+;                                                                             ^------------------ meta.modeline.variable.emacs.lisp
+;                                                                             ^-------------- variable.assignment.modeline.emacs.lisp
+;                                                                                            ^ punctuation.separator.key-value.emacs.lisp
+;                                                                                              ^ string.other.modeline.emacs.lisp
+;                                                                                                ^-- punctuation.definition.modeline.end.emacs.lisp
+
+;; Copyright (C) 1993, 2001-2024 Free Software Foundation, Inc.
+;<0------------------------------------------------------------ comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp
+
+;; Author: Ata Etemadi <ATAE@spva.physics.imperial.ac.uk>
+;<0------------------------------------------------------ comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp
+;; Maintainer: emacs-devel@gnu.org
+;<0------------------------------- comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp
+;; Keywords: data
+;<0-------------- comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp
+
+;;; Commentary:
+;<0------------ comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp
+
+;;; Code:
+;<0------ comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp
+
+(defun cdl-get-file (filename)
+;<0--------------------------- meta.function.definition.emacs.lisp
+;<0 punctuation.section.expression.begin.emacs.lisp
+;^---- storage.type.defun.function.emacs.lisp
+;      ^----------- entity.function.name.emacs.lisp
+;                  ^---------- meta.argument-list.expression.emacs.lisp
+;                  ^- punctuation.section.expression.begin.emacs.lisp
+;                    ^------- variable.parameter.emacs.lisp
+;                            ^ punctuation.section.expression.end.emacs.lisp
+  "Run file through ncdump and insert result into buffer after point."
+;<0------------------------------------------------------------------- meta.function.definition.emacs.lisp
+; ^------------------------------------------------------------------- string.quoted.double.emacs.lisp
+; ^ punctuation.definition.string.begin.emacs.lisp
+;                                                                    ^ punctuation.definition.string.end.emacs.lisp
+  (interactive "fCDF file: ")
+;<0-------------------------- meta.function.definition.emacs.lisp
+; ^-------------------------- meta.expression.emacs.lisp
+; ^ punctuation.section.expression.begin.emacs.lisp
+;  ^---------- storage.modifier.interactive.function.emacs.lisp
+;              ^------------ string.quoted.double.emacs.lisp
+;              ^ punctuation.definition.string.begin.emacs.lisp
+;                          ^ punctuation.definition.string.end.emacs.lisp
+;                           ^ punctuation.section.expression.end.emacs.lisp
+  (message "ncdump in progress...")
+;<0-------------------------------- meta.function.definition.emacs.lisp
+; ^-------------------------------- meta.string-formatting.expression.emacs.lisp
+; ^ punctuation.section.expression.begin.emacs.lisp
+;  ^------ support.function.message.emacs.lisp
+;          ^ punctuation.definition.string.begin.emacs.lisp
+;           ^-------------------- string.quoted.double.emacs.lisp
+;                                ^ punctuation.definition.string.end.emacs.lisp
+;                                 ^ punctuation.section.expression.end.emacs.lisp
+  (let ((start (point)))
+;<0--------------------- meta.function.definition.emacs.lisp
+; ^--------------------- meta.expression.emacs.lisp
+; ^ punctuation.section.expression.begin.emacs.lisp
+;  ^-- storage.binding.emacs.lisp
+;      ^---------------- meta.expression.emacs.lisp
+;      ^ punctuation.section.expression.begin.emacs.lisp
+;       ^-------------- meta.expression.emacs.lisp
+;       ^ punctuation.section.expression.begin.emacs.lisp
+;              ^------ meta.expression.emacs.lisp
+;              ^ punctuation.section.expression.begin.emacs.lisp
+;               ^---- support.function.emacs.lisp
+;                    ^ punctuation.section.expression.end.emacs.lisp
+;                     ^ punctuation.section.expression.end.emacs.lisp
+;                      ^ punctuation.section.expression.end.emacs.lisp
+    (call-process  "ncdump" nil t nil (expand-file-name filename))
+;<0--------------------------------------------------------------- meta.function.definition.emacs.lisp
+;<0--------------------------------------------------------------- meta.expression.emacs.lisp
+;   ^------------------------------------------------------------- meta.expression.emacs.lisp
+;   ^ punctuation.section.expression.begin.emacs.lisp
+;    ^----------- support.function.emacs.lisp
+;                  ^------- string.quoted.double.emacs.lisp
+;                  ^ punctuation.definition.string.begin.emacs.lisp
+;                         ^ punctuation.definition.string.end.emacs.lisp
+;                           ^-- constant.language.nil.emacs.lisp
+;                               ^ constant.boolean.true.emacs.lisp
+;                                 ^-- constant.language.nil.emacs.lisp
+;                                     ^-------------------------- meta.expression.emacs.lisp
+;                                     ^ punctuation.section.expression.begin.emacs.lisp
+;                                      ^--------------- support.function.emacs.lisp
+;                                                               ^ punctuation.section.expression.end.emacs.lisp
+;                                                                ^ punctuation.section.expression.end.emacs.lisp
+    (goto-char start))
+;<0------------------- meta.function.definition.emacs.lisp
+;<0------------------- meta.expression.emacs.lisp
+;   ^---------------- meta.expression.emacs.lisp
+;   ^ punctuation.section.expression.begin.emacs.lisp
+;    ^-------- support.function.emacs.lisp
+;                   ^ punctuation.section.expression.end.emacs.lisp
+;                    ^ punctuation.section.expression.end.emacs.lisp
+  (message "ncdump in progress...done"))
+;<0------------------------------------- meta.function.definition.emacs.lisp
+; ^------------------------------------ meta.string-formatting.expression.emacs.lisp
+; ^ punctuation.section.expression.begin.emacs.lisp
+;  ^------ support.function.message.emacs.lisp
+;          ^ punctuation.definition.string.begin.emacs.lisp
+;           ^------------------------ string.quoted.double.emacs.lisp
+;                                    ^ punctuation.definition.string.end.emacs.lisp
+;                                     ^ punctuation.section.expression.end.emacs.lisp
+;                                      ^ punctuation.section.expression.end.emacs.lisp
+
+(defun cdl-put-region (filename start end)
+;<0--------------------------------------- meta.function.definition.emacs.lisp
+;<0 punctuation.section.expression.begin.emacs.lisp
+;^---- storage.type.defun.function.emacs.lisp
+;      ^------------- entity.function.name.emacs.lisp
+;                    ^-------------------- meta.argument-list.expression.emacs.lisp
+;                    ^- punctuation.section.expression.begin.emacs.lisp
+;                      ^------- variable.parameter.emacs.lisp
+;                               ^---- variable.parameter.emacs.lisp
+;                                     ^-- variable.parameter.emacs.lisp
+;                                        ^ punctuation.section.expression.end.emacs.lisp
+  "Run region through ncgen and write results into a file."
+;<0-------------------------------------------------------- meta.function.definition.emacs.lisp
+; ^-------------------------------------------------------- string.quoted.double.emacs.lisp
+; ^ punctuation.definition.string.begin.emacs.lisp
+;                                                         ^ punctuation.definition.string.end.emacs.lisp
+  (interactive "FNew CDF file: \nr")
+;<0--------------------------------- meta.function.definition.emacs.lisp
+; ^--------------------------------- meta.expression.emacs.lisp
+; ^ punctuation.section.expression.begin.emacs.lisp
+;  ^---------- storage.modifier.interactive.function.emacs.lisp
+;              ^------------------- string.quoted.double.emacs.lisp
+;              ^ punctuation.definition.string.begin.emacs.lisp
+;                              ^- constant.escape.character.emacs.lisp
+;                              ^ punctuation.escape.backslash.emacs.lisp
+;                                 ^ punctuation.definition.string.end.emacs.lisp
+;                                  ^ punctuation.section.expression.end.emacs.lisp
+  (message "ncgen in progress...")
+;<0------------------------------- meta.function.definition.emacs.lisp
+; ^------------------------------- meta.string-formatting.expression.emacs.lisp
+; ^ punctuation.section.expression.begin.emacs.lisp
+;  ^------ support.function.message.emacs.lisp
+;          ^ punctuation.definition.string.begin.emacs.lisp
+;           ^------------------- string.quoted.double.emacs.lisp
+;                               ^ punctuation.definition.string.end.emacs.lisp
+;                                ^ punctuation.section.expression.end.emacs.lisp
+  (call-process-region start end "ncgen"
+;<0------------------------------------- meta.function.definition.emacs.lisp
+; ^------------------------------------- meta.expression.emacs.lisp
+; ^ punctuation.section.expression.begin.emacs.lisp
+;  ^------------------ support.function.emacs.lisp
+;                                ^------ string.quoted.double.emacs.lisp
+;                                ^ punctuation.definition.string.begin.emacs.lisp
+;                                      ^ punctuation.definition.string.end.emacs.lisp
+                       nil nil nil "-o" (expand-file-name filename))
+;<0----------------------------------------------------------------- meta.function.definition.emacs.lisp
+;<0----------------------------------------------------------------- meta.expression.emacs.lisp
+;                      ^-- constant.language.nil.emacs.lisp
+;                          ^-- constant.language.nil.emacs.lisp
+;                              ^-- constant.language.nil.emacs.lisp
+;                                  ^--- string.quoted.double.emacs.lisp
+;                                  ^ punctuation.definition.string.begin.emacs.lisp
+;                                     ^ punctuation.definition.string.end.emacs.lisp
+;                                       ^-------------------------- meta.expression.emacs.lisp
+;                                       ^ punctuation.section.expression.begin.emacs.lisp
+;                                        ^--------------- support.function.emacs.lisp
+;                                                                 ^ punctuation.section.expression.end.emacs.lisp
+;                                                                  ^ punctuation.section.expression.end.emacs.lisp
+  (message "ncgen in progress...done"))
+;<0------------------------------------ meta.function.definition.emacs.lisp
+; ^----------------------------------- meta.string-formatting.expression.emacs.lisp
+; ^ punctuation.section.expression.begin.emacs.lisp
+;  ^------ support.function.message.emacs.lisp
+;          ^ punctuation.definition.string.begin.emacs.lisp
+;           ^----------------------- string.quoted.double.emacs.lisp
+;                                   ^ punctuation.definition.string.end.emacs.lisp
+;                                    ^ punctuation.section.expression.end.emacs.lisp
+;                                     ^ punctuation.section.expression.end.emacs.lisp
+
+(provide 'cdl)
+;<0----------- meta.expression.emacs.lisp
+;<0 punctuation.section.expression.begin.emacs.lisp
+;^------ support.function.emacs.lisp
+;        ^--- constant.other.symbol.emacs.lisp
+;        ^ punctuation.definition.quote.emacs.lisp
+;            ^ punctuation.section.expression.end.emacs.lisp
+
+;;; cdl.el ends here
+;<0----------------- comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp
+
+;; From https://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/cdl.el
+;<0----------------------------------------------------------------- comment.line.semicolon.emacs.lisp
+;<0 punctuation.definition.comment.emacs.lisp

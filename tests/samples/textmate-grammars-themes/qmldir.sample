@@ -1,0 +1,23 @@
+// grammar: source.qmldir
+
+module ExampleModule
+//<0-- keyword.other.qmldir
+//     ^------------ entity.name.type.qmldir
+CustomButton 2.0 CustomButton20.qml
+//<0-------- entity.name.type.qmldir
+//           ^-- constant.numeric.qml
+//               ^----------------- string.unquoted.qmldir
+CustomButton 2.1 CustomButton21.qml
+//<0-------- entity.name.type.qmldir
+//           ^-- constant.numeric.qml
+//               ^----------------- string.unquoted.qmldir
+plugin examplemodule
+//<0-- keyword.other.qmldir
+//     ^------------ variable.parameter.qmldir
+MathFunctions 2.0 mathfuncs.js
+//<0--------- entity.name.type.qmldir
+//            ^-- constant.numeric.qml
+//                ^----------- string.unquoted.qmldir
+
+# From https://doc.qt.io/qt-6/qtqml-modules-qmldir.html#example-of-a-qmldir-file
+//<0---------------------------------------------------------------------------- comment.line.number-sign.qmldir

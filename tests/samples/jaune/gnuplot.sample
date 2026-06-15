@@ -1,0 +1,79 @@
+# grammar: source.gnuplot
+
+set title 'Hello, world'                       # plot title
+#<0 keyword.other.command.gnuplot
+#  ^----- support.class.options.gnuplot
+#         ^------------- string.quoted.single.gnuplot
+#         ^ punctuation.definition.string.begin.gnuplot
+#                      ^ punctuation.definition.string.end.gnuplot
+#                                              ^----------- comment.line.number-sign.gnuplot
+#                                              ^ punctuation.definition.comment.begin.gnuplot
+set xlabel 'Time'                              # x-axis label
+#<0 keyword.other.command.gnuplot
+#  ^------ support.class.options.gnuplot
+#          ^----- string.quoted.single.gnuplot
+#          ^ punctuation.definition.string.begin.gnuplot
+#               ^ punctuation.definition.string.end.gnuplot
+#                                              ^------------- comment.line.number-sign.gnuplot
+#                                              ^ punctuation.definition.comment.begin.gnuplot
+set ylabel 'Distance'                          # y-axis label
+#<0 keyword.other.command.gnuplot
+#  ^------ support.class.options.gnuplot
+#          ^--------- string.quoted.single.gnuplot
+#          ^ punctuation.definition.string.begin.gnuplot
+#                   ^ punctuation.definition.string.end.gnuplot
+#                                              ^------------- comment.line.number-sign.gnuplot
+#                                              ^ punctuation.definition.comment.begin.gnuplot
+
+# labels
+#<0----- comment.line.number-sign.gnuplot
+#<0 punctuation.definition.comment.begin.gnuplot
+set label "boiling point" at 10, 212
+#<0 keyword.other.command.gnuplot
+#  ^----- support.class.options.gnuplot
+#         ^-------------- string.quoted.double.gnuplot
+#         ^ punctuation.definition.string.begin.gnuplot
+#                       ^ punctuation.definition.string.end.gnuplot
+#                            ^- constant.numeric.dec.gnuplot
+#                                ^-- constant.numeric.dec.gnuplot
+
+# key/legend
+#<0--------- comment.line.number-sign.gnuplot
+#<0 punctuation.definition.comment.begin.gnuplot
+set key top right
+#<0 keyword.other.command.gnuplot
+#  ^--- support.class.options.gnuplot
+set key box
+#<0 keyword.other.command.gnuplot
+#  ^--- support.class.options.gnuplot
+set key left bottom
+#<0 keyword.other.command.gnuplot
+#  ^--- support.class.options.gnuplot
+set key bmargin
+#<0 keyword.other.command.gnuplot
+#  ^--- support.class.options.gnuplot
+set key 0.01,100
+#<0 keyword.other.command.gnuplot
+#  ^--- support.class.options.gnuplot
+#       ^--- constant.numeric.float.gnuplot
+#            ^-- constant.numeric.dec.gnuplot
+
+set nokey     # no key
+#<0 keyword.other.command.gnuplot
+#             ^------- comment.line.number-sign.gnuplot
+#             ^ punctuation.definition.comment.begin.gnuplot
+
+# arrow
+#<0---- comment.line.number-sign.gnuplot
+#<0 punctuation.definition.comment.begin.gnuplot
+set arrow from 1,1 to 5,10
+#<0 keyword.other.command.gnuplot
+#  ^----- support.class.options.gnuplot
+#              ^ constant.numeric.dec.gnuplot
+#                ^ constant.numeric.dec.gnuplot
+#                     ^ constant.numeric.dec.gnuplot
+#                       ^- constant.numeric.dec.gnuplot
+
+# From https://alvinalexander.com/technology/gnuplot-charts-graphs-examples/
+#<0------------------------------------------------------------------------- comment.line.number-sign.gnuplot
+#<0 punctuation.definition.comment.begin.gnuplot

@@ -1,0 +1,41 @@
+# grammar: source.regexp.python
+
+/^(revert: )?(feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip)(\(.+\))?: .{1,50}/
+#^ support.other.match.begin.regexp
+# ^ support.other.parenthesis.regexp
+# ^ punctuation.parenthesis.begin.regexp
+#          ^ support.other.parenthesis.regexp
+#          ^ punctuation.parenthesis.end.regexp
+#           ^ keyword.operator.quantifier.regexp
+#            ^ support.other.parenthesis.regexp
+#            ^ punctuation.parenthesis.begin.regexp
+#                 ^ keyword.operator.disjunction.regexp
+#                     ^ keyword.operator.disjunction.regexp
+#                          ^ keyword.operator.disjunction.regexp
+#                             ^ keyword.operator.disjunction.regexp
+#                                   ^ keyword.operator.disjunction.regexp
+#                                            ^ keyword.operator.disjunction.regexp
+#                                                 ^ keyword.operator.disjunction.regexp
+#                                                      ^ keyword.operator.disjunction.regexp
+#                                                               ^ keyword.operator.disjunction.regexp
+#                                                                     ^ keyword.operator.disjunction.regexp
+#                                                                        ^ keyword.operator.disjunction.regexp
+#                                                                              ^ keyword.operator.disjunction.regexp
+#                                                                                    ^ keyword.operator.disjunction.regexp
+#                                                                                        ^- support.other.parenthesis.regexp
+#                                                                                        ^ punctuation.parenthesis.end.regexp
+#                                                                                         ^ punctuation.parenthesis.begin.regexp
+#                                                                                          ^- constant.character.escape.regexp
+#                                                                                            ^ support.other.match.any.regexp
+#                                                                                             ^ keyword.operator.quantifier.regexp
+#                                                                                              ^- constant.character.escape.regexp
+#                                                                                                ^ support.other.parenthesis.regexp
+#                                                                                                ^ punctuation.parenthesis.end.regexp
+#                                                                                                 ^ keyword.operator.quantifier.regexp
+#                                                                                                    ^ support.other.match.any.regexp
+#                                                                                                     ^----- keyword.operator.quantifier.regexp
+
+(?#  From https://github.com/vuejs/core/blob/107e6143e716986269fc7c1d96733cb59dfadc53/.github/commit-convention.md?plain=1#L10)
+#<0---------------------------------------------------------------------------------------------------------------------------- comment.regexp
+#<0 punctuation.comment.begin.regexp
+#                                                                                                                             ^ punctuation.comment.end.regexp

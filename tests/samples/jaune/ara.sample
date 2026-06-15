@@ -1,0 +1,84 @@
+// grammar: source.ara
+
+namespace MyNamespace;
+//<0----- storage.decl.ara
+//        ^---------- support.class.ara
+
+use MyOtherNamespace\MyOtherClass;
+//<0 keyword.other.ara
+//  ^---------------- support.other.namespace.php
+//  ^--------------- entity.name.type.namespace.php
+//                  ^ punctuation.separator.inheritance.php
+//                   ^----------- support.class.ara
+
+use function MyOtherNamespace\my_other_function;
+//<0 keyword.other.ara
+//  ^------- storage.decl.ara
+//           ^---------------- support.other.namespace.php
+//           ^--------------- entity.name.type.namespace.php
+//                           ^ punctuation.separator.inheritance.php
+//                            ^---------------- support.class.ara
+
+use const MyOtherNamespace\MY_OTHER_CONST;
+//<0 keyword.other.ara
+//  ^---- storage.decl.ara
+//        ^---------------- support.other.namespace.php
+//        ^--------------- entity.name.type.namespace.php
+//                        ^ punctuation.separator.inheritance.php
+//                         ^------------- support.class.ara
+
+const MY_CONST = 1;
+//<0- storage.decl.ara
+//    ^------- support.class.ara
+//             ^ keyword.operator.assignment.ara
+//               ^ constant.numeric.decimal.ara
+
+type MyType = int;
+//<0 storage.decl.ara
+//   ^----- support.class.ara
+//          ^ keyword.operator.assignment.ara
+//            ^-- support.type.php
+
+interface MyInterface {
+//<0----- storage.decl.ara
+//        ^---------- support.class.ara
+    // ...
+//<0 punctuation.whitespace.comment.leading.ara
+//  ^----- comment.line.double-slash.ara
+//  ^- punctuation.definition.comment.ara
+}
+
+class MyClass {
+//<0- storage.decl.ara
+//    ^------ support.class.ara
+    // ...
+//<0 punctuation.whitespace.comment.leading.ara
+//  ^----- comment.line.double-slash.ara
+//  ^- punctuation.definition.comment.ara
+}
+
+enum MyEnum {
+//<0 storage.decl.ara
+//   ^----- support.class.ara
+    // ...
+//<0 punctuation.whitespace.comment.leading.ara
+//  ^----- comment.line.double-slash.ara
+//  ^- punctuation.definition.comment.ara
+}
+
+function my_function(): void {
+//<0---- storage.decl.ara
+//       ^---------- support.class.ara
+//                    ^ keyword.operators.ara
+//                      ^--- support.type.php
+    // ...
+//<0 punctuation.whitespace.comment.leading.ara
+//  ^----- comment.line.double-slash.ara
+//  ^- punctuation.definition.comment.ara
+}
+
+https://ara-lang.io/fundamentals/structure.html
+//<0- entity.name.variable.parameter.ara
+//   ^ punctuation.separator.colon.ara
+//    ^---------------------------------------- comment.line.double-slash.ara
+//    ^- punctuation.definition.comment.ara

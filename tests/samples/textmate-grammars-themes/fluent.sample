@@ -1,0 +1,139 @@
+# grammar: source.ftl
+
+## Closing tabs
+#<0------------ comment.fluent
+
+tabs-close-button = Chiudi
+#<0----------------- support.class.message-identifier.fluent
+#                   ^----- string.fluent
+tabs-close-tooltip = {$tabCount ->
+#<0------------------ support.class.message-identifier.fluent
+#                    ^------------ string.fluent
+#                    ^ keyword.placeable.begin.fluent
+#                     ^----------- variable.other.placeable.content.fluent
+#                     ^-------- variable.other.placeable.reference-or-number.fluent
+#                               ^- support.function.selector.begin.fluent
+    [one] Chiudi {$tabCount} scheda
+#<0-------------------------------- string.fluent
+#<0-------------------------------- variable.other.placeable.content.fluent
+#<0-------------------------------- string.selector.content.fluent
+#<0-- support.function.selector-item.begin.fluent
+#    ^-- variable.other.selector-item.begin.fluent
+#       ^- support.function.selector-item.begin.fluent
+#         ^------------------------ string.selector-item.content.fluent
+#                ^ keyword.placeable.begin.fluent
+#                 ^-------- variable.other.placeable.content.fluent
+#                 ^-------- variable.other.placeable.reference-or-number.fluent
+#                          ^ keyword.placeable.end.fluent
+   *[other] Chiudi {$tabCount} schede
+#<0---------------------------------- string.fluent
+#<0---------------------------------- variable.other.placeable.content.fluent
+#<0---------------------------------- string.selector.content.fluent
+#<0-- support.function.selector-item.begin.fluent
+#    ^---- variable.other.selector-item.begin.fluent
+#         ^- support.function.selector-item.begin.fluent
+#           ^------------------------ string.selector-item.content.fluent
+#                  ^ keyword.placeable.begin.fluent
+#                   ^-------- variable.other.placeable.content.fluent
+#                   ^-------- variable.other.placeable.reference-or-number.fluent
+#                            ^ keyword.placeable.end.fluent
+}
+#<0 string.fluent
+#<0 keyword.placeable.end.fluent
+tabs-close-warning =  {$tabCount ->
+#<0------------------- support.class.message-identifier.fluent
+#                     ^------------ string.fluent
+#                     ^ keyword.placeable.begin.fluent
+#                      ^----------- variable.other.placeable.content.fluent
+#                      ^-------- variable.other.placeable.reference-or-number.fluent
+#                                ^- support.function.selector.begin.fluent
+    [one] Verrà chiusa {$tabCount} scheda. Proseguire?
+#<0--------------------------------------------------- string.fluent
+#<0--------------------------------------------------- variable.other.placeable.content.fluent
+#<0--------------------------------------------------- string.selector.content.fluent
+#<0-- support.function.selector-item.begin.fluent
+#    ^-- variable.other.selector-item.begin.fluent
+#       ^- support.function.selector-item.begin.fluent
+#         ^------------------------------------------- string.selector-item.content.fluent
+#                      ^ keyword.placeable.begin.fluent
+#                       ^-------- variable.other.placeable.content.fluent
+#                       ^-------- variable.other.placeable.reference-or-number.fluent
+#                                ^ keyword.placeable.end.fluent
+   *[other] Verranno chiuse {$tabCount} schede. Proseguire?
+#<0-------------------------------------------------------- string.fluent
+#<0-------------------------------------------------------- variable.other.placeable.content.fluent
+#<0-------------------------------------------------------- string.selector.content.fluent
+#<0-- support.function.selector-item.begin.fluent
+#    ^---- variable.other.selector-item.begin.fluent
+#         ^- support.function.selector-item.begin.fluent
+#           ^---------------------------------------------- string.selector-item.content.fluent
+#                           ^ keyword.placeable.begin.fluent
+#                            ^-------- variable.other.placeable.content.fluent
+#                            ^-------- variable.other.placeable.reference-or-number.fluent
+#                                     ^ keyword.placeable.end.fluent
+}
+#<0 string.fluent
+#<0 keyword.placeable.end.fluent
+
+## Syncing
+#<0------- comment.fluent
+
+-sync-brand-name = {$first ->
+#<0---------------- support.class.message-identifier.fluent
+#                  ^--------- string.fluent
+#                  ^ keyword.placeable.begin.fluent
+#                   ^-------- variable.other.placeable.content.fluent
+#                   ^----- variable.other.placeable.reference-or-number.fluent
+#                          ^- support.function.selector.begin.fluent
+   *[uppercase] Account Firefox
+#<0---------------------------- string.fluent
+#<0---------------------------- variable.other.placeable.content.fluent
+#<0---------------------------- string.selector.content.fluent
+#<0-- support.function.selector-item.begin.fluent
+#    ^-------- variable.other.selector-item.begin.fluent
+#             ^- support.function.selector-item.begin.fluent
+#               ^-------------- string.selector-item.content.fluent
+    [lowercase] account Firefox
+#<0---------------------------- string.fluent
+#<0---------------------------- variable.other.placeable.content.fluent
+#<0---------------------------- string.selector.content.fluent
+#<0-- support.function.selector-item.begin.fluent
+#    ^-------- variable.other.selector-item.begin.fluent
+#             ^- support.function.selector-item.begin.fluent
+#               ^-------------- string.selector-item.content.fluent
+}
+#<0 string.fluent
+#<0 keyword.placeable.end.fluent
+
+sync-dialog-title = {-sync-brand-name}
+#<0----------------- support.class.message-identifier.fluent
+#                   ^----------------- string.fluent
+#                   ^ keyword.placeable.begin.fluent
+#                    ^--------------- variable.other.placeable.content.fluent
+#                    ^--------------- variable.other.placeable.reference-or-number.fluent
+#                                    ^ keyword.placeable.end.fluent
+sync-headline-title =
+#<0------------------ support.class.message-identifier.fluent
+    {-sync-brand-name}: il modo migliore
+#<0------------------------------------- string.fluent
+#   ^ keyword.placeable.begin.fluent
+#    ^--------------- variable.other.placeable.content.fluent
+#    ^--------------- variable.other.placeable.reference-or-number.fluent
+#                    ^ keyword.placeable.end.fluent
+    per avere i tuoi dati sempre con te
+#<0------------------------------------ string.fluent
+sync-signedout-title =
+#<0------------------- support.class.message-identifier.fluent
+    Connetti il tuo {-sync-brand-name(first: "lowercase")}
+#<0------------------------------------------------------- string.fluent
+#                   ^ keyword.placeable.begin.fluent
+#                    ^----------------------------------- variable.other.placeable.content.fluent
+#                    ^--------------- variable.other.placeable.reference-or-number.fluent
+#                                     ^---- variable.other.placeable.reference-or-number.fluent
+#                                            ^ variable.other.placeable-string-begin.fluent
+#                                             ^-------- string.placeable-string-content.fluent
+#                                                      ^ variable.other.placeable-string-end.fluent
+#                                                        ^ keyword.placeable.end.fluent
+
+# From https://projectfluent.org/
+#<0------------------------------ comment.fluent

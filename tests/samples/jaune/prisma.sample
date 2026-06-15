@@ -1,0 +1,190 @@
+// grammar: source.prisma
+
+datasource db {
+//<0----------- source.prisma.embedded.source
+//<0------ storage.type.config.prisma
+//         ^- entity.name.type.config.prisma
+//            ^ punctuation.definition.tag.prisma
+  provider = "postgresql"
+//<0--------------------- source.prisma.embedded.source
+//^------- variable.other.assignment.prisma
+//         ^ keyword.operator.terraform
+//           ^----------- unnamed
+//           ^ string.quoted.double.start.prisma
+//            ^--------- string.quoted.double.prisma
+//                      ^ string.quoted.double.end.prisma
+  url      = env("DATABASE_URL")
+//<0---------------------------- source.prisma.embedded.source
+//^-- variable.other.assignment.prisma
+//         ^ keyword.operator.terraform
+//           ^------------------ source.prisma.functional
+//           ^-- support.function.functional.prisma
+//              ^ punctuation.definition.tag.prisma
+//               ^------------- unnamed
+//               ^ string.quoted.double.start.prisma
+//                ^----------- string.quoted.double.prisma
+//                            ^ string.quoted.double.end.prisma
+//                             ^ punctuation.definition.tag.prisma
+}
+//<0 source.prisma.embedded.source
+
+generator client {
+//<0-------------- source.prisma.embedded.source
+//<0----- storage.type.config.prisma
+//        ^----- entity.name.type.config.prisma
+//               ^ punctuation.definition.tag.prisma
+  provider = "prisma-client-js"
+//<0--------------------------- source.prisma.embedded.source
+//^------- variable.other.assignment.prisma
+//         ^ keyword.operator.terraform
+//           ^----------------- unnamed
+//           ^ string.quoted.double.start.prisma
+//            ^--------------- string.quoted.double.prisma
+//                            ^ string.quoted.double.end.prisma
+}
+//<0 source.prisma.embedded.source
+
+/// Post including an author and content.
+//<0------------------------------------- comment.prisma
+model Post {
+//<0-------- source.prisma.embedded.source
+//<0- storage.type.model.prisma
+//    ^--- entity.name.type.model.prisma
+//         ^ punctuation.definition.tag.prisma
+  id        Int         @default(autoincrement()) @id
+//<0------------------------------------------------- source.prisma.embedded.source
+//^- variable.other.assignment.prisma
+//          ^-- support.type.primitive.prisma
+//                      ^------------------------ source.prisma.attribute.with_arguments
+//                      ^------- entity.name.function.attribute.prisma
+//                              ^ punctuation.definition.tag.prisma
+//                               ^-------------- source.prisma.functional
+//                               ^------------ support.function.functional.prisma
+//                                            ^- punctuation.definition.tag.prisma
+//                                              ^ punctuation.definition.tag.prisma
+//                                                ^-- source.prisma.attribute
+//                                                ^-- entity.name.function.attribute.prisma
+  content   String?
+//<0--------------- source.prisma.embedded.source
+//^------ variable.other.assignment.prisma
+//          ^----- support.type.primitive.prisma
+//                ^ keyword.operator.optional_type.prisma
+  published Boolean     @default(false)
+//<0----------------------------------- source.prisma.embedded.source
+//^-------- variable.other.assignment.prisma
+//          ^------ support.type.primitive.prisma
+//                      ^-------------- source.prisma.attribute.with_arguments
+//                      ^------- entity.name.function.attribute.prisma
+//                              ^ punctuation.definition.tag.prisma
+//                               ^---- constant.language.boolean.prisma
+//                                    ^ punctuation.definition.tag.prisma
+  author    User?       @relation(fields: [authorId], references: [id])
+//<0------------------------------------------------------------------- source.prisma.embedded.source
+//^----- variable.other.assignment.prisma
+//          ^--- variable.language.relations.prisma
+//              ^ keyword.operator.optional_type.prisma
+//                      ^---------------------------------------------- source.prisma.attribute.with_arguments
+//                      ^-------- entity.name.function.attribute.prisma
+//                               ^ punctuation.definition.tag.prisma
+//                                ^----- variable.parameter.key.prisma
+//                                      ^ punctuation.definition.separator.key-value.prisma
+//                                        ^--------- source.prisma.array
+//                                         ^------- support.constant.constant.prisma
+//                                                    ^--------- variable.parameter.key.prisma
+//                                                              ^ punctuation.definition.separator.key-value.prisma
+//                                                                ^--- source.prisma.array
+//                                                                 ^- support.constant.constant.prisma
+//                                                                    ^ punctuation.definition.tag.prisma
+  authorId  Int?
+//<0------------ source.prisma.embedded.source
+//^------- variable.other.assignment.prisma
+//          ^-- support.type.primitive.prisma
+//             ^ keyword.operator.optional_type.prisma
+}
+//<0 source.prisma.embedded.source
+//<0 punctuation.definition.tag.prisma
+
+// Documentation for this model.
+//<0---------------------------- comment.prisma
+model User {
+//<0-------- source.prisma.embedded.source
+//<0- storage.type.model.prisma
+//    ^--- entity.name.type.model.prisma
+//         ^ punctuation.definition.tag.prisma
+  id    Int     @default(autoincrement()) @id
+//<0----------------------------------------- source.prisma.embedded.source
+//^- variable.other.assignment.prisma
+//      ^-- support.type.primitive.prisma
+//              ^------------------------ source.prisma.attribute.with_arguments
+//              ^------- entity.name.function.attribute.prisma
+//                      ^ punctuation.definition.tag.prisma
+//                       ^-------------- source.prisma.functional
+//                       ^------------ support.function.functional.prisma
+//                                    ^- punctuation.definition.tag.prisma
+//                                      ^ punctuation.definition.tag.prisma
+//                                        ^-- source.prisma.attribute
+//                                        ^-- entity.name.function.attribute.prisma
+  email String  @unique
+//<0------------------- source.prisma.embedded.source
+//^---- variable.other.assignment.prisma
+//      ^----- support.type.primitive.prisma
+//              ^------ source.prisma.attribute
+//              ^------ entity.name.function.attribute.prisma
+  name  String?
+//<0----------- source.prisma.embedded.source
+//^--- variable.other.assignment.prisma
+//      ^----- support.type.primitive.prisma
+//            ^ keyword.operator.optional_type.prisma
+  posts Post[]
+//<0---------- source.prisma.embedded.source
+//^---- variable.other.assignment.prisma
+//      ^--- variable.language.relations.prisma
+//          ^- keyword.operator.list_type.prisma
+  specialName UserName
+//<0------------------ source.prisma.embedded.source
+//^---------- variable.other.assignment.prisma
+//            ^------- variable.language.relations.prisma
+  test Test
+//<0------- source.prisma.embedded.source
+//^--- variable.other.assignment.prisma
+//     ^--- variable.language.relations.prisma
+}
+//<0 source.prisma.embedded.source
+//<0 punctuation.definition.tag.prisma
+
+/// This is an enum specifying the UserName.
+//<0---------------------------------------- comment.prisma
+enum UserName {
+//<0----------- source.prisma.embedded.source
+//<0 storage.type.enum.prisma
+//   ^------- entity.name.type.enum.prisma
+//            ^ punctuation.definition.tag.prisma
+    Fred
+//<0---- source.prisma.embedded.source
+//  ^--- variable.other.assignment.prisma
+    Eric
+//<0---- source.prisma.embedded.source
+//  ^--- variable.other.assignment.prisma
+}
+//<0 source.prisma.embedded.source
+//<0 punctuation.definition.tag.prisma
+
+// This is a test enum.
+//<0------------------- comment.prisma
+enum Test {
+//<0------- source.prisma.embedded.source
+//<0 storage.type.enum.prisma
+//   ^--- entity.name.type.enum.prisma
+//        ^ punctuation.definition.tag.prisma
+  TestUno
+//<0----- source.prisma.embedded.source
+//^------ variable.other.assignment.prisma
+  TestDue
+//<0----- source.prisma.embedded.source
+//^------ variable.other.assignment.prisma
+}
+//<0 source.prisma.embedded.source
+//<0 punctuation.definition.tag.prisma
+
+// taken from https://github.com/prisma/language-tools/blob/master/packages/vscode/testFixture/hover.prisma
+//<0------------------------------------------------------------------------------------------------------- comment.prisma

@@ -1,0 +1,280 @@
+// grammar: source.bicep
+
+@description('Name of the eventhub namespace')
+//<0------------------------------------------ meta.decorator.bicep
+//<1------------------------------------------ meta.function-call.bicep
+//<1-------- entity.name.function.bicep
+//           ^------------------------------- string.quoted.single.bicep
+param eventHubNamespaceName string
+//<0------------------------------ meta.decorator.bicep
+//<0- keyword.control.declaration.bicep
+//    ^-------------------- variable.other.readwrite.bicep
+//                          ^----- variable.other.readwrite.bicep
+
+@description('Name of the eventhub name')
+//<0------------------------------------- meta.decorator.bicep
+//<0------------------------------------- meta.decorator.bicep
+//<1------------------------------------- meta.function-call.bicep
+//<1-------- entity.name.function.bicep
+//           ^-------------------------- string.quoted.single.bicep
+param eventHubName string
+//<0--------------------- meta.decorator.bicep
+//<0--------------------- meta.decorator.bicep
+//<0- keyword.control.declaration.bicep
+//    ^----------- variable.other.readwrite.bicep
+//                 ^----- variable.other.readwrite.bicep
+
+@description('The service principal')
+//<0--------------------------------- meta.decorator.bicep
+//<0--------------------------------- meta.decorator.bicep
+//<0--------------------------------- meta.decorator.bicep
+//<1--------------------------------- meta.function-call.bicep
+//<1-------- entity.name.function.bicep
+//           ^---------------------- string.quoted.single.bicep
+param principalId string
+//<0-------------------- meta.decorator.bicep
+//<0-------------------- meta.decorator.bicep
+//<0-------------------- meta.decorator.bicep
+//<0- keyword.control.declaration.bicep
+//    ^---------- variable.other.readwrite.bicep
+//                ^----- variable.other.readwrite.bicep
+
+// Create an event hub namespace
+//<0---------------------------- meta.decorator.bicep
+//<0---------------------------- meta.decorator.bicep
+//<0---------------------------- meta.decorator.bicep
+//<0---------------------------- comment.line.double-slash.bicep
+resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-01-01-preview' = {
+//<0----------------------------------------------------------------------------- meta.decorator.bicep
+//<0----------------------------------------------------------------------------- meta.decorator.bicep
+//<0----------------------------------------------------------------------------- meta.decorator.bicep
+//<0---- keyword.control.declaration.bicep
+//       ^---------------- variable.other.readwrite.bicep
+//                         ^------------------------------------------------- string.quoted.single.bicep
+//                                                                              ^ meta.object-literal.bicep
+  name: eventHubNamespaceName
+//<0------------------------- meta.decorator.bicep
+//<0------------------------- meta.decorator.bicep
+//<0------------------------- meta.decorator.bicep
+//<0------------------------- meta.object-literal.bicep
+//^--- variable.other.property.bicep
+//      ^-------------------- variable.other.readwrite.bicep
+  location: resourceGroup().location
+//<0-------------------------------- meta.decorator.bicep
+//<0-------------------------------- meta.decorator.bicep
+//<0-------------------------------- meta.decorator.bicep
+//<0-------------------------------- meta.object-literal.bicep
+//^------- variable.other.property.bicep
+//          ^-------------- meta.function-call.bicep
+//          ^------------ entity.name.function.bicep
+//                          ^------- variable.other.readwrite.bicep
+  sku: {
+//<0---- meta.decorator.bicep
+//<0---- meta.decorator.bicep
+//<0---- meta.decorator.bicep
+//<0---- meta.object-literal.bicep
+//^-- variable.other.property.bicep
+//     ^ meta.object-literal.bicep
+    name: 'Standard'
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.object-literal.bicep
+//<0---------------- meta.object-literal.bicep
+//  ^--- variable.other.property.bicep
+//        ^--------- string.quoted.single.bicep
+    tier: 'Standard'
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.object-literal.bicep
+//<0---------------- meta.object-literal.bicep
+//  ^--- variable.other.property.bicep
+//        ^--------- string.quoted.single.bicep
+    capacity: 1
+//<0----------- meta.decorator.bicep
+//<0----------- meta.decorator.bicep
+//<0----------- meta.decorator.bicep
+//<0----------- meta.object-literal.bicep
+//<0----------- meta.object-literal.bicep
+//  ^------- variable.other.property.bicep
+//            ^ constant.numeric.bicep
+  }
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.object-literal.bicep
+//<0 meta.object-literal.bicep
+  properties: {
+//<0----------- meta.decorator.bicep
+//<0----------- meta.decorator.bicep
+//<0----------- meta.decorator.bicep
+//<0----------- meta.object-literal.bicep
+//^--------- variable.other.property.bicep
+//            ^ meta.object-literal.bicep
+    zoneRedundant: true
+//<0------------------- meta.decorator.bicep
+//<0------------------- meta.decorator.bicep
+//<0------------------- meta.decorator.bicep
+//<0------------------- meta.object-literal.bicep
+//<0------------------- meta.object-literal.bicep
+//  ^------------ variable.other.property.bicep
+//                 ^--- constant.language.bicep
+  }
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.object-literal.bicep
+//<0 meta.object-literal.bicep
+}
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.object-literal.bicep
+
+// Create an event hub inside the namespace
+//<0--------------------------------------- meta.decorator.bicep
+//<0--------------------------------------- meta.decorator.bicep
+//<0--------------------------------------- meta.decorator.bicep
+//<0--------------------------------------- comment.line.double-slash.bicep
+resource eventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-01-01-preview' = {
+//<0------------------------------------------------------------------------------ meta.decorator.bicep
+//<0------------------------------------------------------------------------------ meta.decorator.bicep
+//<0------------------------------------------------------------------------------ meta.decorator.bicep
+//<0---- keyword.control.declaration.bicep
+//       ^------- variable.other.readwrite.bicep
+//                ^----------------------------------------------------------- string.quoted.single.bicep
+//                                                                               ^ meta.object-literal.bicep
+  parent: eventHubNamespace
+//<0----------------------- meta.decorator.bicep
+//<0----------------------- meta.decorator.bicep
+//<0----------------------- meta.decorator.bicep
+//<0----------------------- meta.object-literal.bicep
+//^----- variable.other.property.bicep
+//        ^---------------- variable.other.readwrite.bicep
+  name: eventHubName
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.decorator.bicep
+//<0---------------- meta.object-literal.bicep
+//^--- variable.other.property.bicep
+//      ^----------- variable.other.readwrite.bicep
+  properties: {
+//<0----------- meta.decorator.bicep
+//<0----------- meta.decorator.bicep
+//<0----------- meta.decorator.bicep
+//<0----------- meta.object-literal.bicep
+//^--------- variable.other.property.bicep
+//            ^ meta.object-literal.bicep
+    messageRetentionInDays: 7
+//<0------------------------- meta.decorator.bicep
+//<0------------------------- meta.decorator.bicep
+//<0------------------------- meta.decorator.bicep
+//<0------------------------- meta.object-literal.bicep
+//<0------------------------- meta.object-literal.bicep
+//  ^--------------------- variable.other.property.bicep
+//                          ^ constant.numeric.bicep
+    partitionCount: 1
+//<0----------------- meta.decorator.bicep
+//<0----------------- meta.decorator.bicep
+//<0----------------- meta.decorator.bicep
+//<0----------------- meta.object-literal.bicep
+//<0----------------- meta.object-literal.bicep
+//  ^------------- variable.other.property.bicep
+//                  ^ constant.numeric.bicep
+  }
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.object-literal.bicep
+//<0 meta.object-literal.bicep
+}
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.object-literal.bicep
+
+// give Azure Pipelines Service Principal permissions against the event hub 
+//<0------------------------------------------------------------------------ meta.decorator.bicep
+//<0------------------------------------------------------------------------ meta.decorator.bicep
+//<0------------------------------------------------------------------------ meta.decorator.bicep
+//<0------------------------------------------------------------------------ comment.line.double-slash.bicep
+
+var roleDefinitionAzureEventHubsDataOwner = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'f526a384-b230-433a-b45c-95f59c4a2dec')
+//<0------------------------------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0------------------------------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0------------------------------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0 keyword.control.declaration.bicep
+//  ^------------------------------------ variable.other.readwrite.bicep
+//                                          ^-------------------------------------------------------------------------------------------------------- meta.function-call.bicep
+//                                          ^--------------------- entity.name.function.bicep
+//                                                                 ^---------------------------------------- string.quoted.single.bicep
+//                                                                                                            ^------------------------------------- string.quoted.single.bicep
+
+resource integrationTestEventHubReceiverNamespaceRoleAssignment 'Microsoft.Authorization/roleAssignments@2018-01-01-preview' = {
+//<0---------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0---------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0---------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0---- keyword.control.declaration.bicep
+//       ^----------------------------------------------------- variable.other.readwrite.bicep
+//                                                              ^----------------------------------------------------------- string.quoted.single.bicep
+//                                                                                                                             ^ meta.object-literal.bicep
+  name: guid(principalId, eventHub.id, roleDefinitionAzureEventHubsDataOwner)
+//<0------------------------------------------------------------------------- meta.decorator.bicep
+//<0------------------------------------------------------------------------- meta.decorator.bicep
+//<0------------------------------------------------------------------------- meta.decorator.bicep
+//<0------------------------------------------------------------------------- meta.object-literal.bicep
+//^--- variable.other.property.bicep
+//      ^-------------------------------------------------------------------- meta.function-call.bicep
+//      ^--- entity.name.function.bicep
+//           ^---------- variable.other.readwrite.bicep
+//                        ^------- variable.other.readwrite.bicep
+//                                 ^- variable.other.readwrite.bicep
+//                                     ^------------------------------------ variable.other.readwrite.bicep
+  scope: eventHubNamespace
+//<0---------------------- meta.decorator.bicep
+//<0---------------------- meta.decorator.bicep
+//<0---------------------- meta.decorator.bicep
+//<0---------------------- meta.object-literal.bicep
+//^---- variable.other.property.bicep
+//       ^---------------- variable.other.readwrite.bicep
+  properties: {
+//<0----------- meta.decorator.bicep
+//<0----------- meta.decorator.bicep
+//<0----------- meta.decorator.bicep
+//<0----------- meta.object-literal.bicep
+//^--------- variable.other.property.bicep
+//            ^ meta.object-literal.bicep
+    roleDefinitionId: roleDefinitionAzureEventHubsDataOwner
+//<0------------------------------------------------------- meta.decorator.bicep
+//<0------------------------------------------------------- meta.decorator.bicep
+//<0------------------------------------------------------- meta.decorator.bicep
+//<0------------------------------------------------------- meta.object-literal.bicep
+//<0------------------------------------------------------- meta.object-literal.bicep
+//  ^--------------- variable.other.property.bicep
+//                    ^------------------------------------ variable.other.readwrite.bicep
+    principalId: principalId
+//<0------------------------ meta.decorator.bicep
+//<0------------------------ meta.decorator.bicep
+//<0------------------------ meta.decorator.bicep
+//<0------------------------ meta.object-literal.bicep
+//<0------------------------ meta.object-literal.bicep
+//  ^---------- variable.other.property.bicep
+//               ^---------- variable.other.readwrite.bicep
+  }
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.object-literal.bicep
+//<0 meta.object-literal.bicep
+}
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.decorator.bicep
+//<0 meta.object-literal.bicep
+
+// From https://dev.azure.com/johnnyreilly/blog-demos/_git/permissioning-azure-pipelines-bicep-role-assignments?path=/infra/main.bicep
+//<0---------------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0---------------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0---------------------------------------------------------------------------------------------------------------------------------- meta.decorator.bicep
+//<0---------------------------------------------------------------------------------------------------------------------------------- comment.line.double-slash.bicep

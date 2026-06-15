@@ -1,0 +1,127 @@
+# grammar: source.hjson
+
+{
+#<0 meta.structure.dictionary.hjson
+#<0 punctuation.definition.dictionary.begin.hjson
+  // use #, // or /**/ comments,
+#<0----------------------------- meta.structure.dictionary.hjson
+#<0----------------------------- comment.line.double-slash
+# ^- punctuation.definition.comment.hjson
+  // omit quotes for keys
+#<0---------------------- meta.structure.dictionary.hjson
+#<0---------------------- comment.line.double-slash
+# ^- punctuation.definition.comment.hjson
+  key: 1
+#<0----- meta.structure.dictionary.hjson
+# ^-- meta.structure.key-value.begin.hjson
+# ^-- support.type.property-name.hjson
+#    ^-- meta.structure.key-value.hjson
+#    ^ punctuation.separator.dictionary.key-value.hjson
+#      ^ constant.numeric.hjson
+  // omit quotes for strings
+#<0------------------------- meta.structure.dictionary.hjson
+# ^------------------------- comment.line.double-slash
+# ^- punctuation.definition.comment.hjson
+  contains: everything on this line
+#<0-------------------------------- meta.structure.dictionary.hjson
+# ^------- invalid.illegal.object-property.hjson
+#         ^------------------------ meta.structure.key-value.hjson
+#         ^ punctuation.separator.dictionary.key-value.hjson
+#           ^---------------------- string.quoted.none.hjson
+  // omit commas at the end of a line
+#<0---------------------------------- meta.structure.dictionary.hjson
+# ^---------------------------------- comment.line.double-slash
+# ^- punctuation.definition.comment.hjson
+  cool: {
+#<0------ meta.structure.dictionary.hjson
+# ^--- invalid.illegal.object-property.hjson
+#     ^-- meta.structure.key-value.hjson
+#     ^ punctuation.separator.dictionary.key-value.hjson
+#       ^ meta.structure.dictionary.hjson
+#       ^ punctuation.definition.dictionary.begin.hjson
+    foo: 1
+#<0------- meta.structure.dictionary.hjson
+#<0------- meta.structure.key-value.hjson
+#<0------- meta.structure.dictionary.hjson
+#   ^-- meta.structure.key-value.begin.hjson
+#   ^-- support.type.property-name.hjson
+#      ^-- meta.structure.key-value.hjson
+#      ^ punctuation.separator.dictionary.key-value.hjson
+#        ^ constant.numeric.hjson
+    bar: 2
+#<0------- meta.structure.dictionary.hjson
+#<0------- meta.structure.key-value.hjson
+#<0------- meta.structure.dictionary.hjson
+#   ^-- invalid.illegal.object-property.hjson
+#      ^-- meta.structure.key-value.hjson
+#      ^ punctuation.separator.dictionary.key-value.hjson
+#        ^ constant.numeric.hjson
+  }
+#<0 meta.structure.dictionary.hjson
+#<0 meta.structure.key-value.hjson
+#<0 meta.structure.dictionary.hjson
+# ^ punctuation.definition.dictionary.end.hjson
+  // allow trailing commas
+#<0----------------------- meta.structure.dictionary.hjson
+# ^----------------------- comment.line.double-slash
+# ^- punctuation.definition.comment.hjson
+  list: [
+#<0------ meta.structure.dictionary.hjson
+# ^--- invalid.illegal.object-property.hjson
+#     ^-- meta.structure.key-value.hjson
+#     ^ punctuation.separator.dictionary.key-value.hjson
+#       ^ meta.structure.array.hjson
+#       ^ punctuation.definition.array.begin.hjson
+    1,
+#<0--- meta.structure.dictionary.hjson
+#<0--- meta.structure.key-value.hjson
+#<0--- meta.structure.array.hjson
+#   ^ constant.numeric.hjson
+    2,
+#<0--- meta.structure.dictionary.hjson
+#<0--- meta.structure.key-value.hjson
+#<0--- meta.structure.array.hjson
+#   ^ constant.numeric.hjson
+  ]
+#<0 meta.structure.dictionary.hjson
+#<0 meta.structure.key-value.hjson
+#<0 meta.structure.array.hjson
+# ^ punctuation.definition.array.end.hjson
+  // and use multiline strings
+#<0--------------------------- meta.structure.dictionary.hjson
+# ^--------------------------- comment.line.double-slash
+# ^- punctuation.definition.comment.hjson
+  realist:
+#<0------- meta.structure.dictionary.hjson
+# ^------ invalid.illegal.object-property.hjson
+#        ^ meta.structure.key-value.hjson
+#        ^ punctuation.separator.dictionary.key-value.hjson
+    '''
+#<0---- meta.structure.dictionary.hjson
+#<0---- meta.structure.key-value.hjson
+#   ^-- string.quoted.multiline.hjson
+#   ^-- punctuation.definition.string.begin.hjson
+    My half empty glass,
+#<0--------------------- meta.structure.dictionary.hjson
+#<0--------------------- meta.structure.key-value.hjson
+#<0--------------------- string.quoted.multiline.hjson
+    I will fill your empty half.
+#<0----------------------------- meta.structure.dictionary.hjson
+#<0----------------------------- meta.structure.key-value.hjson
+#<0----------------------------- string.quoted.multiline.hjson
+    Now you are half full.
+#<0----------------------- meta.structure.dictionary.hjson
+#<0----------------------- meta.structure.key-value.hjson
+#<0----------------------- string.quoted.multiline.hjson
+    '''
+#<0---- meta.structure.dictionary.hjson
+#<0---- meta.structure.key-value.hjson
+#<0---- string.quoted.multiline.hjson
+#   ^-- punctuation.definition.string.end.hjson
+  // From: https://hjson.github.io/
+#<0-------------------------------- meta.structure.dictionary.hjson
+# ^-------------------------------- comment.line.double-slash
+# ^- punctuation.definition.comment.hjson
+}
+#<0 meta.structure.dictionary.hjson
+#<0 punctuation.definition.dictionary.end.hjson

@@ -1,0 +1,452 @@
+# grammar: source.gdresource
+
+[gd_scene load_steps=7 format=2]
+#^------- keyword.control.gdresource
+#         ^--------- variable.other.property.gdresource
+#                   ^ punctuation.definition.keyValue.gdresource
+#                    ^ constant.numeric.integer.gdresource
+#                      ^----- variable.other.property.gdresource
+#                            ^ punctuation.definition.keyValue.gdresource
+#                             ^ constant.numeric.integer.gdresource
+
+[ext_resource path="res://Example.gd" type="Script" id=1]
+#^----------- keyword.control.gdresource
+#             ^--- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                  ^----------------- support.function.any-method.gdresource
+#                                     ^--- variable.other.property.gdresource
+#                                         ^ punctuation.definition.keyValue.gdresource
+#                                          ^------- support.class.library.gdresource
+#                                                   ^- variable.other.property.gdresource
+#                                                     ^ punctuation.definition.keyValue.gdresource
+#                                                      ^ constant.numeric.integer.gdresource
+
+[sub_resource type="Environment" id=1]
+#^----------- keyword.control.gdresource
+#             ^--- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                  ^------------ support.class.library.gdresource
+#                                ^- variable.other.property.gdresource
+#                                  ^ punctuation.definition.keyValue.gdresource
+#                                   ^ constant.numeric.integer.gdresource
+background_mode = 4
+#<0------------ variable.other.property.gdresource
+#               ^ punctuation.definition.keyValue.gdresource
+#                 ^ constant.numeric.integer.gdresource
+tonemap_mode = 3
+#<0--------- variable.other.property.gdresource
+#            ^ punctuation.definition.keyValue.gdresource
+#              ^ constant.numeric.integer.gdresource
+glow_enabled = true
+#<0--------- variable.other.property.gdresource
+#            ^ punctuation.definition.keyValue.gdresource
+#              ^--- constant.language.gdresource
+glow_blend_mode = 0
+#<0------------ variable.other.property.gdresource
+#               ^ punctuation.definition.keyValue.gdresource
+#                 ^ constant.numeric.integer.gdresource
+
+[sub_resource type="Animation" id=2]
+#^----------- keyword.control.gdresource
+#             ^--- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                  ^---------- support.class.library.gdresource
+#                              ^- variable.other.property.gdresource
+#                                ^ punctuation.definition.keyValue.gdresource
+#                                 ^ constant.numeric.integer.gdresource
+resource_name = "RESET"
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------ string.quoted.double.basic.line.gdresource
+tracks/0/type = "value"
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------ string.quoted.double.basic.line.gdresource
+tracks/0/path = NodePath("CanvasLayer/Panel:modulate")
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------- support.class.library.gdresource
+#                        ^--------------------------- constant.character.escape.gdresource
+tracks/0/interp = 1
+#<0------------ variable.other.property.gdresource
+#               ^ punctuation.definition.keyValue.gdresource
+#                 ^ constant.numeric.integer.gdresource
+tracks/0/loop_wrap = true
+#<0--------------- variable.other.property.gdresource
+#                  ^ punctuation.definition.keyValue.gdresource
+#                    ^--- constant.language.gdresource
+tracks/0/imported = false
+#<0-------------- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                   ^---- constant.language.gdresource
+tracks/0/enabled = true
+#<0------------- variable.other.property.gdresource
+#                ^ punctuation.definition.keyValue.gdresource
+#                  ^--- constant.language.gdresource
+tracks/0/keys = {
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^ punctuation.definition.table.inline.gdresource
+"times": PoolRealArray( 0 ),
+#<0---- string.quoted.double.basic.line.gdresource
+#        ^------------ support.class.library.gdresource
+#                       ^ constant.numeric.integer.gdresource
+"transitions": PoolRealArray( 1 ),
+#<0---------- string.quoted.double.basic.line.gdresource
+#              ^------------ support.class.library.gdresource
+#                             ^ constant.numeric.integer.gdresource
+"update": 0,
+#<0----- string.quoted.double.basic.line.gdresource
+#         ^ constant.numeric.integer.gdresource
+"values": [ Color( 0, 0, 0, 0 ) ]
+#<0----- string.quoted.double.basic.line.gdresource
+#         ^ punctuation.definition.array.gdresource
+#           ^---- support.class.library.gdresource
+#                  ^ constant.numeric.integer.gdresource
+#                     ^ constant.numeric.integer.gdresource
+#                        ^ constant.numeric.integer.gdresource
+#                           ^ constant.numeric.integer.gdresource
+#                               ^ punctuation.definition.array.gdresource
+}
+#<0 punctuation.definition.table.inline.gdresource
+
+[sub_resource type="Animation" id=3]
+#^----------- keyword.control.gdresource
+#             ^--- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                  ^---------- support.class.library.gdresource
+#                              ^- variable.other.property.gdresource
+#                                ^ punctuation.definition.keyValue.gdresource
+#                                 ^ constant.numeric.integer.gdresource
+resource_name = "dim"
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^---- string.quoted.double.basic.line.gdresource
+tracks/0/type = "value"
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------ string.quoted.double.basic.line.gdresource
+tracks/0/path = NodePath("CanvasLayer/Panel:modulate")
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------- support.class.library.gdresource
+#                        ^--------------------------- constant.character.escape.gdresource
+tracks/0/interp = 1
+#<0------------ variable.other.property.gdresource
+#               ^ punctuation.definition.keyValue.gdresource
+#                 ^ constant.numeric.integer.gdresource
+tracks/0/loop_wrap = true
+#<0--------------- variable.other.property.gdresource
+#                  ^ punctuation.definition.keyValue.gdresource
+#                    ^--- constant.language.gdresource
+tracks/0/imported = false
+#<0-------------- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                   ^---- constant.language.gdresource
+tracks/0/enabled = true
+#<0------------- variable.other.property.gdresource
+#                ^ punctuation.definition.keyValue.gdresource
+#                  ^--- constant.language.gdresource
+tracks/0/keys = {
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^ punctuation.definition.table.inline.gdresource
+"times": PoolRealArray( 0, 1 ),
+#<0---- string.quoted.double.basic.line.gdresource
+#        ^------------ support.class.library.gdresource
+#                       ^ constant.numeric.integer.gdresource
+#                          ^ constant.numeric.integer.gdresource
+"transitions": PoolRealArray( 1, 1 ),
+#<0---------- string.quoted.double.basic.line.gdresource
+#              ^------------ support.class.library.gdresource
+#                             ^ constant.numeric.integer.gdresource
+#                                ^ constant.numeric.integer.gdresource
+"update": 0,
+#<0----- string.quoted.double.basic.line.gdresource
+#         ^ constant.numeric.integer.gdresource
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.501961 ) ]
+#<0----- string.quoted.double.basic.line.gdresource
+#         ^ punctuation.definition.array.gdresource
+#           ^---- support.class.library.gdresource
+#                  ^ constant.numeric.integer.gdresource
+#                     ^ constant.numeric.integer.gdresource
+#                        ^ constant.numeric.integer.gdresource
+#                           ^ constant.numeric.integer.gdresource
+#                                ^---- support.class.library.gdresource
+#                                       ^ constant.numeric.integer.gdresource
+#                                          ^ constant.numeric.integer.gdresource
+#                                             ^ constant.numeric.integer.gdresource
+#                                                ^------- constant.numeric.float.gdresource
+#                                                           ^ punctuation.definition.array.gdresource
+}
+#<0 punctuation.definition.table.inline.gdresource
+
+[sub_resource type="Animation" id=4]
+#^----------- keyword.control.gdresource
+#             ^--- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                  ^---------- support.class.library.gdresource
+#                              ^- variable.other.property.gdresource
+#                                ^ punctuation.definition.keyValue.gdresource
+#                                 ^ constant.numeric.integer.gdresource
+tracks/0/type = "value"
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------ string.quoted.double.basic.line.gdresource
+tracks/0/path = NodePath("CanvasLayer/Panel:modulate")
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------- support.class.library.gdresource
+#                        ^--------------------------- constant.character.escape.gdresource
+tracks/0/interp = 1
+#<0------------ variable.other.property.gdresource
+#               ^ punctuation.definition.keyValue.gdresource
+#                 ^ constant.numeric.integer.gdresource
+tracks/0/loop_wrap = true
+#<0--------------- variable.other.property.gdresource
+#                  ^ punctuation.definition.keyValue.gdresource
+#                    ^--- constant.language.gdresource
+tracks/0/imported = false
+#<0-------------- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                   ^---- constant.language.gdresource
+tracks/0/enabled = true
+#<0------------- variable.other.property.gdresource
+#                ^ punctuation.definition.keyValue.gdresource
+#                  ^--- constant.language.gdresource
+tracks/0/keys = {
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^ punctuation.definition.table.inline.gdresource
+"times": PoolRealArray( 0, 1 ),
+#<0---- string.quoted.double.basic.line.gdresource
+#        ^------------ support.class.library.gdresource
+#                       ^ constant.numeric.integer.gdresource
+#                          ^ constant.numeric.integer.gdresource
+"transitions": PoolRealArray( 1, 1 ),
+#<0---------- string.quoted.double.basic.line.gdresource
+#              ^------------ support.class.library.gdresource
+#                             ^ constant.numeric.integer.gdresource
+#                                ^ constant.numeric.integer.gdresource
+"update": 0,
+#<0----- string.quoted.double.basic.line.gdresource
+#         ^ constant.numeric.integer.gdresource
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+#<0----- string.quoted.double.basic.line.gdresource
+#         ^ punctuation.definition.array.gdresource
+#           ^---- support.class.library.gdresource
+#                  ^ constant.numeric.integer.gdresource
+#                     ^ constant.numeric.integer.gdresource
+#                        ^ constant.numeric.integer.gdresource
+#                           ^ constant.numeric.integer.gdresource
+#                                ^---- support.class.library.gdresource
+#                                       ^ constant.numeric.integer.gdresource
+#                                          ^ constant.numeric.integer.gdresource
+#                                             ^ constant.numeric.integer.gdresource
+#                                                ^ constant.numeric.integer.gdresource
+#                                                    ^ punctuation.definition.array.gdresource
+}
+#<0 punctuation.definition.table.inline.gdresource
+
+[sub_resource type="Animation" id=5]
+#^----------- keyword.control.gdresource
+#             ^--- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                  ^---------- support.class.library.gdresource
+#                              ^- variable.other.property.gdresource
+#                                ^ punctuation.definition.keyValue.gdresource
+#                                 ^ constant.numeric.integer.gdresource
+tracks/0/type = "value"
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------ string.quoted.double.basic.line.gdresource
+tracks/0/path = NodePath("CanvasLayer/Panel:modulate")
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^------- support.class.library.gdresource
+#                        ^--------------------------- constant.character.escape.gdresource
+tracks/0/interp = 1
+#<0------------ variable.other.property.gdresource
+#               ^ punctuation.definition.keyValue.gdresource
+#                 ^ constant.numeric.integer.gdresource
+tracks/0/loop_wrap = true
+#<0--------------- variable.other.property.gdresource
+#                  ^ punctuation.definition.keyValue.gdresource
+#                    ^--- constant.language.gdresource
+tracks/0/imported = false
+#<0-------------- variable.other.property.gdresource
+#                 ^ punctuation.definition.keyValue.gdresource
+#                   ^---- constant.language.gdresource
+tracks/0/enabled = true
+#<0------------- variable.other.property.gdresource
+#                ^ punctuation.definition.keyValue.gdresource
+#                  ^--- constant.language.gdresource
+tracks/0/keys = {
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^ punctuation.definition.table.inline.gdresource
+"times": PoolRealArray( 0, 1 ),
+#<0---- string.quoted.double.basic.line.gdresource
+#        ^------------ support.class.library.gdresource
+#                       ^ constant.numeric.integer.gdresource
+#                          ^ constant.numeric.integer.gdresource
+"transitions": PoolRealArray( 1, 1 ),
+#<0---------- string.quoted.double.basic.line.gdresource
+#              ^------------ support.class.library.gdresource
+#                             ^ constant.numeric.integer.gdresource
+#                                ^ constant.numeric.integer.gdresource
+"update": 0,
+#<0----- string.quoted.double.basic.line.gdresource
+#         ^ constant.numeric.integer.gdresource
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+#<0----- string.quoted.double.basic.line.gdresource
+#         ^ punctuation.definition.array.gdresource
+#           ^---- support.class.library.gdresource
+#                  ^ constant.numeric.integer.gdresource
+#                     ^ constant.numeric.integer.gdresource
+#                        ^ constant.numeric.integer.gdresource
+#                           ^ constant.numeric.integer.gdresource
+#                                ^---- support.class.library.gdresource
+#                                       ^ constant.numeric.integer.gdresource
+#                                          ^ constant.numeric.integer.gdresource
+#                                             ^ constant.numeric.integer.gdresource
+#                                                ^ constant.numeric.integer.gdresource
+#                                                    ^ punctuation.definition.array.gdresource
+}
+#<0 punctuation.definition.table.inline.gdresource
+
+[node name="Main" type="Node"]
+#^--- keyword.control.gdresource
+#     ^--- variable.other.property.gdresource
+#         ^ punctuation.definition.keyValue.gdresource
+#          ^----- constant.character.escape.gdresource
+#                 ^--- variable.other.property.gdresource
+#                     ^ punctuation.definition.keyValue.gdresource
+#                      ^----- support.class.library.gdresource
+script = ExtResource( 1 )
+#<0--- variable.other.property.gdresource
+#      ^ punctuation.definition.keyValue.gdresource
+#        ^---------- keyword.control.gdresource
+#                     ^ constant.numeric.integer.gdresource
+
+[node name="World" type="Node2D" parent="."]
+#^--- keyword.control.gdresource
+#     ^--- variable.other.property.gdresource
+#         ^ punctuation.definition.keyValue.gdresource
+#          ^------ constant.character.escape.gdresource
+#                  ^--- variable.other.property.gdresource
+#                      ^ punctuation.definition.keyValue.gdresource
+#                       ^------- support.class.library.gdresource
+#                                ^----- variable.other.property.gdresource
+#                                      ^ punctuation.definition.keyValue.gdresource
+#                                       ^-- constant.character.escape.gdresource
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+#^--- keyword.control.gdresource
+#     ^--- variable.other.property.gdresource
+#         ^ punctuation.definition.keyValue.gdresource
+#          ^----------------- constant.character.escape.gdresource
+#                             ^--- variable.other.property.gdresource
+#                                 ^ punctuation.definition.keyValue.gdresource
+#                                  ^----------------- support.class.library.gdresource
+#                                                     ^----- variable.other.property.gdresource
+#                                                           ^ punctuation.definition.keyValue.gdresource
+#                                                            ^-- constant.character.escape.gdresource
+environment = SubResource( 1 )
+#<0-------- variable.other.property.gdresource
+#           ^ punctuation.definition.keyValue.gdresource
+#             ^---------- keyword.control.gdresource
+#                          ^ constant.numeric.integer.gdresource
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+#^--- keyword.control.gdresource
+#     ^--- variable.other.property.gdresource
+#         ^ punctuation.definition.keyValue.gdresource
+#          ^------------ constant.character.escape.gdresource
+#                        ^--- variable.other.property.gdresource
+#                            ^ punctuation.definition.keyValue.gdresource
+#                             ^------------ support.class.library.gdresource
+#                                           ^----- variable.other.property.gdresource
+#                                                 ^ punctuation.definition.keyValue.gdresource
+#                                                  ^-- constant.character.escape.gdresource
+layer = 128
+#<0-- variable.other.property.gdresource
+#     ^ punctuation.definition.keyValue.gdresource
+#       ^-- constant.numeric.integer.gdresource
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+#^--- keyword.control.gdresource
+#     ^--- variable.other.property.gdresource
+#         ^ punctuation.definition.keyValue.gdresource
+#          ^------ constant.character.escape.gdresource
+#                  ^--- variable.other.property.gdresource
+#                      ^ punctuation.definition.keyValue.gdresource
+#                       ^------ support.class.library.gdresource
+#                               ^----- variable.other.property.gdresource
+#                                     ^ punctuation.definition.keyValue.gdresource
+#                                      ^------------ constant.character.escape.gdresource
+modulate = Color( 0, 0, 0, 0 )
+#<0----- variable.other.property.gdresource
+#        ^ punctuation.definition.keyValue.gdresource
+#          ^---- support.class.library.gdresource
+#                 ^ constant.numeric.integer.gdresource
+#                    ^ constant.numeric.integer.gdresource
+#                       ^ constant.numeric.integer.gdresource
+#                          ^ constant.numeric.integer.gdresource
+anchor_right = 1.0
+#<0--------- variable.other.property.gdresource
+#            ^ punctuation.definition.keyValue.gdresource
+#              ^-- constant.numeric.float.gdresource
+anchor_bottom = 1.0
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^-- constant.numeric.float.gdresource
+mouse_filter = 2
+#<0--------- variable.other.property.gdresource
+#            ^ punctuation.definition.keyValue.gdresource
+#              ^ constant.numeric.integer.gdresource
+__meta__ = {
+#<0----- variable.other.property.gdresource
+#        ^ punctuation.definition.keyValue.gdresource
+#          ^ punctuation.definition.table.inline.gdresource
+"_edit_use_anchors_": false
+#<0----------------- string.quoted.double.basic.line.gdresource
+#                     ^---- constant.language.gdresource
+}
+#<0 punctuation.definition.table.inline.gdresource
+
+[node name="FadePlayer" type="AnimationPlayer" parent="."]
+#^--- keyword.control.gdresource
+#     ^--- variable.other.property.gdresource
+#         ^ punctuation.definition.keyValue.gdresource
+#          ^----------- constant.character.escape.gdresource
+#                       ^--- variable.other.property.gdresource
+#                           ^ punctuation.definition.keyValue.gdresource
+#                            ^---------------- support.class.library.gdresource
+#                                              ^----- variable.other.property.gdresource
+#                                                    ^ punctuation.definition.keyValue.gdresource
+#                                                     ^-- constant.character.escape.gdresource
+anims/RESET = SubResource( 2 )
+#<0-------- variable.other.property.gdresource
+#           ^ punctuation.definition.keyValue.gdresource
+#             ^---------- keyword.control.gdresource
+#                          ^ constant.numeric.integer.gdresource
+anims/dim = SubResource( 3 )
+#<0------ variable.other.property.gdresource
+#         ^ punctuation.definition.keyValue.gdresource
+#           ^---------- keyword.control.gdresource
+#                        ^ constant.numeric.integer.gdresource
+anims/fade_in = SubResource( 4 )
+#<0---------- variable.other.property.gdresource
+#             ^ punctuation.definition.keyValue.gdresource
+#               ^---------- keyword.control.gdresource
+#                            ^ constant.numeric.integer.gdresource
+anims/fade_out = SubResource( 5 )
+#<0----------- variable.other.property.gdresource
+#              ^ punctuation.definition.keyValue.gdresource
+#                ^---------- keyword.control.gdresource
+#                             ^ constant.numeric.integer.gdresource
+
+; from https://github.com/godotengine/godot-vscode-plugin/blob/cdc550a412dfffd26dfe7351e429b73c819d68d0/syntaxes/examples/Example.tscn
+#<0----------------------------------------------------------------------------------------------------------------------------------- comment.line.gdresource
+#<0 punctuation.definition.comment.gdresource

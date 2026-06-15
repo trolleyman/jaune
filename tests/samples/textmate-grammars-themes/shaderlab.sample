@@ -1,0 +1,149 @@
+// grammar: source.shaderlab
+
+Shader "Unlit/NewUnlitShader"
+//<0-- storage.type.structure.shaderlab
+//     ^--------------------- string.quoted.double.shaderlab
+{
+    Properties
+//  ^--------- storage.type.structure.shaderlab
+    {
+        _MainTex ("Texture", 2D) = "white" {}
+//      ^--------- support.variable.declaration.shaderlab
+//                ^-------- string.quoted.double.shaderlab
+//                           ^- support.type.basic.shaderlab
+//                                 ^------ string.quoted.double.shaderlab
+    }
+    SubShader
+//  ^-------- storage.type.structure.shaderlab
+    {
+        Tags { "RenderType"="Opaque" }
+//      ^--- support.type.propertyname.shaderlab
+//             ^----------- string.quoted.double.shaderlab
+//                          ^------- string.quoted.double.shaderlab
+        LOD 100
+//      ^-- support.type.propertyname.shaderlab
+//          ^-- constant.numeric.shaderlab
+
+        Pass
+//      ^--- storage.type.structure.shaderlab
+        {
+            CGPROGRAM
+//          ^-------- meta.cgblock
+//          ^-------- keyword.other
+            #pragma vertex vert
+//<0--------------------------- meta.cgblock
+//<0--------------- keyword.preprocessor.hlsl
+            #pragma fragment frag
+//<0----------------------------- meta.cgblock
+//<0--------------- keyword.preprocessor.hlsl
+            // make fog work
+//<0------------------------ meta.cgblock
+//          ^--------------- comment.line.double-slash.hlsl
+            #pragma multi_compile_fog
+//<0--------------------------------- meta.cgblock
+//<0--------------- keyword.preprocessor.hlsl
+
+            #include "UnityCG.cginc"
+//<0-------------------------------- meta.cgblock
+//<0---------------- keyword.preprocessor.hlsl
+//                   ^-------------- string.quoted.double.hlsl
+
+            struct appdata
+//<0---------------------- meta.cgblock
+//          ^----- storage.type.structured.hlsl
+            {
+//<0--------- meta.cgblock
+                float4 vertex : POSITION;
+//<0------------------------------------- meta.cgblock
+//              ^----- storage.type.basic.hlsl
+//                              ^------- support.variable.semantic.hlsl
+                float2 uv : TEXCOORD0;
+//<0---------------------------------- meta.cgblock
+//              ^----- storage.type.basic.hlsl
+//                          ^-------- support.variable.semantic.hlsl
+            };
+//<0---------- meta.cgblock
+
+            struct v2f
+//<0------------------ meta.cgblock
+//          ^----- storage.type.structured.hlsl
+            {
+//<0--------- meta.cgblock
+                float2 uv : TEXCOORD0;
+//<0---------------------------------- meta.cgblock
+//              ^----- storage.type.basic.hlsl
+//                          ^-------- support.variable.semantic.hlsl
+                UNITY_FOG_COORDS(1)
+//<0------------------------------- meta.cgblock
+//              ^--------------- support.function.hlsl
+//                               ^ constant.numeric.decimal.hlsl
+                float4 vertex : SV_POSITION;
+//<0---------------------------------------- meta.cgblock
+//              ^----- storage.type.basic.hlsl
+//                              ^---------- support.variable.semantic.sm4.hlsl
+            };
+//<0---------- meta.cgblock
+
+            sampler2D _MainTex;
+//<0--------------------------- meta.cgblock
+//          ^-------- support.type.sampler.legacy.hlsl
+            float4 _MainTex_ST;
+//<0--------------------------- meta.cgblock
+//          ^----- storage.type.basic.hlsl
+
+            v2f vert (appdata v)
+//<0---------------------------- meta.cgblock
+//              ^--- support.function.hlsl
+            {
+//<0--------- meta.cgblock
+                v2f o;
+//<0------------------ meta.cgblock
+                o.vertex = UnityObjectToClipPos(v.vertex);
+//<0------------------------------------------------------ meta.cgblock
+//                         ^------------------- support.function.hlsl
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+//<0------------------------------------------------- meta.cgblock
+//                     ^------------ support.function.hlsl
+                UNITY_TRANSFER_FOG(o,o.vertex);
+//<0------------------------------------------- meta.cgblock
+//              ^----------------- support.function.hlsl
+                return o;
+//<0--------------------- meta.cgblock
+//              ^----- keyword.control.hlsl
+            }
+//<0--------- meta.cgblock
+
+            fixed4 frag (v2f i) : SV_Target
+//<0--------------------------------------- meta.cgblock
+//          ^----- storage.type.basic.shaderlab
+//                 ^--- support.function.hlsl
+//                                ^-------- support.variable.semantic.sm4.hlsl
+            {
+//<0--------- meta.cgblock
+                // sample the texture
+//<0--------------------------------- meta.cgblock
+//              ^-------------------- comment.line.double-slash.hlsl
+                fixed4 col = tex2D(_MainTex, i.uv);
+//<0----------------------------------------------- meta.cgblock
+//              ^----- storage.type.basic.shaderlab
+//                           ^---- support.function.hlsl
+                // apply fog
+//<0------------------------ meta.cgblock
+//              ^----------- comment.line.double-slash.hlsl
+                UNITY_APPLY_FOG(i.fogCoord, col);
+//<0--------------------------------------------- meta.cgblock
+//              ^-------------- support.function.hlsl
+                return col;
+//<0----------------------- meta.cgblock
+//              ^----- keyword.control.hlsl
+            }
+//<0--------- meta.cgblock
+            ENDCG
+//<0------------- meta.cgblock
+//          ^---- keyword.other
+        }
+    }
+}
+
+// From https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html
+//<0------------------------------------------------------------------------ comment.line.double-slash.shaderlab

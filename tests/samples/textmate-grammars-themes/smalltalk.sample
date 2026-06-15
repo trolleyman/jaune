@@ -1,0 +1,65 @@
+# grammar: source.smalltalk
+
+exampleWithNumber: x
+    | y |
+#   ^ punctuation.definition.variable.begin.smalltalk
+#     ^ variable.other.local.smalltalk
+#       ^ punctuation.definition.variable.end.smalltalk
+    true & false not & (nil isNil) ifFalse: [self halt].
+#   ^--- constant.language.boolean.smalltalk
+#        ^ keyword.operator.logical.smalltalk
+#          ^---- constant.language.boolean.smalltalk
+#                ^-- keyword.operator.logical.smalltalk
+#                    ^ keyword.operator.logical.smalltalk
+#                       ^-- constant.language.nil.smalltalk
+#                                           ^---------- meta.block.smalltalk
+#                                           ^ punctuation.definition.block.begin.smalltalk
+#                                            ^--- storage.modifier.self.smalltalk
+#                                                     ^ punctuation.definition.block.end.smalltalk
+#                                                      ^ punctuation.terminator.statement.smalltalk
+    y := self size + super size.
+#     ^- keyword.operator.assignment.smalltalk
+#        ^--- storage.modifier.self.smalltalk
+#             ^--- support.function.smalltalk
+#                  ^ keyword.operator.arithmetic.smalltalk
+#                    ^---- storage.modifier.super.smalltalk
+#                          ^--- support.function.smalltalk
+#                              ^ punctuation.terminator.statement.smalltalk
+    #($a #a 'a' 1 1.0)
+#   ^----------------- constant.other.array.literal.smalltalk
+#   ^- punctuation.definition.constant.array.begin.smalltalk
+#     ^- constant.character.smalltalk
+#        ^- constant.other.symbol.smalltalk
+#        ^ punctuation.definition.constant.symbol.smalltalk
+#           ^-- string.quoted.single.smalltalk
+#           ^ punctuation.definition.string.begin.smalltalk
+#             ^ punctuation.definition.string.end.smalltalk
+#               ^ constant.numeric.integer.smalltalk
+#                 ^-- constant.numeric.float.smalltalk
+#                    ^ punctuation.definition.constant.array.end.smalltalk
+        do: [ :each |
+#           ^-------- meta.block.smalltalk
+#           ^ punctuation.definition.block.begin.smalltalk
+#            ^------- meta.block.arguments.smalltalk
+#             ^---- variable.parameter.block.smalltalk
+#                   ^ punctuation.separator.arguments.block.smalltalk
+            Transcript show: (each class name);
+#<0-------------------------------------------- meta.block.smalltalk
+#           ^--------- entity.name.type.class.smalltalk
+#                                  ^---- storage.type.class.smalltalk
+#                                             ^ punctuation.separator.cascade.smalltalk
+                       show: ' '].
+#<0------------------------------ meta.block.smalltalk
+#                            ^-- string.quoted.single.smalltalk
+#                            ^ punctuation.definition.string.begin.smalltalk
+#                              ^ punctuation.definition.string.end.smalltalk
+#                               ^ punctuation.definition.block.end.smalltalk
+#                                ^ punctuation.terminator.statement.smalltalk
+    ^x < y
+#   ^ keyword.control.flow.return.smalltalk
+#      ^ keyword.operator.comparison.smalltalk
+
+"From https://en.wikipedia.org/wiki/Smalltalk"
+#<0------------------------------------------- comment.block.smalltalk
+#<0 punctuation.definition.comment.begin.smalltalk
+#                                            ^ punctuation.definition.comment.end.smalltalk

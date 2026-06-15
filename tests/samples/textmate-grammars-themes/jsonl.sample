@@ -1,0 +1,333 @@
+// grammar: source.json.lines
+
+{"name": "Gilbert", "wins": [["straight", "7♣"], ["one pair", "10♥"]]}
+//<0------------------------------------------------------------------ meta.structure.dictionary.json.lines
+//<0 punctuation.definition.dictionary.begin.json.lines
+//<1--- string.json.lines
+//<1--- support.type.property-name.json.lines
+//<1 punctuation.support.type.property-name.begin.json.lines
+//    ^ punctuation.support.type.property-name.end.json.lines
+//     ^----------- meta.structure.dictionary.value.json.lines
+//     ^ punctuation.separator.dictionary.key-value.json.lines
+//       ^-------- string.quoted.double.json.lines
+//       ^ punctuation.definition.string.begin.json.lines
+//               ^ punctuation.definition.string.end.json.lines
+//                ^ punctuation.separator.dictionary.pair.json.lines
+//                  ^----- string.json.lines
+//                  ^----- support.type.property-name.json.lines
+//                  ^ punctuation.support.type.property-name.begin.json.lines
+//                       ^ punctuation.support.type.property-name.end.json.lines
+//                        ^------------------------------------------ meta.structure.dictionary.value.json.lines
+//                        ^ punctuation.separator.dictionary.key-value.json.lines
+//                          ^---------------------------------------- meta.structure.array.json.lines
+//                          ^ punctuation.definition.array.begin.json.lines
+//                           ^----------------- meta.structure.array.json.lines
+//                           ^ punctuation.definition.array.begin.json.lines
+//                            ^--------- string.quoted.double.json.lines
+//                            ^ punctuation.definition.string.begin.json.lines
+//                                     ^ punctuation.definition.string.end.json.lines
+//                                      ^ punctuation.separator.array.json.lines
+//                                        ^--- string.quoted.double.json.lines
+//                                        ^ punctuation.definition.string.begin.json.lines
+//                                           ^ punctuation.definition.string.end.json.lines
+//                                            ^ punctuation.definition.array.end.json.lines
+//                                             ^ punctuation.separator.array.json.lines
+//                                               ^------------------ meta.structure.array.json.lines
+//                                               ^ punctuation.definition.array.begin.json.lines
+//                                                ^--------- string.quoted.double.json.lines
+//                                                ^ punctuation.definition.string.begin.json.lines
+//                                                         ^ punctuation.definition.string.end.json.lines
+//                                                          ^ punctuation.separator.array.json.lines
+//                                                            ^---- string.quoted.double.json.lines
+//                                                            ^ punctuation.definition.string.begin.json.lines
+//                                                                ^ punctuation.definition.string.end.json.lines
+//                                                                 ^ punctuation.definition.array.end.json.lines
+//                                                                  ^ punctuation.definition.array.end.json.lines
+//                                                                   ^ punctuation.definition.dictionary.end.json.lines
+{"name": "Alexa", "wins": [["two pair", "4♠"], ["two pair", "9♠"]]}
+//<0--------------------------------------------------------------- meta.structure.dictionary.json.lines
+//<0 punctuation.definition.dictionary.begin.json.lines
+//<1--- string.json.lines
+//<1--- support.type.property-name.json.lines
+//<1 punctuation.support.type.property-name.begin.json.lines
+//    ^ punctuation.support.type.property-name.end.json.lines
+//     ^--------- meta.structure.dictionary.value.json.lines
+//     ^ punctuation.separator.dictionary.key-value.json.lines
+//       ^------ string.quoted.double.json.lines
+//       ^ punctuation.definition.string.begin.json.lines
+//             ^ punctuation.definition.string.end.json.lines
+//              ^ punctuation.separator.dictionary.pair.json.lines
+//                ^----- string.json.lines
+//                ^----- support.type.property-name.json.lines
+//                ^ punctuation.support.type.property-name.begin.json.lines
+//                     ^ punctuation.support.type.property-name.end.json.lines
+//                      ^----------------------------------------- meta.structure.dictionary.value.json.lines
+//                      ^ punctuation.separator.dictionary.key-value.json.lines
+//                        ^--------------------------------------- meta.structure.array.json.lines
+//                        ^ punctuation.definition.array.begin.json.lines
+//                         ^----------------- meta.structure.array.json.lines
+//                         ^ punctuation.definition.array.begin.json.lines
+//                          ^--------- string.quoted.double.json.lines
+//                          ^ punctuation.definition.string.begin.json.lines
+//                                   ^ punctuation.definition.string.end.json.lines
+//                                    ^ punctuation.separator.array.json.lines
+//                                      ^--- string.quoted.double.json.lines
+//                                      ^ punctuation.definition.string.begin.json.lines
+//                                         ^ punctuation.definition.string.end.json.lines
+//                                          ^ punctuation.definition.array.end.json.lines
+//                                           ^ punctuation.separator.array.json.lines
+//                                             ^----------------- meta.structure.array.json.lines
+//                                             ^ punctuation.definition.array.begin.json.lines
+//                                              ^--------- string.quoted.double.json.lines
+//                                              ^ punctuation.definition.string.begin.json.lines
+//                                                       ^ punctuation.definition.string.end.json.lines
+//                                                        ^ punctuation.separator.array.json.lines
+//                                                          ^--- string.quoted.double.json.lines
+//                                                          ^ punctuation.definition.string.begin.json.lines
+//                                                             ^ punctuation.definition.string.end.json.lines
+//                                                              ^ punctuation.definition.array.end.json.lines
+//                                                               ^ punctuation.definition.array.end.json.lines
+//                                                                ^ punctuation.definition.dictionary.end.json.lines
+{"name": "May", "wins": []}
+//<0----------------------- meta.structure.dictionary.json.lines
+//<0 punctuation.definition.dictionary.begin.json.lines
+//<1--- string.json.lines
+//<1--- support.type.property-name.json.lines
+//<1 punctuation.support.type.property-name.begin.json.lines
+//    ^ punctuation.support.type.property-name.end.json.lines
+//     ^------- meta.structure.dictionary.value.json.lines
+//     ^ punctuation.separator.dictionary.key-value.json.lines
+//       ^---- string.quoted.double.json.lines
+//       ^ punctuation.definition.string.begin.json.lines
+//           ^ punctuation.definition.string.end.json.lines
+//            ^ punctuation.separator.dictionary.pair.json.lines
+//              ^----- string.json.lines
+//              ^----- support.type.property-name.json.lines
+//              ^ punctuation.support.type.property-name.begin.json.lines
+//                   ^ punctuation.support.type.property-name.end.json.lines
+//                    ^--- meta.structure.dictionary.value.json.lines
+//                    ^ punctuation.separator.dictionary.key-value.json.lines
+//                      ^- meta.structure.array.json.lines
+//                      ^ punctuation.definition.array.begin.json.lines
+//                       ^ punctuation.definition.array.end.json.lines
+//                        ^ punctuation.definition.dictionary.end.json.lines
+{"name": "Deloise", "wins": [["three of a kind", "5♣"]]}
+//<0---------------------------------------------------- meta.structure.dictionary.json.lines
+//<0 punctuation.definition.dictionary.begin.json.lines
+//<1--- string.json.lines
+//<1--- support.type.property-name.json.lines
+//<1 punctuation.support.type.property-name.begin.json.lines
+//    ^ punctuation.support.type.property-name.end.json.lines
+//     ^----------- meta.structure.dictionary.value.json.lines
+//     ^ punctuation.separator.dictionary.key-value.json.lines
+//       ^-------- string.quoted.double.json.lines
+//       ^ punctuation.definition.string.begin.json.lines
+//               ^ punctuation.definition.string.end.json.lines
+//                ^ punctuation.separator.dictionary.pair.json.lines
+//                  ^----- string.json.lines
+//                  ^----- support.type.property-name.json.lines
+//                  ^ punctuation.support.type.property-name.begin.json.lines
+//                       ^ punctuation.support.type.property-name.end.json.lines
+//                        ^---------------------------- meta.structure.dictionary.value.json.lines
+//                        ^ punctuation.separator.dictionary.key-value.json.lines
+//                          ^-------------------------- meta.structure.array.json.lines
+//                          ^ punctuation.definition.array.begin.json.lines
+//                           ^------------------------ meta.structure.array.json.lines
+//                           ^ punctuation.definition.array.begin.json.lines
+//                            ^---------------- string.quoted.double.json.lines
+//                            ^ punctuation.definition.string.begin.json.lines
+//                                            ^ punctuation.definition.string.end.json.lines
+//                                             ^ punctuation.separator.array.json.lines
+//                                               ^--- string.quoted.double.json.lines
+//                                               ^ punctuation.definition.string.begin.json.lines
+//                                                  ^ punctuation.definition.string.end.json.lines
+//                                                   ^ punctuation.definition.array.end.json.lines
+//                                                    ^ punctuation.definition.array.end.json.lines
+//                                                     ^ punctuation.definition.dictionary.end.json.lines
+{
+//<0 meta.structure.dictionary.json.lines
+//<0 punctuation.definition.dictionary.begin.json.lines
+  "name": "Gilbert",
+//<0---------------- meta.structure.dictionary.json.lines
+//^----- string.json.lines
+//^----- support.type.property-name.json.lines
+//^ punctuation.support.type.property-name.begin.json.lines
+//     ^ punctuation.support.type.property-name.end.json.lines
+//      ^----------- meta.structure.dictionary.value.json.lines
+//      ^ punctuation.separator.dictionary.key-value.json.lines
+//        ^-------- string.quoted.double.json.lines
+//        ^ punctuation.definition.string.begin.json.lines
+//                ^ punctuation.definition.string.end.json.lines
+//                 ^ punctuation.separator.dictionary.pair.json.lines
+  "wins": [
+//<0------- meta.structure.dictionary.json.lines
+//^----- string.json.lines
+//^----- support.type.property-name.json.lines
+//^ punctuation.support.type.property-name.begin.json.lines
+//     ^ punctuation.support.type.property-name.end.json.lines
+//      ^-- meta.structure.dictionary.value.json.lines
+//      ^ punctuation.separator.dictionary.key-value.json.lines
+//        ^ meta.structure.array.json.lines
+//        ^ punctuation.definition.array.begin.json.lines
+    [
+//<0- meta.structure.dictionary.json.lines
+//<0- meta.structure.dictionary.value.json.lines
+//<0- meta.structure.array.json.lines
+//  ^ meta.structure.array.json.lines
+//  ^ punctuation.definition.array.begin.json.lines
+      "straight",
+//<0------------- meta.structure.dictionary.json.lines
+//<0------------- meta.structure.dictionary.value.json.lines
+//<0------------- meta.structure.array.json.lines
+//<0------------- meta.structure.array.json.lines
+//    ^--------- string.quoted.double.json.lines
+//    ^ punctuation.definition.string.begin.json.lines
+//             ^ punctuation.definition.string.end.json.lines
+//              ^ punctuation.separator.array.json.lines
+      "7♣"
+//<0------ meta.structure.dictionary.json.lines
+//<0------ meta.structure.dictionary.value.json.lines
+//<0------ meta.structure.array.json.lines
+//<0------ meta.structure.array.json.lines
+//    ^--- string.quoted.double.json.lines
+//    ^ punctuation.definition.string.begin.json.lines
+//       ^ punctuation.definition.string.end.json.lines
+    ],
+//<0-- meta.structure.dictionary.json.lines
+//<0-- meta.structure.dictionary.value.json.lines
+//<0-- meta.structure.array.json.lines
+//<0- meta.structure.array.json.lines
+//  ^ punctuation.definition.array.end.json.lines
+//   ^ punctuation.separator.array.json.lines
+    [
+//<0- meta.structure.dictionary.json.lines
+//<0- meta.structure.dictionary.value.json.lines
+//<0- meta.structure.array.json.lines
+//  ^ meta.structure.array.json.lines
+//  ^ punctuation.definition.array.begin.json.lines
+      "one pair",
+//<0------------- meta.structure.dictionary.json.lines
+//<0------------- meta.structure.dictionary.value.json.lines
+//<0------------- meta.structure.array.json.lines
+//<0------------- meta.structure.array.json.lines
+//    ^--------- string.quoted.double.json.lines
+//    ^ punctuation.definition.string.begin.json.lines
+//             ^ punctuation.definition.string.end.json.lines
+//              ^ punctuation.separator.array.json.lines
+      "10♥"
+//<0------- meta.structure.dictionary.json.lines
+//<0------- meta.structure.dictionary.value.json.lines
+//<0------- meta.structure.array.json.lines
+//<0------- meta.structure.array.json.lines
+//    ^---- string.quoted.double.json.lines
+//    ^ punctuation.definition.string.begin.json.lines
+//        ^ punctuation.definition.string.end.json.lines
+    ]
+//<0- meta.structure.dictionary.json.lines
+//<0- meta.structure.dictionary.value.json.lines
+//<0- meta.structure.array.json.lines
+//<0- meta.structure.array.json.lines
+//  ^ punctuation.definition.array.end.json.lines
+  ]
+//<0 meta.structure.dictionary.json.lines
+//<0 meta.structure.dictionary.value.json.lines
+//<0 meta.structure.array.json.lines
+//^ punctuation.definition.array.end.json.lines
+}
+//<0 meta.structure.dictionary.json.lines
+//<0 punctuation.definition.dictionary.end.json.lines
+{
+//<0 meta.structure.dictionary.json.lines
+//<0 punctuation.definition.dictionary.begin.json.lines
+  "name": "Alexa",
+//<0-------------- meta.structure.dictionary.json.lines
+//^----- string.json.lines
+//^----- support.type.property-name.json.lines
+//^ punctuation.support.type.property-name.begin.json.lines
+//     ^ punctuation.support.type.property-name.end.json.lines
+//      ^--------- meta.structure.dictionary.value.json.lines
+//      ^ punctuation.separator.dictionary.key-value.json.lines
+//        ^------ string.quoted.double.json.lines
+//        ^ punctuation.definition.string.begin.json.lines
+//              ^ punctuation.definition.string.end.json.lines
+//               ^ punctuation.separator.dictionary.pair.json.lines
+  "wins": [
+//<0------- meta.structure.dictionary.json.lines
+//^----- string.json.lines
+//^----- support.type.property-name.json.lines
+//^ punctuation.support.type.property-name.begin.json.lines
+//     ^ punctuation.support.type.property-name.end.json.lines
+//      ^-- meta.structure.dictionary.value.json.lines
+//      ^ punctuation.separator.dictionary.key-value.json.lines
+//        ^ meta.structure.array.json.lines
+//        ^ punctuation.definition.array.begin.json.lines
+    [
+//<0- meta.structure.dictionary.json.lines
+//<0- meta.structure.dictionary.value.json.lines
+//<0- meta.structure.array.json.lines
+//  ^ meta.structure.array.json.lines
+//  ^ punctuation.definition.array.begin.json.lines
+      "two pair",
+//<0------------- meta.structure.dictionary.json.lines
+//<0------------- meta.structure.dictionary.value.json.lines
+//<0------------- meta.structure.array.json.lines
+//<0------------- meta.structure.array.json.lines
+//    ^--------- string.quoted.double.json.lines
+//    ^ punctuation.definition.string.begin.json.lines
+//             ^ punctuation.definition.string.end.json.lines
+//              ^ punctuation.separator.array.json.lines
+      "4♠"
+//<0------ meta.structure.dictionary.json.lines
+//<0------ meta.structure.dictionary.value.json.lines
+//<0------ meta.structure.array.json.lines
+//<0------ meta.structure.array.json.lines
+//    ^--- string.quoted.double.json.lines
+//    ^ punctuation.definition.string.begin.json.lines
+//       ^ punctuation.definition.string.end.json.lines
+    ],
+//<0-- meta.structure.dictionary.json.lines
+//<0-- meta.structure.dictionary.value.json.lines
+//<0-- meta.structure.array.json.lines
+//<0- meta.structure.array.json.lines
+//  ^ punctuation.definition.array.end.json.lines
+//   ^ punctuation.separator.array.json.lines
+    [
+//<0- meta.structure.dictionary.json.lines
+//<0- meta.structure.dictionary.value.json.lines
+//<0- meta.structure.array.json.lines
+//  ^ meta.structure.array.json.lines
+//  ^ punctuation.definition.array.begin.json.lines
+      "two pair",
+//<0------------- meta.structure.dictionary.json.lines
+//<0------------- meta.structure.dictionary.value.json.lines
+//<0------------- meta.structure.array.json.lines
+//<0------------- meta.structure.array.json.lines
+//    ^--------- string.quoted.double.json.lines
+//    ^ punctuation.definition.string.begin.json.lines
+//             ^ punctuation.definition.string.end.json.lines
+//              ^ punctuation.separator.array.json.lines
+      "9♠"
+//<0------ meta.structure.dictionary.json.lines
+//<0------ meta.structure.dictionary.value.json.lines
+//<0------ meta.structure.array.json.lines
+//<0------ meta.structure.array.json.lines
+//    ^--- string.quoted.double.json.lines
+//    ^ punctuation.definition.string.begin.json.lines
+//       ^ punctuation.definition.string.end.json.lines
+    ]
+//<0- meta.structure.dictionary.json.lines
+//<0- meta.structure.dictionary.value.json.lines
+//<0- meta.structure.array.json.lines
+//<0- meta.structure.array.json.lines
+//  ^ punctuation.definition.array.end.json.lines
+  ]
+//<0 meta.structure.dictionary.json.lines
+//<0 meta.structure.dictionary.value.json.lines
+//<0 meta.structure.array.json.lines
+//^ punctuation.definition.array.end.json.lines
+}
+//<0 meta.structure.dictionary.json.lines
+//<0 punctuation.definition.dictionary.end.json.lines
+// From https://jsonlines.org/examples/
+//<0----------------------------------- comment.line.double-slash.js
+//<0 punctuation.definition.comment.json.lines

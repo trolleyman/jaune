@@ -1,0 +1,67 @@
+(* grammar: source.fsharp *)
+
+type Customer(firstName, middleInitial, lastName) = 
+(*<0----------------------------------------------- record.fsharp *)
+(*<0 keyword.fsharp *)
+(*   ^------- entity.name.type.fsharp *)
+(*           ^ keyword.symbol.fsharp *)
+(*            ^-------- variable.parameter.fsharp *)
+(*                     ^ keyword.symbol.fsharp *)
+(*                       ^------------ variable.parameter.fsharp *)
+(*                                    ^ keyword.symbol.fsharp *)
+(*                                      ^------- variable.parameter.fsharp *)
+(*                                              ^ keyword.symbol.fsharp *)
+(*                                                ^ keyword.symbol.fsharp *)
+    member this.FirstName = firstName
+(*  ^---------------------- binding.fsharp *)
+(*  ^----- keyword.fsharp *)
+(*         ^------------- variable.fsharp *)
+(*                        ^ keyword.symbol.fsharp *)
+    member this.MiddleInitial = middleInitial
+(*  ^-------------------------- binding.fsharp *)
+(*  ^----- keyword.fsharp *)
+(*         ^----------------- variable.fsharp *)
+(*                            ^ keyword.symbol.fsharp *)
+    member this.LastName = lastName
+(*  ^--------------------- binding.fsharp *)
+(*  ^----- keyword.fsharp *)
+(*         ^------------ variable.fsharp *)
+(*                       ^ keyword.symbol.fsharp *)
+
+    member this.SayFullName() =
+(*  ^-------------------------- binding.fsharp *)
+(*  ^----- keyword.fsharp *)
+(*         ^--------------- variable.fsharp *)
+(*                         ^- keyword.symbol.fsharp *)
+(*                            ^ keyword.symbol.fsharp *)
+        $"{this.FirstName} {this.MiddleInitial} {this.LastName}"
+(*       ^------------------------------------------------------ string.quoted.double.fsharp *)
+(*       ^ punctuation.definition.string.begin.fsharp *)
+(*                                                             ^ punctuation.definition.string.end.fsharp *)
+
+let customer = Customer("Emillia", "C", "Miller")
+(*<0---------- binding.fsharp *)
+(*<0 keyword.fsharp *)
+(*  ^------- variable.fsharp *)
+(*           ^ keyword.symbol.fsharp *)
+(*                     ^ keyword.symbol.fsharp *)
+(*                      ^-------- string.quoted.double.fsharp *)
+(*                      ^ punctuation.definition.string.begin.fsharp *)
+(*                              ^ punctuation.definition.string.end.fsharp *)
+(*                               ^ keyword.symbol.fsharp *)
+(*                                 ^-- string.quoted.double.fsharp *)
+(*                                 ^ punctuation.definition.string.begin.fsharp *)
+(*                                   ^ punctuation.definition.string.end.fsharp *)
+(*                                    ^ keyword.symbol.fsharp *)
+(*                                      ^------- string.quoted.double.fsharp *)
+(*                                      ^ punctuation.definition.string.begin.fsharp *)
+(*                                             ^ punctuation.definition.string.end.fsharp *)
+(*                                              ^ keyword.symbol.fsharp *)
+
+printfn $"Hello, I'm {customer.SayFullName()}!"
+(*       ^------------------------------------- string.quoted.double.fsharp *)
+(*       ^ punctuation.definition.string.begin.fsharp *)
+(*                                            ^ punctuation.definition.string.end.fsharp *)
+
+// From https://dotnet.microsoft.com/languages/fsharp
+(*<0------------------------------------------------- comment.line.double-slash.fsharp *)

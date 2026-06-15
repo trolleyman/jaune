@@ -1,0 +1,4 @@
+<div id="x">
+  <style>.x { color: red; }</style>
+  <script>const n = 1;</script>
+</div>

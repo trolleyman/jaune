@@ -1,0 +1,122 @@
+// grammar: source.groovy
+
+import org.mortbay.jetty.Server
+//<0--------------------------- meta.import.groovy
+//<0-- keyword.other.import.groovy
+//        ^ punctuation.separator.groovy
+//                ^ punctuation.separator.groovy
+//                      ^ punctuation.separator.groovy
+import org.mortbay.jetty.servlet.*
+//<0------------------------------ meta.import.groovy
+//<0-- keyword.other.import.groovy
+//        ^ punctuation.separator.groovy
+//                ^ punctuation.separator.groovy
+//                      ^ punctuation.separator.groovy
+//                              ^ punctuation.separator.groovy
+import groovy.servlet.*
+//<0------------------- meta.import.groovy
+//<0-- keyword.other.import.groovy
+//           ^ punctuation.separator.groovy
+//                   ^ punctuation.separator.groovy
+
+@Grab(group='org.mortbay.jetty', module='jetty-embedded', version='6.1.14')
+//<0----------------------------------------------------------------------- meta.declaration.annotation.groovy
+//<0- storage.type.annotation.groovy
+//   ^ punctuation.definition.annotation-arguments.begin.groovy
+//    ^---- constant.other.key.groovy
+//         ^ keyword.operator.assignment.groovy
+//          ^------------------ string.quoted.single.groovy
+//          ^ punctuation.definition.string.begin.groovy
+//                            ^ punctuation.definition.string.end.groovy
+//                             ^ punctuation.definition.seperator.groovy
+//                               ^----- constant.other.key.groovy
+//                                     ^ keyword.operator.assignment.groovy
+//                                      ^--------------- string.quoted.single.groovy
+//                                      ^ punctuation.definition.string.begin.groovy
+//                                                     ^ punctuation.definition.string.end.groovy
+//                                                      ^ punctuation.definition.seperator.groovy
+//                                                        ^------ constant.other.key.groovy
+//                                                               ^ keyword.operator.assignment.groovy
+//                                                                ^------- string.quoted.single.groovy
+//                                                                ^ punctuation.definition.string.begin.groovy
+//                                                                       ^ punctuation.definition.string.end.groovy
+//                                                                        ^ punctuation.definition.annotation-arguments.end.groovy
+def startJetty() {
+//<0 meta.definition.method.groovy
+//  ^----------- meta.method-call.groovy
+//  ^--------- meta.method.groovy
+//            ^ punctuation.definition.method-parameters.begin.groovy
+//             ^ punctuation.definition.method-parameters.end.groovy
+    def jetty = new Server(9090)
+//  ^-- storage.type.def.groovy
+//            ^ keyword.operator.assignment.groovy
+//              ^-- keyword.control.new.groovy
+//                  ^----- storage.type.groovy
+//                         ^--- constant.numeric.groovy
+    def context = new Context(jetty, '/', Context.SESSIONS)
+//  ^-- storage.type.def.groovy
+//              ^ keyword.operator.assignment.groovy
+//                ^-- keyword.control.new.groovy
+//                    ^------ storage.type.groovy
+//                                   ^-- string.quoted.single.groovy
+//                                   ^ punctuation.definition.string.begin.groovy
+//                                     ^ punctuation.definition.string.end.groovy
+//                                        ^------ storage.type.groovy
+//                                               ^ keyword.operator.navigation.groovy
+//                                                ^------- constant.other.groovy
+    context.setWelcomeFiles(["webserverIndex.groovy"] as String[])
+//         ^ keyword.operator.navigation.groovy
+//          ^----------------------------------------------------- meta.method-call.groovy
+//          ^-------------- meta.method.groovy
+//                         ^ punctuation.definition.method-parameters.begin.groovy
+//                          ^------------------------ meta.structure.groovy
+//                          ^ punctuation.definition.structure.begin.groovy
+//                           ^---------------------- string.quoted.double.groovy
+//                           ^ punctuation.definition.string.begin.groovy
+//                                                 ^ punctuation.definition.string.end.groovy
+//                                                  ^ punctuation.definition.structure.end.groovy
+//                                                    ^- keyword.operator.as.groovy
+//                                                       ^----- storage.type.object.array.groovy
+//                                                             ^- meta.structure.groovy
+//                                                             ^ punctuation.definition.structure.begin.groovy
+//                                                              ^ punctuation.definition.structure.end.groovy
+//                                                               ^ punctuation.definition.method-parameters.end.groovy
+    context.resourceBase = '.'
+//         ^ keyword.operator.navigation.groovy
+//                       ^ keyword.operator.assignment.groovy
+//                         ^-- string.quoted.single.groovy
+//                         ^ punctuation.definition.string.begin.groovy
+//                           ^ punctuation.definition.string.end.groovy
+    context.addServlet(GroovyServlet, '*.groovy')
+//         ^ keyword.operator.navigation.groovy
+//          ^------------------------------------ meta.method-call.groovy
+//          ^--------- meta.method.groovy
+//                    ^ punctuation.definition.method-parameters.begin.groovy
+//                     ^------------ storage.type.groovy
+//                                  ^ punctuation.definition.seperator.parameter.groovy
+//                                    ^--------- string.quoted.single.groovy
+//                                    ^ punctuation.definition.string.begin.groovy
+//                                             ^ punctuation.definition.string.end.groovy
+//                                              ^ punctuation.definition.method-parameters.end.groovy
+    jetty.start()
+//       ^ keyword.operator.navigation.groovy
+//        ^------ meta.method-call.groovy
+//        ^---- meta.method.groovy
+//             ^ punctuation.definition.method-parameters.begin.groovy
+//              ^ punctuation.definition.method-parameters.end.groovy
+}
+
+println "Starting Jetty on port 9090, press Ctrl+C to stop."
+//<0--- support.function.print.groovy
+//      ^--------------------------------------------------- string.quoted.double.groovy
+//      ^ punctuation.definition.string.begin.groovy
+//                                                         ^ punctuation.definition.string.end.groovy
+startJetty()
+//<0-------- meta.method-call.groovy
+//<0------ meta.method.groovy
+//        ^ punctuation.definition.method-parameters.begin.groovy
+//         ^ punctuation.definition.method-parameters.end.groovy
+
+// From https://gist.github.com/saltnlight5/3756240
+//<0----------------------------------------------- comment.line.double-slash.groovy
+//<0 punctuation.definition.comment.groovy

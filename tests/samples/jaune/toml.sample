@@ -1,0 +1,105 @@
+# grammar: source.toml
+
+# This is a TOML document
+#<0---------------------- comment.line.number-sign.toml
+#<0 punctuation.definition.comment.toml
+
+title = "TOML Example"
+#       ^------------- string.quoted.double.toml
+#       ^ punctuation.definition.string.begin.toml
+#                    ^ punctuation.definition.string.end.toml
+
+[owner]
+#<0---- meta.group.toml
+#<0 punctuation.definition.section.begin.toml
+#^---- entity.name.section.toml
+#     ^ punctuation.definition.section.begin.toml
+name = "Tom Preston-Werner"
+#      ^------------------- string.quoted.double.toml
+#      ^ punctuation.definition.string.begin.toml
+#                         ^ punctuation.definition.string.end.toml
+dob = 1979-05-27T07:32:00-08:00
+#     ^------------------------ constant.other.date.toml
+
+[database]
+#<0------- meta.group.toml
+#<0 punctuation.definition.section.begin.toml
+#^------- entity.name.section.toml
+#        ^ punctuation.definition.section.begin.toml
+enabled = true
+#         ^--- constant.language.boolean.toml
+ports = [ 8000, 8001, 8002 ]
+#       ^------------------- meta.array.toml
+#       ^ punctuation.definition.array.begin.toml
+#         ^--- constant.numeric.integer.toml
+#             ^ punctuation.separator.array.toml
+#               ^--- constant.numeric.integer.toml
+#                   ^ punctuation.separator.array.toml
+#                     ^--- constant.numeric.integer.toml
+#                          ^ punctuation.definition.array.end.toml
+data = [ ["delta", "phi"], [3.14] ]
+#      ^--------------------------- meta.array.toml
+#      ^ punctuation.definition.array.begin.toml
+#        ^--------------- meta.array.toml
+#        ^ punctuation.definition.array.begin.toml
+#         ^------ string.quoted.double.toml
+#         ^ punctuation.definition.string.begin.toml
+#               ^ punctuation.definition.string.end.toml
+#                ^ punctuation.separator.array.toml
+#                  ^---- string.quoted.double.toml
+#                  ^ punctuation.definition.string.begin.toml
+#                      ^ punctuation.definition.string.end.toml
+#                       ^ punctuation.definition.array.end.toml
+#                        ^ punctuation.separator.array.toml
+#                          ^----- meta.array.toml
+#                          ^ punctuation.definition.array.begin.toml
+#                           ^--- constant.numeric.float.toml
+#                               ^ punctuation.definition.array.end.toml
+#                                 ^ punctuation.definition.array.end.toml
+temp_targets = { cpu = 79.5, case = 72.0 }
+#              ^-------------------------- meta.inline-table.toml
+#              ^ punctuation.definition.inline-table.begin.toml
+#                      ^--- constant.numeric.float.toml
+#                          ^ punctuation.separator.inline-table.toml
+#                                   ^--- constant.numeric.float.toml
+#                                        ^ punctuation.definition.inline-table.end.toml
+
+[servers]
+#<0------ meta.group.toml
+#<0 punctuation.definition.section.begin.toml
+#^------ entity.name.section.toml
+#       ^ punctuation.definition.section.begin.toml
+
+[servers.alpha]
+#<0------------ meta.group.toml
+#<0 punctuation.definition.section.begin.toml
+#^------ entity.name.section.toml
+#        ^---- entity.name.section.toml
+#             ^ punctuation.definition.section.begin.toml
+ip = "10.0.0.1"
+#    ^--------- string.quoted.double.toml
+#    ^ punctuation.definition.string.begin.toml
+#             ^ punctuation.definition.string.end.toml
+role = "frontend"
+#      ^--------- string.quoted.double.toml
+#      ^ punctuation.definition.string.begin.toml
+#               ^ punctuation.definition.string.end.toml
+
+[servers.beta]
+#<0----------- meta.group.toml
+#<0 punctuation.definition.section.begin.toml
+#^------ entity.name.section.toml
+#        ^--- entity.name.section.toml
+#            ^ punctuation.definition.section.begin.toml
+ip = "10.0.0.2"
+#    ^--------- string.quoted.double.toml
+#    ^ punctuation.definition.string.begin.toml
+#             ^ punctuation.definition.string.end.toml
+role = "backend"
+#      ^-------- string.quoted.double.toml
+#      ^ punctuation.definition.string.begin.toml
+#              ^ punctuation.definition.string.end.toml
+
+# From https://toml.io/en/
+#<0----------------------- comment.line.number-sign.toml
+#<0 punctuation.definition.comment.toml

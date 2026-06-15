@@ -1,0 +1,286 @@
+// grammar: source.ts.tags
+
+import {LitElement, html, customElement, property} from 'lit-element';
+//<0----------------------------------------------------------------- meta.import.ts
+//<0-- keyword.control.import.ts
+//     ^------------------------------------------ meta.block.ts
+//     ^ punctuation.definition.block.ts
+//      ^--------- variable.other.readwrite.alias.ts
+//                ^ punctuation.separator.comma.ts
+//                  ^--- variable.other.readwrite.alias.ts
+//                      ^ punctuation.separator.comma.ts
+//                        ^------------ variable.other.readwrite.alias.ts
+//                                     ^ punctuation.separator.comma.ts
+//                                       ^------- variable.other.readwrite.alias.ts
+//                                               ^ punctuation.definition.block.ts
+//                                                 ^--- keyword.control.from.ts
+//                                                      ^------------ string.quoted.single.ts
+//                                                      ^ punctuation.definition.string.begin.ts
+//                                                                  ^ punctuation.definition.string.end.ts
+//                                                                   ^ punctuation.terminator.statement.ts
+
+const style = /* css */`
+//<0-------------------- meta.var.expr.ts
+//<0- storage.type.ts
+//    ^----- meta.var-single-variable.expr.ts
+//    ^---- meta.definition.variable.ts variable.other.constant.ts
+//          ^ keyword.operator.assignment.ts
+//           ^--------- comment.block
+  .foo {
+//<0---- meta.var.expr.ts
+//^--- meta.selector.css
+//^--- entity.other.attribute-name.class.css
+//^ punctuation.definition.entity.css
+//     ^ meta.property-list.css
+//     ^ punctuation.section.property-list.begin.bracket.curly.css
+    display: block;
+//<0--------------- meta.var.expr.ts
+//<0--------------- meta.property-list.css
+//  ^------ meta.property-name.css
+//  ^------ support.type.property-name.css
+//         ^ punctuation.separator.key-value.css
+//           ^---- support.constant.property-value.css
+//                ^ punctuation.terminator.rule.css
+    border: 1px solid black;
+//<0------------------------ meta.var.expr.ts
+//<0------------------------ meta.property-list.css
+//  ^----- meta.property-name.css
+//  ^----- support.type.property-name.css
+//        ^ punctuation.separator.key-value.css
+//          ^-- constant.numeric.css
+//           ^- keyword.other.unit.${2:/downcase}.css
+//              ^---- support.constant.property-value.css
+//                    ^---- support.constant.color.w3c-standard-color-name.css
+//                         ^ punctuation.terminator.rule.css
+    padding: 16px;
+//<0-------------- meta.var.expr.ts
+//<0-------------- meta.property-list.css
+//  ^------ meta.property-name.css
+//  ^------ support.type.property-name.css
+//         ^ punctuation.separator.key-value.css
+//           ^--- constant.numeric.css
+//             ^- keyword.other.unit.${2:/downcase}.css
+//               ^ punctuation.terminator.rule.css
+    max-width: 800px;
+//<0----------------- meta.var.expr.ts
+//<0----------------- meta.property-list.css
+//  ^-------- meta.property-name.css
+//  ^-------- support.type.property-name.css
+//           ^ punctuation.separator.key-value.css
+//             ^---- constant.numeric.css
+//                ^- keyword.other.unit.${2:/downcase}.css
+//                  ^ punctuation.terminator.rule.css
+    margin: 0 auto;
+//<0--------------- meta.var.expr.ts
+//<0--------------- meta.property-list.css
+//  ^----- meta.property-name.css
+//  ^----- support.type.property-name.css
+//        ^ punctuation.separator.key-value.css
+//          ^ constant.numeric.css
+//            ^--- support.constant.property-value.css
+//                ^ punctuation.terminator.rule.css
+  }
+//<0 meta.var.expr.ts
+//<0 meta.property-list.css
+//^ punctuation.section.property-list.end.bracket.curly.css
+`;
+//<0 meta.var.expr.ts
+//<1 punctuation.terminator.statement.ts
+
+@customElement('my-element')
+//<0------------------------ meta.decorator.ts
+//<0 punctuation.decorator.ts
+//<1---------- meta.function-call.ts
+//<1---------- entity.name.function.ts
+//            ^ meta.brace.round.ts
+//             ^----------- string.quoted.single.ts
+//             ^ punctuation.definition.string.begin.ts
+//                        ^ punctuation.definition.string.end.ts
+//                         ^ meta.brace.round.ts
+class MyElement extends LitElement {
+//<0-------------------------------- meta.class.ts
+//<0- storage.type.class.ts
+//    ^-------- entity.name.type.class.ts
+//              ^------ storage.modifier.ts
+//                      ^--------- entity.other.inherited-class.ts
+//                                 ^ punctuation.definition.block.ts
+
+  // Declare observed properties
+//<0---------------------------- meta.class.ts
+//<0 punctuation.whitespace.comment.leading.ts
+//^- comment.line.double-slash.ts
+//^- punctuation.definition.comment.ts
+  @property()
+//<0--------- meta.class.ts
+//^---------- meta.decorator.ts
+//^ punctuation.decorator.ts
+// ^------- meta.function-call.ts
+// ^------- entity.name.function.ts
+//         ^- meta.brace.round.ts
+  adjective = 'awesome';
+//<0-------------------- meta.class.ts
+//<0------------------- meta.field.declaration.ts
+//^-------- meta.definition.property.ts variable.object.property.ts
+//          ^ keyword.operator.assignment.ts
+//            ^-------- string.quoted.single.ts
+//            ^ punctuation.definition.string.begin.ts
+//                    ^ punctuation.definition.string.end.ts
+//                     ^ punctuation.terminator.statement.ts
+
+  // Define the element's template
+//<0------------------------------ meta.class.ts
+//<0 punctuation.whitespace.comment.leading.ts
+//^- comment.line.double-slash.ts
+//^- punctuation.definition.comment.ts
+  render() {
+//<0-------- meta.class.ts
+//<0-------- meta.method.declaration.ts
+//^----- meta.definition.method.ts entity.name.function.ts
+//      ^- meta.parameters.ts
+//      ^ punctuation.definition.parameters.begin.ts
+//       ^ punctuation.definition.parameters.end.ts
+//         ^ meta.block.ts
+//         ^ punctuation.definition.block.ts
+    return html`
+//<0------------ meta.class.ts
+//<0------------ meta.method.declaration.ts
+//<0------------ meta.block.ts
+//  ^----- keyword.control.flow.ts
+//        ^---- comment.block
+      <!-- text binding -->
+//<0----------------------- meta.class.ts
+//<0----------------------- meta.method.declaration.ts
+//<0----------------------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+      <div>${this.prop1}</div>
+//<0-------------------------- meta.class.ts
+//<0-------------------------- meta.method.declaration.ts
+//<0-------------------------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+//         ^- entity.name.tag
+//           ^--- variable.language.this.js
+//               ^ punctuation.accessor.js
+//                ^---- variable.other.property.js
+//                     ^ entity.name.tag
+//                      ^ invalid.illegal.bad-angle-bracket.html
+
+      <!-- attribute binding -->
+//<0---------------------------- meta.class.ts
+//<0---------------------------- meta.method.declaration.ts
+//<0---------------------------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+      <div id="${this.prop2}">attribute binding</div>
+//<0------------------------------------------------- meta.class.ts
+//<0------------------------------------------------- meta.method.declaration.ts
+//<0------------------------------------------------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+//             ^- entity.name.tag
+//               ^--- variable.language.this.js
+//                   ^ punctuation.accessor.js
+//                    ^---- variable.other.property.js
+//                         ^ entity.name.tag
+//                                             ^ invalid.illegal.bad-angle-bracket.html
+
+      <!-- boolean attribute binding -->
+//<0------------------------------------ meta.class.ts
+//<0------------------------------------ meta.method.declaration.ts
+//<0------------------------------------ meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+      <div>
+//<0------- meta.class.ts
+//<0------- meta.method.declaration.ts
+//<0------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+        boolean attribute binding
+//<0----------------------------- meta.class.ts
+//<0----------------------------- meta.method.declaration.ts
+//<0----------------------------- meta.block.ts
+        <input type="text" ?disabled="${this.prop3}"/>
+//<0-------------------------------------------------- meta.class.ts
+//<0-------------------------------------------------- meta.method.declaration.ts
+//<0-------------------------------------------------- meta.block.ts
+//      ^ invalid.illegal.bad-angle-bracket.html
+//                                    ^- entity.name.tag
+//                                      ^--- variable.language.this.js
+//                                          ^ punctuation.accessor.js
+//                                           ^---- variable.other.property.js
+//                                                ^ entity.name.tag
+      </div>
+//<0-------- meta.class.ts
+//<0-------- meta.method.declaration.ts
+//<0-------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+
+      <!-- property binding -->
+//<0--------------------------- meta.class.ts
+//<0--------------------------- meta.method.declaration.ts
+//<0--------------------------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+      <div>
+//<0------- meta.class.ts
+//<0------- meta.method.declaration.ts
+//<0------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+        property binding
+//<0-------------------- meta.class.ts
+//<0-------------------- meta.method.declaration.ts
+//<0-------------------- meta.block.ts
+        <input type="text" .value="${this.prop4}"/>
+//<0----------------------------------------------- meta.class.ts
+//<0----------------------------------------------- meta.method.declaration.ts
+//<0----------------------------------------------- meta.block.ts
+//      ^ invalid.illegal.bad-angle-bracket.html
+//                                 ^- entity.name.tag
+//                                   ^--- variable.language.this.js
+//                                       ^ punctuation.accessor.js
+//                                        ^---- variable.other.property.js
+//                                             ^ entity.name.tag
+      </div>
+//<0-------- meta.class.ts
+//<0-------- meta.method.declaration.ts
+//<0-------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+
+      <!-- event handler binding -->
+//<0-------------------------------- meta.class.ts
+//<0-------------------------------- meta.method.declaration.ts
+//<0-------------------------------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+      <div>event handler binding
+//<0---------------------------- meta.class.ts
+//<0---------------------------- meta.method.declaration.ts
+//<0---------------------------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+        <button @click="${this.clickHandler}">click</button>
+//<0-------------------------------------------------------- meta.class.ts
+//<0-------------------------------------------------------- meta.method.declaration.ts
+//<0-------------------------------------------------------- meta.block.ts
+//      ^ invalid.illegal.bad-angle-bracket.html
+//                      ^- entity.name.tag
+//                        ^--- variable.language.this.js
+//                            ^ punctuation.accessor.js
+//                             ^----------- variable.other.property.js
+//                                         ^ entity.name.tag
+//                                                 ^ invalid.illegal.bad-angle-bracket.html
+      </div>
+//<0-------- meta.class.ts
+//<0-------- meta.method.declaration.ts
+//<0-------- meta.block.ts
+//    ^ invalid.illegal.bad-angle-bracket.html
+    `;
+//<0-- meta.class.ts
+//<0-- meta.method.declaration.ts
+//<0-- meta.block.ts
+//   ^ punctuation.terminator.statement.ts
+  }
+//<0 meta.class.ts
+//<0 meta.method.declaration.ts
+//<0 meta.block.ts
+//^ punctuation.definition.block.ts
+}
+//<0 meta.class.ts
+//<0 punctuation.definition.block.ts
+
+// from: https://lit.dev/docs/v1/components/decorators/
+//<0 comment.line.double-slash.ts
+//<0 punctuation.definition.comment.ts

@@ -1,0 +1,102 @@
+# grammar: source.ruby
+
+class LotteryTicket
+#<0---------------- meta.class.ruby
+#<0-- keyword.control.class.ruby
+#     ^------------ entity.name.type.class.ruby
+
+  NUMERIC_RANGE = 1..25
+# ^------------ variable.other.constant.ruby
+#               ^ keyword.operator.assignment.ruby
+#                 ^ constant.numeric.ruby
+#                  ^- punctuation.separator.method.ruby
+#                    ^- constant.numeric.ruby
+
+  attr_reader :picks, :purchased
+# ^---------- keyword.other.special-method.ruby
+#             ^----- constant.language.symbol.ruby
+#             ^ punctuation.definition.constant.ruby
+#                   ^ punctuation.separator.object.ruby
+#                     ^--------- constant.language.symbol.ruby
+#                     ^ punctuation.definition.constant.ruby
+
+  def initialize( *picks )
+# ^----------------------- meta.function.method.with-arguments.ruby
+# ^-- keyword.control.def.ruby
+#     ^--------- entity.name.function.ruby
+#               ^ punctuation.definition.parameters.ruby
+#                 ^ keyword.operator.arithmetic.ruby
+#                        ^ punctuation.definition.parameters.ruby
+    if picks.length != 3
+#   ^- keyword.control.ruby
+#           ^ punctuation.separator.method.ruby
+#            ^----- meta.function-call.ruby
+#            ^----- entity.name.function.ruby
+#                   ^- keyword.operator.comparison.ruby
+#                      ^ constant.numeric.ruby
+      raise ArgumentError, "three numbers must be picked"
+#     ^---- keyword.other.special-method.ruby
+#           ^------------ variable.other.constant.ruby
+#                        ^ punctuation.separator.object.ruby
+#                          ^----------------------------- string.quoted.double.interpolated.ruby
+#                          ^ punctuation.definition.string.begin.ruby
+#                                                       ^ punctuation.definition.string.end.ruby
+    elsif picks.uniq.length != 0x3
+#   ^---- keyword.control.ruby
+#              ^ punctuation.separator.method.ruby
+#               ^--- meta.function-call.ruby
+#               ^--- entity.name.function.ruby
+#                   ^ punctuation.separator.method.ruby
+#                    ^----- meta.function-call.ruby
+#                    ^----- entity.name.function.ruby
+#                           ^- keyword.operator.comparison.ruby
+#                              ^-- constant.numeric.ruby
+      raise ArgumentError, "the three picks must be different numbers"
+#     ^---- keyword.other.special-method.ruby
+#           ^------------ variable.other.constant.ruby
+#                        ^ punctuation.separator.object.ruby
+#                          ^------------------------------------------ string.quoted.double.interpolated.ruby
+#                          ^ punctuation.definition.string.begin.ruby
+#                                                                    ^ punctuation.definition.string.end.ruby
+    elsif picks.detect { |p| not NUMERIC_RANGE === p }
+#   ^---- keyword.control.ruby
+#              ^ punctuation.separator.method.ruby
+#               ^----- meta.function-call.ruby
+#               ^----- entity.name.function.ruby
+#                      ^ punctuation.section.scope.begin.ruby
+#                       ^ meta.syntax.ruby.start-block
+#                        ^-- meta.block.parameters.ruby
+#                         ^ variable.other.block.ruby
+#                            ^-- keyword.operator.logical.ruby
+#                                ^------------ variable.other.constant.ruby
+#                                              ^-- keyword.operator.comparison.ruby
+#                                                  ^ support.function.kernel.ruby
+#                                                    ^ punctuation.section.scope.end.ruby
+      raise ArgumentError, "the three picks must be numbers between 1 and 25"
+#     ^---- keyword.other.special-method.ruby
+#           ^------------ variable.other.constant.ruby
+#                        ^ punctuation.separator.object.ruby
+#                          ^------------------------------------------------- string.quoted.double.interpolated.ruby
+#                          ^ punctuation.definition.string.begin.ruby
+#                                                                           ^ punctuation.definition.string.end.ruby
+    end
+#   ^-- keyword.control.ruby
+    @picks = picks
+#   ^----- variable.other.readwrite.instance.ruby
+#   ^ punctuation.definition.variable.ruby
+#          ^ keyword.operator.assignment.ruby
+    @purchased = Time.now
+#   ^--------- variable.other.readwrite.instance.ruby
+#   ^ punctuation.definition.variable.ruby
+#              ^ keyword.operator.assignment.ruby
+#                ^--- support.class.ruby
+#                    ^ punctuation.separator.method.ruby
+  end
+# ^-- keyword.control.ruby
+
+end
+#<0 keyword.control.ruby
+
+# From https://poignant.guide/book/chapter-5.html
+#<0---------------------------------------------- comment.line.number-sign.ruby
+#<0 punctuation.definition.comment.ruby

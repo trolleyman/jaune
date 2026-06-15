@@ -1,0 +1,190 @@
+# grammar: source.ql
+
+/**
+#<0 comment.block.documentation.ql
+ * @name LDAP query built from user-controlled sources
+#<0--------------------------------------------------- comment.block.documentation.ql
+# ^----- keyword.tag.ql
+ * @description Building an LDAP query from user-controlled sources is vulnerable to insertion of
+#<0---------------------------------------------------------------------------------------------- comment.block.documentation.ql
+# ^------------ keyword.tag.ql
+ *              malicious LDAP code by the user.
+#<0--------------------------------------------- comment.block.documentation.ql
+ * @kind path-problem
+#<0------------------ comment.block.documentation.ql
+# ^----- keyword.tag.ql
+ * @problem.severity error
+#<0----------------------- comment.block.documentation.ql
+# ^----------------- keyword.tag.ql
+ * @id py/ldap-injection
+#<0--------------------- comment.block.documentation.ql
+# ^--- keyword.tag.ql
+ * @tags experimental
+#<0------------------ comment.block.documentation.ql
+# ^----- keyword.tag.ql
+ *       security
+#<0-------------- comment.block.documentation.ql
+ *       external/cwe/cwe-090
+#<0-------------------------- comment.block.documentation.ql
+ */
+#<0 comment.block.documentation.ql
+
+import python
+#<0---------- comment.block.documentation.ql
+import experimental.semmle.python.security.injection.LDAP
+#<0------------------------------------------------------ comment.block.documentation.ql
+import DataFlow::PathGraph
+#<0----------------------- comment.block.documentation.ql
+
+from LDAPInjectionFlowConfig config, DataFlow::PathNode source, DataFlow::PathNode sink
+#<0------------------------------------------------------------------------------------ comment.block.documentation.ql
+where config.hasFlowPath(source, sink)
+#<0----------------------------------- comment.block.documentation.ql
+select sink.getNode(), source, sink, "$@ LDAP query parameter comes from $@.", sink.getNode(),
+#<0------------------------------------------------------------------------------------------- comment.block.documentation.ql
+  "This", source.getNode(), "a user-provided value"
+#<0------------------------------------------------ comment.block.documentation.ql
+
+// a concept
+#<0--------- comment.block.documentation.ql
+
+module LDAPEscape {
+#<0---------------- comment.block.documentation.ql
+  abstract class Range extends DataFlow::Node {
+#<0-------------------------------------------- comment.block.documentation.ql
+    abstract DataFlow::Node getAnInput();
+#<0-------------------------------------- comment.block.documentation.ql
+  }
+#<0 comment.block.documentation.ql
+}
+#<0 comment.block.documentation.ql
+
+class LDAPEscape extends DataFlow::Node {
+#<0-------------------------------------- comment.block.documentation.ql
+  LDAPEscape::Range range;
+#<0----------------------- comment.block.documentation.ql
+
+  LDAPEscape() { this = range }
+#<0---------------------------- comment.block.documentation.ql
+
+  DataFlow::Node getAnInput() { result = range.getAnInput() }
+#<0---------------------------------------------------------- comment.block.documentation.ql
+}
+#<0 comment.block.documentation.ql
+
+// a library modeling
+#<0------------------ comment.block.documentation.ql
+
+private module LDAP2 {
+#<0------------------- comment.block.documentation.ql
+  private class LDAP2QueryMethods extends string {
+#<0----------------------------------------------- comment.block.documentation.ql
+    LDAP2QueryMethods() {
+#<0---------------------- comment.block.documentation.ql
+      this in ["search", "search_s", "search_st", "search_ext", "search_ext_s"]
+#<0---------------------------------------------------------------------------- comment.block.documentation.ql
+    }
+#<0-- comment.block.documentation.ql
+  }
+#<0 comment.block.documentation.ql
+
+  private class LDAP2Query extends DataFlow::CallCfgNode, LDAPQuery::Range {
+#<0------------------------------------------------------------------------- comment.block.documentation.ql
+    DataFlow::Node ldapQuery;
+#<0-------------------------- comment.block.documentation.ql
+
+    LDAP2Query() {
+#<0--------------- comment.block.documentation.ql
+      exists(DataFlow::AttrRead searchMethod |
+#<0------------------------------------------- comment.block.documentation.ql
+        this.getFunction() = searchMethod and
+#<0------------------------------------------ comment.block.documentation.ql
+        API::moduleImport("ldap").getMember("initialize").getACall() =
+#<0------------------------------------------------------------------- comment.block.documentation.ql
+          searchMethod.getObject().getALocalSource() and
+#<0----------------------------------------------------- comment.block.documentation.ql
+        searchMethod.getAttributeName() instanceof LDAP2QueryMethods and
+#<0--------------------------------------------------------------------- comment.block.documentation.ql
+        (
+#<0------ comment.block.documentation.ql
+          ldapQuery = this.getArg(0)
+#<0--------------------------------- comment.block.documentation.ql
+          or
+#<0--------- comment.block.documentation.ql
+          (
+#<0-------- comment.block.documentation.ql
+            ldapQuery = this.getArg(2) or
+#<0-------------------------------------- comment.block.documentation.ql
+            ldapQuery = this.getArgByName("filterstr")
+#<0--------------------------------------------------- comment.block.documentation.ql
+          )
+#<0-------- comment.block.documentation.ql
+        )
+#<0------ comment.block.documentation.ql
+      )
+#<0---- comment.block.documentation.ql
+    }
+#<0-- comment.block.documentation.ql
+
+    override DataFlow::Node getQuery() { result = ldapQuery }
+#<0---------------------------------------------------------- comment.block.documentation.ql
+  }
+#<0 comment.block.documentation.ql
+
+  private class LDAP2EscapeDNCall extends DataFlow::CallCfgNode, LDAPEscape::Range {
+#<0--------------------------------------------------------------------------------- comment.block.documentation.ql
+    LDAP2EscapeDNCall() {
+#<0---------------------- comment.block.documentation.ql
+      this = API::moduleImport("ldap").getMember("dn").getMember("escape_dn_chars").getACall()
+#<0------------------------------------------------------------------------------------------- comment.block.documentation.ql
+    }
+#<0-- comment.block.documentation.ql
+
+    override DataFlow::Node getAnInput() { result = this.getArg(0) }
+#<0----------------------------------------------------------------- comment.block.documentation.ql
+  }
+#<0 comment.block.documentation.ql
+
+  private class LDAP2EscapeFilterCall extends DataFlow::CallCfgNode, LDAPEscape::Range {
+#<0------------------------------------------------------------------------------------- comment.block.documentation.ql
+    LDAP2EscapeFilterCall() {
+#<0-------------------------- comment.block.documentation.ql
+      this =
+#<0--------- comment.block.documentation.ql
+        API::moduleImport("ldap").getMember("filter").getMember("escape_filter_chars").getACall()
+#<0---------------------------------------------------------------------------------------------- comment.block.documentation.ql
+    }
+#<0-- comment.block.documentation.ql
+
+    override DataFlow::Node getAnInput() { result = this.getArg(0) }
+#<0----------------------------------------------------------------- comment.block.documentation.ql
+  }
+#<0 comment.block.documentation.ql
+}
+#<0 comment.block.documentation.ql
+
+// a taint flow config
+#<0------------------- comment.block.documentation.ql
+
+class LDAPInjectionFlowConfig extends TaintTracking::Configuration {
+#<0----------------------------------------------------------------- comment.block.documentation.ql
+  LDAPInjectionFlowConfig() { this = "LDAPInjectionFlowConfig" }
+#<0------------------------------------------------------------- comment.block.documentation.ql
+
+  override predicate isSource(DataFlow::Node source) { source instanceof RemoteFlowSource }
+#<0---------------------------------------------------------------------------------------- comment.block.documentation.ql
+
+  override predicate isSink(DataFlow::Node sink) { sink = any(LDAPQuery ldapQuery).getQuery() }
+#<0-------------------------------------------------------------------------------------------- comment.block.documentation.ql
+
+  override predicate isSanitizer(DataFlow::Node sanitizer) {
+#<0--------------------------------------------------------- comment.block.documentation.ql
+    sanitizer = any(LDAPEscape ldapEsc).getAnInput()
+#<0------------------------------------------------- comment.block.documentation.ql
+  }
+#<0 comment.block.documentation.ql
+}
+#<0 comment.block.documentation.ql
+
+// From https://github.com/github/codeql/pull/5443/files
+#<0----------------------------------------------------- comment.block.documentation.ql

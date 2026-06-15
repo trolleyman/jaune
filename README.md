@@ -105,13 +105,17 @@ the assets for attribution.
 ```sh
 cargo test                              # unit, doc, snapshot, and smoke tests
 cargo test --features grammar-json      # also exercise the bundled-grammar path
-UPDATE_SNAPSHOTS=1 cargo test --test fixtures   # regenerate scope-label snapshots
+bun run reference-tokens                # refresh the vscode-textmate reference (needs bun install)
+UPDATE_SNAPSHOTS=1 cargo test --test samples   # regenerate annotated sample snapshots
 ```
 
 - `tests/smoke.rs` tokenizes every upstream sample with its grammar and checks the output
   round-trips and stays balanced.
-- `tests/fixtures.rs` renders scope labels for small snippets into reviewable `.snap`
-  files under `tests/fixtures/` (regenerate + eyeball when the tokenizer changes).
+- `tests/samples.rs` renders every sample into a reviewable annotated source file under
+  `tests/samples/jaune/` — the original source with the nested scope regions woven in beneath
+  each line as comments — and, when a reference tokenization is present, the same into
+  `tests/samples/textmate-grammars-themes/` so jaune can be diffed against the canonical VS Code
+  (`vscode-textmate`) tokenizer. See [`tests/samples/README.md`](tests/samples/README.md).
 
 ## Status
 

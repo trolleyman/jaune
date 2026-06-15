@@ -1,0 +1,270 @@
+; grammar: source.wat
+
+(module
+;^----- storage.type.wat
+	;; add the $even_check function to the top of the module
+;^------------------------------------------------------- comment.line.wat
+;^- punctuation.definition.comment.wat
+	(func $even_check (param $n i32) (result i32)
+; ^--- entity.name.type.wat
+;      ^---------- entity.name.function.wat
+;                   ^---- storage.type.wat
+;                         ^- variable.other.wat
+;                            ^-- entity.name.type.wat
+;                                  ^----- storage.type.wat
+;                                         ^-- entity.name.type.wat
+		local.get $n
+; ^-------- keyword.operator.word.wat
+; ^---- support.class.local.wat
+;           ^- variable.other.wat
+		i32.const 2
+; ^-------- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;           ^ constant.numeric.float.wat
+		i32.rem_u ;; if you take the remainder of a division by 2
+; ^-------- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;           ^---------------------------------------------- comment.line.wat
+;           ^- punctuation.definition.comment.wat
+		i32.const 0 ;; even numbers will have a remainder 0
+; ^-------- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;           ^ constant.numeric.float.wat
+;             ^-------------------------------------- comment.line.wat
+;             ^- punctuation.definition.comment.wat
+		i32.eq ;; $n % 2 == 0
+; ^----- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;        ^------------- comment.line.wat
+;        ^- punctuation.definition.comment.wat
+	)
+	;; add the $eq_2 function after $even_check
+;^------------------------------------------ comment.line.wat
+;^- punctuation.definition.comment.wat
+	(func $eq_2 (param $n i32) (result i32)
+; ^--- entity.name.type.wat
+;      ^---- entity.name.function.wat
+;             ^---- storage.type.wat
+;                   ^- variable.other.wat
+;                      ^-- entity.name.type.wat
+;                            ^----- storage.type.wat
+;                                   ^-- entity.name.type.wat
+		local.get $n
+; ^-------- keyword.operator.word.wat
+; ^---- support.class.local.wat
+;           ^- variable.other.wat
+		i32.const 2
+; ^-------- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;           ^ constant.numeric.float.wat
+		i32.eq ;; returns 1 if $n == 2
+; ^----- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;        ^---------------------- comment.line.wat
+;        ^- punctuation.definition.comment.wat
+	)
+
+	;; add $multiple_check after $eq_2
+;^--------------------------------- comment.line.wat
+;^- punctuation.definition.comment.wat
+	(func $multiple_check (param $n i32) (param $m i32) (result i32)
+; ^--- entity.name.type.wat
+;      ^-------------- entity.name.function.wat
+;                       ^---- storage.type.wat
+;                             ^- variable.other.wat
+;                                ^-- entity.name.type.wat
+;                                      ^---- storage.type.wat
+;                                            ^- variable.other.wat
+;                                               ^-- entity.name.type.wat
+;                                                     ^----- storage.type.wat
+;                                                            ^-- entity.name.type.wat
+		local.get $n
+; ^-------- keyword.operator.word.wat
+; ^---- support.class.local.wat
+;           ^- variable.other.wat
+		local.get $m
+; ^-------- keyword.operator.word.wat
+; ^---- support.class.local.wat
+;           ^- variable.other.wat
+		i32.rem_u ;; get the remainder of $n / $m
+; ^-------- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;           ^------------------------------ comment.line.wat
+;           ^- punctuation.definition.comment.wat
+		i32.const 0 ;; I want to know if the remainder is 0
+; ^-------- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;           ^ constant.numeric.float.wat
+;             ^-------------------------------------- comment.line.wat
+;             ^- punctuation.definition.comment.wat
+		i32.eq ;; that will tell us if $n is a multiple of $m
+; ^----- keyword.operator.word.wat
+; ^-- support.class.type.wat
+;        ^--------------------------------------------- comment.line.wat
+;        ^- punctuation.definition.comment.wat
+	)
+
+	;; add the is_prime exported function after $multiple_check
+;^---------------------------------------------------------- comment.line.wat
+;^- punctuation.definition.comment.wat
+	(func (export "is_prime") (param $n i32) (result i32)
+; ^--- entity.name.type.wat
+;       ^----- storage.type.wat
+;              ^--------- string.quoted.double.wat
+;              ^ punctuation.definition.string.begin
+;                       ^ punctuation.definition.string.end
+;                           ^---- storage.type.wat
+;                                 ^- variable.other.wat
+;                                    ^-- entity.name.type.wat
+;                                          ^----- storage.type.wat
+;                                                 ^-- entity.name.type.wat
+		(local $i i32)
+;  ^---- storage.type.wat
+;        ^- variable.other.wat
+;           ^-- entity.name.type.wat
+		(if (i32.eq (local.get $n) (i32.const 1)) ;; 1 is not prime
+;  ^- keyword.control.wat
+;      ^----- keyword.operator.word.wat
+;      ^-- support.class.type.wat
+;              ^-------- keyword.operator.word.wat
+;              ^---- support.class.local.wat
+;                        ^- variable.other.wat
+;                             ^-------- keyword.operator.word.wat
+;                             ^-- support.class.type.wat
+;                                       ^ constant.numeric.float.wat
+;                                           ^---------------- comment.line.wat
+;                                           ^- punctuation.definition.comment.wat
+		(then
+;  ^--- keyword.control.wat
+			i32.const 0
+;  ^-------- keyword.operator.word.wat
+;  ^-- support.class.type.wat
+;            ^ constant.numeric.float.wat
+			return
+;  ^----- keyword.control.wat
+		))
+		(if (call $eq_2 (local.get $n)) ;; check to see if $n is 2
+;  ^- keyword.control.wat
+;      ^--- keyword.control.wat
+;           ^---- entity.name.function.wat
+;                  ^-------- keyword.operator.word.wat
+;                  ^---- support.class.local.wat
+;                            ^- variable.other.wat
+;                                 ^------------------------- comment.line.wat
+;                                 ^- punctuation.definition.comment.wat
+		(then
+;  ^--- keyword.control.wat
+			i32.const 1 ;; 2 is prime
+;  ^-------- keyword.operator.word.wat
+;  ^-- support.class.type.wat
+;            ^ constant.numeric.float.wat
+;              ^------------ comment.line.wat
+;              ^- punctuation.definition.comment.wat
+			return
+;  ^----- keyword.control.wat
+		)
+	)
+	(block $not_prime
+; ^---- keyword.control.wat
+;       ^--------- variable.other.wat
+		(call $even_check (local.get $n))
+;  ^--- keyword.control.wat
+;       ^---------- entity.name.function.wat
+;                    ^-------- keyword.operator.word.wat
+;                    ^---- support.class.local.wat
+;                              ^- variable.other.wat
+		br_if $not_prime ;; even numbers are not prime (except 2)
+; ^---- keyword.control.wat
+;       ^--------- variable.other.wat
+;                  ^--------------------------------------- comment.line.wat
+;                  ^- punctuation.definition.comment.wat
+
+		(local.set $i (i32.const 1))
+;  ^-------- keyword.operator.word.wat
+;  ^---- support.class.local.wat
+;            ^- variable.other.wat
+;                ^-------- keyword.operator.word.wat
+;                ^-- support.class.type.wat
+;                          ^ constant.numeric.float.wat
+		(loop $prime_test_loop
+;  ^--- keyword.control.wat
+;       ^--------------- variable.other.wat
+
+			(local.tee $i (i32.add (local.get $i) (i32.const 2) ) ) ;; $i += 2
+;   ^-------- keyword.operator.word.wat
+;   ^---- support.class.local.wat
+;             ^- variable.other.wat
+;                 ^------ keyword.operator.word.wat
+;                 ^-- support.class.type.wat
+;                          ^-------- keyword.operator.word.wat
+;                          ^---- support.class.local.wat
+;                                    ^- variable.other.wat
+;                                         ^-------- keyword.operator.word.wat
+;                                         ^-- support.class.type.wat
+;                                                   ^ constant.numeric.float.wat
+;                                                          ^--------- comment.line.wat
+;                                                          ^- punctuation.definition.comment.wat
+			local.get $n ;; stack = [$n, $i]
+;  ^-------- keyword.operator.word.wat
+;  ^---- support.class.local.wat
+;            ^- variable.other.wat
+;               ^------------------ comment.line.wat
+;               ^- punctuation.definition.comment.wat
+
+			i32.ge_u ;; $i >= $n
+;  ^------- keyword.operator.word.wat
+;  ^-- support.class.type.wat
+;           ^---------- comment.line.wat
+;           ^- punctuation.definition.comment.wat
+			if ;; if $i >= $n, $n is prime
+;  ^- keyword.control.wat
+;     ^-------------------------- comment.line.wat
+;     ^- punctuation.definition.comment.wat
+				i32.const 1
+;   ^-------- keyword.operator.word.wat
+;   ^-- support.class.type.wat
+;             ^ constant.numeric.float.wat
+			return
+;  ^----- keyword.control.wat
+			end
+;  ^-- keyword.control.wat
+			(call $multiple_check (local.get $n) (local.get $i))
+;   ^--- keyword.control.wat
+;        ^-------------- entity.name.function.wat
+;                         ^-------- keyword.operator.word.wat
+;                         ^---- support.class.local.wat
+;                                   ^- variable.other.wat
+;                                        ^-------- keyword.operator.word.wat
+;                                        ^---- support.class.local.wat
+;                                                  ^- variable.other.wat
+			br_if $not_prime ;; if $n is a multiple of $i this is not prime
+;  ^---- keyword.control.wat
+;        ^--------- variable.other.wat
+;                   ^--------------------------------------------- comment.line.wat
+;                   ^- punctuation.definition.comment.wat
+			br $prime_test_loop ;; branch back to top of loop
+;  ^- keyword.control.wat
+;     ^--------------- variable.other.wat
+;                      ^---------------------------- comment.line.wat
+;                      ^- punctuation.definition.comment.wat
+			) ;; end of $prime_test_loop loop
+;    ^------------------------------ comment.line.wat
+;    ^- punctuation.definition.comment.wat
+		) ;; end of $not_prime block
+;   ^------------------------- comment.line.wat
+;   ^- punctuation.definition.comment.wat
+
+i32.const 0 ;; return false
+;<0------ keyword.operator.word.wat
+;<0 support.class.type.wat
+;         ^ constant.numeric.float.wat
+;           ^-------------- comment.line.wat
+;           ^- punctuation.definition.comment.wat
+ )
+) ;; end of module
+; ^--------------- comment.line.wat
+; ^- punctuation.definition.comment.wat
+
+;; From https://github.com/battlelinegames/ArtOfWasm/blob/main/Chapter3/is_prime.wat
+;<0--------------------------------------------------------------------------------- comment.line.wat
+;<0 punctuation.definition.comment.wat

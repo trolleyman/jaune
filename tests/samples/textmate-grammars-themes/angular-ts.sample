@@ -1,0 +1,477 @@
+// grammar: source.ts.ng
+
+import { Component, inject } from '@angular/core';
+//<0--------------------------------------------- meta.import.ts
+//<0-- keyword.control.import.ts
+//     ^-------------------- meta.block.ts
+//     ^ punctuation.definition.block.ts
+//       ^-------- variable.other.readwrite.alias.ts
+//                ^ punctuation.separator.comma.ts
+//                  ^----- variable.other.readwrite.alias.ts
+//                         ^ punctuation.definition.block.ts
+//                           ^--- keyword.control.from.ts
+//                                ^-------------- string.quoted.single.ts
+//                                ^ punctuation.definition.string.begin.ts
+//                                              ^ punctuation.definition.string.end.ts
+//                                               ^ punctuation.terminator.statement.ts
+import { RouterLink } from '@angular/router';
+//<0---------------------------------------- meta.import.ts
+//<0-- keyword.control.import.ts
+//     ^------------- meta.block.ts
+//     ^ punctuation.definition.block.ts
+//       ^--------- variable.other.readwrite.alias.ts
+//                  ^ punctuation.definition.block.ts
+//                    ^--- keyword.control.from.ts
+//                         ^---------------- string.quoted.single.ts
+//                         ^ punctuation.definition.string.begin.ts
+//                                         ^ punctuation.definition.string.end.ts
+//                                          ^ punctuation.terminator.statement.ts
+import { CartService } from './cart.service';
+//<0---------------------------------------- meta.import.ts
+//<0-- keyword.control.import.ts
+//     ^-------------- meta.block.ts
+//     ^ punctuation.definition.block.ts
+//       ^---------- variable.other.readwrite.alias.ts
+//                   ^ punctuation.definition.block.ts
+//                     ^--- keyword.control.from.ts
+//                          ^--------------- string.quoted.single.ts
+//                          ^ punctuation.definition.string.begin.ts
+//                                         ^ punctuation.definition.string.end.ts
+//                                          ^ punctuation.terminator.statement.ts
+
+@Component({
+//<0-------- meta.decorator.ts
+//<0 punctuation.decorator.ts
+//<1------ meta.function-call.ts
+//<1------ entity.name.function.ts
+//        ^ meta.brace.round.ts
+//         ^ meta.objectliteral.ts
+//         ^ punctuation.definition.block.ts
+  selector: 'app-cart-button',
+//<0-------------------------- meta.decorator.ts
+//<0-------------------------- meta.objectliteral.ts
+//^-------------------------- meta.object.member.ts
+//^-------- meta.object-literal.key.ts
+//        ^ punctuation.separator.key-value.ts
+//          ^---------------- string.quoted.single.ts
+//          ^ punctuation.definition.string.begin.ts
+//                          ^ punctuation.definition.string.end.ts
+//                           ^ punctuation.separator.comma.ts
+  standalone: true,
+//<0--------------- meta.decorator.ts
+//<0--------------- meta.objectliteral.ts
+//^--------------- meta.object.member.ts
+//^---------- meta.object-literal.key.ts
+//          ^ punctuation.separator.key-value.ts
+//            ^--- constant.language.boolean.true.ts
+//                ^ punctuation.separator.comma.ts
+  imports: [RouterLink],
+//<0-------------------- meta.decorator.ts
+//<0-------------------- meta.objectliteral.ts
+//^-------------------- meta.object.member.ts
+//^------- meta.object-literal.key.ts
+//       ^ punctuation.separator.key-value.ts
+//        ^------------ meta.array.literal.ts
+//         ^ meta.brace.square.ts
+//          ^--------- variable.other.readwrite.ts
+//                    ^ meta.brace.square.ts
+//                     ^ punctuation.separator.comma.ts
+  template: `
+//<0--------- meta.decorator.ts
+//<0--------- meta.objectliteral.ts
+//^-------- meta.object-literal.key.ts
+//        ^ punctuation.separator.key-value.ts
+//          ^ string
+    <button type="button" [routerLink]="'/cart'">
+//<0--------------------------------------------- meta.decorator.ts
+//<0--------------------------------------------- meta.objectliteral.ts
+//<0--------------------------------------------- text.html.derivative.ng
+//  ^ keyword.operator.relational.ts
+//   ^----- variable.other.readwrite.ts
+//          ^--- variable.other.readwrite.ts
+//              ^ keyword.operator.assignment.ts
+//               ^------------------------------- string.quoted.double.ts
+//               ^ punctuation.definition.string.begin.ts
+//                ^----- variable.other.readwrite.ts
+//                      ^------------------------ string.quoted.double.ts
+//                      ^ punctuation.definition.string.begin.ts
+//                        ^----------- meta.array.literal.ts
+//                        ^ meta.brace.square.ts
+//                         ^--------- variable.other.readwrite.ts
+//                                   ^ meta.brace.square.ts
+//                                    ^ keyword.operator.assignment.ts
+//                                     ^--------- string.quoted.double.ts
+//                                     ^ punctuation.definition.string.begin.ts
+//                                      ^-------- string.quoted.single.ts
+//                                      ^ punctuation.definition.string.begin.ts
+//                                       ^ keyword.operator.arithmetic.ts
+//                                        ^--- variable.other.readwrite.ts
+//                                            ^-- string.quoted.single.ts
+//                                            ^ punctuation.definition.string.begin.ts
+//                                             ^- string.quoted.double.ts
+//                                             ^ punctuation.definition.string.begin.ts
+//                                              ^ keyword.operator.relational.ts
+      @if (cartService.length > 0) {
+//<0-------------------------------- meta.decorator.ts
+//<0-------------------------------- meta.objectliteral.ts
+//<0-------------------------------- text.html.derivative.ng
+//<0-------------------------------- string.quoted.double.ts
+//<0-------------------------------- string.quoted.double.ts
+//<0-------------------------------- string.quoted.double.ts
+//<0-------------------------------- string.quoted.single.ts
+//<0-------------------------------- string.quoted.single.ts
+//<0-------------------------------- string.quoted.double.ts
+//    ^----------------------------- control.block.ng
+//    ^ keyword.control.block.transition.ng
+//     ^- keyword.control.block.kind.ng
+//        ^ meta.brace.round.ts
+//         ^---------- variable.other.object.ts
+//                    ^ punctuation.accessor.ts
+//                     ^----- variable.other.property.ts
+//                            ^ keyword.operator.relational.ts
+//                              ^ constant.numeric.decimal.ts
+//                               ^ meta.brace.round.ts
+//                                 ^ punctuation.definition.block.ts
+        <div>
+//<0--------- meta.decorator.ts
+//<0--------- meta.objectliteral.ts
+//<0--------- text.html.derivative.ng
+//<0--------- string.quoted.double.ts
+//<0--------- string.quoted.double.ts
+//<0--------- string.quoted.double.ts
+//<0--------- string.quoted.single.ts
+//<0--------- string.quoted.single.ts
+//<0--------- string.quoted.double.ts
+//<0--------- control.block.ng
+//<0--------- control.block.body.ng
+//      ^ keyword.operator.relational.ts
+//       ^-- variable.other.readwrite.ts
+//          ^ keyword.operator.relational.ts
+          @let hello = "world";
+//<0--------------------------- meta.decorator.ts
+//<0--------------------------- meta.objectliteral.ts
+//<0--------------------------- text.html.derivative.ng
+//<0--------------------------- string.quoted.double.ts
+//<0--------------------------- string.quoted.double.ts
+//<0--------------------------- string.quoted.double.ts
+//<0--------------------------- string.quoted.single.ts
+//<0--------------------------- string.quoted.single.ts
+//<0--------------------------- string.quoted.double.ts
+//<0--------------------------- control.block.ng
+//<0--------------------------- control.block.body.ng
+//        ^-------------------- meta.definition.variable.ng
+//        ^--- storage.type.ng
+//             ^---- variable.other.constant.ng
+//                   ^- keyword.operator.assignment.ng
+//                     ^------- meta.definition.variable.initializer.ng
+//                     ^------- string.quoted.double.ts
+//                     ^ punctuation.definition.string.begin.ts
+//                      ^---- variable.other.readwrite.ts
+//                           ^- string.quoted.double.ts
+//                           ^ punctuation.definition.string.begin.ts
+//                            ^ punctuation.terminator.statement.ts
+          {{ cartService.length }}
+//<0------------------------------ meta.decorator.ts
+//<0------------------------------ meta.objectliteral.ts
+//<0------------------------------ text.html.derivative.ng
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ string.quoted.single.ts
+//<0------------------------------ string.quoted.single.ts
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ control.block.ng
+//<0------------------------------ control.block.body.ng
+//<0------------------------------ meta.definition.variable.ng
+//<0------------------------------ meta.definition.variable.initializer.ng
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ string.quoted.double.ts
+//        ^----------------------- expression.embedded.vue
+//        ^- punctuation.definition.interpolation.begin.html.vue
+//          ^------------------- source.ts.embedded.html.vue
+//           ^---------- variable.other.object.ts
+//                      ^ punctuation.accessor.ts
+//                       ^----- variable.other.property.ts
+//                              ^- punctuation.definition.interpolation.end.html.vue
+        </div>
+//<0---------- meta.decorator.ts
+//<0---------- meta.objectliteral.ts
+//<0---------- text.html.derivative.ng
+//<0---------- string.quoted.double.ts
+//<0---------- string.quoted.double.ts
+//<0---------- string.quoted.double.ts
+//<0---------- string.quoted.single.ts
+//<0---------- string.quoted.single.ts
+//<0---------- string.quoted.double.ts
+//<0---------- control.block.ng
+//<0---------- control.block.body.ng
+//<0---------- meta.definition.variable.ng
+//<0---------- meta.definition.variable.initializer.ng
+//<0---------- string.quoted.double.ts
+//<0---------- string.quoted.double.ts
+//      ^ keyword.operator.relational.ts
+//       ^ keyword.operator.arithmetic.ts
+//        ^-- variable.other.readwrite.ts
+//           ^ keyword.operator.relational.ts
+      }
+//<0--- meta.decorator.ts
+//<0--- meta.objectliteral.ts
+//<0--- text.html.derivative.ng
+//<0--- string.quoted.double.ts
+//<0--- string.quoted.double.ts
+//<0--- string.quoted.double.ts
+//<0--- string.quoted.single.ts
+//<0--- string.quoted.single.ts
+//<0--- string.quoted.double.ts
+//<0--- control.block.ng
+//<0--- control.block.body.ng
+//<0--- meta.definition.variable.ng
+//<0--- meta.definition.variable.initializer.ng
+//<0--- string.quoted.double.ts
+//<0--- string.quoted.double.ts
+//    ^ invalid.illegal.newline.ts
+      Cart
+//<0------ meta.decorator.ts
+//<0------ meta.objectliteral.ts
+//<0------ text.html.derivative.ng
+//<0------ string.quoted.double.ts
+//<0------ string.quoted.double.ts
+//<0------ string.quoted.double.ts
+//<0------ string.quoted.single.ts
+//<0------ string.quoted.single.ts
+//<0------ string.quoted.double.ts
+//<0------ control.block.ng
+//<0------ control.block.body.ng
+//<0------ meta.definition.variable.ng
+//<0------ meta.definition.variable.initializer.ng
+//<0------ string.quoted.double.ts
+//    ^--- variable.other.readwrite.ts
+    </button>
+//<0--------- meta.decorator.ts
+//<0--------- meta.objectliteral.ts
+//<0--------- text.html.derivative.ng
+//<0--------- string.quoted.double.ts
+//<0--------- string.quoted.double.ts
+//<0--------- string.quoted.double.ts
+//<0--------- string.quoted.single.ts
+//<0--------- string.quoted.single.ts
+//<0--------- string.quoted.double.ts
+//<0--------- control.block.ng
+//<0--------- control.block.body.ng
+//<0--------- meta.definition.variable.ng
+//<0--------- meta.definition.variable.initializer.ng
+//<0--------- string.quoted.double.ts
+//  ^ keyword.operator.relational.ts
+//   ^ keyword.operator.arithmetic.ts
+//    ^----- variable.other.readwrite.ts
+//          ^ keyword.operator.relational.ts
+  `,
+//<0 meta.decorator.ts
+//<0 meta.objectliteral.ts
+//<0 text.html.derivative.ng
+//<0 string.quoted.double.ts
+//<0 string.quoted.double.ts
+//<0 string.quoted.double.ts
+//<0 string.quoted.single.ts
+//<0 string.quoted.single.ts
+//<0 string.quoted.double.ts
+//<0 control.block.ng
+//<0 control.block.body.ng
+//<0 meta.definition.variable.ng
+//<0 meta.definition.variable.initializer.ng
+//<0 string.quoted.double.ts
+//^- string.template.ts
+//^ punctuation.definition.string.template.begin.ts
+// ^ punctuation.separator.comma.ts
+  styles: `
+//<0------- meta.decorator.ts
+//<0------- meta.objectliteral.ts
+//<0------- text.html.derivative.ng
+//<0------- string.quoted.double.ts
+//<0------- string.quoted.double.ts
+//<0------- string.quoted.double.ts
+//<0------- string.quoted.single.ts
+//<0------- string.quoted.single.ts
+//<0------- string.quoted.double.ts
+//<0------- control.block.ng
+//<0------- control.block.body.ng
+//<0------- meta.definition.variable.ng
+//<0------- meta.definition.variable.initializer.ng
+//<0------- string.quoted.double.ts
+//<0------- string.template.ts
+//^----- variable.other.readwrite.ts
+//        ^ string.template.ts
+//        ^ punctuation.definition.string.template.begin.ts
+    div { display: block; }
+//<0----------------------- meta.decorator.ts
+//<0----------------------- meta.objectliteral.ts
+//<0----------------------- text.html.derivative.ng
+//<0----------------------- string.quoted.double.ts
+//<0----------------------- string.quoted.double.ts
+//<0----------------------- string.quoted.double.ts
+//<0----------------------- string.quoted.single.ts
+//<0----------------------- string.quoted.single.ts
+//<0----------------------- string.quoted.double.ts
+//<0----------------------- control.block.ng
+//<0----------------------- control.block.body.ng
+//<0----------------------- meta.definition.variable.ng
+//<0----------------------- meta.definition.variable.initializer.ng
+//<0----------------------- string.quoted.double.ts
+//<0----------------------- string.template.ts
+//<0----------------------- string.template.ts
+//  ^-- variable.other.readwrite.ts
+//        ^------ variable.other.readwrite.ts
+//                 ^---- variable.other.readwrite.ts
+//                      ^ punctuation.terminator.statement.ts
+  `,
+//<0 meta.decorator.ts
+//<0 meta.objectliteral.ts
+//<0 text.html.derivative.ng
+//<0 string.quoted.double.ts
+//<0 string.quoted.double.ts
+//<0 string.quoted.double.ts
+//<0 string.quoted.single.ts
+//<0 string.quoted.single.ts
+//<0 string.quoted.double.ts
+//<0 control.block.ng
+//<0 control.block.body.ng
+//<0 meta.definition.variable.ng
+//<0 meta.definition.variable.initializer.ng
+//<0 string.quoted.double.ts
+//<0 string.template.ts
+//<0 string.template.ts
+//^- string.template.ts
+//^ punctuation.definition.string.template.begin.ts
+// ^ punctuation.separator.comma.ts
+})
+//<0 meta.decorator.ts
+//<0 meta.objectliteral.ts
+//<0 text.html.derivative.ng
+//<0 string.quoted.double.ts
+//<0 string.quoted.double.ts
+//<0 string.quoted.double.ts
+//<0 string.quoted.single.ts
+//<0 string.quoted.single.ts
+//<0 string.quoted.double.ts
+//<0 control.block.ng
+//<0 control.block.body.ng
+//<0 meta.definition.variable.ng
+//<0 meta.definition.variable.initializer.ng
+//<0 string.quoted.double.ts
+//<0 string.template.ts
+//<0 string.template.ts
+//<0 string.template.ts
+export class CartButtonComponent {
+//<0------------------------------ meta.decorator.ts
+//<0------------------------------ meta.objectliteral.ts
+//<0------------------------------ text.html.derivative.ng
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ string.quoted.single.ts
+//<0------------------------------ string.quoted.single.ts
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ control.block.ng
+//<0------------------------------ control.block.body.ng
+//<0------------------------------ meta.definition.variable.ng
+//<0------------------------------ meta.definition.variable.initializer.ng
+//<0------------------------------ string.quoted.double.ts
+//<0------------------------------ string.template.ts
+//<0------------------------------ string.template.ts
+//<0------------------------------ string.template.ts
+//<0-- variable.other.readwrite.ts
+//     ^---- variable.other.readwrite.ts
+//           ^------------------ variable.other.readwrite.ts
+  protected cartService = inject(CartService);
+//<0------------------------------------------ meta.decorator.ts
+//<0------------------------------------------ meta.objectliteral.ts
+//<0------------------------------------------ text.html.derivative.ng
+//<0------------------------------------------ string.quoted.double.ts
+//<0------------------------------------------ string.quoted.double.ts
+//<0------------------------------------------ string.quoted.double.ts
+//<0------------------------------------------ string.quoted.single.ts
+//<0------------------------------------------ string.quoted.single.ts
+//<0------------------------------------------ string.quoted.double.ts
+//<0------------------------------------------ control.block.ng
+//<0------------------------------------------ control.block.body.ng
+//<0------------------------------------------ meta.definition.variable.ng
+//<0------------------------------------------ meta.definition.variable.initializer.ng
+//<0------------------------------------------ string.quoted.double.ts
+//<0------------------------------------------ string.template.ts
+//<0------------------------------------------ string.template.ts
+//<0------------------------------------------ string.template.ts
+//^-------- variable.other.readwrite.ts
+//          ^---------- variable.other.readwrite.ts
+//                      ^ keyword.operator.assignment.ts
+}
+//<0 meta.decorator.ts
+//<0 meta.objectliteral.ts
+//<0 text.html.derivative.ng
+//<0 string.quoted.double.ts
+//<0 string.quoted.double.ts
+//<0 string.quoted.double.ts
+//<0 string.quoted.single.ts
+//<0 string.quoted.single.ts
+//<0 string.quoted.double.ts
+//<0 control.block.ng
+//<0 control.block.body.ng
+//<0 meta.definition.variable.ng
+//<0 meta.definition.variable.initializer.ng
+//<0 string.quoted.double.ts
+//<0 string.template.ts
+//<0 string.template.ts
+//<0 string.template.ts
+
+// From https://github.com/niklas-wortmann/signals-observable-example/blob/main/src/app/cart/cart-button.component.ts
+//<0----------------------------------------------------------------------------------------------------------------- meta.decorator.ts
+//<0----------------------------------------------------------------------------------------------------------------- meta.objectliteral.ts
+//<0----------------------------------------------------------------------------------------------------------------- text.html.derivative.ng
+//<0----------------------------------------------------------------------------------------------------------------- string.quoted.double.ts
+//<0----------------------------------------------------------------------------------------------------------------- string.quoted.double.ts
+//<0----------------------------------------------------------------------------------------------------------------- string.quoted.double.ts
+//<0----------------------------------------------------------------------------------------------------------------- string.quoted.single.ts
+//<0----------------------------------------------------------------------------------------------------------------- string.quoted.single.ts
+//<0----------------------------------------------------------------------------------------------------------------- string.quoted.double.ts
+//<0----------------------------------------------------------------------------------------------------------------- control.block.ng
+//<0----------------------------------------------------------------------------------------------------------------- control.block.body.ng
+//<0----------------------------------------------------------------------------------------------------------------- meta.definition.variable.ng
+//<0----------------------------------------------------------------------------------------------------------------- meta.definition.variable.initializer.ng
+//<0----------------------------------------------------------------------------------------------------------------- string.quoted.double.ts
+//<0----------------------------------------------------------------------------------------------------------------- string.template.ts
+//<0----------------------------------------------------------------------------------------------------------------- string.template.ts
+//<0----------------------------------------------------------------------------------------------------------------- string.template.ts
+//<0 keyword.operator.arithmetic.ts
+// ^--- variable.other.readwrite.ts
+//      ^---- variable.other.readwrite.ts
+//            ^- keyword.operator.arithmetic.ts
+//              ^----- variable.other.object.ts
+//                    ^ punctuation.accessor.ts
+//                     ^-- variable.other.property.ts
+//                        ^ keyword.operator.arithmetic.ts
+//                         ^----- variable.other.readwrite.ts
+//                               ^ keyword.operator.arithmetic.ts
+//                                ^------- variable.other.readwrite.ts
+//                                        ^ keyword.operator.arithmetic.ts
+//                                         ^------ variable.other.readwrite.ts
+//                                                ^ keyword.operator.arithmetic.ts
+//                                                 ^--------- variable.other.readwrite.ts
+//                                                           ^ keyword.operator.arithmetic.ts
+//                                                            ^------ variable.other.readwrite.ts
+//                                                                   ^ keyword.operator.arithmetic.ts
+//                                                                    ^--- variable.other.readwrite.ts
+//                                                                        ^ keyword.operator.arithmetic.ts
+//                                                                         ^--- variable.other.readwrite.ts
+//                                                                             ^ keyword.operator.arithmetic.ts
+//                                                                              ^-- variable.other.readwrite.ts
+//                                                                                 ^ keyword.operator.arithmetic.ts
+//                                                                                  ^-- variable.other.readwrite.ts
+//                                                                                     ^ keyword.operator.arithmetic.ts
+//                                                                                      ^--- variable.other.readwrite.ts
+//                                                                                          ^ keyword.operator.arithmetic.ts
+//                                                                                           ^--- variable.other.readwrite.ts
+//                                                                                               ^ keyword.operator.arithmetic.ts
+//                                                                                                ^----- variable.other.object.ts
+//                                                                                                      ^ punctuation.accessor.ts
+//                                                                                                       ^-------- variable.other.object.property.ts
+//                                                                                                                ^ punctuation.accessor.ts
+//                                                                                                                 ^- variable.other.property.ts

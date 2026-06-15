@@ -1,0 +1,47 @@
+; grammar: source.ahk2
+
+#z::Run "https://www.autohotkey.com"  ; Win+Z
+;<0 hotkey.ahk2
+;<0 keyword.keys.ahk2
+; ^- punctuation.definition.colon
+;   ^-- variable.other.ahk2
+;   ^-- support.function.ahk2
+;       ^--------------------------- string.quoted.ahk2
+;       ^ punctuation.definition.string.begin.ahk2
+;                                  ^ punctuation.definition.string.end.ahk2
+;                                     ^------ comment.line.ahk2
+
+^!n::  ; Ctrl+Alt+N
+;<0 hotkey.ahk2
+;<0 keyword.keys.ahk2
+;  ^- punctuation.definition.colon
+;    ^ keyword.keys.ahk2
+;      ^----------- comment.line.ahk2
+{
+;<0 punctuation.section.block.begin.ahk2
+    if WinExist("Untitled - Notepad")
+;   ^- keyword.control.ahk2
+;      ^------- entity.name.function.ahk2
+;      ^------- support.function.ahk2
+;              ^--------------------- meta.parens.ahk2
+;              ^ punctuation.section.parens.begin.bracket.round.ahk2
+;               ^------------------- string.quoted.ahk2
+;               ^ punctuation.definition.string.begin.ahk2
+;                                  ^ punctuation.definition.string.end.ahk2
+;                                   ^ punctuation.section.parens.end.bracket.round.ahk2
+        WinActivate
+;       ^---------- variable.other.ahk2
+;       ^---------- support.function.ahk2
+    else
+;   ^--- keyword.control.ahk2
+        Run "Notepad"
+;       ^-- variable.other.ahk2
+;       ^-- support.function.ahk2
+;           ^-------- string.quoted.ahk2
+;           ^ punctuation.definition.string.begin.ahk2
+;                   ^ punctuation.definition.string.end.ahk2
+}
+;<0 punctuation.section.block.end.ahk2
+
+; https://www.autohotkey.com/docs/v2/Program.htm
+;<0--------------------------------------------- comment.line.ahk2

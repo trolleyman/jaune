@@ -1,0 +1,268 @@
+C grammar: source.fortran.fixed
+
+*     euclid.f (FORTRAN 77)
+C<0------------------------ comment.line.fortran
+*     Find greatest common divisor using the Euclidean algorithm
+C<0------------------------------------------------------------- comment.line.fortran
+
+      PROGRAM EUCLID
+C<0--- constant.numeric.fortran
+C     ^------------- meta.program.fortran
+C     ^------ keyword.control.program.fortran
+C             ^----- entity.name.program.fortran
+        PRINT *, 'A?'
+C<0------------------ meta.program.fortran
+C<0------------------ meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^---- keyword.control.print.fortran
+C             ^ keyword.operator.power.fortran
+C                ^--- string.quoted.single.fortran
+C                ^ punctuation.definition.string.begin.fortran
+C                   ^ punctuation.definition.string.end.fortran
+        READ *, NA
+C<0--------------- meta.program.fortran
+C<0--------------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^--- keyword.control.read.fortran
+C            ^ keyword.operator.power.fortran
+C               ^- meta.parameter.fortran
+        IF (NA.LE.0) THEN
+C<0---------------------- meta.program.fortran
+C<0---------------------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^- keyword.control.if.fortran
+C         ^--------- meta.expression.control.logical.fortran
+C          ^ punctuation.parentheses.left.fortran
+C           ^- meta.parameter.fortran
+C             ^--- keyword.logical.fortran
+C                 ^ constant.numeric.fortran
+C                  ^ punctuation.parentheses.right.fortran
+C                    ^--- keyword.control.then.fortran
+          PRINT *, 'A must be a positive integer.'
+C<0----------------------------------------------- meta.program.fortran
+C<0----------------------------------------------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C         ^---- keyword.control.print.fortran
+C               ^ keyword.operator.power.fortran
+C                  ^------------------------------ string.quoted.single.fortran
+C                  ^ punctuation.definition.string.begin.fortran
+C                                                ^ punctuation.definition.string.end.fortran
+          STOP
+C<0----------- meta.program.fortran
+C<0----------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C     ^------- meta.statement.control.stop.fortran
+C         ^--- keyword.control.stop.fortran
+        END IF
+C<0----------- meta.program.fortran
+C<0----------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^----- keyword.control.endif.fortran
+        PRINT *, 'B?'
+C<0------------------ meta.program.fortran
+C<0------------------ meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^---- keyword.control.print.fortran
+C             ^ keyword.operator.power.fortran
+C                ^--- string.quoted.single.fortran
+C                ^ punctuation.definition.string.begin.fortran
+C                   ^ punctuation.definition.string.end.fortran
+        READ *, NB
+C<0--------------- meta.program.fortran
+C<0--------------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^--- keyword.control.read.fortran
+C            ^ keyword.operator.power.fortran
+C               ^- meta.parameter.fortran
+        IF (NB.LE.0) THEN
+C<0---------------------- meta.program.fortran
+C<0---------------------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^- keyword.control.if.fortran
+C         ^--------- meta.expression.control.logical.fortran
+C          ^ punctuation.parentheses.left.fortran
+C           ^- meta.parameter.fortran
+C             ^--- keyword.logical.fortran
+C                 ^ constant.numeric.fortran
+C                  ^ punctuation.parentheses.right.fortran
+C                    ^--- keyword.control.then.fortran
+          PRINT *, 'B must be a positive integer.'
+C<0----------------------------------------------- meta.program.fortran
+C<0----------------------------------------------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C         ^---- keyword.control.print.fortran
+C               ^ keyword.operator.power.fortran
+C                  ^------------------------------ string.quoted.single.fortran
+C                  ^ punctuation.definition.string.begin.fortran
+C                                                ^ punctuation.definition.string.end.fortran
+          STOP
+C<0----------- meta.program.fortran
+C<0----------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C     ^------- meta.statement.control.stop.fortran
+C         ^--- keyword.control.stop.fortran
+        END IF
+C<0----------- meta.program.fortran
+C<0----------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^----- keyword.control.endif.fortran
+        PRINT *, 'The GCD of', NA, ' and', NB, ' is', NGCD(NA, NB), '.'
+C<0-------------------------------------------------------------------- meta.program.fortran
+C<0-------------------------------------------------------------------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C       ^---- keyword.control.print.fortran
+C             ^ keyword.operator.power.fortran
+C                ^----------- string.quoted.single.fortran
+C                ^ punctuation.definition.string.begin.fortran
+C                           ^ punctuation.definition.string.end.fortran
+C                              ^- meta.parameter.fortran
+C                                  ^----- string.quoted.single.fortran
+C                                  ^ punctuation.definition.string.begin.fortran
+C                                       ^ punctuation.definition.string.end.fortran
+C                                          ^- meta.parameter.fortran
+C                                              ^---- string.quoted.single.fortran
+C                                              ^ punctuation.definition.string.begin.fortran
+C                                                  ^ punctuation.definition.string.end.fortran
+C                                                     ^--- meta.parameter.fortran
+C                                                         ^ punctuation.parentheses.left.fortran
+C                                                          ^- meta.parameter.fortran
+C                                                              ^- meta.parameter.fortran
+C                                                                ^ punctuation.parentheses.right.fortran
+C                                                                   ^-- string.quoted.single.fortran
+C                                                                   ^ punctuation.definition.string.begin.fortran
+C                                                                     ^ punctuation.definition.string.end.fortran
+        STOP
+C<0--------- meta.program.fortran
+C<0--------- meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C     ^----- meta.statement.control.stop.fortran
+C       ^--- keyword.control.stop.fortran
+      END
+C<0------ meta.program.fortran
+C<0------ meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C     ^-- meta.parameter.fortran
+
+      FUNCTION NGCD(NA, NB)
+C<0------------------------ meta.program.fortran
+C<0------------------------ meta.block.specification.program.fortran
+C<0--- constant.numeric.fortran
+C     ^-------------------- meta.function.fortran
+C     ^------- keyword.other.function.fortran
+C              ^--- entity.name.function.fortran
+C                  ^------- meta.function.first-line.fortran
+C                  ^------- meta.dummy-variable-list
+C                  ^ punctuation.definition.parameters.begin.fortran
+C                   ^- variable.parameter.fortran
+C                       ^- variable.parameter.fortran
+C                         ^ punctuation.definition.parameters.end.fortran
+        IA = NA
+C<0------------ meta.program.fortran
+C<0------------ meta.block.specification.program.fortran
+C<0------------ meta.function.fortran
+C<0------------ meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C       ^- meta.parameter.fortran
+C          ^ keyword.operator.assignment.fortran
+C            ^- meta.parameter.fortran
+        IB = NB
+C<0------------ meta.program.fortran
+C<0------------ meta.block.specification.program.fortran
+C<0------------ meta.function.fortran
+C<0------------ meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C       ^- meta.parameter.fortran
+C          ^ keyword.operator.assignment.fortran
+C            ^- meta.parameter.fortran
+    1   IF (IB.NE.0) THEN
+C<0---------------------- meta.program.fortran
+C<0---------------------- meta.block.specification.program.fortran
+C<0---------------------- meta.function.fortran
+C<0---------------------- meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C       ^- keyword.control.if.fortran
+C         ^--------- meta.expression.control.logical.fortran
+C          ^ punctuation.parentheses.left.fortran
+C           ^- meta.parameter.fortran
+C             ^--- keyword.logical.fortran
+C                 ^ constant.numeric.fortran
+C                  ^ punctuation.parentheses.right.fortran
+C                    ^--- keyword.control.then.fortran
+          ITEMP = IA
+C<0----------------- meta.program.fortran
+C<0----------------- meta.block.specification.program.fortran
+C<0----------------- meta.function.fortran
+C<0----------------- meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C         ^---- meta.parameter.fortran
+C               ^ keyword.operator.assignment.fortran
+C                 ^- meta.parameter.fortran
+          IA = IB
+C<0-------------- meta.program.fortran
+C<0-------------- meta.block.specification.program.fortran
+C<0-------------- meta.function.fortran
+C<0-------------- meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C         ^- meta.parameter.fortran
+C            ^ keyword.operator.assignment.fortran
+C              ^- meta.parameter.fortran
+          IB = MOD(ITEMP, IB)
+C<0-------------------------- meta.program.fortran
+C<0-------------------------- meta.block.specification.program.fortran
+C<0-------------------------- meta.function.fortran
+C<0-------------------------- meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C         ^- meta.parameter.fortran
+C            ^ keyword.operator.assignment.fortran
+C              ^-- support.function.intrinsic.fortran
+C                 ^ punctuation.parentheses.left.fortran
+C                  ^---- meta.parameter.fortran
+C                         ^- meta.parameter.fortran
+C                           ^ punctuation.parentheses.right.fortran
+          GOTO 1
+C<0------------- meta.program.fortran
+C<0------------- meta.block.specification.program.fortran
+C<0------------- meta.function.fortran
+C<0------------- meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C     ^--------- meta.statement.control.goto.fortran
+C         ^--- keyword.control.goto.fortran
+C              ^ constant.numeric.fortran
+        END IF
+C<0----------- meta.program.fortran
+C<0----------- meta.block.specification.program.fortran
+C<0----------- meta.function.fortran
+C<0----------- meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C       ^----- keyword.control.endif.fortran
+        NGCD = IA
+C<0-------------- meta.program.fortran
+C<0-------------- meta.block.specification.program.fortran
+C<0-------------- meta.function.fortran
+C<0-------------- meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C       ^--- meta.parameter.fortran
+C            ^ keyword.operator.assignment.fortran
+C              ^- meta.parameter.fortran
+        RETURN
+C<0----------- meta.program.fortran
+C<0----------- meta.block.specification.program.fortran
+C<0----------- meta.function.fortran
+C<0----------- meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C     ^------- meta.statement.control.return.fortran
+C       ^----- keyword.control.return.fortran
+      END
+C<0------ meta.program.fortran
+C<0------ meta.block.specification.program.fortran
+C<0------ meta.function.fortran
+C<0------ meta.block.specification.function.fortran
+C<0--- constant.numeric.fortran
+C     ^-- meta.parameter.fortran
+
+*     From https://en.wikibooks.org/wiki/Fortran/Fortran_examples#Greatest_common_divisor
+C<0-------------------------------------------------------------------------------------- meta.program.fortran
+C<0-------------------------------------------------------------------------------------- meta.block.specification.program.fortran
+C<0-------------------------------------------------------------------------------------- meta.function.fortran
+C<0-------------------------------------------------------------------------------------- meta.block.specification.function.fortran
+C<0-------------------------------------------------------------------------------------- comment.line.fortran

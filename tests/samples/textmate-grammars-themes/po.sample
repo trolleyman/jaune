@@ -1,0 +1,76 @@
+# grammar: source.po
+
+# pan93412 <pan93412@gmail.com>, 2019.
+#<0----------------------------------- comment.line.number-sign.po
+#<0 punctuation.definition.comment.po
+msgid ""
+#<0----- meta.scope.msgid.po
+#<0-- keyword.control.msgid.po
+#     ^- string.quoted.double.po
+msgstr ""
+#<0------ meta.scope.msgstr.po
+#<0--- keyword.control.msgstr.po
+#      ^- string.quoted.double.po
+"Project-Id-Version: pan 93412\n"
+"POT-Creation-Date: 2023-11-05 12:30+0000\n"
+"PO-Revision-Date: 2019-10-09 20:54+0800\n"
+"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 19.08.1\n"
+
+#. (itstool) path: component/name
+#<0------------------------------ comment.line.number-sign.extracted.po
+#<0 punctuation.definition.comment.po
+#: org.kde.ffmpegthumbs.metainfo.xml:9
+#<0----------------------------------- comment.line.number-sign.reference.po
+#<0 punctuation.definition.comment.po
+#  ^---------------------------------- storage.type.class.po
+msgid "FFmpeg Thumbnailer"
+#<0----------------------- meta.scope.msgid.po
+#<0-- keyword.control.msgid.po
+#     ^------------------- string.quoted.double.po
+msgstr "FFmpeg 縮圖產生工具"
+#<0------------------- meta.scope.msgstr.po
+#<0--- keyword.control.msgstr.po
+#      ^-------------- string.quoted.double.po
+
+#. (itstool) path: component/summary
+#<0--------------------------------- comment.line.number-sign.extracted.po
+#<0 punctuation.definition.comment.po
+#: org.kde.ffmpegthumbs.metainfo.xml:10
+#<0------------------------------------ comment.line.number-sign.reference.po
+#<0 punctuation.definition.comment.po
+#  ^----------------------------------- storage.type.class.po
+msgid "Video thumbnail generator using FFmpeg"
+#<0------------------------------------------- meta.scope.msgid.po
+#<0-- keyword.control.msgid.po
+#     ^--------------------------------------- string.quoted.double.po
+msgstr "使用 FFmpeg 的影片縮圖產生工具"
+#<0------------------------- meta.scope.msgstr.po
+#<0--- keyword.control.msgstr.po
+#      ^-------------------- string.quoted.double.po
+
+#. (itstool) path: description/p
+#<0----------------------------- comment.line.number-sign.extracted.po
+#<0 punctuation.definition.comment.po
+#: org.kde.ffmpegthumbs.metainfo.xml:12
+#<0------------------------------------ comment.line.number-sign.reference.po
+#<0 punctuation.definition.comment.po
+#  ^----------------------------------- storage.type.class.po
+msgid ""
+#<0----- meta.scope.msgid.po
+#<0-- keyword.control.msgid.po
+#     ^- string.quoted.double.po
+"FFmpeg Thumbnailer is a video thumbnail generator for KDE file managers."
+msgstr "FFmpeg 縮圖產生工具是用於 KDE 檔案管理器的影片縮圖產生器。"
+#<0----------------------------------------- meta.scope.msgstr.po
+#<0--- keyword.control.msgstr.po
+#      ^------------------------------------ string.quoted.double.po
+
+// From https://websvn.kde.org/trunk/l10n-kf5/zh_TW/messages/ffmpegthumbs/org.kde.ffmpegthumbs.metainfo.po?view=markup
+#<0------------------------------------------------------------------------------------------------------------------- invalid.illegal.po

@@ -1,0 +1,282 @@
+# grammar: source.vue-vine
+
+import { ref, computed } from 'vue'
+#<0-------------------------------- meta.import.vue-vine
+#<0--- keyword.control.import.vue-vine
+#      ^---------------- meta.block.vue-vine
+#      ^ punctuation.definition.block.vue-vine
+#        ^-- variable.other.readwrite.alias.vue-vine
+#           ^ punctuation.separator.comma.vue-vine
+#             ^------- variable.other.readwrite.alias.vue-vine
+#                      ^ punctuation.definition.block.vue-vine
+#                        ^--- keyword.control.from.vue-vine
+#                             ^---- string.quoted.single.vue-vine
+#                             ^ punctuation.definition.string.begin.vue-vine
+#                                 ^ punctuation.definition.string.end.vue-vine
+
+function ChildComp(props: {
+#<0------------------------ meta.function.vue-vine
+#<0----- storage.type.function.vue-vine
+#        ^-------- meta.definition.function.ts
+#        ^-------- entity.name.function.vue-vine
+#                 ^-------- meta.parameters.vue-vine
+#                 ^ punctuation.definition.parameters.begin.vue-vine
+#                  ^---- variable.parameter.vue-vine
+#                       ^-- meta.type.annotation.vue-vine
+#                       ^ keyword.operator.type.annotation.vue-vine
+#                         ^ meta.object.type.vue-vine
+#                         ^ punctuation.definition.block.vue-vine
+  foo: string
+#<0---------- meta.function.vue-vine
+#<0---------- meta.parameters.vue-vine
+#<0---------- meta.type.annotation.vue-vine
+#<0---------- meta.object.type.vue-vine
+#<0---------- meta.field.declaration.vue-vine
+# ^-- meta.definition.property.ts
+# ^-- variable.object.property.vue-vine
+#    ^------- meta.type.annotation.vue-vine
+#    ^ keyword.operator.type.annotation.vue-vine
+#      ^----- support.type.primitive.vue-vine
+  bar?: boolean
+#<0------------ meta.function.vue-vine
+#<0------------ meta.parameters.vue-vine
+#<0------------ meta.type.annotation.vue-vine
+#<0------------ meta.object.type.vue-vine
+#<0------------ meta.field.declaration.vue-vine
+# ^-- meta.definition.property.ts
+# ^-- variable.object.property.vue-vine
+#    ^ keyword.operator.optional.vue-vine
+#     ^-------- meta.type.annotation.vue-vine
+#     ^ keyword.operator.type.annotation.vue-vine
+#       ^------ support.type.primitive.vue-vine
+}) {
+#<0- meta.function.vue-vine
+#<0 meta.parameters.vue-vine
+#<0 meta.type.annotation.vue-vine
+#<0 meta.object.type.vue-vine
+#<0 punctuation.definition.block.vue-vine
+#^ punctuation.definition.parameters.end.vue-vine
+#  ^ meta.block.vue-vine
+#  ^ punctuation.definition.block.vue-vine
+  const count = ref(0)
+#<0------------------- meta.function.vue-vine
+#<0------------------- meta.block.vue-vine
+# ^------------------- meta.var.expr.vue-vine
+# ^---- storage.type.vue-vine
+#       ^----- meta.var-single-variable.expr.vue-vine
+#       ^---- meta.definition.variable.ts
+#       ^---- variable.other.constant.vue-vine
+#             ^ keyword.operator.assignment.vue-vine
+#               ^-- meta.function-call.vue-vine
+#               ^-- entity.name.function.vue-vine
+#                  ^ meta.brace.round.vue-vine
+#                   ^ constant.numeric.decimal.vue-vine
+#                    ^ meta.brace.round.vue-vine
+  const double = computed(() => count * 2)
+#<0--------------------------------------- meta.function.vue-vine
+#<0--------------------------------------- meta.block.vue-vine
+# ^--------------------------------------- meta.var.expr.vue-vine
+# ^---- storage.type.vue-vine
+#       ^------ meta.var-single-variable.expr.vue-vine
+#       ^----- meta.definition.variable.ts
+#       ^----- variable.other.constant.vue-vine
+#              ^ keyword.operator.assignment.vue-vine
+#                ^------- meta.function-call.vue-vine
+#                ^------- entity.name.function.vue-vine
+#                        ^ meta.brace.round.vue-vine
+#                         ^----- meta.arrow.vue-vine
+#                         ^- meta.parameters.vue-vine
+#                         ^ punctuation.definition.parameters.begin.vue-vine
+#                          ^ punctuation.definition.parameters.end.vue-vine
+#                            ^- storage.type.function.arrow.vue-vine
+#                               ^---- variable.other.readwrite.vue-vine
+#                                     ^ keyword.operator.arithmetic.vue-vine
+#                                       ^ constant.numeric.decimal.vue-vine
+#                                        ^ meta.brace.round.vue-vine
+
+  return vine`
+#<0----------- meta.function.vue-vine
+#<0----------- meta.block.vue-vine
+# ^----- keyword.control.flow.vue-vine
+#        ^--- entity.name.function.vine-template.vue-vine
+#            ^ punctuation.definition.string.vine-template.begin.vue-vine
+    <div class="child-comp">
+#<0------------------------- meta.function.vue-vine
+#<0------------------------- meta.block.vue-vine
+#<0------------------------- variable.vine-template.vue-vine
+#   ^----------------------- meta.tag.block.any.html
+#   ^ punctuation.definition.tag.begin.html
+#    ^-- entity.name.tag.block.any.html
+#        ^---- entity.other.attribute-name.html
+#              ^----------- string.quoted.double.html
+#              ^ punctuation.definition.string.begin.html
+#                         ^ punctuation.definition.string.end.html
+#                          ^ punctuation.definition.tag.end.html
+      <h3> {{ foo }} </h3>
+#<0----------------------- meta.function.vue-vine
+#<0----------------------- meta.block.vue-vine
+#<0----------------------- variable.vine-template.vue-vine
+#     ^--- meta.tag.block.any.html
+#     ^ punctuation.definition.tag.begin.html
+#      ^- entity.name.tag.block.any.html
+#        ^ punctuation.definition.tag.end.html
+#                    ^---- meta.tag.block.any.html
+#                    ^- punctuation.definition.tag.begin.html
+#                      ^- entity.name.tag.block.any.html
+#                        ^ punctuation.definition.tag.end.html
+      <p> Count = {{ count }} </p>
+#<0------------------------------- meta.function.vue-vine
+#<0------------------------------- meta.block.vue-vine
+#<0------------------------------- variable.vine-template.vue-vine
+#     ^-- meta.tag.block.any.html
+#     ^ punctuation.definition.tag.begin.html
+#      ^ entity.name.tag.block.any.html
+#       ^ punctuation.definition.tag.end.html
+#                             ^--- meta.tag.block.any.html
+#                             ^- punctuation.definition.tag.begin.html
+#                               ^ entity.name.tag.block.any.html
+#                                ^ punctuation.definition.tag.end.html
+      <p v-show="bar"> Double = {{ double }} </p>
+#<0---------------------------------------------- meta.function.vue-vine
+#<0---------------------------------------------- meta.block.vue-vine
+#<0---------------------------------------------- variable.vine-template.vue-vine
+#     ^--------------- meta.tag.block.any.html
+#     ^ punctuation.definition.tag.begin.html
+#      ^ entity.name.tag.block.any.html
+#        ^----------- meta.attribute.directive.vue
+#        ^----- entity.other.attribute-name.html.vue
+#              ^ punctuation.separator.key-value.html.vue
+#               ^ punctuation.definition.string.begin.html.vue
+#                ^-- source.ts.embedded.html.vue
+#                ^-- variable.other.readwrite.ts
+#                   ^ punctuation.definition.string.end.html.vue
+#                    ^ punctuation.definition.tag.end.html
+#                                            ^--- meta.tag.block.any.html
+#                                            ^- punctuation.definition.tag.begin.html
+#                                              ^ entity.name.tag.block.any.html
+#                                               ^ punctuation.definition.tag.end.html
+    </div>
+#<0------- meta.function.vue-vine
+#<0------- meta.block.vue-vine
+#<0------- variable.vine-template.vue-vine
+#   ^----- meta.tag.block.any.html
+#   ^- punctuation.definition.tag.begin.html
+#     ^-- entity.name.tag.block.any.html
+#        ^ punctuation.definition.tag.end.html
+  `
+#<0 meta.function.vue-vine
+#<0 meta.block.vue-vine
+#<0 variable.vine-template.vue-vine
+# ^ punctuation.definition.string.vine-template.end.vue-vine
+}
+#<0 meta.function.vue-vine
+#<0 meta.block.vue-vine
+#<0 punctuation.definition.block.vue-vine
+
+export function App() {
+#<0-------------------- meta.function.vue-vine
+#<0--- keyword.control.export.vue-vine
+#      ^------- storage.type.function.vue-vine
+#               ^-- meta.definition.function.ts
+#               ^-- entity.name.function.vue-vine
+#                  ^- meta.parameters.vue-vine
+#                  ^ punctuation.definition.parameters.begin.vue-vine
+#                   ^ punctuation.definition.parameters.end.vue-vine
+#                     ^ meta.block.vue-vine
+#                     ^ punctuation.definition.block.vue-vine
+  const msg = ref('')
+#<0------------------ meta.function.vue-vine
+#<0------------------ meta.block.vue-vine
+# ^------------------ meta.var.expr.vue-vine
+# ^---- storage.type.vue-vine
+#       ^--- meta.var-single-variable.expr.vue-vine
+#       ^-- meta.definition.variable.ts
+#       ^-- variable.other.constant.vue-vine
+#           ^ keyword.operator.assignment.vue-vine
+#             ^-- meta.function-call.vue-vine
+#             ^-- entity.name.function.vue-vine
+#                ^ meta.brace.round.vue-vine
+#                 ^- string.quoted.single.vue-vine
+#                 ^ punctuation.definition.string.begin.vue-vine
+#                  ^ punctuation.definition.string.end.vue-vine
+#                   ^ meta.brace.round.vue-vine
+
+  return vine`
+#<0----------- meta.function.vue-vine
+#<0----------- meta.block.vue-vine
+# ^----- keyword.control.flow.vue-vine
+#        ^--- entity.name.function.vine-template.vue-vine
+#            ^ punctuation.definition.string.vine-template.begin.vue-vine
+    <div class="app">
+#<0------------------ meta.function.vue-vine
+#<0------------------ meta.block.vue-vine
+#<0------------------ variable.vine-template.vue-vine
+#   ^---------------- meta.tag.block.any.html
+#   ^ punctuation.definition.tag.begin.html
+#    ^-- entity.name.tag.block.any.html
+#        ^---- entity.other.attribute-name.html
+#              ^---- string.quoted.double.html
+#              ^ punctuation.definition.string.begin.html
+#                  ^ punctuation.definition.string.end.html
+#                   ^ punctuation.definition.tag.end.html
+      <ChildComp foo="hello world" bar />
+#<0-------------------------------------- meta.function.vue-vine
+#<0-------------------------------------- meta.block.vue-vine
+#<0-------------------------------------- variable.vine-template.vue-vine
+#     ^---------------------------------- meta.tag.block.any.html
+#     ^ punctuation.definition.tag.begin.html
+#      ^-------- support.class.component.html
+#                ^-- entity.other.attribute-name.html
+#                    ^------------ string.quoted.double.html
+#                    ^ punctuation.definition.string.begin.html
+#                                ^ punctuation.definition.string.end.html
+#                                  ^-- entity.other.attribute-name.html
+#                                       ^ punctuation.definition.tag.end.html
+      <input v-model="msg" type="text" />
+#<0-------------------------------------- meta.function.vue-vine
+#<0-------------------------------------- meta.block.vue-vine
+#<0-------------------------------------- variable.vine-template.vue-vine
+#     ^---------------------------------- meta.tag.block.any.html
+#     ^ punctuation.definition.tag.begin.html
+#      ^---- entity.name.tag.block.any.html
+#            ^------------ meta.attribute.directive.vue
+#            ^------ entity.other.attribute-name.html.vue
+#                   ^ punctuation.separator.key-value.html.vue
+#                    ^ punctuation.definition.string.begin.html.vue
+#                     ^-- source.ts.embedded.html.vue
+#                     ^-- variable.other.readwrite.ts
+#                        ^ punctuation.definition.string.end.html.vue
+#                          ^--- entity.other.attribute-name.html
+#                               ^----- string.quoted.double.html
+#                               ^ punctuation.definition.string.begin.html
+#                                    ^ punctuation.definition.string.end.html
+#                                       ^ punctuation.definition.tag.end.html
+      <p> Message: {{ msg }} </p>
+#<0------------------------------ meta.function.vue-vine
+#<0------------------------------ meta.block.vue-vine
+#<0------------------------------ variable.vine-template.vue-vine
+#     ^-- meta.tag.block.any.html
+#     ^ punctuation.definition.tag.begin.html
+#      ^ entity.name.tag.block.any.html
+#       ^ punctuation.definition.tag.end.html
+#                            ^--- meta.tag.block.any.html
+#                            ^- punctuation.definition.tag.begin.html
+#                              ^ entity.name.tag.block.any.html
+#                               ^ punctuation.definition.tag.end.html
+    </div>
+#<0------- meta.function.vue-vine
+#<0------- meta.block.vue-vine
+#<0------- variable.vine-template.vue-vine
+#   ^----- meta.tag.block.any.html
+#   ^- punctuation.definition.tag.begin.html
+#     ^-- entity.name.tag.block.any.html
+#        ^ punctuation.definition.tag.end.html
+  `
+#<0 meta.function.vue-vine
+#<0 meta.block.vue-vine
+#<0 variable.vine-template.vue-vine
+# ^ punctuation.definition.string.vine-template.end.vue-vine
+}
+#<0 meta.function.vue-vine
+#<0 meta.block.vue-vine
+#<0 punctuation.definition.block.vue-vine

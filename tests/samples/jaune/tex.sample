@@ -1,0 +1,133 @@
+% grammar: text.tex
+
+\documentclass{article}
+%<0----------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+
+\usepackage{expl3}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+
+\ExplSyntaxOn
+%<0---------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+  \cs_new_eq:NN \calc \fp_eval:n
+% ^------------ support.class.general.latex3.tex
+% ^ punctuation.definition.function.tex
+%               ^---- support.function.general.tex
+%               ^ punctuation.definition.function.tex
+%                     ^--------- support.class.general.latex3.tex
+%                     ^ punctuation.definition.function.tex
+\ExplSyntaxOff
+%<0----------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+
+\def\valueA{7}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%   ^ punctuation.definition.function.tex
+\def\valueB{19}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%   ^ punctuation.definition.function.tex
+\def\valueC{41}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%   ^ punctuation.definition.function.tex
+\def\valueD{31}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%   ^ punctuation.definition.function.tex
+\def\valueE{25}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%   ^ punctuation.definition.function.tex
+\def\valueF{17}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%   ^ punctuation.definition.function.tex
+\def\valueG{7}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%   ^ punctuation.definition.function.tex
+\def\valueH{3}
+%<0-------- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%   ^ punctuation.definition.function.tex
+
+\begin{document}
+%<0--- support.function.general.tex
+%<0 punctuation.definition.function.tex
+
+\noindent I have the list
+%<0------ support.function.general.tex
+%<0 punctuation.definition.function.tex
+\[
+%<0 constant.character.escape.tex
+%<0 punctuation.definition.keyword.tex
+\valueA,\valueB,\valueC,\valueD,\valueE,\valueF,\valueG,\valueH
+%<0---- support.function.general.tex
+%<0 punctuation.definition.function.tex
+%       ^------ support.function.general.tex
+%       ^ punctuation.definition.function.tex
+%               ^------ support.function.general.tex
+%               ^ punctuation.definition.function.tex
+%                       ^------ support.function.general.tex
+%                       ^ punctuation.definition.function.tex
+%                               ^------ support.function.general.tex
+%                               ^ punctuation.definition.function.tex
+%                                       ^------ support.function.general.tex
+%                                       ^ punctuation.definition.function.tex
+%                                               ^------ support.function.general.tex
+%                                               ^ punctuation.definition.function.tex
+%                                                       ^------ support.function.general.tex
+%                                                       ^ punctuation.definition.function.tex
+\]
+%<0 constant.character.escape.tex
+%<0 punctuation.definition.keyword.tex
+in which the largest element is $\calc{max(\valueA,\valueB,\valueC,\valueD,\valueE,\valueF,\valueG,\valueH)}$ (but that is of no importance to me).\\[\baselineskip]
+%                               ^---------------------------------------------------------------------------- meta.math.block.tex support.class.math.block.tex
+%                               ^ punctuation.definition.string.begin.tex
+%                                ^---- constant.other.general.math.tex
+%                                ^ punctuation.definition.constant.math.tex
+%                                     ^ punctuation.math.begin.bracket.curly.tex
+%                                         ^ punctuation.math.begin.bracket.round.tex
+%                                          ^------ constant.other.general.math.tex
+%                                          ^ punctuation.definition.constant.math.tex
+%                                                  ^------ constant.other.general.math.tex
+%                                                  ^ punctuation.definition.constant.math.tex
+%                                                          ^------ constant.other.general.math.tex
+%                                                          ^ punctuation.definition.constant.math.tex
+%                                                                  ^------ constant.other.general.math.tex
+%                                                                  ^ punctuation.definition.constant.math.tex
+%                                                                          ^------ constant.other.general.math.tex
+%                                                                          ^ punctuation.definition.constant.math.tex
+%                                                                                  ^------ constant.other.general.math.tex
+%                                                                                  ^ punctuation.definition.constant.math.tex
+%                                                                                          ^------ constant.other.general.math.tex
+%                                                                                          ^ punctuation.definition.constant.math.tex
+%                                                                                                  ^------ constant.other.general.math.tex
+%                                                                                                  ^ punctuation.definition.constant.math.tex
+%                                                                                                         ^ punctuation.math.end.bracket.round.tex
+%                                                                                                          ^ punctuation.math.end.bracket.curly.tex
+%                                                                                                           ^ punctuation.definition.string.end.tex
+%                                                                                                                                                  ^- keyword.control.newline.tex
+%                                                                                                                                                    ^ punctuation.definition.brackets.tex
+%                                                                                                                                                     ^------------ support.function.general.tex
+%                                                                                                                                                     ^ punctuation.definition.function.tex
+%                                                                                                                                                                  ^ punctuation.definition.brackets.tex
+How can I get \LaTeX{} to extract the position number of the largest element in a list? (In the example above, the answer is of course `$3$'.)
+%             ^----- support.function.general.tex
+%             ^ punctuation.definition.function.tex
+%                                                                                                                                       ^-- meta.math.block.tex support.class.math.block.tex
+%                                                                                                                                       ^ punctuation.definition.string.begin.tex
+%                                                                                                                                        ^ constant.numeric.math.tex
+%                                                                                                                                         ^ punctuation.definition.string.end.tex
+
+\end{document}
+%<0- support.function.general.tex
+%<0 punctuation.definition.function.tex
+
+% From https://tex.stackexchange.com/questions/231558/position-of-largest-element-in-a-list
+%<0---------------------------------------------------------------------------------------- comment.line.percentage.tex
+%<0 punctuation.definition.comment.tex

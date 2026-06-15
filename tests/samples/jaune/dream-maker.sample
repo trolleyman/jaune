@@ -1,0 +1,75 @@
+// grammar: source.dm
+
+/mob/Login()
+//<0 keyword.operator.dm
+//<1 storage.type.dm
+//  ^ keyword.operator.dm
+    var/count = 0
+//  ^-------- meta.initialization.dm
+//  ^-- storage.type.dm
+//      ^---- variable.other.dm
+//            ^ keyword.operator.dm
+//              ^ constant.numeric.dm
+
+    world << "Let's count until infinity!"
+//  ^---- variable.language.dm
+//        ^- keyword.operator.dm
+//           ^---------------------------- string.quoted.double.dm
+//           ^ punctuation.definition.string.begin.dm
+//                                       ^ punctuation.definition.string.end.dm
+
+    // Infinite loop
+//  ^--------------- comment.line.double-slash.dm
+//  ^- punctuation.definition.comment.dm
+    while (TRUE)
+//  ^---- keyword.control.dm
+//         ^--- constant.language.dm
+        count += 1
+//            ^- keyword.operator.dm
+//               ^ constant.numeric.dm
+
+        if (count == 3)
+//      ^- keyword.control.dm
+//                ^- keyword.operator.dm
+//                   ^ constant.numeric.dm
+            world << "three"
+//          ^---- variable.language.dm
+//                ^- keyword.operator.dm
+//                   ^------ string.quoted.double.dm
+//                   ^ punctuation.definition.string.begin.dm
+//                         ^ punctuation.definition.string.end.dm
+
+            // Skip the rest of this iteration
+//          ^--------------------------------- comment.line.double-slash.dm
+//          ^- punctuation.definition.comment.dm
+            continue
+//          ^------- keyword.control.dm
+
+        world << "#[count]"
+//      ^---- variable.language.dm
+//            ^- keyword.operator.dm
+//               ^--------- string.quoted.double.dm
+//               ^ punctuation.definition.string.begin.dm
+//                 ^------ string.interpolated.dm
+//                        ^ punctuation.definition.string.end.dm
+
+        if (count == 5)
+//      ^- keyword.control.dm
+//                ^- keyword.operator.dm
+//                   ^ constant.numeric.dm
+            world << "OK, that's enough"
+//          ^---- variable.language.dm
+//                ^- keyword.operator.dm
+//                   ^------------------ string.quoted.double.dm
+//                   ^ punctuation.definition.string.begin.dm
+//                                     ^ punctuation.definition.string.end.dm
+
+            // Exit this loop
+//          ^---------------- comment.line.double-slash.dm
+//          ^- punctuation.definition.comment.dm
+            break
+//          ^---- keyword.control.dm
+
+// From https://spacestation13.github.io/DMByExample/flow/loops.html
+//<0---------------------------------------------------------------- comment.line.double-slash.dm
+//<0 punctuation.definition.comment.dm

@@ -1,0 +1,171 @@
+# grammar: source.crystal
+
+struct Foo(T)
+#<0---------- meta.class.crystal
+#<0--- keyword.control.class.crystal
+#      ^----- entity.name.type.class.crystal
+#         ^-- punctuation.separator.crystal
+#          ^ support.class.other.type-param.crystal
+end
+#<0 keyword.control.crystal
+
+Foo(Int32)
+#<0 support.class.crystal
+#  ^ punctuation.section.function.crystal
+#   ^---- support.class.crystal
+#        ^ punctuation.section.function.crystal
+
+# ---
+#<0-- comment.line.number-sign.crystal
+#<0 punctuation.definition.comment.crystal
+struct Foo
+#<0------- meta.class.crystal
+#<0--- keyword.control.class.crystal
+#      ^-- entity.name.type.class.crystal
+end
+#<0 keyword.control.crystal
+
+# struct Bar < Foo
+#<0--------------- comment.line.number-sign.crystal
+#<0 punctuation.definition.comment.crystal
+# end
+#<0-- comment.line.number-sign.crystal
+#<0 punctuation.definition.comment.crystal
+# Error in ./struct/struct.cr:10: can't extend non-abstract struct Foo
+#<0------------------------------------------------------------------- comment.line.number-sign.crystal
+#<0 punctuation.definition.comment.crystal
+
+abstract struct AbstractFoo
+#<0------------------------ meta.class.crystal
+#<0----- keyword.control.class.crystal
+#        ^----- keyword.control.class.crystal
+#               ^---------- entity.name.type.class.crystal
+end
+#<0 keyword.control.crystal
+
+struct Bar < AbstractFoo
+#<0--------------------- meta.class.crystal
+#<0--- keyword.control.class.crystal
+#      ^---------------- entity.name.type.class.crystal
+#         ^------------- entity.other.inherited-class.crystal
+#          ^ punctuation.separator.crystal
+end
+#<0 keyword.control.crystal
+
+# ---
+#<0-- comment.line.number-sign.crystal
+#<0 punctuation.definition.comment.crystal
+struct Test
+#<0-------- meta.class.crystal
+#<0--- keyword.control.class.crystal
+#      ^--- entity.name.type.class.crystal
+  def initialize(@test : String)
+# ^----------------------------- meta.function.method.with-arguments.crystal
+# ^-- keyword.control.def.crystal
+#     ^--------- entity.name.function.crystal
+#               ^ punctuation.definition.parameters.crystal
+#                ^---- variable.other.readwrite.instance.crystal
+#                ^ punctuation.definition.variable.crystal
+#                      ^ punctuation.separator.other.crystal
+#                        ^----- support.class.crystal
+#                              ^ punctuation.definition.parameters.crystal
+  end
+# ^-- keyword.control.crystal
+end
+#<0 keyword.control.crystal
+
+Test.new("foo")
+#<0- support.class.crystal
+#   ^ punctuation.separator.method.crystal
+#    ^--------- meta.function-call.crystal
+#    ^-- entity.name.function.crystal
+#       ^ punctuation.section.function.crystal
+#        ^---- string.quoted.double.interpolated.crystal
+#        ^ punctuation.definition.string.begin.crystal
+#            ^ punctuation.definition.string.end.crystal
+#             ^ punctuation.section.function.crystal
+
+# ---
+#<0-- comment.line.number-sign.crystal
+#<0 punctuation.definition.comment.crystal
+struct User
+#<0-------- meta.class.crystal
+#<0--- keyword.control.class.crystal
+#      ^--- entity.name.type.class.crystal
+  property name, age
+# ^------- support.function.kernel.crystal
+#          ^--- variable.other.crystal
+#              ^ punctuation.separator.object.crystal
+
+  def initialize(@name : String, @age : Int32)
+# ^------------------------------------------- meta.function.method.with-arguments.crystal
+# ^-- keyword.control.def.crystal
+#     ^--------- entity.name.function.crystal
+#               ^ punctuation.definition.parameters.crystal
+#                ^---- variable.other.readwrite.instance.crystal
+#                ^ punctuation.definition.variable.crystal
+#                      ^ punctuation.separator.other.crystal
+#                        ^----- support.class.crystal
+#                                ^--- variable.other.readwrite.instance.crystal
+#                                ^ punctuation.definition.variable.crystal
+#                                     ^ punctuation.separator.other.crystal
+#                                       ^---- support.class.crystal
+#                                            ^ punctuation.definition.parameters.crystal
+  end
+# ^-- keyword.control.crystal
+
+  def print
+# ^-------- meta.function.method.without-arguments.crystal
+# ^-- keyword.control.def.crystal
+#     ^---- entity.name.function.crystal
+    puts "#{age} - #{name}"
+#   ^--- support.function.kernel.crystal
+#        ^----------------- string.quoted.double.interpolated.crystal
+#        ^ punctuation.definition.string.begin.crystal
+#         ^----- meta.embedded.line.crystal
+#         ^- punctuation.section.embedded.begin.crystal
+#           ^-- variable.other.crystal
+#              ^ punctuation.section.embedded.end.crystal
+#              ^ source.crystal
+#                  ^------ meta.embedded.line.crystal
+#                  ^- punctuation.section.embedded.begin.crystal
+#                    ^--- variable.other.crystal
+#                        ^ punctuation.section.embedded.end.crystal
+#                        ^ source.crystal
+#                         ^ punctuation.definition.string.end.crystal
+  end
+# ^-- keyword.control.crystal
+end
+#<0 keyword.control.crystal
+
+puts User.new("osman", 3).name
+#<0- support.function.kernel.crystal
+#    ^--- support.class.crystal
+#        ^ punctuation.separator.method.crystal
+#         ^-------------- meta.function-call.crystal
+#         ^-- entity.name.function.crystal
+#            ^ punctuation.section.function.crystal
+#             ^------ string.quoted.double.interpolated.crystal
+#             ^ punctuation.definition.string.begin.crystal
+#                   ^ punctuation.definition.string.end.crystal
+#                    ^ punctuation.separator.object.crystal
+#                      ^ constant.numeric.integer.decimal.crystal
+#                       ^ punctuation.section.function.crystal
+#                        ^ punctuation.separator.method.crystal
+User.new("ali", 9).print
+#<0- support.class.crystal
+#   ^ punctuation.separator.method.crystal
+#    ^------------ meta.function-call.crystal
+#    ^-- entity.name.function.crystal
+#       ^ punctuation.section.function.crystal
+#        ^---- string.quoted.double.interpolated.crystal
+#        ^ punctuation.definition.string.begin.crystal
+#            ^ punctuation.definition.string.end.crystal
+#             ^ punctuation.separator.object.crystal
+#               ^ constant.numeric.integer.decimal.crystal
+#                ^ punctuation.section.function.crystal
+#                 ^ punctuation.separator.method.crystal
+
+# From https://github.com/askn/crystal-by-example/blob/master/struct/struct.cr
+#<0--------------------------------------------------------------------------- comment.line.number-sign.crystal
+#<0 punctuation.definition.comment.crystal

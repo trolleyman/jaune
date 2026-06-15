@@ -1,0 +1,62 @@
+; grammar: source.asm.x86_64
+
+segment .text	   ;code segment
+;<0---------- entity.name.section
+;                ^------------ comment.line
+   global_start    ;must be declared for linker 
+;                  ^---------------------------- comment.line
+	
+_start:	           ;tell linker entry point
+;<0---- entity.name.function.asm.x86_64
+;<0--- entity.name.function.asm.x86_64
+;     ^ punctuation.separator.asm.x86_64
+;                  ^----------------------- comment.line
+   mov edx,len	   ;message length
+;  ^-- keyword.operator.word.mnemonic.general-purpose.data-transfer.mov
+;      ^-- constant.language.register.general-purpose.asm.x86_64
+;                 ^-------------- comment.line
+   mov ecx,msg     ;message to write
+;  ^-- keyword.operator.word.mnemonic.general-purpose.data-transfer.mov
+;      ^-- constant.language.register.general-purpose.asm.x86_64
+;                  ^---------------- comment.line
+   mov ebx,1	   ;file descriptor (stdout)
+;  ^-- keyword.operator.word.mnemonic.general-purpose.data-transfer.mov
+;      ^-- constant.language.register.general-purpose.asm.x86_64
+;          ^ constant.numeric.decimal.asm.x86_64
+;               ^------------------------ comment.line
+   mov eax,4	   ;system call number (sys_write)
+;  ^-- keyword.operator.word.mnemonic.general-purpose.data-transfer.mov
+;      ^-- constant.language.register.general-purpose.asm.x86_64
+;          ^ constant.numeric.decimal.asm.x86_64
+;               ^------------------------------ comment.line
+   int 0x80	   ;call kernel
+;  ^-- keyword.operator.word.mnemonic.general-purpose.control-transfer.other
+;      ^--- constant.numeric.hex.asm.x86_64
+;              ^----------- comment.line
+
+   mov eax,1       ;system call number (sys_exit)
+;  ^-- keyword.operator.word.mnemonic.general-purpose.data-transfer.mov
+;      ^-- constant.language.register.general-purpose.asm.x86_64
+;          ^ constant.numeric.decimal.asm.x86_64
+;                  ^----------------------------- comment.line
+   int 0x80	   ;call kernel
+;  ^-- keyword.operator.word.mnemonic.general-purpose.control-transfer.other
+;      ^--- constant.numeric.hex.asm.x86_64
+;              ^----------- comment.line
+
+segment .data      ;data segment
+;<0---------- entity.name.section
+;                  ^------------ comment.line
+msg	db 'Hello, world!',0xa   ;our dear string
+;   ^- storage.type.asm.x86_64
+;      ^-------------- string.quoted.single.asm
+;      ^ punctuation.definition.string.begin.asm
+;                    ^ punctuation.definition.string.end.asm
+;                      ^-- constant.numeric.hex.asm.x86_64
+;                            ^--------------- comment.line
+len	equ	$ - msg          ;length of our dear string
+;   ^-- support.function.asm.x86_64
+;                        ^------------------------- comment.line
+
+;From https://www.tutorialspoint.com/assembly_programming/assembly_memory_segments.htm
+;<0----------------------------------------------------------------------------------- comment.line

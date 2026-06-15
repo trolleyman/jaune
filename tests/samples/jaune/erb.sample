@@ -1,0 +1,471 @@
+# grammar: text.html.erb
+
+require "erb"
+#<0---- variable.other.readwrite.ts
+#       ^---- string.quoted.double.ts
+#       ^ punctuation.definition.string.begin.ts
+#        ^-- variable.other.readwrite.ts
+#           ^ punctuation.definition.string.end.ts
+
+# Build template data class.
+# ^---- variable.other.readwrite.ts
+#       ^------- variable.other.readwrite.ts
+#                ^--- variable.other.readwrite.ts
+#                     ^---- variable.other.readwrite.ts
+#                          ^ punctuation.accessor.ts
+class Product
+#<0-- variable.other.readwrite.ts
+#     ^------ variable.other.readwrite.ts
+  def initialize( code, name, desc, cost )
+# ^-- variable.other.readwrite.ts
+#     ^--------- variable.other.readwrite.ts
+#               ^ meta.brace.round.ts
+#                 ^--- variable.other.readwrite.ts
+#                     ^ punctuation.separator.comma.ts
+#                       ^--- variable.other.readwrite.ts
+#                           ^ punctuation.separator.comma.ts
+#                             ^--- variable.other.readwrite.ts
+#                                 ^ punctuation.separator.comma.ts
+#                                   ^--- variable.other.readwrite.ts
+#                                        ^ meta.brace.round.ts
+    @code = code
+#    ^--- variable.other.readwrite.ts
+#         ^ keyword.operator.assignment.ts
+#           ^--- variable.other.readwrite.ts
+    @name = name
+#    ^--- variable.other.readwrite.ts
+#         ^ keyword.operator.assignment.ts
+#           ^--- variable.other.readwrite.ts
+    @desc = desc
+#    ^--- variable.other.readwrite.ts
+#         ^ keyword.operator.assignment.ts
+#           ^--- variable.other.readwrite.ts
+    @cost = cost
+#    ^--- variable.other.readwrite.ts
+#         ^ keyword.operator.assignment.ts
+#           ^--- variable.other.readwrite.ts
+
+    @features = [ ]
+#    ^------- variable.other.readwrite.ts
+#             ^ keyword.operator.assignment.ts
+#               ^-- meta.array.literal.ts
+#               ^ meta.brace.square.ts
+#                 ^ meta.brace.square.ts
+  end
+# ^-- variable.other.readwrite.ts
+
+  def add_feature( feature )
+# ^-- variable.other.readwrite.ts
+#     ^---------- variable.other.readwrite.ts
+#                ^ meta.brace.round.ts
+#                  ^------ variable.other.readwrite.ts
+#                          ^ meta.brace.round.ts
+    @features << feature
+#    ^------- variable.other.readwrite.ts
+#             ^- keyword.operator.bitwise.shift.ts
+#                ^------ variable.other.readwrite.ts
+  end
+# ^-- variable.other.readwrite.ts
+
+  # Support templating of member data.
+#   ^------ variable.other.readwrite.ts
+#           ^--------- variable.other.readwrite.ts
+#                      ^- keyword.operator.expression.of.ts
+#                         ^----- variable.other.readwrite.ts
+#                                ^--- variable.other.readwrite.ts
+#                                    ^ punctuation.accessor.ts
+  def get_binding
+# ^-- variable.other.readwrite.ts
+#     ^---------- variable.other.readwrite.ts
+    binding
+#   ^------ variable.other.readwrite.ts
+  end
+# ^-- variable.other.readwrite.ts
+
+  # ...
+#   ^-- punctuation.accessor.ts
+end
+#<0 variable.other.readwrite.ts
+
+# Create template.
+# ^----- variable.other.readwrite.ts
+#        ^------- variable.other.readwrite.ts
+#                ^ punctuation.accessor.ts
+template = %{
+#<0----- variable.other.readwrite.ts
+#        ^ keyword.operator.assignment.ts
+#          ^ keyword.operator.arithmetic.ts
+  <html>
+# ^ keyword.operator.relational.ts
+#  ^--- variable.other.readwrite.ts
+#      ^ keyword.operator.relational.ts
+    <head><title>Ruby Toys -- <%= @name %></title></head>
+#   ^ keyword.operator.relational.ts
+#    ^--- variable.other.readwrite.ts
+#        ^- keyword.operator.relational.ts
+#          ^---- variable.other.readwrite.ts
+#               ^ keyword.operator.relational.ts
+#                ^--- variable.other.readwrite.ts
+#                     ^--- variable.other.readwrite.ts
+#                          ^- keyword.operator.decrement.ts
+#                             ^ keyword.operator.relational.ts
+#                              ^- keyword.operator.assignment.compound.ts
+#                                  ^--- variable.other.readwrite.ts
+#                                       ^ keyword.operator.arithmetic.ts
+#                                        ^- keyword.operator.relational.ts
+#                                          ^ keyword.operator.arithmetic.ts
+#                                           ^---- variable.other.readwrite.ts
+#                                                ^- keyword.operator.relational.ts
+#                                                  ^ keyword.operator.arithmetic.ts
+#                                                   ^--- variable.other.readwrite.ts
+#                                                       ^ keyword.operator.relational.ts
+    <body>
+#   ^ keyword.operator.relational.ts
+#    ^--- variable.other.readwrite.ts
+#        ^ keyword.operator.relational.ts
+
+      <h1><%= @name %> (<%= @code %>)</h1>
+#     ^ keyword.operator.relational.ts
+#      ^- variable.other.readwrite.ts
+#        ^- keyword.operator.relational.ts
+#          ^- keyword.operator.assignment.compound.ts
+#              ^--- variable.other.readwrite.ts
+#                   ^ keyword.operator.arithmetic.ts
+#                    ^ keyword.operator.relational.ts
+#                      ^ meta.brace.round.ts
+#                       ^ keyword.operator.relational.ts
+#                        ^- keyword.operator.assignment.compound.ts
+#                            ^--- variable.other.readwrite.ts
+#                                 ^ keyword.operator.arithmetic.ts
+#                                  ^ keyword.operator.relational.ts
+#                                   ^ meta.brace.round.ts
+#                                    ^ keyword.operator.relational.ts
+#                                     ^ keyword.operator.arithmetic.ts
+#                                      ^- variable.other.readwrite.ts
+#                                        ^ keyword.operator.relational.ts
+      <p><%= @desc %></p>
+#     ^ keyword.operator.relational.ts
+#      ^ variable.other.readwrite.ts
+#       ^- keyword.operator.relational.ts
+#         ^- keyword.operator.assignment.compound.ts
+#             ^--- variable.other.readwrite.ts
+#                  ^ keyword.operator.arithmetic.ts
+#                   ^- keyword.operator.relational.ts
+#                     ^ keyword.operator.arithmetic.ts
+#                      ^ variable.other.readwrite.ts
+#                       ^ keyword.operator.relational.ts
+
+      <ul>
+#     ^ keyword.operator.relational.ts
+#      ^- variable.other.readwrite.ts
+#        ^ keyword.operator.relational.ts
+        <% @features.each do |f| %>
+#       ^ keyword.operator.relational.ts
+#        ^ keyword.operator.arithmetic.ts
+#           ^------- variable.other.object.ts
+#                   ^ punctuation.accessor.ts
+#                    ^--- variable.other.property.ts
+#                         ^- variable.other.readwrite.ts
+#                            ^ keyword.operator.logical.ts
+#                             ^ entity.name.function.pipe.ng
+#                              ^ keyword.operator.logical.ts
+#                                ^ keyword.operator.arithmetic.ts
+#                                 ^ keyword.operator.relational.ts
+          <li><b><%= f %></b></li>
+#         ^ keyword.operator.relational.ts
+#          ^- variable.other.readwrite.ts
+#            ^- keyword.operator.relational.ts
+#              ^ variable.other.readwrite.ts
+#               ^- keyword.operator.relational.ts
+#                 ^- keyword.operator.assignment.compound.ts
+#                    ^ variable.other.readwrite.ts
+#                      ^ keyword.operator.arithmetic.ts
+#                       ^- keyword.operator.relational.ts
+#                         ^ keyword.operator.arithmetic.ts
+#                          ^ variable.other.readwrite.ts
+#                           ^- keyword.operator.relational.ts
+#                             ^ keyword.operator.arithmetic.ts
+#                              ^- variable.other.readwrite.ts
+#                                ^ keyword.operator.relational.ts
+        <% end %>
+#       ^ keyword.operator.relational.ts
+#        ^ keyword.operator.arithmetic.ts
+#          ^-- variable.other.readwrite.ts
+#              ^ keyword.operator.arithmetic.ts
+#               ^ keyword.operator.relational.ts
+      </ul>
+#     ^ keyword.operator.relational.ts
+#      ^ keyword.operator.arithmetic.ts
+#       ^- variable.other.readwrite.ts
+#         ^ keyword.operator.relational.ts
+
+      <p>
+#     ^ keyword.operator.relational.ts
+#      ^ variable.other.readwrite.ts
+#       ^ keyword.operator.relational.ts
+        <% if @cost < 10 %>
+#       ^ keyword.operator.relational.ts
+#        ^ keyword.operator.arithmetic.ts
+#          ^- keyword.control.if.ts
+#              ^--- variable.other.readwrite.ts
+#                   ^ keyword.operator.relational.ts
+#                     ^- constant.numeric.decimal.ts
+#                        ^ keyword.operator.arithmetic.ts
+#                         ^ keyword.operator.relational.ts
+          <b>Only <%= @cost %>!!!</b>
+#         ^ keyword.operator.relational.ts
+#          ^ variable.other.readwrite.ts
+#           ^ keyword.operator.relational.ts
+#            ^--- variable.other.readwrite.ts
+#                 ^ keyword.operator.relational.ts
+#                  ^- keyword.operator.assignment.compound.ts
+#                      ^--- variable.other.readwrite.ts
+#                           ^ keyword.operator.arithmetic.ts
+#                            ^ keyword.operator.relational.ts
+#                             ^-- keyword.operator.logical.ts
+#                                ^ keyword.operator.relational.ts
+#                                 ^ keyword.operator.arithmetic.ts
+#                                  ^ variable.other.readwrite.ts
+#                                   ^ keyword.operator.relational.ts
+        <% else %>
+#       ^ keyword.operator.relational.ts
+#        ^ keyword.operator.arithmetic.ts
+#          ^--- keyword.control.else.ts
+#               ^ keyword.operator.arithmetic.ts
+#                ^ keyword.operator.relational.ts
+           Call for a price, today!
+#          ^--- variable.other.readwrite.ts
+#               ^-- variable.other.readwrite.ts
+#                   ^ variable.other.readwrite.ts
+#                     ^---- variable.other.readwrite.ts
+#                          ^ punctuation.separator.comma.ts
+#                            ^---- variable.other.readwrite.ts
+#                                 ^ keyword.operator.logical.ts
+        <% end %>
+#       ^ keyword.operator.relational.ts
+#        ^ keyword.operator.arithmetic.ts
+#          ^-- variable.other.readwrite.ts
+#              ^ keyword.operator.arithmetic.ts
+#               ^ keyword.operator.relational.ts
+      </p>
+#     ^ keyword.operator.relational.ts
+#      ^ keyword.operator.arithmetic.ts
+#       ^ variable.other.readwrite.ts
+#        ^ keyword.operator.relational.ts
+
+    </body>
+#   ^ keyword.operator.relational.ts
+#    ^ keyword.operator.arithmetic.ts
+#     ^--- variable.other.readwrite.ts
+#         ^ keyword.operator.relational.ts
+  </html>
+# ^ keyword.operator.relational.ts
+#  ^ keyword.operator.arithmetic.ts
+#   ^--- variable.other.readwrite.ts
+#       ^ keyword.operator.relational.ts
+}.gsub(/^  /, '')
+#^ punctuation.accessor.ts
+# ^--- variable.other.property.ts
+#     ^ meta.brace.round.ts
+#      ^ keyword.operator.arithmetic.ts
+#       ^ keyword.operator.bitwise.ts
+#          ^ keyword.operator.arithmetic.ts
+#           ^ punctuation.separator.comma.ts
+#             ^- string.quoted.single.ts
+#             ^ punctuation.definition.string.begin.ts
+#              ^ punctuation.definition.string.end.ts
+#               ^ meta.brace.round.ts
+
+rhtml = ERB.new(template)
+#<0-- variable.other.readwrite.ts
+#     ^ keyword.operator.assignment.ts
+#       ^-- constant.other.object.ts
+#          ^ punctuation.accessor.ts
+#           ^-- variable.other.property.ts
+#              ^ meta.brace.round.ts
+#               ^------- variable.other.readwrite.ts
+#                       ^ meta.brace.round.ts
+
+# Set up template data.
+# ^-- variable.other.readwrite.ts
+#     ^- variable.other.readwrite.ts
+#        ^------- variable.other.readwrite.ts
+#                 ^--- variable.other.readwrite.ts
+#                     ^ punctuation.accessor.ts
+toy = Product.new( "TZ-1002",
+#<0 variable.other.readwrite.ts
+#   ^ keyword.operator.assignment.ts
+#     ^------ variable.other.object.ts
+#            ^ punctuation.accessor.ts
+#             ^-- variable.other.property.ts
+#                ^ meta.brace.round.ts
+#                  ^-------- string.quoted.double.ts
+#                  ^ punctuation.definition.string.begin.ts
+#                   ^- constant.character.other
+#                     ^ keyword.operator.arithmetic.ts
+#                      ^--- constant.numeric.decimal.ts
+#                          ^ punctuation.definition.string.end.ts
+#                           ^ punctuation.separator.comma.ts
+                   "Rubysapien",
+#                  ^----------- string.quoted.double.ts
+#                  ^ punctuation.definition.string.begin.ts
+#                   ^--------- variable.other.readwrite.ts
+#                             ^ punctuation.definition.string.end.ts
+#                              ^ punctuation.separator.comma.ts
+                   "Geek's Best Friend!  Responds to Ruby commands...",
+#                  ^--------------------------------------------------- string.quoted.double.ts
+#                  ^ punctuation.definition.string.begin.ts
+#                   ^--- variable.other.readwrite.ts
+#                       ^---------------------------------------------- string.quoted.single.ts
+#                       ^ punctuation.definition.string.begin.ts
+#                        ^ variable.other.readwrite.ts
+#                          ^--- variable.other.readwrite.ts
+#                               ^----- variable.other.readwrite.ts
+#                                     ^ keyword.operator.logical.ts
+#                                        ^------- variable.other.readwrite.ts
+#                                                 ^- variable.other.readwrite.ts
+#                                                    ^--- variable.other.readwrite.ts
+#                                                         ^------- variable.other.readwrite.ts
+#                                                                 ^-- punctuation.accessor.ts
+#                                                                    ^- string.quoted.double.ts
+#                                                                    ^ punctuation.definition.string.begin.ts
+#                                                                     ^ invalid.illegal.newline.ts
+                   999.95 )
+#<0------------------------ string.quoted.double.ts
+#<0------------------------ string.quoted.single.ts
+#                     ^ punctuation.accessor.ts
+#                      ^- constant.numeric.decimal.ts
+#                         ^ invalid.illegal.newline.ts
+toy.add_feature("Listens for verbal commands in the Ruby language!")
+#<0----------------------------------------------------------------- string.quoted.double.ts
+#<0 variable.other.object.ts
+#  ^ punctuation.accessor.ts
+#   ^---------- variable.other.property.ts
+#              ^ meta.brace.round.ts
+#               ^-------------------------------------------------- string.quoted.double.ts
+#               ^ punctuation.definition.string.begin.ts
+#                ^------ variable.other.readwrite.ts
+#                        ^-- variable.other.readwrite.ts
+#                            ^----- variable.other.readwrite.ts
+#                                   ^------- variable.other.readwrite.ts
+#                                            ^- keyword.operator.expression.in.ts
+#                                               ^-- variable.other.readwrite.ts
+#                                                   ^--- variable.other.readwrite.ts
+#                                                        ^------- variable.other.readwrite.ts
+#                                                                ^ keyword.operator.logical.ts
+#                                                                 ^ punctuation.definition.string.end.ts
+#                                                                  ^ meta.brace.round.ts
+toy.add_feature("Ignores Perl, Java, and all C variants.")
+#<0------------------------------------------------------- string.quoted.double.ts
+#<0 variable.other.object.ts
+#  ^ punctuation.accessor.ts
+#   ^---------- variable.other.property.ts
+#              ^ meta.brace.round.ts
+#               ^---------------------------------------- string.quoted.double.ts
+#               ^ punctuation.definition.string.begin.ts
+#                ^------ variable.other.readwrite.ts
+#                        ^--- variable.other.readwrite.ts
+#                            ^ punctuation.separator.comma.ts
+#                              ^--- variable.other.readwrite.ts
+#                                  ^ punctuation.separator.comma.ts
+#                                    ^-- variable.other.readwrite.ts
+#                                        ^-- variable.other.readwrite.ts
+#                                            ^ constant.character.other
+#                                              ^------- variable.other.readwrite.ts
+#                                                      ^ punctuation.accessor.ts
+#                                                       ^ punctuation.definition.string.end.ts
+#                                                        ^ meta.brace.round.ts
+toy.add_feature("Karate-Chop Action!!!")
+#<0------------------------------------- string.quoted.double.ts
+#<0 variable.other.object.ts
+#  ^ punctuation.accessor.ts
+#   ^---------- variable.other.property.ts
+#              ^ meta.brace.round.ts
+#               ^---------------------- string.quoted.double.ts
+#               ^ punctuation.definition.string.begin.ts
+#                ^----- variable.other.readwrite.ts
+#                      ^ keyword.operator.arithmetic.ts
+#                       ^--- variable.other.readwrite.ts
+#                            ^----- variable.other.readwrite.ts
+#                                  ^-- keyword.operator.logical.ts
+#                                     ^ punctuation.definition.string.end.ts
+#                                      ^ meta.brace.round.ts
+toy.add_feature("Matz signature on left leg.")
+#<0------------------------------------------- string.quoted.double.ts
+#<0 variable.other.object.ts
+#  ^ punctuation.accessor.ts
+#   ^---------- variable.other.property.ts
+#              ^ meta.brace.round.ts
+#               ^---------------------------- string.quoted.double.ts
+#               ^ punctuation.definition.string.begin.ts
+#                ^--- variable.other.readwrite.ts
+#                     ^-------- variable.other.readwrite.ts
+#                               ^- variable.other.readwrite.ts
+#                                  ^--- variable.other.readwrite.ts
+#                                       ^-- variable.other.readwrite.ts
+#                                          ^ punctuation.accessor.ts
+#                                           ^ punctuation.definition.string.end.ts
+#                                            ^ meta.brace.round.ts
+toy.add_feature("Gem studded eyes... Rubies, of course!")
+#<0------------------------------------------------------ string.quoted.double.ts
+#<0 variable.other.object.ts
+#  ^ punctuation.accessor.ts
+#   ^---------- variable.other.property.ts
+#              ^ meta.brace.round.ts
+#               ^--------------------------------------- string.quoted.double.ts
+#               ^ punctuation.definition.string.begin.ts
+#                ^-- variable.other.readwrite.ts
+#                    ^------ variable.other.readwrite.ts
+#                            ^--- variable.other.readwrite.ts
+#                                ^-- punctuation.accessor.ts
+#                                    ^----- variable.other.property.ts
+#                                          ^ punctuation.separator.comma.ts
+#                                            ^- keyword.operator.expression.of.ts
+#                                               ^----- variable.other.readwrite.ts
+#                                                     ^ keyword.operator.logical.ts
+#                                                      ^ punctuation.definition.string.end.ts
+#                                                       ^ meta.brace.round.ts
+
+# Produce result.
+#<0-------------- string.quoted.double.ts
+# ^------ variable.other.readwrite.ts
+#         ^----- variable.other.readwrite.ts
+#               ^ invalid.illegal.newline.ts
+rhtml.run(toy.get_binding)
+#<0-- variable.other.object.ts
+#    ^ punctuation.accessor.ts
+#     ^-- variable.other.property.ts
+#        ^ meta.brace.round.ts
+#         ^-- variable.other.object.ts
+#            ^ punctuation.accessor.ts
+#             ^---------- variable.other.property.ts
+#                        ^ meta.brace.round.ts
+
+# From https://docs.ruby-lang.org/en/2.3.0/ERB.html#class-ERB-label-Examples
+# ^--- variable.other.readwrite.ts
+#      ^---- variable.other.readwrite.ts
+#            ^- keyword.operator.arithmetic.ts
+#              ^--- variable.other.object.ts
+#                  ^ punctuation.accessor.ts
+#                   ^--- variable.other.property.ts
+#                       ^ keyword.operator.arithmetic.ts
+#                        ^--- variable.other.object.ts
+#                            ^ punctuation.accessor.ts
+#                             ^-- variable.other.property.ts
+#                                ^ keyword.operator.arithmetic.ts
+#                                 ^- variable.other.readwrite.ts
+#                                   ^ keyword.operator.arithmetic.ts
+#                                     ^ punctuation.accessor.ts
+#                                       ^ punctuation.accessor.ts
+#                                        ^ constant.numeric.decimal.ts
+#                                         ^ keyword.operator.arithmetic.ts
+#                                          ^-- constant.other.object.ts
+#                                             ^ punctuation.accessor.ts
+#                                              ^--- variable.other.property.ts
+#                                                   ^---- variable.other.readwrite.ts
+#                                                        ^ keyword.operator.arithmetic.ts
+#                                                         ^-- constant.character.other
+#                                                            ^ keyword.operator.arithmetic.ts
+#                                                             ^---- variable.other.readwrite.ts
+#                                                                  ^ keyword.operator.arithmetic.ts
+#                                                                   ^------- variable.other.readwrite.ts

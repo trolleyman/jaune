@@ -1,0 +1,66 @@
+rem grammar: source.batchfile
+
+rem
+rem<0 comment.line.rem.batchfile
+rem<0 keyword.command.rem.batchfile
+rem  Alternate form of if-elseif-else structure with goto for else
+rem<0------------------------------------------------------------- comment.line.rem.batchfile
+rem<0 keyword.command.rem.batchfile
+rem  case.  That way, you can group code together in a "more logical"
+rem<0---------------------------------------------------------------- comment.line.rem.batchfile
+rem<0 keyword.command.rem.batchfile
+rem  or "more natural" manner.
+rem<0------------------------- comment.line.rem.batchfile
+rem<0 keyword.command.rem.batchfile
+rem
+rem<0 comment.line.rem.batchfile
+rem<0 keyword.command.rem.batchfile
+
+if .%1 == .1 goto 1
+rem<0 keyword.control.conditional.batchfile
+rem ^- variable.parameter.batchfile
+rem ^ punctuation.definition.variable.batchfile
+rem    ^- keyword.operator.comparison.batchfile
+rem          ^--- keyword.control.statement.batchfile
+rem               ^ constant.numeric.batchfile
+if .%1 == .2 goto 2
+rem<0 keyword.control.conditional.batchfile
+rem ^- variable.parameter.batchfile
+rem ^ punctuation.definition.variable.batchfile
+rem    ^- keyword.operator.comparison.batchfile
+rem          ^--- keyword.control.statement.batchfile
+rem               ^ constant.numeric.batchfile
+goto else
+rem<0 keyword.control.statement.batchfile
+rem  ^--- keyword.control.conditional.batchfile
+:1
+rem<0 punctuation.separator.batchfile
+rem<1 keyword.other.special-method.batchfile
+echo You selected 1
+rem<0 keyword.command.batchfile
+rem               ^ constant.numeric.batchfile
+goto endif
+rem<0 keyword.control.statement.batchfile
+:2
+rem<0 punctuation.separator.batchfile
+rem<1 keyword.other.special-method.batchfile
+echo You selected 2
+rem<0 keyword.command.batchfile
+rem               ^ constant.numeric.batchfile
+goto endif
+rem<0 keyword.control.statement.batchfile
+:else
+rem<0 punctuation.separator.batchfile
+rem<1 keyword.other.special-method.batchfile
+echo else (neither 1 nor 2)
+rem<0 keyword.command.batchfile
+rem                ^ constant.numeric.batchfile
+goto endif
+rem<0 keyword.control.statement.batchfile
+:endif
+rem<0 punctuation.separator.batchfile
+rem<1- keyword.other.special-method.batchfile
+
+:: From https://github.com/Archive-projects/Batch-File-examples/blob/master/files/tf5.bat
+rem<0------------------------------------------------------------------------------------ comment.line.colon.batchfile
+rem<0 punctuation.definition.comment.batchfile

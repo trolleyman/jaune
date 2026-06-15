@@ -1,0 +1,66 @@
+-- grammar: source.sql
+
+USE AdventureWorks2022;
+--<0 keyword.other.sql
+GO
+--<0 keyword.other.sql
+IF OBJECT_ID('dbo.NewProducts', 'U') IS NOT NULL
+--<0 keyword.other.sql
+-- ^-------- support.function.metadata.sql
+--           ^---------------- string.quoted.single.sql
+--           ^ punctuation.definition.string.begin.sql
+--                           ^ punctuation.definition.string.end.sql
+--                              ^-- string.quoted.single.sql
+--                              ^ punctuation.definition.string.begin.sql
+--                                ^ punctuation.definition.string.end.sql
+--                                   ^---------- keyword.other.DDL.create.II.sql
+    DROP TABLE dbo.NewProducts;
+--<0---------- meta.drop.sql
+--  ^--- keyword.other.create.sql
+--       ^---- keyword.other.sql
+--             ^-- constant.other.database-name.sql
+--                 ^---------- constant.other.table-name.sql
+GO
+--<0 keyword.other.sql
+ALTER DATABASE AdventureWorks2022 SET RECOVERY BULK_LOGGED;
+--<0----------- meta.alter.sql
+--<0- keyword.other.create.sql
+--    ^------- keyword.other.table.sql
+--                                ^-- keyword.other.DML.sql
+--                                    ^------- keyword.other.sql
+--                                             ^---------- keyword.other.sql
+GO
+--<0 keyword.other.sql
+
+SELECT * INTO dbo.NewProducts
+--<0-- keyword.other.DML.sql
+--     ^ keyword.operator.star.sql
+--       ^--- keyword.other.sql
+--            ^-- constant.other.database-name.sql
+--                ^---------- constant.other.table-name.sql
+FROM Production.Product
+--<0 keyword.other.DML.sql
+--   ^--------- constant.other.database-name.sql
+--              ^------ constant.other.table-name.sql
+WHERE ListPrice > $25
+--<0- keyword.other.DML.sql
+--              ^ keyword.operator.comparison.sql
+--                 ^- constant.numeric.sql
+AND ListPrice < $100;
+--<0 keyword.other.DML.sql
+--            ^ keyword.operator.comparison.sql
+--               ^-- constant.numeric.sql
+GO
+--<0 keyword.other.sql
+ALTER DATABASE AdventureWorks2022 SET RECOVERY FULL;
+--<0----------- meta.alter.sql
+--<0- keyword.other.create.sql
+--    ^------- keyword.other.table.sql
+--                                ^-- keyword.other.DML.sql
+--                                    ^------- keyword.other.sql
+GO
+--<0 keyword.other.sql
+
+-- From https://learn.microsoft.com/en-us/sql/t-sql/queries/select-examples-transact-sql
+--<0------------------------------------------------------------------------------------ comment.line.double-dash.sql
+--<0 punctuation.definition.comment.sql

@@ -1,0 +1,344 @@
+# grammar: text.html.soy
+
+/**
+#<0 keyword.operator.arithmetic.ts
+ * Private helper for demoCallWithoutParams, demoCallWithParams, and demoCallWithParamBlock.
+#^ keyword.operator.arithmetic.ts
+#  ^------ variable.other.readwrite.ts
+#          ^----- variable.other.readwrite.ts
+#                 ^-- variable.other.readwrite.ts
+#                     ^-------------------- variable.other.readwrite.ts
+#                                          ^ punctuation.separator.comma.ts
+#                                            ^----------------- variable.other.readwrite.ts
+#                                                              ^ punctuation.separator.comma.ts
+#                                                                ^-- variable.other.readwrite.ts
+#                                                                    ^--------------------- variable.other.readwrite.ts
+#                                                                                          ^ punctuation.accessor.ts
+ * Reports on a trip.
+#^ keyword.operator.arithmetic.ts
+#  ^------ variable.other.readwrite.ts
+#          ^- variable.other.readwrite.ts
+#             ^ variable.other.readwrite.ts
+#               ^--- variable.other.readwrite.ts
+#                   ^ punctuation.accessor.ts
+ */
+#^- keyword.operator.arithmetic.ts
+{template tripReport_ visibility="private" kind="text"}
+#^------- storage.type.soy
+#         ^---------- entity.name.function.soy
+#                     ^--------- variable.other.readwrite.ts
+#                               ^ keyword.operator.assignment.ts
+#                                ^--------------------- string.quoted.double.ts
+#                                ^ punctuation.definition.string.begin.ts
+#                                 ^------ variable.other.readwrite.ts
+#                                        ^------------- string.quoted.double.ts
+#                                        ^ punctuation.definition.string.begin.ts
+#                                          ^--- variable.other.readwrite.ts
+#                                              ^ keyword.operator.assignment.ts
+#                                               ^------ string.quoted.double.ts
+#                                               ^ punctuation.definition.string.begin.ts
+#                                                ^--- variable.other.readwrite.ts
+#                                                    ^- string.quoted.double.ts
+#                                                    ^ punctuation.definition.string.begin.ts
+#                                                     ^ invalid.illegal.newline.ts
+  {@param? name: string|null}           /** The name of the person who took a trip (optional). */
+#<0---------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------------------------------------------------------- string.quoted.double.ts
+#   ^---- variable.other.readwrite.ts
+#        ^ keyword.operator.ternary.ts
+#          ^--- variable.other.readwrite.ts
+#              ^ keyword.operator.ternary.ts
+#                ^----- variable.other.readwrite.ts
+#                      ^ keyword.operator.logical.ts
+#                       ^--- entity.name.function.pipe.ng
+#                                       ^-- keyword.operator.arithmetic.ts
+#                                           ^-- variable.other.readwrite.ts
+#                                               ^--- variable.other.readwrite.ts
+#                                                    ^- keyword.operator.expression.of.ts
+#                                                       ^-- variable.other.readwrite.ts
+#                                                           ^----- variable.other.readwrite.ts
+#                                                                  ^-- variable.other.readwrite.ts
+#                                                                      ^--- variable.other.readwrite.ts
+#                                                                           ^ variable.other.readwrite.ts
+  {@param? destination: string|null}    /** The destination of the trip (optional). */
+#<0----------------------------------------------------------------------------------- string.quoted.double.ts
+#<0----------------------------------------------------------------------------------- string.quoted.double.ts
+#<0----------------------------------------------------------------------------------- string.quoted.double.ts
+#   ^---- variable.other.readwrite.ts
+#        ^ keyword.operator.ternary.ts
+#          ^---------- variable.other.readwrite.ts
+#                     ^ keyword.operator.ternary.ts
+#                       ^----- variable.other.readwrite.ts
+#                             ^ keyword.operator.logical.ts
+#                              ^--- entity.name.function.pipe.ng
+#                                       ^-- keyword.operator.arithmetic.ts
+#                                           ^-- variable.other.readwrite.ts
+#                                               ^---------- variable.other.readwrite.ts
+#                                                           ^- keyword.operator.expression.of.ts
+#                                                              ^-- variable.other.readwrite.ts
+  // Note: The template name demonstrates the good practice of adding a trailing underscore to
+#<0------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0------------------------------------------------------------------------------------------- string.quoted.double.ts
+# ^- keyword.operator.arithmetic.ts
+#    ^--- variable.other.readwrite.ts
+#          ^-- variable.other.readwrite.ts
+#              ^------- variable.other.readwrite.ts
+#                       ^--- variable.other.readwrite.ts
+#                            ^----------- variable.other.readwrite.ts
+#                                         ^-- variable.other.readwrite.ts
+#                                             ^--- variable.other.readwrite.ts
+#                                                  ^------- variable.other.readwrite.ts
+#                                                           ^- keyword.operator.expression.of.ts
+#                                                              ^----- variable.other.readwrite.ts
+#                                                                     ^ variable.other.readwrite.ts
+#                                                                       ^------- variable.other.readwrite.ts
+#                                                                                ^--------- variable.other.readwrite.ts
+#                                                                                           ^- variable.other.readwrite.ts
+  // private templates (template that should never be called from hand-written code).
+#<0---------------------------------------------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------------------------------------------- string.quoted.double.ts
+# ^- keyword.operator.arithmetic.ts
+#    ^------ variable.other.readwrite.ts
+
+  {if !$name}
+#<0---------- string.quoted.double.ts
+#<0---------- string.quoted.double.ts
+#<0---------- string.quoted.double.ts
+#  ^- keyword.control.if.ts
+#     ^ keyword.operator.logical.ts
+#      ^---- variable.other.readwrite.ts
+    // Note: The message below demonstrates that the 'desc' attribute can be left empty. However,
+#<0---------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------------------------------------------------------- string.quoted.double.ts
+#   ^- keyword.operator.arithmetic.ts
+#      ^--- variable.other.readwrite.ts
+#            ^-- variable.other.readwrite.ts
+#                ^------ variable.other.readwrite.ts
+#                        ^---- variable.other.readwrite.ts
+#                              ^----------- variable.other.readwrite.ts
+#                                           ^--- variable.other.readwrite.ts
+#                                                ^-- variable.other.readwrite.ts
+#                                                    ^------------------------------------------- string.quoted.single.ts
+#                                                    ^ punctuation.definition.string.begin.ts
+#                                                     ^--- variable.other.readwrite.ts
+#                                                         ^-------------------------------------- string.quoted.single.ts
+#                                                         ^ punctuation.definition.string.begin.ts
+#                                                           ^-------- variable.other.readwrite.ts
+#                                                                     ^-- variable.other.readwrite.ts
+#                                                                         ^- variable.other.readwrite.ts
+#                                                                            ^--- variable.other.readwrite.ts
+#                                                                                 ^---- variable.other.object.ts
+#                                                                                      ^ punctuation.accessor.ts
+#                                                                                        ^------ variable.other.property.ts
+#                                                                                               ^ punctuation.separator.comma.ts
+    // this is not recommended except for the simplest messages, otherwise you risk confusing some
+#<0----------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0----------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0----------------------------------------------------------------------------------------------- string.quoted.double.ts
+#<0----------------------------------------------------------------------------------------------- string.quoted.single.ts
+#<0----------------------------------------------------------------------------------------------- string.quoted.single.ts
+#   ^- keyword.operator.arithmetic.ts
+#      ^--- variable.language.this.ts
+#           ^- variable.other.readwrite.ts
+#              ^-- variable.other.readwrite.ts
+#                  ^---------- variable.other.readwrite.ts
+#                              ^----- variable.other.readwrite.ts
+#                                     ^-- variable.other.readwrite.ts
+#                                         ^-- variable.other.readwrite.ts
+#                                             ^------- variable.other.readwrite.ts
+#                                                      ^------- variable.other.readwrite.ts
+#                                                              ^ punctuation.separator.comma.ts
+#                                                                ^-------- variable.other.readwrite.ts
+#                                                                          ^-- variable.other.readwrite.ts
+#                                                                              ^--- variable.other.readwrite.ts
+#                                                                                   ^-------- variable.other.readwrite.ts
+#                                                                                             ^--- variable.other.readwrite.ts
+    // translators and getting poor translations.
+#<0---------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------- string.quoted.single.ts
+#<0---------------------------------------------- string.quoted.single.ts
+#   ^- keyword.operator.arithmetic.ts
+#      ^---------- variable.other.readwrite.ts
+#                  ^-- variable.other.readwrite.ts
+#                      ^------ variable.other.readwrite.ts
+#                              ^--- variable.other.readwrite.ts
+#                                   ^----------- variable.other.readwrite.ts
+#                                               ^ punctuation.accessor.ts
+    {msg desc=""}
+#<0-------------- string.quoted.double.ts
+#<0-------------- string.quoted.double.ts
+#<0-------------- string.quoted.double.ts
+#<0-------------- string.quoted.single.ts
+#<0-------------- string.quoted.single.ts
+#    ^-- variable.other.readwrite.ts
+#        ^--- variable.other.readwrite.ts
+#            ^ keyword.operator.assignment.ts
+#             ^-- string.quoted.double.ts
+#             ^ punctuation.definition.string.begin.ts
+#              ^- string.quoted.double.ts
+#              ^ punctuation.definition.string.begin.ts
+#               ^ invalid.illegal.newline.ts
+      A trip was taken.
+#<0-------------------- string.quoted.double.ts
+#<0-------------------- string.quoted.double.ts
+#<0-------------------- string.quoted.double.ts
+#<0-------------------- string.quoted.single.ts
+#<0-------------------- string.quoted.single.ts
+#<0-------------------- string.quoted.double.ts
+#     ^ constant.character.other
+#       ^--- variable.other.readwrite.ts
+#            ^-- variable.other.readwrite.ts
+#                ^---- variable.other.readwrite.ts
+#                     ^ punctuation.accessor.ts
+    {/msg}
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.single.ts
+#<0------- string.quoted.single.ts
+#<0------- string.quoted.double.ts
+#    ^ keyword.operator.arithmetic.ts
+#     ^-- variable.other.readwrite.ts
+#        ^ invalid.illegal.newline.ts
+  {elseif !$destination}
+#<0--------------------- string.quoted.double.ts
+#<0--------------------- string.quoted.double.ts
+#<0--------------------- string.quoted.double.ts
+#<0--------------------- string.quoted.single.ts
+#<0--------------------- string.quoted.single.ts
+#  ^----- variable.other.readwrite.ts
+#         ^ keyword.operator.logical.ts
+#          ^----------- variable.other.readwrite.ts
+#                      ^ invalid.illegal.newline.ts
+    {msg desc="Example: Alice took a trip."}
+#<0----------------------------------------- string.quoted.double.ts
+#<0----------------------------------------- string.quoted.double.ts
+#<0----------------------------------------- string.quoted.double.ts
+#<0----------------------------------------- string.quoted.single.ts
+#    ^-- variable.other.readwrite.ts
+#        ^--- variable.other.readwrite.ts
+#            ^ keyword.operator.assignment.ts
+#             ^----------------------------- string.quoted.double.ts
+#             ^ punctuation.definition.string.begin.ts
+#              ^------ variable.other.readwrite.ts
+#                       ^---- variable.other.readwrite.ts
+#                             ^--- variable.other.readwrite.ts
+#                                  ^ variable.other.readwrite.ts
+#                                    ^--- variable.other.readwrite.ts
+#                                        ^ punctuation.accessor.ts
+#                                         ^- string.quoted.double.ts
+#                                         ^ punctuation.definition.string.begin.ts
+#                                          ^ invalid.illegal.newline.ts
+      {$name} took a trip.
+#<0----------------------- string.quoted.double.ts
+#<0----------------------- string.quoted.double.ts
+#<0----------------------- string.quoted.double.ts
+#<0----------------------- string.quoted.single.ts
+#<0----------------------- string.quoted.double.ts
+#      ^---- variable.other.readwrite.ts
+#             ^--- variable.other.readwrite.ts
+#                  ^ variable.other.readwrite.ts
+#                    ^--- variable.other.readwrite.ts
+#                        ^ punctuation.accessor.ts
+    {/msg}
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.single.ts
+#<0------- string.quoted.double.ts
+#    ^ keyword.operator.arithmetic.ts
+#     ^-- variable.other.readwrite.ts
+#        ^ invalid.illegal.newline.ts
+  {else}
+#<0----- string.quoted.double.ts
+#<0----- string.quoted.double.ts
+#<0----- string.quoted.double.ts
+#<0----- string.quoted.single.ts
+#  ^--- keyword.control.else.ts
+#      ^ invalid.illegal.newline.ts
+    {msg desc="Example: Alice took a trip to wonderland."}
+#<0------------------------------------------------------- string.quoted.double.ts
+#<0------------------------------------------------------- string.quoted.double.ts
+#<0------------------------------------------------------- string.quoted.double.ts
+#    ^-- variable.other.readwrite.ts
+#        ^--- variable.other.readwrite.ts
+#            ^ keyword.operator.assignment.ts
+#             ^------------------------------------------- string.quoted.double.ts
+#             ^ punctuation.definition.string.begin.ts
+#              ^------ variable.other.readwrite.ts
+#                       ^---- variable.other.readwrite.ts
+#                             ^--- variable.other.readwrite.ts
+#                                  ^ variable.other.readwrite.ts
+#                                    ^--- variable.other.readwrite.ts
+#                                         ^- variable.other.readwrite.ts
+#                                            ^--------- variable.other.readwrite.ts
+#                                                      ^ punctuation.accessor.ts
+#                                                       ^- string.quoted.double.ts
+#                                                       ^ punctuation.definition.string.begin.ts
+#                                                        ^ invalid.illegal.newline.ts
+      {$name} took a trip to {$destination}.
+#<0----------------------------------------- string.quoted.double.ts
+#<0----------------------------------------- string.quoted.double.ts
+#<0----------------------------------------- string.quoted.double.ts
+#<0----------------------------------------- string.quoted.double.ts
+#      ^---- variable.other.readwrite.ts
+#             ^--- variable.other.readwrite.ts
+#                  ^ variable.other.readwrite.ts
+#                    ^--- variable.other.readwrite.ts
+#                         ^- variable.other.readwrite.ts
+#                             ^----------- variable.other.readwrite.ts
+#                                          ^ punctuation.accessor.ts
+    {/msg}
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.double.ts
+#<0------- string.quoted.double.ts
+#    ^ keyword.operator.arithmetic.ts
+#     ^-- variable.other.readwrite.ts
+#        ^ invalid.illegal.newline.ts
+  {/if}
+#<0---- string.quoted.double.ts
+#<0---- string.quoted.double.ts
+#<0---- string.quoted.double.ts
+#  ^ keyword.operator.arithmetic.ts
+#   ^- keyword.control.if.ts
+{/template}
+#<0-------- string.quoted.double.ts
+#<0-------- string.quoted.double.ts
+#<0-------- string.quoted.double.ts
+#^ keyword.operator.arithmetic.ts
+# ^------- variable.other.readwrite.ts
+
+// From https://github.com/google/closure-templates/blob/master/examples/features.soy
+#<0---------------------------------------------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------------------------------------------- string.quoted.double.ts
+#<0---------------------------------------------------------------------------------- string.quoted.double.ts
+#<0 keyword.operator.arithmetic.ts
+#  ^--- variable.other.readwrite.ts
+#       ^---- variable.other.readwrite.ts
+#             ^- keyword.operator.arithmetic.ts
+#               ^----- variable.other.object.ts
+#                     ^ punctuation.accessor.ts
+#                      ^-- variable.other.property.ts
+#                         ^ keyword.operator.arithmetic.ts
+#                          ^----- variable.other.readwrite.ts
+#                                ^ keyword.operator.arithmetic.ts
+#                                 ^------ variable.other.readwrite.ts
+#                                        ^ keyword.operator.arithmetic.ts
+#                                         ^-------- variable.other.readwrite.ts
+#                                                  ^ keyword.operator.arithmetic.ts
+#                                                   ^--- variable.other.readwrite.ts
+#                                                       ^ keyword.operator.arithmetic.ts
+#                                                        ^----- variable.other.readwrite.ts
+#                                                              ^ keyword.operator.arithmetic.ts
+#                                                               ^------- variable.other.readwrite.ts
+#                                                                       ^ keyword.operator.arithmetic.ts
+#                                                                        ^------- variable.other.object.ts
+#                                                                                ^ punctuation.accessor.ts
+#                                                                                 ^-- variable.other.property.ts

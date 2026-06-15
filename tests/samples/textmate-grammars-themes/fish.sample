@@ -1,0 +1,49 @@
+# grammar: source.fish
+
+function fish_prompt
+#<0----- keyword.control.fish
+    # A simple prompt. Displays the current directory
+#   ^------------------------------------------------ comment.line.number-sign.fish
+#   ^ punctuation.definition.comment.fish
+    # (which fish stores in the $PWD variable)
+#   ^----------------------------------------- comment.line.number-sign.fish
+#   ^ punctuation.definition.comment.fish
+    # and then a user symbol - a '►' for a normal user and a '#' for root.
+#   ^--------------------------------------------------------------------- comment.line.number-sign.fish
+#   ^ punctuation.definition.comment.fish
+    set -l user_char '►'
+#   ^-- support.function.command.fish
+#       ^- source.option.fish
+#                    ^-- string.quoted.single.fish
+#                    ^ punctuation.definition.string.begin.fish
+#                      ^ punctuation.definition.string.end.fish
+    if fish_is_root_user
+#   ^- keyword.control.fish
+        set user_char '#'
+#       ^-- support.function.command.fish
+#                     ^-- string.quoted.single.fish
+#                     ^ punctuation.definition.string.begin.fish
+#                       ^ punctuation.definition.string.end.fish
+    end
+#   ^-- keyword.control.fish
+
+    echo (set_color yellow)$PWD (set_color purple)$user_char
+#   ^--- support.function.command.fish
+#        ^----------------- meta.embedded.subshell.fish
+#        ^ punctuation.definition.subshell.begin.fish
+#         ^-------- support.function.command.fish
+#                         ^ punctuation.definition.subshell.end.fish
+#                          ^--- variable.other.normal.fish
+#                          ^ punctuation.definition.variable.fish
+#                               ^----------------- meta.embedded.subshell.fish
+#                               ^ punctuation.definition.subshell.begin.fish
+#                                ^-------- support.function.command.fish
+#                                                ^ punctuation.definition.subshell.end.fish
+#                                                 ^--------- variable.other.normal.fish
+#                                                 ^ punctuation.definition.variable.fish
+end
+#<0 keyword.control.fish
+
+# From https://fishshell.com/docs/current/language.html#functions
+#<0-------------------------------------------------------------- comment.line.number-sign.fish
+#<0 punctuation.definition.comment.fish
