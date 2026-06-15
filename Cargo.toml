@@ -22,11 +22,12 @@ bimap = "0.6.3"
 # Tracks the unreleased `regexset_find_input` branch of fancy-regex#255
 # (https://github.com/fancy-regex/fancy-regex/pull/255), the RegexSet/Oniguruma-drop-in
 # work tracked in fancy-regex#162 (https://github.com/fancy-regex/fancy-regex/issues/162).
-# We use it for the `RegexInput` `\G`/anchoring model (replacing jaune's manual `\G` shim)
-# and its `RegexSet` multi-pattern scanner. The PR is still in review with known rough
-# edges (Unicode word-boundary panic — now with a fallback, quantifier divergences, and
-# `\G`-in-lookbehind optimisation bugs; see PR #255's review thread), so this is expected
-# to move; re-pin to a published release once the work lands.
+# jaune uses its `RegexInput` `\G`/anchoring model — which replaces the old manual `\G`
+# shim — plus `oniguruma_mode`. (The branch's `RegexSet` multi-pattern scanner was
+# prototyped but not adopted; see PLAN.md issue #2.) The PR is still in review with known
+# rough edges (Unicode word-boundary panic — now with a fallback, quantifier divergences,
+# and `\G`-in-lookbehind optimisation bugs; see PR #255's review thread), so this is
+# expected to move; re-pin to a published release once the work lands.
 fancy-regex = { git = "https://github.com/fancy-regex/fancy-regex", branch = "regexset_find_input" }
 plist = "1.7"
 serde = { version = "1.0.228", features = ["derive"] }

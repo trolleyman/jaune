@@ -4,7 +4,10 @@
 (vendored from the `textmate-grammars-themes` submodule) and turns source text into scope-annotated
 tokens. Regex matching is done with [`fancy-regex`](https://crates.io/crates/fancy-regex) — *not*
 Oniguruma — with a `translate_oniguruma()` shim in `src/tokenizer.rs` that rewrites the
-Oniguruma-isms TextMate patterns rely on (including a hand-rolled `\G` workaround).
+Oniguruma-isms TextMate patterns rely on. `\G` is no longer shimmed: it is modelled at runtime
+via `RegexInput::continue_from_previous_match_end` (see issue #2). `\A` is still neutered by a
+small string rewrite (`neuter_doc_start`), since no runtime override suppresses `\A` without also
+suppressing `^`, which must keep matching at the start of every per-line slice.
 
 ## Correctness harness
 
@@ -18,8 +21,8 @@ as comments — see `tests/samples/README.md`) two ways:
 
 Because both sides share one formatter, a `diff` between the two directories is a genuine
 tokenization difference. This is the oracle we use to measure how close jaune's `fancy-regex`-based
-matching gets to canonical Oniguruma behaviour. (Today: 83/237 samples match exactly; the rest are
-real jaune gaps to chase down.)
+matching gets to canonical Oniguruma behaviour. (Today: 89/238 samples match exactly, up from
+83 before the issue #2 matcher work; the rest are real jaune gaps to chase down.)
 
 Regenerate:
 
@@ -66,22 +69,46 @@ UPDATE_SNAPSHOTS=1 cargo test --test samples    # rewrite both sample directorie
    `markdown.embedded`). The other committed reference renders should be regenerated where the
    submodule is present so they pick up the injectTo/newline changes.
 
-2. [ ] Upgrade `fancy-regex` to pick up its `RegexSet` work, tracking
+2. [x] Upgrade `fancy-regex` to pick up its `RegexSet` work, tracking
    [fancy-regex#162](https://github.com/fancy-regex/fancy-regex/issues/162) (whether fancy-regex
    becomes a full Oniguruma drop-in for TextMate use) and pointing at
    [fancy-regex#255](https://github.com/fancy-regex/fancy-regex/pull/255) directly. `RegexSet` is a
    multi-pattern DFA scanner — the Rust analog of Oniguruma's `OnigScanner` — that would replace
    jaune's one-pattern-at-a-time `captures_from_pos` loop with a single leftmost-match pass, and its
    `RegexInput` models `\G`/anchoring so we could drop the manual `\G` shim. The PR is unreleased,
-   so until it lands in a published version, Cargo can pin the git branch directly (a PR *number*
-   can't be referenced, but its source branch/rev can):
+   so the dependency tracks the source branch directly:
 
    ```toml
    # PR #255 lives on a branch of the upstream repo, so no fork needed:
    fancy-regex = { git = "https://github.com/fancy-regex/fancy-regex", branch = "regexset_find_input" }
-   # …or pin an exact commit for reproducibility:
-   # fancy-regex = { git = "https://github.com/fancy-regex/fancy-regex", rev = "34363aad51315500f4253482df3257c32ffb067d" }
    ```
 
-   After switching the matcher over, regenerate the harness and confirm the `jaune/` ↔
-   `textmate-grammars-themes/` diff shrinks rather than regresses.
+   **Done — the `RegexInput`/anchoring half landed; the `RegexSet` single-pass did not.**
+
+   - **Dependency.** `fancy-regex` now tracks the `regexset_find_input` branch. `Captures` is generic
+     over the haystack type on this branch (`Captures<'_, str>`).
+   - **`\G` shim dropped.** Matching uses `RegexInput`: the engine matches `\G` at the search start by
+     default, and the tokenizer passes `continue_from_previous_match_end(false)` when the cursor is not
+     on the active anchor. Regexes are built through `RegexBuilder` with
+     `allow_input_assertion_overrides(true)` (required for that override) and `oniguruma_mode(true)`
+     (a step toward the #162 drop-in: `\<`/`\>` as literals, empty repeats dropped). `\A` keeps a small
+     string rewrite (`neuter_doc_start`) because no override suppresses `\A` without also suppressing
+     `^`.
+   - **Result.** Exact `jaune/` ↔ `textmate-grammars-themes/` matches rose **83 → 89** of 238. Diff
+     shrinks rather than regresses. ✔
+
+   **`RegexSet` single-pass: prototyped, measured, and deliberately *not* landed.** A cached,
+   per-frame `RegexSet::from_regexes` + `find_input` leftmost pass (with would-reenter retry and a `\G`
+   off-anchor post-filter) was implemented and produces correct, round-tripping output, but it does not
+   pay off versus the simple per-pattern loop above:
+
+   - **No correctness gain — a slight regression.** It scored **88/238 (−1 vs the 89 above)**, diverging
+     on the `\G`-in-lookbehind / quantifier cases that PR #255's own review thread still lists as open.
+   - **Slower.** ~19% over the per-pattern loop on the full sample run (≈379s vs ≈320s), because
+     `find_input` builds a multi-pattern hybrid/overlapping DFA per distinct candidate set, and the cache
+     is per-`Tokenizer` so every document pays the construction. A genuine win needs a scanner cache
+     shared across documents (keyed by the static pattern list, the way `vscode-textmate` reuses
+     `OnigScanner`s) — a larger change to `SyntaxSet` ownership/threading.
+
+   Revisit once PR #255 lands in a published release (the `\G`/quantifier rough edges fixed) and a
+   shared-scanner cache exists; then the single-pass should both match and outperform the loop.
